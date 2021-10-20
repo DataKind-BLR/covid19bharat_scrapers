@@ -1,5 +1,32 @@
 # provide default state configurations
 
+or:
+  name: Odisha
+  state_code: OR
+  url: https://statedashboard.odisha.gov.in/
+  type: html
+
+gj:
+  name: Gujarat
+  state_code: GJ
+  url: https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
+  type: html
+  columns:
+    District: district_name
+    Confirmed Positive Cases: confirmed
+    Cases Tested for COVID19:
+    Patients Recovered: recovered
+    People Under Quarantine:
+    Total Deaths: deceased
+
+jh:
+  name: Jharkhand
+  state_code: JH
+  url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
+  type: html
+
+# ============================ ^^^ TESTED UNTIL HERE ^^^
+
 ap:
   name: Andhra Pradesh
   state_code: AP
@@ -16,12 +43,6 @@ ga:
   name: Goa
   state_code: GA
   url: https://www.goa.gov.in/covid-19/
-  type: html
-
-or:
-  name: Odisha
-  state_code: OR
-  url: https://statedashboard.odisha.gov.in/
   type: html
 
 rj:
@@ -41,19 +62,6 @@ ts:
   state_code: TS
   url:
   type: html
-
-gj:
-  name: Gujarat
-  state_code: GJ
-  url: https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
-  type: html
-  columns:
-    District: district_name
-    Confirmed Positive Cases: confirmed
-    Cases Tested for COVID19:
-    Patients Recovered: recovered
-    People Under Quarantine:
-    Total Deaths: deceased
 
 up:
   name: Uttar Pradesh
@@ -180,12 +188,6 @@ jk:
   name: Jammu and Kashmir
   state_code: JK
   url:
-  type: html
-
-jh:
-  name: Jharkhand
-  state_code: JH
-  url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
   type: html
 
 ut:
