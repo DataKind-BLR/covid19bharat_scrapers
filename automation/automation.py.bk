@@ -612,34 +612,34 @@ class Automation:
                 f"{vaccine_dashboard['topBlock']['vaccination']['covishield']} ", file=file)
         return vaccine_dashboard['getBeneficiariesGroupBy']
 
-    def gj_get_data(self):
-        """
-        This dashboard is not accessible outside India IP
-        :return:
-        """
-        response = requests.request("GET", self.meta_dictionary['Gujarat'].url)
-        soup = BeautifulSoup(response.content, 'html.parser')
-        table = soup.find("div", {"class": "table-responsive"}).find_all("tr")
+    # def gj_get_data(self):
+    #     """
+    #     This dashboard is not accessible outside India IP
+    #     :return:
+    #     """
+    #     response = requests.request("GET", self.meta_dictionary['Gujarat'].url)
+    #     soup = BeautifulSoup(response.content, 'html.parser')
+    #     table = soup.find("div", {"class": "table-responsive"}).find_all("tr")
 
-        district_array = []
-        for index, row in enumerate(table):
-            if index == len(table) - 1:
-                continue
+    #     district_array = []
+    #     for index, row in enumerate(table):
+    #         if index == len(table) - 1:
+    #             continue
 
-            data_points = row.find_all("td")
-            if len(data_points) != 6:
-                continue
+    #         data_points = row.find_all("td")
+    #         if len(data_points) != 6:
+    #             continue
 
-            district_dictionary = {
-                'district_name': data_points[0].get_text(),
-                'confirmed': int(data_points[1].get_text().strip()),
-                'recovered': int(data_points[3].get_text().strip()),
-                'deceased': int(data_points[5].get_text().strip())
-            }
-            district_array.append(district_dictionary)
+    #         district_dictionary = {
+    #             'district_name': data_points[0].get_text(),
+    #             'confirmed': int(data_points[1].get_text().strip()),
+    #             'recovered': int(data_points[3].get_text().strip()),
+    #             'deceased': int(data_points[5].get_text().strip())
+    #         }
+    #         district_array.append(district_dictionary)
 
-        print(district_dictionary)
-        # self.delta_calculator.get_state_data_from_site("Gujarat", district_array, self.option)
+    #     print(district_dictionary)
+    #     # self.delta_calculator.get_state_data_from_site("Gujarat", district_array, self.option)
 
     @staticmethod
     def tg_get_data():

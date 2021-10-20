@@ -185,7 +185,7 @@ jk:
 jh:
   name: Jharkhand
   state_code: JH
-  url:
+  url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
   type: html
 
 ut:

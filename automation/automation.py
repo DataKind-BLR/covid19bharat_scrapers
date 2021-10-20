@@ -64,6 +64,42 @@ def gj_get_data(opt):
   # TODO = get diff from delta calculator and print it
   # self.delta_calculator.get_state_data_from_site("Gujarat", districts_data, self.option)
 
+def jh_get_data(opt):
+  today = (datetime.date.today() - datetime.timedelta(days=0)).strftime("%Y-%m-%d")
+  # complete url with the today's date
+  opt['url'] += today
+
+  headers = {
+    'Host': 'covid19dashboard.jharkhand.gov.in',
+    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Content-Length': '15',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Cookie': 'ci_session=i6qt39o41i7gsopt23ipm083hla6994c'
+  }
+
+  # TODO - request fails here....
+  response = requests.post(opt['url'], headers=headers, data=today)
+  soup = BeautifulSoup(response.content, 'html.parser')
+  districts = soup.find('table').find_all('tr')
+
+  district_start = False
+  for district in districts:
+
+    if "Bokaro" in district.get_text() and district_start is False:
+      district_start = True
+
+    if district_start is False:
+      continue
+
+    data = district.find_all("td")
+
+    if int(data[3].get_text()) != 0:
+      print(f"{data[1].get_text()},Jharkhand,JH,{data[3].get_text()},Hospitalized")
+    if int(data[4].get_text()) != 0:
+      print(f"{data[1].get_text()},Jharkhand,JH,{data[4].get_text()},Recovered")
+    if int(data[6].get_text()) != 0:
+      print(f"{data[1].get_text()},Jharkhand,JH,{data[6].get_text()},Deceased")
+
 def nl_get_data(opt):
   print('fetching NL data', opt)
 
@@ -118,7 +154,8 @@ def fetch_data(st_obj):
     'ch': ch_get_data,
     'kl': kl_get_data,
     'la': la_get_data,
-    'ml': ml_get_data
+    'ml': ml_get_data,
+    'jh': jh_get_data
   }
 
   try:
