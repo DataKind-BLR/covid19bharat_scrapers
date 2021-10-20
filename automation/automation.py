@@ -30,7 +30,35 @@ def ga_get_data(opt):
   print('fetching GA data', opt)
 
 def or_get_data(opt):
-  print('fetching OR data', opt)
+  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orsite.csv')
+  cmd = ' | '.join([
+    "curl -sk {}".format(opt['url']),
+    "grep -i string | grep -v legend",
+    "sed 's/var result = JSON.stringify(//' |sed 's/);//' | head -1 > {}".format(temp_file)
+  ])
+  os.system(cmd)
+
+  district_array = []
+  districts_data = []
+  with open(temp_file, 'r', encoding='utf-8') as meta_file:
+    for line in meta_file:
+      districts_data = json.loads(line)
+
+  for data in districts_data:
+    district_dictionary = {
+      'district_name': data['vchDistrictName'],
+      'confirmed': int(data['intConfirmed']),
+      'recovered': int(data['intRecovered']),
+      'deceased': int(data['intDeceased']) + int(data['intOthDeceased'])
+    }
+
+    district_array.append(district_dictionary)
+
+  # delete temp file after printed
+  os.system('rm -f {}'.format(temp_file))
+  return district_array
+  # TODO - get diff
+  # self.delta_calculator.get_state_data_from_site("Odisha", district_array, self.option)
 
 def rj_get_data(opt):
   print('fetching RJ data', opt)
@@ -39,10 +67,6 @@ def mh_get_data(opt):
   print('fetching MH data', opt)
 
 def gj_get_data(opt):
-  '''
-  This dashboard is not accessible outside India IP
-  :return:
-  '''
   print('fetching GJ data', opt)
 
   response = requests.request('GET', opt['url'])

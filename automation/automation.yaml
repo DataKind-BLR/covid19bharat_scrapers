@@ -21,7 +21,7 @@ ga:
 or:
   name: Odisha
   state_code: OR
-  url: https://health.odisha.gov.in/js/distDtls.js
+  url: https://statedashboard.odisha.gov.in/
   type: html
 
 rj:
