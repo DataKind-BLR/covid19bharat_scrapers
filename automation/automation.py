@@ -14,57 +14,14 @@ import datetime
 import pdftotext
 
 from bs4 import BeautifulSoup
-# from deltaCalculator import DeltaCalculator
+from delta_calculator import DeltaCalculator
 
 # read the config file
-with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "automation.yaml"), "r") as stream:
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'automation.yaml'), 'r') as stream:
   try:
     states_all = yaml.safe_load(stream)
   except yaml.YAMLError as exc:
     print(exc)
-
-def ap_get_data(opt):
-  print('fetching AP data', opt)
-
-def ga_get_data(opt):
-  print('fetching GA data', opt)
-
-def or_get_data(opt):
-  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orsite.csv')
-  cmd = ' | '.join([
-    "curl -sk {}".format(opt['url']),
-    "grep -i string | grep -v legend",
-    "sed 's/var result = JSON.stringify(//' |sed 's/);//' | head -1 > {}".format(temp_file)
-  ])
-  os.system(cmd)
-
-  district_array = []
-  districts_data = []
-  with open(temp_file, 'r', encoding='utf-8') as meta_file:
-    for line in meta_file:
-      districts_data = json.loads(line)
-
-  for data in districts_data:
-    district_dictionary = {
-      'district_name': data['vchDistrictName'],
-      'confirmed': int(data['intConfirmed']),
-      'recovered': int(data['intRecovered']),
-      'deceased': int(data['intDeceased']) + int(data['intOthDeceased'])
-    }
-
-    district_array.append(district_dictionary)
-
-  # delete temp file after printed
-  os.system('rm -f {}'.format(temp_file))
-  return district_array
-  # TODO - get diff
-  # self.delta_calculator.get_state_data_from_site("Odisha", district_array, self.option)
-
-def rj_get_data(opt):
-  print('fetching RJ data', opt)
-
-def mh_get_data(opt):
-  print('fetching MH data', opt)
 
 def gj_get_data(opt):
   print('fetching GJ data', opt)
@@ -85,8 +42,6 @@ def gj_get_data(opt):
     })
 
   return districts_data
-  # TODO = get diff from delta calculator and print it
-  # self.delta_calculator.get_state_data_from_site("Gujarat", districts_data, self.option)
 
 def jh_get_data(opt):
   today = (datetime.date.today() - datetime.timedelta(days=0)).strftime("%Y-%m-%d")
@@ -123,6 +78,49 @@ def jh_get_data(opt):
       print(f"{data[1].get_text()},Jharkhand,JH,{data[4].get_text()},Recovered")
     if int(data[6].get_text()) != 0:
       print(f"{data[1].get_text()},Jharkhand,JH,{data[6].get_text()},Deceased")
+
+def or_get_data(opt):
+  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orsite.csv')
+  cmd = ' | '.join([
+    "curl -sk {}".format(opt['url']),
+    "grep -i string | grep -v legend",
+    "sed 's/var result = JSON.stringify(//' |sed 's/);//' | head -1 > {}".format(temp_file)
+  ])
+  os.system(cmd)
+
+  district_array = []
+  districts_data = []
+  with open(temp_file, 'r', encoding='utf-8') as meta_file:
+    for line in meta_file:
+      districts_data = json.loads(line)
+
+  for data in districts_data:
+    district_dictionary = {
+      'district_name': data['vchDistrictName'],
+      'confirmed': int(data['intConfirmed']),
+      'recovered': int(data['intRecovered']),
+      'deceased': int(data['intDeceased']) + int(data['intOthDeceased'])
+    }
+
+    district_array.append(district_dictionary)
+
+  # delete temp file after printed
+  os.system('rm -f {}'.format(temp_file))
+  return district_array
+  # TODO - get diff
+  # self.delta_calculator.get_state_data_from_site("Odisha", district_array, self.option)
+
+def ap_get_data(opt):
+  print('fetching AP data', opt)
+
+def ga_get_data(opt):
+  print('fetching GA data', opt)
+
+def rj_get_data(opt):
+  print('fetching RJ data', opt)
+
+def mh_get_data(opt):
+  print('fetching MH data', opt)
 
 def nl_get_data(opt):
   print('fetching NL data', opt)
@@ -190,7 +188,11 @@ def fetch_data(st_obj):
 
 if __name__ == '__main__':
   '''
-  $python automation.py
+  Example to extract from html dashboard (the url will be taken from automation.yaml file by default)
+    $python automation.py --state_code GJ
+
+  Example to overwrite settings already provided in yaml file:
+    $python automation.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
   '''
   parser = argparse.ArgumentParser()
   parser.add_argument('--state_code', type=str, nargs='?', default='all', help='provide 2 letter state code, defaults to all')
@@ -215,8 +217,14 @@ if __name__ == '__main__':
         'type': url_type,
         'url': url
       })
-      fetch_data(states_all[state_code])
-    else:
-      # else use default url & type from yaml file
-      fetch_data(states_all[state_code])
 
+    # else use default url & type from yaml file
+    st_current = fetch_data(states_all[state_code])
+
+    # get delta from current
+    delta = delta_calculator.get_state_data_from_site(
+      states_all[state_code]['name'],
+      st_current,
+      states_all[state_code]['type']
+    )
+    print(delta)

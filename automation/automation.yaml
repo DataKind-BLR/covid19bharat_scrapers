@@ -57,9 +57,9 @@ mh:
   url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
   type: html
 
-ts:
+tg:
   name: Telangana
-  state_code: TS
+  state_code: TG
   url:
   type: html
 
