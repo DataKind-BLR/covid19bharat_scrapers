@@ -80,7 +80,6 @@ with open("extract.meta", "r") as metaFile:
     metaObject = ExtractMeta(lineArray[0].strip(), lineArray[1].strip(), lineArray[2].strip())
     metaArray.append(metaObject)
 
-
 def getDataForStates():
   outputToWrite=[]
   header = "State, Last Updated, Samples Tested, Samples Positive, Samples Negative, Results Awaited, Total Confirmed, Total Active, Total Dischargedl, url\n"
@@ -268,15 +267,12 @@ def stateDetailsExtractor(metaObject, outputString):
     outputString.append(rowString)
 
 
-
-
 def buildRowString(url, orderArray, rowString, dataDictionary):
 
   for key in orderArray:
     rowString = rowString + "," + dataDictionary[key] if len(key) > 0 else rowString + ","
   rowString += "," + url + "\n"
   return rowString
-
   
   
 def nagalandTableExtractor(soupObject, districtDictionary, firstPass):
@@ -315,7 +311,6 @@ def readAllEntriesForATable(table, outputString, itemToSearch, itemsToAppend, it
     if len(rowString) > 0:
       rowString = rowString + "," + str(itemsToAppend) + "\n" if len(itemsToAppend) > 0 else rowString + "\n"
       outputString.append(rowString)
-  
 
 
 def districtDetailsExtractor(metaObject):
@@ -465,7 +460,3 @@ def districtDetailsExtractor(metaObject):
     writeToOutputCsv("Rajasthan.csv", outputString)
 
 getDataForStates()
-
-
-
-

@@ -1,0 +1,199 @@
+# provide default state configurations
+
+ap:
+  name: Andhra Pradesh
+  state_code: AP
+  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+  type: html
+
+ar:
+  name: Arunachal Pradesh
+  state_code: AR
+  url:
+  type: html
+
+ga:
+  name: Goa
+  state_code: GA
+  url: https://www.goa.gov.in/covid-19/
+  type: html
+
+or:
+  name: Odisha
+  state_code: OR
+  url: https://health.odisha.gov.in/js/distDtls.js
+  type: html
+
+rj:
+  name: Rajasthan
+  state_code: RJ
+  url: http://www.rajswasthya.nic.in/
+  type: html
+
+mh:
+  name: Maharashtra
+  state_code: MH
+  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+  type: html
+
+ts:
+  name: Telangana
+  state_code: TS
+  url:
+  type: html
+
+gj:
+  name: Gujarat
+  state_code: GJ
+  url: https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
+  type: html
+  columns:
+    District: district_name
+    Confirmed Positive Cases: confirmed
+    Cases Tested for COVID19:
+    Patients Recovered: recovered
+    People Under Quarantine:
+    Total Deaths: deceased
+
+up:
+  name: Uttar Pradesh
+  state_code: UP
+  url:
+  type: html
+
+br:
+  name: Bihar
+  state_code: BR
+  url:
+  type: html
+
+cg:
+  name: Chattisgarh
+  state_code: CG
+  url:
+  type: html
+
+nl:
+  name: Nagaland
+  state_code: NL
+  url: https://covid19.nagaland.gov.in/health-main
+  type: html
+
+mz:
+  name: Mizoram
+  state_code: MZ
+  url:
+  type: html
+
+as:
+  name: Assam
+  state_code: AS
+  url: https://covid19.assam.gov.in/all-districts/
+  type: html
+
+tr:
+  name: Tripura
+  state_code: TR
+  url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
+  type: html
+
+py:
+  name: Puducherry
+  state_code: PY
+  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
+  type: html
+
+ch:
+  name: Chandigarh
+  state_code: CH
+  url: http://chdcovid19.in/
+  type: html
+
+kl:
+  name: Kerala
+  state_code: KL
+  url: https://dashboard.kerala.gov.in/maps/outside.geojson
+  type: html
+# KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
+
+la:
+  name: Ladakh
+  state_code: LA
+  url: http://covid.ladakh.gov.in/#dataInsights
+  type: html
+
+pb:
+  name: Punjab
+  state_code: PB
+  url:
+  type: html
+
+ml:
+  name: Meghalaya
+  state_code: ML
+  url: https://services7.arcgis.com/nzBTI19PTHBZaEPT/arcgis/rest/services/Admin_Boundary/FeatureServer/1/query?f=json&returnGeometry=false&outFields=*&where=1=1
+  type: html
+
+mz:
+  name: Mizoram
+  state_code: MZ
+  url: https://mcovid19.mizoram.gov.in/api/home-stats
+  type: html
+
+tn:
+  name: Tamil Nadu
+  state_code: TN
+  url:
+  type: html
+
+mp:
+  name: Madhya Pradesh
+  state_code: MP
+  url:
+  type: html
+
+ka:
+  name: Karnataka
+  state_code: KA
+  url:
+  type: html
+
+wb:
+  name: West Bengal
+  state_code: WB
+  url:
+  type: html
+
+hr:
+  name: Haryana
+  state_code: HR
+  url:
+  type: html
+
+hp:
+  name: Himachal Pradesh
+  state_code: HP
+  url:
+  type: html
+
+jk:
+  name: Jammu and Kashmir
+  state_code: JK
+  url:
+  type: html
+
+jh:
+  name: Jharkhand
+  state_code: JH
+  url:
+  type: html
+
+ut:
+  name: Uttarakhand
+  state_code: UT
+  url:
+  type: html
+
+# Vaccine, VC, https://api.cowin.gov.in/api/v1/reports/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
+# VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/
+#
