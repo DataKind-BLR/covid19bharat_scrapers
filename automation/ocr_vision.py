@@ -1,10 +1,7 @@
 import os
-import sys
 import io
-import pickle
+import sys
 from google.cloud import vision
-
-fileName = ""
 
 def detect_text(path):
   """Detects text in the file."""
@@ -23,7 +20,6 @@ def detect_text(path):
   boundsFile.close()
 
 # Save output
-
   for text in texts:
     vertices = (['{},{}'.format(vertex.x, vertex.y) for vertex in text.bounding_poly.vertices])
     print('{}'.format(text.description), end ="|")
@@ -35,14 +31,7 @@ def detect_text(path):
       'https://cloud.google.com/apis/design/errors'.format(
       response.error.message))
 
-
-def main():
-  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "../../../visionapi.json"
-  path = fileName
-
-# Do OCR
-  detect_text(path)
-
 if __name__ == "__main__":
-  fileName = sys.argv[1]
-  main()
+  file_path = sys.argv[1]
+  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "../../../visionapi_dk.json"
+  detect_text(file_path)

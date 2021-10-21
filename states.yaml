@@ -34,6 +34,13 @@ ap:
     recovered: Cured/ Discharged
     deceased: Deceased
 
+rj:
+  name: Rajasthan
+  state_code: RJ
+  # image address is extracted from `http://www.rajswasthya.nic.in/`
+  url: http://www.rajswasthya.nic.in/COVID20.JPG
+  type: image
+
 # ============================ ^^^ TESTED UNTIL HERE ^^^
 
 ar:
@@ -46,12 +53,6 @@ ga:
   name: Goa
   state_code: GA
   url: https://www.goa.gov.in/covid-19/
-  type: html
-
-rj:
-  name: Rajasthan
-  state_code: RJ
-  url: http://www.rajswasthya.nic.in/
   type: html
 
 mh:

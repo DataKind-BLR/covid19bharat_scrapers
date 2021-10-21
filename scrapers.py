@@ -17,7 +17,7 @@ from bs4 import BeautifulSoup
 # from deltaCalculator import DeltaCalculator
 
 # read the config file
-with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'automation.yaml'), 'r') as stream:
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml'), 'r') as stream:
   try:
     states_all = yaml.safe_load(stream)
   except yaml.YAMLError as exc:

@@ -1,8 +1,0 @@
-Bengaluru Urban,Karnataka,KA,-5,Deceased
-Dakshina Kannada,Karnataka,KA,-1,Deceased
-Dharwad,Karnataka,KA,-1,Deceased
-Kodagu,Karnataka,KA,-1,Deceased
-Mysuru,Karnataka,KA,-1,Deceased
-Tumakuru,Karnataka,KA,-1,Deceased
-Udupi,Karnataka,KA,-3,Deceased
-Uttara Kannada,Karnataka,KA,-1,Deceased
