@@ -1,19 +1,22 @@
 import os
 import io
 import sys
+import requests
 from google.cloud import vision
 
 def detect_text(path):
   """Detects text in the file."""
   client = vision.ImageAnnotatorClient()
 
-  with io.open(path, 'rb') as image_file:
-    content = image_file.read()
+  # with io.open(path, 'rb') as image_file:
+    # with /010f/0fa/123
+    # content = image_file.read()
 
-  image = vision.Image(content=content)
-
-  response = client.document_text_detection(image=image)
-  texts = response.text_annotations
+  # reading image directly from url
+  url_response = requests.get(path)
+  image = vision.Image(content=url_response.content)
+  resp = client.document_text_detection(image=image)
+  texts = resp.text_annotations
   print(texts)
   with io.open('poly.txt', 'w') as boundsFile:
     print(texts, file = boundsFile)
@@ -25,13 +28,13 @@ def detect_text(path):
     print('{}'.format(text.description), end ="|")
     print('bounds|{}'.format('|'.join(vertices)))
 
-  if response.error.message:
+  if resp.error.message:
     raise Exception(
       '{}\nFor more info on error messages, check: '
       'https://cloud.google.com/apis/design/errors'.format(
-      response.error.message))
+      resp.error.message))
 
 if __name__ == "__main__":
   file_path = sys.argv[1]
-  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "../../../visionapi_dk.json"
+  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "visionapi.json"
   detect_text(file_path)

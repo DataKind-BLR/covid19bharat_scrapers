@@ -1148,7 +1148,9 @@ def KAGetDataByOCR():
       districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
       districtArray.append(districtDictionary)
   kaFile.close()
-  deltaCalculator.getStateDataFromSite("Karnataka", districtArray, option)
+  print('----------- from ocr')
+  print(districtArray)
+  # deltaCalculator.getStateDataFromSite("Karnataka", districtArray, option)
 
 def KAGetDataByUrl():
   global pdfUrl
@@ -1191,7 +1193,9 @@ def KAGetDataByUrl():
         districtArray.append(districtDictionary)
 
     upFile.close()
-    deltaCalculator.getStateDataFromSite("Karnataka", districtArray, option)
+    print('----------- from url')
+    print(districtArray)
+    # deltaCalculator.getStateDataFromSite("Karnataka", districtArray, option)
 
     if runDeceased == True:
       os.system("python3 kaautomation.py d " + str(startId) + " " + str(endId) + " && cat kaconfirmed.csv")
@@ -1250,7 +1254,8 @@ def TNGetData():
         districtArray.append(districtDictionary)
 
     upFile.close()
-    deltaCalculator.getStateDataFromSite("Tamil Nadu", districtArray, option)
+    print(districtArray)
+    # deltaCalculator.getStateDataFromSite("Tamil Nadu", districtArray, option)
   except FileNotFoundError:
     print("tn.txt missing. Generate through pdf or ocr and rerun.")
 
@@ -1481,7 +1486,7 @@ def KLGetDataByPDF():
 
     upFile.close()
   except FileNotFoundError:
-    print("ap.csv missing. Generate through pdf or ocr and rerun.")
+    print("KL.pdf missing. Generate through pdf or ocr and rerun.")
 
 
 def KLDGetData():

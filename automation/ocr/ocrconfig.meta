@@ -1,6 +1,6 @@
 startingText:auto,auto
 enableTranslation:False
-translationFile:rj_districts.meta
+translationFile:invalid_districts.meta
 yInterval:0
 xInterval:0
 houghTransform:True

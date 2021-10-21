@@ -1,3 +1,13 @@
+######
+# $1 = the url / path to the image or the PDF file
+# $2 =
+# $3 =
+#
+#
+#
+#
+#
+######
 customiseMetaConfig() {
   stateCode=$( echo $1 )
 	replacementLine=$( echo $2 )
@@ -149,11 +159,11 @@ case $2 in
     stateCode="invalid"
 esac
 
-echo -e "\n********************* If you want to see the ocr data, cat output.txt *********************\n"
-
 if (( $skipOcr != 1 ))
 then
   echo -e "\n******** Calling google vision api *******"
+  echo $1
+  echo "0------------------------"
   python3 ocr_vision.py $1 > bounds.txt
 fi
 
