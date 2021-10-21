@@ -12,12 +12,10 @@ gj:
   url: https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
   type: html
   columns:
-    District: district_name
-    Confirmed Positive Cases: confirmed
-    Cases Tested for COVID19:
-    Patients Recovered: recovered
-    People Under Quarantine:
-    Total Deaths: deceased
+    district_name: District
+    confirmed: Confirmed Positive Cases
+    recovered: Patients Recovered
+    deceased: Total Deaths
 
 jh:
   name: Jharkhand
@@ -25,13 +23,18 @@ jh:
   url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
   type: html
 
-# ============================ ^^^ TESTED UNTIL HERE ^^^
-
 ap:
   name: Andhra Pradesh
   state_code: AP
   url: http://hmfw.ap.gov.in/covid_dashboard.aspx
   type: html
+  columns:
+    district_name: Name of the District
+    confirmed: Confirmed Cases
+    recovered: Cured/ Discharged
+    deceased: Deceased
+
+# ============================ ^^^ TESTED UNTIL HERE ^^^
 
 ar:
   name: Arunachal Pradesh
@@ -67,7 +70,7 @@ up:
   name: Uttar Pradesh
   state_code: UP
   url:
-  type: html
+  type: pdf
 
 br:
   name: Bihar

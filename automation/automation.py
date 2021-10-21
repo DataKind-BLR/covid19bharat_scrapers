@@ -14,7 +14,7 @@ import datetime
 import pdftotext
 
 from bs4 import BeautifulSoup
-from delta_calculator import DeltaCalculator
+# from deltaCalculator import DeltaCalculator
 
 # read the config file
 with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'automation.yaml'), 'r') as stream:
@@ -39,6 +39,27 @@ def gj_get_data(opt):
       'confirmed': int(d[1].get_text().strip()),
       'recovered': int(d[3].get_text().strip()),
       'deceased': int(d[5].get_text().strip())
+    })
+
+  return districts_data
+  # TODO = get diff from delta calculator and print it
+  # self.delta_calculator.get_state_data_from_site("Gujarat", districts_data, self.option)
+
+def ap_get_data(opt):
+  print('fetching AP data', opt)
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('table', {'class': 'table'}).find_all('tr')
+  districts_data = []
+
+  for row in table[1:]:
+    # Ignoring 1st row containing table headers
+    d = row.find_all('td')
+    districts_data.append({
+      'district_name': d[0].get_text(),
+      'confirmed': int(d[1].get_text().strip()),
+      'recovered': int(d[2].get_text().strip()),
+      'deceased': int(d[3].get_text().strip())
     })
 
   return districts_data
@@ -88,30 +109,23 @@ def or_get_data(opt):
   ])
   os.system(cmd)
 
-  district_array = []
-  districts_data = []
+  district_data = []
+  fetched_data = []
   with open(temp_file, 'r', encoding='utf-8') as meta_file:
     for line in meta_file:
-      districts_data = json.loads(line)
+      fetched_data = json.loads(line)
 
-  for data in districts_data:
-    district_dictionary = {
-      'district_name': data['vchDistrictName'],
-      'confirmed': int(data['intConfirmed']),
-      'recovered': int(data['intRecovered']),
-      'deceased': int(data['intDeceased']) + int(data['intOthDeceased'])
-    }
-
-    district_array.append(district_dictionary)
+  for d in fetched_data:
+    district_data.append({
+      'district_name': d['vchDistrictName'],
+      'confirmed': int(d['intConfirmed']),
+      'recovered': int(d['intRecovered']),
+      'deceased': int(d['intDeceased']) + int(d['intOthDeceased'])
+    })
 
   # delete temp file after printed
   os.system('rm -f {}'.format(temp_file))
-  return district_array
-  # TODO - get diff
-  # self.delta_calculator.get_state_data_from_site("Odisha", district_array, self.option)
-
-def ap_get_data(opt):
-  print('fetching AP data', opt)
+  return district_data
 
 def ga_get_data(opt):
   print('fetching GA data', opt)
@@ -121,6 +135,10 @@ def rj_get_data(opt):
 
 def mh_get_data(opt):
   print('fetching MH data', opt)
+  opt['type'] == 'PDF'
+  return {
+    ''
+  }
 
 def nl_get_data(opt):
   print('fetching NL data', opt)
@@ -148,7 +166,6 @@ def la_get_data(opt):
 
 def ml_get_data(opt):
   print('fetching ML data', opt)
-
 
 def fetch_data(st_obj):
   '''
@@ -181,7 +198,7 @@ def fetch_data(st_obj):
   }
 
   try:
-    fn_map[st_obj['state_code'].lower()](st_obj)
+    return fn_map[st_obj['state_code'].lower()](st_obj)
   except KeyError:
     print('no function definition in fn_map for {}'.format(st_obj['name']))
 
@@ -217,14 +234,14 @@ if __name__ == '__main__':
         'type': url_type,
         'url': url
       })
+    # always use default url & type from yaml file
+    live_data = fetch_data(states_all[state_code])
+    print(live_data)
 
-    # else use default url & type from yaml file
-    st_current = fetch_data(states_all[state_code])
+  # TODO - get delta for states
+  # delta = delta_calculator.get_state_data_from_site(
+  #   states_all[state_code]['name'],
+  #   live_data,
+  #   states_all[state_code]['type']
+  # )
 
-    # get delta from current
-    delta = delta_calculator.get_state_data_from_site(
-      states_all[state_code]['name'],
-      st_current,
-      states_all[state_code]['type']
-    )
-    print(delta)
