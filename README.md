@@ -1,3 +1,17 @@
+# Covid19Bharat Scrapers
+
+Example to extract from html dashboard (the url will be taken from `automation.yaml` file by default)
+```bash
+$python automation.py --state_code GJ
+```
+
+Example to overwrite settings already provided in yaml file:
+```bash
+$python automation.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
+````
+
+-----
+
 Usage:  
 cd automation  
 Comment lines in automation.meta that do not need to be run.    
