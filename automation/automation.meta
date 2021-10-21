@@ -2,14 +2,8 @@ Gujarat, GJ,https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataFo
 Odisha, OR, https://health.odisha.gov.in/js/distDtls.js
 Andhra Pradesh, AP, http://hmfw.ap.gov.in/covid_dashboard.aspx
 Rajasthan, RJ, http://www.rajswasthya.nic.in/ | http://www.rajswasthya.nic.in/COVID20.JPG
-
-
-// ---------- TO Verify
-
 Vaccine, VC, https://api.cowin.gov.in/api/v1/reports/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
-
-VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/ 
-
+VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/
 Arunachal Pradesh, AR, 
 #Goa, GA, https://www.goa.gov.in/covid-19/
 Maharashtra, MH, https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
