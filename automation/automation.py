@@ -1313,7 +1313,8 @@ def NLGetData():
           districtArray.append(districtDictionary)
 
       upFile.close()
-      deltaCalculator.getStateDataFromSite("Nagaland", districtArray, option)
+      print(districtArray)
+      # deltaCalculator.getStateDataFromSite("Nagaland", districtArray, option)
     except FileNotFoundError:
       print("hr.csv missing. Generate through pdf or ocr and rerun.")
 

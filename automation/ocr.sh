@@ -1,8 +1,8 @@
 ######
 # $1 = the url / path to the image or the PDF file
-# $2 =
-# $3 =
-#
+# $2 = the full name of the state in camel case, with spaces if necessary
+# $3 = "auto,auto"
+# $4 = "False" or "True" depending if you need to translate the text
 #
 #
 #
@@ -159,28 +159,30 @@ case $2 in
     stateCode="invalid"
 esac
 
+# ---------------------- if OCR is NOT to be skipped
+
 if (( $skipOcr != 1 ))
 then
   echo -e "\n******** Calling google vision api *******"
-  echo $1
-  echo "0------------------------"
-  python3 ocr_vision.py $1 > bounds.txt
+  # python3 ocr_vision.py $1 > bounds.txt
 fi
+
+# ---------------------- if table extraction from image is NOT to be skipped
 
 if (( $skipTable != 1 ))
 then
-  replacementLine="s/@@statename@@/\$stateCode/g;s/@@yInterval@@/\$yInterval/g;s/@@xInterval@@/\$xInterval/g;s/@@houghTransform@@/\$houghTransform/g;s/@@enableTranslation@@/\$enableTranslation/g;s/@@startingText@@/\$startingText/g;s/@@configMinLineLength@@/\$configMinLineLength/g;"
+  rl="s/@@statename@@/\$stateCode/g;s/@@yInterval@@/\$yInterval/g;s/@@xInterval@@/\$xInterval/g;s/@@houghTransform@@/\$houghTransform/g;s/@@enableTranslation@@/\$enableTranslation/g;s/@@startingText@@/\$startingText/g;s/@@configMinLineLength@@/\$configMinLineLength/g;"
 
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "hp:houghTransform=False,yInterval=5" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "br:houghTransform=False" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mp:houghTransform=False" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ap:configMinLineLength=300" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "tn:configMinLineLength=500" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "tg:enableTranslation=True" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mz:houghTransform=False" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ml:configMinLineLength=250" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ut:houghTransform=False" )
-  replacementLine=$( customiseMetaConfig $stateCode $replacementLine "nl:configMinLineLength=250" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "hp:houghTransform=False,yInterval=5" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "br:houghTransform=False" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "mp:houghTransform=False" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "ap:configMinLineLength=300" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "tn:configMinLineLength=500" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "tg:enableTranslation=True" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "mz:houghTransform=False" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "ml:configMinLineLength=250" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "ut:houghTransform=False" )
+  replacementLine=$( customiseMetaConfig $stateCode $rl "nl:configMinLineLength=250" )
 
   configMinLineLength=400
   enableTranslation=`echo $4`
@@ -189,11 +191,13 @@ then
   yInterval=0
   xInterval=0
 
+  # this is finding & replacing variables inside ocrconfig.meta.orig file and then making a copy of it
 	finalReplacementString=$( echo $replacementLine | sed "s/\$stateCode/$stateCode/g; s/\$yInterval/$yInterval/g; s/\$xInterval/$xInterval/g; s/\$houghTransform/$houghTransform/g; s/\$enableTranslation/$enableTranslation/g; s/\$startingText/$startingText/g; s/\$configMinLineLength/$configMinLineLength/g" )
 
 	echo $finalReplacementString
 
-	sed "$finalReplacementString" ocrconfig.meta.orig > ocrconfig.meta
+	# sed "$finalReplacementString" automation/ocrconfig.meta.orig > ./$stateCode_ocrconfig.meta
+  sed "$finalReplacementString" automation/ocrconfig.meta.orig > ./ocrconfig.meta
 
   echo -e "\n******** Using ocrconfig.meta, change ocrconfig.meta.orig for x and y intervals ******* "
   cat ocrconfig.meta
@@ -201,11 +205,13 @@ then
   python3 googlevision.py ocrconfig.meta $1
 fi
 
-cp output.txt ../.tmp/$stateCode.txt
+# copying the poly.txt to a state_code.txt that is read by automation.py
+cp poly.txt $stateCode.txt
 
+# ---------------------- if automation is NOT to be skipped
 if (( $skipAutomation != 1 && $individualRecords != 1 ))
 then
   cd ..
   echo -e "\n******** Calling automation.py for $2  ******* "
-  python3 ./automation.py "$2" "full" $format
+  # python3 ./automation.py "$2" "full" $format
 fi

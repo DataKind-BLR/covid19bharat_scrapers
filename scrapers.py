@@ -23,6 +23,82 @@ with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml
   except yaml.YAMLError as exc:
     print(exc)
 
+def hr_get_data(opt):
+  print('fetching HR data', opt)
+
+  # always get for T - 1 day
+  today = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%d-%m-%Y")
+  opt['url'] = opt['url'] + today + '.' + opt['type']
+  opt['config']['page'] = str(opt['config']['page'])
+
+  # util function for HR only
+  def HRFormatLine(row):
+    row[1] = re.sub('\*', '', row[1])
+    if '[' in row[3]:
+      row[3] = row[3].split('[')[0]
+    if '[' in row[4]:
+      row[4] = row[4].split('[')[0]
+    if '[' in row[7]:
+      row[7] = row[7].split('[')[0]
+    if '[' in row[6]:
+      row[6] = row[6].split('[')[0]
+
+    line = row[1] + "," + row[3] + "," + row[4] + "," + str(int(row[6]) + int (row[7])) + "\n"
+    return line
+
+  ## call the readFileFromURLV2 to generate the CSV file here...
+  tables = camelot.read_pdf(opt['url'],
+    strip_text = '\n',
+    pages = opt['config']['page'],
+    split_text = True
+  )
+
+  # create an empty csv file first
+  stateOutputFile = open(opt['state_code'].lower() + '.csv', 'w')
+  startedReadingDistricts = False
+
+  for index, table in enumerate(tables):
+    # create .pdf.txt file for every page
+    tables[index].to_csv(opt['state_code'].lower() + str(index) + '.pdf.txt')
+    with open(opt['state_code'].lower() + str(index) + '.pdf.txt', newline='') as stateCSVFile:
+      rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
+      for row in rowReader:
+        line = "|".join(row)
+        line = re.sub("\|+", '|', line)
+        if opt['config']['start_key'] in line:
+          startedReadingDistricts = True
+        if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
+          startedReadingDistricts = False
+          continue
+        if startedReadingDistricts == False:
+          continue
+
+        line = eval(opt['state_code'] + "FormatLine")(line.split('|'))
+        if line == "\n":
+          continue
+        print(line, file = stateOutputFile, end = "")
+    stateOutputFile.close()
+
+  # once the csv file is genered, read it
+  linesArray = []
+  districtDictionary = {}
+  districtArray = []
+  with open("hr.csv", "r") as upFile:
+    for line in upFile:
+      linesArray = line.split(',')
+      if len(linesArray) != 4:
+        print("--> Issue with {}".format(linesArray))
+        continue
+
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[1])
+      districtDictionary['recovered'] = int(linesArray[2])
+      districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+      districtArray.append(districtDictionary)
+  upFile.close()
+  return districtArray
+
 def gj_get_data(opt):
   print('fetching GJ data', opt)
 
@@ -42,8 +118,6 @@ def gj_get_data(opt):
     })
 
   return districts_data
-  # TODO = get diff from delta calculator and print it
-  # self.delta_calculator.get_state_data_from_site("Gujarat", districts_data, self.option)
 
 def ap_get_data(opt):
   print('fetching AP data', opt)
@@ -127,18 +201,111 @@ def or_get_data(opt):
   os.system('rm -f {}'.format(temp_file))
   return district_data
 
+def py_get_data(opt):
+  print('fetching PY data', opt)
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find_all('tbody')[1].find_all('tr')
+
+  district_data = []
+  for index, row in enumerate(table):
+    data_points = row.find_all('td')
+
+    district_dictionary = {
+      'district_name': data_points[0].get_text().strip(),
+      'confirmed': int(data_points[1].get_text().strip()),
+      'recovered': int(data_points[2].get_text().strip()),
+      'deceased': int(data_points[4].get_text().strip())
+    }
+    district_data.append(district_dictionary)
+
+  return district_data
+
+def la_get_data(opt):
+  print('fetching LA data', opt)
+
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('table', id='tableCovidData2').find_all('tr')
+
+  district_data = []
+  district_dictionary = {}
+  confirmed = table[9].find_all('td')[1]
+  discharged = table[11].find_all('td')[1]
+  confirmed_array = re.sub('\\r', '',
+    re.sub(':', '',
+      re.sub(' +', ' ',
+        re.sub('\n', ' ',
+          confirmed.get_text().strip()
+        )
+      )
+    )
+  ).split(' ')
+
+  discharged_array = re.sub('\\r', '',
+    re.sub(':', '',
+      re.sub(' +', ' ',
+        re.sub("\n", " ",
+          discharged.get_text().strip()
+        )
+      )
+    )
+  ).split(' ')
+
+  district_dictionary['district_name'] = confirmed_array[0]
+  district_dictionary['confirmed'] = int(confirmed_array[1])
+  district_dictionary['recovered'] = int(discharged_array[1])
+  district_dictionary['deceased'] = -999
+  district_data.append(district_dictionary)
+
+  district_dictionary = {
+    'district_name': confirmed_array[2],
+    'confirmed': int(confirmed_array[3]),
+    'recovered': int(discharged_array[3]),
+    'deceased': -999
+  }
+  district_data.append(district_dictionary)
+
+  return district_data
+
+def tr_get_data(opt):
+  print('fetching TR data', opt)
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('tbody').find_all('tr')
+  district_data = []
+  for index, row in enumerate(table):
+    data_points = row.find_all("td")
+    district_dictionary = {
+      'district_name': data_points[1].get_text().strip(),
+      'confirmed': int(data_points[8].get_text().strip()),
+      'recovered': int(data_points[10].get_text().strip()),
+      'deceased': int(data_points[12].get_text().strip())
+    }
+    district_data.append(district_dictionary)
+
+  return district_data
+
+def mh_get_data(opt):
+  print('fetching MH data', opt)
+  stateDashboard = requests.request('GET', opt['url']).json()
+
+  district_data = []
+  for details in stateDashboard:
+    district_data.append({
+      'districtName': details['District'],
+      'confirmed': details['Positive Cases'],
+      'recovered': details['Recovered'],
+      'deceased': details['Deceased']
+    })
+
+  return district_data
+
 def ga_get_data(opt):
   print('fetching GA data', opt)
 
 def rj_get_data(opt):
   print('fetching RJ data', opt)
-
-def mh_get_data(opt):
-  print('fetching MH data', opt)
-  opt['type'] == 'PDF'
-  return {
-    ''
-  }
 
 def nl_get_data(opt):
   print('fetching NL data', opt)
@@ -149,20 +316,13 @@ def mz_get_data(opt):
 def as_get_data(opt):
   print('fetching AS data', opt)
 
-def tr_get_data(opt):
-  print('fetching TR data', opt)
-
-def py_get_data(opt):
-  print('fetching PY data', opt)
-
 def ch_get_data(opt):
   print('fetching CH data', opt)
 
 def kl_get_data(opt):
   print('fetching KL data', opt)
-
-def la_get_data(opt):
-  print('fetching LA data', opt)
+  # if opt['type'] == 'pdf':
+    # call pdf scanner, get page number
 
 def ml_get_data(opt):
   print('fetching ML data', opt)
@@ -194,13 +354,14 @@ def fetch_data(st_obj):
     'kl': kl_get_data,
     'la': la_get_data,
     'ml': ml_get_data,
-    'jh': jh_get_data
+    'jh': jh_get_data,
+    'hr': hr_get_data
   }
 
   try:
     return fn_map[st_obj['state_code'].lower()](st_obj)
   except KeyError:
-    print('no function definition in fn_map for {}'.format(st_obj['name']))
+    print('no function definition in fn_map for state code {}'.format(st_obj['state_code']))
 
 
 if __name__ == '__main__':

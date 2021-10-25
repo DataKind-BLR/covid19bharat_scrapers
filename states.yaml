@@ -4,6 +4,7 @@ or:
   name: Odisha
   state_code: OR
   url: https://statedashboard.odisha.gov.in/
+  automatic: True
   type: html
 
 gj:
@@ -11,16 +12,20 @@ gj:
   state_code: GJ
   url: https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
   type: html
-  columns:
-    district_name: District
-    confirmed: Confirmed Positive Cases
-    recovered: Patients Recovered
-    deceased: Total Deaths
+  automatic: True
+  config:
+    columns:
+      district_name: District
+      confirmed: Confirmed Positive Cases
+      recovered: Patients Recovered
+      deceased: Total Deaths
 
+# TODO - unable to fetch data due to cross origin
 jh:
   name: Jharkhand
   state_code: JH
   url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
+  automatic: True
   type: html
 
 ap:
@@ -28,37 +33,128 @@ ap:
   state_code: AP
   url: http://hmfw.ap.gov.in/covid_dashboard.aspx
   type: html
-  columns:
-    district_name: Name of the District
-    confirmed: Confirmed Cases
-    recovered: Cured/ Discharged
-    deceased: Deceased
+  automatic: True
+  config:
+    columns:
+      district_name: Name of the District
+      confirmed: Confirmed Cases
+      recovered: Cured/ Discharged
+      deceased: Deceased
 
 rj:
   name: Rajasthan
   state_code: RJ
   # image address is extracted from `http://www.rajswasthya.nic.in/`
+  automatic: False
   url: http://www.rajswasthya.nic.in/COVID20.JPG
   type: image
+  config:
+    starting_text: auto
+    ending_text: auto
+    translation:
+      enable: False
+      dict_file: rj_districts.meta
+    x: 0
+    y: 0
+
+hr:
+  name: Haryana
+  state_code: HR
+  # append (date as dd-mm-yyyy) and file extension (.pdf) to the below url. Eg: append `20-10-2021.pdf`
+  url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
+  automatic: False
+  type: pdf
+  config:
+    page: 2
+    start_key: 'Gurugram'
+    end_key: 'Total'
+
+py:
+  name: Puducherry
+  state_code: PY
+  automatic: True
+  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
+  type: html
+
+la:
+  name: Ladakh
+  state_code: LA
+  url: http://covid.ladakh.gov.in/#dataInsights
+  automatic: True
+  type: html
+
+wb:
+  name: West Bengal
+  state_code: WB
+  # get pdf links from the html and then parse PDFs
+  # sample PDF file link = https://www.wbhealth.gov.in/uploaded_files/corona/WB_DHFW_Bulletin_25TH_SEP_REPORT_FINAL.pdf
+  automatic: False
+  url: https://www.wbhealth.gov.in/pages/corona/bulletin
+  type: pdf
+  config:
+    page: 2
+
+ka:
+  name: Karnataka
+  state_code: KA
+  automatic: False
+  # test it against locally saved file
+  url: file:///Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/KA.pdf
+  type: pdf
+  config:
+    page: 5
+
+tr:
+  name: Tripura
+  automatic: True
+  state_code: TR
+  url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
+  type: html
+
+ga:
+  name: Goa
+  automatic: False
+  state_code: GA
+  # Goa has 2 links, archives contain 1 month and older & below url contains for current month
+  url: https://www.goa.gov.in/covid-19/
+  # url: https://www.goa.gov.in/covid-19-archives/
+  # url pattern: https://www.goa.gov.in/wp-content/uploads/yyyy/mm/Media-Bulletin-dd<th/nd/st/rd>-<B>-<yyyy>.pdf
+  # Eg:          https://www.goa.gov.in/wp-content/uploads/2021/01/Media-Bulletin-15th-January-2021.pdf
+  type: pdf
+  config:
+    page: 4
+
+tn:
+  name: Tamil Nadu
+  state_code: TN
+  automatic: False
+  # use locally saved file
+  url: /Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/TN.pdf
+  type: pdf
+  config:
+    page: 3
+
+mh:
+  name: Maharashtra
+  state_code: MH
+  automatic: True
+  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+  type: html
 
 # ============================ ^^^ TESTED UNTIL HERE ^^^
+
+# TODO - can scrape using html / PDFs
+nl:
+  name: Nagaland
+  state_code: NL
+  automatic: True
+  url: https://covid19.nagaland.gov.in/
+  type: html
 
 ar:
   name: Arunachal Pradesh
   state_code: AR
   url:
-  type: html
-
-ga:
-  name: Goa
-  state_code: GA
-  url: https://www.goa.gov.in/covid-19/
-  type: html
-
-mh:
-  name: Maharashtra
-  state_code: MH
-  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
   type: html
 
 tg:
@@ -85,12 +181,6 @@ cg:
   url:
   type: html
 
-nl:
-  name: Nagaland
-  state_code: NL
-  url: https://covid19.nagaland.gov.in/health-main
-  type: html
-
 mz:
   name: Mizoram
   state_code: MZ
@@ -103,36 +193,19 @@ as:
   url: https://covid19.assam.gov.in/all-districts/
   type: html
 
-tr:
-  name: Tripura
-  state_code: TR
-  url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
-  type: html
-
-py:
-  name: Puducherry
-  state_code: PY
-  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
-  type: html
-
 ch:
   name: Chandigarh
   state_code: CH
   url: http://chdcovid19.in/
   type: html
 
+# malformed PDF
 kl:
   name: Kerala
   state_code: KL
   url: https://dashboard.kerala.gov.in/maps/outside.geojson
   type: html
 # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-
-la:
-  name: Ladakh
-  state_code: LA
-  url: http://covid.ladakh.gov.in/#dataInsights
-  type: html
 
 pb:
   name: Punjab
@@ -152,33 +225,9 @@ mz:
   url: https://mcovid19.mizoram.gov.in/api/home-stats
   type: html
 
-tn:
-  name: Tamil Nadu
-  state_code: TN
-  url:
-  type: html
-
 mp:
   name: Madhya Pradesh
   state_code: MP
-  url:
-  type: html
-
-ka:
-  name: Karnataka
-  state_code: KA
-  url:
-  type: html
-
-wb:
-  name: West Bengal
-  state_code: WB
-  url:
-  type: html
-
-hr:
-  name: Haryana
-  state_code: HR
   url:
   type: html
 
@@ -186,7 +235,16 @@ hp:
   name: Himachal Pradesh
   state_code: HP
   url:
-  type: html
+  type: image
+  config:
+    starting_text: auto
+    ending_text: auto
+    translation:
+      enable: False
+      dict_file: hp_districts.meta
+    x: 0
+    y: 0
+
 
 jk:
   name: Jammu and Kashmir
