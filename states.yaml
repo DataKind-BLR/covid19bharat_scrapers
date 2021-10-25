@@ -60,9 +60,9 @@ rj:
 hr:
   name: Haryana
   state_code: HR
-  # append (date as dd-mm-yyyy) and file extension (.pdf) to the below url. Eg: append `20-10-2021.pdf`
+  # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
   url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
-  automatic: False
+  automatic: True
   type: pdf
   config:
     page: 2
@@ -99,10 +99,14 @@ ka:
   state_code: KA
   automatic: False
   # test it against locally saved file
-  url: file:///Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/KA.pdf
+  # url: file:///Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/KA.pdf
+  # append the google drive file's id to the below url to download PDF
+  url: https://docs.google.com/uc?export=download&id=
   type: pdf
   config:
     page: 5
+    start_key: Bagalakote
+    end_key: Total
 
 tr:
   name: Tripura

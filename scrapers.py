@@ -138,6 +138,7 @@ def ap_get_data(opt):
 
   return districts_data
 
+# TODO - can't read POST request
 def jh_get_data(opt):
   today = (datetime.date.today() - datetime.timedelta(days=0)).strftime("%Y-%m-%d")
   # complete url with the today's date
@@ -327,6 +328,130 @@ def kl_get_data(opt):
 def ml_get_data(opt):
   print('fetching ML data', opt)
 
+def ka_get_data(opt):
+  print('fetching KA data', opt)
+  opt['config']['page'] = str(opt['config']['page'])
+
+  def read_pdf_from_url(opt):
+
+    def KAFormatLine(row):
+      district = ""
+      modifiedRow = []
+      for value in row:
+        if len(value) > 0:
+          modifiedRow.append(value)
+
+      if type(modifiedRow[0]) == int:
+        district = " ".join(re.sub(' +', ' ', modifiedRow[0]).split(' ')[1:])
+        modifiedRow.insert(0, 'a')
+      else:
+        district = re.sub('\*', '', modifiedRow[1])
+      print(modifiedRow)
+
+      return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "\n"
+
+    if len(opt['url']) > 0:
+      url = opt['url']
+    if len(url) > 0:
+      #print("--> Requesting download from {} ".format(url))
+      r = requests.get(url, allow_redirects=True, verify=False)
+      open(opt['state_code'] + ".pdf", 'wb').write(r.content)
+    if len(opt['config']['page']) > 0:
+      pid = ""
+      if ',' in opt['config']['page']:
+        startPage = int(opt['config']['page'].split(',')[0])
+        endPage = int(opt['config']['page'].split(',')[1])
+        for pages in range(startPage, endPage + 1, 1):
+          print(pages)
+          pid = pid + "," + str(pages) if len(pid) > 0 else str(pages)
+          print(pid)
+      else:
+        pid = opt['config']['page']
+    else:
+      pid = input("Enter district page:")
+    print("Running for {} pages".format(pid))
+    tables = camelot.read_pdf(opt['state_code'] + ".pdf", strip_text = '\n', pages = pid, split_text = True)
+    # for index, table in enumerate(tables):
+
+    stateOutputFile = open(opt['state_code'].lower() + '.csv', 'w')
+    # csvWriter = csv.writer(stateOutputFile)
+    # arrayToWrite = []
+
+    startedReadingDistricts = False
+    for index, table in enumerate(tables):
+      tables[index].to_csv(opt['state_code'] + str(index) + '.pdf.txt')
+      with open(opt['state_code'] + str(index) + '.pdf.txt', newline='') as stateCSVFile:
+        rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
+        for row in rowReader:
+          line = "|".join(row)
+          line = re.sub("\|+", '|', line)
+          if opt['config']['start_key'] in line:
+            startedReadingDistricts = True
+          if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
+            startedReadingDistricts = False
+            continue
+          if startedReadingDistricts == False:
+            continue
+
+          line = eval(opt['state_code'] + "FormatLine")(line.split('|'))
+          if line == "\n":
+            continue
+          print(line, file = stateOutputFile, end = "")
+
+    stateOutputFile.close()
+
+  # read the pdf.txt files and generate
+  linesArray = []
+  districtDictionary = {}
+  districtArray = []
+  runDeceased = False
+  startId = 0
+  endId = 0
+  fileId = '1CaKq55BuKucINTV8C-IhUtck5_VO2hdg'
+
+  if ',' in opt['config']['page']:
+    startId = opt['config']['page'].split(',')[1]
+    endId = opt['config']['page'].split(',')[2]
+    opt['config']['page'] = opt['config']['page'].split(',')[0]
+    runDeceased = True
+
+  if len(opt['url']) != 0:
+    urlArray = opt['url'].split('/')
+    for index, parts in enumerate(urlArray):
+      if parts == "file":
+        if urlArray[index + 1] == "d":
+          fileId = urlArray[index + 2]
+          break
+    opt['url'] += fileId
+    print("--> Downloading using: {}".format(opt['url']))
+
+  # read & generate pdf.txt file for the given url
+  read_pdf_from_url(opt)
+
+  try:
+    with open("{}.csv".format(opt['state_code']), "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 4:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+        districtArray.append(districtDictionary)
+
+    upFile.close()
+
+    if runDeceased == True:
+      os.system("python3 kaautomation.py d " + str(startId) + " " + str(endId))
+
+  except FileNotFoundError:
+    print("ka.txt missing. Generate through pdf or ocr and rerun.")
+
+  return districtArray
+
 def fetch_data(st_obj):
   '''
   for a given state object, fetch the details from url
@@ -355,7 +480,8 @@ def fetch_data(st_obj):
     'la': la_get_data,
     'ml': ml_get_data,
     'jh': jh_get_data,
-    'hr': hr_get_data
+    'hr': hr_get_data,
+    'ka': ka_get_data
   }
 
   try:
