@@ -1,8 +1,3 @@
-'''
-Run this file after running ocr_vision.py
-
-$python googlevision.py ocrconfig.meta 'path/to/image.jpeg'
-'''
 import re
 import cv2
 import os
@@ -34,7 +29,7 @@ xWidthTotal = 0
 configMinLineLength = 600
 
 def is_number(s):
-  try:            
+  try:
     int(s)
     return True
   except ValueError:
@@ -79,7 +74,7 @@ class ColumnHandler:
       previousX = col.x
       previousY = col.y
       rowNumber += 1
-    
+
   def prepareColumn(self):
     columnNumber = 1
     self.pointList.sort(key=lambda x: x.x)
@@ -97,7 +92,7 @@ class ColumnHandler:
       previousX = col.x
       previousY = col.y
       columnNumber += 1
-  
+
   def printColumnsAndCoordinates(self):
     print("Column No ... x1,y1 --> x2,y2")
     for column in self.columnList:
@@ -105,13 +100,13 @@ class ColumnHandler:
     for row in self.rowList:
       print("r{} ... {},{} --> {},{}".format(row.number, row.x1, row.y1, row.x2, row.y2))
 
-  def getNearestLineToTheLeft(self, xCoordinate):      
+  def getNearestLineToTheLeft(self, xCoordinate):
     for col in self.columnList:
       if xCoordinate > int(col.x1) and xCoordinate < int(col.x2):
         return col.x1
     return 0
-      
-  def getColumnNumber(self, cell):      
+
+  def getColumnNumber(self, cell):
     for col in self.columnList:
       if cell.x > col.x1 and cell.x < col.x2:
         return col.number
@@ -128,6 +123,19 @@ class LinePoints:
   def __init__(self, x, y):
     self.x = x
     self.y = y
+
+def buildCellsV2():
+  global xInterval
+  global yInterval
+  global startingText
+  global endingText
+  global yStartThreshold
+  global xStartThreshold
+  global configxInterval
+  global configyInterval
+  global xWidthTotal
+# testingNumbersFile = open("poly.txt", "r")
+#data = json.load(testingNumbersFile)
 
 def detectLines():
   global columnHandler
@@ -162,17 +170,13 @@ def buildCells():
   startingMatchFound = False
   endingMatchFound = False
 
-  # startingText = 'auto'
-  # endingText = 'auto'
-
   autoEndingText = endingText
   autoStartingText = startingText
 
-  testingNumbersFile = open("poly.txt", "r")
 
+  testingNumbersFile = open("bounds.txt", "r")
   for index, line in enumerate(testingNumbersFile):
     lineArray = line.split('|')
-
     if len(lineArray) != 6:
       continue
 
@@ -194,7 +198,7 @@ def buildCells():
     if len(lowerLeft) != 2 or len(lowerRight) !=2 or len(upperRight) != 2 or len(upperLeft) != 2:
       continue
 
-    #Get the mid point of the bound where the text matches
+#Get the mid point of the bound where the text matches
     xMean = (int(lowerLeft[0]) + int(lowerRight[0]))/2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1]))/2
 
@@ -207,9 +211,10 @@ def buildCells():
           yStartThreshold = yMean
 
         if yMean < yStartThreshold:
-          xStartTreshold = xMean 
+          xStartTreshold = xMean
           yStartThreshold = yMean
           autoStartingText = value
+
 
     if endingText == "auto":
       if len(value.title()) > 1 and any(value.title() in district for district in list(translationDictionary.keys())):
@@ -228,12 +233,12 @@ def buildCells():
       if value.title() in startingText.split(','):# and startingMatchFound == False:
         startingMatchFound = True
         xStartThreshold = xMean
-        yStartThreshold = yMean  
+        yStartThreshold = yMean
     else:
       if value.title() == startingText and startingMatchFound == False:
         startingMatchFound = True
         xStartThreshold = xMean
-        yStartThreshold = yMean  
+        yStartThreshold = yMean
 
     if ',' in endingText:
       if value.title() in endingText.split(','):# and endingMatchFound == False:
@@ -246,12 +251,11 @@ def buildCells():
         xEndThreshold = xMean
         yEndThreshold = yMean
 
-    #Use these intervals as a possible error in mid point calculation
+#Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
     dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
-
   xWidthTotal = xWidthTotal/len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
@@ -267,8 +271,8 @@ def buildReducedArray():
   maxWidth = 0
   maxHeight = 0
 
-  #Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
-  print("Starting text: {} ... Ending text: {}".format(startingText, endingText)) 
+#Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
+  print("Starting text: {} ... Ending text: {}".format(startingText, endingText))
   xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
   for cell in dataDictionaryArray:
     if cell.y < yStartThreshold - 10 or (xLimit is not None and cell.x < xLimit):
@@ -283,7 +287,7 @@ def buildReducedArray():
 
   xInterval = maxWidth/2
   yInterval = maxHeight/2
-  
+
   dataDictionaryArray = tempDictionaryArray
 
 def assignRowsAndColumns():
@@ -299,7 +303,7 @@ def assignRowsAndColumns():
     yInterval = configyInterval
 
   print("Using computed yInterval: {}, xInterval: {}".format(yInterval, xInterval))
-  for rowIndex, currentCell in enumerate(dataDictionaryArray):           
+  for rowIndex, currentCell in enumerate(dataDictionaryArray):
 
     if currentCell.row == 0:
       currentCell.row = rowIndex + 1
@@ -310,14 +314,13 @@ def assignRowsAndColumns():
           currentCell.col = columnHandler.getColumnNumber(currentCell)
         else:
           currentCell.col = rowIndex + 1
-        
+
       if restOfTheCells.index == currentCell.index:
         continue
 
       yUpperBound = currentCell.y + yInterval
       yLowerBound = currentCell.y - yInterval
-
-      #If the y coordinate matches, the texts lie on the same row
+#If the y coordinate matches, the texts lie on the same row
       if restOfTheCells.row == 0:
         if yLowerBound <= restOfTheCells.y <= yUpperBound:
           restOfTheCells.row = rowIndex + 1
@@ -325,37 +328,39 @@ def assignRowsAndColumns():
       xUpperBound = currentCell.x + xInterval
       xLowerBound = currentCell.x - xInterval
 
-      #If the x coordinate matches, the texts lie on the same column
+#If the x coordinate matches, the texts lie on the same column
       if restOfTheCells.col == 0:
         if houghTransform == True:
           restOfTheCells.col = columnHandler.getColumnNumber(restOfTheCells)
         elif xLowerBound <= restOfTheCells.x <= xUpperBound:
           restOfTheCells.col = currentCell.col
 
-# def buildTranslationDictionary():
-#   global startingText
-#   global endingText
 
-#   originalStartingText = startingText
-#   originalEndingText = endingText
+def buildTranslationDictionary():
+  global startingText
+  global endingText
 
-#   with open("automation/" + translationFile, "r") as metaFile:
-#     for line in metaFile:
-#       if line.startswith('#'):
-#         continue
-#       lineArray = line.strip().split(',')
-#       if len(startingText) != 0:
-#         if originalStartingText.strip() == lineArray[1].strip():
-#           startingText = startingText + "," + lineArray[0].strip()
+  originalStartingText = startingText
+  originalEndingText = endingText
 
-#       if len(endingText) != 0:
-#         if originalEndingText.strip() == lineArray[1].strip():
-#           endingText = endingText + "," + lineArray[0].strip()
+  with open(translationFile, "r") as metaFile:
+    for line in metaFile:
+      if line.startswith('#'):
+        continue
+      lineArray = line.strip().split(',')
+      if len(startingText) != 0:
+        if originalStartingText.strip() == lineArray[1].strip():
+          startingText = startingText + "," + lineArray[0].strip()
 
-#       translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
+      if len(endingText) != 0:
+        if originalEndingText.strip() == lineArray[1].strip():
+          endingText = endingText + "," + lineArray[0].strip()
+
+      translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
+
 
 def printOutput():
-  outputFile = open('output.txt', 'w') 
+  outputFile = open('output.txt', 'w')
   global enableTranslation
   xArray = []
   yArray = []
@@ -366,7 +371,7 @@ def printOutput():
     for point in columnHandler.pointList:
       if columnHandler.getNearestLineToTheLeft(xStartThreshold) - 5 <= point.x <= columnHandler.getNearestLineToTheLeft(xStartThreshold) + 5:
         circ = Circle((point.x,point.y),5, color='r')
-      else: 
+      else:
         circ = Circle((point.x,point.y),4)
       ax.add_patch(circ)
 
@@ -380,13 +385,13 @@ def printOutput():
     output = ""
     previousCol = -999
     mergedValue = ""
-    #<TODO> column verification has to come in here
-    #Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
+#<TODO> column verification has to come in here
+#Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
     columnList = ""
     for index, value in enumerate(outputString):
-      value.value = re.sub(",", "", value.value)
+      value.value = re.sub("\.", "", re.sub(",", "", value.value))
       if index == 0:
-        mergedValue = value.value 
+        mergedValue = value.value
         previousCol = value.col
         columnList = str(value.col)
         rect = patches.Rectangle((int(value.lbx), int(value.lby)), value.w, value.h,linewidth=0.75,edgecolor='r', facecolor='none')
@@ -413,7 +418,7 @@ def printOutput():
       else:
         outputArray = output.split(',')
         districtIndex = 0
-        #If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
+#If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
         if(is_number(outputArray[0])):
           districtName = outputArray[1].strip()
           distrinctIndex = 1
@@ -421,10 +426,10 @@ def printOutput():
           districtName = outputArray[0].strip()
           distrinctIndex = 0
 
-        #Do a lookup for district name, if not found, discard the record and print a message.
+#Do a lookup for district name, if not found, discard the record and print a message.
         try:
           translatedValue = translationDictionary[districtName]
-          outputString = translatedValue 
+          outputString = translatedValue
           for index, value in enumerate(outputArray):
             if index > districtIndex: #and is_number(value):
               outputString += "," + value.strip()
@@ -435,8 +440,8 @@ def printOutput():
           except:
             print(f"Failed to find lookup for {districtName}")
             continue
-          
-        outputString = translatedValue 
+
+        outputString = translatedValue
         for index, value in enumerate(outputArray):
           if index > districtIndex:
             outputString += "," + value.strip()
@@ -461,7 +466,8 @@ def fuzzyLookup(translationDictionary,districtName):
   print(f"WARN : {districtName} mapped to {district} using Fuzzy Lookup")
   return district
 
-def parseConfigFile(config_path):
+
+def parseConfigFile(fileName):
   global startingText
   global endingText
   global enableTranslation
@@ -471,16 +477,15 @@ def parseConfigFile(config_path):
   global houghTransform
   global configMinLineLength
 
-  # this line is reading the ocrconfig.meta file
-  meta_config = open(config_path, "r")
-  for index, line in enumerate(meta_config):
+  configFile = open(fileName, "r")
+  for index, line in enumerate(configFile):
     lineArray = line.split(':')
     if len(lineArray) < 2:
       continue
 
     key = lineArray[0].strip()
     value = lineArray[1].strip()
-  
+
     if key == "startingText":
       if ',' in value:
         startingText = value.split(',')[0]
@@ -490,7 +495,7 @@ def parseConfigFile(config_path):
     if key == "enableTranslation":
       enableTranslation = eval(value)
     if key == "translationFile":
-      translationFile = value
+      translationFile = 'automation/' + value
     if key == "xInterval":
       configxInterval = int(value)
     if key == "yInterval":
@@ -506,27 +511,25 @@ def main():
   global enableTranslation
   global houghTransform
   global fileName
-
-  # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
+# If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
   houghTransform = False
   if len(sys.argv) > 1:
-    # parseConfigFile(sys.argv[1])
-
-    # TODO - this config file is specific for every state, could be read for every state maybe
-    parseConfigFile(os.path.join(os.path.dirname(__file__), 'automation', 'ocrconfig.meta'))
+    parseConfigFile(sys.argv[1])
     fileName = sys.argv[2]
 
-  # buildTranslationDictionary()
-  buildCells()
+  buildTranslationDictionary()
 
+  buildCells()
+  buildCellsV2()
   if houghTransform == True:
     print("Using houghTransform to figure out columns. Set houghTransform:False in ocrconfig.meta.orig to disable this")
     detectLines()
+
   if len(startingText) != 0 or len(endingText) != 0:
     buildReducedArray()
+
   assignRowsAndColumns()
+
   printOutput()
-
-
 if __name__ == '__main__':
   main()

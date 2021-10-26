@@ -1,3 +1,19 @@
+'''
+What does this file do?
+
+Provided the following parameters
+- `state_code`: 2 letter upper or lower case state code for which you want to extract data for
+- `url`: the url or the file path of the pdf, image or html
+- `type`: can be either 1 of the 3  pdf, image or html for the url that you provided above
+
+this file will do the following
+
+1. extracts parameters passed from command line or if not, takes defaults from `states.yaml` file
+2. based on the provided `url` and the `type`
+...
+
+'''
+
 #!/usr/bin/python3
 import os
 import re
@@ -5,6 +21,7 @@ import sys
 import csv
 import yaml
 import json
+import urllib
 import logging
 import camelot
 import argparse
@@ -12,17 +29,23 @@ import html5lib
 import requests
 import datetime
 import pdftotext
-
 from bs4 import BeautifulSoup
 # from deltaCalculator import DeltaCalculator
 
-# read the config file
-with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml'), 'r') as stream:
+
+CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_cache')
+INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
+STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
+OUTPUT_FILE = "output.txt"
+
+# read the config file first
+with open(STATES_YAML, 'r') as stream:
   try:
     states_all = yaml.safe_load(stream)
   except yaml.YAMLError as exc:
     print(exc)
 
+## ------------------------ Custom format line functions for specific states START
 def ka_format_line(row):
   district = ""
   modifiedRow = []
@@ -53,13 +76,75 @@ def hr_format_line(row):
   line = row[1] + "," + row[3] + "," + row[4] + "," + str(int(row[6]) + int (row[7])) + "\n"
   return line
 
+def pb_format_line(row):
+  return row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "\n"
+
+def kl_format_line(row):
+  return row[0] + "," + row[1] + "," + row[2] + "\n"
+
+def ap_format_line(row):
+  line = row[1] + "," + row[3] + "," + row[5] + "," + row[6] + "\n"
+  return line
+
+def wb_format_line(row):
+  row[2] = re.sub(',', '', re.sub('\+.*', '', row[2]))
+  row[3] = re.sub(',', '', re.sub('\+.*', '', row[3]))
+  row[4] = re.sub('\#', '', re.sub(',', '', re.sub('\+.*', '', row[4])))
+  row[5] = re.sub(',', '', re.sub('\+.*', '', row[5]))
+  line = row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "\n"
+  return line
+
+## ------------------------ Custom format line functions for specific states END
+
+def run_for_ocr(opt):
+  ## step 1 - run something to generate the poly.txt file
+  print('Running ocr_vision.py file to generate poly.txt')
+  os.system('python ocr_vision.py {} > bounds.txt'.format(opt['url']))
+
+  ## step 2 - generate ocrconfig.meta file for that state
+  print('Generating ocrconfig.meta file for {}'.format(opt['state_code']))
+  os.system('bash generate_ocrconfig.sh {} {} {}'.format(
+    opt['state_code'].lower(),
+    "auto,auto",
+    False
+  ))
+  ## step 3 - run googlevision.py file
+  print('running googlevision.py using ocrconfig.meta file for {}'.format(opt['state_code']))
+  os.system('python googlevision.py ocrconfig.meta {}'.format(opt['url']))
+
 def read_pdf_from_url(opt):
-  if len(opt['url']) > 0:
-    url = opt['url']
-  if len(url) > 0:
+  '''
+  :param: opt
+
+  Example `opt` dict sample
+
+  ```
+  {
+    'name': 'Tamil Nadu',               - full name of the state
+    'state_code': 'TN'                  - 2 letter state code in capital letters
+    'url': 'http://path/to/file.pdf'    - this is the url to the PDF file
+    'type': pdf                         - the type of file link you are passing
+    'config': {
+      'start_key': 'Districts'          - the word at which the table starts i.e. start reading page
+      'end_key': 'Total'                - the word at which the table ends i.e. stop reading page
+      'page': '2, 3'                    - pages for the PDF containing the table to be read
+    }
+  }
+  ```
+
+
+  '''
+
+  # if len(opt['url']) > 0:
+  # if url provided is a remote url like (http://)
+
+  if urllib.parse.urlparse(opt['url']).scheme != '':
     #print("--> Requesting download from {} ".format(url))
-    r = requests.get(url, allow_redirects=True, verify=False)
+    r = requests.get(opt['url'], allow_redirects=True, verify=False)
     open(opt['state_code'] + ".pdf", 'wb').write(r.content)
+    opt['url'] = os.path.abspath(opt['state_code'] + '.pdf')
+
+  opt['config']['page'] = str(opt['config']['page'])
   if len(opt['config']['page']) > 0:
     pid = ""
     if ',' in opt['config']['page']:
@@ -74,7 +159,8 @@ def read_pdf_from_url(opt):
   else:
     pid = input("Enter district page:")
   print("Running for {} pages".format(pid))
-  tables = camelot.read_pdf(opt['state_code'] + ".pdf", strip_text = '\n', pages = pid, split_text = True)
+
+  tables = camelot.read_pdf(opt['url'], strip_text = '\n', pages = pid, split_text = True)
   # for index, table in enumerate(tables):
 
   stateOutputFile = open(opt['state_code'].lower() + '.csv', 'w')
@@ -83,8 +169,8 @@ def read_pdf_from_url(opt):
 
   startedReadingDistricts = False
   for index, table in enumerate(tables):
-    tables[index].to_csv(opt['state_code'] + str(index) + '.pdf.txt')
-    with open(opt['state_code'] + str(index) + '.pdf.txt', newline='') as stateCSVFile:
+    tables[index].to_csv(opt['state_code'].lower() + str(index) + '.pdf.txt')
+    with open(opt['state_code'].lower() + str(index) + '.pdf.txt', newline='') as stateCSVFile:
       rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
       for row in rowReader:
         line = "|".join(row)
@@ -96,7 +182,6 @@ def read_pdf_from_url(opt):
           continue
         if startedReadingDistricts == False:
           continue
-
         line = eval(opt['state_code'].lower() + "_format_line")(line.split('|'))
         if line == "\n":
           continue
@@ -206,40 +291,41 @@ def hr_get_data(opt):
 
 # TODO - Post request not running
 def jh_get_data(opt):
-  today = (datetime.date.today() - datetime.timedelta(days=0)).strftime("%Y-%m-%d")
-  # complete url with the today's date
-  opt['url'] += today
+  url = "https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=2021-03-25"
 
+  payload="date=" + (datetime.date.today() - datetime.timedelta(days = 0)).strftime("%Y-%m-%d")
   headers = {
     'Host': 'covid19dashboard.jharkhand.gov.in',
     'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Content-Length': '15',
     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
     'Cookie': 'ci_session=i6qt39o41i7gsopt23ipm083hla6994c'
   }
 
-  # TODO - request fails here....
-  response = requests.post(opt['url'], headers=headers, data=today)
+  response = requests.request("POST", url, headers=headers, data=payload)
   soup = BeautifulSoup(response.content, 'html.parser')
-  districts = soup.find('table').find_all('tr')
+  districts = soup.find("table").find_all("tr")
 
-  district_start = False
+  districtArray = []
+
+  districtStart = False
   for district in districts:
 
-    if "Bokaro" in district.get_text() and district_start is False:
-      district_start = True
+    if "Bokaro" in district.get_text() and districtStart == False:
+      districtStart = True
 
-    if district_start is False:
+    if districtStart == False:
       continue
 
     data = district.find_all("td")
 
     if int(data[3].get_text()) != 0:
-      print(f"{data[1].get_text()},Jharkhand,JH,{data[3].get_text()},Hospitalized")
+      print("{},Jharkhand,JH,{},Hospitalized".format(data[1].get_text(), data[3].get_text()))
     if int(data[4].get_text()) != 0:
-      print(f"{data[1].get_text()},Jharkhand,JH,{data[4].get_text()},Recovered")
+      print("{},Jharkhand,JH,{},Recovered".format(data[1].get_text(), data[4].get_text()))
     if int(data[6].get_text()) != 0:
-      print(f"{data[1].get_text()},Jharkhand,JH,{data[6].get_text()},Deceased")
+      print("{},Jharkhand,JH,{},Deceased".format(data[1].get_text(), data[6].get_text()))
 
 def jk_get_data(opt):
   print('Fetching JK data', opt)
@@ -251,7 +337,7 @@ def ka_get_data(opt):
   # read the pdf.txt files and generate
   linesArray = []
   districtDictionary = {}
-  districtArray = []
+  districts_data = []
   runDeceased = False
   startId = 0
   endId = 0
@@ -288,7 +374,7 @@ def ka_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[1])
         districtDictionary['recovered'] = int(linesArray[2])
         districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
-        districtArray.append(districtDictionary)
+        districts_data.append(districtDictionary)
 
     upFile.close()
 
@@ -298,15 +384,53 @@ def ka_get_data(opt):
   except FileNotFoundError:
     print("ka.txt missing. Generate through pdf or ocr and rerun.")
 
-  return districtArray
+  return districts_data
 
 def kl_get_data(opt):
-  print('Fetching KL data', opt)
-  linesArray = []
-  districtDictionary = {}
-  districtArray = []
-  read_pdf_from_url(opt)
-  try:
+  # if opt['type'] == 'html':
+  #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
+  #   print('Fetching KL data', opt)
+  #   response = requests.request("GET", opt['url'])
+
+  #   # sessionId = (response.headers['Set-Cookie']).split(';')[0].split('=')[1]
+
+  #   cookies = {
+  #     '_ga': 'GA1.3.594771251.1592531338',
+  #     '_gid': 'GA1.3.674470591.1592531338',
+  #     # 'PHPSESSID': sessionId,
+  #     '_gat_gtag_UA_162482846_1': '1'
+  #   }
+
+  #   headers = {
+  #     'Connection': 'keep-alive',
+  #     'Accept': 'application/json, text/javascript, */*; q=0.01',
+  #     'X-Requested-With': 'XMLHttpRequest',
+  #     'Sec-Fetch-Site': 'same-origin',
+  #     'Sec-Fetch-Mode': 'cors',
+  #     'Sec-Fetch-Dest': 'empty',
+  #     'Referer': 'https://dashboard.kerala.gov.in/index.php',
+  #     'Accept-Language': 'en-US,en;q=0.9'
+  #   }
+  #   stateDashboard = requests.get(opt['url'], headers=headers).json()
+
+  #   districtArray = []
+  #   for districtDetails in stateDashboard['features']:
+  #     districtDictionary = {}
+  #     districtDictionary['districtName'] = districtDetails['properties']['District']
+  #     districtDictionary['confirmed'] = districtDetails['properties']['covid_stat']
+  #     districtDictionary['recovered'] = districtDetails['properties']['covid_statcured']
+  #     districtDictionary['deceased'] = districtDetails['properties']['covid_statdeath']
+  #     districtArray.append(districtDictionary)
+  #   # deltaCalculator.getStateDataFromSite("Kerala", districtArray, option)
+  #   return districtArray
+
+  if opt['type'] == 'pdf':
+    # TODO - run script to generate the csv
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    read_pdf_from_url(opt)
     with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
@@ -316,9 +440,9 @@ def kl_get_data(opt):
 
         print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
         print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
+        # TODO - append to districts_data
     upFile.close()
-  except FileNotFoundError:
-    print("ap.csv missing. Generate through pdf or ocr and rerun.")
+    return districts_data
 
 def la_get_data(opt):
   print('fetching LA data', opt)
@@ -385,6 +509,24 @@ def mh_get_data(opt):
 def ml_get_data(opt):
   print('Fetching ML data', opt)
 
+  run_for_ocr(opt)
+
+  districts_data = []
+  with open(OUTPUT_FILE, "r") as mlFile:
+    for line in mlFile:
+      linesArray = line.split('|')[0].split(',')
+      if len(linesArray) != 8:
+        print("--> Issue with {}".format(linesArray))
+        continue
+
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[5].strip())
+      districtDictionary['recovered'] = int(linesArray[6].strip())
+      districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
+      districts_data.append(districtDictionary)
+  return districts_data
+
 def mn_get_data(opt):
   print('Fetching MN data', opt)
 
@@ -398,7 +540,7 @@ def nl_get_data(opt):
   print('Fetching NL data', opt)
 
 def or_get_data(opt):
-  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orsite.csv')
+  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'or.csv')
   cmd = ' | '.join([
     "curl -sk {}".format(opt['url']),
     "grep -i string | grep -v legend",
@@ -426,6 +568,26 @@ def or_get_data(opt):
 
 def pb_get_data(opt):
   print('Fetching PB data', opt)
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  read_pdf_from_url(opt)
+
+  with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+    for line in upFile:
+      linesArray = line.split(',')
+      if len(linesArray) != 5:
+        print("--> Issue with {}".format(linesArray))
+        continue
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[1])
+      districtDictionary['recovered'] = int(linesArray[3])
+      districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+      districts_data.append(districtDictionary)
+
+  upFile.close()
+  return districts_data
 
 def py_get_data(opt):
   print('fetching PY data', opt)
@@ -450,11 +612,68 @@ def py_get_data(opt):
 def rj_get_data(opt):
   print('Fetching RJ data', opt)
 
+  # run all bash scripts, ocr_vision.py & googlevision.py
+  run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districtArray = []
+  skipValues = False
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        if 'Other' in line:
+          skipValues = True
+          continue
+        if skipValues == True:
+          continue
+
+        linesArray = line.split('|')[0].split(',')
+
+        if len(linesArray) != 9:
+          print("--> Issue with {}".format(linesArray))
+          continue
+
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip().title()
+        districtDictionary['confirmed'] = int(linesArray[3])
+        districtDictionary['recovered'] = int(linesArray[7])
+        districtDictionary['deceased'] = int(linesArray[5])
+        districtArray.append(districtDictionary)
+
+    upFile.close()
+    # deltaCalculator.getStateDataFromSite("Rajasthan", districtArray, option)
+  except FileNotFoundError:
+    print("rj.txt missing. Generate through pdf or ocr and rerun.")
+
+  return districtArray
+
 def sk_get_data(opt):
   print('Fetching SK data', opt)
 
 def tn_get_data(opt):
   print('Fetching TN data', opt)
+
+  # ..........
+  linesArray = []
+  districtDictionary = {}
+  district_data = []
+  with open("tn.csv", "r") as upFile:
+    for line in upFile:
+      linesArray = line.split(',')
+      if len(linesArray) != 4:
+        print("--> Issue with {}".format(linesArray))
+        continue
+      linesArray[3] = linesArray[3].replace('$', '')
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[1])
+      districtDictionary['recovered'] = int(linesArray[2])
+      districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+      district_data.append(districtDictionary)
+
+  upFile.close()
+  return district_data
 
 def tg_get_data(opt):
   print('Fetching TG data', opt)
@@ -483,7 +702,7 @@ def up_get_data(opt):
 def ut_get_data(opt):
   print('Fetching UT data', opt)
 
-def wb_get_dat(opt):
+def wb_get_data(opt):
   print('Fetching WB data', opt)
 
 ## ------------------------ <STATE_CODE>_get_data functions END HERE
@@ -554,8 +773,8 @@ if __name__ == '__main__':
   '''
   parser = argparse.ArgumentParser()
   parser.add_argument('--state_code', type=str, nargs='?', default='all', help='provide 2 letter state code, defaults to all')
-  parser.add_argument('--url', type=str, help='url to the ocr image or pdf to be parsed')
-  parser.add_argument('--type', type=str, choices=['pdf', 'ocr', 'html'], help='type of url to be specified [pdf, ocr, html]')
+  parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, ocr, html]')
+  parser.add_argument('--url', type=str, help='url to the image or pdf to be parsed')
 
   args = parser.parse_args()
   state_code = args.state_code.lower()
@@ -569,11 +788,11 @@ if __name__ == '__main__':
         print('running {}_get_data'.format(sc))
         fetch_data(states_all[sc])
   else:
-    if url is not None or url_type is not None:
+    if url_type is not None and url is not None:
       # if there's a url & type provided as args, use that
       states_all[state_code].update({
-        'type': url_type,
-        'url': url
+        'url': url,
+        'type': url_type
       })
     # always use default url & type from yaml file
     live_data = fetch_data(states_all[state_code])

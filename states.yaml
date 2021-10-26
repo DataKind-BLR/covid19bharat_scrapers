@@ -3,11 +3,11 @@
 ap:
   name: Andhra Pradesh
   state_code: AP
-  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
   url_sources:
     - https://twitter.com/ArogyaAndhra
-  type: html
   automatic: True
+  type: html
+  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
   config:
     columns:
       district_name: Name of the District
@@ -102,15 +102,20 @@ ga:
   automatic: False
   state_code: GA
   # Goa has 2 links, archives contain 1 month and older & below url contains for current month
-  url: https://www.goa.gov.in/covid-19/
-  url_sources:
-    - https://twitter.com/DHS_Goa
   # url: https://www.goa.gov.in/covid-19-archives/
+  # config:
+    # page: 4
+
   # url pattern: https://www.goa.gov.in/wp-content/uploads/yyyy/mm/Media-Bulletin-dd<th/nd/st/rd>-<B>-<yyyy>.pdf
   # Eg:          https://www.goa.gov.in/wp-content/uploads/2021/01/Media-Bulletin-15th-January-2021.pdf
-  type: pdf
-  config:
-    page: 4
+  url_sources:
+    - https://twitter.com/DHS_Goa
+
+  # comment below lines if not running for html
+  type: html
+  url: https://www.goa.gov.in/covid-19/
+
+
 
 gj:
   name: Gujarat
@@ -150,12 +155,11 @@ hr:
   name: Haryana
   state_code: HR
   # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
+  type: pdf
   url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
   url_sources:
     - https://twitter.com/ani, http://nhmharyana.gov.in/page?id=208
-    - ...
   automatic: True
-  type: pdf
   config:
     page: 2
     start_key: 'Gurugram'
@@ -192,8 +196,8 @@ ka:
   url_sources:
     - https://twitter.com/DHFWKA
   # append the google drive file's id to the below url to download PDF
-  url: https://docs.google.com/uc?export=download&id=
   type: pdf
+  url: https://docs.google.com/uc?export=download&id=
   config:
     page: 5
     start_key: Bagalakote
@@ -206,10 +210,16 @@ ka:
 kl:
   name: Kerala
   state_code: KL
-  url: https://dashboard.kerala.gov.in/maps/outside.geojson
+  # url: https://dashboard.kerala.gov.in/index.php
   url_sources:
     - https://twitter.com/CMOKerala
-  type: html
+  type: pdf
+  url: kl.pdf
+  config:
+    page: 4
+    start_key: District
+    end_key: Total
+
 # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
 
 
@@ -228,23 +238,25 @@ mh:
   name: Maharashtra
   state_code: MH
   automatic: True
-  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
   url_sources:
     - https://twitter.com/ani
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
   type: html
+  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
 
 ml:
   name: Meghalaya
   state_code: ML
-  url: https://services7.arcgis.com/nzBTI19PTHBZaEPT/arcgis/rest/services/Admin_Boundary/FeatureServer/1/query?f=json&returnGeometry=false&outFields=*&where=1=1
   url_sources:
     - https://twitter.com/SangmaConrad
     - https://twitter.com/ddnewsshillong
     - https://twitter.com/pibshillong
     - https://twitter.com/ShillongTimesIn
-  type: html
+  # type: html
+  # url: https://services7.arcgis.com/nzBTI19PTHBZaEPT/arcgis/rest/services/Admin_Boundary/FeatureServer/1/query?f=json&returnGeometry=false&outFields=*&where=1=1
+  type: image
+  url: _inputs/ml.jpeg
 
 mn:
   name: Manipur
@@ -305,7 +317,11 @@ pb:
   url_sources:
     - https://twitter.com/ani
     - https://twitter.com/DiveshSpeaks
-  type: html
+  type: pdf
+  config:
+    start_key: Ludhiana
+    end_key: Total
+
 
 
 py:
@@ -323,7 +339,7 @@ rj:
   state_code: RJ
   # image address is extracted from `http://www.rajswasthya.nic.in/`
   automatic: False
-  url: http://www.rajswasthya.nic.in/COVID20.JPG
+  url: /Users/i536332/Documents/DK/covid19bharat_scrapers/inputs/rj.jpeg
   url_sources:
     - https://twitter.com/DDNewsRajasthan
     - https://twitter.com/airnews_jaipur
@@ -355,7 +371,7 @@ tn:
   url: /Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/TN.pdf
   url_sources:
     - https://twitter.com/ani
-    - @TN_Together_AgainstCorona Telegram channel
+    - '@TN_Together_AgainstCorona Telegram channel'
   type: pdf
   config:
     page: 3
