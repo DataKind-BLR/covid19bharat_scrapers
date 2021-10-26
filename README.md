@@ -15,6 +15,8 @@ Example to run for images
 python scrapers.py --state_code ML --type image --url '/dir/path/to/ml.jpeg'
 ```
 
+NOTE: The `--url` parameter can either a direct link over the internet to the file or could be a path in your local directory
+
 -----
 
 ## NOTES
