@@ -23,44 +23,68 @@ with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml
   except yaml.YAMLError as exc:
     print(exc)
 
-def hr_get_data(opt):
-  print('fetching HR data', opt)
+def ka_format_line(row):
+  district = ""
+  modifiedRow = []
+  for value in row:
+    if len(value) > 0:
+      modifiedRow.append(value)
 
-  # always get for T - 1 day
-  today = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%d-%m-%Y")
-  opt['url'] = opt['url'] + today + '.' + opt['type']
-  opt['config']['page'] = str(opt['config']['page'])
+  if type(modifiedRow[0]) == int:
+    district = " ".join(re.sub(' +', ' ', modifiedRow[0]).split(' ')[1:])
+    modifiedRow.insert(0, 'a')
+  else:
+    district = re.sub('\*', '', modifiedRow[1])
+  print(modifiedRow)
 
-  # util function for HR only
-  def HRFormatLine(row):
-    row[1] = re.sub('\*', '', row[1])
-    if '[' in row[3]:
-      row[3] = row[3].split('[')[0]
-    if '[' in row[4]:
-      row[4] = row[4].split('[')[0]
-    if '[' in row[7]:
-      row[7] = row[7].split('[')[0]
-    if '[' in row[6]:
-      row[6] = row[6].split('[')[0]
+  return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "\n"
 
-    line = row[1] + "," + row[3] + "," + row[4] + "," + str(int(row[6]) + int (row[7])) + "\n"
-    return line
+def hr_format_line(row):
+  row[1] = re.sub('\*', '', row[1])
+  if '[' in row[3]:
+    row[3] = row[3].split('[')[0]
+  if '[' in row[4]:
+    row[4] = row[4].split('[')[0]
+  if '[' in row[7]:
+    row[7] = row[7].split('[')[0]
+  if '[' in row[6]:
+    row[6] = row[6].split('[')[0]
 
-  ## call the readFileFromURLV2 to generate the CSV file here...
-  tables = camelot.read_pdf(opt['url'],
-    strip_text = '\n',
-    pages = opt['config']['page'],
-    split_text = True
-  )
+  line = row[1] + "," + row[3] + "," + row[4] + "," + str(int(row[6]) + int (row[7])) + "\n"
+  return line
 
-  # create an empty csv file first
+def read_pdf_from_url(opt):
+  if len(opt['url']) > 0:
+    url = opt['url']
+  if len(url) > 0:
+    #print("--> Requesting download from {} ".format(url))
+    r = requests.get(url, allow_redirects=True, verify=False)
+    open(opt['state_code'] + ".pdf", 'wb').write(r.content)
+  if len(opt['config']['page']) > 0:
+    pid = ""
+    if ',' in opt['config']['page']:
+      startPage = int(opt['config']['page'].split(',')[0])
+      endPage = int(opt['config']['page'].split(',')[1])
+      for pages in range(startPage, endPage + 1, 1):
+        print(pages)
+        pid = pid + "," + str(pages) if len(pid) > 0 else str(pages)
+        print(pid)
+    else:
+      pid = opt['config']['page']
+  else:
+    pid = input("Enter district page:")
+  print("Running for {} pages".format(pid))
+  tables = camelot.read_pdf(opt['state_code'] + ".pdf", strip_text = '\n', pages = pid, split_text = True)
+  # for index, table in enumerate(tables):
+
   stateOutputFile = open(opt['state_code'].lower() + '.csv', 'w')
-  startedReadingDistricts = False
+  # csvWriter = csv.writer(stateOutputFile)
+  # arrayToWrite = []
 
+  startedReadingDistricts = False
   for index, table in enumerate(tables):
-    # create .pdf.txt file for every page
-    tables[index].to_csv(opt['state_code'].lower() + str(index) + '.pdf.txt')
-    with open(opt['state_code'].lower() + str(index) + '.pdf.txt', newline='') as stateCSVFile:
+    tables[index].to_csv(opt['state_code'] + str(index) + '.pdf.txt')
+    with open(opt['state_code'] + str(index) + '.pdf.txt', newline='') as stateCSVFile:
       rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
       for row in rowReader:
         line = "|".join(row)
@@ -73,11 +97,24 @@ def hr_get_data(opt):
         if startedReadingDistricts == False:
           continue
 
-        line = eval(opt['state_code'] + "FormatLine")(line.split('|'))
+        line = eval(opt['state_code'].lower() + "_format_line")(line.split('|'))
         if line == "\n":
           continue
         print(line, file = stateOutputFile, end = "")
-    stateOutputFile.close()
+
+  stateOutputFile.close()
+
+## ------------------------ <STATE_CODE>_get_data functions START HERE
+
+def hr_get_data(opt):
+  print('fetching HR data', opt)
+
+  # always get for T - 1 day
+  today = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%d-%m-%Y")
+  opt['url'] = opt['url'] + today + '.' + opt['type']
+  opt['config']['page'] = str(opt['config']['page'])
+
+  read_pdf_from_url(opt)
 
   # once the csv file is genered, read it
   linesArray = []
@@ -322,8 +359,23 @@ def ch_get_data(opt):
 
 def kl_get_data(opt):
   print('fetching KL data', opt)
-  # if opt['type'] == 'pdf':
-    # call pdf scanner, get page number
+  linesArray = []
+  districtDictionary = {}
+  districtArray = []
+  read_pdf_from_url(opt)
+  try:
+    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 3:
+          print("--> Issue with {}".format(linesArray))
+          continue
+
+        print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+        print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
+    upFile.close()
+  except FileNotFoundError:
+    print("ap.csv missing. Generate through pdf or ocr and rerun.")
 
 def ml_get_data(opt):
   print('fetching ML data', opt)
@@ -332,74 +384,6 @@ def ka_get_data(opt):
   print('fetching KA data', opt)
   opt['config']['page'] = str(opt['config']['page'])
 
-  def read_pdf_from_url(opt):
-
-    def KAFormatLine(row):
-      district = ""
-      modifiedRow = []
-      for value in row:
-        if len(value) > 0:
-          modifiedRow.append(value)
-
-      if type(modifiedRow[0]) == int:
-        district = " ".join(re.sub(' +', ' ', modifiedRow[0]).split(' ')[1:])
-        modifiedRow.insert(0, 'a')
-      else:
-        district = re.sub('\*', '', modifiedRow[1])
-      print(modifiedRow)
-
-      return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "\n"
-
-    if len(opt['url']) > 0:
-      url = opt['url']
-    if len(url) > 0:
-      #print("--> Requesting download from {} ".format(url))
-      r = requests.get(url, allow_redirects=True, verify=False)
-      open(opt['state_code'] + ".pdf", 'wb').write(r.content)
-    if len(opt['config']['page']) > 0:
-      pid = ""
-      if ',' in opt['config']['page']:
-        startPage = int(opt['config']['page'].split(',')[0])
-        endPage = int(opt['config']['page'].split(',')[1])
-        for pages in range(startPage, endPage + 1, 1):
-          print(pages)
-          pid = pid + "," + str(pages) if len(pid) > 0 else str(pages)
-          print(pid)
-      else:
-        pid = opt['config']['page']
-    else:
-      pid = input("Enter district page:")
-    print("Running for {} pages".format(pid))
-    tables = camelot.read_pdf(opt['state_code'] + ".pdf", strip_text = '\n', pages = pid, split_text = True)
-    # for index, table in enumerate(tables):
-
-    stateOutputFile = open(opt['state_code'].lower() + '.csv', 'w')
-    # csvWriter = csv.writer(stateOutputFile)
-    # arrayToWrite = []
-
-    startedReadingDistricts = False
-    for index, table in enumerate(tables):
-      tables[index].to_csv(opt['state_code'] + str(index) + '.pdf.txt')
-      with open(opt['state_code'] + str(index) + '.pdf.txt', newline='') as stateCSVFile:
-        rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
-        for row in rowReader:
-          line = "|".join(row)
-          line = re.sub("\|+", '|', line)
-          if opt['config']['start_key'] in line:
-            startedReadingDistricts = True
-          if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
-            startedReadingDistricts = False
-            continue
-          if startedReadingDistricts == False:
-            continue
-
-          line = eval(opt['state_code'] + "FormatLine")(line.split('|'))
-          if line == "\n":
-            continue
-          print(line, file = stateOutputFile, end = "")
-
-    stateOutputFile.close()
-
   # read the pdf.txt files and generate
   linesArray = []
   districtDictionary = {}
@@ -407,7 +391,7 @@ def ka_get_data(opt):
   runDeceased = False
   startId = 0
   endId = 0
-  fileId = '1CaKq55BuKucINTV8C-IhUtck5_VO2hdg'
+  fileId = opt['config']['file_id']
 
   if ',' in opt['config']['page']:
     startId = opt['config']['page'].split(',')[1]
