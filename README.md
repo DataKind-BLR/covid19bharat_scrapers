@@ -17,56 +17,11 @@ python scrapers.py --state_code ML --type image --url '/dir/path/to/ml.jpeg'
 
 NOTE: The `--url` parameter can either a direct link over the internet to the file or could be a path in your local directory
 
------
 
-## NOTES
+## How does this work?
 
-### Step 1
+Everything starts from `states.yaml` file where the configurations, urls and required parameters are added. This is being read by `scrapers.py` file and being executed for each state with the configurations provied. These configurations can be overwritten using the following parameters from the commandline
 
-Run the `ocrvision.py` with the below command to generate the `poly.txt` file containing the coordinates for the text
-```bash
-python ocr_vision.py "path/to/image.jpg"
-```
-
-**Dependencies**
-
-- `visionapi.json` -  containing the API key codes
-
-
-### Step 2
-
-Run the `googlevision.py` parses the coordinates from the `poly.txt` file. This file requires the following dependencies
-
-**Dependencies**
-
-- `poly.txt` - containing the coordinates of the detected text
-- `<state_code>_districts.meta` - contains the translation text if it's not in English. This can be skipped if the text on the image are in English. Eg: check `ct_districts.meta` which has Hindi to English translation for district names
-- `ocrconfig.meta` - is a generated file from `ocr.sh`,  using the `ocrconfig.meta.orig` as a template
-
-----
-
-Run for states
-
-### West Bengal
-
-```bash
-python automation.py "Tamil Nadu" full "pdf=https://stopcorona.tn.gov.in/wp-content/uploads/2020/03/Media-Bulletin-18-10-21-COVID-19.pdf=2"
-```
-
-### Karnataka
-
-```bash
-python automation.py "Karnataka" full "pdf=https://drive.google.com/file/d/18duJUSus2T0VMt1kC57BGn4LXtQO90_U/view=5"
-```
-
-### Tamil Nadu
-
-```bash
-python automation.py "Tamil Nadu" full "pdf=https://stopcorona.tn.gov.in/wp-content/uploads/2020/03/Media-Bulletin-18-10-21-COVID-19.pdf=7"
-```
-
-### Kerala
-
-```bash
-python automation.py "Kerala" full "pdf=https://dhs.kerala.gov.in/wp-content/uploads/2021/10/Bulletin-HFWD-English-October-09-1.pdf=4"
-```
+- `type` can be one of the three `pdf`, `image` or `html` determines what type of input is being provided to extract data from
+- `url` the absolute path or the url of the file type specified in the first parameter
+- `state_code` a 2 letter capital state code of the state for which the above paramaters are specified for
