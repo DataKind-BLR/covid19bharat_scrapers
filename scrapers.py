@@ -103,7 +103,7 @@ def run_for_ocr(opt):
   print('Running ocr_vision.py file to generate poly.txt')
   os.system('python ocr_vision.py {} > bounds.txt'.format(opt['url']))
 
-  ## step 2 - generate ocrconfig.meta file for that state
+  ## step 2 - generate ocrconfig.meta file for that state (this overwrites previous file)
   print('Generating ocrconfig.meta file for {}'.format(opt['state_code']))
   os.system('bash generate_ocrconfig.sh {} {} {}'.format(
     opt['state_code'].lower(),
@@ -391,12 +391,15 @@ def ct_get_data(opt):
 
 def dd_get_data(opt):
   print('Fetching DD data', opt)
+  print('You\'ve got to do this manually looking at the tweet/image')
 
 def dh_get_data(opt):
   print('Fetching DH data', opt)
+  print('You\'ve got to do this manually looking at the tweet/image')
 
 def dn_get_data(opt):
   print('Fetching DN data', opt)
+  print('You\'ve got to do this manually looking at the tweet/image')
 
 def ga_get_data(opt):
   print('Fetching GA data', opt)
@@ -1364,8 +1367,8 @@ if __name__ == '__main__':
   '''
   parser = argparse.ArgumentParser()
   parser.add_argument('--state_code', type=str, nargs='?', default='all', help='provide 2 letter state code, defaults to all')
-  parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, ocr, html]')
-  parser.add_argument('--url', type=str, help='url to the image or pdf to be parsed')
+  parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
+  parser.add_argument('--url', type=str, help='url/path to the image or pdf to be parsed')
 
   args = parser.parse_args()
   state_code = args.state_code.lower()
