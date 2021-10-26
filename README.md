@@ -10,11 +10,10 @@ Example to overwrite settings already provided in yaml file:
 $python scrapers.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
 ````
 
-Example to run ocr
+Example to run for images
 ```bash
-python ocr_vision.py "path/to/image.jpg"
+python scrapers.py --state_code ML --type image --url '/dir/path/to/ml.jpeg'
 ```
-will generate a `bounds.txt` file containing x & y coordinates for text
 
 -----
 
