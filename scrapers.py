@@ -1,4 +1,6 @@
 '''
+All this work because the indian govt can't have one unified single dashboard! sigh!
+
 What does this file do?
 
 Provided the following parameters
@@ -325,9 +327,67 @@ def br_get_data(opt):
 
 def ch_get_data(opt):
   print('Fetching CH data', opt)
+  response = requests.request("GET", opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  divs = soup.find("div", {"class": "col-lg-8 col-md-9 form-group pt-10"}).find_all("div", {"class": "col-md-3"})
+
+  districtDictionary = {}
+  districts_data = []
+  districtDictionary['districtName'] = 'Chandigarh'
+
+  for index, row in enumerate(divs):
+
+    if index > 2:
+      continue
+
+    dataPoints = row.find("div", {"class": "card-body"}).get_text()
+
+    if index == 0:
+      districtDictionary['confirmed'] = int(dataPoints)
+    if index == 1:
+      districtDictionary['recovered'] = int(dataPoints)
+    if index == 2:
+      districtDictionary['deceased'] = int(dataPoints)
+
+  districts_data.append(districtDictionary)
+  return districts_data
 
 def ct_get_data(opt):
   print('Fetching CT data', opt)
+
+  run_for_ocr(opt)
+
+  districts_data = []
+  with open(OUTPUT_FILE, "r") as upFile:
+    for line in upFile:
+      linesArray = line.split('|')[0].split(',')
+      availableColumns = line.split('|')[1].split(',')
+
+      districtDictionary = {}
+      districtDictionary['deceased'] = 0
+      confirmedFound = False
+      recoveredFound = False
+      deceasedFound = False
+      for index, data in enumerate(linesArray):
+        if availableColumns[index].strip() == "2":
+          districtDictionary['districtName'] = data.strip()
+        if availableColumns[index].strip() == "4":
+          districtDictionary['confirmed'] = int(data.strip())
+          confirmedFound = True
+        if availableColumns[index].strip() == "9":
+          districtDictionary['recovered'] = int(data.strip())
+          recoveredFound = True
+        if availableColumns[index].strip() == "12":
+          districtDictionary['deceased'] += int(data.strip())
+          deceasedFound = True
+
+      #print(districtDictionary)
+      if recoveredFound == False or confirmedFound == False:
+        print("--> Issue with {}".format(linesArray))
+        continue
+      districts_data.append(districtDictionary)
+  upFile.close()
+  return districts_data
 
 def dd_get_data(opt):
   print('Fetching DD data', opt)
@@ -340,6 +400,19 @@ def dn_get_data(opt):
 
 def ga_get_data(opt):
   print('Fetching GA data', opt)
+
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find_all("div", {"class": "vc_col-md-2"})
+
+  districts_data = []
+  for index, row in enumerate(table):
+    print(row.get_text())
+
+    districtDictionary = {}
+    districts_data.append(districtDictionary)
+
+  return districts_data
 
 def gj_get_data(opt):
   print('fetching GJ data', opt)

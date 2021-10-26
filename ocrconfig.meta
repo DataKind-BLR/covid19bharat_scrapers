@@ -1,7 +1,7 @@
 startingText:auto,auto
 enableTranslation:False
-translationFile:br_districts.meta
+translationFile:ct_districts.meta
 yInterval:0
 xInterval:0
-houghTransform:False
+houghTransform:True
 configMinLineLength:400

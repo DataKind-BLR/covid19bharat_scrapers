@@ -71,42 +71,46 @@ br:
 ch:
   name: Chandigarh
   state_code: CH
-  url: http://chdcovid19.in/
+  automatic: True
   url_sources:
     - https://twitter.com/ani
     - https://twitter.com/nagarkoti
   type: html
+  url: http://chdcovid19.in/
+
 
 ct:
   name: Chhattisgarh
   state_code: CT
-  url:
+  automatic: False
   url_sources:
     - https://twitter.com/HealthCgGov
-  type:
+  type: image
+  url: _inputs/ct.jpeg
   config:
+    translation: True
 
 dd:
   name: Daman and Diu
   state_code: DD
-  url:
+  automatic: False
   url_sources:
     - https://twitter.com/charmieparekh
     - https://twitter.com/collectordaman
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
-  type:
-  config:
+  type: image
+  url: _inputs/dd.jpeg
 
 dh:
   name: Delhi
   state_code: DH
-  url:
   url_sources:
     - https://twitter.com/CMODelhi
     - https://twitter.com/ani
     - https://twitter.com/ICMRDELHI
   type:
+  url:
   config:
 
 dn:
@@ -129,17 +133,12 @@ ga:
   # url: https://www.goa.gov.in/covid-19-archives/
   # config:
     # page: 4
-
   # url pattern: https://www.goa.gov.in/wp-content/uploads/yyyy/mm/Media-Bulletin-dd<th/nd/st/rd>-<B>-<yyyy>.pdf
   # Eg:          https://www.goa.gov.in/wp-content/uploads/2021/01/Media-Bulletin-15th-January-2021.pdf
   url_sources:
     - https://twitter.com/DHS_Goa
-
-  # comment below lines if not running for html
   type: html
   url: https://www.goa.gov.in/covid-19/
-
-
 
 gj:
   name: Gujarat
@@ -368,9 +367,8 @@ rj:
   config:
     starting_text: auto
     ending_text: auto
-    translation:
-      enable: False
-      dict_file: rj_districts.meta
+    translation: True
+    translation_dict: rj_districts.meta
     x: 0
     y: 0
 
