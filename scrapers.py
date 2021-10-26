@@ -105,6 +105,74 @@ def read_pdf_from_url(opt):
   stateOutputFile.close()
 
 ## ------------------------ <STATE_CODE>_get_data functions START HERE
+def ap_get_data(opt):
+  print('fetching AP data', opt)
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('table', {'class': 'table'}).find_all('tr')
+  districts_data = []
+
+  for row in table[1:]:
+    # Ignoring 1st row containing table headers
+    d = row.find_all('td')
+    districts_data.append({
+      'district_name': d[0].get_text(),
+      'confirmed': int(d[1].get_text().strip()),
+      'recovered': int(d[2].get_text().strip()),
+      'deceased': int(d[3].get_text().strip())
+    })
+
+  return districts_data
+
+def ar_get_data(opt):
+  print('Fetching AR data', opt)
+
+def as_get_data(opt):
+  print('Fetching AS data', opt)
+
+def br_get_data(opt):
+  print('Fetching BR data', opt)
+
+def ch_get_data(opt):
+  print('Fetching CH data', opt)
+
+def ct_get_data(opt):
+  print('Fetching CT data', opt)
+
+def dd_get_data(opt):
+  print('Fetching DD data', opt)
+
+def dh_get_data(opt):
+  print('Fetching DH data', opt)
+
+def dn_get_data(opt):
+  print('Fetching DN data', opt)
+
+def ga_get_data(opt):
+  print('Fetching GA data', opt)
+
+def gj_get_data(opt):
+  print('fetching GJ data', opt)
+
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('table', {'id': 'tbl'}).find_all('tr')
+  districts_data = []
+
+  for row in table[1:]:
+    # Ignoring 1st row containing table headers
+    d = row.find_all('td')
+    districts_data.append({
+      'district_name': d[0].get_text(),
+      'confirmed': int(d[1].get_text().strip()),
+      'recovered': int(d[3].get_text().strip()),
+      'deceased': int(d[5].get_text().strip())
+    })
+
+  return districts_data
+
+def hp_get_data(opt):
+  print('Fetching HP data', opt)
 
 def hr_get_data(opt):
   print('fetching HR data', opt)
@@ -136,46 +204,7 @@ def hr_get_data(opt):
   upFile.close()
   return districtArray
 
-def gj_get_data(opt):
-  print('fetching GJ data', opt)
-
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find('table', {'id': 'tbl'}).find_all('tr')
-  districts_data = []
-
-  for row in table[1:]:
-    # Ignoring 1st row containing table headers
-    d = row.find_all('td')
-    districts_data.append({
-      'district_name': d[0].get_text(),
-      'confirmed': int(d[1].get_text().strip()),
-      'recovered': int(d[3].get_text().strip()),
-      'deceased': int(d[5].get_text().strip())
-    })
-
-  return districts_data
-
-def ap_get_data(opt):
-  print('fetching AP data', opt)
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find('table', {'class': 'table'}).find_all('tr')
-  districts_data = []
-
-  for row in table[1:]:
-    # Ignoring 1st row containing table headers
-    d = row.find_all('td')
-    districts_data.append({
-      'district_name': d[0].get_text(),
-      'confirmed': int(d[1].get_text().strip()),
-      'recovered': int(d[2].get_text().strip()),
-      'deceased': int(d[3].get_text().strip())
-    })
-
-  return districts_data
-
-# TODO - can't read POST request
+# TODO - Post request not running
 def jh_get_data(opt):
   today = (datetime.date.today() - datetime.timedelta(days=0)).strftime("%Y-%m-%d")
   # complete url with the today's date
@@ -212,173 +241,8 @@ def jh_get_data(opt):
     if int(data[6].get_text()) != 0:
       print(f"{data[1].get_text()},Jharkhand,JH,{data[6].get_text()},Deceased")
 
-def or_get_data(opt):
-  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orsite.csv')
-  cmd = ' | '.join([
-    "curl -sk {}".format(opt['url']),
-    "grep -i string | grep -v legend",
-    "sed 's/var result = JSON.stringify(//' |sed 's/);//' | head -1 > {}".format(temp_file)
-  ])
-  os.system(cmd)
-
-  district_data = []
-  fetched_data = []
-  with open(temp_file, 'r', encoding='utf-8') as meta_file:
-    for line in meta_file:
-      fetched_data = json.loads(line)
-
-  for d in fetched_data:
-    district_data.append({
-      'district_name': d['vchDistrictName'],
-      'confirmed': int(d['intConfirmed']),
-      'recovered': int(d['intRecovered']),
-      'deceased': int(d['intDeceased']) + int(d['intOthDeceased'])
-    })
-
-  # delete temp file after printed
-  os.system('rm -f {}'.format(temp_file))
-  return district_data
-
-def py_get_data(opt):
-  print('fetching PY data', opt)
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find_all('tbody')[1].find_all('tr')
-
-  district_data = []
-  for index, row in enumerate(table):
-    data_points = row.find_all('td')
-
-    district_dictionary = {
-      'district_name': data_points[0].get_text().strip(),
-      'confirmed': int(data_points[1].get_text().strip()),
-      'recovered': int(data_points[2].get_text().strip()),
-      'deceased': int(data_points[4].get_text().strip())
-    }
-    district_data.append(district_dictionary)
-
-  return district_data
-
-def la_get_data(opt):
-  print('fetching LA data', opt)
-
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find('table', id='tableCovidData2').find_all('tr')
-
-  district_data = []
-  district_dictionary = {}
-  confirmed = table[9].find_all('td')[1]
-  discharged = table[11].find_all('td')[1]
-  confirmed_array = re.sub('\\r', '',
-    re.sub(':', '',
-      re.sub(' +', ' ',
-        re.sub('\n', ' ',
-          confirmed.get_text().strip()
-        )
-      )
-    )
-  ).split(' ')
-
-  discharged_array = re.sub('\\r', '',
-    re.sub(':', '',
-      re.sub(' +', ' ',
-        re.sub("\n", " ",
-          discharged.get_text().strip()
-        )
-      )
-    )
-  ).split(' ')
-
-  district_dictionary['district_name'] = confirmed_array[0]
-  district_dictionary['confirmed'] = int(confirmed_array[1])
-  district_dictionary['recovered'] = int(discharged_array[1])
-  district_dictionary['deceased'] = -999
-  district_data.append(district_dictionary)
-
-  district_dictionary = {
-    'district_name': confirmed_array[2],
-    'confirmed': int(confirmed_array[3]),
-    'recovered': int(discharged_array[3]),
-    'deceased': -999
-  }
-  district_data.append(district_dictionary)
-
-  return district_data
-
-def tr_get_data(opt):
-  print('fetching TR data', opt)
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find('tbody').find_all('tr')
-  district_data = []
-  for index, row in enumerate(table):
-    data_points = row.find_all("td")
-    district_dictionary = {
-      'district_name': data_points[1].get_text().strip(),
-      'confirmed': int(data_points[8].get_text().strip()),
-      'recovered': int(data_points[10].get_text().strip()),
-      'deceased': int(data_points[12].get_text().strip())
-    }
-    district_data.append(district_dictionary)
-
-  return district_data
-
-def mh_get_data(opt):
-  print('fetching MH data', opt)
-  stateDashboard = requests.request('GET', opt['url']).json()
-
-  district_data = []
-  for details in stateDashboard:
-    district_data.append({
-      'districtName': details['District'],
-      'confirmed': details['Positive Cases'],
-      'recovered': details['Recovered'],
-      'deceased': details['Deceased']
-    })
-
-  return district_data
-
-def ga_get_data(opt):
-  print('fetching GA data', opt)
-
-def rj_get_data(opt):
-  print('fetching RJ data', opt)
-
-def nl_get_data(opt):
-  print('fetching NL data', opt)
-
-def mz_get_data(opt):
-  print('fetching MZ data', opt)
-
-def as_get_data(opt):
-  print('fetching AS data', opt)
-
-def ch_get_data(opt):
-  print('fetching CH data', opt)
-
-def kl_get_data(opt):
-  print('fetching KL data', opt)
-  linesArray = []
-  districtDictionary = {}
-  districtArray = []
-  read_pdf_from_url(opt)
-  try:
-    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
-      for line in upFile:
-        linesArray = line.split(',')
-        if len(linesArray) != 3:
-          print("--> Issue with {}".format(linesArray))
-          continue
-
-        print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-        print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
-    upFile.close()
-  except FileNotFoundError:
-    print("ap.csv missing. Generate through pdf or ocr and rerun.")
-
-def ml_get_data(opt):
-  print('fetching ML data', opt)
+def jk_get_data(opt):
+  print('Fetching JK data', opt)
 
 def ka_get_data(opt):
   print('fetching KA data', opt)
@@ -436,6 +300,195 @@ def ka_get_data(opt):
 
   return districtArray
 
+def kl_get_data(opt):
+  print('Fetching KL data', opt)
+  linesArray = []
+  districtDictionary = {}
+  districtArray = []
+  read_pdf_from_url(opt)
+  try:
+    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 3:
+          print("--> Issue with {}".format(linesArray))
+          continue
+
+        print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+        print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
+    upFile.close()
+  except FileNotFoundError:
+    print("ap.csv missing. Generate through pdf or ocr and rerun.")
+
+def la_get_data(opt):
+  print('fetching LA data', opt)
+
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('table', id='tableCovidData2').find_all('tr')
+
+  district_data = []
+  district_dictionary = {}
+  confirmed = table[9].find_all('td')[1]
+  discharged = table[11].find_all('td')[1]
+  confirmed_array = re.sub('\\r', '',
+    re.sub(':', '',
+      re.sub(' +', ' ',
+        re.sub('\n', ' ',
+          confirmed.get_text().strip()
+        )
+      )
+    )
+  ).split(' ')
+
+  discharged_array = re.sub('\\r', '',
+    re.sub(':', '',
+      re.sub(' +', ' ',
+        re.sub("\n", " ",
+          discharged.get_text().strip()
+        )
+      )
+    )
+  ).split(' ')
+
+  district_dictionary['district_name'] = confirmed_array[0]
+  district_dictionary['confirmed'] = int(confirmed_array[1])
+  district_dictionary['recovered'] = int(discharged_array[1])
+  district_dictionary['deceased'] = -999
+  district_data.append(district_dictionary)
+
+  district_dictionary = {
+    'district_name': confirmed_array[2],
+    'confirmed': int(confirmed_array[3]),
+    'recovered': int(discharged_array[3]),
+    'deceased': -999
+  }
+  district_data.append(district_dictionary)
+
+  return district_data
+
+def mh_get_data(opt):
+  print('fetching MH data', opt)
+  stateDashboard = requests.request('GET', opt['url']).json()
+
+  district_data = []
+  for details in stateDashboard:
+    district_data.append({
+      'districtName': details['District'],
+      'confirmed': details['Positive Cases'],
+      'recovered': details['Recovered'],
+      'deceased': details['Deceased']
+    })
+
+  return district_data
+
+def ml_get_data(opt):
+  print('Fetching ML data', opt)
+
+def mn_get_data(opt):
+  print('Fetching MN data', opt)
+
+def mp_get_data(opt):
+  print('Fetching MP data', opt)
+
+def mz_get_data(opt):
+  print('Fetching MZ data', opt)
+
+def nl_get_data(opt):
+  print('Fetching NL data', opt)
+
+def or_get_data(opt):
+  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'orsite.csv')
+  cmd = ' | '.join([
+    "curl -sk {}".format(opt['url']),
+    "grep -i string | grep -v legend",
+    "sed 's/var result = JSON.stringify(//' |sed 's/);//' | head -1 > {}".format(temp_file)
+  ])
+  os.system(cmd)
+
+  district_data = []
+  fetched_data = []
+  with open(temp_file, 'r', encoding='utf-8') as meta_file:
+    for line in meta_file:
+      fetched_data = json.loads(line)
+
+  for d in fetched_data:
+    district_data.append({
+      'district_name': d['vchDistrictName'],
+      'confirmed': int(d['intConfirmed']),
+      'recovered': int(d['intRecovered']),
+      'deceased': int(d['intDeceased']) + int(d['intOthDeceased'])
+    })
+
+  # delete temp file after printed
+  os.system('rm -f {}'.format(temp_file))
+  return district_data
+
+def pb_get_data(opt):
+  print('Fetching PB data', opt)
+
+def py_get_data(opt):
+  print('fetching PY data', opt)
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find_all('tbody')[1].find_all('tr')
+
+  district_data = []
+  for index, row in enumerate(table):
+    data_points = row.find_all('td')
+
+    district_dictionary = {
+      'district_name': data_points[0].get_text().strip(),
+      'confirmed': int(data_points[1].get_text().strip()),
+      'recovered': int(data_points[2].get_text().strip()),
+      'deceased': int(data_points[4].get_text().strip())
+    }
+    district_data.append(district_dictionary)
+
+  return district_data
+
+def rj_get_data(opt):
+  print('Fetching RJ data', opt)
+
+def sk_get_data(opt):
+  print('Fetching SK data', opt)
+
+def tn_get_data(opt):
+  print('Fetching TN data', opt)
+
+def tg_get_data(opt):
+  print('Fetching TG data', opt)
+
+def tr_get_data(opt):
+  print('fetching TR data', opt)
+  response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  table = soup.find('tbody').find_all('tr')
+  district_data = []
+  for index, row in enumerate(table):
+    data_points = row.find_all("td")
+    district_dictionary = {
+      'district_name': data_points[1].get_text().strip(),
+      'confirmed': int(data_points[8].get_text().strip()),
+      'recovered': int(data_points[10].get_text().strip()),
+      'deceased': int(data_points[12].get_text().strip())
+    }
+    district_data.append(district_dictionary)
+
+  return district_data
+
+def up_get_data(opt):
+  print('Fetching UP data', opt)
+
+def ut_get_data(opt):
+  print('Fetching UT data', opt)
+
+def wb_get_dat(opt):
+  print('Fetching WB data', opt)
+
+## ------------------------ <STATE_CODE>_get_data functions END HERE
+
+
 def fetch_data(st_obj):
   '''
   for a given state object, fetch the details from url
@@ -449,23 +502,40 @@ def fetch_data(st_obj):
   '''
   fn_map = {
     'ap': ap_get_data,
-    'ga': ga_get_data,
-    'or': or_get_data,
-    'rj': rj_get_data,
-    'mh': mh_get_data,
-    'gj': gj_get_data,
-    'nl': nl_get_data,
-    'mz': mz_get_data,
+    'ar': ar_get_data,
     'as': as_get_data,
-    'tr': tr_get_data,
-    'py': py_get_data,
+    'br': br_get_data,
     'ch': ch_get_data,
+    'ct': ct_get_data,
+    'dd': dd_get_data,
+    'dh': dh_get_data,
+    'dn': dn_get_data,
+    'ga': ga_get_data,
+    'gj': gj_get_data,
+    'hp': hp_get_data,
+    'hr': hr_get_data,
+    'jh': jh_get_data,
+    'jk': jk_get_data,
+    'ka': ka_get_data,
     'kl': kl_get_data,
     'la': la_get_data,
+    'mh': mh_get_data,
     'ml': ml_get_data,
-    'jh': jh_get_data,
-    'hr': hr_get_data,
-    'ka': ka_get_data
+    'mn': mn_get_data,
+    'mp': mp_get_data,
+    'mz': mz_get_data,
+    'nl': nl_get_data,
+    'or': or_get_data,
+    'pb': pb_get_data,
+    'py': py_get_data,
+    'rj': rj_get_data,
+    'sk': sk_get_data,
+    'tn': tn_get_data,
+    'tg': tg_get_data,
+    'tr': tr_get_data,
+    'up': up_get_data,
+    'ut': ut_get_data,
+    'wb': wb_get_data
   }
 
   try:
