@@ -1,8799 +1,3061 @@
-[locale: "en"
-description: "2-IDSP\nActive\nCause\n9\n0 C\n0\n0\n0\n0\n0\n4\n0\nDistrict Wise Daily Status of COVID-19 Date-23.10.2021(Time 6:00 P.M.)\nCumulative\nS.No\nToday\'s\nDistrict\nToday\'s\nCumulative Today\'s\nCumulative\nCumuluive\nSample Positive Positive\nRecovered. Dis Recovered/Dis\nDeath Death\ncharged charged\n1 AJMER\n600984\n1\n37763\n0\n410\n0\n37244\n2 ALWAR\n1195195\n0\n59694 0\n307\n59287\n3\nBANSWARA\n213523\n0\n10005\n0\n104\n0\n9901\n4 BARAN\n148381\n0\n11995 0\n61\n0\n11934\nS\nBARMER\n320244\n0 0\n15562\n0\n185\n0\n15377\n6 BHARATPUR\n377518\n0\n19601 0\n260\na\n19341\n7 7 BHILWARA\n373675 0 0\n29781\n0\n156\n0\n29625\n8 BIKANER\n580169 0 0 40337\n0\n545\n2\n39788\n9 BUNDI\n166643\n0\n7967\n0\n48\n0\n7919\n10 CHITTORGARH\n347456\n0 0\n19809\n0\n139\n0\n19670\n11 CHURU\n305570\n0 0\n16720\n0\n107\n0\n16613\n12 DAUSA\n199655\n0 0\n13351\n0\n62\n0\n13289\n13 DHOLPUR\n217652\n0\n11010 0\n48\n0\n10960\n14 DUNGARPUR\n237313 0\nnun\n18407\n0\n131\n0\nst\n18276\n15 GANGANAGAR\n320732 0\n19353 0\nNEWS\n150)\n19203\n16 HANUMANGARH\nwere\nave\n0\n10 ANONS\n0\n354857\n16053 0\nwer007\n111\n0\n15942\nwa\n17 JAIPUR\n2451085 2 187787 0\n1\n185807\n18 JAISALMER\n200180\n0\n13639\n0\n65\n13573\n19 JALORE\n19\n364228\n0 0\n10067\n0\n72\n0\n9995\n20 JHALA WAR\n263385 0 13612 0\n187\n0\n13425\n21 JHUNJHUNU\n353699\n0\n14811\n0\n158\n0\n14653\n22 JODHPUR\n1132837\n1\n112411 0\n1103\n0\n111305\n23 KARAULI\n161270\n0\n7156\n0\n70\n0\n7086\n0\n0\n0\n2\n0\n0\n0\n10\n0\n1970\n0 0\n0\n0\n3\n0\nS.No\nDistrict\nCumulative\nSample\nToday\'s\nPositive\nCumulative\nPositive\nToday\nDeath\nCumulative\nDeath\nActive\nGise\n0 0\nO\n449\n1 1\n0 0\n177\n0\n0\n0\n287\n1\n0\n0\n0\nV\n0 0\n03\n63\n169\n0\nToday\'s\nCumulative\nRecovered/Dis Recovered. Dis\ncharged\ncharged\n0\n56603\n0\n17560\n0\n27036\n0\n7080\n0\n16875\n0\n10555\n0\n30283\n0\n13653\n0\n9406\n3\n55652\n0\n851550)\n473170\n336536\n189745\n219488\n176867\n403180\n249250\n232470\n676157\n24 KOTA\n25 NAGAUR\n26 PALI\n27 PRATAPGARH\n28 RAJSAMAND\n29 SAWAI MADHOPUR\n30 SIKAR\n31 SIROHI\n32 TONK\n33 UDAIPUR\nOther State/\ncountry\nTotal\n57053\n17737\n27324\n7143\n17044\n30618\n30618\n13732\n9498\n56405\n0\n0 0\n0\n2\n-\n0\n0\n0\n01\n335\n79\n92\n0\n0\n0\n0\n11111\n0\n753\n0\n6012\n0\n337\n39\n0\n298\n0\n1-4700577\n4\n954400\n0\n8954\n4\n945414\n32\nTotal Stritus\nSample Received In State\nSample Positive In State\nActive Cases In State\n14700577\n954400\n32\n"
+[locale: "hi"
+description: "17.\n\340\244\225\340\244\277\340\244\266\340\244\250\340\244\227\340\244\202\340\244\234\n10121\n10052\n66\n3\n18.\n\340\244\262\340\244\226\340\245\200\340\244\270\340\244\260\340\244\276\340\244\257\n7776\n7674\n102\n0\n19.\n\340\244\256\340\244\247\340\245\207\340\244\252\340\245\201\340\244\260\340\244\276\n12545\n12433\n111\n1\n20.\n\340\244\256\340\244\247\340\245\201\340\244\254\340\244\250\340\245\200\n18362\n18023\n339\n0\n21.\n\340\244\256\340\245\201\340\244\202\340\244\227\340\245\207\340\244\260\n15109\n14951\n158\n0\n22.\n\340\244\256\340\245\201\340\244\234\340\244\253\340\245\215\340\244\253\340\244\260\340\244\252\340\245\201\340\244\260\n31397\n30775\n621\n1\n23.\n\340\244\250\340\244\276\340\244\262\340\244\202\340\244\246\340\244\276\n23432\n22963\n468\n1\n24.\n\340\244\250\340\244\265\340\244\276\340\244\246\340\244\276\n10352\n10174\n178\n0\n25.\n\340\244\252\340\244\266\340\245\215\340\244\232\340\244\277\340\244\256 \340\244\232\340\244\202\340\244\252\340\244\276\340\244\260\340\244\243\n20890\n20532\n358\n0\n26.\n\340\244\252\340\244\237\340\244\250\340\244\276\n146962\n144619\n2334\n9\n27.\n\340\244\252\340\245\202\340\244\260\340\245\215\340\244\265\340\245\200 \340\244\232\340\244\202\340\244\252\340\244\276\340\244\260\340\244\243\n19014\n18584\n430\n0\n28\n\340\244\252\340\245\202\340\244\260\340\245\215\340\244\243\340\244\277\340\244\257\340\244\276\n24427\n24247\n180\n0\n29.\n\340\244\260\340\245\213\340\244\271\340\244\244\340\244\276\340\244\270\n13978\n13707\n271\n0\n30.\n\340\244\270\340\244\271\340\244\260\340\244\270\340\244\276\n17616\n17482\n134\n0\n31.\n\340\244\270\340\244\256\340\244\270\340\245\215\340\244\244\340\245\200\340\244\252\340\245\201\340\244\260\n20017\n19862\n155\n0\n32.\n\340\244\270\340\244\276\340\244\260\340\244\243\n23273\n23018\n255\n0\n33.\n\340\244\266\340\245\207\340\244\226\340\244\252\340\245\201\340\244\260\340\244\276\n7693\n7618\n75\n0\n34.\n\340\244\266\340\244\277\340\244\265\340\244\271\340\244\260\n4402\n4366\n36\n.\n35.\n\340\244\270\340\245\200\340\244\244\340\244\276\340\244\256\340\244\242\340\244\274\340\245\200\n9184\n9057\n127\n0\n36.\n\340\244\270\340\244\277\340\244\265\340\244\276\340\244\250\n15195\n15025\n170\n0\n37.\n\340\244\270\340\245\201\340\244\252\340\245\214\340\244\262\n17221\n17092\n129\n0\n38.\n\340\244\265\340\245\210\340\244\266\340\244\276\340\244\262\340\245\200\n19826\n19631\n192\n2\nTotal\n725996\n716300\n9661\n34\n"
 bounding_poly {
   vertices {
-    x: 31
-    y: 11
+    x: 33
+    y: 19
   }
   vertices {
-    x: 660
-    y: 11
+    x: 615
+    y: 19
   }
   vertices {
-    x: 660
-    y: 1005
+    x: 615
+    y: 1002
   }
   vertices {
-    x: 31
-    y: 1005
-  }
-}
-, description: "2"
-bounding_poly {
-  vertices {
-    x: 630
-    y: 11
-  }
-  vertices {
-    x: 632
-    y: 11
-  }
-  vertices {
-    x: 632
-    y: 20
-  }
-  vertices {
-    x: 630
-    y: 20
-  }
-}
-, description: "-"
-bounding_poly {
-  vertices {
-    x: 634
-    y: 11
-  }
-  vertices {
-    x: 636
-    y: 11
-  }
-  vertices {
-    x: 636
-    y: 20
-  }
-  vertices {
-    x: 634
-    y: 20
-  }
-}
-, description: "IDSP"
-bounding_poly {
-  vertices {
-    x: 639
-    y: 11
-  }
-  vertices {
-    x: 656
-    y: 11
-  }
-  vertices {
-    x: 656
-    y: 20
-  }
-  vertices {
-    x: 639
-    y: 20
-  }
-}
-, description: "Active"
-bounding_poly {
-  vertices {
-    x: 635
-    y: 48
-  }
-  vertices {
-    x: 660
-    y: 48
-  }
-  vertices {
-    x: 660
-    y: 57
-  }
-  vertices {
-    x: 635
-    y: 57
-  }
-}
-, description: "Cause"
-bounding_poly {
-  vertices {
-    x: 639
-    y: 62
-  }
-  vertices {
-    x: 656
-    y: 62
-  }
-  vertices {
-    x: 656
-    y: 69
-  }
-  vertices {
-    x: 639
-    y: 69
-  }
-}
-, description: "9"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 86
-  }
-  vertices {
-    x: 650
-    y: 86
-  }
-  vertices {
-    x: 650
-    y: 95
-  }
-  vertices {
-    x: 646
-    y: 95
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 104
-  }
-  vertices {
-    x: 648
-    y: 104
-  }
-  vertices {
-    x: 648
-    y: 113
-  }
-  vertices {
-    x: 647
-    y: 113
-  }
-}
-, description: "C"
-bounding_poly {
-  vertices {
-    x: 648
-    y: 105
-  }
-  vertices {
-    x: 649
-    y: 105
-  }
-  vertices {
-    x: 649
-    y: 112
-  }
-  vertices {
-    x: 648
-    y: 112
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 121
-  }
-  vertices {
-    x: 651
-    y: 121
-  }
-  vertices {
-    x: 651
-    y: 128
-  }
-  vertices {
-    x: 646
-    y: 128
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 137
-  }
-  vertices {
-    x: 650
-    y: 137
-  }
-  vertices {
-    x: 650
-    y: 145
-  }
-  vertices {
-    x: 645
-    y: 145
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 155
-  }
-  vertices {
-    x: 650
-    y: 155
-  }
-  vertices {
-    x: 650
-    y: 163
-  }
-  vertices {
-    x: 645
-    y: 163
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 171
-  }
-  vertices {
-    x: 651
-    y: 171
-  }
-  vertices {
-    x: 651
-    y: 181
-  }
-  vertices {
-    x: 646
-    y: 181
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 186
-  }
-  vertices {
-    x: 650
-    y: 186
-  }
-  vertices {
-    x: 650
-    y: 196
-  }
-  vertices {
-    x: 645
-    y: 196
-  }
-}
-, description: "4"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 204
-  }
-  vertices {
-    x: 651
-    y: 204
-  }
-  vertices {
-    x: 651
-    y: 214
-  }
-  vertices {
-    x: 646
-    y: 214
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 221
-  }
-  vertices {
-    x: 650
-    y: 221
-  }
-  vertices {
-    x: 650
-    y: 229
-  }
-  vertices {
-    x: 645
-    y: 229
-  }
-}
-, description: "District"
-bounding_poly {
-  vertices {
-    x: 113
-    y: 18
-  }
-  vertices {
-    x: 160
-    y: 18
-  }
-  vertices {
-    x: 160
-    y: 36
-  }
-  vertices {
-    x: 113
-    y: 36
-  }
-}
-, description: "Wise"
-bounding_poly {
-  vertices {
-    x: 163
-    y: 18
-  }
-  vertices {
-    x: 195
-    y: 18
-  }
-  vertices {
-    x: 195
-    y: 36
-  }
-  vertices {
-    x: 163
-    y: 36
-  }
-}
-, description: "Daily"
-bounding_poly {
-  vertices {
-    x: 205
-    y: 18
-  }
-  vertices {
-    x: 234
-    y: 18
-  }
-  vertices {
-    x: 234
-    y: 36
-  }
-  vertices {
-    x: 205
-    y: 36
-  }
-}
-, description: "Status"
-bounding_poly {
-  vertices {
-    x: 242
-    y: 18
-  }
-  vertices {
-    x: 279
-    y: 18
-  }
-  vertices {
-    x: 279
-    y: 36
-  }
-  vertices {
-    x: 242
-    y: 36
-  }
-}
-, description: "of"
-bounding_poly {
-  vertices {
-    x: 283
-    y: 18
-  }
-  vertices {
-    x: 296
-    y: 18
-  }
-  vertices {
-    x: 296
-    y: 36
-  }
-  vertices {
-    x: 283
-    y: 36
-  }
-}
-, description: "COVID"
-bounding_poly {
-  vertices {
-    x: 305
-    y: 18
-  }
-  vertices {
-    x: 346
-    y: 18
-  }
-  vertices {
-    x: 346
-    y: 36
-  }
-  vertices {
-    x: 305
-    y: 36
-  }
-}
-, description: "-"
-bounding_poly {
-  vertices {
-    x: 352
-    y: 18
-  }
-  vertices {
-    x: 356
-    y: 18
-  }
-  vertices {
-    x: 356
-    y: 36
-  }
-  vertices {
-    x: 352
-    y: 36
-  }
-}
-, description: "19"
-bounding_poly {
-  vertices {
-    x: 360
-    y: 18
-  }
-  vertices {
-    x: 369
-    y: 18
-  }
-  vertices {
-    x: 369
-    y: 36
-  }
-  vertices {
-    x: 360
-    y: 36
-  }
-}
-, description: "Date"
-bounding_poly {
-  vertices {
-    x: 391
-    y: 18
-  }
-  vertices {
-    x: 419
-    y: 18
-  }
-  vertices {
-    x: 419
-    y: 36
-  }
-  vertices {
-    x: 391
-    y: 36
-  }
-}
-, description: "-"
-bounding_poly {
-  vertices {
-    x: 420
-    y: 18
-  }
-  vertices {
-    x: 424
-    y: 18
-  }
-  vertices {
-    x: 424
-    y: 36
-  }
-  vertices {
-    x: 420
-    y: 36
-  }
-}
-, description: "23.10.2021"
-bounding_poly {
-  vertices {
-    x: 425
-    y: 18
-  }
-  vertices {
-    x: 493
-    y: 18
-  }
-  vertices {
-    x: 493
-    y: 36
-  }
-  vertices {
-    x: 425
-    y: 36
-  }
-}
-, description: "("
-bounding_poly {
-  vertices {
-    x: 491
-    y: 18
-  }
-  vertices {
-    x: 495
-    y: 18
-  }
-  vertices {
-    x: 495
-    y: 36
-  }
-  vertices {
-    x: 491
-    y: 36
-  }
-}
-, description: "Time"
-bounding_poly {
-  vertices {
-    x: 499
-    y: 18
-  }
-  vertices {
-    x: 529
-    y: 18
-  }
-  vertices {
-    x: 529
-    y: 36
-  }
-  vertices {
-    x: 499
-    y: 36
-  }
-}
-, description: "6:00"
-bounding_poly {
-  vertices {
-    x: 532
-    y: 18
-  }
-  vertices {
-    x: 558
-    y: 18
-  }
-  vertices {
-    x: 558
-    y: 36
-  }
-  vertices {
-    x: 532
-    y: 36
-  }
-}
-, description: "P.M."
-bounding_poly {
-  vertices {
-    x: 565
-    y: 18
-  }
-  vertices {
-    x: 596
-    y: 18
-  }
-  vertices {
-    x: 596
-    y: 36
-  }
-  vertices {
-    x: 565
-    y: 36
-  }
-}
-, description: ")"
-bounding_poly {
-  vertices {
-    x: 595
-    y: 18
-  }
-  vertices {
-    x: 599
-    y: 18
-  }
-  vertices {
-    x: 599
-    y: 36
-  }
-  vertices {
-    x: 595
-    y: 36
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 197
-    y: 48
-  }
-  vertices {
-    x: 243
-    y: 49
-  }
-  vertices {
-    x: 243
-    y: 59
-  }
-  vertices {
-    x: 197
-    y: 58
-  }
-}
-, description: "S.No"
-bounding_poly {
-  vertices {
-    x: 31
-    y: 53
-  }
-  vertices {
-    x: 54
-    y: 53
-  }
-  vertices {
-    x: 54
-    y: 65
-  }
-  vertices {
-    x: 31
-    y: 65
-  }
-}
-, description: "Today\'s"
-bounding_poly {
-  vertices {
-    x: 268
-    y: 47
-  }
-  vertices {
-    x: 298
-    y: 47
-  }
-  vertices {
-    x: 298
-    y: 58
-  }
-  vertices {
-    x: 268
-    y: 58
-  }
-}
-, description: "District"
-bounding_poly {
-  vertices {
-    x: 105
-    y: 53
-  }
-  vertices {
-    x: 134
-    y: 53
-  }
-  vertices {
-    x: 134
-    y: 63
-  }
-  vertices {
-    x: 105
-    y: 63
-  }
-}
-, description: "Today\'s"
-bounding_poly {
-  vertices {
-    x: 508
-    y: 41
-  }
-  vertices {
-    x: 538
-    y: 42
-  }
-  vertices {
-    x: 538
-    y: 54
-  }
-  vertices {
-    x: 508
-    y: 53
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 319
-    y: 49
-  }
-  vertices {
-    x: 365
-    y: 49
-  }
-  vertices {
-    x: 365
-    y: 58
-  }
-  vertices {
-    x: 319
-    y: 58
-  }
-}
-, description: "Today\'s"
-bounding_poly {
-  vertices {
-    x: 381
-    y: 48
-  }
-  vertices {
-    x: 411
-    y: 48
-  }
-  vertices {
-    x: 411
-    y: 58
-  }
-  vertices {
-    x: 381
-    y: 58
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 567
-    y: 42
-  }
-  vertices {
-    x: 613
-    y: 42
-  }
-  vertices {
-    x: 613
-    y: 52
-  }
-  vertices {
-    x: 567
-    y: 52
-  }
-}
-, description: "Cumuluive"
-bounding_poly {
-  vertices {
-    x: 430
-    y: 48
-  }
-  vertices {
-    x: 475
-    y: 47
-  }
-  vertices {
-    x: 475
-    y: 57
-  }
-  vertices {
-    x: 430
-    y: 58
-  }
-}
-, description: "Sample"
-bounding_poly {
-  vertices {
-    x: 204
-    y: 60
-  }
-  vertices {
-    x: 233
-    y: 60
-  }
-  vertices {
-    x: 233
-    y: 70
-  }
-  vertices {
-    x: 204
-    y: 70
-  }
-}
-, description: "Positive"
-bounding_poly {
-  vertices {
-    x: 269
-    y: 61
-  }
-  vertices {
-    x: 299
-    y: 61
-  }
-  vertices {
-    x: 299
-    y: 70
-  }
-  vertices {
-    x: 269
-    y: 70
-  }
-}
-, description: "Positive"
-bounding_poly {
-  vertices {
-    x: 325
-    y: 60
-  }
-  vertices {
-    x: 357
-    y: 60
-  }
-  vertices {
-    x: 357
-    y: 69
-  }
-  vertices {
-    x: 325
-    y: 69
-  }
-}
-, description: "Recovered"
-bounding_poly {
-  vertices {
-    x: 493
-    y: 53
-  }
-  vertices {
-    x: 534
-    y: 53
-  }
-  vertices {
-    x: 534
-    y: 65
-  }
-  vertices {
-    x: 493
-    y: 65
-  }
-}
-, description: "."
-bounding_poly {
-  vertices {
-    x: 535
-    y: 53
-  }
-  vertices {
-    x: 537
-    y: 53
-  }
-  vertices {
-    x: 537
-    y: 65
-  }
-  vertices {
-    x: 535
-    y: 65
-  }
-}
-, description: "Dis"
-bounding_poly {
-  vertices {
-    x: 540
-    y: 53
-  }
-  vertices {
-    x: 553
-    y: 53
-  }
-  vertices {
-    x: 553
-    y: 65
-  }
-  vertices {
-    x: 540
-    y: 65
-  }
-}
-, description: "Recovered"
-bounding_poly {
-  vertices {
-    x: 561
-    y: 53
-  }
-  vertices {
-    x: 602
-    y: 53
-  }
-  vertices {
-    x: 602
-    y: 65
-  }
-  vertices {
-    x: 561
-    y: 65
-  }
-}
-, description: "/"
-bounding_poly {
-  vertices {
-    x: 604
-    y: 53
-  }
-  vertices {
-    x: 605
-    y: 53
-  }
-  vertices {
-    x: 605
-    y: 65
-  }
-  vertices {
-    x: 604
-    y: 65
-  }
-}
-, description: "Dis"
-bounding_poly {
-  vertices {
-    x: 606
-    y: 53
-  }
-  vertices {
-    x: 619
-    y: 53
-  }
-  vertices {
-    x: 619
-    y: 65
-  }
-  vertices {
-    x: 606
-    y: 65
-  }
-}
-, description: "Death"
-bounding_poly {
-  vertices {
-    x: 384
-    y: 61
-  }
-  vertices {
-    x: 406
-    y: 61
-  }
-  vertices {
-    x: 406
-    y: 70
-  }
-  vertices {
-    x: 384
-    y: 70
-  }
-}
-, description: "Death"
-bounding_poly {
-  vertices {
-    x: 442
-    y: 61
-  }
-  vertices {
-    x: 464
-    y: 61
-  }
-  vertices {
-    x: 464
-    y: 69
-  }
-  vertices {
-    x: 442
-    y: 69
-  }
-}
-, description: "charged"
-bounding_poly {
-  vertices {
-    x: 507
-    y: 67
-  }
-  vertices {
-    x: 537
-    y: 67
-  }
-  vertices {
-    x: 537
-    y: 78
-  }
-  vertices {
-    x: 507
-    y: 78
-  }
-}
-, description: "charged"
-bounding_poly {
-  vertices {
-    x: 574
-    y: 66
-  }
-  vertices {
-    x: 604
-    y: 66
-  }
-  vertices {
-    x: 604
-    y: 76
-  }
-  vertices {
-    x: 574
-    y: 76
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 45
-    y: 87
-  }
-  vertices {
-    x: 46
-    y: 87
-  }
-  vertices {
-    x: 46
-    y: 95
-  }
-  vertices {
-    x: 45
-    y: 95
-  }
-}
-, description: "AJMER"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 87
-  }
-  vertices {
-    x: 93
-    y: 87
-  }
-  vertices {
-    x: 93
-    y: 96
-  }
-  vertices {
-    x: 59
-    y: 96
-  }
-}
-, description: "600984"
-bounding_poly {
-  vertices {
-    x: 202
-    y: 85
-  }
-  vertices {
-    x: 237
-    y: 84
-  }
-  vertices {
-    x: 237
-    y: 95
-  }
-  vertices {
-    x: 202
-    y: 96
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 283
-    y: 87
-  }
-  vertices {
-    x: 283
-    y: 87
-  }
-  vertices {
-    x: 283
-    y: 95
-  }
-  vertices {
-    x: 283
-    y: 95
-  }
-}
-, description: "37763"
-bounding_poly {
-  vertices {
-    x: 328
-    y: 86
-  }
-  vertices {
-    x: 354
-    y: 85
-  }
-  vertices {
-    x: 354
-    y: 94
-  }
-  vertices {
-    x: 328
-    y: 95
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 88
-  }
-  vertices {
-    x: 395
-    y: 88
-  }
-  vertices {
-    x: 395
-    y: 95
-  }
-  vertices {
-    x: 394
-    y: 95
-  }
-}
-, description: "410"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 87
-  }
-  vertices {
-    x: 460
-    y: 87
-  }
-  vertices {
-    x: 460
-    y: 97
-  }
-  vertices {
-    x: 448
-    y: 97
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 88
-  }
-  vertices {
-    x: 525
-    y: 88
-  }
-  vertices {
-    x: 525
-    y: 95
-  }
-  vertices {
-    x: 521
-    y: 95
-  }
-}
-, description: "37244"
-bounding_poly {
-  vertices {
-    x: 576
-    y: 85
-  }
-  vertices {
-    x: 602
-    y: 84
-  }
-  vertices {
-    x: 602
-    y: 93
-  }
-  vertices {
-    x: 576
-    y: 94
-  }
-}
-, description: "2"
-bounding_poly {
-  vertices {
-    x: 44
-    y: 104
-  }
-  vertices {
-    x: 47
-    y: 104
-  }
-  vertices {
-    x: 47
-    y: 113
-  }
-  vertices {
-    x: 44
-    y: 113
-  }
-}
-, description: "ALWAR"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 103
-  }
-  vertices {
-    x: 95
-    y: 103
-  }
-  vertices {
-    x: 95
-    y: 112
-  }
-  vertices {
-    x: 58
-    y: 112
-  }
-}
-, description: "1195195"
-bounding_poly {
-  vertices {
-    x: 201
-    y: 104
-  }
-  vertices {
-    x: 241
-    y: 104
-  }
-  vertices {
-    x: 241
-    y: 114
-  }
-  vertices {
-    x: 201
-    y: 114
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 104
-  }
-  vertices {
-    x: 283
-    y: 104
-  }
-  vertices {
-    x: 283
-    y: 112
-  }
-  vertices {
-    x: 282
-    y: 112
-  }
-}
-, description: "59694"
-bounding_poly {
-  vertices {
-    x: 328
-    y: 103
-  }
-  vertices {
-    x: 354
-    y: 102
-  }
-  vertices {
-    x: 354
-    y: 112
-  }
-  vertices {
-    x: 328
-    y: 113
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 103
-  }
-  vertices {
-    x: 395
-    y: 103
-  }
-  vertices {
-    x: 395
-    y: 111
-  }
-  vertices {
-    x: 394
-    y: 111
-  }
-}
-, description: "307"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 102
-  }
-  vertices {
-    x: 461
-    y: 102
-  }
-  vertices {
-    x: 461
-    y: 112
-  }
-  vertices {
-    x: 447
-    y: 112
-  }
-}
-, description: "59287"
-bounding_poly {
-  vertices {
-    x: 576
-    y: 102
-  }
-  vertices {
-    x: 602
-    y: 101
-  }
-  vertices {
-    x: 602
-    y: 111
-  }
-  vertices {
-    x: 576
-    y: 112
-  }
-}
-, description: "3"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 120
-  }
-  vertices {
-    x: 46
-    y: 120
-  }
-  vertices {
-    x: 46
-    y: 127
-  }
-  vertices {
-    x: 43
-    y: 127
-  }
-}
-, description: "BANSWARA"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 121
-  }
-  vertices {
-    x: 118
-    y: 121
-  }
-  vertices {
-    x: 118
-    y: 130
-  }
-  vertices {
-    x: 59
-    y: 130
-  }
-}
-, description: "213523"
-bounding_poly {
-  vertices {
-    x: 202
-    y: 119
-  }
-  vertices {
-    x: 237
-    y: 118
-  }
-  vertices {
-    x: 237
-    y: 129
-  }
-  vertices {
-    x: 202
-    y: 130
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 120
-  }
-  vertices {
-    x: 285
-    y: 120
-  }
-  vertices {
-    x: 285
-    y: 127
-  }
-  vertices {
-    x: 281
-    y: 127
-  }
-}
-, description: "10005"
-bounding_poly {
-  vertices {
-    x: 331
-    y: 119
-  }
-  vertices {
-    x: 355
-    y: 119
-  }
-  vertices {
-    x: 355
-    y: 129
-  }
-  vertices {
-    x: 331
-    y: 129
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 120
-  }
-  vertices {
-    x: 398
-    y: 120
-  }
-  vertices {
-    x: 398
-    y: 127
-  }
-  vertices {
-    x: 394
-    y: 127
-  }
-}
-, description: "104"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 119
-  }
-  vertices {
-    x: 461
-    y: 119
-  }
-  vertices {
-    x: 461
-    y: 128
-  }
-  vertices {
-    x: 448
-    y: 128
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 121
-  }
-  vertices {
-    x: 525
-    y: 121
-  }
-  vertices {
-    x: 525
-    y: 128
-  }
-  vertices {
-    x: 521
-    y: 128
-  }
-}
-, description: "9901"
-bounding_poly {
-  vertices {
-    x: 580
-    y: 120
-  }
-  vertices {
-    x: 599
-    y: 120
-  }
-  vertices {
-    x: 599
-    y: 130
-  }
-  vertices {
-    x: 580
-    y: 130
-  }
-}
-, description: "4"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 137
-  }
-  vertices {
-    x: 47
-    y: 137
-  }
-  vertices {
-    x: 47
-    y: 146
-  }
-  vertices {
-    x: 43
-    y: 146
-  }
-}
-, description: "BARAN"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 137
-  }
-  vertices {
-    x: 95
-    y: 137
-  }
-  vertices {
-    x: 95
-    y: 146
-  }
-  vertices {
-    x: 58
-    y: 146
-  }
-}
-, description: "148381"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 135
-  }
-  vertices {
-    x: 235
-    y: 134
-  }
-  vertices {
-    x: 235
-    y: 145
-  }
-  vertices {
-    x: 203
-    y: 146
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 137
-  }
-  vertices {
-    x: 285
-    y: 137
-  }
-  vertices {
-    x: 285
-    y: 144
-  }
-  vertices {
-    x: 281
-    y: 144
-  }
-}
-, description: "11995"
-bounding_poly {
-  vertices {
-    x: 329
-    y: 136
-  }
-  vertices {
-    x: 354
-    y: 135
-  }
-  vertices {
-    x: 354
-    y: 146
-  }
-  vertices {
-    x: 329
-    y: 147
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 137
-  }
-  vertices {
-    x: 395
-    y: 137
-  }
-  vertices {
-    x: 395
-    y: 144
-  }
-  vertices {
-    x: 394
-    y: 144
-  }
-}
-, description: "61"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 137
-  }
-  vertices {
-    x: 457
-    y: 137
-  }
-  vertices {
-    x: 457
-    y: 145
-  }
-  vertices {
-    x: 448
-    y: 145
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 137
-  }
-  vertices {
-    x: 524
-    y: 137
-  }
-  vertices {
-    x: 524
-    y: 144
-  }
-  vertices {
-    x: 520
-    y: 144
-  }
-}
-, description: "11934"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 137
-  }
-  vertices {
-    x: 603
-    y: 137
-  }
-  vertices {
-    x: 603
-    y: 147
-  }
-  vertices {
-    x: 579
-    y: 147
-  }
-}
-, description: "S"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 153
-  }
-  vertices {
-    x: 46
-    y: 153
-  }
-  vertices {
-    x: 46
-    y: 161
-  }
-  vertices {
-    x: 43
-    y: 161
-  }
-}
-, description: "BARMER"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 154
-  }
-  vertices {
-    x: 102
-    y: 153
-  }
-  vertices {
-    x: 102
-    y: 163
-  }
-  vertices {
-    x: 58
-    y: 164
-  }
-}
-, description: "320244"
-bounding_poly {
-  vertices {
-    x: 202
-    y: 152
-  }
-  vertices {
-    x: 237
-    y: 151
-  }
-  vertices {
-    x: 237
-    y: 162
-  }
-  vertices {
-    x: 202
-    y: 163
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 153
-  }
-  vertices {
-    x: 282
-    y: 153
-  }
-  vertices {
-    x: 282
-    y: 160
-  }
-  vertices {
-    x: 281
-    y: 160
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 154
-  }
-  vertices {
-    x: 285
-    y: 154
-  }
-  vertices {
-    x: 285
-    y: 162
-  }
-  vertices {
-    x: 281
-    y: 162
-  }
-}
-, description: "15562"
-bounding_poly {
-  vertices {
-    x: 329
-    y: 153
-  }
-  vertices {
-    x: 354
-    y: 152
-  }
-  vertices {
-    x: 354
-    y: 162
-  }
-  vertices {
-    x: 329
-    y: 163
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 154
-  }
-  vertices {
-    x: 395
-    y: 154
-  }
-  vertices {
-    x: 395
-    y: 160
-  }
-  vertices {
-    x: 394
-    y: 160
-  }
-}
-, description: "185"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 153
-  }
-  vertices {
-    x: 461
-    y: 153
-  }
-  vertices {
-    x: 461
-    y: 161
-  }
-  vertices {
-    x: 447
-    y: 161
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 155
-  }
-  vertices {
-    x: 525
-    y: 155
-  }
-  vertices {
-    x: 525
-    y: 162
-  }
-  vertices {
-    x: 521
-    y: 162
-  }
-}
-, description: "15377"
-bounding_poly {
-  vertices {
-    x: 573
-    y: 153
-  }
-  vertices {
-    x: 605
-    y: 152
-  }
-  vertices {
-    x: 605
-    y: 166
-  }
-  vertices {
-    x: 573
-    y: 167
-  }
-}
-, description: "6"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 170
-  }
-  vertices {
-    x: 47
-    y: 170
-  }
-  vertices {
-    x: 47
-    y: 177
-  }
-  vertices {
-    x: 43
-    y: 177
-  }
-}
-, description: "BHARATPUR"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 170
-  }
-  vertices {
-    x: 120
-    y: 170
-  }
-  vertices {
-    x: 120
-    y: 180
-  }
-  vertices {
-    x: 59
-    y: 180
-  }
-}
-, description: "377518"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 168
-  }
-  vertices {
-    x: 238
-    y: 169
-  }
-  vertices {
-    x: 238
-    y: 181
-  }
-  vertices {
-    x: 203
-    y: 180
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 170
-  }
-  vertices {
-    x: 282
-    y: 170
-  }
-  vertices {
-    x: 282
-    y: 177
-  }
-  vertices {
-    x: 281
-    y: 177
-  }
-}
-, description: "19601"
-bounding_poly {
-  vertices {
-    x: 331
-    y: 170
-  }
-  vertices {
-    x: 354
-    y: 170
-  }
-  vertices {
-    x: 354
-    y: 181
-  }
-  vertices {
-    x: 331
-    y: 181
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 170
-  }
-  vertices {
-    x: 395
-    y: 170
-  }
-  vertices {
-    x: 395
-    y: 179
-  }
-  vertices {
-    x: 394
-    y: 179
-  }
-}
-, description: "260"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 170
-  }
-  vertices {
-    x: 460
-    y: 170
-  }
-  vertices {
-    x: 460
-    y: 181
-  }
-  vertices {
-    x: 447
-    y: 181
-  }
-}
-, description: "a"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 170
-  }
-  vertices {
-    x: 521
-    y: 170
-  }
-  vertices {
-    x: 521
-    y: 177
-  }
-  vertices {
-    x: 520
-    y: 177
-  }
-}
-, description: "19341"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 170
-  }
-  vertices {
-    x: 601
-    y: 169
-  }
-  vertices {
-    x: 601
-    y: 181
-  }
-  vertices {
-    x: 577
-    y: 182
-  }
-}
-, description: "7"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 186
-  }
-  vertices {
-    x: 46
-    y: 186
-  }
-  vertices {
-    x: 46
-    y: 195
-  }
-  vertices {
-    x: 43
-    y: 195
-  }
-}
-, description: "7"
-bounding_poly {
-  vertices {
-    x: 44
-    y: 186
-  }
-  vertices {
-    x: 47
-    y: 186
-  }
-  vertices {
-    x: 47
-    y: 197
-  }
-  vertices {
-    x: 44
-    y: 197
-  }
-}
-, description: "BHILWARA"
-bounding_poly {
-  vertices {
-    x: 57
-    y: 186
-  }
-  vertices {
-    x: 113
-    y: 185
-  }
-  vertices {
-    x: 113
-    y: 197
-  }
-  vertices {
-    x: 57
-    y: 198
-  }
-}
-, description: "373675"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 186
-  }
-  vertices {
-    x: 238
-    y: 186
-  }
-  vertices {
-    x: 238
-    y: 198
-  }
-  vertices {
-    x: 203
-    y: 198
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 187
-  }
-  vertices {
-    x: 285
-    y: 187
-  }
-  vertices {
-    x: 285
-    y: 195
-  }
-  vertices {
-    x: 281
-    y: 195
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 186
-  }
-  vertices {
-    x: 282
-    y: 186
-  }
-  vertices {
-    x: 282
-    y: 196
-  }
-  vertices {
-    x: 281
-    y: 196
-  }
-}
-, description: "29781"
-bounding_poly {
-  vertices {
-    x: 328
-    y: 187
-  }
-  vertices {
-    x: 354
-    y: 187
-  }
-  vertices {
-    x: 354
-    y: 197
-  }
-  vertices {
-    x: 328
-    y: 197
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 188
-  }
-  vertices {
-    x: 395
-    y: 188
-  }
-  vertices {
-    x: 395
-    y: 195
-  }
-  vertices {
-    x: 394
-    y: 195
-  }
-}
-, description: "156"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 185
-  }
-  vertices {
-    x: 462
-    y: 185
-  }
-  vertices {
-    x: 462
-    y: 196
-  }
-  vertices {
-    x: 448
-    y: 196
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 186
-  }
-  vertices {
-    x: 522
-    y: 186
-  }
-  vertices {
-    x: 522
-    y: 197
-  }
-  vertices {
-    x: 521
-    y: 197
-  }
-}
-, description: "29625"
-bounding_poly {
-  vertices {
-    x: 576
-    y: 187
-  }
-  vertices {
-    x: 602
-    y: 187
-  }
-  vertices {
-    x: 602
-    y: 197
-  }
-  vertices {
-    x: 576
-    y: 197
-  }
-}
-, description: "8"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 204
-  }
-  vertices {
-    x: 46
-    y: 204
-  }
-  vertices {
-    x: 46
-    y: 212
-  }
-  vertices {
-    x: 43
-    y: 212
-  }
-}
-, description: "BIKANER"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 205
-  }
-  vertices {
-    x: 105
-    y: 205
-  }
-  vertices {
-    x: 105
-    y: 214
-  }
-  vertices {
-    x: 59
-    y: 214
-  }
-}
-, description: "580169"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 201
-  }
-  vertices {
-    x: 238
-    y: 201
-  }
-  vertices {
-    x: 238
-    y: 216
-  }
-  vertices {
-    x: 203
-    y: 216
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 204
-  }
-  vertices {
-    x: 285
-    y: 204
-  }
-  vertices {
-    x: 285
-    y: 212
-  }
-  vertices {
-    x: 281
-    y: 212
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 202
-  }
-  vertices {
-    x: 285
-    y: 202
-  }
-  vertices {
-    x: 285
-    y: 212
-  }
-  vertices {
-    x: 281
-    y: 212
-  }
-}
-, description: "40337"
-bounding_poly {
-  vertices {
-    x: 328
-    y: 203
-  }
-  vertices {
-    x: 354
-    y: 203
-  }
-  vertices {
-    x: 354
-    y: 213
-  }
-  vertices {
-    x: 328
-    y: 213
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 204
-  }
-  vertices {
-    x: 395
-    y: 204
-  }
-  vertices {
-    x: 395
-    y: 211
-  }
-  vertices {
-    x: 394
-    y: 211
-  }
-}
-, description: "545"
-bounding_poly {
-  vertices {
-    x: 446
-    y: 203
-  }
-  vertices {
-    x: 461
-    y: 203
-  }
-  vertices {
-    x: 461
-    y: 213
-  }
-  vertices {
-    x: 446
-    y: 213
-  }
-}
-, description: "2"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 203
-  }
-  vertices {
-    x: 524
-    y: 203
-  }
-  vertices {
-    x: 524
-    y: 212
-  }
-  vertices {
-    x: 520
-    y: 212
-  }
-}
-, description: "39788"
-bounding_poly {
-  vertices {
-    x: 578
-    y: 204
-  }
-  vertices {
-    x: 603
-    y: 205
-  }
-  vertices {
-    x: 603
-    y: 214
-  }
-  vertices {
-    x: 578
-    y: 213
-  }
-}
-, description: "9"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 221
-  }
-  vertices {
-    x: 46
-    y: 221
-  }
-  vertices {
-    x: 46
-    y: 229
-  }
-  vertices {
-    x: 43
-    y: 229
-  }
-}
-, description: "BUNDI"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 220
-  }
-  vertices {
-    x: 91
-    y: 220
-  }
-  vertices {
-    x: 91
-    y: 230
-  }
-  vertices {
-    x: 59
-    y: 230
-  }
-}
-, description: "166643"
-bounding_poly {
-  vertices {
-    x: 204
-    y: 221
-  }
-  vertices {
-    x: 238
-    y: 221
-  }
-  vertices {
-    x: 238
-    y: 232
-  }
-  vertices {
-    x: 204
-    y: 232
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 218
-  }
-  vertices {
-    x: 285
-    y: 218
-  }
-  vertices {
-    x: 285
-    y: 229
-  }
-  vertices {
-    x: 281
-    y: 229
-  }
-}
-, description: "7967"
-bounding_poly {
-  vertices {
-    x: 331
-    y: 221
-  }
-  vertices {
-    x: 353
-    y: 220
-  }
-  vertices {
-    x: 353
-    y: 230
-  }
-  vertices {
-    x: 331
-    y: 231
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 221
-  }
-  vertices {
-    x: 395
-    y: 221
-  }
-  vertices {
-    x: 395
-    y: 228
-  }
-  vertices {
-    x: 394
-    y: 228
-  }
-}
-, description: "48"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 221
-  }
-  vertices {
-    x: 458
-    y: 221
-  }
-  vertices {
-    x: 458
-    y: 229
-  }
-  vertices {
-    x: 448
-    y: 229
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 220
-  }
-  vertices {
-    x: 524
-    y: 220
-  }
-  vertices {
-    x: 524
-    y: 228
-  }
-  vertices {
-    x: 519
-    y: 228
-  }
-}
-, description: "7919"
-bounding_poly {
-  vertices {
-    x: 580
-    y: 221
-  }
-  vertices {
-    x: 601
-    y: 221
-  }
-  vertices {
-    x: 601
-    y: 231
-  }
-  vertices {
-    x: 580
-    y: 231
-  }
-}
-, description: "10"
-bounding_poly {
-  vertices {
-    x: 41
-    y: 237
-  }
-  vertices {
-    x: 49
-    y: 237
-  }
-  vertices {
-    x: 49
-    y: 248
-  }
-  vertices {
-    x: 41
-    y: 248
-  }
-}
-, description: "CHITTORGARH"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 237
-  }
-  vertices {
-    x: 132
-    y: 236
-  }
-  vertices {
-    x: 132
-    y: 248
-  }
-  vertices {
-    x: 58
-    y: 249
-  }
-}
-, description: "347456"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 235
-  }
-  vertices {
-    x: 238
-    y: 235
-  }
-  vertices {
-    x: 238
-    y: 247
-  }
-  vertices {
-    x: 203
-    y: 247
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 238
-  }
-  vertices {
-    x: 285
-    y: 238
-  }
-  vertices {
-    x: 285
-    y: 245
-  }
-  vertices {
-    x: 281
-    y: 245
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 238
-  }
-  vertices {
-    x: 285
-    y: 238
-  }
-  vertices {
-    x: 285
-    y: 246
-  }
-  vertices {
-    x: 281
-    y: 246
-  }
-}
-, description: "19809"
-bounding_poly {
-  vertices {
-    x: 330
-    y: 237
-  }
-  vertices {
-    x: 354
-    y: 237
-  }
-  vertices {
-    x: 354
-    y: 246
-  }
-  vertices {
-    x: 330
-    y: 246
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 238
-  }
-  vertices {
-    x: 395
-    y: 238
-  }
-  vertices {
-    x: 395
-    y: 245
-  }
-  vertices {
-    x: 394
-    y: 245
-  }
-}
-, description: "139"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 238
-  }
-  vertices {
-    x: 462
-    y: 238
-  }
-  vertices {
-    x: 462
-    y: 246
-  }
-  vertices {
-    x: 448
-    y: 246
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 238
-  }
-  vertices {
-    x: 524
-    y: 238
-  }
-  vertices {
-    x: 524
-    y: 246
-  }
-  vertices {
-    x: 519
-    y: 246
-  }
-}
-, description: "19670"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 236
-  }
-  vertices {
-    x: 604
-    y: 237
-  }
-  vertices {
-    x: 604
-    y: 247
-  }
-  vertices {
-    x: 579
-    y: 246
-  }
-}
-, description: "11"
-bounding_poly {
-  vertices {
-    x: 41
-    y: 253
-  }
-  vertices {
-    x: 48
-    y: 253
-  }
-  vertices {
-    x: 48
-    y: 263
-  }
-  vertices {
-    x: 41
-    y: 263
-  }
-}
-, description: "CHURU"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 253
-  }
-  vertices {
-    x: 94
-    y: 252
-  }
-  vertices {
-    x: 94
-    y: 262
-  }
-  vertices {
-    x: 58
-    y: 263
-  }
-}
-, description: "305570"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 254
-  }
-  vertices {
-    x: 238
-    y: 254
-  }
-  vertices {
-    x: 238
-    y: 265
-  }
-  vertices {
-    x: 203
-    y: 265
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 255
-  }
-  vertices {
-    x: 282
-    y: 255
-  }
-  vertices {
-    x: 282
-    y: 262
-  }
-  vertices {
-    x: 281
-    y: 262
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 254
-  }
-  vertices {
-    x: 282
-    y: 254
-  }
-  vertices {
-    x: 282
-    y: 262
-  }
-  vertices {
-    x: 281
-    y: 262
-  }
-}
-, description: "16720"
-bounding_poly {
-  vertices {
-    x: 330
-    y: 254
-  }
-  vertices {
-    x: 355
-    y: 253
-  }
-  vertices {
-    x: 355
-    y: 262
-  }
-  vertices {
-    x: 330
-    y: 263
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 255
-  }
-  vertices {
-    x: 395
-    y: 255
-  }
-  vertices {
-    x: 395
-    y: 262
-  }
-  vertices {
-    x: 394
-    y: 262
-  }
-}
-, description: "107"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 254
-  }
-  vertices {
-    x: 461
-    y: 254
-  }
-  vertices {
-    x: 461
-    y: 262
-  }
-  vertices {
-    x: 448
-    y: 262
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 254
-  }
-  vertices {
-    x: 524
-    y: 254
-  }
-  vertices {
-    x: 524
-    y: 262
-  }
-  vertices {
-    x: 520
-    y: 262
-  }
-}
-, description: "16613"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 255
-  }
-  vertices {
-    x: 603
-    y: 255
-  }
-  vertices {
-    x: 603
-    y: 264
-  }
-  vertices {
-    x: 579
-    y: 264
-  }
-}
-, description: "12"
-bounding_poly {
-  vertices {
-    x: 41
-    y: 270
-  }
-  vertices {
-    x: 49
-    y: 270
-  }
-  vertices {
-    x: 49
-    y: 280
-  }
-  vertices {
-    x: 41
-    y: 280
-  }
-}
-, description: "DAUSA"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 270
-  }
-  vertices {
-    x: 94
-    y: 269
-  }
-  vertices {
-    x: 94
-    y: 280
-  }
-  vertices {
-    x: 58
-    y: 281
-  }
-}
-, description: "199655"
-bounding_poly {
-  vertices {
-    x: 205
-    y: 271
-  }
-  vertices {
-    x: 238
-    y: 271
-  }
-  vertices {
-    x: 238
-    y: 282
-  }
-  vertices {
-    x: 205
-    y: 282
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 272
-  }
-  vertices {
-    x: 282
-    y: 272
-  }
-  vertices {
-    x: 282
-    y: 279
-  }
-  vertices {
-    x: 281
-    y: 279
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 272
-  }
-  vertices {
-    x: 282
-    y: 272
-  }
-  vertices {
-    x: 282
-    y: 280
-  }
-  vertices {
-    x: 281
-    y: 280
-  }
-}
-, description: "13351"
-bounding_poly {
-  vertices {
-    x: 330
-    y: 271
-  }
-  vertices {
-    x: 353
-    y: 270
-  }
-  vertices {
-    x: 353
-    y: 280
-  }
-  vertices {
-    x: 330
-    y: 281
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 272
-  }
-  vertices {
-    x: 395
-    y: 272
-  }
-  vertices {
-    x: 395
-    y: 279
-  }
-  vertices {
-    x: 394
-    y: 279
-  }
-}
-, description: "62"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 271
-  }
-  vertices {
-    x: 458
-    y: 271
-  }
-  vertices {
-    x: 458
-    y: 280
-  }
-  vertices {
-    x: 448
-    y: 280
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 272
-  }
-  vertices {
-    x: 525
-    y: 272
-  }
-  vertices {
-    x: 525
-    y: 280
-  }
-  vertices {
-    x: 520
-    y: 280
-  }
-}
-, description: "13289"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 271
-  }
-  vertices {
-    x: 603
-    y: 271
-  }
-  vertices {
-    x: 603
-    y: 281
-  }
-  vertices {
-    x: 579
-    y: 281
-  }
-}
-, description: "13"
-bounding_poly {
-  vertices {
-    x: 42
-    y: 288
-  }
-  vertices {
-    x: 50
-    y: 288
-  }
-  vertices {
-    x: 50
-    y: 297
-  }
-  vertices {
-    x: 42
-    y: 297
-  }
-}
-, description: "DHOLPUR"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 288
-  }
-  vertices {
-    x: 106
-    y: 288
-  }
-  vertices {
-    x: 106
-    y: 297
-  }
-  vertices {
-    x: 58
-    y: 297
-  }
-}
-, description: "217652"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 287
-  }
-  vertices {
-    x: 238
-    y: 287
-  }
-  vertices {
-    x: 238
-    y: 297
-  }
-  vertices {
-    x: 203
-    y: 297
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 288
-  }
-  vertices {
-    x: 282
-    y: 288
-  }
-  vertices {
-    x: 282
-    y: 296
-  }
-  vertices {
-    x: 281
-    y: 296
-  }
-}
-, description: "11010"
-bounding_poly {
-  vertices {
-    x: 331
-    y: 288
-  }
-  vertices {
-    x: 356
-    y: 288
-  }
-  vertices {
-    x: 356
-    y: 298
-  }
-  vertices {
-    x: 331
-    y: 298
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 288
-  }
-  vertices {
-    x: 398
-    y: 288
-  }
-  vertices {
-    x: 398
-    y: 296
-  }
-  vertices {
-    x: 394
-    y: 296
-  }
-}
-, description: "48"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 288
-  }
-  vertices {
-    x: 458
-    y: 288
-  }
-  vertices {
-    x: 458
-    y: 296
-  }
-  vertices {
-    x: 448
-    y: 296
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 287
-  }
-  vertices {
-    x: 524
-    y: 287
-  }
-  vertices {
-    x: 524
-    y: 295
-  }
-  vertices {
-    x: 519
-    y: 295
-  }
-}
-, description: "10960"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 288
-  }
-  vertices {
-    x: 604
-    y: 288
-  }
-  vertices {
-    x: 604
-    y: 298
-  }
-  vertices {
-    x: 579
-    y: 298
-  }
-}
-, description: "14"
-bounding_poly {
-  vertices {
-    x: 41
-    y: 303
-  }
-  vertices {
-    x: 49
-    y: 303
-  }
-  vertices {
-    x: 49
-    y: 313
-  }
-  vertices {
-    x: 41
-    y: 313
-  }
-}
-, description: "DUNGARPUR"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 303
-  }
-  vertices {
-    x: 123
-    y: 303
-  }
-  vertices {
-    x: 123
-    y: 313
-  }
-  vertices {
-    x: 58
-    y: 313
-  }
-}
-, description: "237313"
-bounding_poly {
-  vertices {
-    x: 201
-    y: 304
-  }
-  vertices {
-    x: 237
-    y: 303
-  }
-  vertices {
-    x: 237
-    y: 315
-  }
-  vertices {
-    x: 201
-    y: 316
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 304
-  }
-  vertices {
-    x: 282
-    y: 304
-  }
-  vertices {
-    x: 282
-    y: 312
-  }
-  vertices {
-    x: 281
-    y: 312
-  }
-}
-, description: "nun"
-bounding_poly {
-  vertices {
-    x: 75
-    y: 310
-  }
-  vertices {
-    x: 94
-    y: 310
-  }
-  vertices {
-    x: 94
-    y: 320
-  }
-  vertices {
-    x: 75
-    y: 320
-  }
-}
-, description: "18407"
-bounding_poly {
-  vertices {
-    x: 329
-    y: 304
-  }
-  vertices {
-    x: 354
-    y: 303
-  }
-  vertices {
-    x: 354
-    y: 313
-  }
-  vertices {
-    x: 329
-    y: 314
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 304
-  }
-  vertices {
-    x: 395
-    y: 304
-  }
-  vertices {
-    x: 395
-    y: 311
-  }
-  vertices {
-    x: 394
-    y: 311
-  }
-}
-, description: "131"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 304
-  }
-  vertices {
-    x: 459
-    y: 304
-  }
-  vertices {
-    x: 459
-    y: 313
-  }
-  vertices {
-    x: 448
-    y: 313
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 304
-  }
-  vertices {
-    x: 524
-    y: 304
-  }
-  vertices {
-    x: 524
-    y: 312
-  }
-  vertices {
-    x: 519
-    y: 312
-  }
-}
-, description: "st"
-bounding_poly {
-  vertices {
-    x: 198
-    y: 311
-  }
-  vertices {
-    x: 239
-    y: 310
-  }
-  vertices {
-    x: 239
-    y: 321
-  }
-  vertices {
-    x: 198
-    y: 322
-  }
-}
-, description: "18276"
-bounding_poly {
-  vertices {
-    x: 578
-    y: 304
-  }
-  vertices {
-    x: 603
-    y: 303
-  }
-  vertices {
-    x: 603
-    y: 314
-  }
-  vertices {
-    x: 578
-    y: 315
-  }
-}
-, description: "15"
-bounding_poly {
-  vertices {
-    x: 42
-    y: 320
-  }
-  vertices {
-    x: 50
-    y: 320
-  }
-  vertices {
-    x: 50
-    y: 331
-  }
-  vertices {
-    x: 42
-    y: 331
-  }
-}
-, description: "GANGANAGAR"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 320
-  }
-  vertices {
-    x: 132
-    y: 321
-  }
-  vertices {
-    x: 132
-    y: 332
-  }
-  vertices {
-    x: 58
-    y: 331
-  }
-}
-, description: "320732"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 321
-  }
-  vertices {
-    x: 238
-    y: 321
-  }
-  vertices {
-    x: 238
-    y: 332
-  }
-  vertices {
-    x: 203
-    y: 332
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 321
-  }
-  vertices {
-    x: 285
-    y: 321
-  }
-  vertices {
-    x: 285
-    y: 329
-  }
-  vertices {
-    x: 281
-    y: 329
-  }
-}
-, description: "19353"
-bounding_poly {
-  vertices {
-    x: 329
-    y: 321
-  }
-  vertices {
-    x: 354
-    y: 320
-  }
-  vertices {
-    x: 354
-    y: 330
-  }
-  vertices {
-    x: 329
-    y: 331
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 320
-  }
-  vertices {
-    x: 395
-    y: 320
-  }
-  vertices {
-    x: 395
-    y: 329
-  }
-  vertices {
-    x: 394
-    y: 329
-  }
-}
-, description: "NEWS"
-bounding_poly {
-  vertices {
-    x: 199
-    y: 326
-  }
-  vertices {
-    x: 238
-    y: 325
-  }
-  vertices {
-    x: 238
-    y: 337
-  }
-  vertices {
-    x: 199
-    y: 338
-  }
-}
-, description: "150"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 320
-  }
-  vertices {
-    x: 458
-    y: 320
-  }
-  vertices {
-    x: 458
-    y: 329
-  }
-  vertices {
-    x: 447
-    y: 329
-  }
-}
-, description: ")"
-bounding_poly {
-  vertices {
-    x: 460
-    y: 320
-  }
-  vertices {
-    x: 462
-    y: 320
-  }
-  vertices {
-    x: 462
-    y: 329
-  }
-  vertices {
-    x: 460
-    y: 329
-  }
-}
-, description: "19203"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 320
-  }
-  vertices {
-    x: 602
-    y: 319
-  }
-  vertices {
-    x: 602
-    y: 329
-  }
-  vertices {
-    x: 577
-    y: 330
-  }
-}
-, description: "16"
-bounding_poly {
-  vertices {
-    x: 42
-    y: 336
-  }
-  vertices {
-    x: 49
-    y: 336
-  }
-  vertices {
-    x: 49
-    y: 346
-  }
-  vertices {
-    x: 42
-    y: 346
-  }
-}
-, description: "HANUMANGARH"
-bounding_poly {
-  vertices {
-    x: 60
-    y: 336
-  }
-  vertices {
-    x: 139
-    y: 336
-  }
-  vertices {
-    x: 139
-    y: 346
-  }
-  vertices {
-    x: 60
-    y: 346
-  }
-}
-, description: "were"
-bounding_poly {
-  vertices {
-    x: 326
-    y: 327
-  }
-  vertices {
-    x: 357
-    y: 326
-  }
-  vertices {
-    x: 357
-    y: 337
-  }
-  vertices {
-    x: 326
-    y: 338
-  }
-}
-, description: "ave"
-bounding_poly {
-  vertices {
-    x: 575
-    y: 328
-  }
-  vertices {
-    x: 604
-    y: 327
-  }
-  vertices {
-    x: 604
-    y: 336
-  }
-  vertices {
-    x: 575
-    y: 337
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 337
-  }
-  vertices {
-    x: 282
-    y: 337
-  }
-  vertices {
-    x: 282
-    y: 344
-  }
-  vertices {
-    x: 281
-    y: 344
-  }
-}
-, description: "10"
-bounding_poly {
-  vertices {
-    x: 42
-    y: 342
-  }
-  vertices {
-    x: 48
-    y: 342
-  }
-  vertices {
-    x: 48
-    y: 352
-  }
-  vertices {
-    x: 42
-    y: 352
-  }
-}
-, description: "ANONS"
-bounding_poly {
-  vertices {
-    x: 66
-    y: 342
-  }
-  vertices {
-    x: 105
-    y: 342
-  }
-  vertices {
-    x: 105
-    y: 352
-  }
-  vertices {
-    x: 66
-    y: 352
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 338
-  }
-  vertices {
-    x: 285
-    y: 338
-  }
-  vertices {
-    x: 285
-    y: 346
-  }
-  vertices {
-    x: 281
-    y: 346
-  }
-}
-, description: "354857"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 337
-  }
-  vertices {
-    x: 238
-    y: 337
-  }
-  vertices {
-    x: 238
-    y: 349
-  }
-  vertices {
-    x: 203
-    y: 349
-  }
-}
-, description: "16053"
-bounding_poly {
-  vertices {
-    x: 331
-    y: 338
-  }
-  vertices {
-    x: 355
-    y: 338
-  }
-  vertices {
-    x: 355
-    y: 348
-  }
-  vertices {
-    x: 331
-    y: 348
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 338
-  }
-  vertices {
-    x: 395
-    y: 338
-  }
-  vertices {
-    x: 395
-    y: 346
-  }
-  vertices {
-    x: 394
-    y: 346
-  }
-}
-, description: "wer007"
-bounding_poly {
-  vertices {
-    x: 198
-    y: 343
-  }
-  vertices {
-    x: 239
-    y: 342
-  }
-  vertices {
-    x: 239
-    y: 354
-  }
-  vertices {
-    x: 198
-    y: 355
-  }
-}
-, description: "111"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 338
-  }
-  vertices {
-    x: 460
-    y: 338
-  }
-  vertices {
-    x: 460
-    y: 347
-  }
-  vertices {
-    x: 448
-    y: 347
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 338
-  }
-  vertices {
-    x: 524
-    y: 338
-  }
-  vertices {
-    x: 524
-    y: 346
-  }
-  vertices {
-    x: 519
-    y: 346
-  }
-}
-, description: "15942"
-bounding_poly {
-  vertices {
-    x: 578
-    y: 338
-  }
-  vertices {
-    x: 602
-    y: 338
-  }
-  vertices {
-    x: 602
-    y: 347
-  }
-  vertices {
-    x: 578
-    y: 347
-  }
-}
-, description: "wa"
-bounding_poly {
-  vertices {
-    x: 326
-    y: 345
-  }
-  vertices {
-    x: 357
-    y: 344
-  }
-  vertices {
-    x: 357
-    y: 353
-  }
-  vertices {
-    x: 326
-    y: 354
+    x: 33
+    y: 1002
   }
 }
 , description: "17"
 bounding_poly {
   vertices {
-    x: 42
-    y: 354
-  }
-  vertices {
-    x: 50
-    y: 354
-  }
-  vertices {
-    x: 50
-    y: 364
-  }
-  vertices {
-    x: 42
-    y: 364
-  }
-}
-, description: "JAIPUR"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 354
-  }
-  vertices {
-    x: 93
-    y: 354
-  }
-  vertices {
-    x: 93
-    y: 364
-  }
-  vertices {
-    x: 58
-    y: 364
-  }
-}
-, description: "2451085"
-bounding_poly {
-  vertices {
-    x: 200
-    y: 353
-  }
-  vertices {
-    x: 240
-    y: 353
-  }
-  vertices {
-    x: 240
-    y: 364
-  }
-  vertices {
-    x: 200
-    y: 364
-  }
-}
-, description: "2"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 353
-  }
-  vertices {
-    x: 285
-    y: 353
-  }
-  vertices {
-    x: 285
-    y: 362
-  }
-  vertices {
-    x: 281
-    y: 362
-  }
-}
-, description: "187787"
-bounding_poly {
-  vertices {
-    x: 326
-    y: 353
-  }
-  vertices {
-    x: 357
-    y: 352
-  }
-  vertices {
-    x: 357
-    y: 362
-  }
-  vertices {
-    x: 326
-    y: 363
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 354
-  }
-  vertices {
-    x: 395
-    y: 354
-  }
-  vertices {
-    x: 395
-    y: 362
-  }
-  vertices {
-    x: 394
-    y: 362
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 353
-  }
-  vertices {
-    x: 522
-    y: 353
-  }
-  vertices {
-    x: 522
-    y: 362
-  }
-  vertices {
-    x: 521
-    y: 362
-  }
-}
-, description: "185807"
-bounding_poly {
-  vertices {
-    x: 576
-    y: 354
-  }
-  vertices {
-    x: 606
-    y: 354
-  }
-  vertices {
-    x: 606
-    y: 363
-  }
-  vertices {
-    x: 576
-    y: 363
-  }
-}
-, description: "18"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 368
-  }
-  vertices {
-    x: 50
-    y: 368
-  }
-  vertices {
-    x: 50
-    y: 378
-  }
-  vertices {
-    x: 43
-    y: 378
-  }
-}
-, description: "JAISALMER"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 368
-  }
-  vertices {
-    x: 116
-    y: 368
-  }
-  vertices {
-    x: 116
-    y: 378
-  }
-  vertices {
-    x: 59
-    y: 378
-  }
-}
-, description: "200180"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 370
-  }
-  vertices {
-    x: 236
-    y: 370
-  }
-  vertices {
-    x: 236
-    y: 379
-  }
-  vertices {
-    x: 203
-    y: 379
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 370
-  }
-  vertices {
-    x: 282
-    y: 370
-  }
-  vertices {
-    x: 282
-    y: 377
-  }
-  vertices {
-    x: 281
-    y: 377
-  }
-}
-, description: "13639"
-bounding_poly {
-  vertices {
-    x: 329
-    y: 369
-  }
-  vertices {
-    x: 355
-    y: 368
-  }
-  vertices {
-    x: 355
-    y: 378
-  }
-  vertices {
-    x: 329
-    y: 379
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 370
-  }
-  vertices {
-    x: 395
-    y: 370
-  }
-  vertices {
-    x: 395
-    y: 377
-  }
-  vertices {
-    x: 394
-    y: 377
-  }
-}
-, description: "65"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 370
-  }
-  vertices {
-    x: 458
-    y: 370
-  }
-  vertices {
-    x: 458
-    y: 379
-  }
-  vertices {
-    x: 448
-    y: 379
-  }
-}
-, description: "13573"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 370
-  }
-  vertices {
-    x: 603
-    y: 370
-  }
-  vertices {
-    x: 603
-    y: 380
-  }
-  vertices {
-    x: 579
-    y: 380
-  }
-}
-, description: "19"
-bounding_poly {
-  vertices {
-    x: 43
-    y: 385
-  }
-  vertices {
-    x: 50
-    y: 385
-  }
-  vertices {
-    x: 50
-    y: 394
-  }
-  vertices {
-    x: 43
-    y: 394
-  }
-}
-, description: "JALORE"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 385
-  }
-  vertices {
-    x: 97
-    y: 386
-  }
-  vertices {
-    x: 97
-    y: 395
-  }
-  vertices {
-    x: 58
-    y: 394
-  }
-}
-, description: "19"
-bounding_poly {
-  vertices {
-    x: 37
-    y: 390
+    x: 34
+    y: 21
   }
   vertices {
     x: 49
-    y: 390
+    y: 21
   }
   vertices {
     x: 49
-    y: 399
+    y: 34
   }
   vertices {
-    x: 37
-    y: 399
-  }
-}
-, description: "364228"
-bounding_poly {
-  vertices {
-    x: 202
-    y: 385
-  }
-  vertices {
-    x: 237
-    y: 384
-  }
-  vertices {
-    x: 237
-    y: 395
-  }
-  vertices {
-    x: 202
-    y: 396
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 386
-  }
-  vertices {
-    x: 282
-    y: 386
-  }
-  vertices {
-    x: 282
-    y: 393
-  }
-  vertices {
-    x: 281
-    y: 393
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 387
-  }
-  vertices {
-    x: 285
-    y: 387
-  }
-  vertices {
-    x: 285
-    y: 395
-  }
-  vertices {
-    x: 281
-    y: 395
-  }
-}
-, description: "10067"
-bounding_poly {
-  vertices {
-    x: 330
-    y: 386
-  }
-  vertices {
-    x: 354
-    y: 386
-  }
-  vertices {
-    x: 354
-    y: 395
-  }
-  vertices {
-    x: 330
-    y: 395
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 387
-  }
-  vertices {
-    x: 395
-    y: 387
-  }
-  vertices {
-    x: 395
-    y: 394
-  }
-  vertices {
-    x: 394
-    y: 394
-  }
-}
-, description: "72"
-bounding_poly {
-  vertices {
-    x: 449
-    y: 386
-  }
-  vertices {
-    x: 458
-    y: 386
-  }
-  vertices {
-    x: 458
-    y: 395
-  }
-  vertices {
-    x: 449
-    y: 395
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 387
-  }
-  vertices {
-    x: 524
-    y: 387
-  }
-  vertices {
-    x: 524
-    y: 396
-  }
-  vertices {
-    x: 519
-    y: 396
-  }
-}
-, description: "9995"
-bounding_poly {
-  vertices {
-    x: 576
-    y: 385
-  }
-  vertices {
-    x: 599
-    y: 384
-  }
-  vertices {
-    x: 599
-    y: 398
-  }
-  vertices {
-    x: 576
-    y: 399
-  }
-}
-, description: "20"
-bounding_poly {
-  vertices {
-    x: 40
-    y: 403
-  }
-  vertices {
-    x: 49
-    y: 403
-  }
-  vertices {
-    x: 49
-    y: 412
-  }
-  vertices {
-    x: 40
-    y: 412
-  }
-}
-, description: "JHALA"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 403
-  }
-  vertices {
-    x: 90
-    y: 403
-  }
-  vertices {
-    x: 90
-    y: 412
-  }
-  vertices {
-    x: 58
-    y: 412
-  }
-}
-, description: "WAR"
-bounding_poly {
-  vertices {
-    x: 93
-    y: 403
-  }
-  vertices {
-    x: 114
-    y: 403
-  }
-  vertices {
-    x: 114
-    y: 412
-  }
-  vertices {
-    x: 93
-    y: 412
-  }
-}
-, description: "263385"
-bounding_poly {
-  vertices {
-    x: 202
-    y: 402
-  }
-  vertices {
-    x: 237
-    y: 401
-  }
-  vertices {
-    x: 237
-    y: 413
-  }
-  vertices {
-    x: 202
-    y: 414
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 403
-  }
-  vertices {
-    x: 286
-    y: 403
-  }
-  vertices {
-    x: 286
-    y: 413
-  }
-  vertices {
-    x: 282
-    y: 413
-  }
-}
-, description: "13612"
-bounding_poly {
-  vertices {
-    x: 330
-    y: 402
-  }
-  vertices {
-    x: 354
-    y: 402
-  }
-  vertices {
-    x: 354
-    y: 412
-  }
-  vertices {
-    x: 330
-    y: 412
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 403
-  }
-  vertices {
-    x: 398
-    y: 403
-  }
-  vertices {
-    x: 398
-    y: 411
-  }
-  vertices {
-    x: 394
-    y: 411
-  }
-}
-, description: "187"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 402
-  }
-  vertices {
-    x: 461
-    y: 402
-  }
-  vertices {
-    x: 461
-    y: 411
-  }
-  vertices {
-    x: 447
-    y: 411
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 403
-  }
-  vertices {
-    x: 521
-    y: 403
-  }
-  vertices {
-    x: 521
-    y: 411
-  }
-  vertices {
-    x: 520
-    y: 411
-  }
-}
-, description: "13425"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 402
-  }
-  vertices {
-    x: 602
-    y: 402
-  }
-  vertices {
-    x: 602
-    y: 412
-  }
-  vertices {
-    x: 577
-    y: 412
-  }
-}
-, description: "21"
-bounding_poly {
-  vertices {
-    x: 40
-    y: 420
-  }
-  vertices {
-    x: 48
-    y: 420
-  }
-  vertices {
-    x: 48
-    y: 430
-  }
-  vertices {
-    x: 40
-    y: 430
-  }
-}
-, description: "JHUNJHUNU"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 420
-  }
-  vertices {
-    x: 118
-    y: 420
-  }
-  vertices {
-    x: 118
-    y: 430
-  }
-  vertices {
-    x: 58
-    y: 430
-  }
-}
-, description: "353699"
-bounding_poly {
-  vertices {
-    x: 203
-    y: 419
-  }
-  vertices {
-    x: 238
-    y: 419
-  }
-  vertices {
-    x: 238
-    y: 430
-  }
-  vertices {
-    x: 203
-    y: 430
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 420
-  }
-  vertices {
-    x: 285
-    y: 420
-  }
-  vertices {
-    x: 285
-    y: 428
-  }
-  vertices {
-    x: 281
-    y: 428
-  }
-}
-, description: "14811"
-bounding_poly {
-  vertices {
-    x: 330
-    y: 419
-  }
-  vertices {
-    x: 353
-    y: 419
-  }
-  vertices {
-    x: 353
-    y: 428
-  }
-  vertices {
-    x: 330
-    y: 428
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 420
-  }
-  vertices {
-    x: 395
-    y: 420
-  }
-  vertices {
-    x: 395
-    y: 428
-  }
-  vertices {
-    x: 394
-    y: 428
-  }
-}
-, description: "158"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 419
-  }
-  vertices {
-    x: 461
-    y: 419
-  }
-  vertices {
-    x: 461
-    y: 428
-  }
-  vertices {
-    x: 447
-    y: 428
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 418
-  }
-  vertices {
-    x: 525
-    y: 418
-  }
-  vertices {
-    x: 525
-    y: 428
-  }
-  vertices {
-    x: 521
-    y: 428
-  }
-}
-, description: "14653"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 419
-  }
-  vertices {
-    x: 602
-    y: 419
-  }
-  vertices {
-    x: 602
-    y: 428
-  }
-  vertices {
-    x: 577
-    y: 428
-  }
-}
-, description: "22"
-bounding_poly {
-  vertices {
-    x: 41
-    y: 436
-  }
-  vertices {
-    x: 50
-    y: 436
-  }
-  vertices {
-    x: 50
-    y: 446
-  }
-  vertices {
-    x: 41
-    y: 446
-  }
-}
-, description: "JODHPUR"
-bounding_poly {
-  vertices {
-    x: 59
-    y: 436
-  }
-  vertices {
-    x: 105
-    y: 436
-  }
-  vertices {
-    x: 105
-    y: 446
-  }
-  vertices {
-    x: 59
-    y: 446
-  }
-}
-, description: "1132837"
-bounding_poly {
-  vertices {
-    x: 200
-    y: 435
-  }
-  vertices {
-    x: 239
-    y: 435
-  }
-  vertices {
-    x: 239
-    y: 445
-  }
-  vertices {
-    x: 200
-    y: 445
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 284
-    y: 437
-  }
-  vertices {
-    x: 284
-    y: 437
-  }
-  vertices {
-    x: 284
-    y: 445
-  }
-  vertices {
-    x: 284
-    y: 445
-  }
-}
-, description: "112411"
-bounding_poly {
-  vertices {
-    x: 328
-    y: 436
-  }
-  vertices {
-    x: 357
-    y: 436
-  }
-  vertices {
-    x: 357
-    y: 445
-  }
-  vertices {
-    x: 328
-    y: 445
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 438
-  }
-  vertices {
-    x: 395
-    y: 438
-  }
-  vertices {
-    x: 395
-    y: 446
-  }
-  vertices {
-    x: 394
-    y: 446
-  }
-}
-, description: "1103"
-bounding_poly {
-  vertices {
-    x: 445
-    y: 436
-  }
-  vertices {
-    x: 463
-    y: 436
-  }
-  vertices {
-    x: 463
-    y: 444
-  }
-  vertices {
-    x: 445
-    y: 444
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 437
-  }
-  vertices {
-    x: 524
-    y: 437
-  }
-  vertices {
-    x: 524
-    y: 445
-  }
-  vertices {
-    x: 520
-    y: 445
-  }
-}
-, description: "111305"
-bounding_poly {
-  vertices {
-    x: 575
-    y: 435
-  }
-  vertices {
-    x: 605
-    y: 434
-  }
-  vertices {
-    x: 605
-    y: 444
-  }
-  vertices {
-    x: 575
-    y: 445
-  }
-}
-, description: "23"
-bounding_poly {
-  vertices {
-    x: 40
-    y: 453
-  }
-  vertices {
-    x: 49
-    y: 453
-  }
-  vertices {
-    x: 49
-    y: 463
-  }
-  vertices {
-    x: 40
-    y: 463
-  }
-}
-, description: "KARAULI"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 453
-  }
-  vertices {
-    x: 105
-    y: 452
-  }
-  vertices {
-    x: 105
-    y: 463
-  }
-  vertices {
-    x: 58
-    y: 464
-  }
-}
-, description: "161270"
-bounding_poly {
-  vertices {
-    x: 205
-    y: 453
-  }
-  vertices {
-    x: 236
-    y: 453
-  }
-  vertices {
-    x: 236
-    y: 463
-  }
-  vertices {
-    x: 205
-    y: 463
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 455
-  }
-  vertices {
-    x: 285
-    y: 455
-  }
-  vertices {
-    x: 285
-    y: 463
-  }
-  vertices {
-    x: 281
-    y: 463
-  }
-}
-, description: "7156"
-bounding_poly {
-  vertices {
-    x: 331
-    y: 453
-  }
-  vertices {
-    x: 353
-    y: 453
-  }
-  vertices {
-    x: 353
-    y: 462
-  }
-  vertices {
-    x: 331
-    y: 462
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 453
-  }
-  vertices {
-    x: 398
-    y: 453
-  }
-  vertices {
-    x: 398
-    y: 461
-  }
-  vertices {
-    x: 394
-    y: 461
-  }
-}
-, description: "70"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 453
-  }
-  vertices {
-    x: 458
-    y: 453
-  }
-  vertices {
-    x: 458
-    y: 461
-  }
-  vertices {
-    x: 448
-    y: 461
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 455
-  }
-  vertices {
-    x: 524
-    y: 455
-  }
-  vertices {
-    x: 524
-    y: 463
-  }
-  vertices {
-    x: 519
-    y: 463
-  }
-}
-, description: "7086"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 453
-  }
-  vertices {
-    x: 600
-    y: 453
-  }
-  vertices {
-    x: 600
-    y: 462
-  }
-  vertices {
-    x: 579
-    y: 462
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 238
-  }
-  vertices {
-    x: 650
-    y: 238
-  }
-  vertices {
-    x: 650
-    y: 245
-  }
-  vertices {
-    x: 645
-    y: 245
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 254
-  }
-  vertices {
-    x: 650
-    y: 254
-  }
-  vertices {
-    x: 650
-    y: 262
-  }
-  vertices {
-    x: 645
-    y: 262
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 271
-  }
-  vertices {
-    x: 648
-    y: 271
-  }
-  vertices {
-    x: 648
-    y: 279
-  }
-  vertices {
-    x: 647
-    y: 279
-  }
-}
-, description: "2"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 288
-  }
-  vertices {
-    x: 651
-    y: 288
-  }
-  vertices {
-    x: 651
-    y: 299
-  }
-  vertices {
-    x: 647
-    y: 299
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 304
-  }
-  vertices {
-    x: 648
-    y: 304
-  }
-  vertices {
-    x: 648
-    y: 314
-  }
-  vertices {
-    x: 647
-    y: 314
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 322
-  }
-  vertices {
-    x: 651
-    y: 322
-  }
-  vertices {
-    x: 651
-    y: 331
-  }
-  vertices {
-    x: 646
-    y: 331
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 339
-  }
-  vertices {
-    x: 651
-    y: 339
-  }
-  vertices {
-    x: 651
-    y: 347
-  }
-  vertices {
-    x: 646
-    y: 347
-  }
-}
-, description: "10"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 354
-  }
-  vertices {
-    x: 651
-    y: 354
-  }
-  vertices {
-    x: 651
-    y: 364
-  }
-  vertices {
-    x: 646
-    y: 364
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 370
-  }
-  vertices {
-    x: 650
-    y: 370
-  }
-  vertices {
-    x: 650
-    y: 378
-  }
-  vertices {
-    x: 645
-    y: 378
-  }
-}
-, description: "1970"
-bounding_poly {
-  vertices {
-    x: 444
-    y: 353
-  }
-  vertices {
-    x: 464
-    y: 352
-  }
-  vertices {
-    x: 465
-    y: 362
-  }
-  vertices {
-    x: 445
-    y: 363
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 641
-    y: 387
-  }
-  vertices {
-    x: 653
-    y: 387
-  }
-  vertices {
-    x: 653
-    y: 399
-  }
-  vertices {
-    x: 641
-    y: 399
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 387
-  }
-  vertices {
-    x: 650
-    y: 387
-  }
-  vertices {
-    x: 650
-    y: 395
-  }
-  vertices {
-    x: 645
-    y: 395
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 403
-  }
-  vertices {
-    x: 648
-    y: 403
-  }
-  vertices {
-    x: 648
-    y: 411
-  }
-  vertices {
-    x: 647
-    y: 411
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 420
-  }
-  vertices {
-    x: 650
-    y: 420
-  }
-  vertices {
-    x: 650
-    y: 428
-  }
-  vertices {
-    x: 645
-    y: 428
-  }
-}
-, description: "3"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 437
-  }
-  vertices {
-    x: 650
-    y: 437
-  }
-  vertices {
-    x: 650
-    y: 445
-  }
-  vertices {
-    x: 647
-    y: 445
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 454
-  }
-  vertices {
-    x: 650
-    y: 454
-  }
-  vertices {
-    x: 650
-    y: 461
-  }
-  vertices {
-    x: 645
-    y: 461
-  }
-}
-, description: "S.No"
-bounding_poly {
-  vertices {
-    x: 35
-    y: 707
-  }
-  vertices {
-    x: 54
-    y: 707
-  }
-  vertices {
-    x: 54
-    y: 716
-  }
-  vertices {
-    x: 35
-    y: 716
-  }
-}
-, description: "District"
-bounding_poly {
-  vertices {
-    x: 106
-    y: 707
-  }
-  vertices {
-    x: 135
-    y: 708
-  }
-  vertices {
-    x: 135
-    y: 718
-  }
-  vertices {
-    x: 106
-    y: 717
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 197
-    y: 700
-  }
-  vertices {
-    x: 243
-    y: 701
-  }
-  vertices {
-    x: 243
-    y: 712
-  }
-  vertices {
-    x: 197
-    y: 711
-  }
-}
-, description: "Sample"
-bounding_poly {
-  vertices {
-    x: 204
-    y: 713
-  }
-  vertices {
-    x: 233
-    y: 713
-  }
-  vertices {
-    x: 233
-    y: 722
-  }
-  vertices {
-    x: 204
-    y: 722
-  }
-}
-, description: "Today\'s"
-bounding_poly {
-  vertices {
-    x: 267
-    y: 701
-  }
-  vertices {
-    x: 298
-    y: 700
-  }
-  vertices {
-    x: 298
-    y: 711
-  }
-  vertices {
-    x: 267
-    y: 712
-  }
-}
-, description: "Positive"
-bounding_poly {
-  vertices {
-    x: 269
-    y: 713
-  }
-  vertices {
-    x: 299
-    y: 713
-  }
-  vertices {
-    x: 299
-    y: 723
-  }
-  vertices {
-    x: 269
-    y: 723
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 318
-    y: 701
-  }
-  vertices {
-    x: 364
-    y: 701
-  }
-  vertices {
-    x: 364
-    y: 710
-  }
-  vertices {
-    x: 318
-    y: 710
-  }
-}
-, description: "Positive"
-bounding_poly {
-  vertices {
-    x: 326
-    y: 714
-  }
-  vertices {
-    x: 358
-    y: 714
-  }
-  vertices {
-    x: 358
-    y: 722
-  }
-  vertices {
-    x: 326
-    y: 722
-  }
-}
-, description: "Today"
-bounding_poly {
-  vertices {
-    x: 383
-    y: 701
-  }
-  vertices {
-    x: 405
-    y: 701
-  }
-  vertices {
-    x: 405
-    y: 711
-  }
-  vertices {
-    x: 383
-    y: 711
-  }
-}
-, description: "Death"
-bounding_poly {
-  vertices {
-    x: 385
-    y: 713
-  }
-  vertices {
-    x: 408
-    y: 713
-  }
-  vertices {
-    x: 408
-    y: 723
-  }
-  vertices {
-    x: 385
-    y: 723
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 431
-    y: 701
-  }
-  vertices {
-    x: 476
-    y: 701
-  }
-  vertices {
-    x: 476
-    y: 710
-  }
-  vertices {
-    x: 431
-    y: 710
-  }
-}
-, description: "Death"
-bounding_poly {
-  vertices {
-    x: 443
-    y: 713
-  }
-  vertices {
-    x: 466
-    y: 713
-  }
-  vertices {
-    x: 466
-    y: 723
-  }
-  vertices {
-    x: 443
-    y: 723
-  }
-}
-, description: "Active"
-bounding_poly {
-  vertices {
-    x: 635
-    y: 701
-  }
-  vertices {
-    x: 660
-    y: 701
-  }
-  vertices {
-    x: 660
-    y: 710
-  }
-  vertices {
-    x: 635
-    y: 710
-  }
-}
-, description: "Gise"
-bounding_poly {
-  vertices {
-    x: 640
-    y: 715
-  }
-  vertices {
-    x: 656
-    y: 715
-  }
-  vertices {
-    x: 656
-    y: 722
-  }
-  vertices {
-    x: 640
-    y: 722
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 740
-  }
-  vertices {
-    x: 286
-    y: 740
-  }
-  vertices {
-    x: 286
-    y: 748
-  }
-  vertices {
-    x: 281
-    y: 748
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 739
-  }
-  vertices {
-    x: 286
-    y: 739
-  }
-  vertices {
-    x: 286
-    y: 747
-  }
-  vertices {
-    x: 281
-    y: 747
-  }
-}
-, description: "O"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 740
-  }
-  vertices {
-    x: 398
-    y: 740
-  }
-  vertices {
-    x: 398
-    y: 747
-  }
-  vertices {
-    x: 394
-    y: 747
-  }
-}
-, description: "449"
-bounding_poly {
-  vertices {
-    x: 445
-    y: 739
-  }
-  vertices {
-    x: 461
-    y: 739
-  }
-  vertices {
-    x: 461
-    y: 748
-  }
-  vertices {
-    x: 445
-    y: 748
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 740
-  }
-  vertices {
-    x: 648
-    y: 740
-  }
-  vertices {
-    x: 648
-    y: 748
-  }
-  vertices {
-    x: 647
-    y: 748
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 647
-    y: 740
-  }
-  vertices {
-    x: 649
-    y: 740
-  }
-  vertices {
-    x: 649
-    y: 748
-  }
-  vertices {
-    x: 647
-    y: 748
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 756
-  }
-  vertices {
-    x: 286
-    y: 756
-  }
-  vertices {
-    x: 286
-    y: 765
-  }
-  vertices {
-    x: 281
-    y: 765
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 758
-  }
-  vertices {
-    x: 286
-    y: 758
-  }
-  vertices {
-    x: 286
-    y: 765
-  }
-  vertices {
-    x: 281
-    y: 765
-  }
-}
-, description: "177"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 757
-  }
-  vertices {
-    x: 461
-    y: 757
-  }
-  vertices {
-    x: 461
-    y: 765
-  }
-  vertices {
-    x: 447
-    y: 765
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 757
-  }
-  vertices {
-    x: 650
-    y: 757
-  }
-  vertices {
-    x: 650
-    y: 765
-  }
-  vertices {
-    x: 646
-    y: 765
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 773
-  }
-  vertices {
-    x: 286
-    y: 773
-  }
-  vertices {
-    x: 286
-    y: 780
-  }
-  vertices {
-    x: 281
-    y: 780
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 772
-  }
-  vertices {
-    x: 398
-    y: 772
-  }
-  vertices {
-    x: 398
-    y: 781
-  }
-  vertices {
-    x: 394
-    y: 781
-  }
-}
-, description: "287"
-bounding_poly {
-  vertices {
-    x: 446
-    y: 773
-  }
-  vertices {
-    x: 461
-    y: 773
-  }
-  vertices {
-    x: 461
-    y: 781
-  }
-  vertices {
-    x: 446
-    y: 781
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 648
-    y: 773
-  }
-  vertices {
-    x: 649
-    y: 773
-  }
-  vertices {
-    x: 649
-    y: 784
-  }
-  vertices {
-    x: 648
-    y: 784
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 646
-    y: 790
-  }
-  vertices {
-    x: 647
-    y: 790
-  }
-  vertices {
-    x: 647
-    y: 798
-  }
-  vertices {
-    x: 646
-    y: 798
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 791
-  }
-  vertices {
-    x: 283
-    y: 791
-  }
-  vertices {
-    x: 283
-    y: 798
-  }
-  vertices {
-    x: 282
-    y: 798
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 790
-  }
-  vertices {
-    x: 398
-    y: 790
-  }
-  vertices {
-    x: 398
-    y: 797
-  }
-  vertices {
-    x: 394
-    y: 797
-  }
-}
-, description: "V"
-bounding_poly {
-  vertices {
-    x: 393
-    y: 794
-  }
-  vertices {
-    x: 398
-    y: 794
-  }
-  vertices {
-    x: 398
-    y: 801
-  }
-  vertices {
-    x: 393
-    y: 801
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 807
-  }
-  vertices {
-    x: 398
-    y: 807
-  }
-  vertices {
-    x: 398
-    y: 815
-  }
-  vertices {
-    x: 394
-    y: 815
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 806
-  }
-  vertices {
-    x: 395
-    y: 806
-  }
-  vertices {
-    x: 395
-    y: 813
-  }
-  vertices {
-    x: 394
-    y: 813
-  }
-}
-, description: "03"
-bounding_poly {
-  vertices {
-    x: 445
-    y: 795
-  }
-  vertices {
-    x: 460
-    y: 795
-  }
-  vertices {
-    x: 460
-    y: 803
-  }
-  vertices {
-    x: 445
-    y: 803
-  }
-}
-, description: "63"
-bounding_poly {
-  vertices {
-    x: 449
-    y: 791
-  }
-  vertices {
-    x: 459
-    y: 791
-  }
-  vertices {
-    x: 459
-    y: 799
-  }
-  vertices {
-    x: 449
-    y: 799
-  }
-}
-, description: "169"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 806
-  }
-  vertices {
-    x: 461
-    y: 806
-  }
-  vertices {
-    x: 461
-    y: 815
-  }
-  vertices {
-    x: 447
-    y: 815
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 283
-    y: 807
-  }
-  vertices {
-    x: 284
-    y: 807
-  }
-  vertices {
-    x: 284
-    y: 814
-  }
-  vertices {
-    x: 283
-    y: 814
-  }
-}
-, description: "Today\'s"
-bounding_poly {
-  vertices {
-    x: 507
-    y: 692
-  }
-  vertices {
-    x: 538
-    y: 693
-  }
-  vertices {
-    x: 537
-    y: 705
-  }
-  vertices {
-    x: 506
-    y: 704
-  }
-}
-, description: "Cumulative"
-bounding_poly {
-  vertices {
-    x: 567
-    y: 695
-  }
-  vertices {
-    x: 613
-    y: 695
-  }
-  vertices {
-    x: 613
-    y: 705
-  }
-  vertices {
-    x: 567
-    y: 705
-  }
-}
-, description: "Recovered"
-bounding_poly {
-  vertices {
-    x: 493
-    y: 707
-  }
-  vertices {
-    x: 533
-    y: 707
-  }
-  vertices {
-    x: 533
-    y: 718
-  }
-  vertices {
-    x: 493
-    y: 718
-  }
-}
-, description: "/"
-bounding_poly {
-  vertices {
-    x: 536
-    y: 707
-  }
-  vertices {
-    x: 537
-    y: 707
-  }
-  vertices {
-    x: 537
-    y: 718
-  }
-  vertices {
-    x: 536
-    y: 718
-  }
-}
-, description: "Dis"
-bounding_poly {
-  vertices {
-    x: 538
-    y: 707
-  }
-  vertices {
-    x: 552
-    y: 707
-  }
-  vertices {
-    x: 552
-    y: 718
-  }
-  vertices {
-    x: 538
-    y: 718
-  }
-}
-, description: "Recovered"
-bounding_poly {
-  vertices {
-    x: 560
-    y: 707
-  }
-  vertices {
-    x: 602
-    y: 707
-  }
-  vertices {
-    x: 602
-    y: 718
-  }
-  vertices {
-    x: 560
-    y: 718
+    x: 34
+    y: 34
   }
 }
 , description: "."
 bounding_poly {
   vertices {
-    x: 603
-    y: 707
+    x: 56
+    y: 21
   }
   vertices {
-    x: 605
-    y: 707
+    x: 57
+    y: 21
   }
   vertices {
-    x: 605
-    y: 718
+    x: 57
+    y: 34
   }
   vertices {
-    x: 603
-    y: 718
-  }
-}
-, description: "Dis"
-bounding_poly {
-  vertices {
-    x: 605
-    y: 707
-  }
-  vertices {
-    x: 620
-    y: 707
-  }
-  vertices {
-    x: 620
-    y: 718
-  }
-  vertices {
-    x: 605
-    y: 718
+    x: 56
+    y: 34
   }
 }
-, description: "charged"
+, description: "\340\244\225\340\244\277\340\244\266\340\244\250\340\244\227\340\244\202\340\244\234"
 bounding_poly {
   vertices {
-    x: 507
-    y: 720
+    x: 112
+    y: 19
   }
   vertices {
-    x: 537
-    y: 720
+    x: 172
+    y: 20
   }
   vertices {
-    x: 537
-    y: 731
+    x: 172
+    y: 38
   }
   vertices {
-    x: 507
-    y: 731
+    x: 112
+    y: 37
   }
 }
-, description: "charged"
+, description: "10121"
 bounding_poly {
   vertices {
-    x: 575
-    y: 718
+    x: 258
+    y: 23
   }
   vertices {
-    x: 605
-    y: 718
+    x: 303
+    y: 23
   }
   vertices {
-    x: 605
-    y: 729
+    x: 303
+    y: 36
   }
   vertices {
-    x: 575
-    y: 729
+    x: 258
+    y: 36
   }
 }
-, description: "0"
+, description: "10052"
 bounding_poly {
   vertices {
-    x: 519
-    y: 741
+    x: 393
+    y: 23
   }
   vertices {
-    x: 524
-    y: 741
+    x: 440
+    y: 23
   }
   vertices {
-    x: 524
-    y: 748
+    x: 440
+    y: 36
   }
   vertices {
-    x: 519
-    y: 748
+    x: 393
+    y: 36
   }
 }
-, description: "56603"
+, description: "66"
 bounding_poly {
   vertices {
-    x: 576
-    y: 739
+    x: 510
+    y: 23
   }
   vertices {
-    x: 602
-    y: 738
+    x: 528
+    y: 23
   }
   vertices {
-    x: 602
-    y: 748
+    x: 528
+    y: 35
   }
   vertices {
-    x: 576
-    y: 749
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 757
-  }
-  vertices {
-    x: 524
-    y: 757
-  }
-  vertices {
-    x: 524
-    y: 764
-  }
-  vertices {
-    x: 519
-    y: 764
-  }
-}
-, description: "17560"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 756
-  }
-  vertices {
-    x: 603
-    y: 755
-  }
-  vertices {
-    x: 603
-    y: 765
-  }
-  vertices {
-    x: 577
-    y: 766
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 774
-  }
-  vertices {
-    x: 525
-    y: 774
-  }
-  vertices {
-    x: 525
-    y: 781
-  }
-  vertices {
-    x: 521
-    y: 781
-  }
-}
-, description: "27036"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 774
-  }
-  vertices {
-    x: 603
-    y: 775
-  }
-  vertices {
-    x: 603
-    y: 784
-  }
-  vertices {
-    x: 577
-    y: 783
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 791
-  }
-  vertices {
-    x: 525
-    y: 791
-  }
-  vertices {
-    x: 525
-    y: 798
-  }
-  vertices {
-    x: 520
-    y: 798
-  }
-}
-, description: "7080"
-bounding_poly {
-  vertices {
-    x: 580
-    y: 789
-  }
-  vertices {
-    x: 601
-    y: 789
-  }
-  vertices {
-    x: 601
-    y: 800
-  }
-  vertices {
-    x: 580
-    y: 800
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 807
-  }
-  vertices {
-    x: 522
-    y: 807
-  }
-  vertices {
-    x: 522
-    y: 814
-  }
-  vertices {
-    x: 521
-    y: 814
-  }
-}
-, description: "16875"
-bounding_poly {
-  vertices {
-    x: 578
-    y: 806
-  }
-  vertices {
-    x: 602
-    y: 806
-  }
-  vertices {
-    x: 602
-    y: 815
-  }
-  vertices {
-    x: 578
-    y: 815
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 519
-    y: 823
-  }
-  vertices {
-    x: 524
-    y: 823
-  }
-  vertices {
-    x: 524
-    y: 831
-  }
-  vertices {
-    x: 519
-    y: 831
-  }
-}
-, description: "10555"
-bounding_poly {
-  vertices {
-    x: 577
-    y: 822
-  }
-  vertices {
-    x: 602
-    y: 821
-  }
-  vertices {
-    x: 602
-    y: 832
-  }
-  vertices {
-    x: 577
-    y: 833
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 838
-  }
-  vertices {
-    x: 521
-    y: 838
-  }
-  vertices {
-    x: 521
-    y: 845
-  }
-  vertices {
-    x: 520
-    y: 845
-  }
-}
-, description: "30283"
-bounding_poly {
-  vertices {
-    x: 578
-    y: 839
-  }
-  vertices {
-    x: 603
-    y: 839
-  }
-  vertices {
-    x: 603
-    y: 848
-  }
-  vertices {
-    x: 578
-    y: 848
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 854
-  }
-  vertices {
-    x: 524
-    y: 854
-  }
-  vertices {
-    x: 524
-    y: 865
-  }
-  vertices {
-    x: 520
-    y: 865
-  }
-}
-, description: "13653"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 855
-  }
-  vertices {
-    x: 603
-    y: 855
-  }
-  vertices {
-    x: 603
-    y: 865
-  }
-  vertices {
-    x: 579
-    y: 865
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 871
-  }
-  vertices {
-    x: 522
-    y: 871
-  }
-  vertices {
-    x: 522
-    y: 879
-  }
-  vertices {
-    x: 521
-    y: 879
-  }
-}
-, description: "9406"
-bounding_poly {
-  vertices {
-    x: 579
-    y: 872
-  }
-  vertices {
-    x: 600
-    y: 872
-  }
-  vertices {
-    x: 600
-    y: 881
-  }
-  vertices {
-    x: 579
-    y: 881
+    x: 510
+    y: 35
   }
 }
 , description: "3"
 bounding_poly {
   vertices {
-    x: 522
-    y: 890
+    x: 589
+    y: 23
   }
   vertices {
-    x: 524
-    y: 890
+    x: 596
+    y: 23
   }
   vertices {
-    x: 524
-    y: 898
+    x: 596
+    y: 35
   }
   vertices {
-    x: 522
-    y: 898
+    x: 589
+    y: 35
   }
 }
-, description: "55652"
+, description: "18"
 bounding_poly {
   vertices {
-    x: 577
-    y: 889
+    x: 34
+    y: 66
   }
   vertices {
-    x: 603
-    y: 889
+    x: 49
+    y: 66
   }
   vertices {
-    x: 603
-    y: 898
+    x: 49
+    y: 78
   }
   vertices {
-    x: 577
-    y: 898
+    x: 34
+    y: 78
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 56
+    y: 66
+  }
+  vertices {
+    x: 57
+    y: 66
+  }
+  vertices {
+    x: 57
+    y: 78
+  }
+  vertices {
+    x: 56
+    y: 78
+  }
+}
+, description: "\340\244\262\340\244\226\340\245\200\340\244\270\340\244\260\340\244\276\340\244\257"
+bounding_poly {
+  vertices {
+    x: 112
+    y: 62
+  }
+  vertices {
+    x: 173
+    y: 63
+  }
+  vertices {
+    x: 173
+    y: 82
+  }
+  vertices {
+    x: 112
+    y: 81
+  }
+}
+, description: "7776"
+bounding_poly {
+  vertices {
+    x: 258
+    y: 67
+  }
+  vertices {
+    x: 295
+    y: 66
+  }
+  vertices {
+    x: 295
+    y: 79
+  }
+  vertices {
+    x: 258
+    y: 80
+  }
+}
+, description: "7674"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 66
+  }
+  vertices {
+    x: 431
+    y: 66
+  }
+  vertices {
+    x: 431
+    y: 80
+  }
+  vertices {
+    x: 394
+    y: 80
+  }
+}
+, description: "102"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 66
+  }
+  vertices {
+    x: 538
+    y: 66
+  }
+  vertices {
+    x: 538
+    y: 78
+  }
+  vertices {
+    x: 511
+    y: 78
   }
 }
 , description: "0"
 bounding_poly {
   vertices {
-    x: 645
-    y: 807
+    x: 589
+    y: 67
   }
   vertices {
-    x: 650
-    y: 807
+    x: 597
+    y: 67
   }
   vertices {
-    x: 650
-    y: 814
+    x: 597
+    y: 78
   }
   vertices {
-    x: 645
-    y: 814
-  }
-}
-, description: "851550"
-bounding_poly {
-  vertices {
-    x: 202
-    y: 738
-  }
-  vertices {
-    x: 235
-    y: 737
-  }
-  vertices {
-    x: 235
-    y: 748
-  }
-  vertices {
-    x: 202
-    y: 749
+    x: 589
+    y: 78
   }
 }
-, description: ")"
+, description: "19"
 bounding_poly {
   vertices {
-    x: 236
-    y: 738
+    x: 35
+    y: 108
   }
   vertices {
-    x: 238
-    y: 738
+    x: 50
+    y: 108
   }
   vertices {
-    x: 238
-    y: 748
+    x: 50
+    y: 121
   }
   vertices {
-    x: 236
-    y: 748
+    x: 35
+    y: 121
   }
 }
-, description: "473170"
+, description: "."
 bounding_poly {
   vertices {
-    x: 201
-    y: 755
+    x: 57
+    y: 108
   }
   vertices {
-    x: 233
-    y: 754
+    x: 58
+    y: 108
   }
   vertices {
-    x: 233
-    y: 765
+    x: 58
+    y: 121
   }
   vertices {
-    x: 201
-    y: 766
+    x: 57
+    y: 121
   }
 }
-, description: "336536"
+, description: "\340\244\256\340\244\247\340\245\207\340\244\252\340\245\201\340\244\260\340\244\276"
 bounding_poly {
   vertices {
-    x: 202
-    y: 772
+    x: 112
+    y: 107
   }
   vertices {
-    x: 237
-    y: 772
+    x: 153
+    y: 107
   }
   vertices {
-    x: 237
-    y: 782
+    x: 153
+    y: 128
   }
   vertices {
-    x: 202
-    y: 782
+    x: 112
+    y: 128
   }
 }
-, description: "189745"
+, description: "12545"
 bounding_poly {
   vertices {
-    x: 204
-    y: 789
+    x: 259
+    y: 111
   }
   vertices {
-    x: 237
-    y: 789
+    x: 306
+    y: 111
   }
   vertices {
-    x: 237
-    y: 799
+    x: 306
+    y: 124
   }
   vertices {
-    x: 204
-    y: 799
+    x: 259
+    y: 124
   }
 }
-, description: "219488"
+, description: "12433"
 bounding_poly {
   vertices {
-    x: 203
-    y: 806
+    x: 394
+    y: 111
   }
   vertices {
-    x: 238
-    y: 806
+    x: 441
+    y: 111
   }
   vertices {
-    x: 238
-    y: 817
+    x: 441
+    y: 125
   }
   vertices {
-    x: 203
-    y: 817
+    x: 394
+    y: 125
   }
 }
-, description: "176867"
+, description: "111"
 bounding_poly {
   vertices {
-    x: 203
-    y: 822
+    x: 511
+    y: 110
   }
   vertices {
-    x: 237
-    y: 822
+    x: 537
+    y: 110
   }
   vertices {
-    x: 237
-    y: 832
+    x: 537
+    y: 122
   }
   vertices {
-    x: 203
-    y: 832
+    x: 511
+    y: 122
   }
 }
-, description: "403180"
+, description: "1"
 bounding_poly {
   vertices {
-    x: 203
-    y: 838
+    x: 590
+    y: 111
   }
   vertices {
-    x: 238
-    y: 838
+    x: 596
+    y: 111
   }
   vertices {
-    x: 238
-    y: 849
+    x: 596
+    y: 123
   }
   vertices {
-    x: 203
-    y: 849
+    x: 590
+    y: 123
   }
 }
-, description: "249250"
+, description: "20"
 bounding_poly {
   vertices {
-    x: 203
-    y: 854
+    x: 35
+    y: 154
   }
   vertices {
-    x: 238
-    y: 854
+    x: 50
+    y: 154
   }
   vertices {
-    x: 238
-    y: 867
+    x: 50
+    y: 167
   }
   vertices {
-    x: 203
-    y: 867
+    x: 35
+    y: 167
   }
 }
-, description: "232470"
+, description: "."
 bounding_poly {
   vertices {
-    x: 203
-    y: 872
+    x: 57
+    y: 154
   }
   vertices {
-    x: 238
-    y: 872
+    x: 58
+    y: 154
   }
   vertices {
-    x: 238
-    y: 883
+    x: 58
+    y: 167
   }
   vertices {
-    x: 203
-    y: 883
+    x: 57
+    y: 167
   }
 }
-, description: "676157"
+, description: "\340\244\256\340\244\247\340\245\201\340\244\254\340\244\250\340\245\200"
 bounding_poly {
   vertices {
-    x: 202
-    y: 888
+    x: 112
+    y: 151
   }
   vertices {
-    x: 236
-    y: 887
+    x: 156
+    y: 151
   }
   vertices {
-    x: 236
-    y: 898
+    x: 156
+    y: 172
   }
   vertices {
-    x: 202
-    y: 899
+    x: 112
+    y: 172
+  }
+}
+, description: "18362"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 152
+  }
+  vertices {
+    x: 306
+    y: 152
+  }
+  vertices {
+    x: 306
+    y: 166
+  }
+  vertices {
+    x: 259
+    y: 166
+  }
+}
+, description: "18023"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 151
+  }
+  vertices {
+    x: 441
+    y: 151
+  }
+  vertices {
+    x: 441
+    y: 168
+  }
+  vertices {
+    x: 394
+    y: 168
+  }
+}
+, description: "339"
+bounding_poly {
+  vertices {
+    x: 510
+    y: 153
+  }
+  vertices {
+    x: 538
+    y: 153
+  }
+  vertices {
+    x: 538
+    y: 166
+  }
+  vertices {
+    x: 510
+    y: 166
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 152
+  }
+  vertices {
+    x: 597
+    y: 152
+  }
+  vertices {
+    x: 597
+    y: 165
+  }
+  vertices {
+    x: 589
+    y: 165
+  }
+}
+, description: "21"
+bounding_poly {
+  vertices {
+    x: 34
+    y: 195
+  }
+  vertices {
+    x: 48
+    y: 195
+  }
+  vertices {
+    x: 48
+    y: 208
+  }
+  vertices {
+    x: 34
+    y: 208
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 55
+    y: 195
+  }
+  vertices {
+    x: 57
+    y: 195
+  }
+  vertices {
+    x: 57
+    y: 208
+  }
+  vertices {
+    x: 55
+    y: 208
+  }
+}
+, description: "\340\244\256\340\245\201\340\244\202\340\244\227\340\245\207\340\244\260"
+bounding_poly {
+  vertices {
+    x: 111
+    y: 194
+  }
+  vertices {
+    x: 138
+    y: 193
+  }
+  vertices {
+    x: 139
+    y: 214
+  }
+  vertices {
+    x: 112
+    y: 215
+  }
+}
+, description: "15109"
+bounding_poly {
+  vertices {
+    x: 258
+    y: 198
+  }
+  vertices {
+    x: 305
+    y: 196
+  }
+  vertices {
+    x: 306
+    y: 211
+  }
+  vertices {
+    x: 259
+    y: 213
+  }
+}
+, description: "14951"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 198
+  }
+  vertices {
+    x: 440
+    y: 198
+  }
+  vertices {
+    x: 440
+    y: 213
+  }
+  vertices {
+    x: 394
+    y: 213
+  }
+}
+, description: "158"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 197
+  }
+  vertices {
+    x: 538
+    y: 197
+  }
+  vertices {
+    x: 538
+    y: 211
+  }
+  vertices {
+    x: 511
+    y: 211
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 198
+  }
+  vertices {
+    x: 597
+    y: 198
+  }
+  vertices {
+    x: 597
+    y: 209
+  }
+  vertices {
+    x: 589
+    y: 209
+  }
+}
+, description: "22"
+bounding_poly {
+  vertices {
+    x: 35
+    y: 240
+  }
+  vertices {
+    x: 50
+    y: 240
+  }
+  vertices {
+    x: 50
+    y: 254
+  }
+  vertices {
+    x: 35
+    y: 254
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 57
+    y: 240
+  }
+  vertices {
+    x: 58
+    y: 240
+  }
+  vertices {
+    x: 58
+    y: 254
+  }
+  vertices {
+    x: 57
+    y: 254
+  }
+}
+, description: "\340\244\256\340\245\201\340\244\234\340\244\253\340\245\215\340\244\253\340\244\260\340\244\252\340\245\201\340\244\260"
+bounding_poly {
+  vertices {
+    x: 111
+    y: 242
+  }
+  vertices {
+    x: 178
+    y: 242
+  }
+  vertices {
+    x: 178
+    y: 259
+  }
+  vertices {
+    x: 111
+    y: 259
+  }
+}
+, description: "31397"
+bounding_poly {
+  vertices {
+    x: 258
+    y: 240
+  }
+  vertices {
+    x: 306
+    y: 240
+  }
+  vertices {
+    x: 306
+    y: 256
+  }
+  vertices {
+    x: 258
+    y: 256
+  }
+}
+, description: "30775"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 239
+  }
+  vertices {
+    x: 441
+    y: 239
+  }
+  vertices {
+    x: 441
+    y: 255
+  }
+  vertices {
+    x: 394
+    y: 255
+  }
+}
+, description: "621"
+bounding_poly {
+  vertices {
+    x: 510
+    y: 239
+  }
+  vertices {
+    x: 537
+    y: 239
+  }
+  vertices {
+    x: 537
+    y: 254
+  }
+  vertices {
+    x: 510
+    y: 254
+  }
+}
+, description: "1"
+bounding_poly {
+  vertices {
+    x: 590
+    y: 240
+  }
+  vertices {
+    x: 596
+    y: 240
+  }
+  vertices {
+    x: 596
+    y: 253
+  }
+  vertices {
+    x: 590
+    y: 253
+  }
+}
+, description: "23"
+bounding_poly {
+  vertices {
+    x: 35
+    y: 283
+  }
+  vertices {
+    x: 50
+    y: 283
+  }
+  vertices {
+    x: 50
+    y: 296
+  }
+  vertices {
+    x: 35
+    y: 296
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 57
+    y: 283
+  }
+  vertices {
+    x: 58
+    y: 283
+  }
+  vertices {
+    x: 58
+    y: 296
+  }
+  vertices {
+    x: 57
+    y: 296
+  }
+}
+, description: "\340\244\250\340\244\276\340\244\262\340\244\202\340\244\246\340\244\276"
+bounding_poly {
+  vertices {
+    x: 111
+    y: 283
+  }
+  vertices {
+    x: 149
+    y: 283
+  }
+  vertices {
+    x: 149
+    y: 300
+  }
+  vertices {
+    x: 111
+    y: 300
+  }
+}
+, description: "23432"
+bounding_poly {
+  vertices {
+    x: 257
+    y: 284
+  }
+  vertices {
+    x: 305
+    y: 283
+  }
+  vertices {
+    x: 305
+    y: 299
+  }
+  vertices {
+    x: 257
+    y: 300
+  }
+}
+, description: "22963"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 283
+  }
+  vertices {
+    x: 441
+    y: 284
+  }
+  vertices {
+    x: 441
+    y: 300
+  }
+  vertices {
+    x: 394
+    y: 299
+  }
+}
+, description: "468"
+bounding_poly {
+  vertices {
+    x: 509
+    y: 284
+  }
+  vertices {
+    x: 538
+    y: 284
+  }
+  vertices {
+    x: 538
+    y: 298
+  }
+  vertices {
+    x: 509
+    y: 298
+  }
+}
+, description: "1"
+bounding_poly {
+  vertices {
+    x: 590
+    y: 285
+  }
+  vertices {
+    x: 596
+    y: 285
+  }
+  vertices {
+    x: 596
+    y: 296
+  }
+  vertices {
+    x: 590
+    y: 296
   }
 }
 , description: "24"
 bounding_poly {
   vertices {
-    x: 41
-    y: 740
+    x: 35
+    y: 327
   }
   vertices {
     x: 50
-    y: 740
+    y: 327
   }
   vertices {
     x: 50
-    y: 750
+    y: 340
   }
   vertices {
-    x: 41
-    y: 750
+    x: 35
+    y: 340
   }
 }
-, description: "KOTA"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 740
+    x: 57
+    y: 327
   }
   vertices {
-    x: 88
-    y: 740
+    x: 58
+    y: 327
   }
   vertices {
-    x: 88
-    y: 750
+    x: 58
+    y: 340
   }
   vertices {
-    x: 59
-    y: 750
+    x: 57
+    y: 340
+  }
+}
+, description: "\340\244\250\340\244\265\340\244\276\340\244\246\340\244\276"
+bounding_poly {
+  vertices {
+    x: 112
+    y: 330
+  }
+  vertices {
+    x: 147
+    y: 330
+  }
+  vertices {
+    x: 147
+    y: 344
+  }
+  vertices {
+    x: 112
+    y: 344
+  }
+}
+, description: "10352"
+bounding_poly {
+  vertices {
+    x: 258
+    y: 328
+  }
+  vertices {
+    x: 304
+    y: 327
+  }
+  vertices {
+    x: 304
+    y: 344
+  }
+  vertices {
+    x: 258
+    y: 345
+  }
+}
+, description: "10174"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 328
+  }
+  vertices {
+    x: 441
+    y: 328
+  }
+  vertices {
+    x: 441
+    y: 344
+  }
+  vertices {
+    x: 394
+    y: 344
+  }
+}
+, description: "178"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 329
+  }
+  vertices {
+    x: 538
+    y: 329
+  }
+  vertices {
+    x: 538
+    y: 342
+  }
+  vertices {
+    x: 511
+    y: 342
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 329
+  }
+  vertices {
+    x: 597
+    y: 329
+  }
+  vertices {
+    x: 597
+    y: 342
+  }
+  vertices {
+    x: 589
+    y: 342
   }
 }
 , description: "25"
 bounding_poly {
   vertices {
-    x: 40
-    y: 755
+    x: 33
+    y: 372
   }
   vertices {
     x: 49
-    y: 755
+    y: 372
   }
   vertices {
     x: 49
-    y: 765
+    y: 384
   }
   vertices {
-    x: 40
-    y: 765
+    x: 33
+    y: 384
   }
 }
-, description: "NAGAUR"
+, description: "."
 bounding_poly {
   vertices {
-    x: 58
-    y: 755
+    x: 55
+    y: 372
   }
   vertices {
-    x: 102
-    y: 754
+    x: 57
+    y: 372
   }
   vertices {
-    x: 102
-    y: 765
+    x: 57
+    y: 384
   }
   vertices {
-    x: 58
-    y: 766
+    x: 55
+    y: 384
+  }
+}
+, description: "\340\244\252\340\244\266\340\245\215\340\244\232\340\244\277\340\244\256"
+bounding_poly {
+  vertices {
+    x: 113
+    y: 370
+  }
+  vertices {
+    x: 145
+    y: 371
+  }
+  vertices {
+    x: 145
+    y: 388
+  }
+  vertices {
+    x: 113
+    y: 387
+  }
+}
+, description: "\340\244\232\340\244\202\340\244\252\340\244\276\340\244\260\340\244\243"
+bounding_poly {
+  vertices {
+    x: 151
+    y: 370
+  }
+  vertices {
+    x: 192
+    y: 371
+  }
+  vertices {
+    x: 192
+    y: 389
+  }
+  vertices {
+    x: 151
+    y: 388
+  }
+}
+, description: "20890"
+bounding_poly {
+  vertices {
+    x: 258
+    y: 371
+  }
+  vertices {
+    x: 306
+    y: 371
+  }
+  vertices {
+    x: 306
+    y: 386
+  }
+  vertices {
+    x: 258
+    y: 386
+  }
+}
+, description: "20532"
+bounding_poly {
+  vertices {
+    x: 392
+    y: 371
+  }
+  vertices {
+    x: 440
+    y: 370
+  }
+  vertices {
+    x: 440
+    y: 385
+  }
+  vertices {
+    x: 392
+    y: 386
+  }
+}
+, description: "358"
+bounding_poly {
+  vertices {
+    x: 510
+    y: 372
+  }
+  vertices {
+    x: 538
+    y: 372
+  }
+  vertices {
+    x: 538
+    y: 386
+  }
+  vertices {
+    x: 510
+    y: 386
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 372
+  }
+  vertices {
+    x: 597
+    y: 372
+  }
+  vertices {
+    x: 597
+    y: 383
+  }
+  vertices {
+    x: 589
+    y: 383
   }
 }
 , description: "26"
 bounding_poly {
   vertices {
-    x: 41
-    y: 773
+    x: 35
+    y: 415
   }
   vertices {
     x: 50
-    y: 773
+    y: 415
   }
   vertices {
     x: 50
-    y: 783
+    y: 427
   }
   vertices {
-    x: 41
-    y: 783
+    x: 35
+    y: 427
   }
 }
-, description: "PALI"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 773
+    x: 57
+    y: 415
   }
   vertices {
-    x: 82
-    y: 773
+    x: 58
+    y: 415
   }
   vertices {
-    x: 82
-    y: 783
+    x: 58
+    y: 427
   }
   vertices {
-    x: 59
-    y: 783
+    x: 57
+    y: 427
+  }
+}
+, description: "\340\244\252\340\244\237\340\244\250\340\244\276"
+bounding_poly {
+  vertices {
+    x: 112
+    y: 416
+  }
+  vertices {
+    x: 142
+    y: 416
+  }
+  vertices {
+    x: 142
+    y: 430
+  }
+  vertices {
+    x: 112
+    y: 430
+  }
+}
+, description: "146962"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 416
+  }
+  vertices {
+    x: 316
+    y: 416
+  }
+  vertices {
+    x: 316
+    y: 432
+  }
+  vertices {
+    x: 259
+    y: 432
+  }
+}
+, description: "144619"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 416
+  }
+  vertices {
+    x: 451
+    y: 416
+  }
+  vertices {
+    x: 451
+    y: 432
+  }
+  vertices {
+    x: 394
+    y: 432
+  }
+}
+, description: "2334"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 415
+  }
+  vertices {
+    x: 549
+    y: 416
+  }
+  vertices {
+    x: 549
+    y: 432
+  }
+  vertices {
+    x: 511
+    y: 431
+  }
+}
+, description: "9"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 416
+  }
+  vertices {
+    x: 597
+    y: 416
+  }
+  vertices {
+    x: 597
+    y: 428
+  }
+  vertices {
+    x: 589
+    y: 428
   }
 }
 , description: "27"
 bounding_poly {
   vertices {
-    x: 41
-    y: 790
+    x: 35
+    y: 458
   }
   vertices {
     x: 50
-    y: 790
+    y: 458
   }
   vertices {
     x: 50
-    y: 801
+    y: 472
   }
   vertices {
-    x: 41
-    y: 801
+    x: 35
+    y: 472
   }
 }
-, description: "PRATAPGARH"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 790
+    x: 57
+    y: 458
   }
   vertices {
-    x: 127
-    y: 790
+    x: 58
+    y: 458
   }
   vertices {
-    x: 127
-    y: 801
+    x: 58
+    y: 472
   }
   vertices {
-    x: 59
-    y: 801
+    x: 57
+    y: 472
+  }
+}
+, description: "\340\244\252\340\245\202\340\244\260\340\245\215\340\244\265\340\245\200"
+bounding_poly {
+  vertices {
+    x: 111
+    y: 457
+  }
+  vertices {
+    x: 134
+    y: 456
+  }
+  vertices {
+    x: 135
+    y: 478
+  }
+  vertices {
+    x: 112
+    y: 479
+  }
+}
+, description: "\340\244\232\340\244\202\340\244\252\340\244\276\340\244\260\340\244\243"
+bounding_poly {
+  vertices {
+    x: 138
+    y: 456
+  }
+  vertices {
+    x: 180
+    y: 454
+  }
+  vertices {
+    x: 181
+    y: 475
+  }
+  vertices {
+    x: 139
+    y: 477
+  }
+}
+, description: "19014"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 459
+  }
+  vertices {
+    x: 306
+    y: 459
+  }
+  vertices {
+    x: 306
+    y: 473
+  }
+  vertices {
+    x: 259
+    y: 473
+  }
+}
+, description: "18584"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 458
+  }
+  vertices {
+    x: 440
+    y: 458
+  }
+  vertices {
+    x: 440
+    y: 472
+  }
+  vertices {
+    x: 393
+    y: 472
+  }
+}
+, description: "430"
+bounding_poly {
+  vertices {
+    x: 509
+    y: 458
+  }
+  vertices {
+    x: 538
+    y: 458
+  }
+  vertices {
+    x: 538
+    y: 471
+  }
+  vertices {
+    x: 509
+    y: 471
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 459
+  }
+  vertices {
+    x: 597
+    y: 459
+  }
+  vertices {
+    x: 597
+    y: 471
+  }
+  vertices {
+    x: 589
+    y: 471
   }
 }
 , description: "28"
 bounding_poly {
   vertices {
-    x: 41
-    y: 806
+    x: 35
+    y: 502
   }
   vertices {
     x: 50
-    y: 806
+    y: 502
   }
   vertices {
     x: 50
-    y: 817
+    y: 515
   }
   vertices {
-    x: 41
-    y: 817
+    x: 35
+    y: 515
   }
 }
-, description: "RAJSAMAND"
+, description: "\340\244\252\340\245\202\340\244\260\340\245\215\340\244\243\340\244\277\340\244\257\340\244\276"
 bounding_poly {
   vertices {
-    x: 59
-    y: 806
+    x: 112
+    y: 499
   }
   vertices {
-    x: 123
-    y: 806
+    x: 149
+    y: 498
   }
   vertices {
-    x: 123
-    y: 817
+    x: 149
+    y: 520
   }
   vertices {
-    x: 59
-    y: 817
+    x: 112
+    y: 521
+  }
+}
+, description: "24427"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 502
+  }
+  vertices {
+    x: 306
+    y: 503
+  }
+  vertices {
+    x: 306
+    y: 517
+  }
+  vertices {
+    x: 259
+    y: 516
+  }
+}
+, description: "24247"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 502
+  }
+  vertices {
+    x: 440
+    y: 502
+  }
+  vertices {
+    x: 440
+    y: 516
+  }
+  vertices {
+    x: 393
+    y: 516
+  }
+}
+, description: "180"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 503
+  }
+  vertices {
+    x: 538
+    y: 503
+  }
+  vertices {
+    x: 538
+    y: 516
+  }
+  vertices {
+    x: 511
+    y: 516
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 590
+    y: 504
+  }
+  vertices {
+    x: 598
+    y: 504
+  }
+  vertices {
+    x: 598
+    y: 516
+  }
+  vertices {
+    x: 590
+    y: 516
   }
 }
 , description: "29"
 bounding_poly {
   vertices {
-    x: 41
-    y: 823
+    x: 35
+    y: 545
   }
   vertices {
     x: 50
-    y: 823
+    y: 545
   }
   vertices {
     x: 50
-    y: 833
+    y: 558
   }
   vertices {
-    x: 41
-    y: 833
+    x: 35
+    y: 558
   }
 }
-, description: "SAWAI"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 823
-  }
-  vertices {
-    x: 93
-    y: 823
-  }
-  vertices {
-    x: 93
-    y: 833
+    x: 57
+    y: 545
   }
   vertices {
     x: 59
-    y: 833
+    y: 545
+  }
+  vertices {
+    x: 59
+    y: 558
+  }
+  vertices {
+    x: 57
+    y: 558
   }
 }
-, description: "MADHOPUR"
+, description: "\340\244\260\340\245\213\340\244\271\340\244\244\340\244\276\340\244\270"
 bounding_poly {
   vertices {
-    x: 97
-    y: 823
+    x: 112
+    y: 544
   }
   vertices {
-    x: 153
-    y: 823
+    x: 157
+    y: 544
   }
   vertices {
-    x: 153
-    y: 833
+    x: 157
+    y: 563
   }
   vertices {
-    x: 97
-    y: 833
+    x: 112
+    y: 563
+  }
+}
+, description: "13978"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 546
+  }
+  vertices {
+    x: 306
+    y: 546
+  }
+  vertices {
+    x: 306
+    y: 561
+  }
+  vertices {
+    x: 259
+    y: 561
+  }
+}
+, description: "13707"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 545
+  }
+  vertices {
+    x: 441
+    y: 546
+  }
+  vertices {
+    x: 441
+    y: 560
+  }
+  vertices {
+    x: 394
+    y: 559
+  }
+}
+, description: "271"
+bounding_poly {
+  vertices {
+    x: 510
+    y: 546
+  }
+  vertices {
+    x: 537
+    y: 546
+  }
+  vertices {
+    x: 537
+    y: 559
+  }
+  vertices {
+    x: 510
+    y: 559
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 546
+  }
+  vertices {
+    x: 597
+    y: 546
+  }
+  vertices {
+    x: 597
+    y: 557
+  }
+  vertices {
+    x: 589
+    y: 557
   }
 }
 , description: "30"
 bounding_poly {
   vertices {
-    x: 41
-    y: 839
+    x: 34
+    y: 588
   }
   vertices {
-    x: 49
-    y: 839
+    x: 50
+    y: 588
   }
   vertices {
-    x: 49
-    y: 848
+    x: 50
+    y: 601
   }
   vertices {
-    x: 41
-    y: 848
+    x: 34
+    y: 601
   }
 }
-, description: "SIKAR"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 839
+    x: 57
+    y: 588
   }
   vertices {
-    x: 90
-    y: 839
+    x: 58
+    y: 588
   }
   vertices {
-    x: 90
-    y: 848
+    x: 58
+    y: 601
   }
   vertices {
-    x: 59
-    y: 848
+    x: 57
+    y: 601
+  }
+}
+, description: "\340\244\270\340\244\271\340\244\260\340\244\270\340\244\276"
+bounding_poly {
+  vertices {
+    x: 113
+    y: 590
+  }
+  vertices {
+    x: 155
+    y: 591
+  }
+  vertices {
+    x: 155
+    y: 606
+  }
+  vertices {
+    x: 113
+    y: 605
+  }
+}
+, description: "17616"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 590
+  }
+  vertices {
+    x: 306
+    y: 590
+  }
+  vertices {
+    x: 306
+    y: 603
+  }
+  vertices {
+    x: 259
+    y: 603
+  }
+}
+, description: "17482"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 590
+  }
+  vertices {
+    x: 440
+    y: 589
+  }
+  vertices {
+    x: 440
+    y: 604
+  }
+  vertices {
+    x: 393
+    y: 605
+  }
+}
+, description: "134"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 590
+  }
+  vertices {
+    x: 538
+    y: 590
+  }
+  vertices {
+    x: 538
+    y: 603
+  }
+  vertices {
+    x: 511
+    y: 603
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 588
+  }
+  vertices {
+    x: 597
+    y: 588
+  }
+  vertices {
+    x: 597
+    y: 602
+  }
+  vertices {
+    x: 589
+    y: 602
   }
 }
 , description: "31"
 bounding_poly {
   vertices {
-    x: 41
-    y: 854
+    x: 34
+    y: 633
   }
   vertices {
-    x: 48
-    y: 854
+    x: 49
+    y: 633
   }
   vertices {
-    x: 48
-    y: 864
+    x: 49
+    y: 647
   }
   vertices {
-    x: 41
-    y: 864
+    x: 34
+    y: 647
   }
 }
-, description: "SIROHI"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 854
+    x: 57
+    y: 633
   }
   vertices {
-    x: 94
-    y: 854
+    x: 58
+    y: 633
   }
   vertices {
-    x: 94
-    y: 864
+    x: 58
+    y: 647
   }
   vertices {
-    x: 59
-    y: 864
+    x: 57
+    y: 647
+  }
+}
+, description: "\340\244\270\340\244\256\340\244\270\340\245\215\340\244\244\340\245\200\340\244\252\340\245\201\340\244\260"
+bounding_poly {
+  vertices {
+    x: 112
+    y: 631
+  }
+  vertices {
+    x: 170
+    y: 631
+  }
+  vertices {
+    x: 170
+    y: 653
+  }
+  vertices {
+    x: 112
+    y: 653
+  }
+}
+, description: "20017"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 634
+  }
+  vertices {
+    x: 306
+    y: 634
+  }
+  vertices {
+    x: 306
+    y: 649
+  }
+  vertices {
+    x: 259
+    y: 649
+  }
+}
+, description: "19862"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 633
+  }
+  vertices {
+    x: 440
+    y: 633
+  }
+  vertices {
+    x: 440
+    y: 648
+  }
+  vertices {
+    x: 393
+    y: 648
+  }
+}
+, description: "155"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 634
+  }
+  vertices {
+    x: 537
+    y: 634
+  }
+  vertices {
+    x: 537
+    y: 647
+  }
+  vertices {
+    x: 511
+    y: 647
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 634
+  }
+  vertices {
+    x: 597
+    y: 634
+  }
+  vertices {
+    x: 597
+    y: 646
+  }
+  vertices {
+    x: 589
+    y: 646
   }
 }
 , description: "32"
 bounding_poly {
   vertices {
-    x: 41
-    y: 872
+    x: 34
+    y: 676
   }
   vertices {
     x: 50
-    y: 872
+    y: 676
   }
   vertices {
     x: 50
-    y: 881
+    y: 689
   }
   vertices {
-    x: 41
-    y: 881
+    x: 34
+    y: 689
   }
 }
-, description: "TONK"
+, description: "."
 bounding_poly {
   vertices {
-    x: 58
-    y: 872
-  }
-  vertices {
-    x: 87
-    y: 872
-  }
-  vertices {
-    x: 87
-    y: 881
+    x: 57
+    y: 676
   }
   vertices {
     x: 58
-    y: 881
+    y: 676
+  }
+  vertices {
+    x: 58
+    y: 689
+  }
+  vertices {
+    x: 57
+    y: 689
+  }
+}
+, description: "\340\244\270\340\244\276\340\244\260\340\244\243"
+bounding_poly {
+  vertices {
+    x: 112
+    y: 678
+  }
+  vertices {
+    x: 146
+    y: 678
+  }
+  vertices {
+    x: 146
+    y: 691
+  }
+  vertices {
+    x: 112
+    y: 691
+  }
+}
+, description: "23273"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 676
+  }
+  vertices {
+    x: 306
+    y: 676
+  }
+  vertices {
+    x: 306
+    y: 693
+  }
+  vertices {
+    x: 259
+    y: 693
+  }
+}
+, description: "23018"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 675
+  }
+  vertices {
+    x: 440
+    y: 675
+  }
+  vertices {
+    x: 440
+    y: 691
+  }
+  vertices {
+    x: 393
+    y: 691
+  }
+}
+, description: "255"
+bounding_poly {
+  vertices {
+    x: 512
+    y: 675
+  }
+  vertices {
+    x: 539
+    y: 677
+  }
+  vertices {
+    x: 538
+    y: 692
+  }
+  vertices {
+    x: 511
+    y: 690
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 677
+  }
+  vertices {
+    x: 597
+    y: 677
+  }
+  vertices {
+    x: 597
+    y: 689
+  }
+  vertices {
+    x: 589
+    y: 689
   }
 }
 , description: "33"
 bounding_poly {
   vertices {
-    x: 41
-    y: 889
+    x: 33
+    y: 719
   }
   vertices {
-    x: 50
-    y: 889
+    x: 49
+    y: 719
   }
   vertices {
-    x: 50
-    y: 898
+    x: 49
+    y: 731
   }
   vertices {
-    x: 41
-    y: 898
-  }
-}
-, description: "UDAIPUR"
-bounding_poly {
-  vertices {
-    x: 58
-    y: 889
-  }
-  vertices {
-    x: 104
-    y: 889
-  }
-  vertices {
-    x: 104
-    y: 898
-  }
-  vertices {
-    x: 58
-    y: 898
+    x: 33
+    y: 731
   }
 }
-, description: "Other"
+, description: "."
 bounding_poly {
   vertices {
-    x: 59
-    y: 904
-  }
-  vertices {
-    x: 82
-    y: 903
-  }
-  vertices {
-    x: 82
-    y: 913
-  }
-  vertices {
-    x: 59
-    y: 914
-  }
-}
-, description: "State"
-bounding_poly {
-  vertices {
-    x: 85
-    y: 903
-  }
-  vertices {
-    x: 105
-    y: 903
-  }
-  vertices {
-    x: 105
-    y: 913
-  }
-  vertices {
-    x: 85
-    y: 913
-  }
-}
-, description: "/"
-bounding_poly {
-  vertices {
-    x: 107
-    y: 903
-  }
-  vertices {
-    x: 108
-    y: 903
-  }
-  vertices {
-    x: 108
-    y: 912
-  }
-  vertices {
-    x: 107
-    y: 912
-  }
-}
-, description: "country"
-bounding_poly {
-  vertices {
-    x: 57
-    y: 917
-  }
-  vertices {
-    x: 93
-    y: 917
-  }
-  vertices {
-    x: 93
-    y: 926
+    x: 56
+    y: 719
   }
   vertices {
     x: 57
-    y: 926
+    y: 719
+  }
+  vertices {
+    x: 57
+    y: 731
+  }
+  vertices {
+    x: 56
+    y: 731
   }
 }
-, description: "Total"
+, description: "\340\244\266\340\245\207\340\244\226\340\244\252\340\245\201\340\244\260\340\244\276"
 bounding_poly {
   vertices {
-    x: 110
-    y: 927
+    x: 113
+    y: 717
   }
   vertices {
-    x: 132
-    y: 928
+    x: 159
+    y: 719
   }
   vertices {
-    x: 132
-    y: 938
-  }
-  vertices {
-    x: 110
-    y: 937
-  }
-}
-, description: "57053"
-bounding_poly {
-  vertices {
-    x: 328
+    x: 158
     y: 739
   }
   vertices {
-    x: 354
-    y: 739
-  }
-  vertices {
-    x: 354
-    y: 749
-  }
-  vertices {
-    x: 328
-    y: 749
+    x: 112
+    y: 737
   }
 }
-, description: "17737"
+, description: "7693"
 bounding_poly {
   vertices {
-    x: 331
-    y: 756
+    x: 259
+    y: 719
   }
   vertices {
-    x: 355
-    y: 756
+    x: 296
+    y: 720
   }
   vertices {
-    x: 355
-    y: 768
+    x: 296
+    y: 735
   }
   vertices {
-    x: 331
-    y: 768
+    x: 259
+    y: 734
   }
 }
-, description: "27324"
+, description: "7618"
 bounding_poly {
   vertices {
-    x: 328
-    y: 774
+    x: 392
+    y: 720
   }
   vertices {
-    x: 356
-    y: 773
+    x: 430
+    y: 720
   }
   vertices {
-    x: 356
+    x: 430
+    y: 734
+  }
+  vertices {
+    x: 392
+    y: 734
+  }
+}
+, description: "75"
+bounding_poly {
+  vertices {
+    x: 510
+    y: 721
+  }
+  vertices {
+    x: 527
+    y: 721
+  }
+  vertices {
+    x: 527
+    y: 733
+  }
+  vertices {
+    x: 510
+    y: 733
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 721
+  }
+  vertices {
+    x: 597
+    y: 721
+  }
+  vertices {
+    x: 597
+    y: 733
+  }
+  vertices {
+    x: 589
+    y: 733
+  }
+}
+, description: "34"
+bounding_poly {
+  vertices {
+    x: 34
+    y: 764
+  }
+  vertices {
+    x: 50
+    y: 764
+  }
+  vertices {
+    x: 50
+    y: 778
+  }
+  vertices {
+    x: 34
+    y: 778
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 57
+    y: 764
+  }
+  vertices {
+    x: 58
+    y: 764
+  }
+  vertices {
+    x: 58
+    y: 778
+  }
+  vertices {
+    x: 57
+    y: 778
+  }
+}
+, description: "\340\244\266\340\244\277\340\244\265\340\244\271\340\244\260"
+bounding_poly {
+  vertices {
+    x: 113
+    y: 762
+  }
+  vertices {
+    x: 154
+    y: 763
+  }
+  vertices {
+    x: 154
     y: 782
   }
   vertices {
-    x: 328
-    y: 783
+    x: 113
+    y: 781
   }
 }
-, description: "7143"
+, description: "4402"
 bounding_poly {
   vertices {
-    x: 331
-    y: 790
+    x: 257
+    y: 764
   }
   vertices {
-    x: 351
-    y: 790
+    x: 294
+    y: 763
   }
   vertices {
-    x: 351
-    y: 799
+    x: 295
+    y: 778
   }
   vertices {
-    x: 331
-    y: 799
+    x: 258
+    y: 779
   }
 }
-, description: "17044"
+, description: "4366"
 bounding_poly {
   vertices {
-    x: 331
+    x: 393
+    y: 764
+  }
+  vertices {
+    x: 431
+    y: 764
+  }
+  vertices {
+    x: 431
+    y: 780
+  }
+  vertices {
+    x: 393
+    y: 780
+  }
+}
+, description: "36"
+bounding_poly {
+  vertices {
+    x: 510
+    y: 763
+  }
+  vertices {
+    x: 528
+    y: 763
+  }
+  vertices {
+    x: 528
+    y: 776
+  }
+  vertices {
+    x: 510
+    y: 776
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 590
+    y: 764
+  }
+  vertices {
+    x: 598
+    y: 764
+  }
+  vertices {
+    x: 598
+    y: 779
+  }
+  vertices {
+    x: 590
+    y: 779
+  }
+}
+, description: "35"
+bounding_poly {
+  vertices {
+    x: 34
     y: 807
   }
   vertices {
-    x: 356
+    x: 50
     y: 807
   }
   vertices {
-    x: 356
-    y: 816
+    x: 50
+    y: 820
   }
   vertices {
-    x: 331
-    y: 816
+    x: 34
+    y: 820
   }
 }
-, description: "30618"
+, description: "."
 bounding_poly {
   vertices {
-    x: 331
+    x: 57
+    y: 807
+  }
+  vertices {
+    x: 58
+    y: 807
+  }
+  vertices {
+    x: 58
+    y: 820
+  }
+  vertices {
+    x: 57
+    y: 820
+  }
+}
+, description: "\340\244\270\340\245\200\340\244\244\340\244\276\340\244\256\340\244\242\340\244\274\340\245\200"
+bounding_poly {
+  vertices {
+    x: 113
+    y: 805
+  }
+  vertices {
+    x: 164
+    y: 805
+  }
+  vertices {
+    x: 164
+    y: 825
+  }
+  vertices {
+    x: 113
+    y: 825
+  }
+}
+, description: "9184"
+bounding_poly {
+  vertices {
+    x: 257
+    y: 808
+  }
+  vertices {
+    x: 295
+    y: 807
+  }
+  vertices {
+    x: 295
+    y: 821
+  }
+  vertices {
+    x: 257
+    y: 822
+  }
+}
+, description: "9057"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 807
+  }
+  vertices {
+    x: 431
+    y: 808
+  }
+  vertices {
+    x: 431
     y: 823
   }
   vertices {
-    x: 356
-    y: 823
-  }
-  vertices {
-    x: 356
-    y: 833
-  }
-  vertices {
-    x: 331
-    y: 833
+    x: 393
+    y: 822
   }
 }
-, description: "30618"
+, description: "127"
 bounding_poly {
   vertices {
-    x: 330
-    y: 839
+    x: 511
+    y: 808
   }
   vertices {
-    x: 355
-    y: 839
+    x: 538
+    y: 808
   }
   vertices {
-    x: 355
-    y: 849
+    x: 538
+    y: 821
   }
   vertices {
-    x: 330
-    y: 849
+    x: 511
+    y: 821
   }
 }
-, description: "13732"
+, description: "0"
 bounding_poly {
   vertices {
-    x: 330
-    y: 854
+    x: 590
+    y: 809
   }
   vertices {
-    x: 354
-    y: 853
+    x: 598
+    y: 809
   }
   vertices {
-    x: 354
+    x: 598
+    y: 821
+  }
+  vertices {
+    x: 590
+    y: 821
+  }
+}
+, description: "36"
+bounding_poly {
+  vertices {
+    x: 34
+    y: 851
+  }
+  vertices {
+    x: 50
+    y: 851
+  }
+  vertices {
+    x: 50
     y: 864
   }
   vertices {
-    x: 330
+    x: 34
+    y: 864
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 57
+    y: 851
+  }
+  vertices {
+    x: 58
+    y: 851
+  }
+  vertices {
+    x: 58
+    y: 864
+  }
+  vertices {
+    x: 57
+    y: 864
+  }
+}
+, description: "\340\244\270\340\244\277\340\244\265\340\244\276\340\244\250"
+bounding_poly {
+  vertices {
+    x: 112
+    y: 848
+  }
+  vertices {
+    x: 151
+    y: 848
+  }
+  vertices {
+    x: 151
+    y: 866
+  }
+  vertices {
+    x: 112
+    y: 866
+  }
+}
+, description: "15195"
+bounding_poly {
+  vertices {
+    x: 260
+    y: 852
+  }
+  vertices {
+    x: 306
+    y: 852
+  }
+  vertices {
+    x: 306
+    y: 866
+  }
+  vertices {
+    x: 260
+    y: 866
+  }
+}
+, description: "15025"
+bounding_poly {
+  vertices {
+    x: 394
+    y: 852
+  }
+  vertices {
+    x: 441
+    y: 852
+  }
+  vertices {
+    x: 441
+    y: 865
+  }
+  vertices {
+    x: 394
     y: 865
   }
 }
-, description: "9498"
+, description: "170"
 bounding_poly {
   vertices {
-    x: 331
-    y: 872
+    x: 511
+    y: 852
   }
   vertices {
-    x: 352
-    y: 872
+    x: 538
+    y: 852
   }
   vertices {
-    x: 352
-    y: 881
+    x: 538
+    y: 865
   }
   vertices {
-    x: 331
-    y: 881
-  }
-}
-, description: "56405"
-bounding_poly {
-  vertices {
-    x: 329
-    y: 889
-  }
-  vertices {
-    x: 355
-    y: 889
-  }
-  vertices {
-    x: 355
-    y: 899
-  }
-  vertices {
-    x: 329
-    y: 899
+    x: 511
+    y: 865
   }
 }
 , description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 852
+  }
+  vertices {
+    x: 597
+    y: 852
+  }
+  vertices {
+    x: 597
+    y: 863
+  }
+  vertices {
+    x: 589
+    y: 863
+  }
+}
+, description: "37"
+bounding_poly {
+  vertices {
+    x: 34
+    y: 894
+  }
+  vertices {
+    x: 50
+    y: 894
+  }
+  vertices {
+    x: 50
+    y: 908
+  }
+  vertices {
+    x: 34
+    y: 908
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 57
+    y: 894
+  }
+  vertices {
+    x: 58
+    y: 894
+  }
+  vertices {
+    x: 58
+    y: 908
+  }
+  vertices {
+    x: 57
+    y: 908
+  }
+}
+, description: "\340\244\270\340\245\201\340\244\252\340\245\214\340\244\262"
+bounding_poly {
+  vertices {
+    x: 111
+    y: 891
+  }
+  vertices {
+    x: 146
+    y: 890
+  }
+  vertices {
+    x: 146
+    y: 912
+  }
+  vertices {
+    x: 111
+    y: 913
+  }
+}
+, description: "17221"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 896
+  }
+  vertices {
+    x: 305
+    y: 896
+  }
+  vertices {
+    x: 305
+    y: 909
+  }
+  vertices {
+    x: 259
+    y: 909
+  }
+}
+, description: "17092"
+bounding_poly {
+  vertices {
+    x: 395
+    y: 894
+  }
+  vertices {
+    x: 441
+    y: 895
+  }
+  vertices {
+    x: 441
+    y: 909
+  }
+  vertices {
+    x: 395
+    y: 908
+  }
+}
+, description: "129"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 894
+  }
+  vertices {
+    x: 538
+    y: 894
+  }
+  vertices {
+    x: 538
+    y: 907
+  }
+  vertices {
+    x: 511
+    y: 907
+  }
+}
+, description: "0"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 896
+  }
+  vertices {
+    x: 597
+    y: 896
+  }
+  vertices {
+    x: 597
+    y: 907
+  }
+  vertices {
+    x: 589
+    y: 907
+  }
+}
+, description: "38"
+bounding_poly {
+  vertices {
+    x: 34
+    y: 937
+  }
+  vertices {
+    x: 50
+    y: 937
+  }
+  vertices {
+    x: 50
+    y: 951
+  }
+  vertices {
+    x: 34
+    y: 951
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 57
+    y: 937
+  }
+  vertices {
+    x: 58
+    y: 937
+  }
+  vertices {
+    x: 58
+    y: 951
+  }
+  vertices {
+    x: 57
+    y: 951
+  }
+}
+, description: "\340\244\265\340\245\210\340\244\266\340\244\276\340\244\262\340\245\200"
+bounding_poly {
+  vertices {
+    x: 113
+    y: 934
+  }
+  vertices {
+    x: 152
+    y: 934
+  }
+  vertices {
+    x: 152
+    y: 954
+  }
+  vertices {
+    x: 113
+    y: 954
+  }
+}
+, description: "19826"
+bounding_poly {
+  vertices {
+    x: 259
+    y: 938
+  }
+  vertices {
+    x: 306
+    y: 938
+  }
+  vertices {
+    x: 306
+    y: 952
+  }
+  vertices {
+    x: 259
+    y: 952
+  }
+}
+, description: "19631"
 bounding_poly {
   vertices {
     x: 394
-    y: 823
+    y: 939
   }
   vertices {
-    x: 398
-    y: 823
+    x: 440
+    y: 939
   }
   vertices {
-    x: 398
-    y: 830
+    x: 440
+    y: 953
   }
   vertices {
     x: 394
-    y: 830
+    y: 953
   }
 }
-, description: "0"
+, description: "192"
 bounding_poly {
   vertices {
-    x: 281
-    y: 824
+    x: 511
+    y: 939
   }
   vertices {
-    x: 286
-    y: 824
+    x: 538
+    y: 939
   }
   vertices {
-    x: 286
-    y: 831
+    x: 538
+    y: 952
   }
   vertices {
-    x: 281
-    y: 831
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 823
-  }
-  vertices {
-    x: 287
-    y: 823
-  }
-  vertices {
-    x: 287
-    y: 830
-  }
-  vertices {
-    x: 282
-    y: 830
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 837
-  }
-  vertices {
-    x: 282
-    y: 837
-  }
-  vertices {
-    x: 282
-    y: 845
-  }
-  vertices {
-    x: 281
-    y: 845
+    x: 511
+    y: 952
   }
 }
 , description: "2"
 bounding_poly {
   vertices {
-    x: 646
-    y: 821
-  }
-  vertices {
-    x: 650
-    y: 821
-  }
-  vertices {
-    x: 650
-    y: 830
-  }
-  vertices {
-    x: 646
-    y: 830
-  }
-}
-, description: "-"
-bounding_poly {
-  vertices {
-    x: 642
-    y: 827
-  }
-  vertices {
-    x: 652
-    y: 827
-  }
-  vertices {
-    x: 652
-    y: 835
-  }
-  vertices {
-    x: 642
-    y: 835
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 839
-  }
-  vertices {
-    x: 398
-    y: 839
-  }
-  vertices {
-    x: 398
-    y: 846
-  }
-  vertices {
-    x: 394
-    y: 846
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 854
-  }
-  vertices {
-    x: 285
-    y: 854
-  }
-  vertices {
-    x: 285
-    y: 864
-  }
-  vertices {
-    x: 281
-    y: 864
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 854
-  }
-  vertices {
-    x: 395
-    y: 854
-  }
-  vertices {
-    x: 395
-    y: 863
-  }
-  vertices {
-    x: 394
-    y: 863
-  }
-}
-, description: "01"
-bounding_poly {
-  vertices {
-    x: 445
-    y: 827
-  }
-  vertices {
-    x: 459
-    y: 827
-  }
-  vertices {
-    x: 459
-    y: 835
-  }
-  vertices {
-    x: 445
-    y: 835
-  }
-}
-, description: "335"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 838
-  }
-  vertices {
-    x: 461
-    y: 838
-  }
-  vertices {
-    x: 461
-    y: 847
-  }
-  vertices {
-    x: 447
-    y: 847
-  }
-}
-, description: "79"
-bounding_poly {
-  vertices {
-    x: 450
-    y: 854
-  }
-  vertices {
-    x: 459
-    y: 854
-  }
-  vertices {
-    x: 459
-    y: 864
-  }
-  vertices {
-    x: 450
-    y: 864
-  }
-}
-, description: "92"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 871
-  }
-  vertices {
-    x: 458
-    y: 871
-  }
-  vertices {
-    x: 458
-    y: 880
-  }
-  vertices {
-    x: 448
-    y: 880
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 854
-  }
-  vertices {
-    x: 650
-    y: 854
-  }
-  vertices {
-    x: 650
-    y: 865
-  }
-  vertices {
-    x: 645
-    y: 865
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 872
-  }
-  vertices {
-    x: 650
-    y: 872
-  }
-  vertices {
-    x: 650
-    y: 880
-  }
-  vertices {
-    x: 645
-    y: 880
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 281
-    y: 872
-  }
-  vertices {
-    x: 282
-    y: 872
-  }
-  vertices {
-    x: 282
-    y: 880
-  }
-  vertices {
-    x: 281
-    y: 880
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 872
-  }
-  vertices {
-    x: 398
-    y: 872
-  }
-  vertices {
-    x: 398
-    y: 880
-  }
-  vertices {
-    x: 394
-    y: 880
-  }
-}
-, description: "11111"
-bounding_poly {
-  vertices {
-    x: 398
-    y: 844
-  }
-  vertices {
-    x: 398
-    y: 933
-  }
-  vertices {
-    x: 376
-    y: 933
-  }
-  vertices {
-    x: 376
-    y: 844
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 890
-  }
-  vertices {
-    x: 286
-    y: 890
-  }
-  vertices {
-    x: 286
-    y: 898
-  }
-  vertices {
-    x: 282
-    y: 898
-  }
-}
-, description: "753"
-bounding_poly {
-  vertices {
-    x: 447
-    y: 888
-  }
-  vertices {
-    x: 461
-    y: 888
-  }
-  vertices {
-    x: 461
-    y: 896
-  }
-  vertices {
-    x: 447
-    y: 896
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 889
-  }
-  vertices {
-    x: 650
-    y: 889
-  }
-  vertices {
-    x: 650
-    y: 897
-  }
-  vertices {
-    x: 645
-    y: 897
-  }
-}
-, description: "6012"
-bounding_poly {
-  vertices {
-    x: 208
-    y: 908
-  }
-  vertices {
-    x: 230
-    y: 908
-  }
-  vertices {
-    x: 230
-    y: 918
-  }
-  vertices {
-    x: 208
-    y: 918
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 910
-  }
-  vertices {
-    x: 286
-    y: 910
-  }
-  vertices {
-    x: 286
-    y: 918
-  }
-  vertices {
-    x: 282
-    y: 918
-  }
-}
-, description: "337"
-bounding_poly {
-  vertices {
-    x: 334
-    y: 909
-  }
-  vertices {
-    x: 348
-    y: 909
-  }
-  vertices {
-    x: 348
-    y: 918
-  }
-  vertices {
-    x: 334
-    y: 918
-  }
-}
-, description: "39"
-bounding_poly {
-  vertices {
-    x: 448
-    y: 909
-  }
-  vertices {
-    x: 458
-    y: 909
-  }
-  vertices {
-    x: 458
-    y: 917
-  }
-  vertices {
-    x: 448
-    y: 917
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 521
-    y: 911
-  }
-  vertices {
-    x: 525
-    y: 911
-  }
-  vertices {
-    x: 525
-    y: 919
-  }
-  vertices {
-    x: 521
-    y: 919
-  }
-}
-, description: "298"
-bounding_poly {
-  vertices {
-    x: 582
-    y: 909
+    x: 589
+    y: 938
   }
   vertices {
     x: 597
-    y: 909
+    y: 938
   }
   vertices {
     x: 597
-    y: 918
+    y: 950
   }
   vertices {
-    x: 582
-    y: 918
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 645
-    y: 911
-  }
-  vertices {
-    x: 650
-    y: 911
-  }
-  vertices {
-    x: 650
-    y: 919
-  }
-  vertices {
-    x: 645
-    y: 919
-  }
-}
-, description: "1-4700577"
-bounding_poly {
-  vertices {
-    x: 201
-    y: 929
-  }
-  vertices {
-    x: 240
-    y: 929
-  }
-  vertices {
-    x: 240
-    y: 938
-  }
-  vertices {
-    x: 201
-    y: 938
-  }
-}
-, description: "4"
-bounding_poly {
-  vertices {
-    x: 282
-    y: 928
-  }
-  vertices {
-    x: 286
-    y: 928
-  }
-  vertices {
-    x: 286
-    y: 935
-  }
-  vertices {
-    x: 282
-    y: 935
-  }
-}
-, description: "954400"
-bounding_poly {
-  vertices {
-    x: 327
-    y: 928
-  }
-  vertices {
-    x: 357
-    y: 928
-  }
-  vertices {
-    x: 357
-    y: 937
-  }
-  vertices {
-    x: 327
-    y: 937
-  }
-}
-, description: "0"
-bounding_poly {
-  vertices {
-    x: 394
-    y: 928
-  }
-  vertices {
-    x: 398
-    y: 928
-  }
-  vertices {
-    x: 398
-    y: 935
-  }
-  vertices {
-    x: 394
-    y: 935
-  }
-}
-, description: "8954"
-bounding_poly {
-  vertices {
-    x: 445
-    y: 928
-  }
-  vertices {
-    x: 464
-    y: 928
-  }
-  vertices {
-    x: 464
-    y: 938
-  }
-  vertices {
-    x: 445
-    y: 938
-  }
-}
-, description: "4"
-bounding_poly {
-  vertices {
-    x: 520
-    y: 928
-  }
-  vertices {
-    x: 524
-    y: 928
-  }
-  vertices {
-    x: 524
-    y: 935
-  }
-  vertices {
-    x: 520
-    y: 935
-  }
-}
-, description: "945414"
-bounding_poly {
-  vertices {
-    x: 574
-    y: 927
-  }
-  vertices {
-    x: 604
-    y: 927
-  }
-  vertices {
-    x: 604
-    y: 936
-  }
-  vertices {
-    x: 574
-    y: 936
-  }
-}
-, description: "32"
-bounding_poly {
-  vertices {
-    x: 644
-    y: 928
-  }
-  vertices {
-    x: 653
-    y: 928
-  }
-  vertices {
-    x: 653
-    y: 936
-  }
-  vertices {
-    x: 644
-    y: 936
+    x: 589
+    y: 950
   }
 }
 , description: "Total"
 bounding_poly {
   vertices {
-    x: 36
-    y: 954
-  }
-  vertices {
-    x: 56
-    y: 954
-  }
-  vertices {
-    x: 56
-    y: 965
-  }
-  vertices {
-    x: 36
-    y: 965
-  }
-}
-, description: "Stritus"
-bounding_poly {
-  vertices {
-    x: 60
-    y: 954
-  }
-  vertices {
-    x: 82
-    y: 954
-  }
-  vertices {
-    x: 82
-    y: 965
-  }
-  vertices {
-    x: 60
-    y: 965
-  }
-}
-, description: "Sample"
-bounding_poly {
-  vertices {
-    x: 32
-    y: 968
-  }
-  vertices {
-    x: 61
-    y: 968
-  }
-  vertices {
-    x: 61
-    y: 979
-  }
-  vertices {
-    x: 32
-    y: 979
-  }
-}
-, description: "Received"
-bounding_poly {
-  vertices {
-    x: 65
-    y: 968
-  }
-  vertices {
-    x: 101
-    y: 968
-  }
-  vertices {
-    x: 101
-    y: 978
-  }
-  vertices {
-    x: 65
-    y: 978
-  }
-}
-, description: "In"
-bounding_poly {
-  vertices {
-    x: 106
-    y: 968
-  }
-  vertices {
-    x: 113
-    y: 968
-  }
-  vertices {
-    x: 113
-    y: 978
-  }
-  vertices {
-    x: 106
-    y: 978
-  }
-}
-, description: "State"
-bounding_poly {
-  vertices {
-    x: 117
-    y: 968
-  }
-  vertices {
-    x: 136
-    y: 968
-  }
-  vertices {
-    x: 136
-    y: 978
-  }
-  vertices {
-    x: 117
-    y: 978
-  }
-}
-, description: "Sample"
-bounding_poly {
-  vertices {
-    x: 35
-    y: 982
-  }
-  vertices {
-    x: 62
-    y: 982
-  }
-  vertices {
-    x: 62
-    y: 993
-  }
-  vertices {
-    x: 35
-    y: 993
-  }
-}
-, description: "Positive"
-bounding_poly {
-  vertices {
-    x: 67
-    y: 982
-  }
-  vertices {
-    x: 99
-    y: 982
-  }
-  vertices {
-    x: 99
-    y: 993
-  }
-  vertices {
-    x: 67
-    y: 993
-  }
-}
-, description: "In"
-bounding_poly {
-  vertices {
-    x: 101
-    y: 982
-  }
-  vertices {
-    x: 108
-    y: 982
-  }
-  vertices {
-    x: 108
-    y: 993
-  }
-  vertices {
-    x: 101
-    y: 993
-  }
-}
-, description: "State"
-bounding_poly {
-  vertices {
     x: 112
+    y: 982
+  }
+  vertices {
+    x: 164
     y: 981
   }
   vertices {
-    x: 131
-    y: 981
-  }
-  vertices {
-    x: 131
-    y: 993
+    x: 164
+    y: 1001
   }
   vertices {
     x: 112
-    y: 993
+    y: 1002
   }
 }
-, description: "Active"
+, description: "725996"
 bounding_poly {
   vertices {
-    x: 32
-    y: 995
+    x: 259
+    y: 982
   }
   vertices {
-    x: 60
-    y: 995
+    x: 338
+    y: 982
   }
   vertices {
-    x: 60
-    y: 1005
+    x: 338
+    y: 1002
   }
   vertices {
-    x: 32
-    y: 1005
+    x: 259
+    y: 1002
   }
 }
-, description: "Cases"
+, description: "716300"
 bounding_poly {
   vertices {
-    x: 64
-    y: 995
+    x: 394
+    y: 983
   }
   vertices {
-    x: 86
-    y: 995
+    x: 473
+    y: 983
   }
   vertices {
-    x: 86
-    y: 1005
+    x: 473
+    y: 1002
   }
   vertices {
-    x: 64
-    y: 1005
+    x: 394
+    y: 1002
   }
 }
-, description: "In"
+, description: "9661"
 bounding_poly {
   vertices {
-    x: 91
-    y: 995
+    x: 511
+    y: 982
   }
   vertices {
-    x: 97
-    y: 995
+    x: 562
+    y: 982
   }
   vertices {
-    x: 97
-    y: 1005
+    x: 562
+    y: 1002
   }
   vertices {
-    x: 91
-    y: 1005
+    x: 511
+    y: 1002
   }
 }
-, description: "State"
+, description: "34"
 bounding_poly {
   vertices {
-    x: 101
-    y: 995
+    x: 590
+    y: 982
   }
   vertices {
-    x: 120
-    y: 995
+    x: 615
+    y: 982
   }
   vertices {
-    x: 120
-    y: 1005
+    x: 615
+    y: 1001
   }
   vertices {
-    x: 101
-    y: 1005
-  }
-}
-, description: "14700577"
-bounding_poly {
-  vertices {
-    x: 298
-    y: 967
-  }
-  vertices {
-    x: 336
-    y: 968
-  }
-  vertices {
-    x: 336
-    y: 977
-  }
-  vertices {
-    x: 298
-    y: 976
-  }
-}
-, description: "954400"
-bounding_poly {
-  vertices {
-    x: 301
-    y: 980
-  }
-  vertices {
-    x: 331
-    y: 981
-  }
-  vertices {
-    x: 331
-    y: 991
-  }
-  vertices {
-    x: 301
-    y: 990
-  }
-}
-, description: "32"
-bounding_poly {
-  vertices {
-    x: 311
-    y: 995
-  }
-  vertices {
-    x: 319
-    y: 995
-  }
-  vertices {
-    x: 319
-    y: 1004
-  }
-  vertices {
-    x: 311
-    y: 1004
+    x: 590
+    y: 1001
   }
 }
 ]

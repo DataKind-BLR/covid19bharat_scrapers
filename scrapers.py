@@ -209,14 +209,119 @@ def ap_get_data(opt):
 
   return districts_data
 
+def an_get_data(opt):
+  global pageId
+  print("Date, State, First Dose, Second Dose, Total Doses")
+
+  lookback = int(opt['config']['page']) if len(opt['config']['page']) != 0 else 0
+  for day in range(lookback, -1, -1):
+    today = (datetime.date.today() - datetime.timedelta(days = day)).strftime("%Y-%m-%d")
+    fileName=today+"-at-07-00-AM.pdf"
+
+    readFileFromURLV2(metaDictionary['VCMohfw'].url + fileName, "VCMohfw", "A & N Islands", "")
+    dadra = {'firstDose': 0, 'secondDose': 0, 'totalDose': 0}
+
+    try:
+      with open(".tmp/vcm.csv", "r") as upFile:
+        for line in upFile:
+          if "Dadra" in line or "Daman" in line:
+            dadra['firstDose'] += int(line.split(',')[1])
+            dadra['secondDose'] += int(line.split(',')[2])
+            dadra['totalDose'] += int(line.split(',')[3])
+            continue
+          print(today + "," + line, end = "")
+
+      print("{}, DnH, {}, {}, {}".format(today, dadra['firstDose'], dadra['secondDose'], dadra['totalDose']))
+    except FileNotFoundError:
+      print("br.txt missing. Generate through pdf or ocr and rerun.")
+
 def ar_get_data(opt):
   print('Fetching AR data', opt)
+
+  run_for_ocr(opt)
+
+  districts_data = []
+  additionalDistrictInfo = {}
+  additionalDistrictInfo['districtName'] = 'Papum Pare'
+  additionalDistrictInfo['confirmed'] = 0
+  additionalDistrictInfo['recovered'] = 0
+  additionalDistrictInfo['deceased'] = 0
+
+  with open(OUTPUT_FILE, "r") as upFile:
+    for line in upFile:
+      if 'Total' in line:
+        continue
+
+      linesArray = line.split('|')[0].split(',')
+      if len(linesArray) != 14:
+        print("--> Issue with {}".format(linesArray))
+        continue
+
+
+      if linesArray[0].strip() == "Capital Complex" or linesArray[0].strip() == "Papum Pare":
+        additionalDistrictInfo['confirmed'] += int(linesArray[5])
+        additionalDistrictInfo['recovered'] += int(linesArray[12])
+        additionalDistrictInfo['deceased'] += int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
+        continue
+
+      districtDictionary = {}
+      districtName = linesArray[0].strip()
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[5])
+      districtDictionary['recovered'] = int(linesArray[12])
+      districtDictionary['deceased'] = int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
+      districts_data.append(districtDictionary)
+  upFile.close()
+  districts_data.append(additionalDistrictInfo)
+
+  return districts_data
 
 def as_get_data(opt):
   print('Fetching AS data', opt)
 
+  run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districtArray = []
+  splitArray = []
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        splitArray = re.sub('\n', '', line.strip()).split('|')
+        linesArray = splitArray[0].split(',')
+        if int(linesArray[len(linesArray) - 1]) > 0:
+          print("{},Assam,AS,{},Hospitalized".format(linesArray[0].strip(), linesArray[len(linesArray) - 1].strip()))
+
+  except FileNotFoundError:
+    print("ass.txt missing. Generate through pdf or ocr and rerun.")
+
 def br_get_data(opt):
   print('Fetching BR data', opt)
+
+  run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 5:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0]
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[3])
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+  except FileNotFoundError:
+    print("br.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
 
 def ch_get_data(opt):
   print('Fetching CH data', opt)
@@ -259,6 +364,41 @@ def gj_get_data(opt):
 def hp_get_data(opt):
   print('Fetching HP data', opt)
 
+  run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  districtTableBeingRead = False
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        line = re.sub('\*', '', line)
+        linesArray = line.split('|')[0].split(',')
+        availableColumns = line.split('|')[1].split(',')
+
+        districtDictionary = {}
+        confirmedFound = False
+        recoveredFound = False
+        deceasedFound = False
+
+        if len(linesArray) != 11:
+          print("--> Issue with {}".format(linesArray))
+          continue
+
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1].strip())
+        districtDictionary['recovered'] = int(linesArray[8].strip())
+        districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[9].strip()).strip())
+        #districtDictionary['migrated'] = int(linesArray[10].strip())
+
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+  except FileNotFoundError:
+    print("hp.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
+
 def hr_get_data(opt):
   print('fetching HR data', opt)
 
@@ -272,7 +412,7 @@ def hr_get_data(opt):
   # once the csv file is genered, read it
   linesArray = []
   districtDictionary = {}
-  districtArray = []
+  districts_data = []
   with open("hr.csv", "r") as upFile:
     for line in upFile:
       linesArray = line.split(',')
@@ -285,9 +425,9 @@ def hr_get_data(opt):
       districtDictionary['confirmed'] = int(linesArray[1])
       districtDictionary['recovered'] = int(linesArray[2])
       districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
-      districtArray.append(districtDictionary)
+      districts_data.append(districtDictionary)
   upFile.close()
-  return districtArray
+  return districts_data
 
 # TODO - Post request not running
 def jh_get_data(opt):
@@ -329,6 +469,38 @@ def jh_get_data(opt):
 
 def jk_get_data(opt):
   print('Fetching JK data', opt)
+
+  run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      isIgnoreFlagSet = False
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 11:
+          print("--> Ignoring due to invalid length: {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        try:
+          if type(linesArray[0].strip()) == int:
+            print("--> Ignoring: {}".format(linesArray))
+            continue
+
+          districtDictionary['districtName'] = linesArray[0].strip().title()
+          districtDictionary['confirmed'] = int(linesArray[6])
+          districtDictionary['recovered'] = int(linesArray[9])
+          districtDictionary['deceased'] = int(linesArray[10])
+          districts_data.append(districtDictionary)
+        except ValueError:
+          print("--> Ignoring: {}".format(linesArray))
+          continue
+    upFile.close()
+  except FileNotFoundError:
+    print("jk.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
 
 def ka_get_data(opt):
   print('fetching KA data', opt)
@@ -530,14 +702,109 @@ def ml_get_data(opt):
 def mn_get_data(opt):
   print('Fetching MN data', opt)
 
+  run_for_ocr(opt)
+
+  districts_data = []
+  with open(OUTPUT_FILE) as mnFile:
+    for line in mnFile:
+      linesArray = line.split('|')[0].split(',')
+      if len(linesArray) != 8:
+        print("--> Issue with {}".format(linesArray))
+        continue
+
+      if (linesArray[2].strip()) != "0":
+        print("{},Manipur,MN,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[2].strip()))
+      if (linesArray[4].strip()) != "0":
+        print("{},Manipur,MN,{},Deceased".format(linesArray[0].strip().title(), linesArray[4].strip()))
+
+  mnFile.close()
+
 def mp_get_data(opt):
   print('Fetching MP data', opt)
+
+  run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      isIgnoreFlagSet = False
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        if 'Total' in line or isIgnoreFlagSet == True:
+          isIgnoreFlagSet = True
+          print("--> Ignoring {} ".format(line))
+        if len(linesArray) != 8:
+          print("--> Ignoring due to invalid length: {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        try:
+          if is_number(linesArray[0].strip()):
+            print("--> Ignoring: {}".format(linesArray))
+            continue
+
+          districtDictionary['districtName'] = linesArray[0].strip().title()
+          districtDictionary['confirmed'] = int(linesArray[2])
+          districtDictionary['recovered'] = int(linesArray[6])
+          districtDictionary['deceased'] = int(linesArray[4])
+          districts_data.append(districtDictionary)
+        except ValueError:
+          print("--> Ignoring: {}".format(linesArray))
+          continue
+    upFile.close()
+  except FileNotFoundError:
+    print("rj.txt missing. Generate through pdf or ocr and rerun.")
+
+  return districts_data
 
 def mz_get_data(opt):
   print('Fetching MZ data', opt)
 
+  run_for_ocr(opt)
+
+  districts_data = []
+  with open(OUTPUT_FILE) as mzFile:
+    for line in mzFile:
+      line = line.replace('Nil', '0')
+      linesArray = line.split('|')[0].split(',')
+      if len(linesArray) != 5:
+        print("--> Issue with {}".format(linesArray))
+        continue
+
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[4]) #+ int(linesArray[2]) + int(linesArray[3])
+      districtDictionary['recovered'] = int(linesArray[2])
+      districtDictionary['deceased'] = int(linesArray[3]) #if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+      districts_data.append(districtDictionary)
+
+    mzFile.close()
+  return districts_data
+
 def nl_get_data(opt):
   print('Fetching NL data', opt)
+  districts_data = []
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 13:
+          print("--> Issue with {}".format(linesArray))
+          continue
+
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[12])
+        districtDictionary['recovered'] = int(linesArray[7])
+        districtDictionary['migrated'] = int(linesArray[11])
+        districtDictionary['deceased'] = int(linesArray[8]) if len(re.sub('\n', '', linesArray[8])) != 0 else 0
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+  except FileNotFoundError:
+    print("hr.csv missing. Generate through pdf or ocr and rerun.")
+  return districts_data
 
 def or_get_data(opt):
   temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'or.csv')
@@ -568,26 +835,62 @@ def or_get_data(opt):
 
 def pb_get_data(opt):
   print('Fetching PB data', opt)
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-  read_pdf_from_url(opt)
 
-  with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
-    for line in upFile:
-      linesArray = line.split(',')
-      if len(linesArray) != 5:
-        print("--> Issue with {}".format(linesArray))
-        continue
-      districtDictionary = {}
-      districtDictionary['districtName'] = linesArray[0].strip()
-      districtDictionary['confirmed'] = int(linesArray[1])
-      districtDictionary['recovered'] = int(linesArray[3])
-      districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
-      districts_data.append(districtDictionary)
+  if opt['type'] == 'pdf':
+    read_pdf_from_url(opt)
 
-  upFile.close()
-  return districts_data
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+
+    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 5:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[3])
+        districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+    return districts_data
+
+  elif opt['type'] == 'image':
+    run_for_ocr(opt)
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    secondRunArray = []
+    masterColumnList = ""
+    masterColumnArray = []
+    splitArray = []
+    try:
+      with open(OUTPUT_FILE, "r") as upFile:
+        for line in upFile:
+          splitArray = re.sub('\n', '', line.strip()).split('|')
+          linesArray = splitArray[0].split(',')
+
+          if len(linesArray) != 5:
+            print("--> Issue with {}".format(linesArray))
+            continue
+          if linesArray[0].strip() == "Total":
+            continue
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[3])
+          districtDictionary['deceased'] = int(linesArray[4])
+          districts_data.append(districtDictionary)
+
+      upFile.close()
+    except FileNotFoundError:
+      print("pb.txt missing. Generate through pdf or ocr and rerun.")
+    return districts_data
 
 def py_get_data(opt):
   print('fetching PY data', opt)
@@ -642,7 +945,6 @@ def rj_get_data(opt):
         districtArray.append(districtDictionary)
 
     upFile.close()
-    # deltaCalculator.getStateDataFromSite("Rajasthan", districtArray, option)
   except FileNotFoundError:
     print("rj.txt missing. Generate through pdf or ocr and rerun.")
 
@@ -650,33 +952,126 @@ def rj_get_data(opt):
 
 def sk_get_data(opt):
   print('Fetching SK data', opt)
+  run_for_ocr(opt)
+
+  districts_data = []
+  with open(OUTPUT_FILE, "r") as mlFile:
+    for line in mlFile:
+      linesArray = line.split('|')[0].split(',')
+      if len(linesArray) != 8:
+        print("--> Issue with {}".format(linesArray))
+        continue
+
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(linesArray[5].strip())
+      districtDictionary['recovered'] = int(linesArray[6].strip())
+      districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
+      districts_data.append(districtDictionary)
+  return districts_data
 
 def tn_get_data(opt):
   print('Fetching TN data', opt)
 
-  # ..........
-  linesArray = []
-  districtDictionary = {}
-  district_data = []
-  with open("tn.csv", "r") as upFile:
-    for line in upFile:
-      linesArray = line.split(',')
-      if len(linesArray) != 4:
-        print("--> Issue with {}".format(linesArray))
-        continue
-      linesArray[3] = linesArray[3].replace('$', '')
-      districtDictionary = {}
-      districtDictionary['districtName'] = linesArray[0].strip()
-      districtDictionary['confirmed'] = int(linesArray[1])
-      districtDictionary['recovered'] = int(linesArray[2])
-      districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
-      district_data.append(districtDictionary)
+  if opt['type'] == 'pdf':
+    read_pdf_from_url(opt)
+    # if len(opt['url']) > 0:
+    #   r = requests.get(opt['url'], allow_redirects=True, verify=False)
+    #   open("tn.pdf", 'wb').write(r.content)
 
-  upFile.close()
-  return district_data
+    # try:
+    #   with open("tn.pdf", "rb") as f:
+    #     pdf = pdftotext.PDF(f)
+    # except FileNotFoundError:
+    #   print("Make sure tn.pdf is present in the current folder and rerun the script! Arigatou gozaimasu.")
+    #   return
+
+    # tables = camelot.read_pdf('tn.pdf',strip_text='\n', pages="7", split_text = True)
+    # tables[0].to_csv('tn.pdf.txt')
+
+    # tnFile = open('tn.pdf.txt', 'r')
+    # lines = tnFile.readlines()
+    # tnOutputFile = open('tn.csv', 'w')
+
+    # startedReadingDistricts = False
+    # airportRun = 1
+    # airportConfirmedCount = 0
+    # airportRecoveredCount = 0
+    # airportDeceasedCount = 0
+    # with open('tn.pdf.txt', newline='') as csvfile:
+    #   rowReader = csv.reader(csvfile, delimiter=',', quotechar='"')
+    #   line = ""
+    #   for row in rowReader:
+    #     line = '|'.join(row)
+
+    #     if 'Ariyalur' in line:
+    #       startedReadingDistricts = True
+    #     if 'Total' in line:
+    #       startedReadingDistricts = False
+
+    #     if startedReadingDistricts == False:
+    #       continue
+
+    #     line = line.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
+    #     linesArray = line.split('|')
+
+    #     if len(linesArray) < 6:
+    #       print("--> Ignoring line: {} due to less columns".format(line))
+    #       continue
+
+    #     if 'Airport' in line:
+    #       airportConfirmedCount += int(linesArray[2])
+    #       airportRecoveredCount += int(linesArray[3])
+    #       airportDeceasedCount += int(linesArray[5])
+    #       if airportRun == 1:
+    #         airportRun += 1
+    #         continue
+    #       else:
+    #         print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
+    #         continue
+    #     if 'Railway' in line:
+    #       print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
+    #       continue
+
+    #     print("{}, {}, {}, {}".format(linesArray[1], linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
+
+    # tnOutputFile.close()
+
+    linesArray = []
+    districtDictionary = {}
+    district_data = []
+    with open('tn.csv', "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 4:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        linesArray[3] = linesArray[3].replace('$', '')
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+        district_data.append(districtDictionary)
+
+    upFile.close()
+    return district_data
 
 def tg_get_data(opt):
   print('Fetching TG data', opt)
+
+  run_for_ocr(opt)
+
+  linesArray = []
+  with open(OUTPUT_FILE, "r") as tgFile:
+    for line in tgFile:
+      linesArray = line.split('|')[0].split(',')
+      if len(linesArray) != 2:
+        print("--> Issue with {}".format(linesArray))
+        continue
+      if linesArray[0].strip().capitalize() == "Ghmc":
+        linesArray[0] = "Hyderabad"
+      print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
 
 def tr_get_data(opt):
   print('fetching TR data', opt)
@@ -698,12 +1093,134 @@ def tr_get_data(opt):
 
 def up_get_data(opt):
   print('Fetching UP data', opt)
+  errorCount = 0
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  masterColumnArray = []
+  splitArray = []
+  lengthOfArray = 7
+  activeIndex = 6
+  recoveredIndex = 3
+  deceasedIndex = 5
+  typeOfAutomation = 'ocr1'
+
+  if typeOfAutomation == "ocr1":
+    lengthOfArray = 7
+    activeIndex = 6
+    recoveredIndex = 3
+    deceasedIndex = 5
+  else:
+    typeOfAutomation = "ocr2"
+    lengthOfArray = 8
+    activeIndex = 7
+    recoveredIndex = 4
+    deceasedIndex = 6
+  print("--> Using format {}".format(typeOfAutomation))
+
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        splitArray = re.sub('\n', '', line.strip()).split('|')
+        linesArray = splitArray[0].split(',')
+
+        if errorCount > 10:
+          errorCount = 0
+          if typeOfAutomation == "ocr1":
+            typeOfAutomation = "ocr2"
+          else:
+            typeOfAutomation = "ocr1"
+          print("--> Switching to version {}. Error count breached.".format(typeOfAutomation))
+          UPGetData()
+          return
+
+        if len(linesArray) != lengthOfArray:
+          print("--> Issue with {}".format(linesArray))
+          errorCount += 1
+          continue
+
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[recoveredIndex]) + int(linesArray[deceasedIndex]) + int(linesArray[activeIndex])
+        districtDictionary['recovered'] = int(linesArray[recoveredIndex])
+        districtDictionary['deceased'] = int(linesArray[deceasedIndex])
+        #districtDictionary['active'] = int(linesArray[activeIndex])
+        """
+
+        districtDictionary['confirmed'] = int(linesArray[2])
+        districtDictionary['recovered'] = int(linesArray[4])
+        districtDictionary['deceased'] = int(linesArray[6])
+        """
+
+        districts_data.append(districtDictionary)
+    upFile.close()
+  except FileNotFoundError:
+    print("up.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
 
 def ut_get_data(opt):
   print('Fetching UT data', opt)
 
+  read_pdf_from_url(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  ignoreLines = False
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        if ignoreLines == True:
+          continue
+
+        if 'Total' in line:
+          ignoreLines = True
+          continue
+
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 6:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[4])
+        districtDictionary['migrated'] = int(linesArray[5])
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+  except FileNotFoundError:
+    print("br.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
+
 def wb_get_data(opt):
   print('Fetching WB data', opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+
+  read_pdf_from_url(opt)
+
+  try:
+    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 4:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+  except FileNotFoundError:
+    print("wb.csv missing. Generate through pdf or ocr and rerun.")
+  return districts_data
 
 ## ------------------------ <STATE_CODE>_get_data functions END HERE
 
@@ -721,6 +1238,7 @@ def fetch_data(st_obj):
   '''
   fn_map = {
     'ap': ap_get_data,
+    'an': an_get_data,
     'ar': ar_get_data,
     'as': as_get_data,
     'br': br_get_data,

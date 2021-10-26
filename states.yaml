@@ -14,34 +14,58 @@ ap:
       confirmed: Confirmed Cases
       recovered: Cured/ Discharged
       deceased: Deceased
+  # type: pdf
+  # url:
+  # config:
+  #   page:
+  #   start_key: Anantapur
+  #   end_key:
+
+an:
+  name: Andaman and Nicobar Islands
+  state_code: AN
+  automatic: False
+  type: pdf
+  url:
+  config:
+    page: 1
+    start_key: 'A & N Islands'
+    end_key:
 
 ar:
   name: Arunachal Pradesh
   state_code: AR
-  url:
+  automatic: False
   url_sources:
     - https://twitter.com/DirectorateofHS
     - https://twitter.com/DirHealth_ArPr
-  type: html
+  type: image
+  url: _inputs/ar.jpeg
 
 as:
   name: Assam
   state_code: AS
-  url: https://covid19.assam.gov.in/all-districts/
+  automatic: False
   url_sources:
     - https://twitter.com/himantabiswa
     - https://twitter.com/nhm_assam
-  type: html
+    - https://covid19.assam.gov.in/all-districts/
+  type: image
+  url: _inputs/as.jpeg
 
 
 br:
   name: Bihar
   state_code: BR
-  url:
+  automatic: False
   url_sources:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna
-  type: html
+  type: image
+  # url: _inputs/br1.jpeg
+  url: _inputs/br2.jpeg
+  config:
+    translation: True
 
 
 ch:
@@ -138,18 +162,13 @@ gj:
 hp:
   name: Himachal Pradesh
   state_code: HP
-  url:
   url_sources:
     - https://twitter.com/nhm_hp
   type: image
+  url: _inputs/hp.jpeg
   config:
     starting_text: auto
     ending_text: auto
-    translation:
-      enable: False
-      dict_file: hp_districts.meta
-    x: 0
-    y: 0
 
 hr:
   name: Haryana
@@ -162,8 +181,8 @@ hr:
   automatic: True
   config:
     page: 2
-    start_key: 'Gurugram'
-    end_key: 'Total'
+    start_key: Gurugram
+    end_key: Total
 
 
 # TODO - unable to fetch data due to cross origin
@@ -182,17 +201,16 @@ jh:
 jk:
   name: Jammu and Kashmir
   state_code: JK
-  url:
   url_sources:
     - https://twitter.com/diprjk
-  type: html
+  type: image
+  url: _inputs/jk.jpeg
+
 
 ka:
   name: Karnataka
   state_code: KA
   automatic: False
-  # test it against locally saved file
-  # url: file:///Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/KA.pdf
   url_sources:
     - https://twitter.com/DHFWKA
   # append the google drive file's id to the below url to download PDF
@@ -210,18 +228,16 @@ ka:
 kl:
   name: Kerala
   state_code: KL
-  # url: https://dashboard.kerala.gov.in/index.php
   url_sources:
     - https://twitter.com/CMOKerala
+    - https://dashboard.kerala.gov.in/index.php
+    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
-  url: kl.pdf
+  url: _inputs/kl.pdf
   config:
     page: 4
     start_key: District
     end_key: Total
-
-# KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-
 
 la:
   name: Ladakh
@@ -261,46 +277,48 @@ ml:
 mn:
   name: Manipur
   state_code: MN
-  url:
   url_sources:
     - https://twitter.com/airnews_imphal
     - https://twitter.com/imphalrob
     - https://twitter.com/diprmanipur
   type:
+  url:
 
 mp:
   name: Madhya Pradesh
   state_code: MP
-  url:
   url_sources:
     - https://twitter.com/JansamparkMP
     - https://twitter.com/healthminmp
-  type: html
+  type: image
+  url:
 
 
 mz:
   name: Mizoram
   state_code: MZ
-  url: https://mcovid19.mizoram.gov.in/api/home-stats
+  automatic: False
   url_sources:
     - https://twitter.com/dipr_mizoram
-  type: html
+  # type: html
+  # url: https://mcovid19.mizoram.gov.in/api/home-stats
+
 
 # TODO - can scrape using html / PDFs
 nl:
   name: Nagaland
   state_code: NL
-  automatic: True
-  url: https://covid19.nagaland.gov.in/
+  automatic: False
   url_sources:
     - https://twitter.com/pangnyu
     - https://twitter.com/mygovnagaland
-  type: html
+  # type: html
+  # url: https://covid19.nagaland.gov.in/
+
 
 or:
   name: Odisha
   state_code: OR
-  url: https://statedashboard.odisha.gov.in/
   url_sources:
     - https://twitter.com/HFWOdisha
     - https://twitter.com/HFWOdisha
@@ -309,43 +327,44 @@ or:
     - https://health.odisha.gov.in/js/distDtls.js
   automatic: True
   type: html
+  url: https://statedashboard.odisha.gov.in/
 
 pb:
   name: Punjab
   state_code: PB
-  url:
   url_sources:
     - https://twitter.com/ani
     - https://twitter.com/DiveshSpeaks
-  type: pdf
-  config:
-    start_key: Ludhiana
-    end_key: Total
-
+  # type: pdf
+  # url:
+  # config:
+  #   page:
+  #   start_key: Ludhiana
+  #   end_key: Total
 
 
 py:
   name: Puducherry
   state_code: PY
   automatic: True
-  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
   url_sources:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
   type: html
+  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
 
 rj:
   name: Rajasthan
   state_code: RJ
   # image address is extracted from `http://www.rajswasthya.nic.in/`
   automatic: False
-  url: /Users/i536332/Documents/DK/covid19bharat_scrapers/inputs/rj.jpeg
   url_sources:
     - https://twitter.com/DDNewsRajasthan
     - https://twitter.com/airnews_jaipur
     - https://twitter.com/avinashkalla
     - https://twitter.com/dineshkumawat
   type: image
+  url: _inputs/rj.jpeg
   config:
     starting_text: auto
     ending_text: auto
@@ -358,65 +377,74 @@ rj:
 sk:
   name: Sikkim
   state_code: SK
-  url:
   url_sources:
     - https://twitter.com/airnews_gangtok
     - https://twitter.com/sikkimgovt
+  type: image
+  url: _inputs/sk.jpeg
 
 tn:
   name: Tamil Nadu
   state_code: TN
   automatic: False
   # use locally saved file
-  url: /Users/i536332/Documents/DK/covid19bharat_scrapers/automation/.tmp/TN.pdf
   url_sources:
     - https://twitter.com/ani
     - '@TN_Together_AgainstCorona Telegram channel'
   type: pdf
+  url: _inputs/TN.pdf
   config:
     page: 3
+    start_key: auto
+    end_key: auto
 
 tg:
   name: Telangana
   state_code: TG
-  url:
+  automatic: False
   url_sources:
     - https://twitter.com/Eatala_Rajender
     - https://twitter.com/dgrsrao
-  type: html
+  # type: html
+  # url:
+
 
 tr:
   name: Tripura
   automatic: True
   state_code: TR
-  url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
   url_sources:
     - https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
     - https://twitter.com/HeadlinesTripu2
     - https://twitter.com/BjpBiplab
   type: html
+  url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
 
 
 up:
   name: Uttar Pradesh
   state_code: UP
-  url:
   url_sources:
     - https://twitter.com/shalabhTOI
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
   type: pdf
+  url:
+  config:
+    auto_type: ocr1
 
 
 ut:
   name: Uttarakhand
   state_code: UT
-  url:
   url_sources:
     - https://twitter.com/bhadrijee
     - https://twitter.com/PIBDehradun
     - https://twitter.com/ddnews_dehradun
-  type: html
+  # type: pdf
+  # url: _inputs/ut.pdf
+  # config:
+  #   page: 6
 
 
 wb:
@@ -425,12 +453,14 @@ wb:
   # get pdf links from the html and then parse PDFs
   # sample PDF file link = https://www.wbhealth.gov.in/uploaded_files/corona/WB_DHFW_Bulletin_25TH_SEP_REPORT_FINAL.pdf
   automatic: False
-  url: https://www.wbhealth.gov.in/pages/corona/bulletin
   url_sources:
     - https://www.wbhealth.gov.in/pages/corona/bulletin
   type: pdf
+  url: _inputs/wb.pdf
   config:
     page: 2
+    start_key: Alipurduar
+    end_key: TOTAL
 
 # Vaccine VC, https://api.cowin.gov.in/api/v1/reports/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
 # VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/
