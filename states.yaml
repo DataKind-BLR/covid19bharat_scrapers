@@ -263,6 +263,7 @@ mh:
 ml:
   name: Meghalaya
   state_code: ML
+  automatic: True
   url_sources:
     - https://twitter.com/SangmaConrad
     - https://twitter.com/ddnewsshillong

@@ -22,14 +22,12 @@ class DeltaCalculator:
         self.name_mapping = {}
         self.load_meta_data()
 
+    # TODO - there are unassigned states in the JSON being built here...
     def build_json(self):
         """
         :rtype: object
         """
-        decoded_content = requests.request("get",
-                                           "https://data.covid19india.org/csv/latest/district_wise.csv").content.decode(
-            'utf-8')
-
+        decoded_content = requests.request("get", 'https://data.covid19india.org/csv/latest/district_wise.csv').content.decode('utf-8')
         csv_reader = csv.reader(decoded_content.splitlines(), delimiter=',')
         rows = list(csv_reader)
         for index, row in enumerate(rows):
@@ -58,7 +56,7 @@ class DeltaCalculator:
         """
         :return: load data into name_mapping dict
         """
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "name_mapping.meta"), "r", encoding="utf-8") as meta_file:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "delta_mapping.meta"), "r", encoding="utf-8") as meta_file:
             for line in meta_file:
                 line_array = line.split(',')
                 if line_array[0] not in self.name_mapping:
@@ -68,16 +66,18 @@ class DeltaCalculator:
                 current_dictionary[line_array[1].strip()] = re.sub('\n', '', line_array[2].strip())
                 self.name_mapping[line_array[0]] = current_dictionary
 
-    def get_state_data_from_site(self, state_name, state_date_from_state_dashboard, options):
+    def get_state_data_from_site(self, state_name, live_data, options='full'):
         """
+        Eg: deltaCalculator.getStateDataFromSite("Arunachal Pradesh", districtArray, option). The value for options are: full/detailed/<empty>. These values are passed via command line.
         :param state_name:
-        :param state_date_from_state_dashboard:
+        :param live_data:
         :param options:
         :return: print all deltas
         """
 
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
+
         print("\n" + '*' * 20 + state_name + '*' * 20)
         try:
             name_mapping = self.name_mapping[state_name]
@@ -92,12 +92,12 @@ class DeltaCalculator:
         districts = []
         error_array = []
 
-        for district_details in state_date_from_state_dashboard:
+        for district_details in live_data:
             district_name = ""
             try:
-                district_name = name_mapping[district_details['district_name']] \
-                    if district_details['district_name'] in name_mapping \
-                    else district_details['district_name']
+                district_name = name_mapping[district_details['districtName']] \
+                    if district_details['districtName'] in name_mapping \
+                    else district_details['districtName']
 
                 confirmed_delta = \
                     district_details['confirmed'] - state_data[district_name]['confirmed'] \

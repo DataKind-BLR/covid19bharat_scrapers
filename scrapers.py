@@ -32,7 +32,7 @@ import requests
 import datetime
 import pdftotext
 from bs4 import BeautifulSoup
-# from deltaCalculator import DeltaCalculator
+from delta_calculator import DeltaCalculator
 
 
 CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_cache')
@@ -203,7 +203,7 @@ def ap_get_data(opt):
     # Ignoring 1st row containing table headers
     d = row.find_all('td')
     districts_data.append({
-      'district_name': d[0].get_text(),
+      'districtName': d[0].get_text(),
       'confirmed': int(d[1].get_text().strip()),
       'recovered': int(d[2].get_text().strip()),
       'deceased': int(d[3].get_text().strip())
@@ -428,7 +428,7 @@ def gj_get_data(opt):
     # Ignoring 1st row containing table headers
     d = row.find_all('td')
     districts_data.append({
-      'district_name': d[0].get_text(),
+      'districtName': d[0].get_text(),
       'confirmed': int(d[1].get_text().strip()),
       'recovered': int(d[3].get_text().strip()),
       'deceased': int(d[5].get_text().strip())
@@ -722,14 +722,14 @@ def la_get_data(opt):
     )
   ).split(' ')
 
-  district_dictionary['district_name'] = confirmed_array[0]
+  district_dictionary['districtName'] = confirmed_array[0]
   district_dictionary['confirmed'] = int(confirmed_array[1])
   district_dictionary['recovered'] = int(discharged_array[1])
   district_dictionary['deceased'] = -999
   district_data.append(district_dictionary)
 
   district_dictionary = {
-    'district_name': confirmed_array[2],
+    'districtName': confirmed_array[2],
     'confirmed': int(confirmed_array[3]),
     'recovered': int(discharged_array[3]),
     'deceased': -999
@@ -945,7 +945,7 @@ def or_get_data(opt):
 
   for d in fetched_data:
     district_data.append({
-      'district_name': d['vchDistrictName'],
+      'districtName': d['vchDistrictName'],
       'confirmed': int(d['intConfirmed']),
       'recovered': int(d['intRecovered']),
       'deceased': int(d['intDeceased']) + int(d['intOthDeceased'])
@@ -1025,7 +1025,7 @@ def py_get_data(opt):
     data_points = row.find_all('td')
 
     district_dictionary = {
-      'district_name': data_points[0].get_text().strip(),
+      'districtName': data_points[0].get_text().strip(),
       'confirmed': int(data_points[1].get_text().strip()),
       'recovered': int(data_points[2].get_text().strip()),
       'deceased': int(data_points[4].get_text().strip())
@@ -1204,7 +1204,7 @@ def tr_get_data(opt):
   for index, row in enumerate(table):
     data_points = row.find_all("td")
     district_dictionary = {
-      'district_name': data_points[1].get_text().strip(),
+      'districtName': data_points[1].get_text().strip(),
       'confirmed': int(data_points[8].get_text().strip()),
       'recovered': int(data_points[10].get_text().strip()),
       'deceased': int(data_points[12].get_text().strip())
@@ -1438,10 +1438,13 @@ if __name__ == '__main__':
     live_data = fetch_data(states_all[state_code])
     print(live_data)
 
+  print('*************************************************************************************')
   # TODO - get delta for states
-  # delta = delta_calculator.get_state_data_from_site(
-  #   states_all[state_code]['name'],
-  #   live_data,
-  #   states_all[state_code]['type']
-  # )
+  dc = DeltaCalculator()
+  delta = dc.get_state_data_from_site(
+    states_all[state_code]['name'],
+    live_data,
+    'full'
+  )
+  print(delta)
 
