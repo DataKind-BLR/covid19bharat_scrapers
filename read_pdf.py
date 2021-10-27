@@ -142,36 +142,4 @@ def tn_format_line(row):
   line = row[1] + "," + row[2] + "," + row[3] + "," + row[4] +  "," + row[5] + "\n"
   return line
 
-# def tn_custom_pdf_reader(opt):
-#   line = '|'.join(row)
-
-#   if 'Ariyalur' in line:
-#     startedReadingDistricts = True
-#   if 'Total' in line:
-#     startedReadingDistricts = False
-
-#   if startedReadingDistricts == False:
-#     continue
-
-#   line = line.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
-#   linesArray = line.split('|')
-
-#   if len(linesArray) < 6:
-#     print("--> Ignoring line: {} due to less columns".format(line))
-#     continue
-
-#   if 'Airport' in line:
-#     airportConfirmedCount += int(linesArray[2])
-#     airportRecoveredCount += int(linesArray[3])
-#     airportDeceasedCount += int(linesArray[5])
-#     if airportRun == 1:
-#       airportRun += 1
-#       continue
-#     else:
-#       print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
-#       continue
-#   if 'Railway' in line:
-#     print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
-#     continue
-
 ## ------------------------ Custom format line functions for specific states END
