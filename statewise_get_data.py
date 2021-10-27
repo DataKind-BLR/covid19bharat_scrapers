@@ -1,4 +1,5 @@
 import re
+import json
 import requests
 import datetime
 
@@ -30,30 +31,8 @@ def ap_get_data(opt):
   return districts_data
 
 def an_get_data(opt):
-  global pageId
-  print("Date, State, First Dose, Second Dose, Total Doses")
-
-  lookback = int(opt['config']['page']) if len(opt['config']['page']) != 0 else 0
-  for day in range(lookback, -1, -1):
-    today = (datetime.date.today() - datetime.timedelta(days = day)).strftime("%Y-%m-%d")
-    fileName=today+"-at-07-00-AM.pdf"
-
-    readFileFromURLV2(metaDictionary['VCMohfw'].url + fileName, "VCMohfw", "A & N Islands", "")
-    dadra = {'firstDose': 0, 'secondDose': 0, 'totalDose': 0}
-
-    try:
-      with open(".tmp/vcm.csv", "r") as upFile:
-        for line in upFile:
-          if "Dadra" in line or "Daman" in line:
-            dadra['firstDose'] += int(line.split(',')[1])
-            dadra['secondDose'] += int(line.split(',')[2])
-            dadra['totalDose'] += int(line.split(',')[3])
-            continue
-          print(today + "," + line, end = "")
-
-      print("{}, DnH, {}, {}, {}".format(today, dadra['firstDose'], dadra['secondDose'], dadra['totalDose']))
-    except FileNotFoundError:
-      print("br.txt missing. Generate through pdf or ocr and rerun.")
+  print('Fetching AN data', opt)
+  print('You\'ve got to do this manually looking at the tweet/image')
 
 def ar_get_data(opt):
   print('Fetching AR data', opt)
@@ -113,7 +92,7 @@ def as_get_data(opt):
           print("{},Assam,AS,{},Hospitalized".format(linesArray[0].strip(), linesArray[len(linesArray) - 1].strip()))
 
   except FileNotFoundError:
-    print("ass.txt missing. Generate through pdf or ocr and rerun.")
+    print("as.txt missing. Generate through pdf or ocr and rerun.")
 
 def br_get_data(opt):
   print('Fetching BR data', opt)
@@ -672,6 +651,8 @@ def mp_get_data(opt):
       isIgnoreFlagSet = False
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
+        import pdb
+        pdb.set_trace()
         if 'Total' in line or isIgnoreFlagSet == True:
           isIgnoreFlagSet = True
           print("--> Ignoring {} ".format(line))
@@ -694,7 +675,7 @@ def mp_get_data(opt):
           continue
     upFile.close()
   except FileNotFoundError:
-    print("rj.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
 
   return districts_data
 
@@ -814,8 +795,7 @@ def pb_get_data(opt):
         for line in upFile:
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
-
-          if len(linesArray) != 5:
+          if len(linesArray) != 6:
             print("--> Issue with {}".format(linesArray))
             continue
           if linesArray[0].strip() == "Total":
@@ -829,7 +809,7 @@ def pb_get_data(opt):
 
       upFile.close()
     except FileNotFoundError:
-      print("pb.txt missing. Generate through pdf or ocr and rerun.")
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
     return districts_data
 
 def py_get_data(opt):
@@ -1101,38 +1081,43 @@ def up_get_data(opt):
 def ut_get_data(opt):
   print('Fetching UT data', opt)
 
-  read_pdf_from_url(opt)
+  if opt['type'] == 'pdf':
+    read_pdf_from_url(opt)
 
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-  ignoreLines = False
-  try:
-    with open(OUTPUT_FILE, "r") as upFile:
-      for line in upFile:
-        if ignoreLines == True:
-          continue
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    ignoreLines = False
+    try:
+      with open(OUTPUT_FILE, "r") as upFile:
+        for line in upFile:
+          if ignoreLines == True:
+            continue
 
-        if 'Total' in line:
-          ignoreLines = True
-          continue
+          if 'Total' in line:
+            ignoreLines = True
+            continue
 
-        linesArray = line.split('|')[0].split(',')
-        if len(linesArray) != 6:
-          print("--> Issue with {}".format(linesArray))
-          continue
-        districtDictionary = {}
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1])
-        districtDictionary['recovered'] = int(linesArray[2])
-        districtDictionary['deceased'] = int(linesArray[4])
-        districtDictionary['migrated'] = int(linesArray[5])
-        districts_data.append(districtDictionary)
+          linesArray = line.split('|')[0].split(',')
+          if len(linesArray) != 6:
+            print("--> Issue with {}".format(linesArray))
+            continue
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[4])
+          districtDictionary['migrated'] = int(linesArray[5])
+          districts_data.append(districtDictionary)
 
-    upFile.close()
-  except FileNotFoundError:
-    print("br.txt missing. Generate through pdf or ocr and rerun.")
-  return districts_data
+      upFile.close()
+    except FileNotFoundError:
+      print("br.txt missing. Generate through pdf or ocr and rerun.")
+    return districts_data
+
+  elif opt['type'] == 'image':
+    pass
+    # run for images
 
 def wb_get_data(opt):
   print('Fetching WB data', opt)
@@ -1163,3 +1148,32 @@ def wb_get_data(opt):
   return districts_data
 
 ## ------------------------ <STATE_CODE>_get_data functions END HERE
+
+
+def vaccination_data(opt):
+  ## TODO - looks like this is vaccination data, not cases
+  print("Date, State, First Dose, Second Dose, Total Doses")
+
+  lookback = int(opt['config']['page']) if len(opt['config']['page']) != 0 else 0
+  for day in range(lookback, -1, -1):
+    today = (datetime.date.today() - datetime.timedelta(days = day)).strftime("%Y-%m-%d")
+    fileName=today+"-at-07-00-AM.pdf"
+
+    read_pdf(opt)
+
+    dadra = {'firstDose': 0, 'secondDose': 0, 'totalDose': 0}
+
+    try:
+      with open("vcm.csv", "r") as upFile:
+        for line in upFile:
+          if "Dadra" in line or "Daman" in line:
+            dadra['firstDose'] += int(line.split(',')[1])
+            dadra['secondDose'] += int(line.split(',')[2])
+            dadra['totalDose'] += int(line.split(',')[3])
+            continue
+          print(today + "," + line, end = "")
+
+      print("{}, DnH, {}, {}, {}".format(today, dadra['firstDose'], dadra['secondDose'], dadra['totalDose']))
+    except FileNotFoundError:
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
+    return dadra
