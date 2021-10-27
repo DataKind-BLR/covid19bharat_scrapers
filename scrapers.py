@@ -51,7 +51,7 @@ def fetch_data(st_obj):
   '''
   for a given state object, fetch the details from url
 
-  :state:  object as contained in automation.yaml
+  :state:  object as contained in states.yaml
     {
       name: ...
       state_code: ...
