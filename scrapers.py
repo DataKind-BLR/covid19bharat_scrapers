@@ -259,7 +259,6 @@ def ar_get_data(opt):
         print("--> Issue with {}".format(linesArray))
         continue
 
-
       if linesArray[0].strip() == "Capital Complex" or linesArray[0].strip() == "Papum Pare":
         additionalDistrictInfo['confirmed'] += int(linesArray[5])
         additionalDistrictInfo['recovered'] += int(linesArray[12])
@@ -757,23 +756,70 @@ def mh_get_data(opt):
 def ml_get_data(opt):
   print('Fetching ML data', opt)
 
-  run_for_ocr(opt)
+  if opt['type'] == 'image':
+    run_for_ocr(opt)
 
-  districts_data = []
-  with open(OUTPUT_FILE, "r") as mlFile:
-    for line in mlFile:
-      linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 8:
-        print("--> Issue with {}".format(linesArray))
-        continue
+    districts_data = []
+    with open(OUTPUT_FILE, "r") as mlFile:
+      for line in mlFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 8:
+          print("--> Issue with {}".format(linesArray))
+          continue
 
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[5].strip())
+        districtDictionary['recovered'] = int(linesArray[6].strip())
+        districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
+        districts_data.append(districtDictionary)
+    return districts_data
+
+  elif opt['type'] == 'html':
+    response = requests.request("GET", opt['url'])
+    authKey = json.loads(response.text)['key']
+
+    url = "https://mbdasankalp.in/api/elasticsearch/aggregation/or/db/merge?access_token=" + authKey
+
+    payload = "{\"aggregation\":{\"XAxisHeaders\":[{\"TagId\":\"5dd151b22fc63e490ca55ad6\",\"Header\":false,\"dbId\":\"5f395a260deffa1bd752be4e\"}],\"IsXaxisParallel\":false,\"YAxisHeaders\":[{\"Operator\":\"COUNT_DISTINCT\",\"isHousehold\":true,\"Header\":false,\"dbId\":\"5f395a260deffa1bd752be4e\"}],\"IsYaxisParallel\":true,\"YAxisFormulae\":[{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"9100b461-5d86-47f9-b11c-6d48f90f9cf9\",\"isFormulaAxis\":true,\"formulaId\":\"5f395d6f0deffa1bd752bee8\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]},{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"5b94c49f-7c8e-4bdf-9c8b-e7af4e53e14d\",\"isFormulaAxis\":true,\"formulaId\":\"5f395dba0deffa1bd752bef2\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]},{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"3a36866c-956d-48b2-a47c-1149a0334f29\",\"isFormulaAxis\":true,\"formulaId\":\"5f395dd80deffa1bd752bef5\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]},{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"a714425e-e78f-4dd7-833a-636a3bb850ca\",\"isFormulaAxis\":true,\"formulaId\":\"5f395d9a0deffa1bd752beef\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]}]},\"dbId\":\"5f395a260deffa1bd752be4e\",\"tagFilters\":[],\"sorting\":{\"axis\":{\"id\":\"5f395d6f0deffa1bd752bee8\",\"axisId\":\"9100b461-5d86-47f9-b11c-6d48f90f9cf9\",\"operator\":\"rowcount\"},\"sort\":{\"orderBy\":\"count\",\"order\":\"desc\"},\"size\":9999,\"enabled\":true,\"histogram\":false,\"timeseries\":false},\"customBins\":[],\"tagStatus\":true,\"boxplot\":false,\"requestedDbs\":{\"5f395a260deffa1bd752be4e\":{}}}"
+    headers = {
+      'Origin': 'https://mbdasankalp.in',
+      'Referer': 'https://mbdasankalp.in/render/chart/5f4a8e961dbba63b625ff002?c=f7f7f7&bc=121212&key=' + authKey,
+      'Host': 'mbdasankalp.in',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Length': '1399'
+    }
+
+    response = requests.request("POST", url, headers=headers, data = payload)
+    stateDashboard = json.loads(response.text.encode('utf8'))
+
+    districts_data = []
+    for data in stateDashboard[0]:
       districtDictionary = {}
-      districtDictionary['districtName'] = linesArray[0].strip()
-      districtDictionary['confirmed'] = int(linesArray[5].strip())
-      districtDictionary['recovered'] = int(linesArray[6].strip())
-      districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
+      districtDictionary['districtName'] = data["name"]
+      for value in data["value"]:
+        try:
+          if value["formulaId"] == "5f395d6f0deffa1bd752bee8":
+            districtDictionary['confirmed'] = int(value["value"])
+          if value["formulaId"] == "5f395dba0deffa1bd752bef2":
+            districtDictionary['recovered'] = int(value["value"])
+          if value["formulaId"] == "5f395dd80deffa1bd752bef5":
+            districtDictionary['deceased'] = int(value["value"])
+        except KeyError:
+          continue
       districts_data.append(districtDictionary)
-  return districts_data
+    # deltaCalculator.getStateDataFromSite("Meghalaya", districts_data, option)
+    return districts_data
+
+    # districts_data = []
+    # for districtDetails in stateDashboard['features']:
+    #   districtDictionary = {}
+    #   districtDictionary['districtName'] = districtDetails['attributes']['Name']
+    #   districtDictionary['confirmed'] = districtDetails['attributes']['Positive']
+    #   districtDictionary['recovered'] = districtDetails['attributes']['Recovered']
+    #   districtDictionary['deceased'] = districtDetails['attributes']['Deceasesd']
+    #   districts_data.append(districtDictionary)
 
 def mn_get_data(opt):
   print('Fetching MN data', opt)

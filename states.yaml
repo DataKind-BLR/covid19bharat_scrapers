@@ -268,10 +268,10 @@ ml:
     - https://twitter.com/ddnewsshillong
     - https://twitter.com/pibshillong
     - https://twitter.com/ShillongTimesIn
-  # type: html
-  # url: https://services7.arcgis.com/nzBTI19PTHBZaEPT/arcgis/rest/services/Admin_Boundary/FeatureServer/1/query?f=json&returnGeometry=false&outFields=*&where=1=1
-  type: image
-  url: _inputs/ml.jpeg
+  type: html
+  url: https://mbdasankalp.in/auth/local/embed
+  # type: image
+  # url: _inputs/ml.jpeg
 
 mn:
   name: Manipur
