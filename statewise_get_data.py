@@ -1,5 +1,7 @@
 import re
 import json
+import csv          # only used for TN
+import camelot      # only used for TN
 import requests
 import datetime
 
@@ -285,7 +287,7 @@ def hr_get_data(opt):
   linesArray = []
   districtDictionary = {}
   districts_data = []
-  with open("hr.csv", "r") as upFile:
+  with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
     for line in upFile:
       linesArray = line.split(',')
       if len(linesArray) != 4:
@@ -403,7 +405,7 @@ def ka_get_data(opt):
     opt['url'] += fileId
     print("--> Downloading using: {}".format(opt['url']))
 
-  # read & generate pdf.txt file for the given url
+  # read & generate .pdf.txt file for the given url
   read_pdf_from_url(opt)
 
   try:
@@ -423,7 +425,7 @@ def ka_get_data(opt):
     upFile.close()
 
     if runDeceased == True:
-      os.system("python3 kaautomation.py d " + str(startId) + " " + str(endId))
+      os.system("python3 automation/kaautomation.py d " + str(startId) + " " + str(endId))
 
   except FileNotFoundError:
     print("output.txt missing. Generate through pdf or ocr and rerun.")
@@ -724,11 +726,10 @@ def nl_get_data(opt):
 
     upFile.close()
   except FileNotFoundError:
-    print("hr.csv missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 def or_get_data(opt):
-  temp_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'or.csv')
   cmd = ' | '.join([
     "curl -sk {}".format(opt['url']),
     "grep -i string | grep -v legend",
@@ -738,7 +739,7 @@ def or_get_data(opt):
 
   district_data = []
   fetched_data = []
-  with open(temp_file, 'r', encoding='utf-8') as meta_file:
+  with open('{}.csv'.format(opt['state_code'].lower()), 'r', encoding='utf-8') as meta_file:
     for line in meta_file:
       fetched_data = json.loads(line)
 
@@ -749,9 +750,6 @@ def or_get_data(opt):
       'recovered': int(d['intRecovered']),
       'deceased': int(d['intDeceased']) + int(d['intOthDeceased'])
     })
-
-  # delete temp file after printed
-  os.system('rm -f {}'.format(temp_file))
   return district_data
 
 def pb_get_data(opt):
@@ -900,67 +898,67 @@ def tn_get_data(opt):
     #   open("tn.pdf", 'wb').write(r.content)
 
     # try:
-    #   with open("tn.pdf", "rb") as f:
+    #   with open(opt['url'], 'rb') as f:
     #     pdf = pdftotext.PDF(f)
     # except FileNotFoundError:
-    #   print("Make sure tn.pdf is present in the current folder and rerun the script! Arigatou gozaimasu.")
+    #   print('Make sure tn.pdf is present in the current folder and rerun the script! Arigatou gozaimasu.')
     #   return
 
-    # tables = camelot.read_pdf('tn.pdf',strip_text='\n', pages="7", split_text = True)
-    # tables[0].to_csv('tn.pdf.txt')
+    tables = camelot.read_pdf(opt['url'],strip_text='\n', pages=opt['config']['page'], split_text = True)
+    tables[0].to_csv('tn.pdf.txt')
 
-    # tnFile = open('tn.pdf.txt', 'r')
-    # lines = tnFile.readlines()
-    # tnOutputFile = open('tn.csv', 'w')
+    tnFile = open('tn.pdf.txt', 'r')
+    lines = tnFile.readlines()
+    tnOutputFile = open('tn.csv', 'w')
 
-    # startedReadingDistricts = False
-    # airportRun = 1
-    # airportConfirmedCount = 0
-    # airportRecoveredCount = 0
-    # airportDeceasedCount = 0
-    # with open('tn.pdf.txt', newline='') as csvfile:
-    #   rowReader = csv.reader(csvfile, delimiter=',', quotechar='"')
-    #   line = ""
-    #   for row in rowReader:
-    #     line = '|'.join(row)
+    startedReadingDistricts = False
+    airportRun = 1
+    airportConfirmedCount = 0
+    airportRecoveredCount = 0
+    airportDeceasedCount = 0
+    with open('tn.pdf.txt', newline='') as csvfile:
+      rowReader = csv.reader(csvfile, delimiter=',', quotechar='"')
+      line = ""
+      for row in rowReader:
+        line = '|'.join(row)
 
-    #     if 'Ariyalur' in line:
-    #       startedReadingDistricts = True
-    #     if 'Total' in line:
-    #       startedReadingDistricts = False
+        if 'Ariyalur' in line:
+          startedReadingDistricts = True
+        if 'Total' in line:
+          startedReadingDistricts = False
 
-    #     if startedReadingDistricts == False:
-    #       continue
+        if startedReadingDistricts == False:
+          continue
 
-    #     line = line.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
-    #     linesArray = line.split('|')
+        line = line.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
+        linesArray = line.split('|')
 
-    #     if len(linesArray) < 6:
-    #       print("--> Ignoring line: {} due to less columns".format(line))
-    #       continue
+        if len(linesArray) < 6:
+          print("--> Ignoring line: {} due to less columns".format(line))
+          continue
 
-    #     if 'Airport' in line:
-    #       airportConfirmedCount += int(linesArray[2])
-    #       airportRecoveredCount += int(linesArray[3])
-    #       airportDeceasedCount += int(linesArray[5])
-    #       if airportRun == 1:
-    #         airportRun += 1
-    #         continue
-    #       else:
-    #         print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
-    #         continue
-    #     if 'Railway' in line:
-    #       print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
-    #       continue
+        if 'Airport' in line:
+          airportConfirmedCount += int(linesArray[2])
+          airportRecoveredCount += int(linesArray[3])
+          airportDeceasedCount += int(linesArray[5])
+          if airportRun == 1:
+            airportRun += 1
+            continue
+          else:
+            print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
+            continue
+        if 'Railway' in line:
+          print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
+          continue
 
-    #     print("{}, {}, {}, {}".format(linesArray[1], linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
+        print("{}, {}, {}, {}".format(linesArray[1], linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
 
-    # tnOutputFile.close()
+    tnOutputFile.close()
 
     linesArray = []
     districtDictionary = {}
     district_data = []
-    with open('tn.csv', "r") as upFile:
+    with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 4:
