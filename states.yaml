@@ -396,8 +396,8 @@ tn:
   url: _inputs/TN.pdf
   config:
     page: 7
-    start_key: auto
-    end_key: auto
+    start_key: Ariyalur
+    end_key: Total
 
 tg:
   name: Telangana
