@@ -1,6 +1,6 @@
 # Covid19Bharat Scrapers
 
-Example to extract from html dashboard (the url will be taken from `automation.yaml` file by default)
+Example to extract from html dashboard (the url will be taken from `states.yaml` file by default)
 ```bash
 $python scrapers.py --state_code GJ
 ```
