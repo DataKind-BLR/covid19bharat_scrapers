@@ -183,8 +183,6 @@ hr:
     start_key: Gurugram
     end_key: Total
 
-
-# TODO - unable to fetch data due to cross origin
 jh:
   name: Jharkhand
   state_code: JH
@@ -193,9 +191,9 @@ jh:
     - https://twitter.com/Fobgumla
     - https://twitter.com/visualmedia2003
     - https://twitter.com/rnuddkranchi
-  automatic: True
-  type: html
-  url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
+  automatic: False
+  type: image
+  url: _inputs/jh.jpeg
 
 jk:
   name: Jammu and Kashmir

@@ -301,44 +301,32 @@ def hr_get_data(opt):
   upFile.close()
   return districts_data
 
-# TODO - Post request not running
-# FIX - use hornbill link (twitter)
 def jh_get_data(opt):
-  url = "https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=2021-03-25"
 
-  payload="date=" + (datetime.date.today() - datetime.timedelta(days = 0)).strftime("%Y-%m-%d")
-  headers = {
-    'Host': 'covid19dashboard.jharkhand.gov.in',
-    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Content-Length': '15',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-    'Cookie': 'ci_session=i6qt39o41i7gsopt23ipm083hla6994c'
-  }
+  run_for_ocr(opt)
 
-  response = requests.request("POST", url, headers=headers, data=payload)
-  soup = BeautifulSoup(response.content, 'html.parser')
-  districts = soup.find("table").find_all("tr")
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  try:
+    with open(OUTPUT_FILE, "r") as upFile:
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 8:
+          print("--> Issue with {}".format(linesArray))
+          continue
 
-  districtArray = []
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
+        districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
+        districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
 
-  districtStart = False
-  for district in districts:
-
-    if "Bokaro" in district.get_text() and districtStart == False:
-      districtStart = True
-
-    if districtStart == False:
-      continue
-
-    data = district.find_all("td")
-
-    if int(data[3].get_text()) != 0:
-      print("{},Jharkhand,JH,{},Hospitalized".format(data[1].get_text(), data[3].get_text()))
-    if int(data[4].get_text()) != 0:
-      print("{},Jharkhand,JH,{},Recovered".format(data[1].get_text(), data[4].get_text()))
-    if int(data[6].get_text()) != 0:
-      print("{},Jharkhand,JH,{},Deceased".format(data[1].get_text(), data[6].get_text()))
+        districts_data.append(districtDictionary)
+    upFile.close()
+  except FileNotFoundError:
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
 
 def jk_get_data(opt):
   print('Fetching JK data', opt)

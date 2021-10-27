@@ -140,11 +140,11 @@ if __name__ == '__main__':
 
   print('*************************************************************************************')
   # TODO - get delta for states
-  dc = DeltaCalculator()
-  delta = dc.get_state_data_from_site(
-    states_all[state_code]['name'],
-    live_data,
-    'full'
-  )
-  print(delta)
+  # dc = DeltaCalculator()
+  # delta = dc.get_state_data_from_site(
+  #   states_all[state_code]['name'],
+  #   live_data,
+  #   'full'
+  # )
+  # print(delta)
 

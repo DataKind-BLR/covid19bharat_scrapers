@@ -1,7 +1,9 @@
 import os
 
 def run_for_ocr(opt):
-  translation = False if not opt['config']['translation'] else True
+  translation = False
+  if 'config' in opt:
+     translation = False if not opt['config']['translation'] else opt['config']['translation']
 
   ## step 1 - run something to generate the poly.txt file
   print('Running ocr_vision.py file to generate poly.txt')
