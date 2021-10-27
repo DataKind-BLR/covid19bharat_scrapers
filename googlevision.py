@@ -343,20 +343,25 @@ def buildTranslationDictionary():
   originalStartingText = startingText
   originalEndingText = endingText
 
-  with open(translationFile, "r") as metaFile:
-    for line in metaFile:
-      if line.startswith('#'):
-        continue
-      lineArray = line.strip().split(',')
-      if len(startingText) != 0:
-        if originalStartingText.strip() == lineArray[1].strip():
-          startingText = startingText + "," + lineArray[0].strip()
+  meta_file = os.path.join(os.path.dirname(__file__), 'automation', translationFile)
 
-      if len(endingText) != 0:
-        if originalEndingText.strip() == lineArray[1].strip():
-          endingText = endingText + "," + lineArray[0].strip()
+  try:
+    with open(meta_file, "r") as metaFile:
+      for line in metaFile:
+        if line.startswith('#'):
+          continue
+        lineArray = line.strip().split(',')
+        if len(startingText) != 0:
+          if originalStartingText.strip() == lineArray[1].strip():
+            startingText = startingText + "," + lineArray[0].strip()
 
-      translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
+        if len(endingText) != 0:
+          if originalEndingText.strip() == lineArray[1].strip():
+            endingText = endingText + "," + lineArray[0].strip()
+
+        translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
+  except:
+    pass
 
 
 def printOutput():
@@ -495,7 +500,7 @@ def parseConfigFile(fileName):
     if key == "enableTranslation":
       enableTranslation = eval(value)
     if key == "translationFile":
-      translationFile = 'automation/' + value
+      translationFile = value
     if key == "xInterval":
       configxInterval = int(value)
     if key == "yInterval":
