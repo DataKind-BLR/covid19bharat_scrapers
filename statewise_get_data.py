@@ -1,7 +1,5 @@
 import re
 import json
-import csv          # only used for TN
-import camelot      # only used for TN
 import requests
 import datetime
 
@@ -893,67 +891,6 @@ def tn_get_data(opt):
 
   if opt['type'] == 'pdf':
     read_pdf_from_url(opt)
-    # if len(opt['url']) > 0:
-    #   r = requests.get(opt['url'], allow_redirects=True, verify=False)
-    #   open("tn.pdf", 'wb').write(r.content)
-
-    # try:
-    #   with open(opt['url'], 'rb') as f:
-    #     pdf = pdftotext.PDF(f)
-    # except FileNotFoundError:
-    #   print('Make sure tn.pdf is present in the current folder and rerun the script! Arigatou gozaimasu.')
-    #   return
-
-    tables = camelot.read_pdf(opt['url'],strip_text='\n', pages=opt['config']['page'], split_text = True)
-    tables[0].to_csv('tn.pdf.txt')
-
-    tnFile = open('tn.pdf.txt', 'r')
-    lines = tnFile.readlines()
-    tnOutputFile = open('tn.csv', 'w')
-
-    startedReadingDistricts = False
-    airportRun = 1
-    airportConfirmedCount = 0
-    airportRecoveredCount = 0
-    airportDeceasedCount = 0
-    with open('tn.pdf.txt', newline='') as csvfile:
-      rowReader = csv.reader(csvfile, delimiter=',', quotechar='"')
-      line = ""
-      for row in rowReader:
-        line = '|'.join(row)
-
-        if 'Ariyalur' in line:
-          startedReadingDistricts = True
-        if 'Total' in line:
-          startedReadingDistricts = False
-
-        if startedReadingDistricts == False:
-          continue
-
-        line = line.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
-        linesArray = line.split('|')
-
-        if len(linesArray) < 6:
-          print("--> Ignoring line: {} due to less columns".format(line))
-          continue
-
-        if 'Airport' in line:
-          airportConfirmedCount += int(linesArray[2])
-          airportRecoveredCount += int(linesArray[3])
-          airportDeceasedCount += int(linesArray[5])
-          if airportRun == 1:
-            airportRun += 1
-            continue
-          else:
-            print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
-            continue
-        if 'Railway' in line:
-          print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
-          continue
-
-        print("{}, {}, {}, {}".format(linesArray[1], linesArray[2], linesArray[3], linesArray[5]), file = tnOutputFile)
-
-    tnOutputFile.close()
 
     linesArray = []
     districtDictionary = {}
@@ -961,15 +898,15 @@ def tn_get_data(opt):
     with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
-        if len(linesArray) != 4:
+        if len(linesArray) != 5:
           print("--> Issue with {}".format(linesArray))
           continue
-        linesArray[3] = linesArray[3].replace('$', '')
+        linesArray[4] = linesArray[4].replace('$', '')
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(linesArray[1])
         districtDictionary['recovered'] = int(linesArray[2])
-        districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+        districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[4])) != 0 else 0
         district_data.append(districtDictionary)
 
     upFile.close()
