@@ -92,6 +92,17 @@ class DeltaCalculator:
         districts = []
         error_array = []
 
+        # ---->>>> TODO - take diff using dataframes
+        # import pdb
+        # pdb.set_trace()
+        # -----
+        # import pandas as pd
+        # df_live_data = pd.DataFrame(live_data)
+        # df_live_data['districtName'].replace(name_mapping, inplace=True)
+        # df_dashbaord_data = pd.DataFrame(state_data).T.reset_index().rename(columns={'index': 'districtName'})
+        # df_dashboard_data - df_live_data
+        #
+
         for district_details in live_data:
             district_name = ""
             try:
