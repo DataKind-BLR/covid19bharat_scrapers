@@ -172,12 +172,12 @@ hp:
 hr:
   name: Haryana
   state_code: HR
-  # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
-  type: pdf
-  url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
   url_sources:
     - https://twitter.com/ani, http://nhmharyana.gov.in/page?id=208
   automatic: True
+  # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
+  type: pdf
+  url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
   config:
     page: 2
     start_key: Gurugram

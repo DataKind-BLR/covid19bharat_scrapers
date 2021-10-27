@@ -574,7 +574,7 @@ def jk_get_data(opt):
           continue
     upFile.close()
   except FileNotFoundError:
-    print("jk.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 def ka_get_data(opt):
@@ -1440,11 +1440,11 @@ if __name__ == '__main__':
 
   print('*************************************************************************************')
   # TODO - get delta for states
-  dc = DeltaCalculator()
-  delta = dc.get_state_data_from_site(
-    states_all[state_code]['name'],
-    live_data,
-    'full'
-  )
-  print(delta)
+  # dc = DeltaCalculator()
+  # delta = dc.get_state_data_from_site(
+  #   states_all[state_code]['name'],
+  #   live_data,
+  #   'full'
+  # )
+  # print(delta)
 

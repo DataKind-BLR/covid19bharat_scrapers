@@ -97,11 +97,11 @@ class DeltaCalculator:
         # pdb.set_trace()
         # -----
         # import pandas as pd
-        # df_live_data = pd.DataFrame(live_data)
-        # df_live_data['districtName'].replace(name_mapping, inplace=True)
-        # df_dashbaord_data = pd.DataFrame(state_data).T.reset_index().rename(columns={'index': 'districtName'})
-        # df_dashboard_data - df_live_data
+        # df_live = pd.DataFrame(live_data)
+        # df_live['districtName'].replace(name_mapping, inplace=True).sort_values(by='districtName')
+        # df_dashboard = pd.DataFrame(state_data).T.reset_index().rename(columns={'index': 'districtName'}).sort_values(by='districtName')
         #
+        # Do a check if the order of the districts in both dataframes are the same, then take a diff
 
         for district_details in live_data:
             district_name = ""
@@ -164,7 +164,7 @@ class DeltaCalculator:
         :param districts:
         :return: Print in proper format
         """
-        with open("output2.txt", "w+", encoding="utf-8") as file:
+        with open("delta.txt", "w+", encoding="utf-8") as file:
             for index, data in enumerate(delta_array):
                 if data not in (0, "NA"):
                     print(f"{districts[index]},{state_name},{state_code},{data},{category}", file=file)
