@@ -1,5 +1,11 @@
 # Covid19Bharat Scrapers
 
+Setup
+```bash
+conda env create -f environment.yml
+conda activate scraper-covid19bharat
+```
+
 Example to extract from html dashboard (the url will be taken from `states.yaml` file by default)
 ```bash
 $python scrapers.py --state_code GJ
