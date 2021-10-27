@@ -302,6 +302,7 @@ def hr_get_data(opt):
   return districts_data
 
 # TODO - Post request not running
+# FIX - use hornbill link (twitter)
 def jh_get_data(opt):
   url = "https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=2021-03-25"
 
@@ -651,8 +652,6 @@ def mp_get_data(opt):
       isIgnoreFlagSet = False
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
-        import pdb
-        pdb.set_trace()
         if 'Total' in line or isIgnoreFlagSet == True:
           isIgnoreFlagSet = True
           print("--> Ignoring {} ".format(line))
@@ -946,6 +945,7 @@ def tr_get_data(opt):
 
   return district_data
 
+# TODO - make this run
 def up_get_data(opt):
   print('Fetching UP data', opt)
   errorCount = 0
@@ -986,7 +986,7 @@ def up_get_data(opt):
           else:
             typeOfAutomation = "ocr1"
           print("--> Switching to version {}. Error count breached.".format(typeOfAutomation))
-          UPGetData()
+          up_get_data()
           return
 
         if len(linesArray) != lengthOfArray:
