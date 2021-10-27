@@ -145,7 +145,7 @@ class DeltaCalculator:
                 migrated_delta_array.append(migrated_delta)
 
         if options == "full":
-            self.clear_delta_file("delta.txt")
+            self.clear_delta_file("_cache/delta.txt")
             self.print_full_details(
                 confirmed_delta_array, "Hospitalized", state_name, state_code, districts)
             self.print_full_details(
@@ -177,7 +177,7 @@ class DeltaCalculator:
         :return: Print in proper format
         """
         try:
-            with open("delta.txt", "a", encoding="utf-8") as file:
+            with open("_cache/delta.txt", "a", encoding="utf-8") as file:
                 for index, data in enumerate(delta_array):
                     if str(data) not in ("0", "NA"):
                         self.delta_changed = 1

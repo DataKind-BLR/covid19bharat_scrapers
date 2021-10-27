@@ -1,0 +1,1 @@
+- To store files created as a result of running the scraper
