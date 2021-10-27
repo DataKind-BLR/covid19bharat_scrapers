@@ -92,7 +92,7 @@ def as_get_data(opt):
           print("{},Assam,AS,{},Hospitalized".format(linesArray[0].strip(), linesArray[len(linesArray) - 1].strip()))
 
   except FileNotFoundError:
-    print("as.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
 
 def br_get_data(opt):
   print('Fetching BR data', opt)
@@ -118,7 +118,7 @@ def br_get_data(opt):
 
     upFile.close()
   except FileNotFoundError:
-    print("br.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 def ch_get_data(opt):
@@ -268,7 +268,7 @@ def hp_get_data(opt):
 
     upFile.close()
   except FileNotFoundError:
-    print("hp.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 def hr_get_data(opt):
@@ -371,7 +371,7 @@ def jk_get_data(opt):
           continue
     upFile.close()
   except FileNotFoundError:
-    print("jk.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 def ka_get_data(opt):
@@ -426,7 +426,7 @@ def ka_get_data(opt):
       os.system("python3 kaautomation.py d " + str(startId) + " " + str(endId))
 
   except FileNotFoundError:
-    print("ka.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
 
   return districts_data
 
@@ -866,7 +866,7 @@ def rj_get_data(opt):
 
     upFile.close()
   except FileNotFoundError:
-    print("rj.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
 
   return districtArray
 
@@ -1075,7 +1075,7 @@ def up_get_data(opt):
         districts_data.append(districtDictionary)
     upFile.close()
   except FileNotFoundError:
-    print("up.txt missing. Generate through pdf or ocr and rerun.")
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 def ut_get_data(opt):
@@ -1112,7 +1112,7 @@ def ut_get_data(opt):
 
       upFile.close()
     except FileNotFoundError:
-      print("br.txt missing. Generate through pdf or ocr and rerun.")
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
     return districts_data
 
   elif opt['type'] == 'image':
