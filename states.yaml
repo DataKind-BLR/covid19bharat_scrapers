@@ -188,7 +188,6 @@ hr:
 jh:
   name: Jharkhand
   state_code: JH
-  url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
   url_sources:
     - https://twitter.com/RanchiPIB
     - https://twitter.com/Fobgumla
@@ -196,6 +195,7 @@ jh:
     - https://twitter.com/rnuddkranchi
   automatic: True
   type: html
+  url: https://covid19dashboard.jharkhand.gov.in/Bulletin/GetTestCaseData?date=
 
 jk:
   name: Jammu and Kashmir
@@ -241,13 +241,13 @@ kl:
 la:
   name: Ladakh
   state_code: LA
-  url: http://covid.ladakh.gov.in/#dataInsights
   url_sources:
     - https://twitter.com/prasarbharti
     - http://covid.ladakh.gov.in/#dataInsights
     - https://twitter.com/DIPR_Leh
   automatic: True
   type: html
+  url: http://covid.ladakh.gov.in/#dataInsights
 
 mh:
   name: Maharashtra
@@ -277,12 +277,13 @@ ml:
 mn:
   name: Manipur
   state_code: MN
+  automatic: False
   url_sources:
     - https://twitter.com/airnews_imphal
     - https://twitter.com/imphalrob
     - https://twitter.com/diprmanipur
-  type:
-  url:
+  type: image
+  url: _inputs/mn.jpeg
 
 mp:
   name: Madhya Pradesh
@@ -291,7 +292,7 @@ mp:
     - https://twitter.com/JansamparkMP
     - https://twitter.com/healthminmp
   type: image
-  url:
+  url: _inputs/mp.jpeg
 
 mz:
   name: Mizoram
@@ -299,8 +300,8 @@ mz:
   automatic: False
   url_sources:
     - https://twitter.com/dipr_mizoram
-  # type: html
-  # url: https://mcovid19.mizoram.gov.in/api/home-stats
+  type: image
+  url: _inputs/mz.jpeg
 
 
 # TODO - can scrape using html / PDFs
@@ -311,9 +312,8 @@ nl:
   url_sources:
     - https://twitter.com/pangnyu
     - https://twitter.com/mygovnagaland
-  # type: html
-  # url: https://covid19.nagaland.gov.in/
-
+  type: image
+  url: _inputs/nl.jpeg
 
 or:
   name: Odisha
@@ -340,6 +340,8 @@ pb:
   #   page:
   #   start_key: Ludhiana
   #   end_key: Total
+  type: image
+  url: _inputs/pb3.jpeg
 
 
 py:
@@ -403,8 +405,8 @@ tg:
   url_sources:
     - https://twitter.com/Eatala_Rajender
     - https://twitter.com/dgrsrao
-  # type: html
-  # url:
+  type: image
+  url: _inputs/tg.jpeg
 
 
 tr:
@@ -419,6 +421,7 @@ tr:
   url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
 
 
+# TODO - up_get_data doesn't work for UP, the code is very different for this state, haven't tested
 up:
   name: Uttar Pradesh
   state_code: UP
@@ -428,10 +431,8 @@ up:
     - https://twitter.com/74_alok
   type: pdf
   url:
-  config:
-    auto_type: ocr1
 
-
+# TODO - this doesn't have codebase for scanning images & PDFs aren't available anymore
 ut:
   name: Uttarakhand
   state_code: UT
