@@ -167,5 +167,5 @@ class DeltaCalculator:
         with open("delta.txt", "w+", encoding="utf-8") as file:
             for index, data in enumerate(delta_array):
                 if data not in (0, "NA"):
-                    print(f"{districts[index]},{state_name},{state_code},{data},{category}", file=file)
-                    print(f"{districts[index]},{state_name},{state_code},{data},{category}")
+                    file.write("{},{},{},{},{}".format(districts[index], state_name, state_code, data, category))
+                    print("{},{},{},{},{}".format(districts[index], state_name, state_code, data, category))

@@ -1,7 +1,0 @@
-startingText:@@startingText@@
-enableTranslation:@@enableTranslation@@
-translationFile:@@statename@@_districts.meta
-yInterval:@@yInterval@@
-xInterval:@@xInterval@@
-houghTransform:@@houghTransform@@
-configMinLineLength:@@configMinLineLength@@
