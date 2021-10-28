@@ -715,6 +715,8 @@ def nl_get_data(opt):
   return districts_data
 
 def or_get_data(opt):
+  import os
+  temp_file = "./_cache/{}.csv".format(opt['state_code'].lower())
   cmd = ' | '.join([
     "curl -sk {}".format(opt['url']),
     "grep -i string | grep -v legend",
@@ -724,7 +726,7 @@ def or_get_data(opt):
 
   district_data = []
   fetched_data = []
-  with open('{}.csv'.format(opt['state_code'].lower()), 'r', encoding='utf-8') as meta_file:
+  with open(temp_file, 'r', encoding='utf-8') as meta_file:
     for line in meta_file:
       fetched_data = json.loads(line)
 
