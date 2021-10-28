@@ -430,6 +430,8 @@ up:
     - https://twitter.com/74_alok
   type: pdf
   url:
+  config:
+    translation: True
 
 # TODO - this doesn't have codebase for scanning images & PDFs aren't available anymore
 ut:
