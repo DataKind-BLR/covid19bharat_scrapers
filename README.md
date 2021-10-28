@@ -1,17 +1,28 @@
 # Covid19Bharat Scrapers
 
-Setup
+### Setup
+
+- If you're using Anaconda to create a virtual environment
 ```bash
 conda env create -f environment.yml
 conda activate scraper-covid19bharat
 ```
+- If you're on a flavor of Linux (e.g. Ubuntu) and using virtualenv to create a virtual environment
+```bash
+virtualenv -p python<pyversion> <path_to_env>/<name_of_environment>
+source <path_to_env>/<name_of_environment>/bin/activate
+sudo apt-get install  libpoppler-dev libpoppler-cpp-dev
+pip install -r linux_requirements.txt
+```
+---
+### Examples
 
-Example to extract from html dashboard (the url will be taken from `states.yaml` file by default)
+- To extract from html dashboard (the url will be taken from `states.yaml` file by default)
 ```bash
 $python scrapers.py --state_code GJ
 ```
 
-Example to overwrite settings already provided in yaml file:
+- To overwrite settings already provided in yaml file:
 ```bash
 $python scrapers.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
 ````
@@ -23,7 +34,7 @@ python scrapers.py --state_code ML --type image --url '/dir/path/to/ml.jpeg'
 
 NOTE: The `--url` parameter can either a direct link over the internet to the file or could be a path in your local directory
 
-
+---
 ## How does this work?
 
 Everything starts from `states.yaml` file where the configurations, urls and required parameters are added. This is being read by `scrapers.py` file and being executed for each state with the configurations provied. These configurations can be overwritten using the following parameters from the commandline. Based on the necessity of whether it's reading an image or a pdf, one of these 2 files is being called `read_ocr.py` or `read_pdf.py`

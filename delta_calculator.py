@@ -21,6 +21,7 @@ class DeltaCalculator:
         self.build_json()
         self.name_mapping = {}
         self.load_meta_data()
+        self.delta_changed = 0
 
     # TODO - there are unassigned states in the JSON being built here...
     def build_json(self):
@@ -78,7 +79,7 @@ class DeltaCalculator:
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
 
-        print("\n" + '*' * 20 + state_name + '*' * 20)
+        print("\n" + '*' * 20 + "Computing Delta for "+state_name + '*' * 20)
         try:
             name_mapping = self.name_mapping[state_name]
         except KeyError:
@@ -109,6 +110,9 @@ class DeltaCalculator:
                 district_name = name_mapping[district_details['districtName']] \
                     if district_details['districtName'] in name_mapping \
                     else district_details['districtName']
+
+                if "Total" in district_name:
+                    continue
 
                 confirmed_delta = \
                     district_details['confirmed'] - state_data[district_name]['confirmed'] \
@@ -141,6 +145,7 @@ class DeltaCalculator:
                 migrated_delta_array.append(migrated_delta)
 
         if options == "full":
+            self.clear_delta_file("_cache/delta.txt")
             self.print_full_details(
                 confirmed_delta_array, "Hospitalized", state_name, state_code, districts)
             self.print_full_details(
@@ -154,8 +159,15 @@ class DeltaCalculator:
             for error in error_array:
                 print(error)
 
+        return self.delta_changed
+
+
     @staticmethod
-    def print_full_details(delta_array, category, state_name, state_code, districts):
+    def clear_delta_file(file):
+        if os.path.isfile(file):
+            os.remove(file)
+
+    def print_full_details(self, delta_array, category, state_name, state_code, districts):
         """
         :param delta_array:
         :param category:
@@ -164,8 +176,12 @@ class DeltaCalculator:
         :param districts:
         :return: Print in proper format
         """
-        with open("delta.txt", "w+", encoding="utf-8") as file:
-            for index, data in enumerate(delta_array):
-                if data not in (0, "NA"):
-                    file.write("{},{},{},{},{}".format(districts[index], state_name, state_code, data, category))
-                    print("{},{},{},{},{}".format(districts[index], state_name, state_code, data, category))
+        try:
+            with open("_cache/delta.txt", "a", encoding="utf-8") as file:
+                for index, data in enumerate(delta_array):
+                    if str(data) not in ("0", "NA"):
+                        self.delta_changed = 1
+                        print(f"{districts[index]},{state_name},{state_code},{str(data)},{category}", file=file)
+                        print(f"{districts[index]},{state_name},{state_code},{str(data)},{category}")
+        except Exception as e:
+            print(f"Error in writing to delta file {e}")
