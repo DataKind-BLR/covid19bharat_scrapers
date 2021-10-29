@@ -8,10 +8,102 @@ from telegram_bot.util import build_menu, ocr_dict, pdf_dict, dash_dict, states_
 from telegram_bot.ocr_functions import ocr1, ocr2, pdf, dashboard, ka_detail, run_scraper
 import json
 import logging
+import pdb
+
+SENTINEL = dict()
 
 def entry(bot, update):
     print(update)
+    # MESSAGE & Is a REPLY
+    if update.message and update.message.reply_to_message:
+        try:
+            if update.message.document.mime_type == 'application/pdf':
+                pdf_file = update.message.document.get_file()
+                print('>>>>>>>>>>>>>>', pdf_file)
+                print(SENTINEL)
+            return
+        except Exception as e:
+            logging.error(e)
+
+    elif update.message:
+        # CMD /help, /test, /start
+        if update.message.text.startswith("/test"):
+            update.message.reply_text("200 OK!", parse_mode=telegram.ParseMode.MARKDOWN)
+            return
+
+        # /start - List of states & returns the state ID
+        if update.message.text.startswith("/start"):
+            button_list = []
+            for st_name in states_map.keys():
+                button_list.append(
+                    InlineKeyboardButton(
+                        st_name, callback_data=states_map[st_name]
+                    )
+                )
+            reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
+            bot.send_message(
+                chat_id=update.message.chat.id,
+                text="Which state do you want to fetch data for?",
+                reply_to_message_id=update.message.message_id,
+                reply_markup=reply_markup,
+            )
+            return
+
+        if update.message.text.startswith("/help"):
+            help_text = f"""
+            \n*OCR*
+            - Send the bulletin image to do OCR
+            - Errors and the results would be returned
+            - If there are errors, copy the extracted text and make corrections.
+            - Send it back to the text
+            - Reply to the message with `/ocr2 "Madhya Pradesh"`
+            \n*PDF*
+            - Send the URL of the pdf bulletin
+            - Choose the state. Default page number is 2.
+            - For using different page number, use the command like below
+            - `/pdf "Punjab" 3`
+            \n*DASHBOARD*
+            - `/dashboard`
+            - Choose the state
+            \n\n_Send `/test` for checking if the bot is online_"""
+
+            update.message.reply_text(
+                str(help_text), parse_mode=telegram.ParseMode.MARKDOWN
+            )
+            return
+
+    # CALLBACK - Select a State ID
+    if update.callback_query:
+        # get state name
+        STATE = update.callback_query.data
+        SENTINEL['state'] = STATE
+
+        bot.send_message(
+            chat_id=update.callback_query.message.chat.id,
+            text=f"Upload PDF for {STATE}"
+        )
+
+
+        # if update.callback_query.message.reply_to_message.text == "HR":
+        #     bot.send_chat_action(
+        #             chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
+        #         )
+        #     text_prev = update.message.text
+        #     text_replaced = text_prev.replace("“", '"').replace("”", '"')
+        #     text = shlex.split(text_replaced)
+        #     try:
+        #         if update.message.reply_to_message.document.mime_type == 'application/pdf':
+        #             pdf_file = update.message.reply_to_message.document.get_file()
+        #             ka_detail(bot,update.message.chat.id, pdf_file, text[1],text[2],text[3])
+        #             return
+        #     except Exception as e:
+        #         logging.error(e)
+
+
+def _entry(bot, update):
+    print(update)
     print('------------------------------')
+    pdb.set_trace()
 
     # try:
     #     # res = bot.send_message(chat_id="-1001429652488", text=update.to_json())
