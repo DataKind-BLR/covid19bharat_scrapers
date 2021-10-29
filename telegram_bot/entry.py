@@ -70,14 +70,24 @@ def entry(bot, update):
             return
 
         elif update.message.document and update.message.document.mime_type == 'application/pdf':
-            print("<><<><>><><><><><><><", SENTINEL, update.message.document.file_name)
+            # print("<><<><>><><><><><><><", SENTINEL, update.message.document.file_name)
+            pdf_path = '/tmp/{}.pdf'.format(SENTINEL['state_code'].lower())
             pdf_file = update.message.document.get_file()
-            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'])
+            pdf_file.download(pdf_path)
+            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'pdf', pdf_path)
 
         elif update.message.photo:
             print('this is a photo for', SENTINEL)
-            photo = update.message.reply_to_message.photo[-1]
-            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'])
+            photo = update.message.photo[-1]
+
+            # save the image inside _inputs
+            image_path = '/tmp/{}.jpg'.format(SENTINEL['state_code'].lower())
+            image_file = bot.get_file(photo.file_id)
+            image_file.download()
+
+            # rename file name to <datetime stamp_state_code>
+            # pass the path to run_scraper
+            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'image', image_path)
 
         else:
             print('this is something else complletely')

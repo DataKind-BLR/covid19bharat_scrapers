@@ -10,20 +10,26 @@ path_ocr = path_automation = path
 
 def generate_command():
     if type == 'pdf':
-        return ["python", "scrapers.py", "--state_code", state_code, '--type' , 'pdf', '--url', url]
+        return
     elif type == 'image':
-        return ["python", "scrapers.py", "--state_code", state_code, '--type' , 'image', '--url', url]
+        return
 
 
-def run_scraper(bot, chat_id, state_code):
-    """
-    Run the pdf automation when pdf links are passed
-    """
-    print('you are here......')
+def run_scraper(bot, chat_id, state_code, url_type, url):
+    '''
+    trigger scraper.py from here...
+    '''
+    if url_type == 'image':
+        cmd = ["python", "scrapers.py", "--state_code", state_code, '--type' , 'image', '--url', url]
+    elif url_type == 'pdf':
+        # TODO - get page number from user and scan for that...
+        cmd = ["python", "scrapers.py", "--state_code", state_code, '--type' , 'pdf', '--url', url]
+    elif url_type == 'html':
+        # command will read the dashboard url specified in `states.yaml` file by directly
+        cmd = ["python", "scrapers.py", "--state_code", state_code]
+
     dash_log_file = "_cache/bot_html_output.txt"
     dash_err_file = "_cache/bot_html_err.txt"
-    # python3 automation.py Tripura full
-    # NEW Eg: `python scrapers.py --state_code BR`
 
     logging.info(f"Dashboard fetch for {state_code}")
     try:
@@ -31,8 +37,7 @@ def run_scraper(bot, chat_id, state_code):
             with open(dash_err_file, "w") as err_file:
                 bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
                 p = subprocess.run(
-                    # ["python3", "automation.py", state_code, "full"],
-                    ["python", "scrapers.py", "--state_code", state_code],
+                    cmd,
                     cwd=path_automation,
                     stdout=log_file,
                     stderr=err_file,

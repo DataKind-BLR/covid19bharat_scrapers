@@ -274,9 +274,11 @@ def hp_get_data(opt):
 def hr_get_data(opt):
   print('fetching HR data', opt)
 
-  # always get for T - 1 day
-  today = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%d-%m-%Y")
-  opt['url'] = opt['url'] + today + '.' + opt['type']
+  if not opt['url'].endswith('.pdf'):
+    # always get for T - 1 day
+    today = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%d-%m-%Y")
+    opt['url'] = opt['url'] + today + '.' + opt['type']
+
   opt['config']['page'] = str(opt['config']['page'])
 
   read_pdf_from_url(opt)
