@@ -24,9 +24,13 @@ try:
     # If the token is available in the environment,
     # print it to a file
     VISIONAPI_TOKEN = os.environ["VISIONAPI_TOKEN"]
-    with open("visionapi.json", "w") as f:
-        json.dump(VISIONAPI_TOKEN, f)
-        # print(VISIONAPI_TOKEN, file=f)
+    # TODO: Find a better fix 
+    if type(VISIONAPI_TOKEN) is dict:
+        with open("visionapi.json", "w") as f:
+            json.dump(VISIONAPI_TOKEN, f)
+    else:
+        pass
+
 except KeyError:
     logging.error("VisionAPI credentials not found in environment")
 
