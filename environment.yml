@@ -166,7 +166,9 @@ dependencies:
   - zlib=1.2.11=h7b6447c_3
   - zstd=1.5.0=ha95c52a_0
   - pip:
-    - cachetools==4.2.4
+    - apscheduler==3.6.3
+    - backports-zoneinfo==0.2.1
+    - cachetools==4.2.2
     - charset-normalizer==2.0.7
     - google-api-core==2.2.0
     - google-auth==2.3.2
@@ -180,6 +182,10 @@ dependencies:
     - protobuf==3.19.0
     - pyasn1==0.4.8
     - pyasn1-modules==0.2.8
+    - python-telegram-bot==13.7
+    - pytz-deprecation-shim==0.1.0.post0
     - requests==2.26.0
     - rsa==4.7.2
+    - tzdata==2021.5
+    - tzlocal==4.0.2
     - urllib3==1.26.7

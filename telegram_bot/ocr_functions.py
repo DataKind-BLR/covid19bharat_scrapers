@@ -9,7 +9,7 @@ path = os.path.abspath('.')
 path_ocr = path_automation = path
 
 
-def run_scraper(bot, chat_id, state_name):
+def run_scraper(bot, chat_id, state_code):
     """
     Run the pdf automation when pdf links are passed
     """
@@ -19,14 +19,14 @@ def run_scraper(bot, chat_id, state_name):
     # python3 automation.py Tripura full
     # NEW Eg: `python scrapers.py --state_code BR`
 
-    logging.info(f"Dashboard fetch for {state_name}")
+    logging.info(f"Dashboard fetch for {state_code}")
     try:
         with open(dash_log_file, "w") as log_file:
             with open(dash_err_file, "w") as err_file:
                 bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
                 p = subprocess.run(
-                    # ["python3", "automation.py", state_name, "full"],
-                    ["python", "scrapers.py", "--state_code", states_map[state_name]],
+                    # ["python3", "automation.py", state_code, "full"],
+                    ["python", "scrapers.py", "--state_code", state_code],
                     cwd=path_automation,
                     stdout=log_file,
                     stderr=err_file,
