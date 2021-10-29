@@ -43,6 +43,7 @@ def main():
         update_id = 0
 
     start_time = int(time())
+    print(start_time)
 
     bot = telegram.Bot(COVID_BOT_TOKEN)
 
