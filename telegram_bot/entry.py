@@ -16,6 +16,7 @@ with open(STATES_YAML, 'r') as stream:
 SENTINEL = dict()
 
 def entry(bot, update):
+    print(update)
     # Is this a reply to something?
     if update.callback_query:
         # if this is a reply to the `/start` message, it should contain a state code
