@@ -33,7 +33,7 @@ def entry(bot, update):
                 # reply back asking for file
                 bot.send_message(
                     chat_id=update.callback_query.message.reply_to_message.chat.id,
-                    text=f"Upload {states_all[state_code]['type']} for {state_code}"
+                    text=f"Upload {states_all[state_code]['type']} for {states_all[state_code]['name']}"
                 )
 
     # Is this a direct message?
@@ -92,6 +92,7 @@ def entry(bot, update):
             bot.send_chat_action(
                 chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
             )
+            # TODO - save datetime stamp with the state_code as file name
             pdf_path = '/tmp/{}.pdf'.format(SENTINEL['state_code'].lower())
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)

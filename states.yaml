@@ -1,5 +1,6 @@
 # Provide default state configurations in this file
 
+# TESTED - Works
 ap:
   name: Andhra Pradesh
   state_code: AP
@@ -60,7 +61,7 @@ br:
   config:
     translation: True
 
-
+# TESTED - Works
 ch:
   name: Chandigarh
   state_code: CH
@@ -116,6 +117,7 @@ dn:
   type: image
   config:
 
+# TESTED - check delta calculation
 ga:
   name: Goa
   automatic: False
@@ -131,6 +133,7 @@ ga:
   type: html
   url: https://www.goa.gov.in/covid-19/
 
+# TESTED - works
 gj:
   name: Gujarat
   state_code: GJ
@@ -228,6 +231,7 @@ kl:
     start_key: District
     end_key: Total
 
+# TESTED - Works
 la:
   name: Ladakh
   state_code: LA
@@ -239,6 +243,7 @@ la:
   type: html
   url: http://covid.ladakh.gov.in/#dataInsights
 
+# TODO - Request timed out for MH
 mh:
   name: Maharashtra
   state_code: MH
@@ -250,6 +255,7 @@ mh:
   type: html
   url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
 
+# TESTED - Works
 ml:
   name: Meghalaya
   state_code: ML
@@ -305,6 +311,7 @@ nl:
   type: image
   url: _inputs/nl.jpeg
 
+# TESTED - Works
 or:
   name: Odisha
   state_code: OR
@@ -333,7 +340,7 @@ pb:
   type: image
   url: _inputs/pb3.jpeg
 
-
+# TESTED - Works
 py:
   name: Puducherry
   state_code: PY
@@ -399,7 +406,7 @@ tg:
   type: image
   url: _inputs/tg.jpeg
 
-
+# TESTED - Works
 tr:
   name: Tripura
   automatic: True

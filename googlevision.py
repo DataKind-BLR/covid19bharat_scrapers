@@ -9,6 +9,7 @@ from matplotlib import pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.patches import Circle
 
+OUTPUT_FILE = "output.txt"
 dataDictionary = {}
 dataDictionaryArray = []
 translationDictionary = {}
@@ -365,7 +366,7 @@ def buildTranslationDictionary():
 
 
 def printOutput():
-  outputFile = open('output.txt', 'w')
+  outputFile = open(OUTPUT_FILE, 'w')
   global enableTranslation
   xArray = []
   yArray = []
