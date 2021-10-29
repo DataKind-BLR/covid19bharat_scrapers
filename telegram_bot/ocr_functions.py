@@ -113,20 +113,27 @@ def pdf(bot, chat_id, state_name, url, page_num):
     """
     Run the pdf automation when pdf links are passed
     """
-    pdf_log_file = "/tmp/pdf_output.txt"
-    pdf_err_file = "/tmp/pdf_err.txt"
+    pdf_log_file = "_cache/bot_pdf_output.txt"
+    pdf_err_file = "_cache/bot_pdf_err.txt"
     # python3 automation.py Haryana full pdf=url
+    # New eg: `python scrapers.py --state_code TN --type pdf --url /path/to/file.pdf`
     with open(pdf_log_file, "w") as log_file:
         with open(pdf_err_file, "w") as err_file:
             bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
             logging.info(f"pdf={url}={page_num}")
             p = subprocess.Popen(
+                # [
+                #     "python3",
+                #     "automation.py",
+                #     state_name,
+                #     "full",
+                #     f"pdf={url}={page_num}",
+                # ],
                 [
-                    "python3",
-                    "automation.py",
-                    state_name,
-                    "full",
-                    f"pdf={url}={page_num}",
+                    "python",
+                    "scrapers.py",
+                    "--state_code",
+                    "TN"
                 ],
                 cwd=path_automation,
                 stdout=log_file,
