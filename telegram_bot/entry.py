@@ -76,6 +76,8 @@ def entry(bot, update):
 
         elif update.message.photo:
             print('this is a photo for', SENTINEL)
+            photo = update.message.reply_to_message.photo[-1]
+            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'])
 
         else:
             print('this is something else complletely')

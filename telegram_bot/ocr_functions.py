@@ -8,6 +8,12 @@ from telegram_bot.util import states_map
 path = os.path.abspath('.')
 path_ocr = path_automation = path
 
+def generate_command():
+    if type == 'pdf':
+        return ["python", "scrapers.py", "--state_code", state_code, '--type' , 'pdf', '--url', url]
+    elif type == 'image':
+        return ["python", "scrapers.py", "--state_code", state_code, '--type' , 'image', '--url', url]
+
 
 def run_scraper(bot, chat_id, state_code):
     """
