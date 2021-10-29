@@ -1,7 +1,17 @@
+import os
+import yaml
 import telegram
+
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram_bot.util import build_menu, states_map
 from telegram_bot.ocr_functions import run_scraper
+
+STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'states.yaml')
+with open(STATES_YAML, 'r') as stream:
+  try:
+    states_all = yaml.safe_load(stream)
+  except yaml.YAMLError as exc:
+    print(exc)
 
 SENTINEL = dict()
 
@@ -11,16 +21,21 @@ def entry(bot, update):
     if update.callback_query:
         # if this is a reply to the `/start` message, it should contain a state code
         if update.callback_query.message.reply_to_message.text == '/start':
-            state_code = update.callback_query.data
+            state_code = update.callback_query.data.lower()
             SENTINEL['state_code'] = state_code
 
             # TODO - check what type of input is required for this state (from yaml file)
+            url_type = states_all[state_code]['type']
 
-            # reply back asking for file
-            bot.send_message(
-                chat_id=update.callback_query.message.reply_to_message.chat.id,
-                text=f"Upload PDF for {state_code}"
-            )
+            if url_type == 'html':
+                # run directly
+                run_scraper(bot, update.callback_query.message.chat.id, SENTINEL['state_code'], url_type, states_all[state_code]['url'])
+            else:
+                # reply back asking for file
+                bot.send_message(
+                    chat_id=update.callback_query.message.reply_to_message.chat.id,
+                    text=f"Upload {states_all[state_code]['type']} for {state_code}"
+                )
 
     # Is this a direct message?
     if update.message:

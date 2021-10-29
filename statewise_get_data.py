@@ -367,6 +367,7 @@ def jk_get_data(opt):
 
 def ka_get_data(opt):
   print('fetching KA data', opt)
+  # TODO - have a check for
   opt['config']['page'] = str(opt['config']['page'])
 
   # read the pdf.txt files and generate
