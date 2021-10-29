@@ -1,24 +1,10 @@
-Kishanganj,Bihar,BR,-4,Hospitalized
-Madhepura,Bihar,BR,-2,Hospitalized
-Munger,Bihar,BR,-2,Hospitalized
-Muzaffarpur,Bihar,BR,-1,Hospitalized
-Patna,Bihar,BR,-37,Hospitalized
-East Champaran,Bihar,BR,-1,Hospitalized
-Rohtas,Bihar,BR,-1,Hospitalized
-Samastipur,Bihar,BR,-1,Hospitalized
-Saran,Bihar,BR,-2,Hospitalized
-Sheohar,Bihar,BR,-2,Hospitalized
-Sitamarhi,Bihar,BR,-1,Hospitalized
-Supaul,Bihar,BR,-1,Hospitalized
-Vaishali,Bihar,BR,-1,Hospitalized
-Kishanganj,Bihar,BR,-3,Recovered
-Madhepura,Bihar,BR,-2,Recovered
-Munger,Bihar,BR,-2,Recovered
-Muzaffarpur,Bihar,BR,-2,Recovered
-Nalanda,Bihar,BR,-1,Recovered
-Patna,Bihar,BR,-25,Recovered
-East Champaran,Bihar,BR,-1,Recovered
-Samastipur,Bihar,BR,-1,Recovered
-Sitamarhi,Bihar,BR,-1,Recovered
-Supaul,Bihar,BR,-1,Recovered
-Vaishali,Bihar,BR,-1,Recovered
+Puducherry,Puducherry,PY,-1942,Hospitalized
+Karaikal,Puducherry,PY,-563,Hospitalized
+Yanam,Puducherry,PY,-98,Hospitalized
+Mahe,Puducherry,PY,-496,Hospitalized
+Puducherry,Puducherry,PY,-2271,Recovered
+Karaikal,Puducherry,PY,-537,Recovered
+Yanam,Puducherry,PY,-63,Recovered
+Mahe,Puducherry,PY,-514,Recovered
+Puducherry,Puducherry,PY,7,Deceased
+Mahe,Puducherry,PY,-5,Deceased
