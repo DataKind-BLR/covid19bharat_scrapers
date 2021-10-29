@@ -27,6 +27,7 @@ an:
     start_key: 'A & N Islands'
     end_key:
 
+# TESTED - Works
 ar:
   name: Arunachal Pradesh
   state_code: AR
@@ -37,6 +38,7 @@ ar:
   type: image
   url: _inputs/ar.jpeg
 
+# TESTED - Works
 as:
   name: Assam
   state_code: AS
@@ -47,7 +49,6 @@ as:
     - https://covid19.assam.gov.in/all-districts/
   type: image
   url: _inputs/as.jpeg
-
 
 br:
   name: Bihar

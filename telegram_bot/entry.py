@@ -33,7 +33,8 @@ def entry(bot, update):
                 # reply back asking for file
                 bot.send_message(
                     chat_id=update.callback_query.message.reply_to_message.chat.id,
-                    text=f"Upload {states_all[state_code]['type']} for {states_all[state_code]['name']}"
+                    text=f"Upload {states_all[state_code]['type']} for {states_all[state_code]['name']}\
+                    from the following sources {states_all[state_code]['url_sources']}"
                 )
 
     # Is this a direct message?

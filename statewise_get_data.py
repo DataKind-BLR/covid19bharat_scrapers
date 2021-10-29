@@ -164,18 +164,31 @@ def ct_get_data(opt):
       confirmedFound = False
       recoveredFound = False
       deceasedFound = False
-      for index, data in enumerate(linesArray):
-        if availableColumns[index].strip() == "2":
-          districtDictionary['districtName'] = data.strip()
-        if availableColumns[index].strip() == "4":
-          districtDictionary['confirmed'] = int(data.strip())
+      for ind, line in enumerate(linesArray):
+        if ind == 0:
+          districtDictionary['districtName'] = linesArray[ind].strip()
+        elif ind == 3:
+          districtDictionary['confirmed'] = int(linesArray[ind].strip())
           confirmedFound = True
-        if availableColumns[index].strip() == "9":
-          districtDictionary['recovered'] = int(data.strip())
+        elif ind == 5:
+          districtDictionary['recovered'] = int(linesArray[ind].strip())
           recoveredFound = True
-        if availableColumns[index].strip() == "12":
-          districtDictionary['deceased'] += int(data.strip())
+        elif ind == 10:
+          districtDictionary['deceased'] = int(linesArray[ind].strip())
           deceasedFound = True
+
+      # for index, data in enumerate(linesArray):
+      #   if availableColumns[index].strip() == "2":
+      #     districtDictionary['districtName'] = data.strip()
+      #   if availableColumns[index].strip() == "4":
+      #     districtDictionary['confirmed'] = int(data.strip())
+      #     confirmedFound = True
+      #   if availableColumns[index].strip() == "9":
+      #     districtDictionary['recovered'] = int(data.strip())
+      #     recoveredFound = True
+      #   if availableColumns[index].strip() == "12":
+      #     districtDictionary['deceased'] += int(data.strip())
+      #     deceasedFound = True
 
       #print(districtDictionary)
       if recoveredFound == False or confirmedFound == False:
