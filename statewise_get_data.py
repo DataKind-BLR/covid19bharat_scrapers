@@ -367,10 +367,28 @@ def jk_get_data(opt):
 
 def ka_get_data(opt):
   print('fetching KA data', opt)
-  # TODO - have a check for
-  opt['config']['page'] = str(opt['config']['page'])
+  # TODO - have a check for whether a url has been provided, if so, don't download file
+  # if not opt['url']:
 
   # read the pdf.txt files and generate
+  #   if ',' in opt['config']['page']:
+  #     startId = opt['config']['page'].split(',')[1]
+  #     endId = opt['config']['page'].split(',')[2]
+  #     opt['config']['page'] = opt['config']['page'].split(',')[0]
+  #     runDeceased = True
+
+  #   if len(opt['url']) != 0:
+  #     urlArray = opt['url'].split('/')
+  #     for index, parts in enumerate(urlArray):
+  #       if parts == "file":
+  #         if urlArray[index + 1] == "d":
+  #           fileId = urlArray[index + 2]
+  #           break
+  #     opt['url'] += fileId
+  #     print("--> Downloading using: {}".format(opt['url']))
+
+  # read & generate .pdf.txt file for the given url
+
   linesArray = []
   districtDictionary = {}
   districts_data = []
@@ -378,24 +396,8 @@ def ka_get_data(opt):
   startId = 0
   endId = 0
   fileId = opt['config']['file_id']
+  opt['config']['page'] = str(opt['config']['page'])
 
-  if ',' in opt['config']['page']:
-    startId = opt['config']['page'].split(',')[1]
-    endId = opt['config']['page'].split(',')[2]
-    opt['config']['page'] = opt['config']['page'].split(',')[0]
-    runDeceased = True
-
-  if len(opt['url']) != 0:
-    urlArray = opt['url'].split('/')
-    for index, parts in enumerate(urlArray):
-      if parts == "file":
-        if urlArray[index + 1] == "d":
-          fileId = urlArray[index + 2]
-          break
-    opt['url'] += fileId
-    print("--> Downloading using: {}".format(opt['url']))
-
-  # read & generate .pdf.txt file for the given url
   read_pdf_from_url(opt)
 
   try:

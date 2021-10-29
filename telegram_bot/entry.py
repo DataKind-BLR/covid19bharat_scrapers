@@ -40,6 +40,7 @@ def entry(bot, update):
     # Is this a direct message?
     if update.message:
 
+        # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
             button_list = []
             for st_name in states_map.keys():
@@ -57,10 +58,12 @@ def entry(bot, update):
             )
             return
 
+        # If the direct message is `/test`
         elif update.message.text and update.message.text.startswith("/test"):
             update.message.reply_text("200 OK!", parse_mode=telegram.ParseMode.MARKDOWN)
             return
 
+        # If the direct message is `/help`
         elif update.message.text and update.message.text.startswith("/help"):
             help_text = f"""
             \n*OCR*
@@ -84,18 +87,17 @@ def entry(bot, update):
             )
             return
 
+        # If the direct message is file type of PDF
         elif update.message.document and update.message.document.mime_type == 'application/pdf':
-            # print("<><<><>><><><><><><><", SENTINEL, update.message.document.file_name)
             pdf_path = '/tmp/{}.pdf'.format(SENTINEL['state_code'].lower())
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)
             run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'pdf', pdf_path)
 
+        # If the direct message is file type of image
         elif update.message.photo:
             print('this is a photo for', SENTINEL)
             photo = update.message.photo[-1]
-
-            # save the image inside _inputs
             image_path = '/tmp/{}.jpg'.format(SENTINEL['state_code'].lower())
             image_file = bot.get_file(photo.file_id)
             image_file.download()
