@@ -14,12 +14,6 @@ ap:
       confirmed: Confirmed Cases
       recovered: Cured/ Discharged
       deceased: Deceased
-  # type: pdf
-  # url:
-  # config:
-  #   page:
-  #   start_key: Anantapur
-  #   end_key:
 
 an:
   name: Andaman and Nicobar Islands
@@ -62,7 +56,6 @@ br:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna
   type: image
-  # url: _inputs/br1.jpeg
   url: _inputs/br2.jpeg
   config:
     translation: True
@@ -77,7 +70,6 @@ ch:
     - https://twitter.com/nagarkoti
   type: html
   url: http://chdcovid19.in/
-
 
 ct:
   name: Chhattisgarh
@@ -109,9 +101,8 @@ dh:
     - https://twitter.com/CMODelhi
     - https://twitter.com/ani
     - https://twitter.com/ICMRDELHI
-  type:
+  type: image
   url:
-  config:
 
 dn:
   name: Dadra and Nagar Haveli
@@ -122,7 +113,7 @@ dn:
     - https://twitter.com/collectordaman
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
-  type:
+  type: image
   config:
 
 ga:

@@ -47,7 +47,7 @@ def main():
 
     while True:
         try:
-            print('Telegram bot has started. Do you thaang!')
+            print('Telegram bot has started. Do your thing!!')
             for update in bot.get_updates(offset=update_id, timeout=10):
                 update_id = update.update_id + 1
                 logging.info(f"Update ID:{update_id}")

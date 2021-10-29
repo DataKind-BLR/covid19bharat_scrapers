@@ -16,7 +16,6 @@ with open(STATES_YAML, 'r') as stream:
 SENTINEL = dict()
 
 def entry(bot, update):
-
     # Is this a reply to something?
     if update.callback_query:
         # if this is a reply to the `/start` message, it should contain a state code
@@ -42,6 +41,9 @@ def entry(bot, update):
 
         # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
+            bot.send_chat_action(
+                chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
+            )
             button_list = []
             for st_name in states_map.keys():
                 button_list.append(
@@ -60,27 +62,25 @@ def entry(bot, update):
 
         # If the direct message is `/test`
         elif update.message.text and update.message.text.startswith("/test"):
+            bot.send_chat_action(
+                chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
+            )
             update.message.reply_text("200 OK!", parse_mode=telegram.ParseMode.MARKDOWN)
             return
 
         # If the direct message is `/help`
         elif update.message.text and update.message.text.startswith("/help"):
             help_text = f"""
-            \n*OCR*
-            - Send the bulletin image to do OCR
-            - Errors and the results would be returned
-            - If there are errors, copy the extracted text and make corrections.
-            - Send it back to the text
-            - Reply to the message with `/ocr2 "Madhya Pradesh"`
-            \n*PDF*
-            - Send the URL of the pdf bulletin
-            - Choose the state. Default page number is 2.
-            - For using different page number, use the command like below
-            - `/pdf "Punjab" 3`
-            \n*DASHBOARD*
-            - `/dashboard`
-            - Choose the state
-            \n\n_Send `/test` for checking if the bot is online_"""
+            \n*Steps to run bot*
+            1. Run /start
+            2. Select state for which you want to extract data
+            3. Once you select the state, the bot will ask you to upload either an image or a pdf
+            4. Upload the image or PDF and ensure it is the correct one to extract COVID case details for that state
+            5. Copy & paste the response into the google sheet
+
+            \n\n_Send `/test` for checking if the bot is online_
+
+            \n\n_Send `/start` to start the extraction process"""
 
             update.message.reply_text(
                 str(help_text), parse_mode=telegram.ParseMode.MARKDOWN
@@ -89,21 +89,34 @@ def entry(bot, update):
 
         # If the direct message is file type of PDF
         elif update.message.document and update.message.document.mime_type == 'application/pdf':
+            bot.send_chat_action(
+                chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
+            )
             pdf_path = '/tmp/{}.pdf'.format(SENTINEL['state_code'].lower())
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)
+            bot.send_message(
+                chat_id=update.message.chat.id,
+                text="Extracting data from PDF",
+                reply_to_message_id=update.message.message_id
+            )
             run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'pdf', pdf_path)
 
         # If the direct message is file type of image
         elif update.message.photo:
+            bot.send_chat_action(
+                chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
+            )
             print('this is a photo for', SENTINEL)
             photo = update.message.photo[-1]
             image_path = '/tmp/{}.jpg'.format(SENTINEL['state_code'].lower())
             image_file = bot.get_file(photo.file_id)
             image_file.download()
-
-            # rename file name to <datetime stamp_state_code>
-            # pass the path to run_scraper
+            bot.send_message(
+                chat_id=update.message.chat.id,
+                text="Extracting data from Image",
+                reply_to_message_id=update.message.message_id
+            )
             run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'image', image_path)
 
         else:
