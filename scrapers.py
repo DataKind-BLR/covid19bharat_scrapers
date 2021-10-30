@@ -48,6 +48,7 @@ with open(STATES_YAML, 'r') as stream:
     print(exc)
 
 def fetch_data(st_obj):
+  logging.info(st_obj)
   '''
   for a given state object, fetch the details from url
 
@@ -116,10 +117,13 @@ if __name__ == '__main__':
   parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('--url', type=str, help='url/path to the image or pdf to be parsed')
 
+
   args = parser.parse_args()
   state_code = args.state_code.lower()
   url = args.url
   url_type = args.type
+  
+  logging.info('scraper', args.url)
 
   # execute for all states, if state_code not mentioned
   if state_code == 'all':
