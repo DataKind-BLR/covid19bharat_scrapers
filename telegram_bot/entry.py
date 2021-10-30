@@ -8,19 +8,23 @@ from telegram_bot.util import build_menu, states_map
 from telegram_bot.ocr_functions import run_scraper
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'states.yaml')
+
+logger = logging.getLogger("Bot_Entry")
+
 with open(STATES_YAML, 'r') as stream:
   try:
     states_all = yaml.safe_load(stream)
-  except yaml.YAMLError as exc:
-    print(exc)
+  except yaml.YAMLError as e:
+    print(f"Error in Opening YAML States - {e}")
 
 SENTINEL = dict()
 
+
 def entry(bot, update):
-    logging.info('entry')
+    logging.info('Executing a bot command - ')
     # Is this a reply to something?
     if update.callback_query:
-        logging.info('callback query')
+        logger.info('Analysing a Callback Query')
         # if this is a reply to the `/start` message, it should contain a state code
         if update.callback_query.message.reply_to_message.text == '/start':
             state_code = update.callback_query.data.lower()
@@ -28,10 +32,10 @@ def entry(bot, update):
 
             # TODO - check what type of input is required for this state (from yaml file)
             url_type = states_all[state_code]['type']
-            logging.info(url_type)
+            logger.info(f"Expecting {url_type} for State Code {state_code}")
 
             if url_type == 'html':
-                logging.info('running_scraper')
+                logger.info(f'Running Scraper for HTML. State Code = {state_code}')
                 # run directly
                 run_scraper(bot, update.callback_query.message.chat.id, SENTINEL['state_code'], url_type, states_all[state_code]['url'])
             else:
@@ -44,7 +48,7 @@ def entry(bot, update):
 
     # Is this a direct message?
     if update.message:
-        logging.info('message')
+        logger.info('Analysing direct message.')
         # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
             bot.send_chat_action(
@@ -76,21 +80,26 @@ def entry(bot, update):
 
         # If the direct message is `/help`
         elif update.message.text and update.message.text.startswith("/help"):
+            logger.info("In Help section")
             help_text = f"""
-            \n*Steps to run bot*
-            1. Run /start
-            2. Select state for which you want to extract data
-            3. Once you select the state, the bot will ask you to upload either an image or a pdf
-            4. Upload the image or PDF and ensure it is the correct one to extract COVID case details for that state
-            5. Copy & paste the response into the google sheet
+            \n* 🔍 Steps to run bot*\n
+1. Run /start
+2. Select state for which you want to extract data
+3. Once you select the state, the bot will ask you to upload either an image or a pdf
+4. Upload the image or PDF and ensure it is the correct one to extract COVID case details for that state
+5. Copy & paste the response into the google sheet.
+\n\n_Send `/test` for checking if the bot is online._
+_Send `/start` to start the extraction process._"""
+            try:
 
-            \n\n_Send `/test` for checking if the bot is online_
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text=help_text,
+                    reply_to_message_id=update.message.message_id, parse_mode='Markdown'
+                )
+            except Exception as e:
+                logger.error(f"Error in executing /help {e}")
 
-            \n\n_Send `/start` to start the extraction process"""
-
-            update.message.reply_text(
-                str(help_text), parse_mode=telegram.ParseMode.MARKDOWN
-            )
             return
 
         # If the direct message is file type of PDF
@@ -98,6 +107,7 @@ def entry(bot, update):
             bot.send_chat_action(
                 chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
             )
+            logger.info("Analysing input PDF.")
             # TODO - save datetime stamp with the state_code as file name
             pdf_path = '/tmp/{}.pdf'.format(SENTINEL['state_code'].lower())
             pdf_file = update.message.document.get_file()
@@ -114,7 +124,7 @@ def entry(bot, update):
             bot.send_chat_action(
                 chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
             )
-            print('this is a photo for', SENTINEL)
+            print('Analysing input image -', SENTINEL)
             photo = update.message.photo[-1]
             image_path = '/tmp/{}.jpg'.format(SENTINEL['state_code'].lower())
             image_file = bot.get_file(photo.file_id)
@@ -127,4 +137,10 @@ def entry(bot, update):
             run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'image', image_path)
 
         else:
-            print('this is something else complletely')
+            warning = '⚠ Content does not match any of the recognized formats - /start, /help or HTML or PDF or Image formats.'
+            logger.warning(warning)
+            bot.send_message(
+                chat_id=update.message.chat.id,
+                text=warning,
+                reply_to_message_id=update.message.message_id, parse_mode='Markdown'
+            )

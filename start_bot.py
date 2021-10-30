@@ -4,9 +4,9 @@
 import logging
 import telegram
 from telegram.error import NetworkError, Unauthorized
+import time
 from time import sleep
 import os
-from time import time
 from telegram_bot.entry import entry
 import json
 
@@ -16,10 +16,12 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
+logger = logging.getLogger("Start_Bot")
+
 try:
     COVID_BOT_TOKEN = os.environ["COVID_BOT_TOKEN"]
 except KeyError:
-    logging.error("Bot credentials not found in environment")
+    logger.error("Bot credentials not found in environment")
 try:
     # If the token is available in the environment,
     # print it to a file
@@ -32,7 +34,7 @@ try:
         pass
 
 except KeyError:
-    logging.error("VisionAPI credentials not found in environment")
+    logger.error("VisionAPI credentials not found in environment")
 
 # How long the container exist
 LIFESPAN = 7200
@@ -46,25 +48,27 @@ def main():
     except:
         update_id = 0
 
-    start_time = int(time())
-    print(start_time)
+    start_time = int(time.time())
+    formatted_time = time.ctime(start_time)
+
+    logger.info(f"Bot started at {formatted_time}")
 
     bot = telegram.Bot(COVID_BOT_TOKEN)
 
     while True:
         try:
-            print('Bot is at your service, I am listening....')
+            logger.info('Bot is at your service, I am listening....')
             for update in bot.get_updates(offset=update_id, timeout=10):
                 update_id = update.update_id + 1
-                logging.info(f"Update ID:{update_id}")
+                logger.info(f"Update ID:{update_id}")
                 entry(bot, update)
         except NetworkError:
             sleep(1)
         except Unauthorized:
             # The user has removed or blocked the bot.
             update_id += 1
-        if int(time()) - start_time > LIFESPAN:
-            logging.info("Enough for the day! Passing on to next Meeseek")
+        if int(time.time()) - start_time > LIFESPAN:
+            logger.info("Enough for the day! Passing on to next Meeseek")
             with open("/tmp/update_id", "w") as the_file:
                 the_file.write(str(update_id))
             break

@@ -48,7 +48,7 @@ with open(STATES_YAML, 'r') as stream:
     print(exc)
 
 def fetch_data(st_obj):
-  logging.info(st_obj)
+  logging.info(f"Fetching data for {st_obj}")
   '''
   for a given state object, fetch the details from url
 
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     # always use default url & type from yaml file
     live_data = fetch_data(states_all[state_code])
 
-  print('*************************************************************************************')
+  print("\n")
   # TODO - get delta for states
   dc = DeltaCalculator()
   delta = dc.get_state_data_from_site(

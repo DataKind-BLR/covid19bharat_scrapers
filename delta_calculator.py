@@ -79,7 +79,7 @@ class DeltaCalculator:
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
 
-        print("\n" + '*' * 20 + "Computing Delta for "+state_name + '*' * 20)
+        print("\n" + '*' * 10 + "Computing Delta for "+state_name + '*' * 10)
         try:
             name_mapping = self.name_mapping[state_name]
         except KeyError:
