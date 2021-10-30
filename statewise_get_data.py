@@ -330,9 +330,12 @@ def jh_get_data(opt):
     with open(OUTPUT_FILE, "r") as upFile:
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
+        availableColumns = line.split('|')[1].split(',')
+
         if len(linesArray) != 8:
-          print("--> Issue with {}".format(linesArray))
-          continue
+          pass
+          # print("--> Confirm for {}".format(linesArray))
+          # continue
 
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
