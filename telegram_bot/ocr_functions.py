@@ -24,8 +24,6 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
     dash_err_file = "/tmp/bot_html_err.txt"
 
     logging.info(f"Dashboard fetch for {state_code}")
-    logging.warning(CURR_DIR)
-    logging.warning(os.listdir(CURR_DIR))
     try:
         with open(dash_log_file, "w") as log_file:
             with open(dash_err_file, "w") as err_file:
