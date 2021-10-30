@@ -277,12 +277,14 @@ def hp_get_data(opt):
         districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[9].strip()).strip())
         #districtDictionary['migrated'] = int(linesArray[10].strip())
 
+
         districts_data.append(districtDictionary)
 
     upFile.close()
+    return districts_data
+
   except FileNotFoundError:
     print("output.txt missing. Generate through pdf or ocr and rerun.")
-  return districts_data
 
 def hr_get_data(opt):
   print('fetching HR data', opt)
@@ -845,6 +847,7 @@ def rj_get_data(opt):
   districtDictionary = {}
   districtArray = []
   skipValues = False
+  edge_case = False
   try:
     with open(OUTPUT_FILE, "r") as upFile:
       for line in upFile:
@@ -861,10 +864,26 @@ def rj_get_data(opt):
           continue
 
         districtDictionary = {}
-        districtDictionary['districtName'] = linesArray[0].strip().title()
-        districtDictionary['confirmed'] = int(linesArray[3])
-        districtDictionary['recovered'] = int(linesArray[7])
-        districtDictionary['deceased'] = int(linesArray[5])
+        if linesArray[0].strip().title() != 'Ganganagar':
+          districtDictionary['districtName'] = linesArray[0].strip().title()
+          edge_case = False
+        else:
+          edge_case = True
+
+        if edge_case:
+          # only for Ganaganagar
+          cf = re.sub(r'[a-z]+', '', linesArray[4])
+          dt = re.sub(r'\)', '', linesArray[6])
+          rc = re.sub(r'[a-z]+', '', linesArray[7])
+          districtDictionary['confirmed'] = int(cf.strip())
+          districtDictionary['recovered'] = int(rc.strip())
+          districtDictionary['deceased'] = int(dt.strip())
+        else:
+          rc = re.sub(r'[a-z]+', '', linesArray[7])
+          districtDictionary['confirmed'] = int(linesArray[3].strip())
+          districtDictionary['recovered'] = int(linesArray[7].strip())
+          districtDictionary['deceased'] = int(linesArray[5].strip())
+
         districtArray.append(districtDictionary)
 
     upFile.close()

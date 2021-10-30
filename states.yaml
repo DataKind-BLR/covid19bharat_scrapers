@@ -20,6 +20,7 @@ an:
   name: Andaman and Nicobar Islands
   state_code: AN
   automatic: False
+  notes: Need to read PDF / Image manually and enter into google sheets
   type: pdf
   url:
   config:
@@ -49,7 +50,10 @@ as:
     - https://covid19.assam.gov.in/all-districts/
   type: image
   url: _inputs/as.jpeg
+  config:
+    translation: False
 
+# TESTED - Works
 br:
   name: Bihar
   state_code: BR
@@ -73,6 +77,7 @@ ch:
   type: html
   url: http://chdcovid19.in/
 
+# TESTED - Works
 ct:
   name: Chhattisgarh
   state_code: CT
@@ -88,6 +93,7 @@ dd:
   name: Daman and Diu
   state_code: DD
   automatic: False
+  notes: Need to read Image manually and enter into google sheets
   url_sources:
     - https://twitter.com/charmieparekh
     - https://twitter.com/collectordaman
@@ -95,28 +101,37 @@ dd:
     - https://twitter.com/diudistrict
   type: image
   url: _inputs/dd.jpeg
+  config:
+    translation: False
 
 dh:
   name: Delhi
   state_code: DH
+  automatic: False
+  notes: Need to read PDF / Image manually and enter into google sheets
   url_sources:
     - https://twitter.com/CMODelhi
     - https://twitter.com/ani
     - https://twitter.com/ICMRDELHI
   type: image
   url:
+  config:
+    translation: False
 
 dn:
   name: Dadra and Nagar Haveli
   state_code: DN
-  url:
+  automatic: False
+  notes: Need to read PDF / Image manually and enter into google sheets
   url_sources:
     - https://twitter.com/DnhPublicity
     - https://twitter.com/collectordaman
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
   type: image
+  url:
   config:
+    translation: False
 
 # TESTED - check delta calculation
 ga:
@@ -153,14 +168,17 @@ gj:
       recovered: Patients Recovered
       deceased: Total Deaths
 
+# TESTED - Issue while reading output.txt inside hp_get_data function
 hp:
   name: Himachal Pradesh
   state_code: HP
+  notes: Please crop the image to only show case statistics
   url_sources:
     - https://twitter.com/nhm_hp
   type: image
-  url: _inputs/hp.jpeg
+  url: _inputs/hp2.jpeg
   config:
+    translation: False
     starting_text: auto
     ending_text: auto
 
@@ -178,6 +196,7 @@ hr:
     start_key: Gurugram
     end_key: Total
 
+# TESTED - Issue while reading output.txt inside jh_get_data function
 jh:
   name: Jharkhand
   state_code: JH
@@ -189,7 +208,10 @@ jh:
   automatic: False
   type: image
   url: _inputs/jh.jpeg
+  config:
+    translation: False
 
+# TESTED - Works, but for some it doesn't
 jk:
   name: Jammu and Kashmir
   state_code: JK
@@ -197,7 +219,8 @@ jk:
     - https://twitter.com/diprjk
   type: image
   url: _inputs/jk.jpeg
-
+  config:
+    translation: False
 
 ka:
   name: Karnataka
@@ -271,6 +294,7 @@ ml:
   # type: image
   # url: _inputs/ml.jpeg
 
+# TESTED - unable to detect district names
 mn:
   name: Manipur
   state_code: MN
@@ -279,9 +303,15 @@ mn:
     - https://twitter.com/airnews_imphal
     - https://twitter.com/imphalrob
     - https://twitter.com/diprmanipur
+    - https://nrhmmanipur.org/?p=7999
   type: image
   url: _inputs/mn.jpeg
+  config:
+    translation: False
+    start_key: Imphal
+    end_key: Ukhrul
 
+# TESTED - update mp_get_data to read linesArray correctly
 mp:
   name: Madhya Pradesh
   state_code: MP
@@ -290,7 +320,10 @@ mp:
     - https://twitter.com/healthminmp
   type: image
   url: _inputs/mp.jpeg
+  config:
+    translation: False
 
+# TESTED - Works
 mz:
   name: Mizoram
   state_code: MZ
@@ -299,8 +332,10 @@ mz:
     - https://twitter.com/dipr_mizoram
   type: image
   url: _inputs/mz.jpeg
+  config:
+    translation: False
 
-
+# TESTED - issue in the nl_get_data function reading linesArray
 # TODO - can scrape using html / PDFs
 nl:
   name: Nagaland
@@ -311,6 +346,8 @@ nl:
     - https://twitter.com/mygovnagaland
   type: image
   url: _inputs/nl.jpeg
+  config:
+    translation: False
 
 # TESTED - Works
 or:
@@ -326,6 +363,7 @@ or:
   type: html
   url: https://statedashboard.odisha.gov.in/
 
+# TESTED - issue in the pb_get_data function reading linesArray
 pb:
   name: Punjab
   state_code: PB
@@ -340,6 +378,8 @@ pb:
   #   end_key: Total
   type: image
   url: _inputs/pb3.jpeg
+  config:
+    translation: False
 
 # TESTED - Works
 py:
@@ -352,6 +392,7 @@ py:
   type: html
   url: https://covid19dashboard.py.gov.in/Reporting/DateWise
 
+# TESTED - issue in the rj_get_data function reading linesArray
 rj:
   name: Rajasthan
   state_code: RJ
@@ -372,6 +413,7 @@ rj:
     x: 0
     y: 0
 
+# TESTED - issue in the sk_get_data function reading linesArray, but can move to manual entry since have full state data
 sk:
   name: Sikkim
   state_code: SK
@@ -380,6 +422,9 @@ sk:
     - https://twitter.com/sikkimgovt
   type: image
   url: _inputs/sk.jpeg
+  notes: Sikkim doesn't provide district wise info, gives for full state
+  config:
+    translation: False
 
 tn:
   name: Tamil Nadu
@@ -397,6 +442,7 @@ tn:
     end_key: Total
     # end_key: Railway
 
+# TESTED - unable to calculate delta
 tg:
   name: Telangana
   state_code: TG
@@ -406,6 +452,8 @@ tg:
     - https://twitter.com/dgrsrao
   type: image
   url: _inputs/tg.jpeg
+  config:
+    translation: False
 
 # TESTED - Works
 tr:
@@ -418,7 +466,6 @@ tr:
     - https://twitter.com/BjpBiplab
   type: html
   url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
-
 
 # TODO - up_get_data doesn't work for UP, the code is very different for this state, haven't tested
 up:
@@ -441,6 +488,10 @@ ut:
     - https://twitter.com/bhadrijee
     - https://twitter.com/PIBDehradun
     - https://twitter.com/ddnews_dehradun
+  type: image
+  url: _inputs/ut.jpeg
+  config:
+    translation: False
   # type: pdf
   # url: _inputs/ut.pdf
   # config:
