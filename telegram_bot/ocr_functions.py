@@ -20,8 +20,8 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
         # command will read the dashboard url specified in `states.yaml` file by directly
         cmd = ["python", "scrapers.py", "--state_code", state_code]
 
-    dash_log_file = "_cache/bot_html_output.txt"
-    dash_err_file = "_cache/bot_html_err.txt"
+    dash_log_file = "/tmp/bot_html_output.txt"
+    dash_err_file = "/tmp/bot_html_err.txt"
 
     logging.info(f"Dashboard fetch for {state_code}")
     try:

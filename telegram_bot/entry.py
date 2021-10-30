@@ -31,7 +31,7 @@ def entry(bot, update):
             logging.info(url_type)
 
             if url_type == 'html':
-                logging.info('running_scraper', SENTINEL['state_code'])
+                logging.info('running_scraper')
                 # run directly
                 run_scraper(bot, update.callback_query.message.chat.id, SENTINEL['state_code'], url_type, states_all[state_code]['url'])
             else:
