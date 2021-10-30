@@ -196,7 +196,7 @@ hr:
     start_key: Gurugram
     end_key: Total
 
-# TESTED - Issue while reading output.txt inside jh_get_data function
+# TESTED - Works
 jh:
   name: Jharkhand
   state_code: JH

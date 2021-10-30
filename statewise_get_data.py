@@ -363,12 +363,12 @@ def jk_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
         if len(linesArray) != 11:
-          print("--> Ignoring due to invalid length: {}".format(linesArray))
+          print("--> Please validate and calculate manually for: {}".format(linesArray))
           continue
         districtDictionary = {}
         try:
           if type(linesArray[0].strip()) == int:
-            print("--> Ignoring: {}".format(linesArray))
+            print("--> Please validate and calculate manually for: {}".format(linesArray))
             continue
 
           districtDictionary['districtName'] = linesArray[0].strip().title()
@@ -377,7 +377,7 @@ def jk_get_data(opt):
           districtDictionary['deceased'] = int(linesArray[10])
           districts_data.append(districtDictionary)
         except ValueError:
-          print("--> Ignoring: {}".format(linesArray))
+          print("--> Please validate and calculate manually for: {}".format(linesArray))
           continue
     upFile.close()
   except FileNotFoundError:
