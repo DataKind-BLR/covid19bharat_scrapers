@@ -269,6 +269,7 @@ def hp_get_data(opt):
 
         if len(linesArray) != 11:
           print("--> Issue with {}".format(linesArray))
+          print("try cropping the image to only show the case details part of the image")
           continue
 
         # if reached the last item, break
@@ -1082,8 +1083,32 @@ def ut_get_data(opt):
     return districts_data
 
   elif opt['type'] == 'image':
-    pass
-    # run for images
+    run_for_ocr(opt)
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    splitArray = []
+    try:
+      with open(OUTPUT_FILE, "r") as upFile:
+        for line in upFile:
+          splitArray = re.sub('\n', '', line.strip()).split('|')
+          linesArray = splitArray[0].split(',')
+
+          if len(linesArray) != 6:
+            print('---> Issue with {}'.format(linesArray))
+            continue
+
+          districtDictionary['districtName'] = linesArray[0].strip().title()
+          districtDictionary['confirmed'] = int(linesArray[1].strip())
+          districtDictionary['recovered'] = int(linesArray[2].strip())
+          districtDictionary['deceased'] = int(linesArray[4].strip())
+          districtDictionary['migrated'] = int(linesArray[5].strip())
+          districts_data.append(districtDictionary)
+
+    except FileNotFoundError:
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
+    return districts_data
 
 def wb_get_data(opt):
   print('Fetching WB data', opt)
