@@ -35,11 +35,11 @@ except KeyError:
     logging.error("VisionAPI credentials not found in environment")
 
 # How long the container exist
-LIFESPAN = 3600
+LIFESPAN = 7200
 
 
 def main():
-    """Run the bot."""
+    """Run the bot @datakind_covid19bharat_bot."""
 
     try:
         update_id = int(os.environ["UPDATE_ID"])
@@ -53,7 +53,7 @@ def main():
 
     while True:
         try:
-            print('Telegram bot has started. Do your thing!!')
+            print('Bot is at your service, I am listening...')
             for update in bot.get_updates(offset=update_id, timeout=10):
                 update_id = update.update_id + 1
                 logging.info(f"Update ID:{update_id}")
