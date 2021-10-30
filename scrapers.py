@@ -31,6 +31,7 @@ import html5lib
 import requests
 import datetime
 import pdftotext
+from utils import state_codes
 from bs4 import BeautifulSoup
 from delta_calculator import DeltaCalculator
 
@@ -113,7 +114,9 @@ if __name__ == '__main__':
     $python automation.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
   '''
   parser = argparse.ArgumentParser()
-  parser.add_argument('--state_code', type=str, nargs='?', default='all', help='provide 2 letter state code, defaults to all')
+  parser.add_argument('--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
+                                                                               f'defaults to all. '
+                                                                               f'Possible options = {state_codes.state_codes} ')
   parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('--url', type=str, help='url/path to the image or pdf to be parsed')
 
