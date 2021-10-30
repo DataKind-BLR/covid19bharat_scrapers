@@ -16,8 +16,10 @@ with open(STATES_YAML, 'r') as stream:
 SENTINEL = dict()
 
 def entry(bot, update):
+    print('entry')
     # Is this a reply to something?
     if update.callback_query:
+        print('callback query')
         # if this is a reply to the `/start` message, it should contain a state code
         if update.callback_query.message.reply_to_message.text == '/start':
             state_code = update.callback_query.data.lower()
@@ -25,8 +27,10 @@ def entry(bot, update):
 
             # TODO - check what type of input is required for this state (from yaml file)
             url_type = states_all[state_code]['type']
+            print(url_type)
 
             if url_type == 'html':
+                print('running_scraper', SENTINEL['state_code'])
                 # run directly
                 run_scraper(bot, update.callback_query.message.chat.id, SENTINEL['state_code'], url_type, states_all[state_code]['url'])
             else:
