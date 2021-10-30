@@ -271,13 +271,14 @@ def hp_get_data(opt):
           print("--> Issue with {}".format(linesArray))
           continue
 
+        # if reached the last item, break
+        if linesArray[0].strip().title() == 'Una':
+          break
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(linesArray[1].strip())
         districtDictionary['recovered'] = int(linesArray[8].strip())
         districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[9].strip()).strip())
         #districtDictionary['migrated'] = int(linesArray[10].strip())
-
-
         districts_data.append(districtDictionary)
 
     upFile.close()
