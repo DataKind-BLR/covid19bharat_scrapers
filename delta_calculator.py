@@ -107,6 +107,8 @@ class DeltaCalculator:
         for district_details in live_data:
             district_name = ""
             try:
+                if 'districtName' not in district_details:
+                    continue
                 district_name = name_mapping[district_details['districtName']] \
                     if district_details['districtName'] in name_mapping \
                     else district_details['districtName']
