@@ -28,7 +28,7 @@ class DeltaCalculator:
         """
         :rtype: object
         """
-        decoded_content = requests.request("get", 'https://data.covid19india.org/csv/latest/district_wise.csv').content.decode('utf-8')
+        decoded_content = requests.request("get", 'https://data.covid19bharat.org/csv/latest/district_wise.csv').content.decode('utf-8')
         csv_reader = csv.reader(decoded_content.splitlines(), delimiter=',')
         rows = list(csv_reader)
         for index, row in enumerate(rows):
