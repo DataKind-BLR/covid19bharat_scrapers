@@ -28,6 +28,7 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
         with open(dash_log_file, "w") as log_file:
             with open(dash_err_file, "w") as err_file:
                 bot.send_chat_action(chat_id=chat_id, action=telegram.ChatAction.TYPING)
+                logging.info('I am yet to run subprocess')
                 p = subprocess.run(
                     cmd,
                     cwd=CURR_DIR,
@@ -36,6 +37,7 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
                     encoding="utf8",
                     timeout=20
                 )
+                logging.info('After subprocess')
 
     except subprocess.TimeoutExpired:
         e = "Request timed out"
