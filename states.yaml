@@ -179,8 +179,8 @@ hp:
   url: _inputs/hp2.jpeg
   config:
     translation: False
-    starting_text: auto
-    ending_text: auto
+    # start_key: auto
+    # end_key: Total
 
 hr:
   name: Haryana
@@ -311,7 +311,7 @@ mn:
     start_key: Imphal
     end_key: Ukhrul
 
-# TESTED - update mp_get_data to read linesArray correctly
+# TESTED - unable to find image for cases (currently twitter only has vaccination data)
 mp:
   name: Madhya Pradesh
   state_code: MP
