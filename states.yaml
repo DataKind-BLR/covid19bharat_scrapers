@@ -20,6 +20,9 @@ an:
   name: Andaman and Nicobar Islands
   state_code: AN
   automatic: False
+  url_sources:
+    - https://twitter.com/ChetanSanghi
+    - https://twitter.com/Andaman_admin
   notes: Need to read PDF / Image manually and enter into google sheets
   type: pdf
   url:
