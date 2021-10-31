@@ -37,7 +37,6 @@ ar:
   state_code: AR
   automatic: False
   url_sources:
-    - https://twitter.com/DirectorateofHS
     - https://twitter.com/DirHealth_ArPr
   type: image
   url: _inputs/ar.jpeg
@@ -63,7 +62,7 @@ br:
   automatic: False
   url_sources:
     - https://twitter.com/BiharHealthDept
-    - https://twitter.com/pib_patna
+    - https://twitter.com/pib_patna/media
   type: image
   url: _inputs/br2.jpeg
   config:
@@ -76,7 +75,8 @@ ch:
   automatic: True
   url_sources:
     - https://twitter.com/ani
-    - https://twitter.com/nagarkoti
+    - https://twitter.com/
+    - http://chdcovid19.in/
   type: html
   url: http://chdcovid19.in/
 
@@ -252,6 +252,7 @@ kl:
   url_sources:
     - https://twitter.com/CMOKerala
     - https://dashboard.kerala.gov.in/index.php
+    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
   url: _inputs/kl.pdf
