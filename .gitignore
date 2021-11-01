@@ -163,3 +163,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+# Ignore notebooks
+*.ipynb
+nbs/
