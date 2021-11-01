@@ -25,10 +25,12 @@ def entry(bot, update):
     # Is this a reply to something?
     if update.callback_query:
         logger.info('Analysing a Callback Query')
+        
         # if this is a reply to the `/start` message, it should contain a state code
         if update.callback_query.message.reply_to_message.text == '/start':
             state_code = update.callback_query.data.lower()
-            SENTINEL['state_code'] = state_code
+            from_user_id = update.callback_query.message.reply_to_message.from_user.id
+            SENTINEL[from_user_id] = {'state_code': state_code}
 
             # TODO - check what type of input is required for this state (from yaml file)
             url_type = states_all[state_code]['type']
@@ -37,7 +39,7 @@ def entry(bot, update):
             if url_type == 'html':
                 logger.info(f'Running Scraper for HTML. State Code = {state_code}')
                 # run directly
-                run_scraper(bot, update.callback_query.message.chat.id, SENTINEL['state_code'], url_type, states_all[state_code]['url'])
+                run_scraper(bot, update.callback_query.message.chat.id, SENTINEL[from_user_id]['state_code'], url_type, states_all[state_code]['url'])
             else:
                 # reply back asking for file
                 bot.send_message(
@@ -49,6 +51,8 @@ def entry(bot, update):
     # Is this a direct message?
     if update.message:
         logger.info('Analysing direct message.')
+        from_user_id = update.message.from_user.id
+            
         # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
             bot.send_chat_action(
@@ -107,9 +111,10 @@ _Send `/start` to start the extraction process._"""
             bot.send_chat_action(
                 chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
             )
+            print('Analysing input PDF -', SENTINEL[from_user_id])
             logger.info("Analysing input PDF.")
             # TODO - save datetime stamp with the state_code as file name
-            pdf_path = '/tmp/{}.pdf'.format(SENTINEL['state_code'].lower())
+            pdf_path = '/tmp/{}.pdf'.format(SENTINEL[from_user_id]['state_code'].lower())
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)
             bot.send_message(
@@ -117,16 +122,16 @@ _Send `/start` to start the extraction process._"""
                 text="Extracting data from PDF",
                 reply_to_message_id=update.message.message_id
             )
-            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'pdf', pdf_path)
+            run_scraper(bot, update.message.chat.id, SENTINEL[from_user_id]['state_code'], 'pdf', pdf_path)
 
         # If the direct message is file type of image
         elif update.message.photo:
             bot.send_chat_action(
                 chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
             )
-            print('Analysing input image -', SENTINEL)
+            print('Analysing input image -', SENTINEL[from_user_id])
             photo = update.message.photo[-1]
-            image_path = '/tmp/{}.jpg'.format(SENTINEL['state_code'].lower())
+            image_path = '/tmp/{}.jpg'.format(SENTINEL[from_user_id]['state_code'].lower())
             image_file = bot.get_file(photo.file_id)
             image_file.download()
             bot.send_message(
@@ -134,7 +139,7 @@ _Send `/start` to start the extraction process._"""
                 text="Extracting data from Image",
                 reply_to_message_id=update.message.message_id
             )
-            run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'image', image_path)
+            run_scraper(bot, update.message.chat.id, SENTINEL[from_user_id]['state_code'], 'image', image_path)
 
         else:
             warning = '⚠ Content does not match any of the recognized formats - /start, /help or HTML or PDF or Image formats.'
