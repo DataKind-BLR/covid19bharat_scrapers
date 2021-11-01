@@ -21,7 +21,7 @@ SENTINEL = dict()
 
 
 def entry(bot, update):
-    logging.info('Executing a bot command - ')
+    logging.info('Executing a bot command - 1')
     # Is this a reply to something?
     if update.callback_query:
         logger.info('Analysing a Callback Query')
