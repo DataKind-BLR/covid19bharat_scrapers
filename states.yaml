@@ -235,15 +235,10 @@ ka:
   # append the google drive file's id to the below url to download PDF
   type: pdf
   url: _inputs/ka.pdf
-  # url: https://docs.google.com/uc?export=download&id=
   config:
     page: 5
     start_key: Bagalakote
     end_key: Total
-    # update this ID & run `python scrapers.py --state_code KA` again
-    # file_id: 1CaKq55BuKucINTV8C-IhUtck5_VO2hdg
-    # file_id: 1E1G3nf5k8462aScYTi9f7z_s6bvvMrIV
-
 
 # malformed PDF
 kl:

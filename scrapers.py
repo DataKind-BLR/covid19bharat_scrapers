@@ -144,6 +144,8 @@ if __name__ == '__main__':
     # always use default url & type from yaml file
     live_data = fetch_data(states_all[state_code])
 
+  print(live_data)
+
   print("\n")
   # TODO - get delta for states
   dc = DeltaCalculator()
