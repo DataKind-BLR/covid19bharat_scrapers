@@ -408,41 +408,45 @@ def ka_get_data(opt):
   #     print("--> Downloading using: {}".format(opt['url']))
 
   # read & generate .pdf.txt file for the given url
+  if opt['type'] == 'image':
+    pass
+    # scan the image (_inputs/ka.jpeg)
 
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-  runDeceased = False
-  startId = 0
-  endId = 0
-  fileId = opt['config']['file_id']
-  opt['config']['page'] = str(opt['config']['page'])
+  if opt['type'] == 'pdf':
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    runDeceased = False
+    startId = 0
+    endId = 0
+    # fileId = opt['config']['file_id']
+    opt['config']['page'] = str(opt['config']['page'])
 
-  read_pdf_from_url(opt)
+    read_pdf_from_url(opt)
 
-  try:
-    with open("{}.csv".format(opt['state_code']), "r") as upFile:
-      for line in upFile:
-        linesArray = line.split(',')
-        if len(linesArray) != 4:
-          print("--> Issue with {}".format(linesArray))
-          continue
-        districtDictionary = {}
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1])
-        districtDictionary['recovered'] = int(linesArray[2])
-        districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
-        districts_data.append(districtDictionary)
+    try:
+      with open("{}.csv".format(opt['state_code']), "r") as upFile:
+        for line in upFile:
+          linesArray = line.split(',')
+          if len(linesArray) != 4:
+            print("--> Issue with {}".format(linesArray))
+            continue
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+          districts_data.append(districtDictionary)
 
-    upFile.close()
+      upFile.close()
 
-    if runDeceased == True:
-      os.system("python3 automation/kaautomation.py d " + str(startId) + " " + str(endId))
+      if runDeceased == True:
+        os.system("python3 automation/kaautomation.py d " + str(startId) + " " + str(endId))
 
-  except FileNotFoundError:
-    print("output.txt missing. Generate through pdf or ocr and rerun.")
+    except FileNotFoundError:
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
 
-  return districts_data
+    return districts_data
 
 def kl_get_data(opt):
   # if opt['type'] == 'html':
