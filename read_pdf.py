@@ -87,6 +87,13 @@ def read_pdf_from_url(opt):
   stateOutputFile.close()
 
 ## ------------------------ Custom format line functions for specific states START
+def ut_format_line(row):
+  if len(row) == 6 and row[0] != 'Districts':
+    to_print = ','.join(row) + '\n'
+    return to_print
+  else:
+    return ''
+
 def ka_format_line(row):
   district = ""
   modifiedRow = []

@@ -1094,7 +1094,7 @@ def ut_get_data(opt):
     districts_data = []
     ignoreLines = False
     try:
-      with open(OUTPUT_FILE, "r") as upFile:
+      with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
         for line in upFile:
           if ignoreLines == True:
             continue
@@ -1103,7 +1103,7 @@ def ut_get_data(opt):
             ignoreLines = True
             continue
 
-          linesArray = line.split('|')[0].split(',')
+          linesArray = line.split(',')
           if len(linesArray) != 6:
             print("--> Issue with {}".format(linesArray))
             continue
@@ -1112,7 +1112,7 @@ def ut_get_data(opt):
           districtDictionary['confirmed'] = int(linesArray[1])
           districtDictionary['recovered'] = int(linesArray[2])
           districtDictionary['deceased'] = int(linesArray[4])
-          districtDictionary['migrated'] = int(linesArray[5])
+          districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
           districts_data.append(districtDictionary)
 
       upFile.close()
