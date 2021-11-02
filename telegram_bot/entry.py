@@ -125,22 +125,34 @@ _Send `/start` to start the extraction process._"""
             run_scraper(bot, update.message.chat.id, SENTINEL[from_user_id]['state_code'], 'pdf', pdf_path)
 
         # If the direct message is file type of image
-        elif update.message.photo:
-            bot.send_chat_action(
-                chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
-            )
-            print('Analysing input image -', SENTINEL[from_user_id])
-            photo = update.message.photo[-1]
-            image_path = '/tmp/{}.jpg'.format(SENTINEL[from_user_id]['state_code'].lower())
-            image_file = bot.get_file(photo.file_id)
-            image_file.download()
-            bot.send_message(
-                chat_id=update.message.chat.id,
-                text="Extracting data from Image",
-                reply_to_message_id=update.message.message_id
-            )
-            run_scraper(bot, update.message.chat.id, SENTINEL[from_user_id]['state_code'], 'image', image_path)
-
+        # TODO accommodate other formats of images like pngs etc or convert any format to jpg
+        elif update.message.photo or (update.message.document and update.message.document.mime_type == 'image/jpeg'):
+            try:
+                bot.send_chat_action(
+                    chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
+                )
+                print('Analysing input image -', SENTINEL)
+                if len(update.message.photo) > 0:
+                    photo = update.message.photo[-1]
+                    image_path = '/tmp/{}.jpg'.format(SENTINEL['state_code'].lower())
+                else:
+                    photo = update.message.document
+                    image_path = '/tmp/{}.jpeg'.format(SENTINEL['state_code'].lower())
+                image_file = bot.get_file(photo.file_id)
+                image_file.download()
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text="Extracting data from Image",
+                    reply_to_message_id=update.message.message_id
+                )
+                run_scraper(bot, update.message.chat.id, SENTINEL['state_code'], 'image', image_path)
+            except Exception as e:
+                logger.exception(f"Error in image parsing : {e}")
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text="Error in parsing image temporarily. Contact your admin. ",
+                    reply_to_message_id=update.message.message_id, parse_mode='Markdown'
+                )
         else:
             warning = '⚠ Content does not match any of the recognized formats - /start, /help or HTML or PDF or Image formats.'
             logger.warning(warning)
