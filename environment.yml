@@ -186,6 +186,7 @@ dependencies:
     - pytz-deprecation-shim==0.1.0.post0
     - requests==2.26.0
     - rsa==4.7.2
+    - rich==10.12.0
     - tzdata==2021.5
     - tzlocal==4.0.2
     - urllib3==1.26.7
