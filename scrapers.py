@@ -45,10 +45,10 @@ CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_cache')
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 
-console = Console()
+console = Console(record=True)
 
 def draw_table(data, info):
-  table = Table(title=f"{info['name']} data.")
+  table = Table(title=f"{info['name']} data from your current input.", title_justify="left")
 
   table.add_column('district', style='white')
   table.add_column('confirmed', style='red', justify='right')
@@ -169,7 +169,7 @@ if __name__ == '__main__':
 
   print("\n")
   # TODO - get delta for states
-  dc = DeltaCalculator()
+  dc = DeltaCalculator(console)
   delta = dc.get_state_data_from_site(
     states_all[state_code]['name'],
     live_data,
@@ -179,3 +179,7 @@ if __name__ == '__main__':
     print(f"Delta processing complete. Written to delta.txt")
   else:
     print(f"Delta unchanged.")
+
+  console.save_text(f'_cache/{state_code}.txt')
+  # TODO: HTML is not working
+  # console.save_html(f'_cache/{state_code}.html')

@@ -13,19 +13,39 @@ import csv
 import requests
 from rich.pretty import pprint
 from rich.console import Console
+from rich.table import Table
 
-console = Console()
+def draw_table(data, info, console):
+  table = Table(title=f"{info['name']} last updated data from <data.covid19bharat.org>", title_justify="left", style="bold")
+
+  table.add_column('district', style='white')
+  table.add_column('confirmed', style='red', justify='right')
+  table.add_column('recovered', style='green', justify='right')
+  table.add_column('deceased', style='grey39', justify='right')
+  table.add_column('migrated_other', style='white', justify='right')
+  table.add_column('active', style='white', justify='right')
+
+  for k,v in data.items():
+    table.add_row(k, 
+                  str(v['confirmed']), 
+                  str(v['recovered']), 
+                  str(v['deceased']),
+                  str(v['migrated_other']),
+                  str(v['active']))
+  
+  console.print(table, justify="left")
 
 
 class DeltaCalculator:
     """ This class is used to calculate delta between website and bulletin """
 
-    def __init__(self):
+    def __init__(self, console):
         self.covid_dashboard_data = {}
         self.build_json()
         self.name_mapping = {}
         self.load_meta_data()
         self.delta_changed = 0
+        self.console = console
 
     # TODO - there are unassigned states in the JSON being built here...
     def build_json(self):
@@ -83,7 +103,9 @@ class DeltaCalculator:
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
 
-        console.print("\n" + '*' * 10 + " Computing Delta for [bold]"+ state_name + '[/] ' + '*' * 10, style="cyan")
+        draw_table(state_data, {'name': state_name}, self.console)
+
+        self.console.print("\n" + '*' * 10 + " Computing Delta for [bold]"+ state_name + '[/] ' + '*' * 10, style="cyan")
         try:
             name_mapping = self.name_mapping[state_name]
         except KeyError:
@@ -107,9 +129,9 @@ class DeltaCalculator:
         # df_dashboard = pd.DataFrame(state_data).T.reset_index().rename(columns={'index': 'districtName'}).sort_values(by='districtName')
         #
         # Do a check if the order of the districts in both dataframes are the same, then take a diff
-        console.print(f'\nMapping for district names')
+        self.console.print(f'\nMapping for district names')
         for (_name,name) in name_mapping.items():
-            console.print(f"[dim cyan]{_name}[/] -> [b u cyan]{name}[/]")
+            self.console.print(f"[dim cyan]{_name}[/] -> [b u cyan]{name}[/]")
 
         for district_details in live_data:
             district_name = ""
@@ -155,7 +177,7 @@ class DeltaCalculator:
 
         if options == "full":
             self.clear_delta_file("_cache/delta.txt")
-            console.print('\nDelta statistics\n', style="bold cyan")
+            self.console.print('\nDelta statistics\n', style="bold cyan")
             self.print_full_details(
                 confirmed_delta_array, "Hospitalized", state_name, state_code, districts, color='red')
             self.print_full_details(
@@ -168,7 +190,7 @@ class DeltaCalculator:
 
         if len(error_array) > 0:
             for error in error_array:
-                console.print(error)
+                self.console.print(error)
 
         return self.delta_changed
 
@@ -193,6 +215,6 @@ class DeltaCalculator:
                     if str(data) not in ("0", "NA"):
                         self.delta_changed = 1
                         print(f"{districts[index]},{state_name},{state_code},{str(data)},{category}", file=file)
-                        console.print(f"[bold cyan]{districts[index]}[/],[no bold]{state_name},{state_code}[/],[green bold]{str(data)}[/],[{color}]{category}[/]")
+                        self.console.print(f"[bold cyan]{districts[index]}[/],[no bold]{state_name},{state_code}[/],[green bold]{str(data)}[/],[{color}]{category}[/]")
         except Exception as e:
-            console.print(f"[red]Error in writing to delta file {e}[/]")
+            self.console.print(f"[red]Error in writing to delta file {e}[/]")
