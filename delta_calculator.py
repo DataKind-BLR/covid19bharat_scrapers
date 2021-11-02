@@ -11,6 +11,10 @@ import os
 import re
 import csv
 import requests
+from rich.pretty import pprint
+from rich.console import Console
+
+console = Console()
 
 
 class DeltaCalculator:
@@ -79,7 +83,7 @@ class DeltaCalculator:
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
 
-        print("\n" + '*' * 10 + "Computing Delta for "+state_name + '*' * 10)
+        console.print("\n" + '*' * 10 + " Computing Delta for [bold]"+ state_name + '[/] ' + '*' * 10, style="cyan")
         try:
             name_mapping = self.name_mapping[state_name]
         except KeyError:
@@ -103,6 +107,9 @@ class DeltaCalculator:
         # df_dashboard = pd.DataFrame(state_data).T.reset_index().rename(columns={'index': 'districtName'}).sort_values(by='districtName')
         #
         # Do a check if the order of the districts in both dataframes are the same, then take a diff
+        console.print(f'\nMapping for district names')
+        for (_name,name) in name_mapping.items():
+            console.print(f"[dim cyan]{_name}[/] -> [b u cyan]{name}[/]")
 
         for district_details in live_data:
             district_name = ""
@@ -134,8 +141,8 @@ class DeltaCalculator:
 
             except KeyError:
                 error_array.append(
-                    f"--> ERROR: Failed to find key mapping for district"
-                    f": {district_name}, state: {state_name}")
+                    f"[dim red]--> ERROR: Failed to find key mapping for district"
+                    f": [bold]{district_name}[/], state: {state_name}[/]")
                 continue
 
             if options in ("detailed", "full"):
@@ -148,18 +155,20 @@ class DeltaCalculator:
 
         if options == "full":
             self.clear_delta_file("_cache/delta.txt")
+            console.print('\nDelta statistics\n', style="bold cyan")
             self.print_full_details(
-                confirmed_delta_array, "Hospitalized", state_name, state_code, districts)
+                confirmed_delta_array, "Hospitalized", state_name, state_code, districts, color='red')
             self.print_full_details(
-                recovered_delta_array, "Recovered", state_name, state_code, districts)
+                recovered_delta_array, "Recovered", state_name, state_code, districts, color='green')
             self.print_full_details(
-                deceased_delta_array, "Deceased", state_name, state_code, districts)
+                deceased_delta_array, "Deceased", state_name, state_code, districts, color='grey39')
             self.print_full_details(
-                migrated_delta_array, "Migrated_Other", state_name, state_code, districts)
+                migrated_delta_array, "Migrated_Other", state_name, state_code, districts, color='yellow')
+            print('\n')
 
         if len(error_array) > 0:
             for error in error_array:
-                print(error)
+                console.print(error)
 
         return self.delta_changed
 
@@ -169,7 +178,7 @@ class DeltaCalculator:
         if os.path.isfile(file):
             os.remove(file)
 
-    def print_full_details(self, delta_array, category, state_name, state_code, districts):
+    def print_full_details(self, delta_array, category, state_name, state_code, districts, color='white'):
         """
         :param delta_array:
         :param category:
@@ -184,6 +193,6 @@ class DeltaCalculator:
                     if str(data) not in ("0", "NA"):
                         self.delta_changed = 1
                         print(f"{districts[index]},{state_name},{state_code},{str(data)},{category}", file=file)
-                        print(f"{districts[index]},{state_name},{state_code},{str(data)},{category}")
+                        console.print(f"[bold cyan]{districts[index]}[/],[no bold]{state_name},{state_code}[/],[green bold]{str(data)}[/],[{color}]{category}[/]")
         except Exception as e:
-            print(f"Error in writing to delta file {e}")
+            console.print(f"[red]Error in writing to delta file {e}[/]")
