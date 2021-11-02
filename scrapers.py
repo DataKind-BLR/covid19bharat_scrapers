@@ -33,6 +33,10 @@ import datetime
 import pdftotext
 from utils import state_codes
 from bs4 import BeautifulSoup
+from rich.pretty  import pprint
+from rich.console import Console
+from rich.table import Table
+
 from delta_calculator import DeltaCalculator
 
 from statewise_get_data import *
@@ -40,6 +44,24 @@ from statewise_get_data import *
 CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_cache')
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
+
+console = Console()
+
+def draw_table(data, info):
+  table = Table(title=f"{info['name']} data.")
+
+  table.add_column('district', style='white')
+  table.add_column('confirmed', style='red', justify='right')
+  table.add_column('recovered', style='green', justify='right')
+  table.add_column('deceased', style='grey39', justify='right')
+
+  for row in data:
+    table.add_row(row['districtName'], 
+                  str(row['confirmed']), 
+                  str(row['recovered']), 
+                  str(row['deceased']))
+  
+  console.print(table, justify="left")
 
 # read the config file first
 with open(STATES_YAML, 'r') as stream:
@@ -143,8 +165,7 @@ if __name__ == '__main__':
       })
     # always use default url & type from yaml file
     live_data = fetch_data(states_all[state_code])
-
-  print(live_data)
+    draw_table(live_data, states_all[state_code])
 
   print("\n")
   # TODO - get delta for states

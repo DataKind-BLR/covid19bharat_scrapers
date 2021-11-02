@@ -4,6 +4,7 @@ import requests
 import datetime
 
 from bs4 import BeautifulSoup
+from rich.pretty import pprint
 
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
@@ -12,7 +13,8 @@ OUTPUT_FILE = "output.txt"
 
 ## ------------------------ <STATE_CODE>_get_data functions START HERE
 def ap_get_data(opt):
-  print('fetching AP data', opt)
+  print('Fetching AP data')
+  pprint(opt)
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   table = soup.find('table', {'class': 'table'}).find_all('tr')
@@ -31,11 +33,13 @@ def ap_get_data(opt):
   return districts_data
 
 def an_get_data(opt):
-  print('Fetching AN data', opt)
-  print('You\'ve got to do this manually looking at the tweet/image')
+  print('Fetching AN data')
+  pprint(opt)
+  pprint('You\'ve got to do this manually looking at the tweet/image')
 
 def ar_get_data(opt):
-  print('Fetching AR data', opt)
+  print('Fetching AR data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -75,7 +79,8 @@ def ar_get_data(opt):
   return districts_data
 
 def as_get_data(opt):
-  print('Fetching AS data', opt)
+  print('Fetching AS data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -95,7 +100,8 @@ def as_get_data(opt):
     print("output.txt missing. Generate through pdf or ocr and rerun.")
 
 def br_get_data(opt):
-  print('Fetching BR data', opt)
+  print('Fetching BR data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -122,7 +128,8 @@ def br_get_data(opt):
   return districts_data
 
 def ch_get_data(opt):
-  print('Fetching CH data', opt)
+  print('Fetching CH data')
+  pprint(opt)
   response = requests.request("GET", opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   divs = soup.find("div", {"class": "col-lg-8 col-md-9 form-group pt-10"}).find_all("div", {"class": "col-md-3"})
@@ -149,7 +156,8 @@ def ch_get_data(opt):
   return districts_data
 
 def ct_get_data(opt):
-  print('Fetching CT data', opt)
+  print('Fetching CT data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -199,19 +207,23 @@ def ct_get_data(opt):
   return districts_data
 
 def dd_get_data(opt):
-  print('Fetching DD data', opt)
-  print('You\'ve got to do this manually looking at the tweet/image')
+  print('Fetching DD data')
+  pprint(opt)
+  pprint('You\'ve got to do this manually looking at the tweet/image')
 
 def dh_get_data(opt):
-  print('Fetching DH data', opt)
-  print('You\'ve got to do this manually looking at the tweet/image')
+  print('Fetching DH data')
+  pprint(opt)
+  pprint('You\'ve got to do this manually looking at the tweet/image')
 
 def dn_get_data(opt):
-  print('Fetching DN data', opt)
-  print('You\'ve got to do this manually looking at the tweet/image')
+  print('Fetching DN data')
+  pprint(opt)
+  pprint('You\'ve got to do this manually looking at the tweet/image')
 
 def ga_get_data(opt):
-  print('Fetching GA data', opt)
+  print('Fetching GA data')
+  pprint(opt)
 
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
@@ -227,7 +239,8 @@ def ga_get_data(opt):
   return districts_data
 
 def gj_get_data(opt):
-  print('fetching GJ data', opt)
+  print('fetching GJ data')
+  pprint(opt)
 
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
@@ -247,7 +260,8 @@ def gj_get_data(opt):
   return districts_data
 
 def hp_get_data(opt):
-  print('Fetching HP data', opt)
+  print('Fetching HP data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -289,7 +303,8 @@ def hp_get_data(opt):
     print("output.txt missing. Generate through pdf or ocr and rerun.")
 
 def hr_get_data(opt):
-  print('fetching HR data', opt)
+  print('fetching HR data')
+  pprint(opt)
 
   if not opt['url'].endswith('.pdf'):
     # always get for T - 1 day
@@ -351,7 +366,8 @@ def jh_get_data(opt):
   return districts_data
 
 def jk_get_data(opt):
-  print('Fetching JK data', opt)
+  print('Fetching JK data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -386,7 +402,8 @@ def jk_get_data(opt):
   return districts_data
 
 def ka_get_data(opt):
-  print('fetching KA data', opt)
+  print('fetching KA data')
+  pprint(opt)
   # TODO - have a check for whether a url has been provided, if so, don't download file
   # if not opt['url']:
 
@@ -507,7 +524,8 @@ def kl_get_data(opt):
     return districts_data
 
 def la_get_data(opt):
-  print('fetching LA data', opt)
+  print('fetching LA data')
+  pprint(opt)
 
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
@@ -554,7 +572,8 @@ def la_get_data(opt):
   return district_data
 
 def mh_get_data(opt):
-  print('fetching MH data', opt)
+  print('fetching MH data')
+  pprint(opt)
   stateDashboard = requests.request('GET', opt['url']).json()
 
   district_data = []
@@ -569,7 +588,8 @@ def mh_get_data(opt):
   return district_data
 
 def ml_get_data(opt):
-  print('Fetching ML data', opt)
+  print('Fetching ML data')
+  pprint(opt)
 
   if opt['type'] == 'image':
     run_for_ocr(opt)
@@ -637,7 +657,8 @@ def ml_get_data(opt):
     #   districts_data.append(districtDictionary)
 
 def mn_get_data(opt):
-  print('Fetching MN data', opt)
+  print('Fetching MN data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -657,7 +678,8 @@ def mn_get_data(opt):
   mnFile.close()
 
 def mp_get_data(opt):
-  print('Fetching MP data', opt)
+  print('Fetching MP data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -696,7 +718,8 @@ def mp_get_data(opt):
   return districts_data
 
 def mz_get_data(opt):
-  print('Fetching MZ data', opt)
+  print('Fetching MZ data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -720,7 +743,8 @@ def mz_get_data(opt):
   return districts_data
 
 def nl_get_data(opt):
-  print('Fetching NL data', opt)
+  print('Fetching NL data')
+  pprint(opt)
   districts_data = []
   try:
     with open(OUTPUT_FILE, "r") as upFile:
@@ -769,7 +793,8 @@ def or_get_data(opt):
   return district_data
 
 def pb_get_data(opt):
-  print('Fetching PB data', opt)
+  print('Fetching PB data')
+  pprint(opt)
 
   if opt['type'] == 'pdf':
     read_pdf_from_url(opt)
@@ -827,7 +852,8 @@ def pb_get_data(opt):
     return districts_data
 
 def py_get_data(opt):
-  print('fetching PY data', opt)
+  print('fetching PY data')
+  pprint(opt)
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   table = soup.find_all('tbody')[1].find_all('tr')
@@ -847,7 +873,8 @@ def py_get_data(opt):
   return district_data
 
 def rj_get_data(opt):
-  print('Fetching RJ data', opt)
+  print('Fetching RJ data')
+  pprint(opt)
 
   # run all bash scripts, ocr_vision.py & googlevision.py
   run_for_ocr(opt)
@@ -902,7 +929,8 @@ def rj_get_data(opt):
   return districtArray
 
 def sk_get_data(opt):
-  print('Fetching SK data', opt)
+  print('Fetching SK data')
+  pprint(opt)
   run_for_ocr(opt)
 
   districts_data = []
@@ -922,7 +950,8 @@ def sk_get_data(opt):
   return districts_data
 
 def tn_get_data(opt):
-  print('Fetching TN data', opt)
+  print('Fetching TN data')
+  pprint(opt)
 
   if opt['type'] == 'pdf':
     read_pdf_from_url(opt)
@@ -948,7 +977,8 @@ def tn_get_data(opt):
     return district_data
 
 def tg_get_data(opt):
-  print('Fetching TG data', opt)
+  print('Fetching TG data')
+  pprint(opt)
 
   run_for_ocr(opt)
 
@@ -964,7 +994,8 @@ def tg_get_data(opt):
       print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
 
 def tr_get_data(opt):
-  print('fetching TR data', opt)
+  print('fetching TR data')
+  pprint(opt)
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   table = soup.find('tbody').find_all('tr')
@@ -983,7 +1014,8 @@ def tr_get_data(opt):
 
 # TODO - make this run
 def up_get_data(opt):
-  print('Fetching UP data', opt)
+  print('Fetching UP data')
+  pprint(opt)
   errorCount = 0
   linesArray = []
   districtDictionary = {}
@@ -1050,7 +1082,8 @@ def up_get_data(opt):
   return districts_data
 
 def ut_get_data(opt):
-  print('Fetching UT data', opt)
+  print('Fetching UT data')
+  pprint(opt)
 
   if opt['type'] == 'pdf':
     read_pdf_from_url(opt)
@@ -1115,7 +1148,8 @@ def ut_get_data(opt):
     return districts_data
 
 def wb_get_data(opt):
-  print('Fetching WB data', opt)
+  print('Fetching WB data')
+  pprint(opt)
 
   linesArray = []
   districtDictionary = {}
