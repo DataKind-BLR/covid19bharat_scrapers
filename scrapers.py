@@ -141,12 +141,13 @@ if __name__ == '__main__':
                                                                                f'Possible options = {state_codes.state_codes} ')
   parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('--url', type=str, help='url/path to the image or pdf to be parsed')
-
+  #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
 
   args = parser.parse_args()
   state_code = args.state_code.lower()
   url = args.url
   url_type = args.type
+  # url_date = args.date or datetime.today()
   
   logging.info('scraper', args.url)
 

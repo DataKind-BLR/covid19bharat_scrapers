@@ -19,7 +19,6 @@ with open(STATES_YAML, 'r') as stream:
 
 SENTINEL = dict()
 
-
 def entry(bot, update):
     logging.info('Executing a bot command - 1')
     # Is this a reply to something?
