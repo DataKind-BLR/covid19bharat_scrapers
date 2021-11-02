@@ -87,10 +87,16 @@ ct:
   automatic: False
   url_sources:
     - https://twitter.com/HealthCgGov
+    - http://cghealth.nic.in/cghealth17/
+    # pattern
+    # ...MediaBulletin<31><oct><2021>.pdf
+    # - http://cghealth.nic.in/cghealth17/Information/content/CORONA/MediaBulletin31oct2021.pdf
   type: image
   url: _inputs/ct.jpeg
   config:
     translation: True
+    start_key: auto
+    end_key: auto
 
 dd:
   name: Daman and Diu
@@ -189,7 +195,8 @@ hr:
   name: Haryana
   state_code: HR
   url_sources:
-    - https://twitter.com/ani, http://nhmharyana.gov.in/page?id=208
+    - https://twitter.com/ani
+    - http://nhmharyana.gov.in/page?id=208
   automatic: True
   # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
   type: pdf
@@ -451,6 +458,8 @@ tg:
   url_sources:
     - https://twitter.com/Eatala_Rajender
     - https://twitter.com/dgrsrao
+    - https://covid19.telangana.gov.in/
+    - https://covid19.telangana.gov.in/announcements/media-bulletins/
   type: image
   url: _inputs/tg.jpeg
   config:
@@ -489,16 +498,20 @@ ut:
     - https://twitter.com/bhadrijee
     - https://twitter.com/PIBDehradun
     - https://twitter.com/ddnews_dehradun
-  type: image
-  url: _inputs/ut.jpeg
-  config:
-    translation: False
-    start_key: Almora
-    end_key: Uttarkashi
-  # type: pdf
-  # url: _inputs/ut.pdf
+    # below source is a PDF
+    - https://health.uk.gov.in/pages/view/151-covid19-health-bulletin-for-uttarakhand-page-10
+  # type: image
+  # url: _inputs/ut.jpeg
   # config:
-  #   page: 6
+  #   translation: False
+  #   start_key: Almora
+  #   end_key: Uttarkashi
+  type: pdf
+  url: _inputs/ut.pdf
+  config:
+    page: 7
+    start_key: Cases
+    end_key: Total
 
 
 wb:
