@@ -91,6 +91,8 @@ ct:
   url: _inputs/ct.jpeg
   config:
     translation: True
+    start_key: auto
+    end_key: auto
 
 dd:
   name: Daman and Diu
@@ -189,7 +191,8 @@ hr:
   name: Haryana
   state_code: HR
   url_sources:
-    - https://twitter.com/ani, http://nhmharyana.gov.in/page?id=208
+    - https://twitter.com/ani
+    - http://nhmharyana.gov.in/page?id=208
   automatic: True
   # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
   type: pdf
