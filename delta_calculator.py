@@ -49,7 +49,7 @@ def state_level_delta(name, live_data, console):
     delta = {
       'Hospitalized': live_data[0]['confirmed'] - state_data['confirmed'],
       'Recovered':    live_data[0]['recovered'] - state_data['recovered'],
-      'Deaths':       live_data[0]['deceased']  - state_data['deceased']
+      'Deceased':     live_data[0]['deceased']  - state_data['deceased']
     }
     
     if list(delta.values()) == [0,0,0]:

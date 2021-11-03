@@ -235,6 +235,7 @@ def ct_get_data(opt):
   upFile.close()
   return districts_data
 
+# Daman & Diu is merged with Dadra & Nagar Haveli
 def dd_get_data(opt):
   print('Fetching DD data')
   pprint(opt)
@@ -248,7 +249,10 @@ def dh_get_data(opt):
 def dn_get_data(opt):
   print('Fetching DN data')
   pprint(opt)
-  pprint('You\'ve got to do this manually looking at the tweet/image')
+
+  return _get_mohfw_data(opt['name'])
+
+  # pprint('You\'ve got to do this manually looking at the tweet/image')
 
 def ga_get_data(opt):
   print('Fetching GA data')

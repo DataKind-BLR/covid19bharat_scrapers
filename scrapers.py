@@ -170,7 +170,8 @@ if __name__ == '__main__':
 
   print("\n")
 
-  if state_code in {'la', 'py'}:
+  LAZY_STATES = {'la', 'py', 'dn'}  # STATES that are no longer maintaining their dashboard
+  if state_code in LAZY_STATES:
     state_level_delta(states_all[state_code]['name'], live_data, console)
   else:
     # TODO - get delta for states
