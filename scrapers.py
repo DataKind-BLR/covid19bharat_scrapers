@@ -37,7 +37,7 @@ from rich.pretty  import pprint
 from rich.console import Console
 from rich.table import Table
 
-from delta_calculator import DeltaCalculator
+from delta_calculator import DeltaCalculator, state_level_delta
 
 from statewise_get_data import *
 
@@ -48,7 +48,7 @@ STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.
 console = Console(record=True)
 
 def draw_table(data, info):
-  table = Table(title=f"{info['name']} data from your current input.", title_justify="left")
+  table = Table(title=f"{info['name']} data from your current input.", title_justify="left", style="bold")
 
   table.add_column('district', style='white')
   table.add_column('confirmed', style='red', justify='right')
@@ -136,11 +136,11 @@ if __name__ == '__main__':
     $python automation.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
   '''
   parser = argparse.ArgumentParser()
-  parser.add_argument('--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
+  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
                                                                                f'defaults to all. '
                                                                                f'Possible options = {state_codes.state_codes} ')
-  parser.add_argument('--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
-  parser.add_argument('--url', type=str, help='url/path to the image or pdf to be parsed')
+  parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
+  parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
   #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
 
   args = parser.parse_args()
@@ -169,17 +169,21 @@ if __name__ == '__main__':
     draw_table(live_data, states_all[state_code])
 
   print("\n")
-  # TODO - get delta for states
-  dc = DeltaCalculator(console)
-  delta = dc.get_state_data_from_site(
-    states_all[state_code]['name'],
-    live_data,
-    'full'
-  )
-  if delta:
-    print(f"Delta processing complete. Written to delta.txt")
+
+  if state_code in {'la', 'py'}:
+    state_level_delta(states_all[state_code]['name'], live_data, console)
   else:
-    print(f"Delta unchanged.")
+    # TODO - get delta for states
+    dc = DeltaCalculator(console)
+    delta = dc.get_state_data_from_site(
+      states_all[state_code]['name'],
+      live_data,
+      'full'
+    )
+    if delta:
+      print(f"Delta processing complete. Written to delta.txt")
+    else:
+      print(f"Delta unchanged.")
 
   console.save_text(f'_cache/{state_code}.txt')
   # TODO: HTML is not working

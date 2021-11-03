@@ -273,7 +273,7 @@ la:
     - https://twitter.com/DIPR_Leh
   automatic: True
   type: html
-  url: http://covid.ladakh.gov.in/#dataInsights
+  url: https://www.mohfw.gov.in/
 
 # TODO - Request timed out for MH
 mh:
@@ -398,7 +398,7 @@ py:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
   type: html
-  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
+  url: https://www.mohfw.gov.in/
 
 # TESTED - issue in the rj_get_data function reading linesArray
 rj:
