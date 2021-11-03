@@ -213,7 +213,6 @@ jh:
   url_sources:
     - https://twitter.com/RanchiPIB
     - https://twitter.com/Fobgumla
-    - https://twitter.com/visualmedia2003
     - https://twitter.com/rnuddkranchi
   automatic: False
   type: image
@@ -495,10 +494,9 @@ ut:
   name: Uttarakhand
   state_code: UT
   url_sources:
-    - https://twitter.com/bhadrijee
     - https://twitter.com/PIBDehradun
     - https://twitter.com/ddnews_dehradun
-    # below source is a PDF
+    # below source is a PDF (this can be autmoated, by reading the html)
     - https://health.uk.gov.in/pages/view/151-covid19-health-bulletin-for-uttarakhand-page-10
   # type: image
   # url: _inputs/ut.jpeg
