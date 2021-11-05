@@ -237,8 +237,7 @@ ka:
   state_code: KA
   automatic: False
   url_sources:
-    - https://twitter.com/DHFWKA
-  # append the google drive file's id to the below url to download PDF
+    - https://covid19.karnataka.gov.in/govt_bulletin/en
   type: pdf
   url: _inputs/ka.pdf
   config:
@@ -485,9 +484,12 @@ up:
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
   type: pdf
-  url:
+  url: _inputs/up.pdf
   config:
     translation: True
+    page: 1, 2
+    start_key: auto
+    end_key: auto
 
 # TODO - this doesn't have codebase for scanning images & PDFs aren't available anymore
 ut:
@@ -497,7 +499,7 @@ ut:
     - https://twitter.com/PIBDehradun
     - https://twitter.com/ddnews_dehradun
     # below source is a PDF (this can be autmoated, by reading the html)
-    - https://health.uk.gov.in/pages/view/151-covid19-health-bulletin-for-uttarakhand-page-10
+    - https://health.uk.gov.in/pages/view/154-covid19-health-bulletin-for-uttarakhand-page-11
   # type: image
   # url: _inputs/ut.jpeg
   # config:

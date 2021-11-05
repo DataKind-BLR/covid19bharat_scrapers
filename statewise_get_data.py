@@ -308,8 +308,7 @@ def hr_get_data(opt):
   pprint(opt)
 
   if not opt['url'].endswith('.pdf'):
-    # always get for T - 1 day
-    today = (datetime.date.today() - datetime.timedelta(days=1)).strftime("%d-%m-%Y")
+    today = datetime.date.today().strftime("%d-%m-%Y")
     opt['url'] = opt['url'] + today + '.' + opt['type']
 
   opt['config']['page'] = str(opt['config']['page'])
@@ -1017,70 +1016,73 @@ def tr_get_data(opt):
 def up_get_data(opt):
   print('Fetching UP data')
   pprint(opt)
-  errorCount = 0
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-  masterColumnArray = []
-  splitArray = []
-  lengthOfArray = 7
-  activeIndex = 6
-  recoveredIndex = 3
-  deceasedIndex = 5
-  typeOfAutomation = 'ocr1'
 
-  if typeOfAutomation == "ocr1":
-    lengthOfArray = 7
-    activeIndex = 6
-    recoveredIndex = 3
-    deceasedIndex = 5
-  else:
-    typeOfAutomation = "ocr2"
-    lengthOfArray = 8
-    activeIndex = 7
-    recoveredIndex = 4
-    deceasedIndex = 6
-  print("--> Using format {}".format(typeOfAutomation))
+  read_pdf_from_url(opt)
 
-  try:
-    with open(OUTPUT_FILE, "r") as upFile:
-      for line in upFile:
-        splitArray = re.sub('\n', '', line.strip()).split('|')
-        linesArray = splitArray[0].split(',')
+  # errorCount = 0
+  # linesArray = []
+  # districtDictionary = {}
+  # districts_data = []
+  # masterColumnArray = []
+  # splitArray = []
+  # lengthOfArray = 7
+  # activeIndex = 6
+  # recoveredIndex = 3
+  # deceasedIndex = 5
+  # typeOfAutomation = 'ocr1'
 
-        if errorCount > 10:
-          errorCount = 0
-          if typeOfAutomation == "ocr1":
-            typeOfAutomation = "ocr2"
-          else:
-            typeOfAutomation = "ocr1"
-          print("--> Switching to version {}. Error count breached.".format(typeOfAutomation))
-          up_get_data()
-          return
+  # if typeOfAutomation == "ocr1":
+  #   lengthOfArray = 7
+  #   activeIndex = 6
+  #   recoveredIndex = 3
+  #   deceasedIndex = 5
+  # else:
+  #   typeOfAutomation = "ocr2"
+  #   lengthOfArray = 8
+  #   activeIndex = 7
+  #   recoveredIndex = 4
+  #   deceasedIndex = 6
+  # print("--> Using format {}".format(typeOfAutomation))
 
-        if len(linesArray) != lengthOfArray:
-          print("--> Issue with {}".format(linesArray))
-          errorCount += 1
-          continue
+  # try:
+  #   with open(OUTPUT_FILE, "r") as upFile:
+  #     for line in upFile:
+  #       splitArray = re.sub('\n', '', line.strip()).split('|')
+  #       linesArray = splitArray[0].split(',')
 
-        districtDictionary = {}
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[recoveredIndex]) + int(linesArray[deceasedIndex]) + int(linesArray[activeIndex])
-        districtDictionary['recovered'] = int(linesArray[recoveredIndex])
-        districtDictionary['deceased'] = int(linesArray[deceasedIndex])
-        #districtDictionary['active'] = int(linesArray[activeIndex])
-        """
+  #       if errorCount > 10:
+  #         errorCount = 0
+  #         if typeOfAutomation == "ocr1":
+  #           typeOfAutomation = "ocr2"
+  #         else:
+  #           typeOfAutomation = "ocr1"
+  #         print("--> Switching to version {}. Error count breached.".format(typeOfAutomation))
+  #         up_get_data()
+  #         return
 
-        districtDictionary['confirmed'] = int(linesArray[2])
-        districtDictionary['recovered'] = int(linesArray[4])
-        districtDictionary['deceased'] = int(linesArray[6])
-        """
+  #       if len(linesArray) != lengthOfArray:
+  #         print("--> Issue with {}".format(linesArray))
+  #         errorCount += 1
+  #         continue
 
-        districts_data.append(districtDictionary)
-    upFile.close()
-  except FileNotFoundError:
-    print("output.txt missing. Generate through pdf or ocr and rerun.")
-  return districts_data
+  #       districtDictionary = {}
+  #       districtDictionary['districtName'] = linesArray[0].strip()
+  #       districtDictionary['confirmed'] = int(linesArray[recoveredIndex]) + int(linesArray[deceasedIndex]) + int(linesArray[activeIndex])
+  #       districtDictionary['recovered'] = int(linesArray[recoveredIndex])
+  #       districtDictionary['deceased'] = int(linesArray[deceasedIndex])
+  #       #districtDictionary['active'] = int(linesArray[activeIndex])
+  #       """
+
+  #       districtDictionary['confirmed'] = int(linesArray[2])
+  #       districtDictionary['recovered'] = int(linesArray[4])
+  #       districtDictionary['deceased'] = int(linesArray[6])
+  #       """
+
+  #       districts_data.append(districtDictionary)
+  #   upFile.close()
+  # except FileNotFoundError:
+  #   print("output.txt missing. Generate through pdf or ocr and rerun.")
+  # return districts_data
 
 def ut_get_data(opt):
   print('Fetching UT data')
