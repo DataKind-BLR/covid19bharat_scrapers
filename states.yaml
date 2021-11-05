@@ -98,20 +98,21 @@ ct:
     start_key: auto
     end_key: auto
 
-dd:
-  name: Daman and Diu
-  state_code: DD
-  automatic: False
-  notes: Need to read Image manually and enter into google sheets
-  url_sources:
-    - https://twitter.com/charmieparekh
-    - https://twitter.com/collectordaman
-    - https://twitter.com/rai_saloni
-    - https://twitter.com/diudistrict
-  type: image
-  url: _inputs/dd.jpeg
-  config:
-    translation: False
+# Merged with Dadra & Nagar Haveli
+# dd:
+#   name: Daman and Diu
+#   state_code: DD
+#   automatic: False
+#   notes: Need to read Image manually and enter into google sheets
+#   url_sources:
+#     - https://twitter.com/charmieparekh
+#     - https://twitter.com/collectordaman
+#     - https://twitter.com/rai_saloni
+#     - https://twitter.com/diudistrict
+#   type: image
+#   url: _inputs/dd.jpeg
+#   config:
+#     translation: False
 
 dh:
   name: Delhi
@@ -128,7 +129,7 @@ dh:
     translation: False
 
 dn:
-  name: Dadra and Nagar Haveli
+  name: Dadra and Nagar Haveli and Daman and Diu
   state_code: DN
   automatic: False
   notes: Need to read PDF / Image manually and enter into google sheets
@@ -138,7 +139,7 @@ dn:
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
   type: image
-  url:
+  url: https://www.mohfw.gov.in/
   config:
     translation: False
 
@@ -271,7 +272,7 @@ la:
     - https://twitter.com/DIPR_Leh
   automatic: True
   type: html
-  url: http://covid.ladakh.gov.in/#dataInsights
+  url: https://www.mohfw.gov.in/
 
 # TODO - Request timed out for MH
 mh:
@@ -396,7 +397,7 @@ py:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
   type: html
-  url: https://covid19dashboard.py.gov.in/Reporting/DateWise
+  url: https://www.mohfw.gov.in/
 
 # TESTED - issue in the rj_get_data function reading linesArray
 rj:

@@ -11,6 +11,7 @@ import os
 import re
 import csv
 import requests
+import pandas as pd
 from rich.pretty import pprint
 from rich.console import Console
 from rich.table import Table
@@ -34,6 +35,30 @@ def draw_table(data, info, console):
                   str(v['active']))
   
   console.print(table, justify="left")
+
+
+def state_level_delta(name, live_data, console):
+    DASHBOARD_URL = 'https://data.covid19bharat.org/csv/latest/state_wise.csv'
+    state_data = pd.read_csv(DASHBOARD_URL).set_index('State').loc[name]
+    state_data.index = state_data.index.str.lower()
+    state_code = state_data['state_code']
+    state_data['deceased']  = state_data['deaths']
+    
+    draw_table(state_data.to_frame(), {'name': name}, console)
+    
+    delta = {
+      'Hospitalized': live_data[0]['confirmed'] - state_data['confirmed'],
+      'Recovered':    live_data[0]['recovered'] - state_data['recovered'],
+      'Deceased':     live_data[0]['deceased']  - state_data['deceased']
+    }
+    
+    if list(delta.values()) == [0,0,0]:
+        console.print('\nDelta Unchanged.')
+    else:
+        for k,v in delta.items():
+            console.print(f"{name},{state_code},{str(v)},{k}")
+            
+        console.print('\nDelta Processing complete.')
 
 
 class DeltaCalculator:

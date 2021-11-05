@@ -2,6 +2,7 @@ import re
 import json
 import requests
 import datetime
+import pandas as pd
 
 from bs4 import BeautifulSoup
 from rich.pretty import pprint
@@ -10,6 +11,33 @@ from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
 OUTPUT_FILE = "output.txt"
+
+
+def _get_mohfw_data(name: str) -> dict:
+  '''Fetch state-wise data from MOHFW website.
+  
+  Inputs:
+    name: state name, eg: Ladakh
+
+  Returns:
+    dict: [{
+      'districtName': '',
+      'confirmed': 12345,
+      ...
+    }]
+  '''
+  MOHFW_URL = 'https://www.mohfw.gov.in/data/datanew.json'
+  
+  datum = (pd.read_json(MOHFW_URL)
+             .set_index('state_name')
+             .loc[name])
+
+  return [{
+    'districtName': name,
+    'confirmed': datum.new_positive,
+    'recovered': datum.new_cured,
+    'deceased':  datum.new_death 
+  }] 
 
 ## ------------------------ <STATE_CODE>_get_data functions START HERE
 def ap_get_data(opt):
@@ -207,6 +235,7 @@ def ct_get_data(opt):
   upFile.close()
   return districts_data
 
+# Daman & Diu is merged with Dadra & Nagar Haveli
 def dd_get_data(opt):
   print('Fetching DD data')
   pprint(opt)
@@ -220,7 +249,10 @@ def dh_get_data(opt):
 def dn_get_data(opt):
   print('Fetching DN data')
   pprint(opt)
-  pprint('You\'ve got to do this manually looking at the tweet/image')
+
+  return _get_mohfw_data(opt['name'])
+
+  # pprint('You\'ve got to do this manually looking at the tweet/image')
 
 def ga_get_data(opt):
   print('Fetching GA data')
@@ -527,49 +559,52 @@ def la_get_data(opt):
   print('fetching LA data')
   pprint(opt)
 
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find('table', id='tableCovidData2').find_all('tr')
+  return _get_mohfw_data(opt['name'])
 
-  district_data = []
-  district_dictionary = {}
-  confirmed = table[9].find_all('td')[1]
-  discharged = table[11].find_all('td')[1]
-  confirmed_array = re.sub('\\r', '',
-    re.sub(':', '',
-      re.sub(' +', ' ',
-        re.sub('\n', ' ',
-          confirmed.get_text().strip()
-        )
-      )
-    )
-  ).split(' ')
+  ## Code to pull from website: https://covid.ladakh.gov.in/#dataInsights which is no more updated as of: 30-10-2021 
+  # response = requests.request('GET', opt['url'])
+  # soup = BeautifulSoup(response.content, 'html.parser')
+  # table = soup.find('table', id='tableCovidData2').find_all('tr')
 
-  discharged_array = re.sub('\\r', '',
-    re.sub(':', '',
-      re.sub(' +', ' ',
-        re.sub("\n", " ",
-          discharged.get_text().strip()
-        )
-      )
-    )
-  ).split(' ')
+  # district_data = []
+  # district_dictionary = {}
+  # confirmed = table[9].find_all('td')[1]
+  # discharged = table[11].find_all('td')[1]
+  # confirmed_array = re.sub('\\r', '',
+  #   re.sub(':', '',
+  #     re.sub(' +', ' ',
+  #       re.sub('\n', ' ',
+  #         confirmed.get_text().strip()
+  #       )
+  #     )
+  #   )
+  # ).split(' ')
 
-  district_dictionary['districtName'] = confirmed_array[0]
-  district_dictionary['confirmed'] = int(confirmed_array[1])
-  district_dictionary['recovered'] = int(discharged_array[1])
-  district_dictionary['deceased'] = -999
-  district_data.append(district_dictionary)
+  # discharged_array = re.sub('\\r', '',
+  #   re.sub(':', '',
+  #     re.sub(' +', ' ',
+  #       re.sub("\n", " ",
+  #         discharged.get_text().strip()
+  #       )
+  #     )
+  #   )
+  # ).split(' ')
 
-  district_dictionary = {
-    'districtName': confirmed_array[2],
-    'confirmed': int(confirmed_array[3]),
-    'recovered': int(discharged_array[3]),
-    'deceased': -999
-  }
-  district_data.append(district_dictionary)
+  # district_dictionary['districtName'] = confirmed_array[0]
+  # district_dictionary['confirmed'] = int(confirmed_array[1])
+  # district_dictionary['recovered'] = int(discharged_array[1])
+  # district_dictionary['deceased'] = -999
+  # district_data.append(district_dictionary)
 
-  return district_data
+  # district_dictionary = {
+  #   'districtName': confirmed_array[2],
+  #   'confirmed': int(confirmed_array[3]),
+  #   'recovered': int(discharged_array[3]),
+  #   'deceased': -999
+  # }
+  # district_data.append(district_dictionary)
+
+  # return district_data
 
 def mh_get_data(opt):
   print('fetching MH data')
@@ -854,23 +889,27 @@ def pb_get_data(opt):
 def py_get_data(opt):
   print('fetching PY data')
   pprint(opt)
-  response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  table = soup.find_all('tbody')[1].find_all('tr')
 
-  district_data = []
-  for index, row in enumerate(table):
-    data_points = row.find_all('td')
+  return _get_mohfw_data(opt['name'])
 
-    district_dictionary = {
-      'districtName': data_points[0].get_text().strip(),
-      'confirmed': int(data_points[1].get_text().strip()),
-      'recovered': int(data_points[2].get_text().strip()),
-      'deceased': int(data_points[4].get_text().strip())
-    }
-    district_data.append(district_dictionary)
+  # Code to parse data from website: that stopped updating as of:
+  # response = requests.request('GET', opt['url'])
+  # soup = BeautifulSoup(response.content, 'html.parser')
+  # table = soup.find_all('tbody')[1].find_all('tr')
 
-  return district_data
+  # district_data = []
+  # for index, row in enumerate(table):
+  #   data_points = row.find_all('td')
+
+  #   district_dictionary = {
+  #     'districtName': data_points[0].get_text().strip(),
+  #     'confirmed': int(data_points[1].get_text().strip()),
+  #     'recovered': int(data_points[2].get_text().strip()),
+  #     'deceased': int(data_points[4].get_text().strip())
+  #   }
+  #   district_data.append(district_dictionary)
+
+  # return district_data
 
 def rj_get_data(opt):
   print('Fetching RJ data')
