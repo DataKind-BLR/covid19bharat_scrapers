@@ -156,6 +156,7 @@ ga:
   # Eg:          https://www.goa.gov.in/wp-content/uploads/2021/01/Media-Bulletin-15th-January-2021.pdf
   url_sources:
     - https://twitter.com/DHS_Goa
+    - https://www.goa.gov.in/covid-19/
   type: html
   url: https://www.goa.gov.in/covid-19/
 
@@ -456,7 +457,6 @@ tg:
   automatic: False
   url_sources:
     - https://twitter.com/Eatala_Rajender
-    - https://twitter.com/dgrsrao
     - https://covid19.telangana.gov.in/
     - https://covid19.telangana.gov.in/announcements/media-bulletins/
   type: image
