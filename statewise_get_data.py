@@ -341,6 +341,7 @@ def hr_get_data(opt):
 
   if not opt['url'].endswith('.pdf'):
     today = datetime.date.today().strftime("%d-%m-%Y")
+    print(f'Downloading HR pdf file for {today}')
     opt['url'] = opt['url'] + today + '.' + opt['type']
 
   opt['config']['page'] = str(opt['config']['page'])
