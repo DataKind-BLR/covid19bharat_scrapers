@@ -1227,7 +1227,8 @@ def wb_get_data(opt):
 
     upFile.close()
   except FileNotFoundError:
-    print("wb.csv missing. Generate through pdf or ocr and rerun.")
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    print(f"{csv_file} missing. Generate through pdf or ocr and rerun.")
   return districts_data
 
 ## ------------------------ <STATE_CODE>_get_data functions END HERE
