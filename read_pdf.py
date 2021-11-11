@@ -28,8 +28,6 @@ def read_pdf_from_url(opt):
     }
   }
   ```
-
-
   '''
 
   if urllib.parse.urlparse(opt['url']).scheme != '':
@@ -58,18 +56,26 @@ def read_pdf_from_url(opt):
   # for index, table in enumerate(tables):
   OUTPUT_CSV = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + '.csv')
   stateOutputFile = open(OUTPUT_CSV, 'w')
-  # csvWriter = csv.writer(stateOutputFile)
-  # arrayToWrite = []
-
   startedReadingDistricts = False
+
+  if opt['config']['translation'] == True:
+    # read translation file
+    translation_dict = read_translation(opt['state_code'].lower())
+
   for index, table in enumerate(tables):
     OUTPUT_PDF = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + str(index) + '.pdf.txt')
     tables[index].to_csv(OUTPUT_PDF)
+
     with open(OUTPUT_PDF, newline='') as stateCSVFile:
       rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
       for row in rowReader:
         line = "|".join(row)
         line = re.sub("\|+", '|', line)
+        if opt['state_code'] == 'UP':
+          formatted_line = up_custom(opt, line.split('|'), translation_dict)
+          print(formatted_line, file=stateOutputFile, end="")
+          continue
+
         if opt['config']['start_key'] in line:
           startedReadingDistricts = True
         if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
@@ -86,6 +92,15 @@ def read_pdf_from_url(opt):
   stateOutputFile.close()
 
 ## ------------------------ Custom format line functions for specific states START
+def up_custom(opt, row, translation_dict):
+  if row[1] in translation_dict:
+    dist_eng = translation_dict[row[1]]
+    #             dist_name,     confirmed,     discharged, cum discharged,   deceased,     cum deceased,    active
+    modifiedRow = dist_eng + ',' + row[2] + ',' + row[3] + ',' + row[4] + ',' + row[5] + ',' + row[6] + ',' + row[7] + '\n'
+    return modifiedRow
+  else:
+    return ''
+
 def ut_format_line(row):
   if len(row) == 6 and row[0] != 'Districts':
     to_print = ','.join(row) + '\n'
@@ -149,3 +164,17 @@ def tn_format_line(row):
   return line
 
 ## ------------------------ Custom format line functions for specific states END
+
+def read_translation(state_code):
+  translated_dict = {}
+  meta_file = os.path.join(os.path.dirname(__file__), 'automation', state_code.lower() + '_districts.meta')
+  try:
+    with open(meta_file, "r") as metaFile:
+      for line in metaFile:
+        if line.startswith('#'):
+          continue
+        lineArray = line.strip().split(',')
+        translated_dict[lineArray[0].strip()] = lineArray[1].strip()
+  except:
+    pass
+  return translated_dict
