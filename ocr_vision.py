@@ -4,6 +4,9 @@ import io
 import pickle
 from google.cloud import vision
 
+POLY_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'poly.txt')
+
+
 def detect_text(path):
   """Detects text in the file."""
   client = vision.ImageAnnotatorClient()
@@ -16,7 +19,7 @@ def detect_text(path):
   response = client.document_text_detection(image=image)
   texts = response.text_annotations
   print(texts)
-  with io.open('poly.txt', 'w') as boundsFile:
+  with io.open(POLY_TXT, 'w') as boundsFile:
     print(texts, file = boundsFile)
   boundsFile.close()
 

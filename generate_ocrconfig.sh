@@ -47,4 +47,4 @@ finalReplacementString=$( echo $replacementLine | sed "s/\$stateCode/$stateCode/
 
 echo $finalReplacementString
 
-sed "$finalReplacementString" ocrconfig.meta.orig > ocrconfig.meta
+sed "$finalReplacementString" ocrconfig.meta.orig > _outputs/ocrconfig.meta

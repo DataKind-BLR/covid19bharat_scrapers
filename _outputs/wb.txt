@@ -1,0 +1,122 @@
+West Bengal data from your current input.                                                                                                                                         
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                          
+┃ district          ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                          
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                          
+│ Alipurduar        │     15620 │     15470 │      102 │                                                                                                                          
+│ Coochbehar        │     29347 │     29132 │       97 │                                                                                                                          
+│ Darjeeling        │     57273 │     56488 │      542 │                                                                                                                          
+│ Kalimpong         │      7055 │      6969 │       54 │                                                                                                                          
+│ Jalpaiguri        │     42053 │     41346 │      576 │                                                                                                                          
+│ Uttar Dinajpur    │     19927 │     19599 │      239 │                                                                                                                          
+│ Dakshin Dinajpur  │     18014 │     17671 │      171 │                                                                                                                          
+│ Malda             │     33474 │     33185 │      186 │                                                                                                                          
+│ Murshidabad       │     34030 │     33640 │      329 │                                                                                                                          
+│ Nadia             │     73543 │     72300 │      862 │                                                                                                                          
+│ Birbhum           │     41279 │     40832 │      287 │                                                                                                                          
+│ Purulia           │     19429 │     19295 │      114 │                                                                                                                          
+│ Bankura           │     36453 │     35965 │      274 │                                                                                                                          
+│ Jhargram          │     12175 │     12093 │       27 │                                                                                                                          
+│ Paschim Medinipur │     53715 │     52972 │      508 │                                                                                                                          
+│ Purba Medinipur   │     63157 │     62635 │      397 │                                                                                                                          
+│ Purba Bardhaman   │     42142 │     41723 │      200 │                                                                                                                          
+│ Paschim Bardhaman │     57905 │     57329 │      356 │                                                                                                                          
+│ Howrah            │     99168 │     96979 │     1526 │                                                                                                                          
+│ Hooghly           │     86640 │     85045 │      997 │                                                                                                                          
+│ North 24 Parganas │    330060 │    323898 │     4851 │                                                                                                                          
+│ South 24 Parganas │    101388 │     99375 │     1345 │                                                                                                                          
+│ Kolkata           │    323852 │    316517 │     5172 │                                                                                                                          
+│ Other State       │        66 │        63 │        3 │                                                                                                                          
+└───────────────────┴───────────┴───────────┴──────────┘                                                                                                                          
+West Bengal last updated data from <data.covid19bharat.org>                                                                                                                       
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                
+┃ district          ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                
+│ Alipurduar        │     15614 │     15466 │      102 │              0 │     46 │                                                                                                
+│ Bankura           │     36444 │     35944 │      274 │              0 │    226 │                                                                                                
+│ Birbhum           │     41266 │     40817 │      286 │              0 │    163 │                                                                                                
+│ Cooch Behar       │     29333 │     29121 │       97 │              0 │    115 │                                                                                                
+│ Dakshin Dinajpur  │     18002 │     17654 │      171 │              0 │    177 │                                                                                                
+│ Darjeeling        │     57256 │     56464 │      541 │              0 │    251 │                                                                                                
+│ Hooghly           │     86599 │     84987 │      996 │              0 │    616 │                                                                                                
+│ Howrah            │     99108 │     96917 │     1526 │              0 │    665 │                                                                                                
+│ Jalpaiguri        │     42044 │     41333 │      576 │              0 │    135 │                                                                                                
+│ Jhargram          │     12164 │     12088 │       27 │              0 │     49 │                                                                                                
+│ Kalimpong         │      7054 │      6966 │       54 │              0 │     34 │                                                                                                
+│ Kolkata           │    323671 │    316311 │     5168 │              0 │   2192 │                                                                                                
+│ Malda             │     33463 │     33176 │      186 │              0 │    101 │                                                                                                
+│ Murshidabad       │     34021 │     33635 │      329 │              0 │     57 │                                                                                                
+│ Nadia             │     73520 │     72263 │      862 │              0 │    395 │                                                                                                
+│ North 24 Parganas │    329934 │    323775 │     4849 │              0 │   1310 │                                                                                                
+│ Other State       │        66 │        63 │        3 │              0 │      0 │                                                                                                
+│ Paschim Bardhaman │     57892 │     57308 │      356 │              0 │    228 │                                                                                                
+│ Paschim Medinipur │     53689 │     52950 │      508 │              0 │    231 │                                                                                                
+│ Purba Bardhaman   │     42124 │     41702 │      198 │              0 │    224 │                                                                                                
+│ Purba Medinipur   │     63149 │     62623 │      397 │              0 │    129 │                                                                                                
+│ Purulia           │     19428 │     19293 │      114 │              0 │     21 │                                                                                                
+│ South 24 Parganas │    101344 │     99310 │     1342 │              0 │    692 │                                                                                                
+│ Uttar Dinajpur    │     19910 │     19591 │      239 │              0 │     80 │                                                                                                
+│ Unknown           │         0 │         0 │        0 │              0 │      0 │                                                                                                
+└───────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                
+
+********** Computing Delta for West Bengal **********
+
+Mapping for district names
+Coochbehar -> Cooch Behar
+Bankura* -> Bankura
+Purba Bardhaman* -> Purba Bardhaman
+
+Delta statistics
+
+Alipurduar,West Bengal,WB,6,Hospitalized
+Cooch Behar,West Bengal,WB,14,Hospitalized
+Darjeeling,West Bengal,WB,17,Hospitalized
+Kalimpong,West Bengal,WB,1,Hospitalized
+Jalpaiguri,West Bengal,WB,9,Hospitalized
+Uttar Dinajpur,West Bengal,WB,17,Hospitalized
+Dakshin Dinajpur,West Bengal,WB,12,Hospitalized
+Malda,West Bengal,WB,11,Hospitalized
+Murshidabad,West Bengal,WB,9,Hospitalized
+Nadia,West Bengal,WB,23,Hospitalized
+Birbhum,West Bengal,WB,13,Hospitalized
+Purulia,West Bengal,WB,1,Hospitalized
+Bankura,West Bengal,WB,9,Hospitalized
+Jhargram,West Bengal,WB,11,Hospitalized
+Paschim Medinipur,West Bengal,WB,26,Hospitalized
+Purba Medinipur,West Bengal,WB,8,Hospitalized
+Purba Bardhaman,West Bengal,WB,18,Hospitalized
+Paschim Bardhaman,West Bengal,WB,13,Hospitalized
+Howrah,West Bengal,WB,60,Hospitalized
+Hooghly,West Bengal,WB,41,Hospitalized
+North 24 Parganas,West Bengal,WB,126,Hospitalized
+South 24 Parganas,West Bengal,WB,44,Hospitalized
+Kolkata,West Bengal,WB,181,Hospitalized
+Alipurduar,West Bengal,WB,4,Recovered
+Cooch Behar,West Bengal,WB,11,Recovered
+Darjeeling,West Bengal,WB,24,Recovered
+Kalimpong,West Bengal,WB,3,Recovered
+Jalpaiguri,West Bengal,WB,13,Recovered
+Uttar Dinajpur,West Bengal,WB,8,Recovered
+Dakshin Dinajpur,West Bengal,WB,17,Recovered
+Malda,West Bengal,WB,9,Recovered
+Murshidabad,West Bengal,WB,5,Recovered
+Nadia,West Bengal,WB,37,Recovered
+Birbhum,West Bengal,WB,15,Recovered
+Purulia,West Bengal,WB,2,Recovered
+Bankura,West Bengal,WB,21,Recovered
+Jhargram,West Bengal,WB,5,Recovered
+Paschim Medinipur,West Bengal,WB,22,Recovered
+Purba Medinipur,West Bengal,WB,12,Recovered
+Purba Bardhaman,West Bengal,WB,21,Recovered
+Paschim Bardhaman,West Bengal,WB,21,Recovered
+Howrah,West Bengal,WB,62,Recovered
+Hooghly,West Bengal,WB,58,Recovered
+North 24 Parganas,West Bengal,WB,123,Recovered
+South 24 Parganas,West Bengal,WB,65,Recovered
+Kolkata,West Bengal,WB,206,Recovered
+Darjeeling,West Bengal,WB,1,Deceased
+Birbhum,West Bengal,WB,1,Deceased
+Purba Bardhaman,West Bengal,WB,2,Deceased
+Hooghly,West Bengal,WB,1,Deceased
+North 24 Parganas,West Bengal,WB,2,Deceased
+South 24 Parganas,West Bengal,WB,3,Deceased
+Kolkata,West Bengal,WB,4,Deceased

@@ -1,0 +1,17 @@
+Ladakh data from your current input.                                                                                                                                              
+┏━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                   
+┃ district ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                   
+┡━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                   
+│ Ladakh   │     21072 │     20738 │      209 │                                                                                                                                   
+└──────────┴───────────┴───────────┴──────────┘                                                                                                                                   
+Ladakh last updated data from <data.covid19bharat.org>                                                                                                                            
+┏━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                         
+┃ district ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                         
+┡━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                         
+│ Ladakh   │     21059 │     20727 │      209 │              0 │    123 │                                                                                                         
+└──────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                         
+Ladakh,LA,13,Hospitalized
+Ladakh,LA,11,Recovered
+Ladakh,LA,0,Deceased
+
+Delta Processing complete.

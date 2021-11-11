@@ -16,6 +16,8 @@ from rich.pretty import pprint
 from rich.console import Console
 from rich.table import Table
 
+DELTA_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'delta.txt')
+
 def draw_table(data, info, console):
   table = Table(title=f"{info['name']} last updated data from <data.covid19bharat.org>", title_justify="left", style="bold")
 
@@ -201,7 +203,7 @@ class DeltaCalculator:
                 migrated_delta_array.append(migrated_delta)
 
         if options == "full":
-            self.clear_delta_file("_cache/delta.txt")
+            self.clear_delta_file(DELTA_TXT)
             self.console.print('\nDelta statistics\n', style="bold cyan")
             self.print_full_details(
                 confirmed_delta_array, "Hospitalized", state_name, state_code, districts, color='red')
@@ -235,7 +237,7 @@ class DeltaCalculator:
         :return: Print in proper format
         """
         try:
-            with open("_cache/delta.txt", "a", encoding="utf-8") as file:
+            with open(DELTA_TXT, "a", encoding="utf-8") as file:
                 for index, data in enumerate(delta_array):
                     if str(data) not in ("0", "NA"):
                         self.delta_changed = 1

@@ -1,3 +1,4 @@
+import os
 import re
 import json
 import requests
@@ -10,8 +11,7 @@ from rich.pretty import pprint
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
-OUTPUT_FILE = "output.txt"
-
+OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
 def _get_mohfw_data(name: str) -> dict:
   '''Fetch state-wise data from MOHFW website.
@@ -78,7 +78,7 @@ def ar_get_data(opt):
   additionalDistrictInfo['recovered'] = 0
   additionalDistrictInfo['deceased'] = 0
 
-  with open(OUTPUT_FILE, "r") as upFile:
+  with open(OUTPUT_TXT, "r") as upFile:
     for line in upFile:
       if 'Total' in line:
         continue
@@ -117,7 +117,7 @@ def as_get_data(opt):
   districtArray = []
   splitArray = []
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         splitArray = re.sub('\n', '', line.strip()).split('|')
         linesArray = splitArray[0].split(',')
@@ -137,7 +137,7 @@ def br_get_data(opt):
   districtDictionary = {}
   districts_data = []
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
         if len(linesArray) != 5:
@@ -190,7 +190,7 @@ def ct_get_data(opt):
   run_for_ocr(opt)
 
   districts_data = []
-  with open(OUTPUT_FILE, "r") as upFile:
+  with open(OUTPUT_TXT, "r") as upFile:
     for line in upFile:
       linesArray = line.split('|')[0].split(',')
       availableColumns = line.split('|')[1].split(',')
@@ -303,7 +303,7 @@ def hp_get_data(opt):
   districts_data = []
   districtTableBeingRead = False
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         line = re.sub('\*', '', line)
         linesArray = line.split('|')[0].split(',')
@@ -376,7 +376,7 @@ def jh_get_data(opt):
   districtDictionary = {}
   districts_data = []
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
         availableColumns = line.split('|')[1].split(',')
@@ -408,7 +408,7 @@ def jk_get_data(opt):
   districtDictionary = {}
   districts_data = []
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       isIgnoreFlagSet = False
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
@@ -631,7 +631,7 @@ def ml_get_data(opt):
     run_for_ocr(opt)
 
     districts_data = []
-    with open(OUTPUT_FILE, "r") as mlFile:
+    with open(OUTPUT_TXT, "r") as mlFile:
       for line in mlFile:
         linesArray = line.split('|')[0].split(',')
         if len(linesArray) != 8:
@@ -699,7 +699,7 @@ def mn_get_data(opt):
   run_for_ocr(opt)
 
   districts_data = []
-  with open(OUTPUT_FILE) as mnFile:
+  with open(OUTPUT_TXT) as mnFile:
     for line in mnFile:
       linesArray = line.split('|')[0].split(',')
       if len(linesArray) != 8:
@@ -723,7 +723,7 @@ def mp_get_data(opt):
   districtDictionary = {}
   districts_data = []
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       isIgnoreFlagSet = False
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
@@ -760,7 +760,7 @@ def mz_get_data(opt):
   run_for_ocr(opt)
 
   districts_data = []
-  with open(OUTPUT_FILE) as mzFile:
+  with open(OUTPUT_TXT) as mzFile:
     for line in mzFile:
       line = line.replace('Nil', '0')
       linesArray = line.split('|')[0].split(',')
@@ -783,7 +783,7 @@ def nl_get_data(opt):
   pprint(opt)
   districts_data = []
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
         if len(linesArray) != 13:
@@ -866,7 +866,7 @@ def pb_get_data(opt):
     masterColumnArray = []
     splitArray = []
     try:
-      with open(OUTPUT_FILE, "r") as upFile:
+      with open(OUTPUT_TXT, "r") as upFile:
         for line in upFile:
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
@@ -925,7 +925,7 @@ def rj_get_data(opt):
   skipValues = False
   edge_case = False
   try:
-    with open(OUTPUT_FILE, "r") as upFile:
+    with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         if 'Other' in line:
           skipValues = True
@@ -974,7 +974,7 @@ def sk_get_data(opt):
   run_for_ocr(opt)
 
   districts_data = []
-  with open(OUTPUT_FILE, "r") as mlFile:
+  with open(OUTPUT_TXT, "r") as mlFile:
     for line in mlFile:
       linesArray = line.split('|')[0].split(',')
       if len(linesArray) != 8:
@@ -1023,7 +1023,7 @@ def tg_get_data(opt):
   run_for_ocr(opt)
 
   linesArray = []
-  with open(OUTPUT_FILE, "r") as tgFile:
+  with open(OUTPUT_TXT, "r") as tgFile:
     for line in tgFile:
       linesArray = line.split('|')[0].split(',')
       if len(linesArray) != 2:
@@ -1085,7 +1085,7 @@ def up_get_data(opt):
   # print("--> Using format {}".format(typeOfAutomation))
 
   # try:
-  #   with open(OUTPUT_FILE, "r") as upFile:
+  #   with open(OUTPUT_TXT, "r") as upFile:
   #     for line in upFile:
   #       splitArray = re.sub('\n', '', line.strip()).split('|')
   #       linesArray = splitArray[0].split(',')
@@ -1170,7 +1170,7 @@ def ut_get_data(opt):
     districts_data = []
     splitArray = []
     try:
-      with open(OUTPUT_FILE, "r") as upFile:
+      with open(OUTPUT_TXT, "r") as upFile:
         for line in upFile:
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')

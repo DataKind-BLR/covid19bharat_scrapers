@@ -9,7 +9,12 @@ from matplotlib import pyplot as plt
 import matplotlib.patches as patches
 from matplotlib.patches import Circle
 
-OUTPUT_FILE = "output.txt"
+# OUTPUT_TXT = "output.txt"
+OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
+OUTPUT_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'image.png')
+BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
+
+
 dataDictionary = {}
 dataDictionaryArray = []
 translationDictionary = {}
@@ -135,8 +140,6 @@ def buildCellsV2():
   global configxInterval
   global configyInterval
   global xWidthTotal
-# testingNumbersFile = open("poly.txt", "r")
-#data = json.load(testingNumbersFile)
 
 def detectLines():
   global columnHandler
@@ -175,7 +178,7 @@ def buildCells():
   autoStartingText = startingText
 
 
-  testingNumbersFile = open("bounds.txt", "r")
+  testingNumbersFile = open(BOUNDS_TXT, "r")
   for index, line in enumerate(testingNumbersFile):
     lineArray = line.split('|')
     if len(lineArray) != 6:
@@ -366,7 +369,7 @@ def buildTranslationDictionary():
 
 
 def printOutput():
-  outputFile = open(OUTPUT_FILE, 'w')
+  outputFile = open(OUTPUT_TXT, 'w')
   global enableTranslation
   xArray = []
   yArray = []
@@ -455,7 +458,7 @@ def printOutput():
 
   outputFile.close()
   ax.imshow(image)
-  plt.savefig("image.png", dpi=300)
+  plt.savefig(OUTPUT_PNG, dpi=300)
   plt.show()
 
 def fuzzyLookup(translationDictionary,districtName):

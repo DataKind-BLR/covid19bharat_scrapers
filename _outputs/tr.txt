@@ -1,0 +1,48 @@
+Tripura data from your current input.                                                                                                                                             
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                              
+┃ district      ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                              
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                              
+│ Dhalai        │      7047 │      7001 │       35 │                                                                                                                              
+│ Gomati        │      8140 │      8055 │       74 │                                                                                                                              
+│ Khowai        │      4567 │      4505 │       54 │                                                                                                                              
+│ North Tripura │      7295 │      7219 │       34 │                                                                                                                              
+│ Sepahijala    │      6364 │      6285 │       75 │                                                                                                                              
+│ South Tripura │     10177 │     10113 │       53 │                                                                                                                              
+│ Unakoti       │      8611 │      8536 │       68 │                                                                                                                              
+│ West Tripura  │     32420 │     31884 │      420 │                                                                                                                              
+└───────────────┴───────────┴───────────┴──────────┘                                                                                                                              
+Tripura last updated data from <data.covid19bharat.org>                                                                                                                           
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                    
+┃ district      ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                    
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                    
+│ Dhalai        │      7046 │      7001 │       35 │              1 │      9 │                                                                                                    
+│ Gomati        │      8140 │      8054 │       74 │              4 │      8 │                                                                                                    
+│ Khowai        │      4561 │      4503 │       54 │              0 │      4 │                                                                                                    
+│ North Tripura │      7284 │      7218 │       34 │              7 │     25 │                                                                                                    
+│ Sipahijala    │      6362 │      6285 │       75 │              1 │      1 │                                                                                                    
+│ South Tripura │     10174 │     10111 │       53 │              3 │      7 │                                                                                                    
+│ Unokoti       │      8611 │      8534 │       68 │              4 │      5 │                                                                                                    
+│ West Tripura  │     32399 │     31867 │      420 │             43 │     69 │                                                                                                    
+│ Unknown       │         0 │         0 │        0 │              0 │      0 │                                                                                                    
+└───────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                    
+
+********** Computing Delta for Tripura **********
+
+Mapping for district names
+Sepahijala -> Sipahijala
+Unakoti -> Unokoti
+
+Delta statistics
+
+Dhalai,Tripura,TR,1,Hospitalized
+Khowai,Tripura,TR,6,Hospitalized
+North Tripura,Tripura,TR,11,Hospitalized
+Sipahijala,Tripura,TR,2,Hospitalized
+South Tripura,Tripura,TR,3,Hospitalized
+West Tripura,Tripura,TR,21,Hospitalized
+Gomati,Tripura,TR,1,Recovered
+Khowai,Tripura,TR,2,Recovered
+North Tripura,Tripura,TR,1,Recovered
+South Tripura,Tripura,TR,2,Recovered
+Unokoti,Tripura,TR,2,Recovered
+West Tripura,Tripura,TR,17,Recovered

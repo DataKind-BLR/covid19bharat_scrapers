@@ -41,7 +41,7 @@ from delta_calculator import DeltaCalculator, state_level_delta
 
 from statewise_get_data import *
 
-CACHE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_cache')
+OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 
@@ -186,6 +186,6 @@ if __name__ == '__main__':
     else:
       print(f"Delta unchanged.")
 
-  console.save_text(f'_cache/{state_code}.txt')
+  console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
   # TODO: HTML is not working
   # console.save_html(f'_cache/{state_code}.html')

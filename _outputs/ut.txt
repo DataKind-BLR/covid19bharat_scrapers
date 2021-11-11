@@ -1,0 +1,52 @@
+Uttarakhand data from your current input.                                                                                                                                         
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                              
+┃ district      ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                              
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                              
+│ Almora        │     12192 │     11378 │      196 │                                                                                                                              
+│ Bageshwar     │      5764 │      5678 │       60 │                                                                                                                              
+│ Chamoli       │     12242 │     11975 │       62 │                                                                                                                              
+│ Champawat     │      7604 │      7358 │       53 │                                                                                                                              
+│ Dehradun      │    112385 │    108164 │     3521 │                                                                                                                              
+│ Haridwar      │     51504 │     49102 │     1019 │                                                                                                                              
+│ Nainital      │     39238 │     38150 │      944 │                                                                                                                              
+│ Pauri Garhwal │     17687 │     16671 │      315 │                                                                                                                              
+│ Pithoragarh   │     10263 │      9966 │      182 │                                                                                                                              
+│ Rudraprayag   │      8800 │      8535 │      106 │                                                                                                                              
+│ Tehri Garhwal │     15836 │     14827 │      108 │                                                                                                                              
+│ U.S. Nagar    │     37876 │     36315 │      761 │                                                                                                                              
+│ Uttarkashi    │     12551 │     12130 │       74 │                                                                                                                              
+└───────────────┴───────────┴───────────┴──────────┘                                                                                                                              
+Uttarakhand last updated data from <data.covid19bharat.org>                                                                                                                       
+┏━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                
+┃ district          ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                
+┡━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                
+│ Almora            │     12191 │     11378 │      196 │            614 │      3 │                                                                                                
+│ Bageshwar         │      5764 │      5678 │       60 │             25 │      1 │                                                                                                
+│ Chamoli           │     12242 │     11973 │       62 │            204 │      3 │                                                                                                
+│ Champawat         │      7604 │      7358 │       53 │            189 │      4 │                                                                                                
+│ Dehradun          │    112383 │    108160 │     3521 │            598 │    104 │                                                                                                
+│ Haridwar          │     51504 │     49101 │     1019 │           1376 │      8 │                                                                                                
+│ Nainital          │     39238 │     38149 │      944 │            134 │     11 │                                                                                                
+│ Pauri Garhwal     │     17687 │     16671 │      315 │            701 │      0 │                                                                                                
+│ Pithoragarh       │     10263 │      9966 │      182 │            108 │      7 │                                                                                                
+│ Rudraprayag       │      8800 │      8535 │      106 │            159 │      0 │                                                                                                
+│ Tehri Garhwal     │     15836 │     14827 │      108 │            901 │      0 │                                                                                                
+│ Udham Singh Nagar │     37876 │     36315 │      761 │            799 │      1 │                                                                                                
+│ Uttarkashi        │     12551 │     12130 │       74 │            343 │      4 │                                                                                                
+│ Unknown           │         0 │         0 │        0 │              0 │      0 │                                                                                                
+└───────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                
+
+********** Computing Delta for Uttarakhand **********
+
+Mapping for district names
+U.S. Nagar -> Udham Singh Nagar
+Chamoll -> Chamoli
+
+Delta statistics
+
+Almora,Uttarakhand,UT,1,Hospitalized
+Dehradun,Uttarakhand,UT,2,Hospitalized
+Chamoli,Uttarakhand,UT,2,Recovered
+Dehradun,Uttarakhand,UT,4,Recovered
+Haridwar,Uttarakhand,UT,1,Recovered
+Nainital,Uttarakhand,UT,1,Recovered

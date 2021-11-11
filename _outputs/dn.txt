@@ -1,0 +1,14 @@
+Dadra and Nagar Haveli and Daman and Diu data from your current input.                                                                                                            
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                   
+┃ district                                 ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                   
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                   
+│ Dadra and Nagar Haveli and Daman and Diu │     10682 │     10678 │        4 │                                                                                                   
+└──────────────────────────────────────────┴───────────┴───────────┴──────────┘                                                                                                   
+Dadra and Nagar Haveli and Daman and Diu last updated data from <data.covid19bharat.org>                                                                                          
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                         
+┃ district                                 ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                         
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                         
+│ Dadra and Nagar Haveli and Daman and Diu │     10682 │     10678 │        4 │             31 │    -31 │                                                                         
+└──────────────────────────────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                         
+
+Delta Unchanged.
