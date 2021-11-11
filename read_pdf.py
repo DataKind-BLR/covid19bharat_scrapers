@@ -1,12 +1,12 @@
-import urllib
-import csv
 import os
 import re
-
-import requests
+import csv
+import urllib
 import camelot
+import requests
 import pdftotext
 
+OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 
 def read_pdf_from_url(opt):
   '''
@@ -58,15 +58,16 @@ def read_pdf_from_url(opt):
 
   tables = camelot.read_pdf(opt['url'], strip_text = '\n', pages = pid, split_text = True)
   # for index, table in enumerate(tables):
-
-  stateOutputFile = open(opt['state_code'].lower() + '.csv', 'w')
+  OUTPUT_CSV = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + '.csv')
+  stateOutputFile = open(OUTPUT_CSV, 'w')
   # csvWriter = csv.writer(stateOutputFile)
   # arrayToWrite = []
 
   startedReadingDistricts = False
   for index, table in enumerate(tables):
-    tables[index].to_csv(opt['state_code'].lower() + str(index) + '.pdf.txt')
-    with open(opt['state_code'].lower() + str(index) + '.pdf.txt', newline='') as stateCSVFile:
+    OUTPUT_PDF = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + str(index) + '.pdf.txt')
+    tables[index].to_csv(OUTPUT_PDF)
+    with open(OUTPUT_PDF, newline='') as stateCSVFile:
       rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
       for row in rowReader:
         line = "|".join(row)
