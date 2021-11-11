@@ -1,11 +1,6 @@
 """
 This class provides a way to get delta per district
 based on passed values and website numbers
-
-To scan PDFs
-  ./automation.py "statename" full pdf=<urlOfThepdf>=<pageNumber>
-  ./automation.py "stateName" full pdf==<pageNumber> (this in case you manually place the pdf as .tmp/stateCode.pdf)
-
 """
 import os
 import re

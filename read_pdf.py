@@ -6,6 +6,7 @@ import camelot
 import requests
 import pdftotext
 
+INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 
 def read_pdf_from_url(opt):
@@ -31,14 +32,11 @@ def read_pdf_from_url(opt):
 
   '''
 
-  # if len(opt['url']) > 0:
-  # if url provided is a remote url like (http://)
-
   if urllib.parse.urlparse(opt['url']).scheme != '':
-    #print("--> Requesting download from {} ".format(url))
     r = requests.get(opt['url'], allow_redirects=True, verify=False)
-    open(opt['state_code'] + ".pdf", 'wb').write(r.content)
-    opt['url'] = os.path.abspath(opt['state_code'] + '.pdf')
+    DOWNLOADED_PDF = os.path.join(INPUTS_DIR, opt['state_code'].lower() + '.pdf')
+    open(DOWNLOADED_PDF, 'wb').write(r.content)
+    opt['url'] = DOWNLOADED_PDF
 
   opt['config']['page'] = str(opt['config']['page'])
   if len(opt['config']['page']) > 0:

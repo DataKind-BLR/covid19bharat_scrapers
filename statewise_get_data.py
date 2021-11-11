@@ -11,6 +11,7 @@ from rich.pretty import pprint
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
+OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
 def _get_mohfw_data(name: str) -> dict:
@@ -340,7 +341,8 @@ def hr_get_data(opt):
   pprint(opt)
 
   if not opt['url'].endswith('.pdf'):
-    today = datetime.date.today().strftime("%d-%m-%Y")
+    today = (datetime.date.today() - datetime.timedelta(days=5)).strftime("%d-%m-%Y")
+    # today = datetime.date.today().strftime("%d-%m-%Y")
     print(f'Downloading HR pdf file for {today}')
     opt['url'] = opt['url'] + today + '.' + opt['type']
 
@@ -352,7 +354,8 @@ def hr_get_data(opt):
   linesArray = []
   districtDictionary = {}
   districts_data = []
-  with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
+  csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+  with open(csv_file, "r") as upFile:
     for line in upFile:
       linesArray = line.split(',')
       if len(linesArray) != 4:
@@ -475,7 +478,8 @@ def ka_get_data(opt):
     read_pdf_from_url(opt)
 
     try:
-      with open("{}.csv".format(opt['state_code']), "r") as upFile:
+      csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+      with open(csv_file, "r") as upFile:
         for line in upFile:
           linesArray = line.split(',')
           if len(linesArray) != 4:
@@ -543,7 +547,9 @@ def kl_get_data(opt):
     districtDictionary = {}
     districts_data = []
     read_pdf_from_url(opt)
-    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 3:
@@ -804,8 +810,8 @@ def nl_get_data(opt):
   return districts_data
 
 def or_get_data(opt):
-  import os
-  temp_file = "./_cache/{}.csv".format(opt['state_code'].lower())
+  temp_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+  # temp_file = "./_cache/{}.csv".format(opt['state_code'].lower())
   cmd = ' | '.join([
     "curl -sk {}".format(opt['url']),
     "grep -i string | grep -v legend",
@@ -839,7 +845,8 @@ def pb_get_data(opt):
     districtDictionary = {}
     districts_data = []
 
-    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 5:
@@ -999,7 +1006,9 @@ def tn_get_data(opt):
     linesArray = []
     districtDictionary = {}
     district_data = []
-    with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 5:
@@ -1136,7 +1145,8 @@ def ut_get_data(opt):
     districts_data = []
     ignoreLines = False
     try:
-      with open('{}.csv'.format(opt['state_code'].lower()), "r") as upFile:
+      csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+      with open(csv_file, "r") as upFile:
         for line in upFile:
           if ignoreLines == True:
             continue
@@ -1201,7 +1211,8 @@ def wb_get_data(opt):
   read_pdf_from_url(opt)
 
   try:
-    with open("{}.csv".format(opt['state_code'].lower()), "r") as upFile:
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 4:
