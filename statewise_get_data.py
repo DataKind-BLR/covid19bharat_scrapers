@@ -1088,7 +1088,7 @@ def up_get_data(opt):
           continue
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1]) + int(linesArray[5]) + int(linesArray[6])
+        districtDictionary['confirmed'] = int(linesArray[3]) + int(linesArray[5]) + int(linesArray[6])
         districtDictionary['recovered'] = int(linesArray[3])
         districtDictionary['deceased'] = int(linesArray[5])
         # districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
