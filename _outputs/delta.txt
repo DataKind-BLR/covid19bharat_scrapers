@@ -1,6 +1,21 @@
-West Siang,Arunachal Pradesh,AR,-1,Hospitalized
-Papum Pare,Arunachal Pradesh,AR,-18320,Hospitalized
-West Siang,Arunachal Pradesh,AR,-1857,Recovered
-Papum Pare,Arunachal Pradesh,AR,-18220,Recovered
-West Siang,Arunachal Pradesh,AR,1851,Deceased
-Papum Pare,Arunachal Pradesh,AR,-98,Deceased
+Lucknow,Uttar Pradesh,UP,-11,Hospitalized
+Meerut,Uttar Pradesh,UP,-2,Hospitalized
+Prayagraj,Uttar Pradesh,UP,-3,Hospitalized
+Kanpur Nagar,Uttar Pradesh,UP,-1,Hospitalized
+Barabanki,Uttar Pradesh,UP,-1,Hospitalized
+Kanpur Dehat,Uttar Pradesh,UP,-1,Hospitalized
+Lucknow,Uttar Pradesh,UP,-14,Recovered
+Meerut,Uttar Pradesh,UP,-9,Recovered
+Prayagraj,Uttar Pradesh,UP,-2,Recovered
+Ambedkar Nagar,Uttar Pradesh,UP,-2,Recovered
+Balrampur,Uttar Pradesh,UP,-1,Recovered
+Basti,Uttar Pradesh,UP,-1,Recovered
+Gorakhpur,Uttar Pradesh,UP,-3,Recovered
+Jalaun,Uttar Pradesh,UP,-1,Recovered
+Kanpur Nagar,Uttar Pradesh,UP,-3,Recovered
+Muzaffarnagar,Uttar Pradesh,UP,-1,Recovered
+Barabanki,Uttar Pradesh,UP,-1,Recovered
+Hardoi,Uttar Pradesh,UP,-1,Recovered
+Kaushambi,Uttar Pradesh,UP,-1,Recovered
+Mathura,Uttar Pradesh,UP,-1,Recovered
+Moradabad,Uttar Pradesh,UP,-1,Recovered

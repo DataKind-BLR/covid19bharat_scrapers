@@ -2,74 +2,74 @@ Odisha data from your current input.
 ┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                             
 ┃ district       ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                             
 ┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                             
-│ Angul          │     43929 │     43523 │      398 │                                                                                                                             
-│ Balasore       │     40865 │     40484 │      301 │                                                                                                                             
+│ Angul          │     43929 │     43524 │      398 │                                                                                                                             
+│ Balasore       │     40879 │     40492 │      301 │                                                                                                                             
 │ Bargarh        │     31132 │     30786 │      335 │                                                                                                                             
-│ Bhadrak        │     26521 │     26322 │      150 │                                                                                                                             
-│ Bolangir       │     23430 │     23264 │      126 │                                                                                                                             
+│ Bhadrak        │     26523 │     26326 │      151 │                                                                                                                             
+│ Bolangir       │     23431 │     23279 │      126 │                                                                                                                             
 │ Boudh          │     12637 │     12523 │      112 │                                                                                                                             
-│ Cuttack        │     94889 │     93756 │      858 │                                                                                                                             
-│ Deogarh        │      6568 │      6503 │       50 │                                                                                                                             
-│ Dhenkanal      │     19898 │     19627 │      243 │                                                                                                                             
-│ Gajapati       │      9697 │      9577 │       84 │                                                                                                                             
-│ Ganjam         │     33872 │     33367 │      487 │                                                                                                                             
-│ Jagatsinghapur │     27989 │     27619 │      317 │                                                                                                                             
-│ Jajpur         │     43843 │     43560 │      172 │                                                                                                                             
-│ Jharsuguda     │     23878 │     23690 │      176 │                                                                                                                             
-│ Kalahandi      │     24320 │     24098 │      210 │                                                                                                                             
-│ Kandhamal      │     11539 │     11454 │       83 │                                                                                                                             
-│ Kendrapara     │     24919 │     24615 │      253 │                                                                                                                             
-│ Kendujhar      │     20990 │     20809 │      175 │                                                                                                                             
-│ Khordha        │    176798 │    173788 │     1568 │                                                                                                                             
-│ Koraput        │     19150 │     19059 │       78 │                                                                                                                             
-│ Malkangiri     │     11678 │     11615 │       49 │                                                                                                                             
-│ Mayurbhanj     │     40911 │     40585 │      288 │                                                                                                                             
-│ Nabarangpur    │     23554 │     23462 │       86 │                                                                                                                             
-│ Nayagarh       │     23532 │     23294 │      213 │                                                                                                                             
-│ Nuapada        │     22934 │     22837 │       85 │                                                                                                                             
-│ Puri           │     45482 │     44977 │      462 │                                                                                                                             
-│ Rayagada       │     20230 │     20042 │      167 │                                                                                                                             
-│ Sambalpur      │     31743 │     31410 │      240 │                                                                                                                             
-│ Subarnapur     │     13195 │     13121 │       61 │                                                                                                                             
-│ Sundargarh     │     61919 │     61245 │      594 │                                                                                                                             
-│ Tstate Pool    │     32386 │     32015 │        0 │                                                                                                                             
+│ Cuttack        │     94912 │     93813 │      858 │                                                                                                                             
+│ Deogarh        │      6576 │      6504 │       50 │                                                                                                                             
+│ Dhenkanal      │     19903 │     19635 │      243 │                                                                                                                             
+│ Gajapati       │      9697 │      9579 │       84 │                                                                                                                             
+│ Ganjam         │     33872 │     33372 │      487 │                                                                                                                             
+│ Jagatsinghapur │     27996 │     27631 │      317 │                                                                                                                             
+│ Jajpur         │     43853 │     43578 │      172 │                                                                                                                             
+│ Jharsuguda     │     23880 │     23691 │      176 │                                                                                                                             
+│ Kalahandi      │     24322 │     24101 │      210 │                                                                                                                             
+│ Kandhamal      │     11539 │     11455 │       83 │                                                                                                                             
+│ Kendrapara     │     24921 │     24631 │      253 │                                                                                                                             
+│ Kendujhar      │     20995 │     20809 │      175 │                                                                                                                             
+│ Khordha        │    176910 │    174110 │     1569 │                                                                                                                             
+│ Koraput        │     19150 │     19062 │       78 │                                                                                                                             
+│ Malkangiri     │     11683 │     11616 │       49 │                                                                                                                             
+│ Mayurbhanj     │     40916 │     40601 │      288 │                                                                                                                             
+│ Nabarangpur    │     23554 │     23463 │       86 │                                                                                                                             
+│ Nayagarh       │     23533 │     23300 │      213 │                                                                                                                             
+│ Nuapada        │     22934 │     22841 │       85 │                                                                                                                             
+│ Puri           │     45489 │     44987 │      462 │                                                                                                                             
+│ Rayagada       │     20234 │     20047 │      167 │                                                                                                                             
+│ Sambalpur      │     31763 │     31428 │      240 │                                                                                                                             
+│ Subarnapur     │     13196 │     13122 │       61 │                                                                                                                             
+│ Sundargarh     │     61929 │     61255 │      594 │                                                                                                                             
+│ Tstate Pool    │     32411 │     32091 │        0 │                                                                                                                             
 └────────────────┴───────────┴───────────┴──────────┘                                                                                                                             
 Odisha last updated data from <data.covid19bharat.org>                                                                                                                            
 ┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                    
 ┃ district      ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                    
 ┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                    
-│ State Pool    │     32343 │     32015 │        0 │              0 │    328 │                                                                                                    
+│ State Pool    │     32386 │     32015 │        0 │              0 │    371 │                                                                                                    
 │ Others        │         0 │         0 │        0 │              0 │      0 │                                                                                                    
-│ Angul         │     43927 │     43523 │      397 │              0 │      7 │                                                                                                    
-│ Balangir      │     23428 │     23264 │      126 │              0 │     38 │                                                                                                    
-│ Balasore      │     40856 │     40484 │      301 │              0 │     71 │                                                                                                    
-│ Bargarh       │     31130 │     30786 │      335 │              0 │      9 │                                                                                                    
-│ Bhadrak       │     26520 │     26322 │      150 │              0 │     48 │                                                                                                    
+│ Angul         │     43929 │     43523 │      398 │              0 │      8 │                                                                                                    
+│ Balangir      │     23430 │     23264 │      126 │              0 │     40 │                                                                                                    
+│ Balasore      │     40865 │     40484 │      301 │              0 │     80 │                                                                                                    
+│ Bargarh       │     31132 │     30786 │      335 │              0 │     11 │                                                                                                    
+│ Bhadrak       │     26521 │     26322 │      150 │              0 │     49 │                                                                                                    
 │ Boudh         │     12637 │     12523 │      112 │              0 │      2 │                                                                                                    
-│ Cuttack       │     94856 │     93756 │      858 │              0 │    242 │                                                                                                    
-│ Deogarh       │      6562 │      6503 │       50 │              0 │      9 │                                                                                                    
-│ Dhenkanal     │     19893 │     19627 │      243 │              0 │     23 │                                                                                                    
-│ Gajapati      │      9690 │      9577 │       84 │              0 │     29 │                                                                                                    
-│ Ganjam        │     33869 │     33367 │      487 │              0 │     15 │                                                                                                    
-│ Jagatsinghpur │     27979 │     27619 │      317 │              0 │     43 │                                                                                                    
-│ Jajpur        │     43833 │     43560 │      172 │              0 │    101 │                                                                                                    
-│ Jharsuguda    │     23877 │     23690 │      176 │              0 │     11 │                                                                                                    
+│ Cuttack       │     94889 │     93756 │      858 │              0 │    275 │                                                                                                    
+│ Deogarh       │      6568 │      6503 │       50 │              0 │     15 │                                                                                                    
+│ Dhenkanal     │     19898 │     19627 │      243 │              0 │     28 │                                                                                                    
+│ Gajapati      │      9697 │      9577 │       84 │              0 │     36 │                                                                                                    
+│ Ganjam        │     33872 │     33367 │      487 │              0 │     18 │                                                                                                    
+│ Jagatsinghpur │     27989 │     27619 │      317 │              0 │     53 │                                                                                                    
+│ Jajpur        │     43843 │     43560 │      172 │              0 │    111 │                                                                                                    
+│ Jharsuguda    │     23878 │     23690 │      176 │              0 │     12 │                                                                                                    
 │ Kalahandi     │     24320 │     24098 │      210 │              0 │     12 │                                                                                                    
-│ Kandhamal     │     11538 │     11454 │       83 │              0 │      1 │                                                                                                    
-│ Kendrapara    │     24913 │     24615 │      253 │              0 │     45 │                                                                                                    
-│ Kendujhar     │     20986 │     20809 │      175 │              0 │      2 │                                                                                                    
-│ Khordha       │    176603 │    173788 │     1565 │              0 │   1250 │                                                                                                    
+│ Kandhamal     │     11539 │     11454 │       83 │              0 │      2 │                                                                                                    
+│ Kendrapara    │     24919 │     24615 │      253 │              0 │     51 │                                                                                                    
+│ Kendujhar     │     20990 │     20809 │      175 │              0 │      6 │                                                                                                    
+│ Khordha       │    176798 │    173788 │     1568 │              0 │   1442 │                                                                                                    
 │ Koraput       │     19150 │     19059 │       78 │              0 │     13 │                                                                                                    
 │ Malkangiri    │     11678 │     11615 │       49 │              0 │     14 │                                                                                                    
-│ Mayurbhanj    │     40909 │     40585 │      288 │              0 │     36 │                                                                                                    
-│ Nabarangapur  │     23553 │     23462 │       86 │              0 │      5 │                                                                                                    
-│ Nayagarh      │     23526 │     23294 │      213 │              0 │     19 │                                                                                                    
+│ Mayurbhanj    │     40911 │     40585 │      288 │              0 │     38 │                                                                                                    
+│ Nabarangapur  │     23554 │     23462 │       86 │              0 │      6 │                                                                                                    
+│ Nayagarh      │     23532 │     23294 │      213 │              0 │     25 │                                                                                                    
 │ Nuapada       │     22934 │     22837 │       85 │              0 │     12 │                                                                                                    
-│ Puri          │     45470 │     44977 │      462 │              0 │     31 │                                                                                                    
-│ Rayagada      │     20229 │     20042 │      167 │              0 │     20 │                                                                                                    
-│ Sambalpur     │     31725 │     31410 │      240 │              0 │     75 │                                                                                                    
-│ Subarnapur    │     13194 │     13121 │       61 │              0 │     12 │                                                                                                    
-│ Sundargarh    │     61913 │     61245 │      594 │              0 │     74 │                                                                                                    
+│ Puri          │     45482 │     44977 │      462 │              0 │     43 │                                                                                                    
+│ Rayagada      │     20230 │     20042 │      167 │              0 │     21 │                                                                                                    
+│ Sambalpur     │     31743 │     31410 │      240 │              0 │     93 │                                                                                                    
+│ Subarnapur    │     13195 │     13121 │       61 │              0 │     13 │                                                                                                    
+│ Sundargarh    │     61919 │     61245 │      594 │              0 │     80 │                                                                                                    
 │ Unknown       │         0 │         0 │        0 │              0 │      0 │                                                                                                    
 └───────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                    
 
@@ -90,31 +90,55 @@ Tstate Pool -> State Pool
 
 Delta statistics
 
-Angul,Odisha,OR,2,Hospitalized
-Balasore,Odisha,OR,9,Hospitalized
-Bargarh,Odisha,OR,2,Hospitalized
-Bhadrak,Odisha,OR,1,Hospitalized
-Balangir,Odisha,OR,2,Hospitalized
-Cuttack,Odisha,OR,33,Hospitalized
-Deogarh,Odisha,OR,6,Hospitalized
+Balasore,Odisha,OR,14,Hospitalized
+Bhadrak,Odisha,OR,2,Hospitalized
+Balangir,Odisha,OR,1,Hospitalized
+Cuttack,Odisha,OR,23,Hospitalized
+Deogarh,Odisha,OR,8,Hospitalized
 Dhenkanal,Odisha,OR,5,Hospitalized
-Gajapati,Odisha,OR,7,Hospitalized
-Ganjam,Odisha,OR,3,Hospitalized
-Jagatsinghpur,Odisha,OR,10,Hospitalized
+Jagatsinghpur,Odisha,OR,7,Hospitalized
 Jajpur,Odisha,OR,10,Hospitalized
-Jharsuguda,Odisha,OR,1,Hospitalized
-Kandhamal,Odisha,OR,1,Hospitalized
-Kendrapara,Odisha,OR,6,Hospitalized
-Kendujhar,Odisha,OR,4,Hospitalized
-Khordha,Odisha,OR,195,Hospitalized
-Mayurbhanj,Odisha,OR,2,Hospitalized
-Nabarangapur,Odisha,OR,1,Hospitalized
-Nayagarh,Odisha,OR,6,Hospitalized
-Puri,Odisha,OR,12,Hospitalized
-Rayagada,Odisha,OR,1,Hospitalized
-Sambalpur,Odisha,OR,18,Hospitalized
+Jharsuguda,Odisha,OR,2,Hospitalized
+Kalahandi,Odisha,OR,2,Hospitalized
+Kendrapara,Odisha,OR,2,Hospitalized
+Kendujhar,Odisha,OR,5,Hospitalized
+Khordha,Odisha,OR,112,Hospitalized
+Malkangiri,Odisha,OR,5,Hospitalized
+Mayurbhanj,Odisha,OR,5,Hospitalized
+Nayagarh,Odisha,OR,1,Hospitalized
+Puri,Odisha,OR,7,Hospitalized
+Rayagada,Odisha,OR,4,Hospitalized
+Sambalpur,Odisha,OR,20,Hospitalized
 Subarnapur,Odisha,OR,1,Hospitalized
-Sundargarh,Odisha,OR,6,Hospitalized
-State Pool,Odisha,OR,43,Hospitalized
-Angul,Odisha,OR,1,Deceased
-Khordha,Odisha,OR,3,Deceased
+Sundargarh,Odisha,OR,10,Hospitalized
+State Pool,Odisha,OR,25,Hospitalized
+Angul,Odisha,OR,1,Recovered
+Balasore,Odisha,OR,8,Recovered
+Bhadrak,Odisha,OR,4,Recovered
+Balangir,Odisha,OR,15,Recovered
+Cuttack,Odisha,OR,57,Recovered
+Deogarh,Odisha,OR,1,Recovered
+Dhenkanal,Odisha,OR,8,Recovered
+Gajapati,Odisha,OR,2,Recovered
+Ganjam,Odisha,OR,5,Recovered
+Jagatsinghpur,Odisha,OR,12,Recovered
+Jajpur,Odisha,OR,18,Recovered
+Jharsuguda,Odisha,OR,1,Recovered
+Kalahandi,Odisha,OR,3,Recovered
+Kandhamal,Odisha,OR,1,Recovered
+Kendrapara,Odisha,OR,16,Recovered
+Khordha,Odisha,OR,322,Recovered
+Koraput,Odisha,OR,3,Recovered
+Malkangiri,Odisha,OR,1,Recovered
+Mayurbhanj,Odisha,OR,16,Recovered
+Nabarangapur,Odisha,OR,1,Recovered
+Nayagarh,Odisha,OR,6,Recovered
+Nuapada,Odisha,OR,4,Recovered
+Puri,Odisha,OR,10,Recovered
+Rayagada,Odisha,OR,5,Recovered
+Sambalpur,Odisha,OR,18,Recovered
+Subarnapur,Odisha,OR,1,Recovered
+Sundargarh,Odisha,OR,10,Recovered
+State Pool,Odisha,OR,76,Recovered
+Bhadrak,Odisha,OR,1,Deceased
+Khordha,Odisha,OR,1,Deceased
