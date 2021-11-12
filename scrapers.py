@@ -150,24 +150,16 @@ if __name__ == '__main__':
   
   logging.info('scraper', args.url)
 
-  # execute for all states, if state_code not mentioned
-  if state_code == 'all':
-    for sc in states_all:
-      if states_all[sc]['url']:
-        print('running {}_get_data'.format(sc))
-        fetch_data(states_all[sc])
-  else:
-    if url_type is not None and url is not None:
-      # if there's a url & type provided as args, use that
-      states_all[state_code].update({
-        'url': url,
-        'type': url_type
-      })
-    # always use default url & type from yaml file
-    live_data = fetch_data(states_all[state_code])
-    draw_table(live_data, states_all[state_code])
 
-  print("\n")
+  if url_type is not None and url is not None:
+    # if there's a url & type provided as args, use that
+    states_all[state_code].update({
+      'url': url,
+      'type': url_type
+    })
+  # always use default url & type from yaml file
+  live_data = fetch_data(states_all[state_code])
+  draw_table(live_data, states_all[state_code])
 
   LAZY_STATES = {'la', 'py', 'dn'}  # STATES that are no longer maintaining their dashboard
   if state_code in LAZY_STATES:
