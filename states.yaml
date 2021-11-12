@@ -123,6 +123,7 @@ dh:
 dn:
   name: Dadra and Nagar Haveli and Daman and Diu
   state_code: DN
+  lazy: True
   automatic: False
   notes: Need to read PDF / Image manually and enter into google sheets
   url_sources:
@@ -256,6 +257,7 @@ la:
     - https://twitter.com/prasarbharti
     - http://covid.ladakh.gov.in/#dataInsights
     - https://twitter.com/DIPR_Leh
+  lazy: True
   automatic: True
   type: html
   url: https://www.mohfw.gov.in/
@@ -371,6 +373,7 @@ pb:
 py:
   name: Puducherry
   state_code: PY
+  lazy: True
   automatic: True
   url_sources:
     - https://twitter.com/ani

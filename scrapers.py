@@ -146,10 +146,7 @@ if __name__ == '__main__':
   state_code = args.state_code.lower()
   url = args.url
   url_type = args.type
-  # url_date = args.date or datetime.today()
-  
   logging.info('scraper', args.url)
-
 
   if url_type is not None and url is not None:
     # if there's a url & type provided as args, use that
@@ -161,8 +158,7 @@ if __name__ == '__main__':
   live_data = fetch_data(states_all[state_code])
   draw_table(live_data, states_all[state_code])
 
-  LAZY_STATES = {'la', 'py', 'dn'}  # STATES that are no longer maintaining their dashboard
-  if state_code in LAZY_STATES:
+  if 'lazy' in states_all[state_code]:
     state_level_delta(states_all[state_code]['name'], live_data, console)
   else:
     # TODO - get delta for states
