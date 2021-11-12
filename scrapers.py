@@ -31,7 +31,6 @@ import html5lib
 import requests
 import datetime
 import pdftotext
-from utils import state_codes
 from bs4 import BeautifulSoup
 from rich.pretty  import pprint
 from rich.console import Console
@@ -129,16 +128,16 @@ def fetch_data(st_obj):
 
 if __name__ == '__main__':
   '''
-  Example to extract from html dashboard (the url will be taken from automation.yaml file by default)
-    $python automation.py --state_code GJ
+  Example to extract from html dashboard (the url will be taken from states.yaml file by default)
+    $python scrapers.py --state_code GJ
 
   Example to overwrite settings already provided in yaml file:
-    $python automation.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
+    $python scrapers.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
   '''
   parser = argparse.ArgumentParser()
   parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
                                                                                f'defaults to all. '
-                                                                               f'Possible options = {state_codes.state_codes} ')
+                                                                               f'Possible options = {states_all.keys()} ')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
   #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
