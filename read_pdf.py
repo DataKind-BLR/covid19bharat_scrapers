@@ -54,14 +54,16 @@ def read_pdf_from_url(opt):
   print("Running for {} pages".format(pid))
 
   tables = camelot.read_pdf(opt['url'], strip_text = '\n', pages = pid, split_text = True)
+
   # for index, table in enumerate(tables):
   OUTPUT_CSV = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + '.csv')
   stateOutputFile = open(OUTPUT_CSV, 'w')
   startedReadingDistricts = False
 
-  if opt['config']['translation'] == True:
-    # read translation file
-    translation_dict = read_translation(opt['state_code'].lower())
+  if 'translation' in opt['config']:
+    if opt['config']['translation'] == True:
+      # read translation file
+      translation_dict = read_translation(opt['state_code'].lower())
 
   for index, table in enumerate(tables):
     OUTPUT_PDF = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + str(index) + '.pdf.txt')
