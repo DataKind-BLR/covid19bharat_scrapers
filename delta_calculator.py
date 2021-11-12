@@ -14,24 +14,25 @@ from rich.table import Table
 DELTA_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'delta.txt')
 
 def draw_table(data, info, console):
-  table = Table(title=f"{info['name']} last updated data from <data.covid19bharat.org>", title_justify="left", style="bold")
+    table = Table(title=f"{info['name']} last updated data from <data.covid19bharat.org>", title_justify="left", style="bold")
 
-  table.add_column('district', style='white')
-  table.add_column('confirmed', style='red', justify='right')
-  table.add_column('recovered', style='green', justify='right')
-  table.add_column('deceased', style='grey39', justify='right')
-  table.add_column('migrated_other', style='white', justify='right')
-  table.add_column('active', style='white', justify='right')
+    table.add_column('district', style='white')
+    table.add_column('confirmed', style='red', justify='right')
+    table.add_column('recovered', style='green', justify='right')
+    table.add_column('deceased', style='grey39', justify='right')
+    table.add_column('migrated_other', style='white', justify='right')
+    table.add_column('active', style='white', justify='right')
 
-  for k,v in data.items():
-    table.add_row(k, 
-                  str(v['confirmed']), 
-                  str(v['recovered']), 
-                  str(v['deceased']),
-                  str(v['migrated_other']),
-                  str(v['active']))
-  
-  console.print(table, justify="left")
+    for k,v in data.items():
+        table.add_row(k,
+            str(v['confirmed']),
+            str(v['recovered']),
+            str(v['deceased']),
+            str(v['migrated_other']),
+            str(v['active'])
+        )
+
+    console.print(table, justify="left")
 
 
 def state_level_delta(name, live_data, console):
@@ -44,9 +45,9 @@ def state_level_delta(name, live_data, console):
     draw_table(state_data.to_frame(), {'name': name}, console)
     
     delta = {
-      'Hospitalized': live_data[0]['confirmed'] - state_data['confirmed'],
-      'Recovered':    live_data[0]['recovered'] - state_data['recovered'],
-      'Deceased':     live_data[0]['deceased']  - state_data['deceased']
+        'Hospitalized': live_data[0]['confirmed'] - state_data['confirmed'],
+        'Recovered':    live_data[0]['recovered'] - state_data['recovered'],
+        'Deceased':     live_data[0]['deceased']  - state_data['deceased']
     }
     
     if list(delta.values()) == [0,0,0]:
@@ -160,6 +161,7 @@ class DeltaCalculator:
             try:
                 if 'districtName' not in district_details:
                     continue
+
                 district_name = name_mapping[district_details['districtName']] \
                     if district_details['districtName'] in name_mapping \
                     else district_details['districtName']
