@@ -8,6 +8,7 @@ import pdftotext
 
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
+os.path.join(os.path.dirname(__file__), '_meta')
 
 def read_pdf_from_url(opt):
   '''
@@ -167,7 +168,7 @@ def tn_format_line(row):
 
 def read_translation(state_code):
   translated_dict = {}
-  meta_file = os.path.join(os.path.dirname(__file__), 'automation', state_code.lower() + '_districts.meta')
+  meta_file = os.path.join(STATES_META, state_code.lower() + '_districts.meta')
   try:
     with open(meta_file, "r") as metaFile:
       for line in metaFile:

@@ -13,6 +13,7 @@ from matplotlib.patches import Circle
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 OUTPUT_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'image.png')
 BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
+STATES_META = os.path.join(os.path.dirname(__file__), '_meta')
 
 
 dataDictionary = {}
@@ -347,7 +348,7 @@ def buildTranslationDictionary():
   originalStartingText = startingText
   originalEndingText = endingText
 
-  meta_file = os.path.join(os.path.dirname(__file__), 'automation', translationFile)
+  meta_file = os.path.join(STATES_META, translationFile)
 
   try:
     with open(meta_file, "r") as metaFile:
