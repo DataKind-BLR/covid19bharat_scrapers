@@ -8,7 +8,7 @@ import pdftotext
 
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
-os.path.join(os.path.dirname(__file__), '_meta')
+STATES_META = os.path.join(os.path.dirname(__file__), '_meta')
 
 def read_pdf_from_url(opt):
   '''

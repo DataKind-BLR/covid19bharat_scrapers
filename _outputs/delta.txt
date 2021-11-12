@@ -1,21 +1,18 @@
-Lucknow,Uttar Pradesh,UP,-11,Hospitalized
-Meerut,Uttar Pradesh,UP,-2,Hospitalized
-Prayagraj,Uttar Pradesh,UP,-3,Hospitalized
-Kanpur Nagar,Uttar Pradesh,UP,-1,Hospitalized
-Barabanki,Uttar Pradesh,UP,-1,Hospitalized
-Kanpur Dehat,Uttar Pradesh,UP,-1,Hospitalized
-Lucknow,Uttar Pradesh,UP,-14,Recovered
-Meerut,Uttar Pradesh,UP,-9,Recovered
-Prayagraj,Uttar Pradesh,UP,-2,Recovered
-Ambedkar Nagar,Uttar Pradesh,UP,-2,Recovered
-Balrampur,Uttar Pradesh,UP,-1,Recovered
-Basti,Uttar Pradesh,UP,-1,Recovered
-Gorakhpur,Uttar Pradesh,UP,-3,Recovered
-Jalaun,Uttar Pradesh,UP,-1,Recovered
-Kanpur Nagar,Uttar Pradesh,UP,-3,Recovered
-Muzaffarnagar,Uttar Pradesh,UP,-1,Recovered
-Barabanki,Uttar Pradesh,UP,-1,Recovered
-Hardoi,Uttar Pradesh,UP,-1,Recovered
-Kaushambi,Uttar Pradesh,UP,-1,Recovered
-Mathura,Uttar Pradesh,UP,-1,Recovered
-Moradabad,Uttar Pradesh,UP,-1,Recovered
+Gurugram,Haryana,HR,21,Hospitalized
+Karnal,Haryana,HR,1,Hospitalized
+Panipat,Haryana,HR,1,Hospitalized
+Panchkula,Haryana,HR,6,Hospitalized
+Rohtak,Haryana,HR,2,Hospitalized
+Kurukshetra,Haryana,HR,1,Hospitalized
+Rewari,Haryana,HR,1,Hospitalized
+Gurugram,Haryana,HR,14,Recovered
+Faridabad,Haryana,HR,2,Recovered
+Karnal,Haryana,HR,1,Recovered
+Panchkula,Haryana,HR,2,Recovered
+Gurugram,Haryana,HR,7,Deceased
+Faridabad,Haryana,HR,-2,Deceased
+Panipat,Haryana,HR,1,Deceased
+Panchkula,Haryana,HR,4,Deceased
+Rohtak,Haryana,HR,2,Deceased
+Kurukshetra,Haryana,HR,1,Deceased
+Rewari,Haryana,HR,1,Deceased
