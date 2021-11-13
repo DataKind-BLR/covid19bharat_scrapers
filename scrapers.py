@@ -140,7 +140,7 @@ if __name__ == '__main__':
                                                                                f'Possible options = {states_all.keys()} ')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
-  parser.add_argument('-o', '--skip_output', action='store_true')
+  parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')
   #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
 
   args = parser.parse_args()
