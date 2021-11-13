@@ -2,60 +2,60 @@ Uttar Pradesh data from your current input.
 ┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                           
 ┃ district         ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                           
 ┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                           
-│ Lucknow          │    238856 │    236185 │     2651 │                                                                                                                           
-│ Prayagraj        │     78712 │     77614 │     1088 │                                                                                                                           
-│ Bareilly         │     44032 │     43651 │      377 │                                                                                                                           
-│ Meerut           │     69485 │     68583 │      898 │                                                                                                                           
-│ Kanpur Dehat     │      6200 │      6087 │      110 │                                                                                                                           
+│ Lucknow          │    238846 │    236181 │     2651 │                                                                                                                           
+│ Meerut           │     69481 │     68574 │      898 │                                                                                                                           
+│ Prayagraj        │     78705 │     77610 │     1088 │                                                                                                                           
+│ Balrampur        │      7495 │      7354 │      138 │                                                                                                                           
+│ Muzaffarnagar    │     31009 │     30737 │      269 │                                                                                                                           
+│ Ambedkar Nagar   │      5040 │      4886 │      152 │                                                                                                                           
+│ Basti            │     11718 │     11386 │      330 │                                                                                                                           
+│ Jalaun           │     11687 │     11483 │      202 │                                                                                                                           
 │ Kannauj          │      9231 │      9114 │      115 │                                                                                                                           
-│ Muzaffarnagar    │     31009 │     30738 │      269 │                                                                                                                           
-│ Sultanpur        │     14917 │     14777 │      138 │                                                                                                                           
-│ Ambedkar Nagar   │      5040 │      4887 │      152 │                                                                                                                           
-│ Bulandshahr      │     20216 │     19972 │      243 │                                                                                                                           
-│ Jalaun           │     11687 │     11484 │      202 │                                                                                                                           
-│ Kanpur Nagar     │     82934 │     81028 │     1905 │                                                                                                                           
-│ Kaushambi        │      4425 │      4354 │       70 │                                                                                                                           
+│ Kanpur Nagar     │     82934 │     81027 │     1905 │                                                                                                                           
+│ Rampur           │     11826 │     11676 │      148 │                                                                                                                           
+│ Auraiya          │     10091 │      9887 │      203 │                                                                                                                           
+│ Bareilly         │     44028 │     43650 │      377 │                                                                                                                           
+│ Fatehpur         │      6814 │      6674 │      139 │                                                                                                                           
+│ Hardoi           │     13756 │     13406 │      349 │                                                                                                                           
+│ Kanpur Dehat     │      6198 │      6087 │      110 │                                                                                                                           
+│ Kaushambi        │      4424 │      4353 │       70 │                                                                                                                           
+│ Mathura          │     20297 │     19894 │      402 │                                                                                                                           
+│ Mau              │      8333 │      8252 │       80 │                                                                                                                           
+│ Moradabad        │     39102 │     38752 │      349 │                                                                                                                           
 │ Pilibhit         │     11032 │     10838 │      193 │                                                                                                                           
+│ Rae Bareli       │     17105 │     16761 │      343 │                                                                                                                           
 │ Saharanpur       │     32730 │     32309 │      420 │                                                                                                                           
 │ Sambhal          │      9438 │      9331 │      106 │                                                                                                                           
-│ Sant Kabir Nagar │      8160 │      8061 │       98 │                                                                                                                           
-│ Shahjahanpur     │     20362 │     19917 │      444 │                                                                                                                           
+│ Shahjahanpur     │     20361 │     19916 │      444 │                                                                                                                           
 │ Agra             │     25765 │     25308 │      457 │                                                                                                                           
 │ Aligarh          │     21280 │     21172 │      108 │                                                                                                                           
 │ Amethi           │      9972 │      9829 │      143 │                                                                                                                           
 │ Amroha           │     16616 │     16413 │      203 │                                                                                                                           
-│ Auraiya          │     10091 │      9888 │      203 │                                                                                                                           
 │ Ayodhya          │     16919 │     16629 │      290 │                                                                                                                           
 │ Baghpat          │      9132 │      8991 │      141 │                                                                                                                           
-│ Balrampur        │      7495 │      7357 │      138 │                                                                                                                           
 │ Barabanki        │     19850 │     19625 │      225 │                                                                                                                           
-│ Basti            │     11718 │     11388 │      330 │                                                                                                                           
 │ Bahraich         │     11549 │     11371 │      178 │                                                                                                                           
 │ Bhadohi          │      7720 │      7557 │      163 │                                                                                                                           
-│ Chandauli        │     16209 │     15852 │      357 │                                                                                                                           
+│ Bulandshahr      │     20215 │     19972 │      243 │                                                                                                                           
+│ Chandauli        │     16208 │     15852 │      356 │                                                                                                                           
 │ Etah             │      9968 │      9869 │       99 │                                                                                                                           
 │ Etawah           │     13933 │     13640 │      293 │                                                                                                                           
-│ Fatehpur         │      6814 │      6675 │      139 │                                                                                                                           
 │ Ghazipur         │     21642 │     21359 │      283 │                                                                                                                           
-│ Gonda            │     12282 │     12015 │      267 │                                                                                                                           
+│ Gonda            │     12282 │     12016 │      266 │                                                                                                                           
 │ Gorakhpur        │     59439 │     58591 │      848 │                                                                                                                           
 │ Hamirpur         │      5232 │      5130 │      102 │                                                                                                                           
-│ Hardoi           │     13756 │     13407 │      349 │                                                                                                                           
 │ Hathras          │      2920 │      2877 │       43 │                                                                                                                           
 │ Jaunpur          │     22584 │     22349 │      235 │                                                                                                                           
 │ Kasganj          │      4250 │      4197 │       53 │                                                                                                                           
 │ Maharajganj      │     12440 │     12300 │      140 │                                                                                                                           
 │ Mahoba           │      4268 │      4182 │       86 │                                                                                                                           
 │ Mainpuri         │     10028 │      9846 │      182 │                                                                                                                           
-│ Mathura          │     20297 │     19895 │      402 │                                                                                                                           
-│ Mau              │      8333 │      8253 │       80 │                                                                                                                           
-│ Moradabad        │     39102 │     38753 │      349 │                                                                                                                           
-│ Rae Bareli       │     17105 │     16762 │      343 │                                                                                                                           
-│ Rampur           │     11824 │     11676 │      148 │                                                                                                                           
+│ Sant Kabir Nagar │      8159 │      8061 │       98 │                                                                                                                           
 │ Shamli           │     12976 │     12931 │       45 │                                                                                                                           
 │ Shrawasti        │      4388 │      4353 │       35 │                                                                                                                           
 │ Sitapur          │     12398 │     12213 │      185 │                                                                                                                           
 │ Sonbhadra        │     16807 │     16556 │      251 │                                                                                                                           
+│ Sultanpur        │     14915 │     14777 │      138 │                                                                                                                           
 │ Unnao            │     15011 │     14757 │      254 │                                                                                                                           
 └──────────────────┴───────────┴───────────┴──────────┘                                                                                                                           
 Uttar Pradesh last updated data from <data.covid19bharat.org>                                                                                                                     
@@ -67,74 +67,74 @@ Uttar Pradesh last updated data from <data.covid19bharat.org>
 │ Ambedkar Nagar      │      5040 │      4887 │      152 │              0 │      1 │                                                                                              
 │ Amethi              │      9972 │      9829 │      143 │              0 │      0 │                                                                                              
 │ Amroha              │     16616 │     16413 │      203 │              0 │      0 │                                                                                              
-│ Auraiya             │     10091 │      9887 │      203 │              0 │      1 │                                                                                              
+│ Auraiya             │     10091 │      9888 │      203 │              0 │      0 │                                                                                              
 │ Ayodhya             │     16919 │     16629 │      290 │              0 │      0 │                                                                                              
 │ Azamgarh            │     17906 │     17677 │      228 │              0 │      1 │                                                                                              
 │ Baghpat             │      9132 │      8991 │      141 │              0 │      0 │                                                                                              
 │ Bahraich            │     11549 │     11371 │      178 │              0 │      0 │                                                                                              
 │ Ballia              │     21610 │     21376 │      234 │              0 │      0 │                                                                                              
-│ Balrampur           │      7495 │      7355 │      138 │              0 │      2 │                                                                                              
+│ Balrampur           │      7495 │      7357 │      138 │              0 │      0 │                                                                                              
 │ Banda               │     10992 │     10832 │      158 │              0 │      2 │                                                                                              
-│ Barabanki           │     19851 │     19625 │      225 │              0 │      1 │                                                                                              
-│ Bareilly            │     44028 │     43650 │      377 │              0 │      1 │                                                                                              
-│ Basti               │     11718 │     11386 │      330 │              0 │      2 │                                                                                              
+│ Barabanki           │     19850 │     19625 │      225 │              0 │      0 │                                                                                              
+│ Bareilly            │     44032 │     43651 │      377 │              0 │      4 │                                                                                              
+│ Basti               │     11718 │     11388 │      330 │              0 │      0 │                                                                                              
 │ Bhadohi             │      7720 │      7557 │      163 │              0 │      0 │                                                                                              
 │ Bijnor              │     14794 │     14668 │      126 │              0 │      0 │                                                                                              
 │ Budaun              │     14941 │     14843 │       98 │              0 │      0 │                                                                                              
-│ Bulandshahr         │     20215 │     19972 │      243 │              0 │      0 │                                                                                              
-│ Chandauli           │     16208 │     15852 │      356 │              0 │      0 │                                                                                              
+│ Bulandshahr         │     20216 │     19972 │      243 │              0 │      1 │                                                                                              
+│ Chandauli           │     16209 │     15852 │      357 │              0 │      0 │                                                                                              
 │ Chitrakoot          │      7110 │      7031 │       79 │              0 │      0 │                                                                                              
 │ Deoria              │     20224 │     20003 │      221 │              0 │      0 │                                                                                              
 │ Etah                │      9968 │      9869 │       99 │              0 │      0 │                                                                                              
 │ Etawah              │     13933 │     13640 │      293 │              0 │      0 │                                                                                              
 │ Farrukhabad         │     10348 │     10153 │      194 │              0 │      1 │                                                                                              
-│ Fatehpur            │      6814 │      6674 │      139 │              0 │      1 │                                                                                              
+│ Fatehpur            │      6814 │      6675 │      139 │              0 │      0 │                                                                                              
 │ Firozabad           │      8721 │      8586 │      135 │              0 │      0 │                                                                                              
 │ Gautam Buddha Nagar │     63367 │     62886 │      467 │              0 │     14 │                                                                                              
 │ Ghaziabad           │     55673 │     55211 │      461 │              0 │      1 │                                                                                              
 │ Ghazipur            │     21642 │     21359 │      283 │              0 │      0 │                                                                                              
-│ Gonda               │     12282 │     12016 │      266 │              0 │      0 │                                                                                              
+│ Gonda               │     12282 │     12015 │      267 │              0 │      0 │                                                                                              
 │ Gorakhpur           │     59439 │     58591 │      848 │              0 │      0 │                                                                                              
 │ Hamirpur            │      5232 │      5130 │      102 │              0 │      0 │                                                                                              
 │ Hapur               │     12638 │     12421 │      217 │              0 │      0 │                                                                                              
 │ Hardoi              │     13756 │     13407 │      349 │              0 │      0 │                                                                                              
 │ Hathras             │      2920 │      2877 │       43 │              0 │      0 │                                                                                              
-│ Jalaun              │     11687 │     11483 │      202 │              0 │      2 │                                                                                              
+│ Jalaun              │     11687 │     11484 │      202 │              0 │      1 │                                                                                              
 │ Jaunpur             │     22584 │     22349 │      235 │              0 │      0 │                                                                                              
 │ Jhansi              │     36557 │     35892 │      663 │              0 │      2 │                                                                                              
 │ Kannauj             │      9231 │      9114 │      115 │              0 │      2 │                                                                                              
-│ Kanpur Dehat        │      6198 │      6087 │      110 │              0 │      1 │                                                                                              
+│ Kanpur Dehat        │      6200 │      6087 │      110 │              0 │      3 │                                                                                              
 │ Kanpur Nagar        │     82934 │     81028 │     1905 │              0 │      1 │                                                                                              
 │ Kasganj             │      4250 │      4197 │       53 │              0 │      0 │                                                                                              
-│ Kaushambi           │      4424 │      4354 │       70 │              0 │      0 │                                                                                              
+│ Kaushambi           │      4425 │      4354 │       70 │              0 │      1 │                                                                                              
 │ Kushinagar          │     15617 │     15389 │      228 │              0 │      0 │                                                                                              
 │ Lakhimpur Kheri     │     24412 │     24118 │      292 │              0 │      2 │                                                                                              
 │ Lalitpur            │     12744 │     12614 │      128 │              0 │      2 │                                                                                              
-│ Lucknow             │    238852 │    236181 │     2651 │              0 │     20 │                                                                                              
+│ Lucknow             │    238856 │    236185 │     2651 │              0 │     20 │                                                                                              
 │ Maharajganj         │     12440 │     12300 │      140 │              0 │      0 │                                                                                              
 │ Mahoba              │      4268 │      4182 │       86 │              0 │      0 │                                                                                              
 │ Mainpuri            │     10028 │      9846 │      182 │              0 │      0 │                                                                                              
 │ Mathura             │     20297 │     19895 │      402 │              0 │      0 │                                                                                              
-│ Mau                 │      8333 │      8252 │       80 │              0 │      1 │                                                                                              
-│ Meerut              │     69482 │     68576 │      898 │              0 │      8 │                                                                                              
+│ Mau                 │      8333 │      8253 │       80 │              0 │      0 │                                                                                              
+│ Meerut              │     69485 │     68583 │      898 │              0 │      4 │                                                                                              
 │ Mirzapur            │     11088 │     10972 │      116 │              0 │      0 │                                                                                              
 │ Moradabad           │     39102 │     38753 │      349 │              0 │      0 │                                                                                              
 │ Muzaffarnagar       │     31009 │     30738 │      269 │              0 │      2 │                                                                                              
 │ Pilibhit            │     11032 │     10838 │      193 │              0 │      1 │                                                                                              
 │ Pratapgarh          │     16038 │     15875 │      163 │              0 │      0 │                                                                                              
-│ Prayagraj           │     78706 │     77612 │     1088 │              0 │      6 │                                                                                              
-│ Rae Bareli          │     17105 │     16761 │      343 │              0 │      1 │                                                                                              
-│ Rampur              │     11826 │     11676 │      148 │              0 │      2 │                                                                                              
+│ Prayagraj           │     78712 │     77614 │     1088 │              0 │     10 │                                                                                              
+│ Rae Bareli          │     17105 │     16762 │      343 │              0 │      0 │                                                                                              
+│ Rampur              │     11824 │     11676 │      148 │              0 │      0 │                                                                                              
 │ Saharanpur          │     32730 │     32309 │      420 │              0 │      1 │                                                                                              
 │ Sambhal             │      9438 │      9331 │      106 │              0 │      1 │                                                                                              
-│ Sant Kabir Nagar    │      8159 │      8061 │       98 │              0 │      0 │                                                                                              
-│ Shahjahanpur        │     20361 │     19916 │      444 │              0 │      1 │                                                                                              
+│ Sant Kabir Nagar    │      8160 │      8061 │       98 │              0 │      1 │                                                                                              
+│ Shahjahanpur        │     20362 │     19917 │      444 │              0 │      1 │                                                                                              
 │ Shamli              │     12976 │     12931 │       45 │              0 │      0 │                                                                                              
 │ Shrawasti           │      4388 │      4353 │       35 │              0 │      0 │                                                                                              
 │ Siddharthnagar      │      9373 │      9273 │      100 │              0 │      0 │                                                                                              
 │ Sitapur             │     12398 │     12213 │      185 │              0 │      0 │                                                                                              
 │ Sonbhadra           │     16807 │     16556 │      251 │              0 │      0 │                                                                                              
-│ Sultanpur           │     14915 │     14777 │      138 │              0 │      0 │                                                                                              
+│ Sultanpur           │     14917 │     14777 │      138 │              0 │      2 │                                                                                              
 │ Unnao               │     15011 │     14757 │      254 │              0 │      0 │                                                                                              
 │ Varanasi            │     85504 │     84530 │      971 │              0 │      3 │                                                                                              
 │ Unknown             │         0 │         0 │        0 │              0 │      0 │                                                                                              
@@ -146,31 +146,37 @@ Mapping for district names
 
 Delta statistics
 
-Lucknow,Uttar Pradesh,UP,4,Hospitalized
-Prayagraj,Uttar Pradesh,UP,6,Hospitalized
-Bareilly,Uttar Pradesh,UP,4,Hospitalized
-Meerut,Uttar Pradesh,UP,3,Hospitalized
-Kanpur Dehat,Uttar Pradesh,UP,2,Hospitalized
-Sultanpur,Uttar Pradesh,UP,2,Hospitalized
-Bulandshahr,Uttar Pradesh,UP,1,Hospitalized
-Kaushambi,Uttar Pradesh,UP,1,Hospitalized
-Sant Kabir Nagar,Uttar Pradesh,UP,1,Hospitalized
-Shahjahanpur,Uttar Pradesh,UP,1,Hospitalized
-Barabanki,Uttar Pradesh,UP,-1,Hospitalized
-Chandauli,Uttar Pradesh,UP,1,Hospitalized
-Rampur,Uttar Pradesh,UP,-2,Hospitalized
-Lucknow,Uttar Pradesh,UP,4,Recovered
-Prayagraj,Uttar Pradesh,UP,2,Recovered
-Bareilly,Uttar Pradesh,UP,1,Recovered
-Meerut,Uttar Pradesh,UP,7,Recovered
-Jalaun,Uttar Pradesh,UP,1,Recovered
-Shahjahanpur,Uttar Pradesh,UP,1,Recovered
-Auraiya,Uttar Pradesh,UP,1,Recovered
-Balrampur,Uttar Pradesh,UP,2,Recovered
-Basti,Uttar Pradesh,UP,2,Recovered
-Fatehpur,Uttar Pradesh,UP,1,Recovered
-Gonda,Uttar Pradesh,UP,-1,Recovered
-Mau,Uttar Pradesh,UP,1,Recovered
-Rae Bareli,Uttar Pradesh,UP,1,Recovered
-Chandauli,Uttar Pradesh,UP,1,Deceased
-Gonda,Uttar Pradesh,UP,1,Deceased
+Lucknow,Uttar Pradesh,UP,-10,Hospitalized
+Meerut,Uttar Pradesh,UP,-4,Hospitalized
+Prayagraj,Uttar Pradesh,UP,-7,Hospitalized
+Rampur,Uttar Pradesh,UP,2,Hospitalized
+Bareilly,Uttar Pradesh,UP,-4,Hospitalized
+Kanpur Dehat,Uttar Pradesh,UP,-2,Hospitalized
+Kaushambi,Uttar Pradesh,UP,-1,Hospitalized
+Shahjahanpur,Uttar Pradesh,UP,-1,Hospitalized
+Bulandshahr,Uttar Pradesh,UP,-1,Hospitalized
+Chandauli,Uttar Pradesh,UP,-1,Hospitalized
+Sant Kabir Nagar,Uttar Pradesh,UP,-1,Hospitalized
+Sultanpur,Uttar Pradesh,UP,-2,Hospitalized
+Lucknow,Uttar Pradesh,UP,-4,Recovered
+Meerut,Uttar Pradesh,UP,-9,Recovered
+Prayagraj,Uttar Pradesh,UP,-4,Recovered
+Balrampur,Uttar Pradesh,UP,-3,Recovered
+Muzaffarnagar,Uttar Pradesh,UP,-1,Recovered
+Ambedkar Nagar,Uttar Pradesh,UP,-1,Recovered
+Basti,Uttar Pradesh,UP,-2,Recovered
+Jalaun,Uttar Pradesh,UP,-1,Recovered
+Kanpur Nagar,Uttar Pradesh,UP,-1,Recovered
+Auraiya,Uttar Pradesh,UP,-1,Recovered
+Bareilly,Uttar Pradesh,UP,-1,Recovered
+Fatehpur,Uttar Pradesh,UP,-1,Recovered
+Hardoi,Uttar Pradesh,UP,-1,Recovered
+Kaushambi,Uttar Pradesh,UP,-1,Recovered
+Mathura,Uttar Pradesh,UP,-1,Recovered
+Mau,Uttar Pradesh,UP,-1,Recovered
+Moradabad,Uttar Pradesh,UP,-1,Recovered
+Rae Bareli,Uttar Pradesh,UP,-1,Recovered
+Shahjahanpur,Uttar Pradesh,UP,-1,Recovered
+Gonda,Uttar Pradesh,UP,1,Recovered
+Chandauli,Uttar Pradesh,UP,-1,Deceased
+Gonda,Uttar Pradesh,UP,-1,Deceased
