@@ -140,19 +140,22 @@ if __name__ == '__main__':
                                                                                f'Possible options = {states_all.keys()} ')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
+  parser.add_argument('-o', '--skip_output', action='store_true')
   #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
 
   args = parser.parse_args()
   state_code = args.state_code.lower()
   url = args.url
   url_type = args.type
+  skip_output = vars(args)['skip_output']
   logging.info('scraper', args.url)
 
   if url_type is not None and url is not None:
     # if there's a url & type provided as args, use that
     states_all[state_code].update({
       'url': url,
-      'type': url_type
+      'type': url_type,
+      'skip_output': skip_output
     })
   # always use default url & type from yaml file
   live_data = fetch_data(states_all[state_code])

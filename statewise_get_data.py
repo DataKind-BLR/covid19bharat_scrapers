@@ -7,7 +7,6 @@ import pandas as pd
 
 from bs4 import BeautifulSoup
 from rich.pretty import pprint
-
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
@@ -70,7 +69,8 @@ def ar_get_data(opt):
   print('Fetching AR data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   districts_data = []
   additionalDistrictInfo = {}
@@ -89,6 +89,8 @@ def ar_get_data(opt):
         print("--> Issue with {}".format(linesArray))
         continue
 
+      # take total of `Papum Pare` & `Capital Complex` under a single district called `Papum Pare`
+      # Anjaw , 4 , 21079 , 20891 , 19823 , 1068 , 0 , 0 , 0 , 0 , 0 , 0 , 1065, 3
       if linesArray[0].strip() == "Capital Complex" or linesArray[0].strip() == "Papum Pare":
         additionalDistrictInfo['confirmed'] += int(linesArray[5])
         additionalDistrictInfo['recovered'] += int(linesArray[12])
@@ -102,7 +104,10 @@ def ar_get_data(opt):
       districtDictionary['recovered'] = int(linesArray[12])
       districtDictionary['deceased'] = int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
       districts_data.append(districtDictionary)
+
   upFile.close()
+
+  # lastly, add the additional district calculated for `Papum Pare`
   districts_data.append(additionalDistrictInfo)
 
   return districts_data
@@ -111,7 +116,8 @@ def as_get_data(opt):
   print('Fetching AS data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -132,7 +138,8 @@ def br_get_data(opt):
   print('Fetching BR data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -188,7 +195,8 @@ def ct_get_data(opt):
   print('Fetching CT data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   districts_data = []
   with open(OUTPUT_TXT, "r") as upFile:
@@ -297,7 +305,8 @@ def hp_get_data(opt):
   print('Fetching HP data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -347,7 +356,8 @@ def hr_get_data(opt):
 
   opt['config']['page'] = str(opt['config']['page'])
 
-  read_pdf_from_url(opt)
+  if opt['skip_output'] == False:
+    read_pdf_from_url(opt)
 
   # once the csv file is genered, read it
   linesArray = []
@@ -372,7 +382,8 @@ def hr_get_data(opt):
 
 def jh_get_data(opt):
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -404,7 +415,8 @@ def jk_get_data(opt):
   print('Fetching JK data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -474,7 +486,8 @@ def ka_get_data(opt):
     # fileId = opt['config']['file_id']
     opt['config']['page'] = str(opt['config']['page'])
 
-    read_pdf_from_url(opt)
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
     try:
       csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
@@ -540,12 +553,13 @@ def kl_get_data(opt):
   #   return districtArray
 
   if opt['type'] == 'pdf':
-    # TODO - run script to generate the csv
+
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
     linesArray = []
     districtDictionary = {}
     districts_data = []
-    read_pdf_from_url(opt)
 
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
     with open(csv_file, "r") as upFile:
@@ -633,7 +647,8 @@ def ml_get_data(opt):
   pprint(opt)
 
   if opt['type'] == 'image':
-    run_for_ocr(opt)
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
 
     districts_data = []
     with open(OUTPUT_TXT, "r") as mlFile:
@@ -701,7 +716,8 @@ def mn_get_data(opt):
   print('Fetching MN data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   districts_data = []
   with open(OUTPUT_TXT) as mnFile:
@@ -722,7 +738,8 @@ def mp_get_data(opt):
   print('Fetching MP data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -762,7 +779,8 @@ def mz_get_data(opt):
   print('Fetching MZ data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   districts_data = []
   with open(OUTPUT_TXT) as mzFile:
@@ -838,7 +856,9 @@ def pb_get_data(opt):
   pprint(opt)
 
   if opt['type'] == 'pdf':
-    read_pdf_from_url(opt)
+
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
     linesArray = []
     districtDictionary = {}
@@ -862,7 +882,8 @@ def pb_get_data(opt):
     return districts_data
 
   elif opt['type'] == 'image':
-    run_for_ocr(opt)
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
 
     linesArray = []
     districtDictionary = {}
@@ -922,8 +943,8 @@ def rj_get_data(opt):
   print('Fetching RJ data')
   pprint(opt)
 
-  # run all bash scripts, ocr_vision.py & googlevision.py
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -977,7 +998,9 @@ def rj_get_data(opt):
 def sk_get_data(opt):
   print('Fetching SK data')
   pprint(opt)
-  run_for_ocr(opt)
+
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   districts_data = []
   with open(OUTPUT_TXT, "r") as mlFile:
@@ -1000,7 +1023,8 @@ def tn_get_data(opt):
   pprint(opt)
 
   if opt['type'] == 'pdf':
-    read_pdf_from_url(opt)
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
     linesArray = []
     districtDictionary = {}
@@ -1028,7 +1052,8 @@ def tg_get_data(opt):
   print('Fetching TG data')
   pprint(opt)
 
-  run_for_ocr(opt)
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
 
   linesArray = []
   with open(OUTPUT_TXT, "r") as tgFile:
@@ -1065,7 +1090,8 @@ def up_get_data(opt):
   print('Fetching UP data')
   pprint(opt)
 
-  read_pdf_from_url(opt)
+  if opt['skip_output'] == False:
+    read_pdf_from_url(opt)
 
   linesArray = []
   districtDictionary = {}
@@ -1104,7 +1130,9 @@ def ut_get_data(opt):
   pprint(opt)
 
   if opt['type'] == 'pdf':
-    read_pdf_from_url(opt)
+
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
     linesArray = []
     districtDictionary = {}
@@ -1139,7 +1167,8 @@ def ut_get_data(opt):
     return districts_data
 
   elif opt['type'] == 'image':
-    run_for_ocr(opt)
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
 
     linesArray = []
     districtDictionary = {}
@@ -1174,7 +1203,8 @@ def wb_get_data(opt):
   districtDictionary = {}
   districts_data = []
 
-  read_pdf_from_url(opt)
+  if opt['skip_output'] == False:
+    read_pdf_from_url(opt)
 
   try:
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
