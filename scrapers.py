@@ -150,12 +150,14 @@ if __name__ == '__main__':
   skip_output = vars(args)['skip_output']
   logging.info('scraper', args.url)
 
+  # default update skip_output key value
+  states_all[state_code].update({ 'skip_output': skip_output })
+
   if url_type is not None and url is not None:
     # if there's a url & type provided as args, use that
     states_all[state_code].update({
       'url': url,
-      'type': url_type,
-      'skip_output': skip_output
+      'type': url_type
     })
   # always use default url & type from yaml file
   live_data = fetch_data(states_all[state_code])
