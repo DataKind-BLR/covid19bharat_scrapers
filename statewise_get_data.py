@@ -1155,9 +1155,9 @@ def ut_get_data(opt):
             continue
           districtDictionary = {}
           districtDictionary['districtName'] = linesArray[0].strip()
-          districtDictionary['confirmed'] = int(linesArray[1])
-          districtDictionary['recovered'] = int(linesArray[2])
-          districtDictionary['deceased'] = int(linesArray[4])
+          districtDictionary['confirmed'] = int(re.sub('[^A-Za-z0-9]+', '', linesArray[1]))
+          districtDictionary['recovered'] = int(re.sub('[^A-Za-z0-9]+', '', linesArray[2]))
+          districtDictionary['deceased'] = int(re.sub('[^A-Za-z0-9]+', '', linesArray[4]))
           districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
           districts_data.append(districtDictionary)
 
