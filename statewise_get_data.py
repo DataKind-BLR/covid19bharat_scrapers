@@ -805,6 +805,10 @@ def nl_get_data(opt):
   print('Fetching NL data')
   pprint(opt)
   districts_data = []
+
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
+
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
