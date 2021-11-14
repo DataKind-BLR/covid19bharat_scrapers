@@ -314,6 +314,8 @@ mp:
   url: _inputs/mp.jpeg
   config:
     translation: False
+    start_key: Agar
+    end_key: Khandwa
 
 mz:
   name: Mizoram
@@ -391,6 +393,7 @@ rj:
     - https://twitter.com/airnews_jaipur
     - https://twitter.com/avinashkalla
     - https://twitter.com/dineshkumawat
+    - Ask Rukmini S
   type: image
   url: _inputs/rj.jpeg
   config:
