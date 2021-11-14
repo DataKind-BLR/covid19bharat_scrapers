@@ -140,6 +140,7 @@ if __name__ == '__main__':
                                                                                f'Possible options = {states_all.keys()} ')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
+  parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
   parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')
   #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
 
@@ -147,11 +148,17 @@ if __name__ == '__main__':
   state_code = args.state_code.lower()
   url = args.url
   url_type = args.type
+  page = args.page
   skip_output = vars(args)['skip_output']
   logging.info('scraper', args.url)
 
   # default update skip_output key value
   states_all[state_code].update({ 'skip_output': skip_output })
+
+  if page is not None:
+    states_all[state_code]['config'].update({
+      'page': page
+    })
 
   if url_type is not None and url is not None:
     # if there's a url & type provided as args, use that
@@ -159,6 +166,7 @@ if __name__ == '__main__':
       'url': url,
       'type': url_type
     })
+
   # always use default url & type from yaml file
   live_data = fetch_data(states_all[state_code])
   draw_table(live_data, states_all[state_code])
