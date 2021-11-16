@@ -700,17 +700,8 @@ def ml_get_data(opt):
         except KeyError:
           continue
       districts_data.append(districtDictionary)
-    # deltaCalculator.getStateDataFromSite("Meghalaya", districts_data, option)
-    return districts_data
 
-    # districts_data = []
-    # for districtDetails in stateDashboard['features']:
-    #   districtDictionary = {}
-    #   districtDictionary['districtName'] = districtDetails['attributes']['Name']
-    #   districtDictionary['confirmed'] = districtDetails['attributes']['Positive']
-    #   districtDictionary['recovered'] = districtDetails['attributes']['Recovered']
-    #   districtDictionary['deceased'] = districtDetails['attributes']['Deceasesd']
-    #   districts_data.append(districtDictionary)
+    return districts_data
 
 def mn_get_data(opt):
   print('Fetching MN data')
@@ -719,20 +710,25 @@ def mn_get_data(opt):
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
+  linesArray = []
   districts_data = []
   with open(OUTPUT_TXT) as mnFile:
     for line in mnFile:
+      districtDictionary = {}
       linesArray = line.split('|')[0].split(',')
+      print(linesArray, '\n')
       if len(linesArray) != 8:
         print("--> Issue with {}".format(linesArray))
         continue
 
-      if (linesArray[2].strip()) != "0":
-        print("{},Manipur,MN,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[2].strip()))
-      if (linesArray[4].strip()) != "0":
-        print("{},Manipur,MN,{},Deceased".format(linesArray[0].strip().title(), linesArray[4].strip()))
+      districtDictionary['districtName'] = linesArray[0].strip()
+      districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[2])) + int(re.sub('[^0-9]+', '', linesArray[6]))
+      districtDictionary['recovered'] = 0
+      districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[4])) + int(re.sub('[^0-9]+', '', linesArray[7]))
+      districts_data.append(districtDictionary)
 
-  mnFile.close()
+  print('DONT COPY & PASTE `Recovered` cases for this state')
+  return districts_data
 
 def mp_get_data(opt):
   print('Fetching MP data')
