@@ -2,14 +2,14 @@ Meghalaya data from your current input.
 ┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                     
 ┃ district               ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                     
 ┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                     
-│ East Khasi Hills       │     41306 │     40099 │      992 │                                                                                                                     
-│ RiBhoi                 │      9712 │      9607 │       90 │                                                                                                                     
-│ West Garo Hills        │      9055 │      8958 │       72 │                                                                                                                     
-│ West Jaintia Hills     │      6809 │      6669 │      135 │                                                                                                                     
-│ West Khasi Hills       │      5485 │      5392 │       72 │                                                                                                                     
-│ South West Khasi Hills │      2549 │      2531 │       17 │                                                                                                                     
-│ East Jaintia Hills     │      2438 │      2402 │       32 │                                                                                                                     
-│ East Garo Hills        │      1877 │      1855 │       14 │                                                                                                                     
+│ East Khasi Hills       │     41339 │     40154 │      992 │                                                                                                                     
+│ RiBhoi                 │      9715 │      9608 │       90 │                                                                                                                     
+│ West Garo Hills        │      9057 │      8971 │       73 │                                                                                                                     
+│ West Jaintia Hills     │      6810 │      6670 │      135 │                                                                                                                     
+│ West Khasi Hills       │      5485 │      5398 │       73 │                                                                                                                     
+│ South West Khasi Hills │      2549 │      2532 │       17 │                                                                                                                     
+│ East Jaintia Hills     │      2438 │      2403 │       32 │                                                                                                                     
+│ East Garo Hills        │      1878 │      1856 │       14 │                                                                                                                     
 │ South West Garo Hills  │      1873 │      1854 │       18 │                                                                                                                     
 │ North Garo Hills       │      1685 │      1677 │        8 │                                                                                                                     
 │ South Garo Hills       │      1217 │      1204 │       12 │                                                                                                                     
@@ -18,17 +18,17 @@ Meghalaya last updated data from <data.covid19bharat.org>
 ┏━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                           
 ┃ district               ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                           
 ┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                           
-│ East Garo Hills        │      1876 │      1854 │       14 │              0 │      8 │                                                                                           
-│ East Jaintia Hills     │      2435 │      2400 │       32 │              0 │      3 │                                                                                           
-│ East Khasi Hills       │     41274 │     40085 │      992 │              0 │    197 │                                                                                           
+│ East Garo Hills        │      1878 │      1856 │       14 │              0 │      8 │                                                                                           
+│ East Jaintia Hills     │      2438 │      2402 │       32 │              0 │      4 │                                                                                           
+│ East Khasi Hills       │     41320 │     40139 │      992 │              0 │    189 │                                                                                           
 │ North Garo Hills       │      1685 │      1677 │        8 │              0 │      0 │                                                                                           
-│ Ribhoi                 │      9711 │      9607 │       90 │              0 │     14 │                                                                                           
+│ Ribhoi                 │      9713 │      9608 │       90 │              0 │     15 │                                                                                           
 │ South Garo Hills       │      1217 │      1204 │       12 │              0 │      1 │                                                                                           
 │ South West Garo Hills  │      1873 │      1854 │       18 │              0 │      1 │                                                                                           
-│ South West Khasi Hills │      2549 │      2531 │       17 │              0 │      1 │                                                                                           
-│ West Garo Hills        │      9052 │      8956 │       72 │              0 │     24 │                                                                                           
-│ West Jaintia Hills     │      6808 │      6668 │      135 │              0 │      5 │                                                                                           
-│ West Khasi Hills       │      5482 │      5391 │       72 │              0 │     19 │                                                                                           
+│ South West Khasi Hills │      2549 │      2532 │       17 │              0 │      0 │                                                                                           
+│ West Garo Hills        │      9057 │      8961 │       72 │              0 │     24 │                                                                                           
+│ West Jaintia Hills     │      6809 │      6670 │      135 │              0 │      4 │                                                                                           
+│ West Khasi Hills       │      5485 │      5396 │       72 │              0 │     17 │                                                                                           
 │ Unknown                │         0 │         0 │        0 │              0 │      0 │                                                                                           
 └────────────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                           
 
@@ -42,16 +42,12 @@ RiBhoi -> Ribhoi
 
 Delta statistics
 
-East Khasi Hills,Meghalaya,ML,32,Hospitalized
-Ribhoi,Meghalaya,ML,1,Hospitalized
-West Garo Hills,Meghalaya,ML,3,Hospitalized
+East Khasi Hills,Meghalaya,ML,19,Hospitalized
+Ribhoi,Meghalaya,ML,2,Hospitalized
 West Jaintia Hills,Meghalaya,ML,1,Hospitalized
-West Khasi Hills,Meghalaya,ML,3,Hospitalized
-East Jaintia Hills,Meghalaya,ML,3,Hospitalized
-East Garo Hills,Meghalaya,ML,1,Hospitalized
-East Khasi Hills,Meghalaya,ML,14,Recovered
-West Garo Hills,Meghalaya,ML,2,Recovered
-West Jaintia Hills,Meghalaya,ML,1,Recovered
-West Khasi Hills,Meghalaya,ML,1,Recovered
-East Jaintia Hills,Meghalaya,ML,2,Recovered
-East Garo Hills,Meghalaya,ML,1,Recovered
+East Khasi Hills,Meghalaya,ML,15,Recovered
+West Garo Hills,Meghalaya,ML,10,Recovered
+West Khasi Hills,Meghalaya,ML,2,Recovered
+East Jaintia Hills,Meghalaya,ML,1,Recovered
+West Garo Hills,Meghalaya,ML,1,Deceased
+West Khasi Hills,Meghalaya,ML,1,Deceased

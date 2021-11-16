@@ -1,7 +1,39 @@
-Gurugram,Haryana,HR,12,Hospitalized
-Faridabad,Haryana,HR,1,Hospitalized
-Panipat,Haryana,HR,1,Hospitalized
-Fatehabad,Haryana,HR,1,Hospitalized
-Gurugram,Haryana,HR,10,Recovered
-Faridabad,Haryana,HR,4,Recovered
-Panchkula,Haryana,HR,1,Recovered
+Bishnupur,Manipur,MN,104,Hospitalized
+Chandel,Manipur,MN,348,Hospitalized
+Churachandpur,Manipur,MN,531,Hospitalized
+Imphal East,Manipur,MN,860,Hospitalized
+Imphal West,Manipur,MN,1216,Hospitalized
+Jiribam,Manipur,MN,110,Hospitalized
+Kakching,Manipur,MN,108,Hospitalized
+Kamjong,Manipur,MN,110,Hospitalized
+Kangpokpi,Manipur,MN,581,Hospitalized
+Noney,Manipur,MN,99,Hospitalized
+Tamenglong,Manipur,MN,121,Hospitalized
+Thoubal,Manipur,MN,195,Hospitalized
+Ukhrul,Manipur,MN,440,Hospitalized
+Bishnupur,Manipur,MN,-58,Recovered
+Chandel,Manipur,MN,-4,Recovered
+Churachandpur,Manipur,MN,-58,Recovered
+Imphal East,Manipur,MN,-150,Recovered
+Imphal West,Manipur,MN,-52,Recovered
+Jiribam,Manipur,MN,-2,Recovered
+Kakching,Manipur,MN,-27,Recovered
+Kamjong,Manipur,MN,-17,Recovered
+Kangpokpi,Manipur,MN,-19,Recovered
+Noney,Manipur,MN,-18,Recovered
+Pherzawl,Manipur,MN,-15,Recovered
+Tamenglong,Manipur,MN,-32,Recovered
+Thoubal,Manipur,MN,-23,Recovered
+Ukhrul,Manipur,MN,-18,Recovered
+Bishnupur,Manipur,MN,10,Deceased
+Chandel,Manipur,MN,1,Deceased
+Churachandpur,Manipur,MN,6,Deceased
+Imphal East,Manipur,MN,14,Deceased
+Imphal West,Manipur,MN,45,Deceased
+Jiribam,Manipur,MN,1,Deceased
+Kakching,Manipur,MN,2,Deceased
+Kamjong,Manipur,MN,1,Deceased
+Kangpokpi,Manipur,MN,4,Deceased
+Tamenglong,Manipur,MN,1,Deceased
+Thoubal,Manipur,MN,12,Deceased
+Ukhrul,Manipur,MN,1,Deceased
