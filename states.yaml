@@ -301,7 +301,7 @@ mn:
   url: _inputs/mn.jpeg
   config:
     translation: False
-    start_key: Imphal
+    start_key: Bishnupur
     end_key: Ukhrul
 
 mp:
@@ -358,9 +358,8 @@ pb:
   name: Punjab
   state_code: PB
   url_sources:
-    - https://twitter.com/ani
-    - https://twitter.com/DiveshSpeaks
     - https://nhm.punjab.gov.in/media-bulletin_Nov21.htm
+    - Ask Rukmini
   # type: pdf
   # url:
   # config:
