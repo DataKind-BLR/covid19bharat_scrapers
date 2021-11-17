@@ -395,9 +395,8 @@ def jh_get_data(opt):
         availableColumns = line.split('|')[1].split(',')
 
         if len(linesArray) != 8:
-          pass
-          # print("--> Confirm for {}".format(linesArray))
-          # continue
+          print("--> Confirm for {}".format(linesArray))
+          continue
 
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
