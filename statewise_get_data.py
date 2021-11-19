@@ -855,7 +855,6 @@ def pb_get_data(opt):
   pprint(opt)
 
   if opt['type'] == 'pdf':
-
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
 
@@ -942,57 +941,79 @@ def rj_get_data(opt):
   print('Fetching RJ data')
   pprint(opt)
 
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
-
   linesArray = []
   districtDictionary = {}
-  districtArray = []
-  skipValues = False
-  edge_case = False
-  try:
-    with open(OUTPUT_TXT, "r") as upFile:
+  district_data = []
+
+  if opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
+
+    skipValues = False
+    edge_case = False
+    try:
+      with open(OUTPUT_TXT, "r") as upFile:
+        for line in upFile:
+          if 'Other' in line:
+            skipValues = True
+            continue
+          if skipValues == True:
+            continue
+
+          linesArray = line.split('|')[0].split(',')
+
+          if len(linesArray) != 9:
+            print("--> Issue with {}".format(linesArray))
+            continue
+
+          districtDictionary = {}
+          if linesArray[0].strip().title() != 'Ganganagar':
+            districtDictionary['districtName'] = linesArray[0].strip().title()
+            edge_case = False
+          else:
+            edge_case = True
+
+          if edge_case:
+            # only for Ganaganagar
+            cf = re.sub(r'[a-z]+', '', linesArray[4])
+            dt = re.sub(r'\)', '', linesArray[6])
+            rc = re.sub(r'[a-z]+', '', linesArray[7])
+            districtDictionary['confirmed'] = int(cf.strip())
+            districtDictionary['recovered'] = int(rc.strip())
+            districtDictionary['deceased'] = int(dt.strip())
+          else:
+            rc = re.sub(r'[a-z]+', '', linesArray[7])
+            districtDictionary['confirmed'] = int(linesArray[3].strip())
+            districtDictionary['recovered'] = int(linesArray[7].strip())
+            districtDictionary['deceased'] = int(linesArray[5].strip())
+
+          district_data.append(districtDictionary)
+
+      upFile.close()
+    except FileNotFoundError:
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
+
+  if opt['type'] == 'pdf':
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
       for line in upFile:
-        if 'Other' in line:
-          skipValues = True
-          continue
-        if skipValues == True:
-          continue
-
-        linesArray = line.split('|')[0].split(',')
-
-        if len(linesArray) != 9:
+        linesArray = line.split(',')
+        if len(linesArray) != 8:
           print("--> Issue with {}".format(linesArray))
           continue
 
         districtDictionary = {}
-        if linesArray[0].strip().title() != 'Ganganagar':
-          districtDictionary['districtName'] = linesArray[0].strip().title()
-          edge_case = False
-        else:
-          edge_case = True
-
-        if edge_case:
-          # only for Ganaganagar
-          cf = re.sub(r'[a-z]+', '', linesArray[4])
-          dt = re.sub(r'\)', '', linesArray[6])
-          rc = re.sub(r'[a-z]+', '', linesArray[7])
-          districtDictionary['confirmed'] = int(cf.strip())
-          districtDictionary['recovered'] = int(rc.strip())
-          districtDictionary['deceased'] = int(dt.strip())
-        else:
-          rc = re.sub(r'[a-z]+', '', linesArray[7])
-          districtDictionary['confirmed'] = int(linesArray[3].strip())
-          districtDictionary['recovered'] = int(linesArray[7].strip())
-          districtDictionary['deceased'] = int(linesArray[5].strip())
-
-        districtArray.append(districtDictionary)
-
+        districtDictionary['districtName'] = linesArray[0].strip().title()
+        districtDictionary['confirmed'] = int(linesArray[2])
+        districtDictionary['recovered'] = int(linesArray[6])
+        districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[4])) != 0 else 0
+        district_data.append(districtDictionary)
     upFile.close()
-  except FileNotFoundError:
-    print("output.txt missing. Generate through pdf or ocr and rerun.")
 
-  return districtArray
+  return district_data
 
 def sk_get_data(opt):
   print('Fetching SK data')
@@ -1001,7 +1022,7 @@ def sk_get_data(opt):
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
-  districts_data = []
+  district_data = []
   with open(OUTPUT_TXT, "r") as mlFile:
     for line in mlFile:
       linesArray = line.split('|')[0].split(',')
@@ -1014,8 +1035,8 @@ def sk_get_data(opt):
       districtDictionary['confirmed'] = int(linesArray[5].strip())
       districtDictionary['recovered'] = int(linesArray[6].strip())
       districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
-      districts_data.append(districtDictionary)
-  return districts_data
+      district_data.append(districtDictionary)
+  return district_data
 
 def tn_get_data(opt):
   print('Fetching TN data')

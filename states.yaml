@@ -378,15 +378,21 @@ rj:
     - https://twitter.com/avinashkalla
     - https://twitter.com/dineshkumawat
     - Ask Rukmini S
-  type: image
-  url: _inputs/rj.jpeg
+  # type: image
+  # url: _inputs/rj.jpeg
+  # config:
+  #   starting_text: auto
+  #   ending_text: auto
+  #   translation: True
+  #   translation_dict: rj_districts.meta
+  #   x: 0
+  #   y: 0
+  type: pdf
+  url: _inputs/rj.pdf
   config:
-    starting_text: auto
-    ending_text: auto
-    translation: True
-    translation_dict: rj_districts.meta
-    x: 0
-    y: 0
+    page: 1,2
+    start_key: AJMER
+    end_key: Total
 
 sk:
   name: Sikkim
