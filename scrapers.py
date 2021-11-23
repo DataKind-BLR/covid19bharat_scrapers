@@ -100,6 +100,7 @@ def fetch_data(st_obj):
     'jk': jk_get_data,
     'ka': ka_get_data,
     'kl': kl_get_data,
+    'ld': ld_get_data,
     'la': la_get_data,
     'mh': mh_get_data,
     'ml': ml_get_data,

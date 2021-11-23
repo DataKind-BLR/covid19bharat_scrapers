@@ -216,6 +216,8 @@ jh:
   url: _inputs/jh.jpeg
   config:
     translation: False
+    start_key: Almora
+    end_key: Total
 
 ka:
   name: Karnataka
@@ -254,6 +256,15 @@ la:
     - https://twitter.com/prasarbharti
     - http://covid.ladakh.gov.in/#dataInsights
     - https://twitter.com/DIPR_Leh
+  lazy: True
+  type: html
+  url: https://www.mohfw.gov.in/
+
+ld:
+  name: Lakshadweep
+  state_code: LD
+  url_sources:
+    - MoHFW
   lazy: True
   type: html
   url: https://www.mohfw.gov.in/
@@ -355,6 +366,8 @@ pb:
   type: image
   url: _inputs/pb3.jpeg
   config:
+    start_key: Ludhiana
+    end_key: Total
     translation: False
 
 py:
@@ -378,21 +391,18 @@ rj:
     - https://twitter.com/avinashkalla
     - https://twitter.com/dineshkumawat
     - Ask Rukmini S
-  # type: image
-  # url: _inputs/rj.jpeg
-  # config:
-  #   starting_text: auto
-  #   ending_text: auto
-  #   translation: True
-  #   translation_dict: rj_districts.meta
-  #   x: 0
-  #   y: 0
-  type: pdf
-  url: _inputs/rj.pdf
+  type: image
+  url: _inputs/rj.jpeg
   config:
-    page: 1,2
-    start_key: AJMER
-    end_key: Total
+    start_key: auto
+    end_key: auto
+    translation: True
+  # type: pdf
+  # url: _inputs/rj.pdf
+  # config:
+  #   page: 1,2
+  #   start_key: AJMER
+  #   end_key: Total
 
 sk:
   name: Sikkim
@@ -413,6 +423,7 @@ tn:
   cowin_code: 31
   url_sources:
     - https://twitter.com/ani
+    - https://stopcorona.tn.gov.in/daily-bulletin/
     - '@TN_Together_AgainstCorona Telegram channel'
   type: pdf
   url: _inputs/TN.pdf
@@ -476,6 +487,12 @@ ut:
     page: 6
     start_key: Cases
     end_key: Total
+  # type: image
+  # url: _inputs/ut.jpeg
+  # config:
+  #   translation: False
+  #   start_key: Almora
+  #   end_key: Total
 
 wb:
   name: West Bengal
