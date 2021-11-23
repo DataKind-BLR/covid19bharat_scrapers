@@ -625,6 +625,12 @@ def la_get_data(opt):
 
   # return district_data
 
+def ld_get_data(opt):
+  print('fetching LD data')
+  pprint(opt)
+
+  return _get_mohfw_data(opt['name'])
+
 def mh_get_data(opt):
   print('fetching MH data')
   pprint(opt)
@@ -1194,25 +1200,23 @@ def ut_get_data(opt):
     districtDictionary = {}
     districts_data = []
     splitArray = []
-    try:
-      with open(OUTPUT_TXT, "r") as upFile:
-        for line in upFile:
-          splitArray = re.sub('\n', '', line.strip()).split('|')
-          linesArray = splitArray[0].split(',')
 
-          if len(linesArray) != 6:
-            print('---> Issue with {}'.format(linesArray))
-            continue
+    with open(OUTPUT_TXT, "r") as upFile:
+      for line in upFile:
+        splitArray = re.sub('\n', '', line.strip()).split('|')
+        linesArray = splitArray[0].split(',')
 
-          districtDictionary['districtName'] = linesArray[0].strip().title()
-          districtDictionary['confirmed'] = int(linesArray[1].strip())
-          districtDictionary['recovered'] = int(linesArray[2].strip())
-          districtDictionary['deceased'] = int(linesArray[4].strip())
-          districtDictionary['migrated'] = int(linesArray[5].strip())
-          districts_data.append(districtDictionary)
+        if len(linesArray) != 6:
+          print('---> Issue with {}'.format(linesArray))
+          continue
 
-    except FileNotFoundError:
-      print("output.txt missing. Generate through pdf or ocr and rerun.")
+        districtDictionary['districtName'] = linesArray[0].strip().title()
+        districtDictionary['confirmed'] = int(linesArray[1].strip())
+        districtDictionary['recovered'] = int(linesArray[2].strip())
+        districtDictionary['deceased'] = int(linesArray[4].strip())
+        districtDictionary['migrated'] = int(linesArray[5].strip())
+        districts_data.append(districtDictionary)
+
     return districts_data
 
 def wb_get_data(opt):
