@@ -216,7 +216,7 @@ jh:
   url: _inputs/jh.jpeg
   config:
     translation: False
-    start_key: Almora
+    start_key: Bokaro
     end_key: Total
 
 ka:
@@ -313,6 +313,7 @@ mp:
   url_sources:
     - https://twitter.com/JansamparkMP
     - https://twitter.com/healthminmp
+  notes: Read the paragraph text in hindi in the image, it contains district-wise hospitalised cases :(
   type: image
   url: _inputs/mp.jpeg
   config:
@@ -391,18 +392,18 @@ rj:
     - https://twitter.com/avinashkalla
     - https://twitter.com/dineshkumawat
     - Ask Rukmini S
-  type: image
-  url: _inputs/rj.jpeg
-  config:
-    start_key: auto
-    end_key: auto
-    translation: True
-  # type: pdf
-  # url: _inputs/rj.pdf
+  # type: image
+  # url: _inputs/rj.jpeg
   # config:
-  #   page: 1,2
-  #   start_key: AJMER
-  #   end_key: Total
+  #   start_key: auto
+  #   end_key: auto
+  #   translation: True
+  type: pdf
+  url: _inputs/rj.pdf
+  config:
+    page: 1,2
+    start_key: AJMER
+    end_key: Total
 
 sk:
   name: Sikkim
@@ -470,8 +471,10 @@ up:
   config:
     translation: True
     page: 1, 2
-    start_key: लखनऊ
-    end_key: उन्नाव
+    # start_key: लखनऊ
+    start_key: auto
+    # end_key: उन्नाव
+    end_key: Total
 
 ut:
   name: Uttarakhand
@@ -483,16 +486,16 @@ ut:
     - https://health.uk.gov.in/pages/view/154-covid19-health-bulletin-for-uttarakhand-page-11
   type: pdf
   url: _inputs/ut.pdf
-  config:
-    page: 6
-    start_key: Cases
-    end_key: Total
-  # type: image
-  # url: _inputs/ut.jpeg
   # config:
-  #   translation: False
-  #   start_key: Almora
+  #   page: 6
+  #   start_key: Cases
   #   end_key: Total
+  type: image
+  url: _inputs/ut.jpeg
+  config:
+    translation: False
+    start_key: Almora
+    end_key: Total
 
 wb:
   name: West Bengal
