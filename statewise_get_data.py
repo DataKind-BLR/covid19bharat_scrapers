@@ -13,7 +13,7 @@ from read_pdf import read_pdf_from_url
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
-def _get_mohfw_data(name: str) -> dict:
+def _get_mohfw_data(name):
   '''Fetch state-wise data from MOHFW website.
   
   Inputs:
@@ -34,9 +34,9 @@ def _get_mohfw_data(name: str) -> dict:
 
   return [{
     'districtName': name,
-    'confirmed': datum.new_positive,
-    'recovered': datum.new_cured,
-    'deceased':  datum.new_death 
+    'confirmed': datum['new_positive'],
+    'recovered': datum['new_cured'],
+    'deceased':  datum['new_death']
   }] 
 
 ## ------------------------ <STATE_CODE>_get_data functions START HERE
@@ -223,7 +223,6 @@ def ct_get_data(opt):
       #     deceasedFound = True
 
       for index, data in enumerate(linesArray):
-        print(linesArray[index])
         if availableColumns[index].strip() == "2":
           districtDictionary['districtName'] = data.strip()
         if availableColumns[index].strip() == "4":
@@ -381,6 +380,8 @@ def hr_get_data(opt):
   return districts_data
 
 def jh_get_data(opt):
+  print('fetching JH data')
+  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -1111,7 +1112,6 @@ def tr_get_data(opt):
 
   return district_data
 
-# TODO - make this run
 def up_get_data(opt):
   print('Fetching UP data')
   pprint(opt)
@@ -1155,8 +1155,11 @@ def ut_get_data(opt):
   print('Fetching UT data')
   pprint(opt)
 
-  if opt['type'] == 'pdf':
+  linesArray = []
+  districts_data = []
+  splitArray = []
 
+  if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
 
@@ -1196,11 +1199,6 @@ def ut_get_data(opt):
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
-    linesArray = []
-    districtDictionary = {}
-    districts_data = []
-    splitArray = []
-
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         splitArray = re.sub('\n', '', line.strip()).split('|')
@@ -1210,6 +1208,7 @@ def ut_get_data(opt):
           print('---> Issue with {}'.format(linesArray))
           continue
 
+        districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip().title()
         districtDictionary['confirmed'] = int(linesArray[1].strip())
         districtDictionary['recovered'] = int(linesArray[2].strip())
