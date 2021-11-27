@@ -67,14 +67,13 @@ def read_pdf_from_url(opt):
   for index, table in enumerate(tables):
     OUTPUT_PDF = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + str(index) + '.pdf.txt')
     tables[index].to_csv(OUTPUT_PDF)
-
     with open(OUTPUT_PDF, newline='') as stateCSVFile:
       rowReader = csv.reader(stateCSVFile, delimiter=',', quotechar='"')
       for row in rowReader:
         line = "|".join(row)
         line = re.sub("\|+", '|', line)
         if opt['state_code'] == 'UP':
-          formatted_line = up_custom(opt, line.split('|'), translation_dict)
+          formatted_line = up_format_line(opt, line.split('|'), translation_dict)
           print(formatted_line, file=stateOutputFile, end="")
           continue
 
@@ -94,10 +93,10 @@ def read_pdf_from_url(opt):
   stateOutputFile.close()
 
 ## ------------------------ Custom format line functions for specific states START
-def up_custom(opt, row, translation_dict):
-  if row[1] in translation_dict:
-    dist_eng = translation_dict[row[1]]
-    #             dist_name,     confirmed,     discharged, cum discharged,   deceased,     cum deceased,    active
+def up_format_line(opt, row, translation_dict):
+  if row[1].strip() in translation_dict:
+    dist_eng = translation_dict[row[1].strip()]
+    # ---->       dist_name,     confirmed,     discharged, cum discharged,   deceased,     cum deceased,    active
     modifiedRow = dist_eng + ',' + row[2] + ',' + row[3] + ',' + row[4] + ',' + row[5] + ',' + row[6] + ',' + row[7] + '\n'
     return modifiedRow
   else:
