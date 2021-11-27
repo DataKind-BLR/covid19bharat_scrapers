@@ -29,7 +29,6 @@ import camelot
 import argparse
 import html5lib
 import requests
-import datetime
 import pdftotext
 from bs4 import BeautifulSoup
 from rich.pretty  import pprint
@@ -188,5 +187,3 @@ if __name__ == '__main__':
       print(f"Delta unchanged.")
 
   console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
-  # TODO: HTML is not working
-  # console.save_html(f'_cache/{state_code}.html')
