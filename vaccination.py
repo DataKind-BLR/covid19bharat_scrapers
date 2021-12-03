@@ -15,6 +15,9 @@ with open(STATES_YAML, 'r') as stream:
 
 
 def get_vaccination():
+    """
+        Gets state and district-wise vaccination data from CoWIN API.
+    """
     today = (datetime.date.today() - datetime.timedelta(days = 1))
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
 
@@ -26,17 +29,17 @@ def get_vaccination():
             'd': today.strftime("%Y-%m-%d")
         }
         state_url = base_url.format(**params)
+        print(state_url)
         resp = requests.request('GET', state_url)
         state_data = resp.json()
         age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock']['vaccination']
 
         print('printing for ', states_all[state_code]['name'], '---> all districts')
-        with open(VACC_TXT,'a') as file:
-            print("{}, {}, \"{}\", {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ". \
-            format(today.strftime('%d-%m-%Y'), \
+        with open(VACC_TXT, 'a') as file:
+            datum = [
+                today.strftime('%d-%m-%Y'), \
                 states_all[state_code]['name'], \
                 'TEST_districtName', \
-                state_data['topBlock']['vaccination']['today'], \
                 state_data['topBlock']['vaccination']['total'], \
                 state_data['topBlock']['sessions']['total'], \
                 state_data['topBlock']['sites']['total'], \
@@ -47,7 +50,15 @@ def get_vaccination():
                 state_data['topBlock']['vaccination']['others'], \
                 state_data['topBlock']['vaccination']['covaxin'], \
                 state_data['topBlock']['vaccination']['covishield'], \
-            ), file = file)
+                state_data['topBlock']['vaccination'].get('sputnik'), \
+                state_data['topBlock']['vaccination'].get('aefi'), \
+                state_data['vaccinationByAge'].get('vac_18_45'), \
+                state_data['vaccinationByAge'].get('vac_45_60'), \
+                state_data['vaccinationByAge'].get('above_60')
+            ]
+
+            datum = ','.join(map(str, datum))
+            print(datum, file=file)
 
         # run for every district within each state
         for district in state_data['getBeneficiariesGroupBy']:
@@ -60,12 +71,10 @@ def get_vaccination():
             resp = requests.request('GET', district_url)
             district_data = resp.json()
             print('printing for ', states_all[state_code]['name'], '--->', district['title'])
-            with open(VACC_TXT,'a') as file:
-                print("{}, {}, \"{}\", {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ". \
-                format(today.strftime('%d-%m-%Y'), \
+            with open(VACC_TXT, 'a') as file:
+                datum = [today.strftime('%d-%m-%Y'), \
                     states_all[state_code]['name'], \
                     district['title'], \
-                    district_data['topBlock']['vaccination']['today'], \
                     district_data['topBlock']['vaccination']['total'], \
                     district_data['topBlock']['sessions']['total'], \
                     district_data['topBlock']['sites']['total'], \
@@ -76,6 +85,13 @@ def get_vaccination():
                     district_data['topBlock']['vaccination']['others'], \
                     district_data['topBlock']['vaccination']['covaxin'], \
                     district_data['topBlock']['vaccination']['covishield'], \
-                ), file = file)
+                    district_data['topBlock']['vaccination'].get('sputnik'), \
+                    district_data['topBlock']['vaccination'].get('aefi'), \
+                    district_data['vaccinationByAge'].get('vac_18_45'), \
+                    district_data['vaccinationByAge'].get('vac_45_60'), \
+                    district_data['vaccinationByAge'].get('above_60')
+                ]
+                datum = ','.join(map(str, datum))
+                print(datum, file=file)
 
 get_vaccination()
