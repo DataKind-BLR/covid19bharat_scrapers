@@ -99,6 +99,7 @@ def download_pdf(url, save_as):
 '''
 opt = {
     'name': 'Vaccination MOHFW',
+    'state_code': 'VCMBL',
     'type': 'pdf',
     'url': 'https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/',
     'config': {
@@ -129,6 +130,7 @@ def VCMGetData(pageId):
 
         # downloading pdf file from url (use requests)
         readFileFromURLV2(metaDictionary['VCMohfw'].url + fileName, "VCMohfw", "A & N Islands", "")
+        # read_pdf(opt) ## this will write into `vcmbl0.pdf.txt` and `vcmbl.csv`
         # Example of url: https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/2021-11-11-at-07-00-AM.pdf
         # Another url: https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport04november2021.pdf
         dadra = {'firstDose': 0, 'secondDose': 0, 'totalDose': 0}
