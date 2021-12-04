@@ -64,6 +64,7 @@ def an_get_data(opt):
   print('Fetching AN data')
   pprint(opt)
   pprint('You\'ve got to do this manually looking at the tweet/image')
+  return []
 
 def ar_get_data(opt):
   print('Fetching AR data')
@@ -314,7 +315,7 @@ def hp_get_data(opt):
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
-        line = re.sub('\*', '', line)
+        # line = re.sub('\*', '', line)
         linesArray = line.split('|')[0].split(',')
         availableColumns = line.split('|')[1].split(',')
 
@@ -334,7 +335,8 @@ def hp_get_data(opt):
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(linesArray[1].strip())
         districtDictionary['recovered'] = int(linesArray[8].strip())
-        districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[9].strip()).strip())
+        # districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[9].strip()).strip())
+        districtDictionary['deceased'] = int(linesArray[9].strip())
         #districtDictionary['migrated'] = int(linesArray[10].strip())
         districts_data.append(districtDictionary)
 
@@ -1079,19 +1081,30 @@ def tg_get_data(opt):
   print('Fetching TG data')
   pprint(opt)
 
+  district_data = []
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
   linesArray = []
-  with open(OUTPUT_TXT, "r") as tgFile:
-    for line in tgFile:
+  with open(OUTPUT_TXT, "r") as upFile:
+    for line in upFile:
       linesArray = line.split('|')[0].split(',')
       if len(linesArray) != 2:
         print("--> Issue with {}".format(linesArray))
         continue
       if linesArray[0].strip().capitalize() == "Ghmc":
         linesArray[0] = "Hyderabad"
+
+      districtDictionary = {}
+      districtDictionary['districtName'] = linesArray[0].strip().title()
+      districtDictionary['confirmed'] = int(linesArray[1].strip())
+      districtDictionary['recovered'] = 0
+      districtDictionary['deceased'] = 0
+      district_data.append(districtDictionary)
       print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+
+  upFile.close()
+  # return district_data
 
 def tr_get_data(opt):
   print('fetching TR data')
