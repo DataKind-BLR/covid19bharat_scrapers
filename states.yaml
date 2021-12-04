@@ -5,13 +5,14 @@ an:
   url_sources:
     - https://twitter.com/ChetanSanghi
     - https://twitter.com/Andaman_admin
+    - https://dhs.andaman.gov.in/
   notes: Need to read PDF / Image manually and enter into google sheets
   type: pdf
   url:
   config:
     page: 1
     start_key: 'A & N Islands'
-    end_key:
+    end_key: 'Total Deaths'
 
 ap:
   name: Andhra Pradesh
@@ -60,6 +61,13 @@ br:
   type: image
   url: _inputs/br2.jpeg
   config:
+    # >>>> for 1st image
+    start_key: अररिया
+    # end_key: खगड़िया
+    end_key: शिवहर
+    # >>>> for 2nd image
+    # start_key: किशनगंज
+    # end_key: वैशाली
     translation: True
 
 ch:
@@ -208,6 +216,7 @@ jh:
   name: Jharkhand
   state_code: JH
   cowin_code: 15
+  notes: Crop the image properly
   url_sources:
     - https://twitter.com/RanchiPIB
     - https://twitter.com/Fobgumla
@@ -251,7 +260,7 @@ kl:
 la:
   name: Ladakh
   state_code: LA
-  cowin_code: 17
+  cowin_code: 18
   url_sources:
     - https://twitter.com/prasarbharti
     - http://covid.ladakh.gov.in/#dataInsights
@@ -296,6 +305,7 @@ mn:
   name: Manipur
   state_code: MN
   cowin_code: 22
+  notes: Recovered are mentioned at state level only. Hospitalised and Deceased are mentioned at district level
   url_sources:
     - https://twitter.com/imphalrob
     - https://nrhmmanipur.org/?p=7999
@@ -486,16 +496,16 @@ ut:
     - https://health.uk.gov.in/pages/view/154-covid19-health-bulletin-for-uttarakhand-page-11
   type: pdf
   url: _inputs/ut.pdf
-  # config:
-  #   page: 6
-  #   start_key: Cases
-  #   end_key: Total
-  type: image
-  url: _inputs/ut.jpeg
   config:
-    translation: False
-    start_key: Almora
+    page: 5
+    start_key: Cases
     end_key: Total
+  # type: image
+  # url: _inputs/ut.jpeg
+  # config:
+  #   translation: False
+  #   start_key: Almora
+  #   end_key: Total
 
 wb:
   name: West Bengal
