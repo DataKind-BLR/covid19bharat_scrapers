@@ -112,8 +112,8 @@ def get_vaccination():
     
     print("Getting state-district mapping from google sheet")
     public_data = pd.read_csv(DISTRICTS_DATA_SHEET)
-    temp = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
-    merged_data = pd.merge(temp, district_data, on=['State', 'District'])
+    state_dist_mapping = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
+    merged_data = pd.merge(state_dist_mapping, district_data, on=['State', 'District'], how='left')
     merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else today_str, k) for k in merged_data.columns])
     district_data_fpath = os.path.join('_outputs', 'merged_district_data.csv')
     merged_data.to_csv(district_data_fpath, index=False)
