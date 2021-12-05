@@ -521,6 +521,6 @@ wb:
     start_key: Alipurduar
     end_key: TOTAL
 
-# Vaccine VC, https://api.cowin.gov.in/api/v1/reports/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
-# VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/
-# COWIN JSON Pull https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
+# # Vaccine VC, https://api.cowin.gov.in/api/v1/reports/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
+# # VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/
+# # COWIN JSON Pull https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@

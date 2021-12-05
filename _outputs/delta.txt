@@ -1,0 +1,8 @@
+Gomati,Tripura,TR,1,Hospitalized
+North Tripura,Tripura,TR,2,Hospitalized
+West Tripura,Tripura,TR,6,Hospitalized
+Dhalai,Tripura,TR,1,Recovered
+Khowai,Tripura,TR,1,Recovered
+North Tripura,Tripura,TR,5,Recovered
+Unokoti,Tripura,TR,1,Recovered
+West Tripura,Tripura,TR,7,Recovered

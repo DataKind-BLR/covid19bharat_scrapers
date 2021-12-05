@@ -33,6 +33,7 @@ def get_vaccination(lookback=1):
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
 
     district_rows = []
+    today_str = today.strftime('%d-%m-%Y')
     # run for every state
     for state_code in states_all:
         params = {
@@ -49,7 +50,7 @@ def get_vaccination(lookback=1):
         print('printing for ', states_all[state_code].get('name'), '---> all districts')
         with open(VACC_TXT, 'a') as file:
             datum = [
-                today.strftime('%d-%m-%Y'), \
+                today_str, \
                 states_all[state_code].get('name'), \
                 'TEST_districtName', \
                 state_data['topBlock'].get('vaccination')['total'], \
@@ -92,7 +93,7 @@ def get_vaccination(lookback=1):
             print('printing for ', states_all[state_code].get('name'), '--->', district['title'])
             with open(VACC_TXT, 'a') as file:
                 datum = {
-                    'updated_at': today.strftime('%d-%m-%Y'), \
+                    'updated_at': today_str, \
                     'State': states_all[state_code].get('name'), \
                     'District': district['title'], \
                     'Total Doses Administered': district_data['topBlock'].get('vaccination').get('total'), \
@@ -121,12 +122,13 @@ def get_vaccination(lookback=1):
     print("Making districts data file")
     district_data = pd.DataFrame(district_rows).drop('updated_at', 1)
     district_data.to_csv(os.path.join('_outputs', 'district_data_vaccines.csv'), index=False)
-
-    print("Getting district data from google sheet")
+    print("Getting state-district mapping from google sheet")
     public_data = pd.read_csv(DISTRICTS_DATA_SHEET)
-    temp = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
-    merged_data = pd.merge(temp, district_data, on=['State', 'District'], how='left')
-    merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else '2020-12-03', k) for k in merged_data.columns])
-    merged_data.to_csv(os.path.join('_outputs', 'merged_district_data.csv'), index=False)
+    state_dist_mapping = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
+    merged_data = pd.merge(state_dist_mapping, district_data, on=['State', 'District'], how='left')
+    merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else today_str, k) for k in merged_data.columns])
+    district_data_fpath = os.path.join('_outputs', 'merged_district_data.csv')
+    merged_data.to_csv(district_data_fpath, index=False)
+    print("District data is saved to: ", district_data_fpath)
 
 get_vaccination()
