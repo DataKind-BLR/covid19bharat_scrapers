@@ -110,11 +110,13 @@ def get_vaccination():
     district_data = pd.DataFrame(district_rows).drop('updated_at', 1)
     district_data.to_csv(os.path.join('_outputs', 'district_data_vaccines.csv'), index=False)
     
-    print("Getting district data from google sheet")
+    print("Getting state-district mapping from google sheet")
     public_data = pd.read_csv(DISTRICTS_DATA_SHEET)
     temp = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
     merged_data = pd.merge(temp, district_data, on=['State', 'District'])
     merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else today_str, k) for k in merged_data.columns])
-    merged_data.to_csv(os.path.join('_outputs', 'merged_district_data.csv'), index=False)
+    district_data_fpath = os.path.join('_outputs', 'merged_district_data.csv')
+    merged_data.to_csv(district_data_fpath, index=False)
+    print("District data is saved to: ", district_data_fpath)
 
 get_vaccination()
