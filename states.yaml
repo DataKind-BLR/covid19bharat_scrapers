@@ -272,6 +272,7 @@ la:
 ld:
   name: Lakshadweep
   state_code: LD
+  cowin_code: 19
   url_sources:
     - MoHFW
   lazy: True
