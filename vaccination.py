@@ -27,6 +27,7 @@ def get_vaccination():
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
 
     district_rows = []
+    today_str = today.strftime('%d-%m-%Y')
     # run for every state
     for state_code in states_all:
         params = {
@@ -43,7 +44,7 @@ def get_vaccination():
         print('printing for ', states_all[state_code].get('name'), '---> all districts')
         with open(VACC_TXT, 'a') as file:
             datum = [
-                today.strftime('%d-%m-%Y'), \
+                today_str, \
                 states_all[state_code].get('name'), \
                 'TEST_districtName', \
                 state_data['topBlock'].get('vaccination')['total'], \
@@ -79,7 +80,7 @@ def get_vaccination():
             print('printing for ', states_all[state_code].get('name'), '--->', district['title'])
             with open(VACC_TXT, 'a') as file:
                 datum = {
-                    'updated_at': today.strftime('%d-%m-%Y'), \
+                    'updated_at': today_str, \
                     'State': states_all[state_code].get('name'), \
                     'District': district['title'], \
                     'Total Doses Administered': district_data['topBlock'].get('vaccination').get('total'), \
@@ -113,7 +114,7 @@ def get_vaccination():
     public_data = pd.read_csv(DISTRICTS_DATA_SHEET)
     temp = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
     merged_data = pd.merge(temp, district_data, on=['State', 'District'])
-    merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else '2020-12-03', k) for k in merged_data.columns])
+    merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else today_str, k) for k in merged_data.columns])
     merged_data.to_csv(os.path.join('_outputs', 'merged_district_data.csv'), index=False)
 
 get_vaccination()
