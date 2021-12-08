@@ -2,84 +2,84 @@ Maharashtra data from your current input.
 ┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                       
 ┃ district             ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                       
 ┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                       
-│ Ahmednagar           │    342268 │    334682 │     7129 │                                                                                                                       
-│ Akola                │     58792 │     57350 │     1426 │                                                                                                                       
-│ Amravati             │     96271 │     94662 │     1598 │                                                                                                                       
-│ Aurangabad           │    155872 │    151509 │     4260 │                                                                                                                       
-│ Beed                 │    104012 │    101105 │     2830 │                                                                                                                       
-│ Bhandara             │     59992 │     58858 │     1123 │                                                                                                                       
-│ Buldhana             │     85604 │     84788 │      803 │                                                                                                                       
-│ Chandrapur           │     89015 │     87429 │     1564 │                                                                                                                       
-│ Dhule                │     46158 │     45490 │      655 │                                                                                                                       
-│ Gadchiroli           │     30454 │     29750 │      669 │                                                                                                                       
+│ Ahmednagar           │    342415 │    334887 │     7131 │                                                                                                                       
+│ Akola                │     58795 │     57352 │     1426 │                                                                                                                       
+│ Amravati             │     96271 │     94666 │     1598 │                                                                                                                       
+│ Aurangabad           │    155912 │    151527 │     4263 │                                                                                                                       
+│ Beed                 │    104035 │    101126 │     2831 │                                                                                                                       
+│ Bhandara             │     59993 │     58860 │     1123 │                                                                                                                       
+│ Buldhana             │     85612 │     84792 │      804 │                                                                                                                       
+│ Chandrapur           │     89019 │     87433 │     1564 │                                                                                                                       
+│ Dhule                │     46158 │     45491 │      655 │                                                                                                                       
+│ Gadchiroli           │     30455 │     29752 │      669 │                                                                                                                       
 │ Gondia               │     40512 │     39928 │      569 │                                                                                                                       
-│ Hingoli              │     18480 │     17966 │      507 │                                                                                                                       
-│ Jalgaon              │    139876 │    137121 │     2714 │                                                                                                                       
-│ Jalna                │     60724 │     59476 │     1211 │                                                                                                                       
-│ Kolhapur             │    206811 │    200932 │     5849 │                                                                                                                       
-│ Latur                │     92243 │     89741 │     2441 │                                                                                                                       
-│ Mumbai               │    763403 │    742623 │    16344 │                                                                                                                       
-│ Nagpur               │    493630 │    484378 │     9128 │                                                                                                                       
-│ Nanded               │     90454 │     87766 │     2659 │                                                                                                                       
-│ Nandurbar            │     40005 │     39053 │      948 │                                                                                                                       
-│ Nashik               │    412205 │    403011 │     8721 │                                                                                                                       
-│ Osmanabad            │     68017 │     65901 │     1981 │                                                                                                                       
+│ Hingoli              │     18481 │     17967 │      507 │                                                                                                                       
+│ Jalgaon              │    139882 │    137125 │     2714 │                                                                                                                       
+│ Jalna                │     60740 │     59491 │     1211 │                                                                                                                       
+│ Kolhapur             │    206833 │    200936 │     5849 │                                                                                                                       
+│ Latur                │     92263 │     89755 │     2441 │                                                                                                                       
+│ Mumbai               │    763986 │    743369 │    16351 │                                                                                                                       
+│ Nagpur               │    493657 │    484399 │     9128 │                                                                                                                       
+│ Nanded               │     90460 │     87772 │     2659 │                                                                                                                       
+│ Nandurbar            │     40006 │     39053 │      948 │                                                                                                                       
+│ Nashik               │    412307 │    403180 │     8724 │                                                                                                                       
+│ Osmanabad            │     68028 │     65916 │     1981 │                                                                                                                       
 │ Other states/country │       144 │        31 │      111 │                                                                                                                       
-│ Palghar              │    138632 │    135134 │     3300 │                                                                                                                       
-│ Parbhani             │     52403 │     51134 │     1235 │                                                                                                                       
-│ Pune                 │   1161190 │   1139201 │    19711 │                                                                                                                       
-│ Raigad               │    196917 │    191894 │     4814 │                                                                                                                       
-│ Ratnagiri            │     79115 │     76576 │     2493 │                                                                                                                       
-│ Sangli               │    210032 │    204354 │     5629 │                                                                                                                       
-│ Satara               │    251158 │    244434 │     6478 │                                                                                                                       
-│ Sindhudurg           │     52995 │     51491 │     1442 │                                                                                                                       
-│ Solapur              │    211147 │    205321 │     5582 │                                                                                                                       
-│ Thane                │    613735 │    601072 │    11570 │                                                                                                                       
-│ Wardha               │     57349 │     55963 │     1218 │                                                                                                                       
-│ Washim               │     41673 │     41031 │      637 │                                                                                                                       
-│ Yavatmal             │     76001 │     74180 │     1800 │                                                                                                                       
+│ Palghar              │    138691 │    135178 │     3301 │                                                                                                                       
+│ Parbhani             │     52413 │     51142 │     1235 │                                                                                                                       
+│ Pune                 │   1161618 │   1139676 │    19712 │                                                                                                                       
+│ Raigad               │    196983 │    191959 │     4814 │                                                                                                                       
+│ Ratnagiri            │     79125 │     76586 │     2495 │                                                                                                                       
+│ Sangli               │    210055 │    204385 │     5629 │                                                                                                                       
+│ Satara               │    251196 │    244479 │     6480 │                                                                                                                       
+│ Sindhudurg           │     53000 │     51496 │     1442 │                                                                                                                       
+│ Solapur              │    211169 │    205368 │     5584 │                                                                                                                       
+│ Thane                │    614047 │    601335 │    11571 │                                                                                                                       
+│ Wardha               │     57351 │     55965 │     1218 │                                                                                                                       
+│ Washim               │     41675 │     41033 │      637 │                                                                                                                       
+│ Yavatmal             │     76009 │     74183 │     1800 │                                                                                                                       
 └──────────────────────┴───────────┴───────────┴──────────┘                                                                                                                       
 Maharashtra last updated data from <data.covid19bharat.org>                                                                                                                       
 ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                  
 ┃ district        ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                  
 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                  
-│ Ahmednagar      │    342268 │    334682 │     7129 │              1 │    456 │                                                                                                  
-│ Akola           │     58792 │     57350 │     1426 │              4 │     12 │                                                                                                  
-│ Amravati        │     96271 │     94662 │     1598 │              2 │      9 │                                                                                                  
-│ Aurangabad      │    155872 │    151509 │     4260 │             14 │     89 │                                                                                                  
-│ Beed            │    104012 │    101105 │     2830 │              7 │     70 │                                                                                                  
-│ Bhandara        │     59992 │     58858 │     1123 │             10 │      1 │                                                                                                  
-│ Buldhana        │     85604 │     84788 │      803 │              6 │      7 │                                                                                                  
-│ Chandrapur      │     89015 │     87429 │     1564 │              4 │     18 │                                                                                                  
-│ Dhule           │     46158 │     45490 │      655 │             11 │      2 │                                                                                                  
-│ Gadchiroli      │     30454 │     29750 │      669 │             33 │      2 │                                                                                                  
+│ Ahmednagar      │    342377 │    334697 │     7131 │              1 │    548 │                                                                                                  
+│ Akola           │     58794 │     57352 │     1426 │              4 │     12 │                                                                                                  
+│ Amravati        │     96271 │     94665 │     1598 │              2 │      6 │                                                                                                  
+│ Aurangabad      │    155898 │    151521 │     4263 │             14 │    100 │                                                                                                  
+│ Beed            │    104030 │    101123 │     2831 │              7 │     69 │                                                                                                  
+│ Bhandara        │     59993 │     58858 │     1123 │             10 │      2 │                                                                                                  
+│ Buldhana        │     85607 │     84788 │      804 │              6 │      9 │                                                                                                  
+│ Chandrapur      │     89018 │     87430 │     1564 │              4 │     20 │                                                                                                  
+│ Dhule           │     46158 │     45491 │      655 │             11 │      1 │                                                                                                  
+│ Gadchiroli      │     30455 │     29750 │      669 │             33 │      3 │                                                                                                  
 │ Gondia          │     40512 │     39928 │      569 │              7 │      8 │                                                                                                  
-│ Hingoli         │     18480 │     17966 │      507 │              1 │      6 │                                                                                                  
-│ Jalgaon         │    139876 │    137121 │     2714 │             32 │      9 │                                                                                                  
-│ Jalna           │     60724 │     59476 │     1211 │              1 │     36 │                                                                                                  
-│ Kolhapur        │    206811 │    200932 │     5849 │              5 │     25 │                                                                                                  
-│ Latur           │     92243 │     89741 │     2441 │              6 │     55 │                                                                                                  
-│ Mumbai          │    763403 │    742623 │    16344 │           2512 │   1924 │                                                                                                  
+│ Hingoli         │     18481 │     17967 │      507 │              1 │      6 │                                                                                                  
+│ Jalgaon         │    139882 │    137125 │     2714 │             32 │     11 │                                                                                                  
+│ Jalna           │     60732 │     59487 │     1211 │              1 │     33 │                                                                                                  
+│ Kolhapur        │    206828 │    200932 │     5849 │              5 │     42 │                                                                                                  
+│ Latur           │     92262 │     89752 │     2441 │              6 │     63 │                                                                                                  
+│ Mumbai          │    763823 │    743124 │    16349 │           2512 │   1838 │                                                                                                  
 │ Mumbai Suburban │         0 │         0 │        0 │              0 │      0 │                                                                                                  
-│ Nagpur          │    493630 │    484378 │     9128 │             71 │     53 │                                                                                                  
-│ Nanded          │     90454 │     87766 │     2659 │              6 │     23 │                                                                                                  
-│ Nandurbar       │     40005 │     39053 │      948 │              3 │      1 │                                                                                                  
-│ Nashik          │    412205 │    403011 │     8721 │              1 │    472 │                                                                                                  
-│ Osmanabad       │     68017 │     65901 │     1981 │            114 │     21 │                                                                                                  
+│ Nagpur          │    493646 │    484395 │     9128 │             71 │     52 │                                                                                                  
+│ Nanded          │     90460 │     87772 │     2659 │              6 │     23 │                                                                                                  
+│ Nandurbar       │     40006 │     39053 │      948 │              3 │      2 │                                                                                                  
+│ Nashik          │    412285 │    403114 │     8722 │              1 │    448 │                                                                                                  
+│ Osmanabad       │     68027 │     65910 │     1981 │            114 │     22 │                                                                                                  
 │ Other State     │       144 │        31 │      111 │              2 │      0 │                                                                                                  
-│ Palghar         │    138632 │    135134 │     3300 │             14 │    184 │                                                                                                  
-│ Parbhani        │     52403 │     51134 │     1235 │             19 │     15 │                                                                                                  
-│ Pune            │   1161190 │   1139201 │    19711 │            349 │   1929 │                                                                                                  
-│ Raigad          │    196917 │    191894 │     4814 │              7 │    202 │                                                                                                  
-│ Ratnagiri       │     79115 │     76576 │     2493 │              5 │     41 │                                                                                                  
-│ Sangli          │    210032 │    204354 │     5629 │              9 │     40 │                                                                                                  
-│ Satara          │    251158 │    244434 │     6478 │             31 │    215 │                                                                                                  
-│ Sindhudurg      │     52995 │     51491 │     1442 │             15 │     47 │                                                                                                  
-│ Solapur         │    211147 │    205321 │     5582 │            110 │    134 │                                                                                                  
-│ Thane           │    613735 │    601072 │    11570 │             35 │   1058 │                                                                                                  
-│ Wardha          │     57349 │     55963 │     1218 │            165 │      3 │                                                                                                  
-│ Washim          │     41673 │     41031 │      637 │              3 │      2 │                                                                                                  
-│ Yavatmal        │     76001 │     74180 │     1800 │              4 │     17 │                                                                                                  
+│ Palghar         │    138670 │    135166 │     3301 │             14 │    189 │                                                                                                  
+│ Parbhani        │     52410 │     51142 │     1235 │             19 │     14 │                                                                                                  
+│ Pune            │   1161534 │   1139590 │    19712 │            349 │   1883 │                                                                                                  
+│ Raigad          │    196963 │    191939 │     4814 │              7 │    203 │                                                                                                  
+│ Ratnagiri       │     79125 │     76586 │     2495 │              5 │     39 │                                                                                                  
+│ Sangli          │    210051 │    204354 │     5629 │              9 │     59 │                                                                                                  
+│ Satara          │    251187 │    244459 │     6480 │             31 │    217 │                                                                                                  
+│ Sindhudurg      │     53000 │     51495 │     1442 │             15 │     48 │                                                                                                  
+│ Solapur         │    211161 │    205344 │     5584 │            110 │    123 │                                                                                                  
+│ Thane           │    613953 │    601266 │    11570 │             35 │   1082 │                                                                                                  
+│ Wardha          │     57351 │     55963 │     1218 │            165 │      5 │                                                                                                  
+│ Washim          │     41675 │     41033 │      637 │              3 │      2 │                                                                                                  
+│ Yavatmal        │     76009 │     74180 │     1800 │              4 │     25 │                                                                                                  
 │ Unknown         │         0 │         0 │        0 │              0 │      0 │                                                                                                  
 └─────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                  
 
@@ -94,3 +94,52 @@ Other states/country -> Other State
 
 Delta statistics
 
+Ahmednagar,Maharashtra,MH,38,Hospitalized
+Akola,Maharashtra,MH,1,Hospitalized
+Aurangabad,Maharashtra,MH,14,Hospitalized
+Beed,Maharashtra,MH,5,Hospitalized
+Buldhana,Maharashtra,MH,5,Hospitalized
+Chandrapur,Maharashtra,MH,1,Hospitalized
+Jalna,Maharashtra,MH,8,Hospitalized
+Kolhapur,Maharashtra,MH,5,Hospitalized
+Latur,Maharashtra,MH,1,Hospitalized
+Mumbai,Maharashtra,MH,163,Hospitalized
+Nagpur,Maharashtra,MH,11,Hospitalized
+Nashik,Maharashtra,MH,22,Hospitalized
+Osmanabad,Maharashtra,MH,1,Hospitalized
+Palghar,Maharashtra,MH,21,Hospitalized
+Parbhani,Maharashtra,MH,3,Hospitalized
+Pune,Maharashtra,MH,84,Hospitalized
+Raigad,Maharashtra,MH,20,Hospitalized
+Sangli,Maharashtra,MH,4,Hospitalized
+Satara,Maharashtra,MH,9,Hospitalized
+Solapur,Maharashtra,MH,8,Hospitalized
+Thane,Maharashtra,MH,94,Hospitalized
+Ahmednagar,Maharashtra,MH,190,Recovered
+Amravati,Maharashtra,MH,1,Recovered
+Aurangabad,Maharashtra,MH,6,Recovered
+Beed,Maharashtra,MH,3,Recovered
+Bhandara,Maharashtra,MH,2,Recovered
+Buldhana,Maharashtra,MH,4,Recovered
+Chandrapur,Maharashtra,MH,3,Recovered
+Gadchiroli,Maharashtra,MH,2,Recovered
+Jalna,Maharashtra,MH,4,Recovered
+Kolhapur,Maharashtra,MH,4,Recovered
+Latur,Maharashtra,MH,3,Recovered
+Mumbai,Maharashtra,MH,245,Recovered
+Nagpur,Maharashtra,MH,4,Recovered
+Nashik,Maharashtra,MH,66,Recovered
+Osmanabad,Maharashtra,MH,6,Recovered
+Palghar,Maharashtra,MH,12,Recovered
+Pune,Maharashtra,MH,86,Recovered
+Raigad,Maharashtra,MH,20,Recovered
+Sangli,Maharashtra,MH,31,Recovered
+Satara,Maharashtra,MH,20,Recovered
+Sindhudurg,Maharashtra,MH,1,Recovered
+Solapur,Maharashtra,MH,24,Recovered
+Thane,Maharashtra,MH,69,Recovered
+Wardha,Maharashtra,MH,2,Recovered
+Yavatmal,Maharashtra,MH,3,Recovered
+Mumbai,Maharashtra,MH,2,Deceased
+Nashik,Maharashtra,MH,2,Deceased
+Thane,Maharashtra,MH,1,Deceased

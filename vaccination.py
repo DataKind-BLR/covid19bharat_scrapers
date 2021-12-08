@@ -28,9 +28,8 @@ def get_vaccination_state_level(lookback=0):
 
     :param: `lookback` <int> - The number of days to pull back from. If 0, then will only take current date
 
-    :returns: None - Writes the output to following files
+    :returns: None - Appends the output to following files
         vaccination state level -> `_outputs/vaccination_state_level.txt`
-        vaccination distr level -> `_outputs/vaccination_district_level.csv`
     '''
     today = datetime.date.today()
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
@@ -103,8 +102,7 @@ def get_vaccination(lookback=0):
     }
 
     for day in range (lookback, -1, -1):
-        # curr_date = today - datetime.timedelta(days=day)
-        curr_date = datetime.datetime(2021, 10, 31)
+        curr_date = today - datetime.timedelta(days=day)
         curr_date_str = curr_date.strftime('%d-%m-%Y')
         print('Fetching for {}'.format(curr_date_str))
         district_rows = []
@@ -205,4 +203,6 @@ def get_vaccination(lookback=0):
     merged_data.to_csv(VACC_DST, index=False)
     print("District data is saved to: ", VACC_DST)
 
+
+# calling only state level function (separated)
 get_vaccination_state_level(lookback=1)

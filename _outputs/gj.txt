@@ -2,39 +2,39 @@ Gujarat data from your current input.
 ┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                           
 ┃ district         ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                           
 ┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                           
-│ Ahmedabad        │    238657 │    235143 │     3411 │                                                                                                                           
+│ Ahmedabad        │    238710 │    235173 │     3411 │                                                                                                                           
 │ Amreli           │     10811 │     10709 │      102 │                                                                                                                           
-│ Anand            │      9649 │      9592 │       50 │                                                                                                                           
-│ Aravalli         │      5187 │      5108 │       78 │                                                                                                                           
+│ Anand            │      9652 │      9593 │       50 │                                                                                                                           
+│ Aravalli         │      5188 │      5108 │       78 │                                                                                                                           
 │ Banaskantha      │     13632 │     13470 │      162 │                                                                                                                           
-│ Bharuch          │     11443 │     11312 │      118 │                                                                                                                           
-│ Bhavnagar        │     21474 │     21150 │      301 │                                                                                                                           
+│ Bharuch          │     11444 │     11313 │      118 │                                                                                                                           
+│ Bhavnagar        │     21485 │     21150 │      301 │                                                                                                                           
 │ Botad            │      2218 │      2176 │       42 │                                                                                                                           
 │ Chhota Udaipur   │      3395 │      3357 │       38 │                                                                                                                           
 │ Dahod            │      9958 │      9917 │       38 │                                                                                                                           
 │ Dang             │       866 │       848 │       18 │                                                                                                                           
 │ Devbhoomi Dwarka │      4175 │      4093 │       82 │                                                                                                                           
-│ Gandhinagar      │     20773 │     20560 │      205 │                                                                                                                           
-│ Gir Somnath      │      8579 │      8504 │       67 │                                                                                                                           
-│ Jamnagar         │     35012 │     34518 │      478 │                                                                                                                           
-│ Junagadh         │     20542 │     20270 │      272 │                                                                                                                           
-│ Kutch            │     12670 │     12511 │      145 │                                                                                                                           
-│ Kheda            │     10444 │     10394 │       48 │                                                                                                                           
-│ Mahisagar        │      8194 │      8122 │       72 │                                                                                                                           
-│ Mehsana          │     24425 │     24247 │      177 │                                                                                                                           
+│ Gandhinagar      │     20775 │     20561 │      205 │                                                                                                                           
+│ Gir Somnath      │      8579 │      8510 │       67 │                                                                                                                           
+│ Jamnagar         │     35017 │     34526 │      478 │                                                                                                                           
+│ Junagadh         │     20543 │     20270 │      272 │                                                                                                                           
+│ Kutch            │     12672 │     12518 │      145 │                                                                                                                           
+│ Kheda            │     10447 │     10395 │       48 │                                                                                                                           
+│ Mahisagar        │      8195 │      8122 │       72 │                                                                                                                           
+│ Mehsana          │     24426 │     24248 │      177 │                                                                                                                           
 │ Morbi            │      6506 │      6419 │       87 │                                                                                                                           
 │ Narmada          │      5957 │      5942 │       15 │                                                                                                                           
-│ Navsari          │      7256 │      7220 │       25 │                                                                                                                           
+│ Navsari          │      7263 │      7222 │       25 │                                                                                                                           
 │ Panchmahal       │     11772 │     11701 │       70 │                                                                                                                           
 │ Patan            │     11624 │     11495 │      129 │                                                                                                                           
 │ Porbandar        │      3489 │      3468 │       19 │                                                                                                                           
-│ Rajkot           │     58030 │     57288 │      726 │                                                                                                                           
+│ Rajkot           │     58034 │     57290 │      726 │                                                                                                                           
 │ Sabarkantha      │      9323 │      9166 │      157 │                                                                                                                           
-│ Surat            │    144021 │    142037 │     1956 │                                                                                                                           
-│ Surendranagar    │      8124 │      7988 │      136 │                                                                                                                           
-│ Tapi             │      4445 │      4420 │       24 │                                                                                                                           
-│ Vadodara         │     78367 │     77522 │      788 │                                                                                                                           
-│ Valsad           │      6479 │      6413 │       55 │                                                                                                                           
+│ Surat            │    144041 │    142053 │     1957 │                                                                                                                           
+│ Surendranagar    │      8125 │      7988 │      136 │                                                                                                                           
+│ Tapi             │      4446 │      4420 │       24 │                                                                                                                           
+│ Vadodara         │     78388 │     77546 │      788 │                                                                                                                           
+│ Valsad           │      6488 │      6413 │       55 │                                                                                                                           
 │ Total            │         0 │         0 │        0 │                                                                                                                           
 └──────────────────┴───────────┴───────────┴──────────┘                                                                                                                           
 Gujarat last updated data from <data.covid19bharat.org>                                                                                                                           
@@ -42,39 +42,39 @@ Gujarat last updated data from <data.covid19bharat.org>
 ┃ district        ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                  
 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                  
 │ Other State     │       162 │       159 │        3 │              0 │      0 │                                                                                                  
-│ Ahmedabad       │    238645 │    235130 │     3411 │              0 │    104 │                                                                                                  
+│ Ahmedabad       │    238684 │    235163 │     3411 │              0 │    110 │                                                                                                  
 │ Amreli          │     10811 │     10709 │      102 │              0 │      0 │                                                                                                  
-│ Anand           │      9649 │      9592 │       50 │              0 │      7 │                                                                                                  
-│ Aravalli        │      5187 │      5108 │       78 │              0 │      1 │                                                                                                  
+│ Anand           │      9651 │      9592 │       50 │              0 │      9 │                                                                                                  
+│ Aravalli        │      5188 │      5108 │       78 │              0 │      2 │                                                                                                  
 │ Banaskantha     │     13632 │     13470 │      162 │              0 │      0 │                                                                                                  
-│ Bharuch         │     11443 │     11312 │      118 │              0 │     13 │                                                                                                  
-│ Bhavnagar       │     21463 │     21150 │      301 │              0 │     12 │                                                                                                  
+│ Bharuch         │     11444 │     11313 │      118 │              0 │     13 │                                                                                                  
+│ Bhavnagar       │     21479 │     21150 │      301 │              0 │     28 │                                                                                                  
 │ Botad           │      2218 │      2176 │       42 │              0 │      0 │                                                                                                  
 │ Chhota Udaipur  │      3395 │      3357 │       38 │              0 │      0 │                                                                                                  
-│ Dahod           │      9955 │      9917 │       38 │              0 │      0 │                                                                                                  
+│ Dahod           │      9958 │      9917 │       38 │              0 │      3 │                                                                                                  
 │ Dang            │       866 │       848 │       18 │              0 │      0 │                                                                                                  
 │ Devbhumi Dwarka │      4175 │      4093 │       82 │              0 │      0 │                                                                                                  
-│ Gandhinagar     │     20773 │     20560 │      205 │              0 │      8 │                                                                                                  
+│ Gandhinagar     │     20774 │     20561 │      205 │              0 │      8 │                                                                                                  
 │ Gir Somnath     │      8579 │      8504 │       67 │              0 │      8 │                                                                                                  
-│ Jamnagar        │     35012 │     34518 │      478 │              0 │     16 │                                                                                                  
+│ Jamnagar        │     35014 │     34520 │      478 │              0 │     16 │                                                                                                  
 │ Junagadh        │     20542 │     20270 │      272 │              0 │      0 │                                                                                                  
-│ Kheda           │     10444 │     10394 │       48 │              0 │      2 │                                                                                                  
-│ Kutch           │     12669 │     12506 │      145 │              0 │     18 │                                                                                                  
-│ Mahisagar       │      8194 │      8122 │       72 │              0 │      0 │                                                                                                  
-│ Mehsana         │     24425 │     24247 │      177 │              0 │      1 │                                                                                                  
-│ Morbi           │      6506 │      6418 │       87 │              0 │      1 │                                                                                                  
+│ Kheda           │     10445 │     10395 │       48 │              0 │      2 │                                                                                                  
+│ Kutch           │     12671 │     12517 │      145 │              0 │      9 │                                                                                                  
+│ Mahisagar       │      8195 │      8122 │       72 │              0 │      1 │                                                                                                  
+│ Mehsana         │     24426 │     24247 │      177 │              0 │      2 │                                                                                                  
+│ Morbi           │      6506 │      6419 │       87 │              0 │      0 │                                                                                                  
 │ Narmada         │      5957 │      5942 │       15 │              0 │      0 │                                                                                                  
-│ Navsari         │      7254 │      7216 │       25 │              0 │     13 │                                                                                                  
+│ Navsari         │      7261 │      7222 │       25 │              0 │     14 │                                                                                                  
 │ Panchmahal      │     11772 │     11701 │       70 │              0 │      1 │                                                                                                  
 │ Patan           │     11624 │     11495 │      129 │              0 │      0 │                                                                                                  
 │ Porbandar       │      3489 │      3468 │       19 │              0 │      2 │                                                                                                  
-│ Rajkot          │     58027 │     57285 │      726 │              0 │     16 │                                                                                                  
+│ Rajkot          │     58033 │     57289 │      726 │              0 │     18 │                                                                                                  
 │ Sabarkantha     │      9323 │      9166 │      157 │              0 │      0 │                                                                                                  
-│ Surat           │    144016 │    142032 │     1956 │              0 │     28 │                                                                                                  
-│ Surendranagar   │      8124 │      7988 │      136 │              0 │      0 │                                                                                                  
-│ Tapi            │      4445 │      4420 │       24 │              0 │      1 │                                                                                                  
-│ Vadodara        │     78362 │     77517 │      788 │              0 │     57 │                                                                                                  
-│ Valsad          │      6477 │      6413 │       55 │              0 │      9 │                                                                                                  
+│ Surat           │    144034 │    142051 │     1957 │              0 │     26 │                                                                                                  
+│ Surendranagar   │      8125 │      7988 │      136 │              0 │      1 │                                                                                                  
+│ Tapi            │      4446 │      4420 │       24 │              0 │      2 │                                                                                                  
+│ Vadodara        │     78382 │     77535 │      788 │              0 │     59 │                                                                                                  
+│ Valsad          │      6484 │      6413 │       55 │              0 │     16 │                                                                                                  
 │ Unknown         │         0 │         0 │        0 │              0 │      0 │                                                                                                  
 └─────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                  
 
@@ -85,19 +85,25 @@ Devbhoomi Dwarka -> Devbhumi Dwarka
 
 Delta statistics
 
-Ahmedabad,Gujarat,GJ,12,Hospitalized
-Bhavnagar,Gujarat,GJ,11,Hospitalized
-Dahod,Gujarat,GJ,3,Hospitalized
+Ahmedabad,Gujarat,GJ,26,Hospitalized
+Anand,Gujarat,GJ,1,Hospitalized
+Bhavnagar,Gujarat,GJ,6,Hospitalized
+Gandhinagar,Gujarat,GJ,1,Hospitalized
+Jamnagar,Gujarat,GJ,3,Hospitalized
+Junagadh,Gujarat,GJ,1,Hospitalized
 Kutch,Gujarat,GJ,1,Hospitalized
+Kheda,Gujarat,GJ,2,Hospitalized
 Navsari,Gujarat,GJ,2,Hospitalized
-Rajkot,Gujarat,GJ,3,Hospitalized
-Surat,Gujarat,GJ,5,Hospitalized
-Vadodara,Gujarat,GJ,5,Hospitalized
-Valsad,Gujarat,GJ,2,Hospitalized
-Ahmedabad,Gujarat,GJ,13,Recovered
-Kutch,Gujarat,GJ,5,Recovered
-Morbi,Gujarat,GJ,1,Recovered
-Navsari,Gujarat,GJ,4,Recovered
-Rajkot,Gujarat,GJ,3,Recovered
-Surat,Gujarat,GJ,5,Recovered
-Vadodara,Gujarat,GJ,5,Recovered
+Rajkot,Gujarat,GJ,1,Hospitalized
+Surat,Gujarat,GJ,7,Hospitalized
+Vadodara,Gujarat,GJ,6,Hospitalized
+Valsad,Gujarat,GJ,4,Hospitalized
+Ahmedabad,Gujarat,GJ,10,Recovered
+Anand,Gujarat,GJ,1,Recovered
+Gir Somnath,Gujarat,GJ,6,Recovered
+Jamnagar,Gujarat,GJ,6,Recovered
+Kutch,Gujarat,GJ,1,Recovered
+Mehsana,Gujarat,GJ,1,Recovered
+Rajkot,Gujarat,GJ,1,Recovered
+Surat,Gujarat,GJ,2,Recovered
+Vadodara,Gujarat,GJ,11,Recovered
