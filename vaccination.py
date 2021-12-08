@@ -13,91 +13,9 @@ VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 
 VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_cowin_district_level.csv')
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
-# todo: remove the below comment
-# DISTRICTS_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
-DISTRICTS_DATA_SHEET = '2021-12-02_covid19bharat_v36_dec02 - DistrictWise_Vaccination_MoHFW.csv'
+DISTRICTS_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
 
 TODAY = datetime.date.today()
-NAME_CORRECTION = {
-    "Bagalkote": "Bagalkot",
-    "Bengaluru Rural": "Bangalore Rural",
-    "Bengaluru Urban_2": "BBMP",
-    "Ballari": "Bellary",
-    "Chamarajanagara": "Chamarajanagar",
-    "Chikkamagaluru": "Chikamagalur",
-    "Chikkaballapura": "Chikkaballapur",
-    "Mysuru": "Mysore",
-    "Shivamogga": "Shimoga",
-    "Tumakuru": "Tumkur",
-    "Uttara Kannada": "Uttar Kannada",
-    "Kalaburagi": "Gulbarga",
-    "Nicobars": "Nicobar",
-    "S.P.S. Nellore": "Sri Potti Sriramulu Nellore",
-    "YSR District, Kadapa (Cuddapah)": "Y.S.R. Kadapa",
-    "Upper Dibang Valley": "Dibang Valley",
-    "Karbi Anglong": "Karbi-Anglong",
-    "Baloda Bazar": "Baloda bazar",
-    "Bametara": "Bemetara",
-    "Dakshin Bastar Dantewada": "Dantewada",
-    "Gaurela Pendra Marwahi": "Gaurela Pendra Marwahi ",
-    "Janjgir Champa": "Janjgir-Champa",
-    "Uttar Bastar Kanker": "Kanker",
-    "Kabeerdham": "Kawardha",
-    "Chhota Udaipur": "Chhotaudepur",
-    "Devbhumi Dwarka": "Devbhumi Dwaraka",
-    "Gurugram": "Gurgaon",
-    "Lahaul and Spiti": "Lahaul Spiti",
-    "Bandipora": "Bandipore",
-    "Punch": "Poonch",
-    "Shopiyan": "Shopian",
-    "Sahibganj": "Sahebganj",
-    "Saraikela-Kharsawan": "Seraikela Kharsawan",
-    "Ballari": "Bellary",
-    "Chamarajanagara": "Chamarajanagar",
-    "Chikkamagaluru": "Chikamagalur",
-    "Chikkaballapura": "Chikkaballapur",
-    "Mysuru": "Mysore",
-    "Shivamogga": "Shimoga",
-    "Tumakuru": "Tumkur",
-    "Uttara Kannada": "Uttar Kannada",
-    "Agar Malwa": "Agar",
-    "Ribhoi": "Ri-Bhoi",
-    "Saiha": "Siaha",
-    "Khordha": "Khurda",
-    "Nabarangapur": "Nabarangpur",
-    "Ferozepur": "Ferozpur",
-    "Rupnagar": "Rup Nagar",
-    "S.A.S. Nagar": "SAS Nagar",
-    "Shahid Bhagat Singh Nagar": "SBS Nagar",
-    "Ganganagar": "Sri Ganganagar",
-    "Chengalpattu": "Chengalpet",
-    "Kancheepuram": "Kanchipuram",
-    "Thoothukkudi": "Thoothukudi (Tuticorin)",
-    "Thiruvallur": "Tiruvallur",
-    "Tirupathur": "Tirupattur",
-    "Thiruvallur": "Tiruvallur",
-    "Thiruvarur": "Tiruvarur",
-    "Jayashankar Bhupalapally": "Jayashankar Bhupalpally",
-    "Komaram Bheem": "Kumuram Bheem",
-    "Medchal Malkajgiri": "Medchal",
-    "Ranga Reddy": "Rangareddy",
-    "Warangal Rural": "Warangal(Rural)",
-    "Warangal Urban": "Warangal(Urban)",
-    "Sipahijala": "Sepahijala",
-    "Unokoti": "Unakoti",
-    "Budaun": "Badaun",
-    "Balrampur": "Balarampur",
-    "Bijnor": "Bijnour",
-    "Rae Bareli": "Raebareli",
-    "Shrawasti": "Shravasti",
-    "Alipurduar": "Alipurduar District",
-    "Cooch Behar": "COOCHBEHAR",
-    "Purba Bardhaman": "East Bardhaman",
-    "Hooghly": "Hoogly",
-    "Purba Medinipur": "Purba Medinipore",
-    "Paschim Medinipur": "Paschim Medinipore",
-    "Paschim Bardhaman": "West Bardhaman",
-}
 
 with open(STATES_YAML, 'r') as stream:
   try:
@@ -178,7 +96,6 @@ def get_vaccination(lookback=0):
         vaccination state level -> `_outputs/vaccination_state_level.txt`
         vaccination distr level -> `_outputs/vaccination_district_level.csv`
     '''
-    # TODAY = datetime.date.today()
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
     states_all['in'] = {
         'cowin_code': '',
@@ -186,8 +103,7 @@ def get_vaccination(lookback=0):
     }
 
     for day in range (lookback, -1, -1):
-        # curr_date = TODAY - datetime.timedelta(days=day)
-        curr_date = datetime.datetime(2021, 10, 31)
+        curr_date = TODAY - datetime.timedelta(days=day)
         curr_date_str = curr_date.strftime('%d-%m-%Y')
         print('Fetching for {}'.format(curr_date_str))
         district_rows = []
@@ -280,13 +196,12 @@ def get_vaccination(lookback=0):
     district_data = pd.DataFrame(district_rows).drop('updated_at', 1)
     district_data.to_csv(VACC_DST_COWIN, index=False)
 
-    # import pdb; pdb.set_trace();
     print("Getting state-district mapping from google sheet")
     public_data = pd.read_csv(DISTRICTS_DATA_SHEET)
-    state_dist_mapping = public_data[['State_Code', 'State', 'District']].drop(0, axis=0)
-    state_dist_mapping.loc[:, 'District'] = state_dist_mapping.loc[:, 'District'].replace(NAME_CORRECTION)
-    merged_data = pd.merge(state_dist_mapping, district_data, on=['State', 'District'], how='left')
-    print(state_code)
+    state_dist_mapping = public_data[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
+    merged_data = pd.merge(state_dist_mapping, district_data, left_on=['State', 'Cowin Key'], right_on=['State', 'District'], how='left', suffixes=('', '_cowin'))
+    # we are keeping district names from Covid19Bharat's google sheet and ignoring the API ones.
+    merged_data = merged_data.drop(['Cowin Key', 'District_cowin'], 1)
     merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else curr_date_str, k) for k in merged_data.columns])
 
     merged_data.to_csv(VACC_DST, index=False)
