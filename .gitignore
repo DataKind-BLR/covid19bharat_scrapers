@@ -1,6 +1,7 @@
 # Custom files
 run_me_first.sh
 visionapi*.json
+_inputs/**
 _outputs/**
 
 # Byte-compiled / optimized / DLL files

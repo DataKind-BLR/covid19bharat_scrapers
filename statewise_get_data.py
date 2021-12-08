@@ -724,19 +724,23 @@ def mn_get_data(opt):
     for line in mnFile:
       districtDictionary = {}
       linesArray = line.split('|')[0].split(',')
-      print(linesArray, '\n')
       if len(linesArray) != 8:
         print("--> Issue with {}".format(linesArray))
         continue
 
-      districtDictionary['districtName'] = linesArray[0].strip()
-      districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[2])) + int(re.sub('[^0-9]+', '', linesArray[6]))
-      districtDictionary['recovered'] = 0
-      districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[4])) + int(re.sub('[^0-9]+', '', linesArray[7]))
-      districts_data.append(districtDictionary)
+      # districtDictionary['districtName'] = linesArray[0].strip()
+      # districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[2])) + int(re.sub('[^0-9]+', '', linesArray[6]))
+      # districtDictionary['recovered'] = 0
+      # districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[4])) + int(re.sub('[^0-9]+', '', linesArray[7]))
+      # districts_data.append(districtDictionary)
+
+      if (linesArray[2].strip()) != "0":
+        print("{},Manipur,MN,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[2].strip()))
+      if (linesArray[4].strip()) != "0":
+        print("{},Manipur,MN,{},Deceased".format(linesArray[0].strip().title(), linesArray[4].strip()))
 
   print('DONT COPY & PASTE `Recovered` cases for this state')
-  return districts_data
+  # return districts_data
 
 def mp_get_data(opt):
   print('Fetching MP data')
@@ -1089,7 +1093,7 @@ def tg_get_data(opt):
   with open(OUTPUT_TXT, "r") as upFile:
     for line in upFile:
       linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 2:
+      if len(linesArray) != 8:
         print("--> Issue with {}".format(linesArray))
         continue
       if linesArray[0].strip().capitalize() == "Ghmc":
