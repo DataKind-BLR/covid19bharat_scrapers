@@ -169,6 +169,11 @@ def tn_format_line(row):
   line = row[1] + "," + row[2] + "," + row[3] + "," + row[4] +  "," + row[5] + "\n"
   return line
 
+def vaccination_mohfw_format_line(row):
+  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) + "\n"
+  return line
+
+
 ## ------------------------ Custom format line functions for specific states END
 
 def read_translation(state_code):
