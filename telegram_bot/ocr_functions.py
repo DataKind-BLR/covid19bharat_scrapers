@@ -1,10 +1,12 @@
 import subprocess
+import sys
 import telegram
 import os
 import logging
+import traceback
+
 from glob import glob
 from telegram_bot.util import states_map
-
 CURR_DIR = os.path.abspath('.')
 
 def run_scraper(bot, chat_id, state_code, url_type, url):
@@ -40,7 +42,7 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
                 logging.info('After subprocess')
 
     except Exception as e:
-        e = "Request timed out"
+        e = traceback.format_exc()
         logging.error(e)
         bot.send_message(chat_id=chat_id, text=e)
         return
