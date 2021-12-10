@@ -5,23 +5,109 @@ import datetime
 import requests
 import warnings
 import pandas as pd
+from read_pdf import read_pdf_from_url
 
 warnings.simplefilter(action='ignore')
 
 VACC_STA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_state_level.txt')
 VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_district_level.csv')
 VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_cowin_district_level.csv')
+VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 DISTRICTS_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
-
 TODAY = datetime.date.today()
 
 with open(STATES_YAML, 'r') as stream:
-  try:
-    states_all = yaml.safe_load(stream)
-  except yaml.YAMLError as exc:
-    print(exc)
+    try:
+        states_all = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
+
+
+def get_vaccation_mohfw():
+    '''
+    Downloads from PDF files & writes into a PDF file
+    NOTE:
+    '''
+    temp_today = TODAY - datetime.timedelta(days=1)
+
+    base_url = "https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf"
+    today_mohfw_str = temp_today.strftime("%d%B%Y")
+    today_sheet_str = temp_today.strftime("%d/%m/%Y")
+    url = base_url.format(today_mohfw_str.lower())
+
+    # if you change this variable, you'll have to change the function name inside `read_pdf.py` file too
+    vacc_mohfw_code = 'vaccination_mohfw'
+
+    opt = {
+        'state_code': vacc_mohfw_code,
+        'url': url,
+        'type': 'pdf',
+        'config': {
+            'page': 1,
+            'start_key': 'A & N Islands',
+            'end_key': ''
+        }
+    }
+
+    # read pdf file and extract text
+    read_pdf_from_url(opt)
+
+    df_mohfw = pd.read_csv(VACC_OUTPUT_MOHFW)
+    print(df_mohfw)
+
+    # with open(VACC_OUTPUT_MOHFW, "r") as vacc_mohfw:
+    #     for line in vacc_mohfw:
+
+    #         # Check if some pdf files end Misc total split to additional lines
+    #         if len(line.split(',')) != 1:
+    #             if "Miscellaneous" in line:
+    #                 # trap & rework Misc
+    #                 miscline = line
+    #                 continue
+
+    #       IndiaFirstDose += int(line.split(',')[1])
+    #       IndiaSecondDose += int(line.split(',')[2])
+    #       IndiaTotalDose += int(line.split(',')[3])
+
+      #     if "Dadra" in line or "Daman" in line:
+      #       dadra['firstDose'] += int(line.split(',')[1])
+      #       dadra['secondDose'] += int(line.split(',')[2])
+      #       dadra['totalDose'] += int(line.split(',')[3])
+      #       continue
+
+      #     #A & N name mapping
+      #     if "A & N Islands" in line:
+      #       row += str("{},Andaman and Nicobar Islands,{},{},{}\n".format(todayp, int(line.split(',')[1]), int(line.split(',')[2]), int(line.split(',')[3])))
+      #       #print(row)
+      #     #J &K name mapping
+      #     elif "Jammu & Kashmir" in line:
+      #       row += str("{},Jammu and Kashmir,{},{},{}\n".format(todayp, int(line.split(',')[1]), int(line.split(',')[2]), int(line.split(',')[3])))
+      #       #print(row)
+      #     else:
+      #       #print(todayp + "," + line, end = "")
+      #       row += str(todayp + "," + line)
+      #    else:
+      #      #trap & club all misc lines at end
+      #      miscline += line
+      # #add clubbed Dadra Daman last
+      # row += str("{},Dadra and Nagar Haveli and Daman and Diu,{},{},{}\n".format(todayp, dadra['firstDose'], dadra['secondDose'], dadra['totalDose']))
+
+      # #rework on Misc line issue to sortout
+      # miscline=miscline.replace ('\n', '')
+      # #print(miscline)
+      # if miscline != '':
+      #   miscFirstDose = int(miscline.split(',')[1])
+      #   miscSecondDose = int(miscline.split(',')[2])
+      #   miscTotalDose = int(miscline.split(',')[3].lstrip('0'))
+      #   IndiaFirstDose += miscFirstDose
+      #   IndiaSecondDose += miscSecondDose
+      #   IndiaTotalDose += miscTotalDose
+      #   row += str("{},Miscellaneous,{},{},{}\n".format(todayp, miscFirstDose, miscSecondDose, miscTotalDose))
+      # row += str("{},Total,{},{},{}\n".format(todayp, IndiaFirstDose, IndiaSecondDose, IndiaTotalDose))
+     # print(row)
+
 
 
 def get_vaccination_state_level(lookback=0):
@@ -209,4 +295,6 @@ def get_vaccination(lookback=0):
 # calling only state level function (separated)
 # get_vaccination_state_level(lookback=1)
 
-get_vaccination(lookback=0)
+# get_vaccination(lookback=0)
+
+get_vaccation_mohfw()
