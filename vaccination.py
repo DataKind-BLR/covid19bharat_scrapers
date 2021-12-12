@@ -1,12 +1,15 @@
 import os
 import re
 import yaml
+import argparse
 import datetime
 import requests
 import warnings
 import pandas as pd
+from rich.console import Console
 from read_pdf import read_pdf_from_url
 
+console = Console(record=True)
 warnings.simplefilter(action='ignore')
 
 VACC_STA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_state_level.txt')
@@ -25,19 +28,20 @@ with open(STATES_YAML, 'r') as stream:
         print(exc)
 
 
-def get_vaccation_mohfw():
+def get_vaccation_mohfw(data_for=TODAY  - datetime.timedelta(days=1)):
     '''
-    Downloads from PDF files & writes into a PDF file
-    NOTE:
-    '''
-    temp_today = TODAY - datetime.timedelta(days=1)
+    Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
+    NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
 
+    :param: - `data_for` (datetime object). Defaults to T-1 day (today)
+    '''
     base_url = "https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf"
-    today_mohfw_str = temp_today.strftime("%d%B%Y")
-    today_sheet_str = temp_today.strftime("%d/%m/%Y")
-    url = base_url.format(today_mohfw_str.lower())
+    date_mohfw_str = data_for.strftime("%d%B%Y")
+    date_sheet_str = data_for.strftime("%d/%m/%Y")
+    url = base_url.format(date_mohfw_str.lower())
+    print(f" ---------> Downloading PDF from: {url}")
 
-    # if you change this variable, you'll have to change the function name inside `read_pdf.py` file too
+    # if you change this variable value, you'll have to change the function name inside `read_pdf.py` file too
     vacc_mohfw_code = 'vaccination_mohfw'
 
     opt = {
@@ -50,12 +54,41 @@ def get_vaccation_mohfw():
             'end_key': ''
         }
     }
+    name_mapping = {
+        'A & N Islands': 'Andaman and Nicobar Islands'
+    }
 
     # read pdf file and extract text
     read_pdf_from_url(opt)
 
-    df_mohfw = pd.read_csv(VACC_OUTPUT_MOHFW)
-    print(df_mohfw)
+    # read the csv output produced by previous function
+    mohfw_data = []
+    total_fd, total_sd, total_td = 0, 0, 0
+    with open(VACC_OUTPUT_MOHFW, "r") as output_csv:
+        for line in output_csv:
+            lines_arr = line.split(',')
+            if len(lines_arr) != 4:
+                print("--> Issue with {}".format(lines_arr))
+                continue
+
+            data = {}
+            data['state_name'] = lines_arr[0].strip()
+            if lines_arr[0].strip() == 'A & N Islands':
+                data['state_name'] = 'Andaman and Nicobar Islands'
+            data['firstDose'] = int(lines_arr[1])
+            total_fd += data['firstDose']
+            data['secondDose'] = int(lines_arr[2])
+            total_sd += data['secondDose']
+            data['totalDose'] = int(lines_arr[3].strip('\n'))
+            total_td += data['totalDose']
+
+            # print on console for copy-paste purpose
+            console.print(f"{date_sheet_str},{data['state_name']},{data['firstDose']},{data['secondDose']},{data['totalDose']}")
+
+            mohfw_data.append(data)
+    # print totals for India
+    console.print(f"{date_sheet_str},Total,{total_fd},{total_sd},{total_td}")
+    return mohfw_data
 
     # with open(VACC_OUTPUT_MOHFW, "r") as vacc_mohfw:
     #     for line in vacc_mohfw:
@@ -298,3 +331,9 @@ def get_vaccination(lookback=0):
 # get_vaccination(lookback=0)
 
 get_vaccation_mohfw()
+
+
+if __name__ == '__main__':
+    # WIP
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin', help='cowin or mohfw')
