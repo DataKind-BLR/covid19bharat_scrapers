@@ -14,8 +14,7 @@ warnings.simplefilter(action='ignore')
 
 VACC_STA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_state_level.txt')
 VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_district_level.csv')
-VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_cowin_district_level.csv')
-VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
+VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vacc_mohfw_state.csv')
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 DISTRICTS_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
@@ -28,7 +27,7 @@ with open(STATES_YAML, 'r') as stream:
         print(exc)
 
 
-def get_vaccation_mohfw(data_for=TODAY  - datetime.timedelta(days=1)):
+def get_vaccation_mohfw(data_for=TODAY - datetime.timedelta(days=1)):
     '''
     Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
     NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
@@ -142,8 +141,7 @@ def get_vaccation_mohfw(data_for=TODAY  - datetime.timedelta(days=1)):
      # print(row)
 
 
-
-def get_vaccination_state_level(lookback=0):
+def get_cowin_state(date_for=TODAY):
     '''
     For a given number of days, gets state vaccination data from CoWIN API
 
@@ -160,51 +158,53 @@ def get_vaccination_state_level(lookback=0):
         'name': 'India'
     }
 
-    for day in range (lookback, -1, -1):
-        curr_date = TODAY - datetime.timedelta(days=day)
-        curr_date_str = curr_date.strftime('%d-%m-%Y')
-        # print('Fetching for {}'.format(curr_date_str))
-        district_rows = []
+    # for day in range (lookback, -1, -1):
+    # TODAY - datetime.timedelta(days=day)
+    curr_date = date_for
+    curr_date_str = curr_date.strftime('%d-%m-%Y')
+    print('Fetching for {}'.format(curr_date_str))
+    district_rows = []
 
-        # run for every state
-        for state_code in states_all:
-            params = {
-                's_id': states_all[state_code].get('cowin_code'),
-                'd_id': '',
-                'd': curr_date.strftime("%Y-%m-%d")
-            }
-            state_url = base_url.format(**params)
-            resp = requests.request('GET', state_url)
-            state_data = resp.json()
-            age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
+    # run for every state
+    for state_code in states_all:
+        params = {
+            's_id': states_all[state_code].get('cowin_code'),
+            'd_id': '',
+            'd': curr_date.strftime("%Y-%m-%d")
+        }
+        state_url = base_url.format(**params)
+        resp = requests.request('GET', state_url)
+        state_data = resp.json()
+        age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
 
-            print('printing for ', states_all[state_code].get('name'), '---> all districts', state_url)
-            with open(VACC_STA, 'a') as file:
-                datum = [
-                    curr_date_str, \
-                    states_all[state_code].get('name'), \
-                    # 'TEST_districtName', \
-                    state_data['topBlock'].get('vaccination')['total'], \
-                    state_data['topBlock']['sessions']['total'], \
-                    state_data['topBlock']['sites']['total'], \
-                    state_data['topBlock']['vaccination']['tot_dose_1'], \
-                    state_data['topBlock']['vaccination']['tot_dose_2'], \
-                    state_data['topBlock']['vaccination']['male'], \
-                    state_data['topBlock']['vaccination']['female'], \
-                    state_data['topBlock']['vaccination']['others'], \
-                    state_data['topBlock']['vaccination']['covaxin'], \
-                    state_data['topBlock']['vaccination']['covishield'], \
-                    state_data['topBlock']['vaccination'].get('sputnik'), \
-                    state_data['topBlock']['vaccination'].get('aefi'), \
-                    state_data['vaccinationByAge'].get('vac_18_45'), \
-                    state_data['vaccinationByAge'].get('vac_45_60'), \
-                    state_data['vaccinationByAge'].get('above_60')
-                ]
+        print('printing for ', states_all[state_code].get('name'), '---> all districts', state_url)
+        with open(VACC_STA, 'a') as file:
+            datum = [
+                curr_date_str, \
+                states_all[state_code].get('name'), \
+                # 'TEST_districtName', \
+                state_data['topBlock'].get('vaccination')['total'], \
+                state_data['topBlock']['sessions']['total'], \
+                state_data['topBlock']['sites']['total'], \
+                state_data['topBlock']['vaccination']['tot_dose_1'], \
+                state_data['topBlock']['vaccination']['tot_dose_2'], \
+                state_data['topBlock']['vaccination']['male'], \
+                state_data['topBlock']['vaccination']['female'], \
+                state_data['topBlock']['vaccination']['others'], \
+                state_data['topBlock']['vaccination']['covaxin'], \
+                state_data['topBlock']['vaccination']['covishield'], \
+                state_data['topBlock']['vaccination'].get('sputnik'), \
+                state_data['topBlock']['vaccination'].get('aefi'), \
+                state_data['vaccinationByAge'].get('vac_18_45'), \
+                state_data['vaccinationByAge'].get('vac_45_60'), \
+                state_data['vaccinationByAge'].get('above_60')
+            ]
 
-                datum = ','.join(map(str, datum))
-                print(datum, file=file)
+            datum = ','.join(map(str, datum))
+            print(datum, file=file)
 
-def get_vaccination(lookback=0):
+
+def get_cowin_district(data_for=TODAY):
     '''
     For a given number of days, gets state and district-wise vaccination data from CoWIN API
 
@@ -220,98 +220,74 @@ def get_vaccination(lookback=0):
         'name': 'India'
     }
 
-    for day in range (lookback, -1, -1):
-        curr_date = TODAY - datetime.timedelta(days=day)
-        curr_date_str = curr_date.strftime('%d-%m-%Y')
-        print('Fetching for {}'.format(curr_date_str))
-        district_rows = []
+    # for day in range (lookback, -1, -1):
+    # curr_date = TODAY - datetime.timedelta(days=day)
+    curr_date = data_for
+    curr_date_str = curr_date.strftime('%d-%m-%Y')
+    print('Fetching for {}'.format(curr_date_str))
 
-        # run for every state
-        for state_code in states_all:
-            params = {
-                's_id': states_all[state_code].get('cowin_code'),
-                'd_id': '',
-                'd': curr_date.strftime("%Y-%m-%d")
-            }
-            state_url = base_url.format(**params)
-            print(state_url)
-            resp = requests.request('GET', state_url)
-            state_data = resp.json()
-            age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
+    district_rows = []
+    # run for every state
+    for state_code in states_all:
+        params = {
+            's_id': states_all[state_code].get('cowin_code'),
+            'd_id': '',
+            'd': curr_date.strftime("%Y-%m-%d")
+        }
+        state_url = base_url.format(**params)
+        print(state_url)
+        resp = requests.request('GET', state_url)
+        state_data = resp.json()
+        age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
 
-            # print('printing for ', states_all[state_code].get('name'), '---> all districts')
-            # with open(VACC_STA, 'a') as file:
-            #     datum = [
-            #         curr_date_str, \
-            #         states_all[state_code].get('name'), \
-            #         # 'TEST_districtName', \
-            #         state_data['topBlock'].get('vaccination')['total'], \
-            #         state_data['topBlock']['sessions']['total'], \
-            #         state_data['topBlock']['sites']['total'], \
-            #         state_data['topBlock']['vaccination']['tot_dose_1'], \
-            #         state_data['topBlock']['vaccination']['tot_dose_2'], \
-            #         state_data['topBlock']['vaccination']['male'], \
-            #         state_data['topBlock']['vaccination']['female'], \
-            #         state_data['topBlock']['vaccination']['others'], \
-            #         state_data['topBlock']['vaccination']['covaxin'], \
-            #         state_data['topBlock']['vaccination']['covishield'], \
-            #         state_data['topBlock']['vaccination'].get('sputnik'), \
-            #         state_data['topBlock']['vaccination'].get('aefi'), \
-            #         state_data['vaccinationByAge'].get('vac_18_45'), \
-            #         state_data['vaccinationByAge'].get('vac_45_60'), \
-            #         state_data['vaccinationByAge'].get('above_60')
-            #     ]
+        # run for every district within each state
+        for district in state_data['getBeneficiariesGroupBy']:
+            if states_all[state_code].get('name') != 'India':
+                params = {
+                    's_id': states_all[state_code].get('cowin_code'),
+                    'd_id': district.get('district_id'),
+                    'd': curr_date.strftime("%Y-%m-%d")
+                }
+                district_url = base_url.format(**params)
+                try:
+                    resp = requests.request('GET', district_url)
+                    district_data = resp.json()
+                except:
+                    print(district_url)
+                    print(resp)
 
-            #     datum = ','.join(map(str, datum))
-            #     print(datum, file=file)
-
-            # run for every district within each state
-            for district in state_data['getBeneficiariesGroupBy']:
-                if states_all[state_code].get('name') != 'India':
-                    params = {
-                        's_id': states_all[state_code].get('cowin_code'),
-                        'd_id': district.get('district_id'),
-                        'd': curr_date.strftime("%Y-%m-%d")
+                print('printing for ', states_all[state_code].get('name'), '--->', district['title'])
+                with open(VACC_STA, 'a') as file:
+                    datum = {
+                        'updated_at': curr_date_str, \
+                        'State': states_all[state_code].get('name', '').strip(), \
+                        'District': district['title'].strip(), \
+                        'Total Doses Administered': district_data['topBlock'].get('vaccination').get('total'), \
+                        'Sessions': district_data['topBlock'].get('sessions').get('total'), \
+                        'Sites': district_data['topBlock'].get('sites').get('total'), \
+                        'First Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_1'), \
+                        'Second Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_2'), \
+                        'Male(Doses Administered)': district_data['topBlock'].get('vaccination').get('male'), \
+                        'Female(Doses Administered)': district_data['topBlock'].get('vaccination').get('female'), \
+                        'Transgender(Doses Administered)': district_data['topBlock'].get('vaccination').get('others'), \
+                        'Covaxin (Doses Administered)': district_data['topBlock'].get('vaccination').get('covaxin'), \
+                        'Covishield (Doses Administered)': district_data['topBlock'].get('vaccination').get('covishield'), \
+                        # Enable these if necessary
+                        # 'Sputnik (Doses Administered)': district_data['topBlock'].get('vaccination').get('sputnik'), \
+                        # 'Aefi': district_data['topBlock'].get('vaccination').get('aefi'), \
+                        # '18-45 (Doses administered)': district_data['vaccinationByAge'].get('vac_18_45'), \
+                        # '45-60 (Doses administered)': district_data['vaccinationByAge'].get('vac_45_60'), \
+                        # 'Above 60 (Doses administered)': district_data['vaccinationByAge'].get('above_60')
                     }
-                    district_url = base_url.format(**params)
-                    try:
-                        resp = requests.request('GET', district_url)
-                        district_data = resp.json()
-                    except:
-                        print(district_url)
-                        print(resp)
 
-                    print('printing for ', states_all[state_code].get('name'), '--->', district['title'])
-                    with open(VACC_STA, 'a') as file:
-                        datum = {
-                            'updated_at': curr_date_str, \
-                            'State': states_all[state_code].get('name', '').strip(), \
-                            'District': district['title'].strip(), \
-                            'Total Doses Administered': district_data['topBlock'].get('vaccination').get('total'), \
-                            'Sessions': district_data['topBlock'].get('sessions').get('total'), \
-                            'Sites': district_data['topBlock'].get('sites').get('total'), \
-                            'First Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_1'), \
-                            'Second Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_2'), \
-                            'Male(Doses Administered)': district_data['topBlock'].get('vaccination').get('male'), \
-                            'Female(Doses Administered)': district_data['topBlock'].get('vaccination').get('female'), \
-                            'Transgender(Doses Administered)': district_data['topBlock'].get('vaccination').get('others'), \
-                            'Covaxin (Doses Administered)': district_data['topBlock'].get('vaccination').get('covaxin'), \
-                            'Covishield (Doses Administered)': district_data['topBlock'].get('vaccination').get('covishield'), \
-                            # Enable these if necessary
-                            # 'Sputnik (Doses Administered)': district_data['topBlock'].get('vaccination').get('sputnik'), \
-                            # 'Aefi': district_data['topBlock'].get('vaccination').get('aefi'), \
-                            # '18-45 (Doses administered)': district_data['vaccinationByAge'].get('vac_18_45'), \
-                            # '45-60 (Doses administered)': district_data['vaccinationByAge'].get('vac_45_60'), \
-                            # 'Above 60 (Doses administered)': district_data['vaccinationByAge'].get('above_60')
-                        }
-
-                        district_rows.append(datum)
-                        datum = [str(v) for k, v in datum.items()]
-                        datum = ','.join(datum)
-                        print(datum, file=file)
+                    district_rows.append(datum)
+                    datum = [str(v) for k, v in datum.items()]
+                    datum = ','.join(datum)
+                    print(datum, file=file)
 
     print("Making districts data file")
     district_data = pd.DataFrame(district_rows).drop('updated_at', 1)
+    VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_cowin_district_level.csv')
     district_data.to_csv(VACC_DST_COWIN, index=False)
 
     print("Getting state-district mapping from google sheet")
@@ -325,15 +301,11 @@ def get_vaccination(lookback=0):
     merged_data.to_csv(VACC_DST, index=False)
     print("District data is saved to: ", VACC_DST)
 
-# calling only state level function (separated)
-# get_vaccination_state_level(lookback=1)
-
-# get_vaccination(lookback=0)
-
-get_vaccation_mohfw()
-
+get_cowin_state(datetime.datetime(2021, 10, 31))
+# get_cowin_district(datetime.datetime(2021, 10, 31))
+# get_vaccation_mohfw()
 
 if __name__ == '__main__':
-    # WIP
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin', help='cowin or mohfw')
+    parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw')
+    parser.add_argument('-d', '--date', type=str, nargs='?', default='cowin_state', help='cowin or mohfw')
