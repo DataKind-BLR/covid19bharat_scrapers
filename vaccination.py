@@ -14,7 +14,7 @@ warnings.simplefilter(action='ignore')
 
 VACC_STA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_state_level.txt')
 VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_district_level.csv')
-VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vacc_mohfw_state.csv')
+VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 DISTRICTS_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
@@ -27,7 +27,7 @@ with open(STATES_YAML, 'r') as stream:
         print(exc)
 
 
-def get_vaccation_mohfw(data_for=TODAY - datetime.timedelta(days=1)):
+def get_mohfw_state(data_for=TODAY - datetime.timedelta(days=1)):
     '''
     Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
     NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
@@ -88,57 +88,6 @@ def get_vaccation_mohfw(data_for=TODAY - datetime.timedelta(days=1)):
     # print totals for India
     console.print(f"{date_sheet_str},Total,{total_fd},{total_sd},{total_td}")
     return mohfw_data
-
-    # with open(VACC_OUTPUT_MOHFW, "r") as vacc_mohfw:
-    #     for line in vacc_mohfw:
-
-    #         # Check if some pdf files end Misc total split to additional lines
-    #         if len(line.split(',')) != 1:
-    #             if "Miscellaneous" in line:
-    #                 # trap & rework Misc
-    #                 miscline = line
-    #                 continue
-
-    #       IndiaFirstDose += int(line.split(',')[1])
-    #       IndiaSecondDose += int(line.split(',')[2])
-    #       IndiaTotalDose += int(line.split(',')[3])
-
-      #     if "Dadra" in line or "Daman" in line:
-      #       dadra['firstDose'] += int(line.split(',')[1])
-      #       dadra['secondDose'] += int(line.split(',')[2])
-      #       dadra['totalDose'] += int(line.split(',')[3])
-      #       continue
-
-      #     #A & N name mapping
-      #     if "A & N Islands" in line:
-      #       row += str("{},Andaman and Nicobar Islands,{},{},{}\n".format(todayp, int(line.split(',')[1]), int(line.split(',')[2]), int(line.split(',')[3])))
-      #       #print(row)
-      #     #J &K name mapping
-      #     elif "Jammu & Kashmir" in line:
-      #       row += str("{},Jammu and Kashmir,{},{},{}\n".format(todayp, int(line.split(',')[1]), int(line.split(',')[2]), int(line.split(',')[3])))
-      #       #print(row)
-      #     else:
-      #       #print(todayp + "," + line, end = "")
-      #       row += str(todayp + "," + line)
-      #    else:
-      #      #trap & club all misc lines at end
-      #      miscline += line
-      # #add clubbed Dadra Daman last
-      # row += str("{},Dadra and Nagar Haveli and Daman and Diu,{},{},{}\n".format(todayp, dadra['firstDose'], dadra['secondDose'], dadra['totalDose']))
-
-      # #rework on Misc line issue to sortout
-      # miscline=miscline.replace ('\n', '')
-      # #print(miscline)
-      # if miscline != '':
-      #   miscFirstDose = int(miscline.split(',')[1])
-      #   miscSecondDose = int(miscline.split(',')[2])
-      #   miscTotalDose = int(miscline.split(',')[3].lstrip('0'))
-      #   IndiaFirstDose += miscFirstDose
-      #   IndiaSecondDose += miscSecondDose
-      #   IndiaTotalDose += miscTotalDose
-      #   row += str("{},Miscellaneous,{},{},{}\n".format(todayp, miscFirstDose, miscSecondDose, miscTotalDose))
-      # row += str("{},Total,{},{},{}\n".format(todayp, IndiaFirstDose, IndiaSecondDose, IndiaTotalDose))
-     # print(row)
 
 
 def get_cowin_state(date_for=TODAY):
@@ -301,11 +250,29 @@ def get_cowin_district(data_for=TODAY):
     merged_data.to_csv(VACC_DST, index=False)
     print("District data is saved to: ", VACC_DST)
 
-get_cowin_state(datetime.datetime(2021, 10, 31))
-# get_cowin_district(datetime.datetime(2021, 10, 31))
-# get_vaccation_mohfw()
+
+def util_date(str_date, frmt='%d-%m-%Y'):
+    '''
+    given a date in dd-mm-yyyy format, create and return a datetime object
+    '''
+    arr_date = str_date.split('-')
+    return datetime.datetime(arr_date[0], arr_date[1], arr_date[2])
 
 if __name__ == '__main__':
+    fn_map = {
+        'cowin_state': get_cowin_state,
+        'cowin_district': get_cowin_district,
+        'mohfw_state': get_mohfw_state
+    }
     parser = argparse.ArgumentParser()
-    parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw')
-    parser.add_argument('-d', '--date', type=str, nargs='?', default='cowin_state', help='cowin or mohfw')
+    parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw', choices=['cowin_state', 'cowin_district', 'mohfw_state'])
+    # parser.add_argument('-d', '--date', type=str, help='please provide date in dd-mm-yyyy format only', default=datetime.date.today())
+
+    args = parser.parse_args()
+    vacc_src = args.source.lower()
+
+    if vacc_src not in fn_map.keys():
+        parser.print_help()
+        sys.exit(0)
+
+    fn_map[vacc_src]()
