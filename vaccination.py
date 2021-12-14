@@ -17,7 +17,7 @@ VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 
 VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
-DISTRICTS_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
+PUBLISHED_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
 TODAY = datetime.date.today()
 
 with open(STATES_YAML, 'r') as stream:
@@ -168,6 +168,11 @@ def get_cowin_district(data_for=TODAY):
         'cowin_code': '',
         'name': 'India'
     }
+    # states_all = {}
+    # states_all['dd'] = {
+    #     'name': 'Daman and Diu',
+    #     'cowin_code': 37
+    # }
 
     # for day in range (lookback, -1, -1):
     # curr_date = TODAY - datetime.timedelta(days=day)
@@ -235,16 +240,19 @@ def get_cowin_district(data_for=TODAY):
                     print(datum, file=file)
 
     print("Making districts data file")
-    district_data = pd.DataFrame(district_rows).drop('updated_at', 1)
-    VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_cowin_district_level.csv')
-    district_data.to_csv(VACC_DST_COWIN, index=False)
+    cowin_df = pd.DataFrame(district_rows).drop('updated_at', 1)
+    VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'cowin_district_data.csv')
+    cowin_df.to_csv(VACC_DST_COWIN, index=False)
 
     print("Getting state-district mapping from google sheet")
-    public_data = pd.read_csv(DISTRICTS_DATA_SHEET)
-    state_dist_mapping = public_data[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
-    merged_data = pd.merge(state_dist_mapping, district_data, left_on=['State', 'Cowin Key'], right_on=['State', 'District'], how='left', suffixes=('', '_cowin'))
+    published_df = pd.read_csv(PUBLISHED_DATA_SHEET)
+
+    state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
+    merged_data = pd.merge(state_dist_mapping, cowin_df, left_on=['State', 'Cowin Key'], right_on=['State', 'District'], how='left', suffixes=('', '_cowin'))
+    # merged_data = pd.merge(state_dist_mapping, cowin_df, on=['District', 'State'], how='left')
     # we are keeping district names from Covid19Bharat's google sheet and ignoring the API ones.
     merged_data = merged_data.drop(['Cowin Key', 'District_cowin'], 1)
+    # merged_data = merged_data.drop(['Cowin Key'], 1)
     merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else curr_date_str, k) for k in merged_data.columns])
 
     merged_data.to_csv(VACC_DST, index=False)
