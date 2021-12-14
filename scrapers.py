@@ -43,7 +43,7 @@ OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 
-console = Console(record=True)
+console = Console(record=True, force_terminal=False)
 
 def draw_table(data, info):
   table = Table(title=f"{info['name']} data from your current input.", title_justify="left", style="bold")
@@ -125,26 +125,7 @@ def fetch_data(st_obj):
   except KeyError:
     print('no function definition in fn_map for state code {}'.format(st_obj['state_code']))
 
-
-if __name__ == '__main__':
-  '''
-  Example to extract from html dashboard (the url will be taken from states.yaml file by default)
-    $python scrapers.py --state_code GJ
-
-  Example to overwrite settings already provided in yaml file:
-    $python scrapers.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
-  '''
-  parser = argparse.ArgumentParser()
-  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
-                                                                               f'defaults to all. '
-                                                                               f'Possible options = {states_all.keys()} ')
-  parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
-  parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
-  parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
-  parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')
-  #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
-
-  args = parser.parse_args()
+def run(args):
   state_code = args.state_code.lower()
   url = args.url
   url_type = args.type
@@ -187,3 +168,26 @@ if __name__ == '__main__':
       print(f"Delta unchanged.")
 
   console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
+
+if __name__ == '__main__':
+  '''
+  Example to extract from html dashboard (the url will be taken from states.yaml file by default)
+    $python scrapers.py --state_code GJ
+
+  Example to overwrite settings already provided in yaml file:
+    $python scrapers.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
+  '''
+  console = Console(record=True)
+  parser = argparse.ArgumentParser()
+  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
+                                                                               f'defaults to all. '
+                                                                               f'Possible options = {states_all.keys()} ')
+  parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
+  parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
+  parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
+  parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')
+  #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
+  
+  args = parser.parse_args()
+  run(args)
+  
