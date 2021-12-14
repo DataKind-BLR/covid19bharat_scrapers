@@ -1,11 +1,5 @@
-Gurugram,Haryana,HR,15,Hospitalized
-Faridabad,Haryana,HR,1,Hospitalized
-Karnal,Haryana,HR,1,Hospitalized
-Panchkula,Haryana,HR,10,Hospitalized
-Sirsa,Haryana,HR,1,Hospitalized
-Kurukshetra,Haryana,HR,1,Hospitalized
-Gurugram,Haryana,HR,7,Recovered
-Faridabad,Haryana,HR,1,Recovered
-Sonipat,Haryana,HR,1,Recovered
-Panchkula,Haryana,HR,4,Recovered
-Kurukshetra,Haryana,HR,1,Recovered
+Lohit,Arunachal Pradesh,AR,1,Hospitalized
+Namsai,Arunachal Pradesh,AR,1,Hospitalized
+West Kameng,Arunachal Pradesh,AR,1,Hospitalized
+Papum Pare,Arunachal Pradesh,AR,4,Hospitalized
+Tawang,Arunachal Pradesh,AR,1,Recovered

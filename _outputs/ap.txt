@@ -2,43 +2,43 @@ Andhra Pradesh data from your current input.
 ┏━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                            
 ┃ district        ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                            
 ┡━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                            
-│ Ananthapur      │    158114 │    156943 │     1093 │                                                                                                                            
-│ Chittoor        │    248219 │    245999 │     1957 │                                                                                                                            
-│ East Godavari   │    294837 │    293143 │     1290 │                                                                                                                            
-│ Guntur          │    179001 │    177551 │     1254 │                                                                                                                            
-│ Kadapa          │    115904 │    115235 │      644 │                                                                                                                            
-│ Krishna         │    120443 │    118682 │     1465 │                                                                                                                            
-│ Kurnool         │    124204 │    123343 │      854 │                                                                                                                            
-│ Nellore         │    146930 │    145674 │     1054 │                                                                                                                            
-│ Prakasam        │    138742 │    137553 │     1129 │                                                                                                                            
-│ Srikakulam      │    123509 │    122631 │      789 │                                                                                                                            
-│ Visakhapatnam   │    158579 │    157223 │     1135 │                                                                                                                            
-│ Vizianagaram    │     83084 │     82380 │      672 │                                                                                                                            
-│ West Godavari   │    179756 │    178497 │     1121 │                                                                                                                            
-│  Total AP Cases │   2071322 │   2054854 │    14457 │                                                                                                                            
+│ Ananthapur      │    158163 │    156989 │     1093 │                                                                                                                            
+│ Chittoor        │    248372 │    246138 │     1958 │                                                                                                                            
+│ East Godavari   │    294928 │    293211 │     1290 │                                                                                                                            
+│ Guntur          │    179086 │    177661 │     1254 │                                                                                                                            
+│ Kadapa          │    115914 │    115255 │      644 │                                                                                                                            
+│ Krishna         │    120517 │    118849 │     1470 │                                                                                                                            
+│ Kurnool         │    124208 │    123350 │      854 │                                                                                                                            
+│ Nellore         │    146972 │    145756 │     1055 │                                                                                                                            
+│ Prakasam        │    138760 │    137571 │     1129 │                                                                                                                            
+│ Srikakulam      │    123561 │    122666 │      790 │                                                                                                                            
+│ Visakhapatnam   │    158661 │    157329 │     1136 │                                                                                                                            
+│ Vizianagaram    │     83091 │     82387 │      673 │                                                                                                                            
+│ West Godavari   │    179848 │    178574 │     1121 │                                                                                                                            
+│  Total AP Cases │   2072081 │   2055736 │    14467 │                                                                                                                            
 │ Other States    │      2461 │      2461 │        0 │                                                                                                                            
 │ Other Countries │       434 │       434 │        0 │                                                                                                                            
-│ Total           │   2074217 │   2057749 │    14457 │                                                                                                                            
+│ Total           │   2074976 │   2058631 │    14467 │                                                                                                                            
 └─────────────────┴───────────┴───────────┴──────────┘                                                                                                                            
 Andhra Pradesh last updated data from <data.covid19bharat.org>                                                                                                                    
 ┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                 
 ┃ district         ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                 
 ┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                 
 │ Foreign Evacuees │       434 │       434 │        0 │              0 │      0 │                                                                                                 
-│ Anantapur        │    158114 │    156943 │     1093 │              0 │     78 │                                                                                                 
-│ Chittoor         │    248219 │    245999 │     1957 │              0 │    263 │                                                                                                 
-│ East Godavari    │    294837 │    293143 │     1290 │              0 │    404 │                                                                                                 
-│ Guntur           │    179001 │    177551 │     1254 │              0 │    196 │                                                                                                 
-│ Krishna          │    120443 │    118682 │     1465 │              0 │    296 │                                                                                                 
-│ Kurnool          │    124204 │    123343 │      854 │              0 │      7 │                                                                                                 
+│ Anantapur        │    158160 │    156981 │     1093 │              0 │     86 │                                                                                                 
+│ Chittoor         │    248336 │    246116 │     1958 │              0 │    262 │                                                                                                 
+│ East Godavari    │    294911 │    293189 │     1290 │              0 │    432 │                                                                                                 
+│ Guntur           │    179080 │    177647 │     1254 │              0 │    179 │                                                                                                 
+│ Krishna          │    120512 │    118826 │     1469 │              0 │    217 │                                                                                                 
+│ Kurnool          │    124208 │    123349 │      854 │              0 │      5 │                                                                                                 
 │ Other State      │      2461 │      2461 │        0 │              0 │      0 │                                                                                                 
-│ Prakasam         │    138742 │    137553 │     1129 │              0 │     60 │                                                                                                 
-│ S.P.S. Nellore   │    146930 │    145674 │     1054 │              0 │    202 │                                                                                                 
-│ Srikakulam       │    123509 │    122631 │      789 │              0 │     89 │                                                                                                 
-│ Visakhapatnam    │    158579 │    157223 │     1135 │              0 │    221 │                                                                                                 
-│ Vizianagaram     │     83084 │     82380 │      672 │              0 │     32 │                                                                                                 
-│ West Godavari    │    179756 │    178497 │     1121 │              0 │    138 │                                                                                                 
-│ Y.S.R. Kadapa    │    115904 │    115235 │      644 │              0 │     25 │                                                                                                 
+│ Prakasam         │    138753 │    137568 │     1129 │              0 │     56 │                                                                                                 
+│ S.P.S. Nellore   │    146967 │    145741 │     1055 │              0 │    171 │                                                                                                 
+│ Srikakulam       │    123558 │    122662 │      790 │              0 │    106 │                                                                                                 
+│ Visakhapatnam    │    158641 │    157318 │     1136 │              0 │    187 │                                                                                                 
+│ Vizianagaram     │     83091 │     82385 │      673 │              0 │     33 │                                                                                                 
+│ West Godavari    │    179846 │    178567 │     1121 │              0 │    158 │                                                                                                 
+│ Y.S.R. Kadapa    │    115910 │    115246 │      644 │              0 │     20 │                                                                                                 
 │ Unknown          │         0 │         0 │        0 │              0 │      0 │                                                                                                 
 └──────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                 
 
@@ -57,3 +57,28 @@ Ananthapur -> Anantapur
 
 Delta statistics
 
+Anantapur,Andhra Pradesh,AP,3,Hospitalized
+Chittoor,Andhra Pradesh,AP,36,Hospitalized
+East Godavari,Andhra Pradesh,AP,17,Hospitalized
+Guntur,Andhra Pradesh,AP,6,Hospitalized
+Y.S.R. Kadapa,Andhra Pradesh,AP,4,Hospitalized
+Krishna,Andhra Pradesh,AP,5,Hospitalized
+S.P.S. Nellore,Andhra Pradesh,AP,5,Hospitalized
+Prakasam,Andhra Pradesh,AP,7,Hospitalized
+Srikakulam,Andhra Pradesh,AP,3,Hospitalized
+Visakhapatnam,Andhra Pradesh,AP,20,Hospitalized
+West Godavari,Andhra Pradesh,AP,2,Hospitalized
+Anantapur,Andhra Pradesh,AP,8,Recovered
+Chittoor,Andhra Pradesh,AP,22,Recovered
+East Godavari,Andhra Pradesh,AP,22,Recovered
+Guntur,Andhra Pradesh,AP,14,Recovered
+Y.S.R. Kadapa,Andhra Pradesh,AP,9,Recovered
+Krishna,Andhra Pradesh,AP,23,Recovered
+Kurnool,Andhra Pradesh,AP,1,Recovered
+S.P.S. Nellore,Andhra Pradesh,AP,15,Recovered
+Prakasam,Andhra Pradesh,AP,3,Recovered
+Srikakulam,Andhra Pradesh,AP,4,Recovered
+Visakhapatnam,Andhra Pradesh,AP,11,Recovered
+Vizianagaram,Andhra Pradesh,AP,2,Recovered
+West Godavari,Andhra Pradesh,AP,7,Recovered
+Krishna,Andhra Pradesh,AP,1,Deceased
