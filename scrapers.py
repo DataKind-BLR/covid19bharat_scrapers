@@ -167,7 +167,7 @@ if __name__ == '__main__':
       'type': url_type
     })
 
-  # always use default url & type from yaml file
+  # always use default `url` & `type` from yaml file
   live_data = fetch_data(states_all[state_code])
   draw_table(live_data, states_all[state_code])
 

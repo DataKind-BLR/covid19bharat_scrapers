@@ -99,20 +99,20 @@ ct:
     end_key: auto
 
 # Merged with Dadra & Nagar Haveli
-# dd:
-#   name: Daman and Diu
-#   state_code: DD
-#   cowin_code: 37
-#   notes: Need to read Image manually and enter into google sheets
-#   url_sources:
-#     - https://twitter.com/charmieparekh
-#     - https://twitter.com/collectordaman
-#     - https://twitter.com/rai_saloni
-#     - https://twitter.com/diudistrict
-#   type: image
-#   url: _inputs/dd.jpeg
-#   config:
-#     translation: False
+dd:
+  name: Daman and Diu
+  state_code: DD
+  cowin_code: 37
+  notes: Need to read Image manually and enter into google sheets
+  url_sources:
+    - https://twitter.com/charmieparekh
+    - https://twitter.com/collectordaman
+    - https://twitter.com/rai_saloni
+    - https://twitter.com/diudistrict
+  type: image
+  url: _inputs/dd.jpeg
+  config:
+    translation: False
 
 dn:
   name: Dadra and Nagar Haveli and Daman and Diu
