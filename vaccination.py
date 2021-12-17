@@ -260,14 +260,6 @@ def get_cowin_district(data_for=TODAY):
     merged_data.to_csv(VACC_DST, index=False)
     print("District data is saved to: ", VACC_DST)
 
-
-def util_date(str_date, frmt='%d-%m-%Y'):
-    '''
-    given a date in dd-mm-yyyy format, create and return a datetime object
-    '''
-    arr_date = str_date.split('-')
-    return datetime.datetime(arr_date[0], arr_date[1], arr_date[2])
-
 if __name__ == '__main__':
     fn_map = {
         'cowin_state': get_cowin_state,
@@ -276,13 +268,18 @@ if __name__ == '__main__':
     }
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw', choices=['cowin_state', 'cowin_district', 'mohfw_state'])
-    # parser.add_argument('-d', '--date', type=str, help='please provide date in dd-mm-yyyy format only', default=datetime.date.today())
+    parser.add_argument('-d', '--date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only', default=datetime.date.today())
 
     args = parser.parse_args()
     vacc_src = args.source.lower()
+    vacc_date = args.date
+
+    if vacc_src == 'mohfw_state':
+        if args.date == datetime.date.today():
+            vacc_date = datetime.date.today() - datetime.timedelta(days=1)
 
     if vacc_src not in fn_map.keys():
         parser.print_help()
         sys.exit(0)
 
-    fn_map[vacc_src]()
+    fn_map[vacc_src](vacc_date)
