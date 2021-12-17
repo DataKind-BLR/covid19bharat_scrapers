@@ -28,7 +28,7 @@ packaging==21.0
 pandas==1.1.3
 pdfminer.six==20211012
 pdftotext==2.1.5
-Pillow==8.2.0
+Pillow==8.3.2
 proto-plus==1.19.6
 protobuf==3.17.3
 pyasn1==0.4.8
@@ -53,5 +53,5 @@ typing-extensions==3.10.0.2
 typing-inspect==0.7.1
 tzdata==2021.5
 tzlocal==4.0.2
-urllib3==1.25.11
+urllib3==1.26.5
 webencodings==0.5.1
