@@ -100,7 +100,7 @@ ct:
 
 # Merged with Dadra & Nagar Haveli
 dd:
-  name: Daman and Diu
+  name: Dadra and Nagar Haveli and Daman and Diu
   state_code: DD
   cowin_code: 37
   notes: Need to read Image manually and enter into google sheets
@@ -398,10 +398,6 @@ rj:
   state_code: RJ
   cowin_code: 29
   url_sources:
-    - https://twitter.com/DDNewsRajasthan
-    - https://twitter.com/airnews_jaipur
-    - https://twitter.com/avinashkalla
-    - https://twitter.com/dineshkumawat
     - Ask Rukmini S
   # type: image
   # url: _inputs/rj.jpeg
@@ -520,7 +516,3 @@ wb:
     page: 2
     start_key: Alipurduar
     end_key: TOTAL
-
-# # Vaccine VC, https://api.cowin.gov.in/api/v1/reports/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@
-# # VCMohfw, VCM,https://raw.githubusercontent.com/datameet/covid19/master/downloads/mohfw-backup/cumulative_vaccination_coverage/
-# # COWIN JSON Pull https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=@@state_id@@&district_id=@@district_id@@&date=@@date@@

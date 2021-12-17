@@ -27,7 +27,7 @@ with open(STATES_YAML, 'r') as stream:
         print(exc)
 
 
-def get_mohfw_state(data_for=TODAY - datetime.timedelta(days=1)):
+def get_mohfw_state(data_for):
     '''
     Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
     NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
@@ -155,11 +155,11 @@ def get_cowin_state(date_for=TODAY):
             print(datum, file=file)
 
 
-def get_cowin_district(data_for=TODAY):
+def get_cowin_district(data_for):
     '''
-    For a given number of days, gets state and district-wise vaccination data from CoWIN API
+    Get COWIN district level data for a given date
 
-    :param: `lookback` <int> - The number of days to pull back from. If 0, then will only take current date
+    :param: `data_for` <datetime> - the date for which data needs to be extracted for
 
     :returns: None - Writes the output to following files
         vaccination state level -> `_outputs/vaccination_state_level.txt`
@@ -170,14 +170,7 @@ def get_cowin_district(data_for=TODAY):
         'cowin_code': '',
         'name': 'India'
     }
-    # states_all = {}
-    # states_all['dd'] = {
-    #     'name': 'Daman and Diu',
-    #     'cowin_code': 37
-    # }
 
-    # for day in range (lookback, -1, -1):
-    # curr_date = TODAY - datetime.timedelta(days=day)
     curr_date = data_for
     curr_date_str = curr_date.strftime('%d-%m-%Y')
     print('Fetching for {}'.format(curr_date_str))
@@ -251,10 +244,8 @@ def get_cowin_district(data_for=TODAY):
 
     state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
     merged_data = pd.merge(state_dist_mapping, cowin_df, left_on=['State', 'Cowin Key'], right_on=['State', 'District'], how='left', suffixes=('', '_cowin'))
-    # merged_data = pd.merge(state_dist_mapping, cowin_df, on=['District', 'State'], how='left')
     # we are keeping district names from Covid19Bharat's google sheet and ignoring the API ones.
     merged_data = merged_data.drop(['Cowin Key', 'District_cowin'], 1)
-    # merged_data = merged_data.drop(['Cowin Key'], 1)
     merged_data.columns = pd.MultiIndex.from_tuples([('' if k in ('State_Code', 'State', 'District') else curr_date_str, k) for k in merged_data.columns])
 
     merged_data.to_csv(VACC_DST, index=False)
