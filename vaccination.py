@@ -53,8 +53,10 @@ def get_mohfw_state(data_for=TODAY - datetime.timedelta(days=1)):
             'end_key': ''
         }
     }
+    # this name mapping is specific to Cowin
     name_mapping = {
-        'A & N Islands': 'Andaman and Nicobar Islands'
+        'A & N Islands': 'Andaman and Nicobar Islands',
+        'Daman and Diu': 'Dadra and Nagar Haveli and Daman and Diu'
     }
 
     # read pdf file and extract text
@@ -72,8 +74,8 @@ def get_mohfw_state(data_for=TODAY - datetime.timedelta(days=1)):
 
             data = {}
             data['state_name'] = lines_arr[0].strip()
-            if lines_arr[0].strip() == 'A & N Islands':
-                data['state_name'] = 'Andaman and Nicobar Islands'
+            if lines_arr[0].strip() in name_mapping.keys():
+                data['state_name'] = name_mapping[lines_arr[0].strip()]
             data['firstDose'] = int(lines_arr[1])
             total_fd += data['firstDose']
             data['secondDose'] = int(lines_arr[2])
