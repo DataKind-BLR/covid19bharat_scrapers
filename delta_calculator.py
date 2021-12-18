@@ -37,6 +37,7 @@ def draw_table(data, info, console):
 
 def state_level_delta(name, live_data, console):
     DASHBOARD_URL = 'https://data.covid19bharat.org/csv/latest/state_wise.csv'
+    DASHBOARD_URL = '_inputs/state_wise.csv'
     state_data = pd.read_csv(DASHBOARD_URL).set_index('State').loc[name]
     state_data.index = state_data.index.str.lower()
     state_code = state_data['state_code']
@@ -155,7 +156,13 @@ class DeltaCalculator:
         self.console.print(f'\nMapping for district names')
         for (_name,name) in name_mapping.items():
             self.console.print(f"[dim cyan]{_name}[/] -> [b u cyan]{name}[/]")
-
+            
+        confirmed_dist_tot_current = 0
+        confirmed_dist_tot_api = 0
+        recovered_dist_tot_current = 0
+        recovered_dist_tot_api = 0
+        deceased_dist_tot_current = 0
+        deceased_dist_tot_api = 0
         for district_details in live_data:
             district_name = ""
             try:
@@ -184,7 +191,16 @@ class DeltaCalculator:
                 if 'migrated' in district_details.keys():
                     migrated_delta = \
                         district_details['migrated'] - state_data[district_name]['migrated_other']
+                        
+                #Calculated Cumulatives
+                confirmed_dist_tot_current = confirmed_dist_tot_current + district_details['confirmed']
+                confirmed_dist_tot_api = confirmed_dist_tot_api + state_data[district_name]['confirmed']
+                recovered_dist_tot_current = recovered_dist_tot_current + district_details['recovered']
+                recovered_dist_tot_api = recovered_dist_tot_api + state_data[district_name]['recovered']
+                deceased_dist_tot_current = deceased_dist_tot_current + district_details['deceased']
+                deceased_dist_tot_api = deceased_dist_tot_api + state_data[district_name]['deceased']
 
+            
             except KeyError:
                 error_array.append(
                     f"[dim red]--> ERROR: Failed to find key mapping for district"
@@ -210,6 +226,11 @@ class DeltaCalculator:
                 deceased_delta_array, "Deceased", state_name, state_code, districts, color='grey39')
             self.print_full_details(
                 migrated_delta_array, "Migrated_Other", state_name, state_code, districts, color='yellow')
+            print('\n')
+            print('------------------------------------------------------------------------')
+            print('Districts Total Current: C = ',confirmed_dist_tot_current,' R = ',recovered_dist_tot_current,' D = ',deceased_dist_tot_current)
+            print('Districts Total API    : C = ', confirmed_dist_tot_api,' R = ',recovered_dist_tot_api,' D = ',deceased_dist_tot_api)
+            print('------------------------------------------------------------------------')
             print('\n')
 
         if len(error_array) > 0:
