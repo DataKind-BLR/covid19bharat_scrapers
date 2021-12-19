@@ -6,7 +6,7 @@ on:
   #   - cron: "*/10 * * * *"
   push:
     branches:
-      - bot
+      - master
   repository_dispatch:
     types: [my-event]
 jobs:
