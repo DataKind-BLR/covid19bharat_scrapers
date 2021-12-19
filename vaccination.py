@@ -55,8 +55,7 @@ def get_mohfw_state(data_for):
     }
     # this name mapping is specific to Cowin
     name_mapping = {
-        'A & N Islands': 'Andaman and Nicobar Islands',
-        'Daman and Diu': 'Dadra and Nagar Haveli and Daman and Diu'
+        'A & N Islands': 'Andaman and Nicobar Islands'
     }
 
     # read pdf file and extract text
@@ -92,7 +91,7 @@ def get_mohfw_state(data_for):
     return mohfw_data
 
 
-def get_cowin_state(date_for=TODAY):
+def get_cowin_state(date_for):
     '''
     For a given number of days, gets state vaccination data from CoWIN API
 
@@ -260,6 +259,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw', choices=['cowin_state', 'cowin_district', 'mohfw_state'])
     parser.add_argument('-d', '--date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only', default=datetime.date.today())
+    # parser.add_argument('-f', '--from', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only')
+    # parser.add_argument('-t', '--to', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only')
 
     args = parser.parse_args()
     vacc_src = args.source.lower()
