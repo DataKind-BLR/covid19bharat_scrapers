@@ -135,6 +135,7 @@ def as_get_data(opt):
   except FileNotFoundError:
     print("output.txt missing. Generate through pdf or ocr and rerun.")
 
+'''
 def br_get_data(opt):
   print('Fetching BR data')
   pprint(opt)
@@ -157,6 +158,39 @@ def br_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[1])
         districtDictionary['recovered'] = int(linesArray[2])
         districtDictionary['deceased'] = int(linesArray[3])
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+  except FileNotFoundError:
+    print("output.txt missing. Generate through pdf or ocr and rerun.")
+  return districts_data
+'''
+def br_get_data(opt):
+  print('Fetching BR data')
+  pprint(opt)
+
+  if opt['skip_output'] == False:
+    run_for_ocr(opt)
+
+  linesArray = []
+  districtDictionary = {}
+  districts_data = []
+  try:
+    with open(OUTPUT_TXT, "r") as upFile:
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        #use this when backlog released
+        #if len(linesArray) != 7: 
+        if len(linesArray) != 5:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0]
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[3])
+        #when death backlog comes use
+        #districtDictionary['deceased'] = int(linesArray[5])
         districts_data.append(districtDictionary)
 
     upFile.close()
