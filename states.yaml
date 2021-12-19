@@ -20,9 +20,14 @@ ap:
   cowin_code: 2
   url_sources:
     - https://twitter.com/ArogyaAndhra
-  type: html
   url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+  type: html
   config:
+    page: 1
+    translation: False
+    #start_key: Anantapur
+    #start_key: District
+    #end_key: Total
     columns:
       district_name: Name of the District
       confirmed: Confirmed Cases
