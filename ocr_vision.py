@@ -35,7 +35,7 @@ def detect_text(path):
 
 
 if __name__ == "__main__":
-  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(os.path.dirname(__file__), "visionapi.json")
+  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "visionapi.json"
   # path to the image file to be scanned
   path = sys.argv[1]
   detect_text(path)
