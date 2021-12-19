@@ -1234,19 +1234,57 @@ def tn_get_data(opt):
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
-
+    
     linesArray = []
     districtDictionary = {}
     district_data = []
 
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
     with open(csv_file, "r") as upFile:
+
+      airportConfirmedCount =0
+      airportRecoveredCount =0
+      airportDeceasedCount =0
+      airportRun =1
+
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 5:
           print("--> Issue with {}".format(linesArray))
           continue
         linesArray[4] = linesArray[4].replace('$', '')
+
+        #check for airport and railway
+        if 'Airport' in line:
+          airportConfirmedCount += int(linesArray[1])
+          airportRecoveredCount += int(linesArray[2])
+          airportDeceasedCount += int(linesArray[4])
+          if airportRun == 1:
+            airportRun += 1
+            continue
+          else:
+            #print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
+            linesArray[1]=airportConfirmedCount
+            linesArray[2]=airportRecoveredCount
+            linesArray[4]=airportDeceasedCount
+            districtDictionary = {}
+            districtDictionary['districtName'] = 'Airport Quarantine'
+            districtDictionary['confirmed'] = int(linesArray[1])
+            districtDictionary['recovered'] = int(linesArray[2])
+            districtDictionary['deceased'] = int(linesArray[4]) #if len(re.sub('\n', '', linesArray[4])) != 0 else 0
+            district_data.append(districtDictionary)
+            continue
+        if 'Railway' in line:
+          #print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[1], linesArray[2], linesArray[4]), file = tnOutputFile)
+          districtDictionary = {}
+          districtDictionary['districtName'] = 'Railway Quarantine'
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[4]) #if len(re.sub('\n', '', linesArray[4])) != 0 else 0
+          district_data.append(districtDictionary)
+          continue
+
+
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(linesArray[1])
