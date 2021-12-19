@@ -131,6 +131,7 @@ def run(args):
   url_type = args.type
   page = args.page
   skip_output = vars(args)['skip_output']
+  is_verbose = vars(args)['verbose']
   logging.info('scraper', args.url)
 
   # default update skip_output key value
@@ -150,7 +151,8 @@ def run(args):
 
   # always use default `url` & `type` from yaml file
   live_data = fetch_data(states_all[state_code])
-  draw_table(live_data, states_all[state_code])
+  if is_verbose:
+    draw_table(live_data, states_all[state_code])
 
   if 'lazy' in states_all[state_code]:
     state_level_delta(states_all[state_code]['name'], live_data, console)
@@ -160,7 +162,8 @@ def run(args):
     delta = dc.get_state_data_from_site(
       states_all[state_code]['name'],
       live_data,
-      'full'
+      'full',
+      is_verbose
     )
     if delta:
       print(f"Delta processing complete. Written to delta.txt")
@@ -179,15 +182,12 @@ if __name__ == '__main__':
   '''
   console = Console(record=True)
   parser = argparse.ArgumentParser()
-  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code, '
-                                                                               f'defaults to all. '
-                                                                               f'Possible options = {states_all.keys()} ')
+  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code. Defaults to all. Possible options = {states_all.keys()}')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
   parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
   parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')
-  #parser.add_argument('--date', type=date, default=today, help='enter date for which this data belongs to in DD-MM-YYYY format only')
+  parser.add_argument('-v', '--verbose', action='store_true', help='verbose will print out all the details in a tabular format')
   
   args = parser.parse_args()
   run(args)
-  
