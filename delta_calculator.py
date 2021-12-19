@@ -114,7 +114,7 @@ class DeltaCalculator:
                 current_dictionary[line_array[1].strip()] = re.sub('\n', '', line_array[2].strip())
                 self.name_mapping[line_array[0]] = current_dictionary
 
-    def get_state_data_from_site(self, state_name, live_data, options='full'):
+    def get_state_data_from_site(self, state_name, live_data, options='full', is_verbose=False):
         """
         Eg: deltaCalculator.getStateDataFromSite("Arunachal Pradesh", districtArray, option). The value for options are: full/detailed/<empty>. These values are passed via command line.
         :param state_name:
@@ -126,7 +126,8 @@ class DeltaCalculator:
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
 
-        draw_table(state_data, {'name': state_name}, self.console)
+        if is_verbose:
+            draw_table(state_data, {'name': state_name}, self.console)
 
         self.console.print("\n" + '*' * 10 + " Computing Delta for [bold]"+ state_name + '[/] ' + '*' * 10, style="cyan")
         try:
@@ -142,15 +143,6 @@ class DeltaCalculator:
         districts = []
         error_array = []
 
-        # ---->>>> TODO - take diff using dataframes
-        # import pdb
-        # pdb.set_trace()
-        # -----
-        # import pandas as pd
-        # df_live = pd.DataFrame(live_data)
-        # df_live['districtName'].replace(name_mapping, inplace=True).sort_values(by='districtName')
-        # df_dashboard = pd.DataFrame(state_data).T.reset_index().rename(columns={'index': 'districtName'}).sort_values(by='districtName')
-        #
         # Do a check if the order of the districts in both dataframes are the same, then take a diff
         self.console.print(f'\nMapping for district names')
         for (_name,name) in name_mapping.items():
