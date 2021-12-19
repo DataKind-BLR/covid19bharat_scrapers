@@ -182,7 +182,7 @@ if __name__ == '__main__':
   '''
   console = Console(record=True)
   parser = argparse.ArgumentParser()
-  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code. Defaults to all. Possible options = {states_all.keys()}')
+  parser.add_argument('-s', '--state_code', type=str, nargs='?', required=True, help=f'provide 2 letter state code. Possible options = {states_all.keys()}')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
   parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
