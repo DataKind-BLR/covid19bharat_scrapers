@@ -637,18 +637,44 @@ def ld_get_data(opt):
 def mh_get_data(opt):
   print('fetching MH data')
   pprint(opt)
-  stateDashboard = requests.request('GET', opt['url']).json()
+  if opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
 
-  district_data = []
-  for details in stateDashboard:
-    district_data.append({
-      'districtName': details['District'],
-      'confirmed': details['Positive Cases'],
-      'recovered': details['Recovered'],
-      'deceased': details['Deceased']
-    })
+    districts_data = []
+    with open(OUTPUT_TXT, "r") as mlFile:
+      for line in mlFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 6:
+          print("--> Issue with {}".format(linesArray))
+          continue
 
-  return district_data
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1].strip())
+        districtDictionary['recovered'] = int(linesArray[2].strip())
+        districtDictionary['deceased'] = int(linesArray[3].strip()) if len(re.sub('\n', '', linesArray[5])) != 0 else 0
+        districts_data.append(districtDictionary)
+    return districts_data
+
+  elif opt['type'] == 'html':
+    stateDashboard = requests.request('GET', opt['url']).json()
+
+    district_data = []
+    for details in stateDashboard:
+      datems= details['Date'],
+      district_data.append({
+        'districtName': details['District'],
+        'confirmed': details['Positive Cases'],
+        'recovered': details['Recovered'],
+        'deceased': details['Deceased']
+
+      })
+    datems = datems[0]
+    datems=int(datems)
+    datestamp=datetime.datetime.fromtimestamp(datems/1000)
+    print("\nReported Date : ",datestamp,"\n")
+    return district_data
 
 def ml_get_data(opt):
   print('Fetching ML data')
