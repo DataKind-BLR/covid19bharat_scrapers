@@ -20,6 +20,7 @@ logger = logging.getLogger("Start_Bot")
 
 try:
     COVID_BOT_TOKEN = os.environ["COVID_BOT_TOKEN"]
+    
 except KeyError:
     logger.error("Bot credentials not found in environment")
 try:
@@ -27,6 +28,7 @@ try:
     # print it to a file
     VISIONAPI_TOKEN = os.environ["VISIONAPI_TOKEN"]
     # TODO: Find a better fix 
+    logger.info("Fetching VISION TOKEN")
     if type(VISIONAPI_TOKEN) is dict:
         logger.info("Creating visionapi.json at : " + os.path.dirname(os.path.realpath(__file__)))
         with open("visionapi.json", "w") as f:
@@ -62,7 +64,7 @@ def main():
             for update in bot.get_updates(offset=update_id, timeout=10):
                 update_id = update.update_id + 1
                 logger.info(f"Update ID:{update_id}")
-                entry(bot, update)
+                #entry(bot, update)
         except NetworkError:
             sleep(1)
         except Unauthorized:
