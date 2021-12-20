@@ -131,7 +131,7 @@ def run(args):
   url_type = args.type
   page = args.page
   skip_output = vars(args)['skip_output']
-  is_verbose = vars(args)['verbose']
+  is_verbose = True #vars(args)['verbose']
   logging.info('scraper', args.url)
 
   # default update skip_output key value
