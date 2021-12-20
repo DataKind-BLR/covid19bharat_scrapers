@@ -28,6 +28,7 @@ try:
     VISIONAPI_TOKEN = os.environ["VISIONAPI_TOKEN"]
     # TODO: Find a better fix 
     if type(VISIONAPI_TOKEN) is dict:
+        logger.info("Creating visionapi.json at : " + os.path.dirname(os.path.realpath(__file__)))
         with open("visionapi.json", "w") as f:
             json.dump(VISIONAPI_TOKEN, f)
     else:
