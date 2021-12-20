@@ -28,7 +28,7 @@ try:
     # print it to a file
     VISIONAPI_TOKEN = os.environ["VISIONAPI_TOKEN"]
     # TODO: Find a better fix 
-    print("Fetching VISION TOKEN")
+    print("Fetching VISION TOKEN" + type(VISIONAPI_TOKEN))
     if type(VISIONAPI_TOKEN) is dict:
         print("Creating visionapi.json at : " + os.path.dirname(os.path.realpath(__file__)))
         with open("visionapi.json", "w") as f:
