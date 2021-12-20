@@ -395,52 +395,6 @@ def gj_get_data(opt):
 
   return districts_data
 
-'''
-def hp_get_data(opt):
-  print('Fetching HP data')
-  pprint(opt)
-
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
-
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-  districtTableBeingRead = False
-  try:
-    with open(OUTPUT_TXT, "r") as upFile:
-      for line in upFile:
-        # line = re.sub('\*', '', line)
-        linesArray = line.split('|')[0].split(',')
-        availableColumns = line.split('|')[1].split(',')
-
-        districtDictionary = {}
-        confirmedFound = False
-        recoveredFound = False
-        deceasedFound = False
-
-        if len(linesArray) != 11:
-          print("--> Issue with {}".format(linesArray))
-          print("try cropping the image to only show the case details part of the image")
-          continue
-
-        # if reached the last item, break
-        if linesArray[0].strip().title() == 'Una':
-          break
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1].strip())
-        districtDictionary['recovered'] = int(linesArray[8].strip())
-        # districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[9].strip()).strip())
-        districtDictionary['deceased'] = int(linesArray[9].strip())
-        #districtDictionary['migrated'] = int(linesArray[10].strip())
-        districts_data.append(districtDictionary)
-
-    upFile.close()
-    return districts_data
-
-  except FileNotFoundError:
-    print("output.txt missing. Generate through pdf or ocr and rerun.")
-'''
 def hp_get_data(opt):
   print('Fetching HP data')
   pprint(opt)
@@ -712,6 +666,7 @@ def kl_get_data(opt):
     linesArray = []
     districtDictionary = {}
     districts_data = []
+    print("\n")
 
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
     with open(csv_file, "r") as upFile:
@@ -720,10 +675,73 @@ def kl_get_data(opt):
         if len(linesArray) != 3:
           print("--> Issue with {}".format(linesArray))
           continue
+        if "District" not in linesArray:
+          print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+          print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
+          # TODO - append to districts_data
+    upFile.close()
+    print("\n")
+    return districts_data
 
-        print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-        print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
-        # TODO - append to districts_data
+def kld_get_data(opt):
+  if opt['type'] == 'pdf':
+    # TODO - run script to generate the csv
+
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    print("\n")
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
+
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 3:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        if linesArray[0].strip() == "District":
+          continue
+        if "Cumulative" in linesArray[0].strip():
+          break
+        gender = "M" if linesArray[2].strip() == "Male" else "F"
+        print("{},{},,{},Kerala,KL,1,Deceased".format(linesArray[1], gender, linesArray[0].strip().title()))
+
+    print('\n---------------------------------------------------------------------\n')
+    upFile.close()
+    return districts_data
+
+def kldbl_get_data(opt):
+  if opt['type'] == 'pdf':
+    # TODO - run script to generate the csv
+    linecnt=0
+
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    print("---------------------------------------------------------------------\n")
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
+
+      for line in upFile:
+        linecnt=linecnt+1
+        linesArray = line.split(',')
+        if len(linesArray) != 3:
+          print("--> Issue with {}".format(linesArray))
+          continue
+        if linecnt !=1:
+           if int(linesArray[1].strip()) != 0:
+              print("{},Kerala,KL,{},Deceased,,cat_B (G.O.(Rt) No.2110/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[1].strip()))
+           if int(linesArray[2].strip()) != 0:
+              print("{},Kerala,KL,{},Deceased,,cat_C (G.O.(Rt) No.2219/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[2].strip()))
+    print('\n---------------------------------------------------------------------\n')
     upFile.close()
     return districts_data
 
