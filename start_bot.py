@@ -37,7 +37,7 @@ except KeyError:
     logger.error("VisionAPI credentials not found in environment")
 
 # How long the container exist
-LIFESPAN = 3600
+LIFESPAN = 120
 
 
 def main():
