@@ -30,7 +30,7 @@ try:
     # TODO: Find a better fix 
     print("Creating visionapi.json at : " + os.path.dirname(os.path.realpath(__file__)))
     with open("visionapi.json", "w") as f:
-        json.dump(VISIONAPI_TOKEN, f)
+        print(VISIONAPI_TOKEN, file=f)
 
 except KeyError:
     logger.error("VisionAPI credentials not found in environment")
