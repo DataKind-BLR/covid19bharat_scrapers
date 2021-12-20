@@ -55,6 +55,7 @@ jobs:
     - name: Repository Dispatch
       uses: actions/github-script@v2
       with:
+        github-token: ${{secrets.SRM_TOKEN}}
         script: |
           const fs = require('fs');
           update_id = fs.readFileSync('/tmp/update_id', 'utf8');
