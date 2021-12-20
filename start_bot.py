@@ -60,7 +60,7 @@ def main():
             for update in bot.get_updates(offset=update_id, timeout=10):
                 update_id = update.update_id + 1
                 logger.info(f"Update ID:{update_id}")
-                #entry(bot, update)
+                entry(bot, update)
         except NetworkError:
             sleep(1)
         except Unauthorized:
