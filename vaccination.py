@@ -17,9 +17,7 @@ VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 
 VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
 COWIN_META = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_meta', 'cowin_district_mapping.csv')
 COWIN_DIST_LIVE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'cowin_downloaded_district_data.csv')
-
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
-# PUBLISHED_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
 TODAY = datetime.date.today()
 
 with open(STATES_YAML, 'r') as stream:
@@ -199,9 +197,6 @@ def get_cowin_district(from_date, to_date, state_codes):
         district_rows = []
         # run for every state
         for state_code in state_codes:
-            # if state_code not in state_codes:
-                # print(state_code, 'not selected')
-                # break
             params = {
                 's_id': states_all[state_code].get('cowin_code'),
                 'd_id': '',
@@ -303,8 +298,3 @@ if __name__ == '__main__':
         sys.exit(0)
 
     fn_map[vacc_src](from_date, to_date, state_codes)
-
-    # print(state_codes)
-    # get_cowin_district(from_date, to_date, state_codes)
-    # for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
-    #     print(curr_date)
