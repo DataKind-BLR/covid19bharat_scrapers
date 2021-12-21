@@ -15,9 +15,11 @@ warnings.simplefilter(action='ignore')
 VACC_STA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_state_level.txt')
 VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_district_level.csv')
 VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
+COWIN_META = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_meta', 'cowin_district_mapping.csv')
+COWIN_DIST_LIVE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'cowin_downloaded_district_data.csv')
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
-PUBLISHED_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
+# PUBLISHED_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
 TODAY = datetime.date.today()
 
 with open(STATES_YAML, 'r') as stream:
@@ -25,6 +27,17 @@ with open(STATES_YAML, 'r') as stream:
         states_all = yaml.safe_load(stream)
     except yaml.YAMLError as exc:
         print(exc)
+
+
+def get_district_mapping():
+    '''
+    From the published google sheets url, extract district names to map against
+    cowin's data
+    '''
+    PUBLISHED_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
+    published_df = pd.read_csv(PUBLISHED_DATA_SHEET)
+    state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
+    state_dist_mapping.to_csv(COWIN_META, index=False, encoding='utf-8')
 
 
 def get_mohfw_state(data_for):
@@ -235,11 +248,10 @@ def get_cowin_district(data_for):
 
     print("Making districts data file")
     cowin_df = pd.DataFrame(district_rows).drop('updated_at', 1)
-    VACC_DST_COWIN = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'cowin_district_data.csv')
-    cowin_df.to_csv(VACC_DST_COWIN, index=False)
+    cowin_df.to_csv(COWIN_DIST_LIVE, index=False)
 
-    print("Getting state-district mapping from google sheet")
-    published_df = pd.read_csv(PUBLISHED_DATA_SHEET)
+    print("Getting state-district mapping")
+    published_df = pd.read_csv(COWIN_META)
 
     state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
     merged_data = pd.merge(state_dist_mapping, cowin_df, left_on=['State', 'Cowin Key'], right_on=['State', 'District'], how='left', suffixes=('', '_cowin'))
@@ -258,7 +270,7 @@ if __name__ == '__main__':
     }
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw', choices=['cowin_state', 'cowin_district', 'mohfw_state'])
-    parser.add_argument('-d', '--date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only', default=datetime.date.today())
+    parser.add_argument('-d', '--date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only to run for a specific date', default=datetime.date.today())
     # parser.add_argument('-f', '--from', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only')
     # parser.add_argument('-t', '--to', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only')
 
