@@ -19,7 +19,6 @@ VACC_OUTPUT_MOHFW = os.path.join(ROOT_DIR, '_outputs', 'vaccination_mohfw.csv')
 COWIN_META = os.path.join(ROOT_DIR, '_meta', 'cowin_district_mapping.csv')
 COWIN_DIST_LIVE = os.path.join(ROOT_DIR, '_outputs', 'cowin_downloaded_district_data.csv')
 STATES_YAML = os.path.join(ROOT_DIR, 'states.yaml')
-TODAY = datetime.date.today()
 
 with open(STATES_YAML, 'r') as stream:
     try:
@@ -38,8 +37,7 @@ def get_district_mapping(sheet_url='https://docs.google.com/spreadsheets/d/e/2PA
     From the published google sheets url, extract district names to map against
     cowin's data
     '''
-    PUBLISHED_DATA_SHEET = sheet_url
-    published_df = pd.read_csv(PUBLISHED_DATA_SHEET)
+    published_df = pd.read_csv(sheet_url)
     state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
     state_dist_mapping.to_csv(COWIN_META, index=False, encoding='utf-8')
 
@@ -53,7 +51,7 @@ def get_mohfw_state(from_date, to_date):
     :param: `to_date` <datetime> - The date to until when you want extract data (inclusive)
     '''
     base_url = 'https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf'
-    if from_date == TODAY:
+    if from_date == datetime.date.today():
         from_date = from_date - datetime.timedelta(days=1)
         day_count = datetime.timedelta(days=1)
     else:
