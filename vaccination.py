@@ -189,6 +189,7 @@ def get_cowin_district(from_date, to_date, state_codes):
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
     day_count = (to_date - from_date) + datetime.timedelta(days=1)
     multi_dfs = []
+    multi_dwnld_dfs = []
     published_df = pd.read_csv(COWIN_META) # keep district names from c19b googlesheet & ignore API names
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
@@ -259,6 +260,7 @@ def get_cowin_district(from_date, to_date, state_codes):
 
         print("Making districts data file")
         cowin_df = pd.DataFrame(district_rows).drop('updated_at', 1)
+        multi_dwnld_dfs.append(cowin_df)
         state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
         merged_data = pd.merge(state_dist_mapping, cowin_df, left_on=['State', 'Cowin Key'], right_on=['State', 'District'], how='left', suffixes=('', '_cowin'))
         merged_data = merged_data.drop(['Cowin Key', 'District_cowin'], 1)
@@ -266,7 +268,10 @@ def get_cowin_district(from_date, to_date, state_codes):
         multi_dfs.append(merged_data)
 
     final_df = pd.concat(multi_dfs, axis=1)
+    final_dwnld_df = pd.concat(multi_dwnld_dfs, axis=1)
+
     final_df.to_csv(VACC_DST, index=False)
+    final_dwnld_df.to_csv(COWIN_DIST_LIVE, index=False)
     print("District data is saved to: ", VACC_DST)
 
 if __name__ == '__main__':
@@ -277,13 +282,16 @@ if __name__ == '__main__':
     }
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--source', type=str, nargs='?', default='cowin_state', help='cowin or mohfw', choices=['cowin_state', 'cowin_district', 'mohfw_state'])
-    parser.add_argument('-st', '--state_codes', required=False, type=str, help='comma separated state codes to extract for. Defaults to all')
+    parser.add_argument('-st', '--state_codes', required=False, type=str, default=None, help='comma separated state codes to extract for. Defaults to all')
     parser.add_argument('-f', '--from_date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), default=datetime.date.today(), help='please provide date in dd-mm-yyyy format only')
     parser.add_argument('-t', '--to_date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), help='please provide date in dd-mm-yyyy format only')
 
     args = parser.parse_args()
     vacc_src = args.source.lower()
-    state_codes = list(map(lambda sc: sc.lower(), args.state_codes.split(',')))
+    if args.state_codes is not None:
+        state_codes = list(map(lambda sc: sc.lower(), args.state_codes.split(',')))
+    else:
+        state_codes = None
     from_date = args.from_date
     to_date = args.to_date
 
@@ -294,8 +302,9 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(0)
 
+    fn_map[vacc_src](from_date, to_date, state_codes)
+
     # print(state_codes)
-    get_cowin_district(from_date, to_date, state_codes)
+    # get_cowin_district(from_date, to_date, state_codes)
     # for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
-    #     # fn_map[vacc_src](curr_date)
     #     print(curr_date)
