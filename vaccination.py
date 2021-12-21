@@ -12,12 +12,13 @@ from read_pdf import read_pdf_from_url
 console = Console(record=True)
 warnings.simplefilter(action='ignore')
 
-VACC_STA = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_state_level.txt')
-VACC_DST = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_district_level.csv')
-VACC_OUTPUT_MOHFW = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'vaccination_mohfw.csv')
-COWIN_META = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_meta', 'cowin_district_mapping.csv')
-COWIN_DIST_LIVE = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'cowin_downloaded_district_data.csv')
-STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+VACC_STA = os.path.join(ROOT_DIR, '_outputs', 'vaccination_state_level.txt')
+VACC_DST = os.path.join(ROOT_DIR, '_outputs', 'vaccination_district_level.csv')
+VACC_OUTPUT_MOHFW = os.path.join(ROOT_DIR, '_outputs', 'vaccination_mohfw.csv')
+COWIN_META = os.path.join(ROOT_DIR, '_meta', 'cowin_district_mapping.csv')
+COWIN_DIST_LIVE = os.path.join(ROOT_DIR, '_outputs', 'cowin_downloaded_district_data.csv')
+STATES_YAML = os.path.join(ROOT_DIR, 'states.yaml')
 TODAY = datetime.date.today()
 
 with open(STATES_YAML, 'r') as stream:
