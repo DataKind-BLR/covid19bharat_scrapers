@@ -50,11 +50,16 @@ def get_mohfw_state(from_date, to_date):
     Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
     NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
 
-    :param: - `data_for` (datetime object). Defaults to T-1 day (today)
+    :param: `from_date` <datetime> - The date to start extracting data from
+    :param: `to_date` <datetime> - The date to until when you want extract data (inclusive)
     '''
     base_url = 'https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf'
     # if you change this variable value, you'll have to change the function name inside `read_pdf.py` file too
-    day_count = (to_date - from_date) + datetime.timedelta(days=1)
+    if from_date == TODAY:
+        from_date = from_date - datetime.timedelta(days=1)
+        day_count = datetime.timedelta(days=1)
+    else:
+        day_count = (to_date - from_date) + datetime.timedelta(days=1)
     vacc_mohfw_code = 'vaccination_mohfw'
     name_mapping = {
         'A & N Islands': 'Andaman and Nicobar Islands'
