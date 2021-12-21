@@ -34,78 +34,79 @@ with open(STATES_YAML, 'r') as stream:
         print(exc)
 
 
-def get_district_mapping():
+def get_district_mapping(sheet_url='https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'):
     '''
     From the published google sheets url, extract district names to map against
     cowin's data
     '''
-    PUBLISHED_DATA_SHEET = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTrt_V4yW0jd91chhz9BJZOgJtFrsaZEa_gPlrFfQToBuuNDDkn01w0K0GdnjCdklyzFz84A1hFbSUN/pub?gid=382746758&single=true&output=csv'
+    PUBLISHED_DATA_SHEET = sheet_url
     published_df = pd.read_csv(PUBLISHED_DATA_SHEET)
     state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
     state_dist_mapping.to_csv(COWIN_META, index=False, encoding='utf-8')
 
 
-def get_mohfw_state(data_for):
+def get_mohfw_state(from_date, to_date):
     '''
     Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
     NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
 
     :param: - `data_for` (datetime object). Defaults to T-1 day (today)
     '''
-    base_url = "https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf"
-    date_mohfw_str = data_for.strftime("%d%B%Y")
-    date_sheet_str = data_for.strftime("%d/%m/%Y")
-    url = base_url.format(date_mohfw_str.lower())
-    print(f" ---------> Downloading PDF from: {url}")
-
+    base_url = 'https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf'
     # if you change this variable value, you'll have to change the function name inside `read_pdf.py` file too
+    day_count = (to_date - from_date) + datetime.timedelta(days=1)
     vacc_mohfw_code = 'vaccination_mohfw'
-
-    opt = {
-        'state_code': vacc_mohfw_code,
-        'url': url,
-        'type': 'pdf',
-        'config': {
-            'page': 1,
-            'start_key': 'A & N Islands',
-            'end_key': ''
-        }
-    }
-    # this name mapping is specific to Cowin
     name_mapping = {
         'A & N Islands': 'Andaman and Nicobar Islands'
     }
 
-    # read pdf file and extract text
-    read_pdf_from_url(opt)
 
-    # read the csv output produced by previous function
-    mohfw_data = []
-    total_fd, total_sd, total_td = 0, 0, 0
-    with open(VACC_OUTPUT_MOHFW, "r") as output_csv:
-        for line in output_csv:
-            lines_arr = line.split(',')
-            if len(lines_arr) != 4:
-                print("--> Issue with {}".format(lines_arr))
-                continue
+    for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
+        date_mohfw_str = curr_date.strftime("%d%B%Y")
+        date_sheet_str = curr_date.strftime("%d/%m/%Y")
+        url = base_url.format(date_mohfw_str.lower())
+        print(f" ---------> Downloading PDF from: {url}")
+        opt = {
+            'state_code': vacc_mohfw_code,
+            'url': url,
+            'type': 'pdf',
+            'config': {
+                'page': 1,
+                'start_key': 'A & N Islands',
+                'end_key': ''
+            }
+        }
 
-            data = {}
-            data['state_name'] = lines_arr[0].strip()
-            if lines_arr[0].strip() in name_mapping.keys():
-                data['state_name'] = name_mapping[lines_arr[0].strip()]
-            data['firstDose'] = int(lines_arr[1])
-            total_fd += data['firstDose']
-            data['secondDose'] = int(lines_arr[2])
-            total_sd += data['secondDose']
-            data['totalDose'] = int(lines_arr[3].strip('\n'))
-            total_td += data['totalDose']
+        # read pdf file and extract text
+        read_pdf_from_url(opt)
 
-            # print on console for copy-paste purpose
-            console.print(f"{date_sheet_str},{data['state_name']},{data['firstDose']},{data['secondDose']},{data['totalDose']}")
+        # read the csv output produced by previous function
+        mohfw_data = []
+        total_fd, total_sd, total_td = 0, 0, 0
+        with open(VACC_OUTPUT_MOHFW, "r") as output_csv:
+            for line in output_csv:
+                lines_arr = line.split(',')
+                if len(lines_arr) != 4:
+                    print("--> Issue with {}".format(lines_arr))
+                    continue
 
-            mohfw_data.append(data)
-    # print totals for India
-    console.print(f"{date_sheet_str},Total,{total_fd},{total_sd},{total_td}")
+                data = {}
+                data['state_name'] = lines_arr[0].strip()
+                if lines_arr[0].strip() in name_mapping.keys():
+                    data['state_name'] = name_mapping[lines_arr[0].strip()]
+                data['firstDose'] = int(lines_arr[1])
+                total_fd += data['firstDose']
+                data['secondDose'] = int(lines_arr[2])
+                total_sd += data['secondDose']
+                data['totalDose'] = int(lines_arr[3].strip('\n'))
+                total_td += data['totalDose']
+
+                # print on console for copy-paste purpose
+                console.print(f"{date_sheet_str},{data['state_name']},{data['firstDose']},{data['secondDose']},{data['totalDose']}")
+
+                mohfw_data.append(data)
+        # print totals for India
+        console.print(f"{date_sheet_str},Total,{total_fd},{total_sd},{total_td}")
     return mohfw_data
 
 
@@ -284,7 +285,7 @@ if __name__ == '__main__':
         parser.print_help()
         sys.exit(0)
 
-    get_cowin_district(from_date, to_date)
+    get_mohfw_state(from_date, to_date)
     # for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
     #     # fn_map[vacc_src](curr_date)
     #     print(curr_date)
