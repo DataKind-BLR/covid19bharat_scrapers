@@ -17,7 +17,7 @@ pip install -r linux_requirements.txt
 
 ---
 
-### Examples
+### Examples For Cases
 
 - To extract from html dashboard (the url will be taken from `states.yaml` file by default)
 ```bash
@@ -34,12 +34,20 @@ Example to run for images
 python scrapers.py --state_code ML --type image --url '/dir/path/to/ml.jpeg'
 ```
 
-Example to extract vaccination data (from Cowin) - at state level. The output is written into `_ouputs/vaccination_state_level.csv`
+### Examples For Vaccination Data (Cowin & MoHFW)
+
+Example to extract vaccination data (from Cowin) - at state level with following parameters. The output is written into `_ouputs/vaccination_state_level.csv`
+* From 1st Nov 2021
+* To 1st Dec 2021
+* For states AP, BR and MP only
+* At state level from Cowin
+
 ```bash
-python vaccination.py --source cowin_state
+python vaccination.py --source cowin_state --from_date 01-11-2021 --to_date 01-12-2021 --state_code AP,BR,MP
 ```
 
 Example to extract vaccination data (from Cowin) - at district level.  The output is written into `_ouputs/vaccination_district_level.csv`
+When no `from_date` or `to_date` is provided, it will pull for the current date only & for all states since no states are specified
 ```bash
 python vaccination.py --source cowin_district
 ```
