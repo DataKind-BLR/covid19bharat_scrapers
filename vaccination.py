@@ -127,7 +127,7 @@ def get_cowin_state(from_date, to_date, state_codes):
     day_count = (to_date - from_date) + datetime.timedelta(days=1)
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
-        curr_date_str = curr_date.strftime('%d-%m-%Y')
+        curr_date_str = curr_date.strftime('%d/%m/%Y')
         print('Fetching for {}'.format(curr_date_str))
         district_rows = []
 
