@@ -38,7 +38,7 @@ def get_district_mapping(sheet_url='https://docs.google.com/spreadsheets/d/e/2PA
     cowin's data
     '''
     published_df = pd.read_csv(sheet_url)
-    state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
+    state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']]
     state_dist_mapping.to_csv(COWIN_META, index=False, encoding='utf-8')
 
 
