@@ -46,10 +46,8 @@ as:
     - https://twitter.com/himantabiswa
     - https://twitter.com/nhm_assam
     - https://covid19.assam.gov.in/all-districts/
-  type: image
-  url: _inputs/as.jpeg
-  config:
-    translation: False
+  type: html
+  url: https://covid19.assam.gov.in/all-districts/
 
 br:
   name: Bihar

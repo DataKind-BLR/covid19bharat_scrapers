@@ -117,23 +117,30 @@ def as_get_data(opt):
   print('Fetching AS data')
   pprint(opt)
 
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
+  response = requests.request('GET', 'https://covid19.assam.gov.in/all-districts/')
+  soup = BeautifulSoup(response.content, 'html.parser')
 
-  linesArray = []
-  districtDictionary = {}
-  districtArray = []
-  splitArray = []
-  try:
-    with open(OUTPUT_TXT, "r") as upFile:
-      for line in upFile:
-        splitArray = re.sub('\n', '', line.strip()).split('|')
-        linesArray = splitArray[0].split(',')
-        if int(linesArray[len(linesArray) - 1]) > 0:
-          print("{},Assam,AS,{},Hospitalized".format(linesArray[0].strip(), linesArray[len(linesArray) - 1].strip()))
+  table = soup.find('table', {'class': 'ban123'}).find_all('tr')
+  districts_data = []
 
-  except FileNotFoundError:
-    print("output.txt missing. Generate through pdf or ocr and rerun.")
+  for row in table[1:]:
+      # Ignoring 1st row containing table headers
+      d = row.find_all('td')
+      districts_data.append({
+        'districtName': d[0].get_text().strip(),
+        'confirmed': int(d[1].get_text().strip()) if d[1].get_text().strip() != '-' else 0,
+        'recovered': int(d[3].get_text().strip()) if d[3].get_text().strip() != '-' else 0,
+        'deceased': int(d[4].get_text().strip()) if d[4].get_text().strip() != '-' else 0
+      })
+  
+  #removing newly created Bajali distict from the list (has nil entries only)
+  for idx in range(len(districts_data)):
+    bajaliIndex = None
+    if(districts_data[idx]['districtName']=='Bajali'): bajaliIndex = idx
+  if(bajaliIndex): districts_data.remove(districts_data[bajaliIndex])  
+  
+  return districts_data
+
 
 def br_get_data(opt):
   print('Fetching BR data')
