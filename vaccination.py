@@ -42,7 +42,7 @@ def get_district_mapping(sheet_url='https://docs.google.com/spreadsheets/d/e/2PA
     state_dist_mapping.to_csv(COWIN_META, index=False, encoding='utf-8')
 
 
-def get_mohfw_state(from_date, to_date):
+def get_mohfw_state(from_date, to_date, state_codes):
     '''
     Given a specific date (PDF date), download the pdf for the specified date. Contains data at state level & national level
     NOTE: data in the PDF for current day (T) contains the values for the previous day (T-1)
