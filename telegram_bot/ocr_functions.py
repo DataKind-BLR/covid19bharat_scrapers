@@ -63,4 +63,3 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
         logging.error(e)
         bot.send_message(chat_id=chat_id, text=e)
         return
-
