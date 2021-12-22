@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import time
+import json
 import logging
 import telegram
+
 from telegram.error import NetworkError, Unauthorized
-import time
 from time import sleep
-import os
 from telegram_bot.entry import entry
-import json
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
