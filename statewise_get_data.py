@@ -195,7 +195,8 @@ def ch_get_data(opt):
 def ct_get_data(opt):
   print('Fetching CT data')
   pprint(opt)
-
+  print(f" ------- {opt} ")
+  
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
