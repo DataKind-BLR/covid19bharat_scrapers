@@ -36,11 +36,15 @@ def get_district_mapping(sheet_url='https://docs.google.com/spreadsheets/d/e/2PA
     '''
     From the published google sheets url, extract district names to map against
     cowin's data
+
+    :param: `sheet_url` <str> - the published url sheet to pull the district names from
+
+    :returns: <os.path> - returns the path to the updated csv file
     '''
     published_df = pd.read_csv(sheet_url)
     state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']]
     state_dist_mapping.to_csv(COWIN_META, index=False, encoding='utf-8')
-
+    return COWIN_META
 
 def get_mohfw_state(from_date, to_date, state_codes):
     '''
