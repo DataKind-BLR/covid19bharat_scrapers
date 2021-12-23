@@ -1,22 +1,27 @@
-import subprocess
-import sys
-import telegram
-import os
-import logging
-import traceback
 import io
+import os
+import sys
+import logging
+import scrapers
+import telegram
 import colorama
+import traceback
+import subprocess
 
 from contextlib import redirect_stdout
 from glob import glob
 from telegram_bot.util import states_map
-import scrapers
+
 CURR_DIR = os.path.abspath('.')
 
 class Args:
   pass
 
 colorama.init(strip=True)
+
+def run_scraper2(bot, chat_id, opt):
+    return scrapers.run(opt)
+
 
 def run_scraper(bot, chat_id, state_code, url_type, url):
     '''
@@ -28,6 +33,7 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
     args.skip_output = False
     args.type = url_type
     args.url = None
+    args.verbose = False
     if url_type == 'pdf':
         args.url = url
         

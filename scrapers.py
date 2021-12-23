@@ -126,13 +126,12 @@ def fetch_data(st_obj):
     print('no function definition in fn_map for state code {}'.format(st_obj['state_code']))
 
 def run(args):
-  state_code = args.state_code.lower()
-  url = args.url
-  url_type = args.type
-  page = args.page
-  skip_output = vars(args)['skip_output']
-  is_verbose = True #vars(args)['verbose']
-  #logging.info('scraper', args.url)
+  state_code = args['state_code'].lower()
+  url = args['url']
+  url_type = args['type']
+  page = args['page'] if 'page' in args else None
+  skip_output = args['skip_output'] if 'skip_output' in args else False
+  is_verbose = args['verbose'] if 'verbose' in args else False
 
   # default update skip_output key value
   states_all[state_code].update({ 'skip_output': skip_output })
