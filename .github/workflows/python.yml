@@ -6,7 +6,7 @@ on:
   #   - cron: "*/10 * * * *"
   push:
     branches:
-      - bot
+      - master
   repository_dispatch:
     types: [my-event]
 jobs:
@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        ref: bot
+        ref: master
     
     - name: Setup Python
       uses: actions/setup-python@v2
@@ -55,7 +55,7 @@ jobs:
     - name: Repository Dispatch
       uses: actions/github-script@v2
       with:
-        github-token: ${{secrets.SRM_TOKEN}}
+        github-token: ${{secrets.BEE_TOKEN}}
         script: |
           const fs = require('fs');
           update_id = fs.readFileSync('/tmp/update_id', 'utf8');

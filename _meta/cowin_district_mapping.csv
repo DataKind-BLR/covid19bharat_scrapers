@@ -1,0 +1,756 @@
+State_Code,State,Cowin Key,District
+,,,
+AN,Andaman and Nicobar Islands,Nicobar,Nicobars
+AN,Andaman and Nicobar Islands,North and Middle Andaman,North and Middle Andaman
+AN,Andaman and Nicobar Islands,South Andaman,South Andaman
+AP,Andhra Pradesh,Anantapur,Anantapur
+AP,Andhra Pradesh,Chittoor,Chittoor
+AP,Andhra Pradesh,East Godavari,East Godavari
+AP,Andhra Pradesh,Guntur,Guntur
+AP,Andhra Pradesh,Krishna,Krishna
+AP,Andhra Pradesh,Kurnool,Kurnool
+AP,Andhra Pradesh,Prakasam,Prakasam
+AP,Andhra Pradesh,Sri Potti Sriramulu Nellore,S.P.S. Nellore
+AP,Andhra Pradesh,Srikakulam,Srikakulam
+AP,Andhra Pradesh,Visakhapatnam,Visakhapatnam
+AP,Andhra Pradesh,Vizianagaram,Vizianagaram
+AP,Andhra Pradesh,West Godavari,West Godavari
+AP,Andhra Pradesh,YSR District Kadapa (Cuddapah),Y.S.R. Kadapa
+AR,Arunachal Pradesh,Anjaw,Anjaw
+AR,Arunachal Pradesh,Changlang,Changlang
+AR,Arunachal Pradesh,Dibang Valley,Upper Dibang Valley
+AR,Arunachal Pradesh,East Kameng,East Kameng
+AR,Arunachal Pradesh,East Siang,East Siang
+AR,Arunachal Pradesh,Itanagar Capital Complex,Papum Pare
+AR,Arunachal Pradesh,Kamle,Kamle
+AR,Arunachal Pradesh,Kra Daadi,Kra Daadi
+AR,Arunachal Pradesh,Kurung Kumey,Kurung Kumey
+AR,Arunachal Pradesh,Lepa Rada,Lepa Rada
+AR,Arunachal Pradesh,Lohit,Lohit
+AR,Arunachal Pradesh,Longding,Longding
+AR,Arunachal Pradesh,Lower Dibang Valley,Lower Dibang Valley
+AR,Arunachal Pradesh,Lower Siang,Lower Siang
+AR,Arunachal Pradesh,Lower Subansiri,Lower Subansiri
+AR,Arunachal Pradesh,Namsai,Namsai
+AR,Arunachal Pradesh,Pakke Kessang,Pakke Kessang
+AR,Arunachal Pradesh,Papum Pare,Papum Pare
+AR,Arunachal Pradesh,Shi Yomi,Shi Yomi
+AR,Arunachal Pradesh,Siang,Siang
+AR,Arunachal Pradesh,Tawang,Tawang
+AR,Arunachal Pradesh,Tirap,Tirap
+AR,Arunachal Pradesh,Upper Siang,Upper Siang
+AR,Arunachal Pradesh,Upper Subansiri,Upper Subansiri
+AR,Arunachal Pradesh,West Kameng,West Kameng
+AR,Arunachal Pradesh,West Siang,West Siang
+AS,Assam,Baksa,Baksa
+AS,Assam,Barpeta,Barpeta
+AS,Assam,Biswanath,Biswanath
+AS,Assam,Bongaigaon,Bongaigaon
+AS,Assam,Cachar,Cachar
+AS,Assam,Charaideo,Charaideo
+AS,Assam,Chirang,Chirang
+AS,Assam,Darrang,Darrang
+AS,Assam,Dhemaji,Dhemaji
+AS,Assam,Dhubri,Dhubri
+AS,Assam,Dibrugarh,Dibrugarh
+AS,Assam,Dima Hasao,Dima Hasao
+AS,Assam,Goalpara,Goalpara
+AS,Assam,Golaghat,Golaghat
+AS,Assam,Hailakandi,Hailakandi
+AS,Assam,Hojai,Hojai
+AS,Assam,Jorhat,Jorhat
+AS,Assam,Kamrup Metropolitan,Kamrup Metropolitan
+AS,Assam,Kamrup Rural,Kamrup
+AS,Assam,Karbi-Anglong,Karbi Anglong
+AS,Assam,Karimganj,Karimganj
+AS,Assam,Kokrajhar,Kokrajhar
+AS,Assam,Lakhimpur,Lakhimpur
+AS,Assam,Majuli,Majuli
+AS,Assam,Morigaon,Morigaon
+AS,Assam,Nagaon,Nagaon
+AS,Assam,Nalbari,Nalbari
+AS,Assam,Sivasagar,Sivasagar
+AS,Assam,Sonitpur,Sonitpur
+AS,Assam,South Salmara Mankachar,South Salmara Mankachar
+AS,Assam,Tinsukia,Tinsukia
+AS,Assam,Udalguri,Udalguri
+AS,Assam,West Karbi Anglong,West Karbi Anglong
+BR,Bihar,Araria,Araria
+BR,Bihar,Arwal,Arwal
+BR,Bihar,Aurangabad,Aurangabad
+BR,Bihar,Banka,Banka
+BR,Bihar,Begusarai,Begusarai
+BR,Bihar,Bhagalpur,Bhagalpur
+BR,Bihar,Bhojpur,Bhojpur
+BR,Bihar,Buxar,Buxar
+BR,Bihar,Darbhanga,Darbhanga
+BR,Bihar,East Champaran,East Champaran
+BR,Bihar,Gaya,Gaya
+BR,Bihar,Gopalganj,Gopalganj
+BR,Bihar,Jamui,Jamui
+BR,Bihar,Jehanabad,Jehanabad
+BR,Bihar,Kaimur,Kaimur
+BR,Bihar,Katihar,Katihar
+BR,Bihar,Khagaria,Khagaria
+BR,Bihar,Kishanganj,Kishanganj
+BR,Bihar,Lakhisarai,Lakhisarai
+BR,Bihar,Madhepura,Madhepura
+BR,Bihar,Madhubani,Madhubani
+BR,Bihar,Munger,Munger
+BR,Bihar,Muzaffarpur,Muzaffarpur
+BR,Bihar,Nalanda,Nalanda
+BR,Bihar,Nawada,Nawada
+BR,Bihar,Patna,Patna
+BR,Bihar,Purnia,Purnia
+BR,Bihar,Rohtas,Rohtas
+BR,Bihar,Saharsa,Saharsa
+BR,Bihar,Samastipur,Samastipur
+BR,Bihar,Saran,Saran
+BR,Bihar,Sheikhpura,Sheikhpura
+BR,Bihar,Sheohar,Sheohar
+BR,Bihar,Sitamarhi,Sitamarhi
+BR,Bihar,Siwan,Siwan
+BR,Bihar,Supaul,Supaul
+BR,Bihar,Vaishali,Vaishali
+BR,Bihar,West Champaran,West Champaran
+CH,Chandigarh,Chandigarh,Chandigarh
+CT,Chhattisgarh,Balod,Balod
+CT,Chhattisgarh,Baloda bazar,Baloda Bazar
+CT,Chhattisgarh,Balrampur,Balrampur
+CT,Chhattisgarh,Bastar,Bastar
+CT,Chhattisgarh,Bemetara,Bametara
+CT,Chhattisgarh,Bijapur,Bijapur
+CT,Chhattisgarh,Bilaspur,Bilaspur
+CT,Chhattisgarh,Dantewada,Dakshin Bastar Dantewada
+CT,Chhattisgarh,Dhamtari,Dhamtari
+CT,Chhattisgarh,Durg,Durg
+CT,Chhattisgarh,Gariaband,Gariaband
+CT,Chhattisgarh,Gaurela Pendra Marwahi,Gaurela Pendra Marwahi
+CT,Chhattisgarh,Janjgir-Champa,Janjgir Champa
+CT,Chhattisgarh,Jashpur,Jashpur
+CT,Chhattisgarh,Kanker,Uttar Bastar Kanker
+CT,Chhattisgarh,Kawardha,Kabeerdham
+CT,Chhattisgarh,Kondagaon,Kondagaon
+CT,Chhattisgarh,Korba,Korba
+CT,Chhattisgarh,Koriya,Koriya
+CT,Chhattisgarh,Mahasamund,Mahasamund
+CT,Chhattisgarh,Mungeli,Mungeli
+CT,Chhattisgarh,Narayanpur,Narayanpur
+CT,Chhattisgarh,Raigarh,Raigarh
+CT,Chhattisgarh,Raipur,Raipur
+CT,Chhattisgarh,Rajnandgaon,Rajnandgaon
+CT,Chhattisgarh,Sukma,Sukma
+CT,Chhattisgarh,Surajpur,Surajpur
+CT,Chhattisgarh,Surguja,Surguja
+DN,Dadra and Nagar Haveli and Daman and Diu,Dadra and Nagar Haveli,Dadra and Nagar Haveli
+DN,Dadra and Nagar Haveli and Daman and Diu,Daman,Daman
+DN,Dadra and Nagar Haveli and Daman and Diu,Diu,Diu
+DL,Delhi,Central Delhi,Central Delhi
+DL,Delhi,East Delhi,East Delhi
+DL,Delhi,New Delhi,New Delhi
+DL,Delhi,North Delhi,North Delhi
+DL,Delhi,North East Delhi,North East Delhi
+DL,Delhi,North West Delhi,North West Delhi
+DL,Delhi,Shahdara,Shahdara
+DL,Delhi,South Delhi,South Delhi
+DL,Delhi,South East Delhi,South East Delhi
+DL,Delhi,South West Delhi,South West Delhi
+DL,Delhi,West Delhi,West Delhi
+GA,Goa,North Goa,North Goa
+GA,Goa,South Goa,South Goa
+GJ,Gujarat,Ahmedabad,Ahmedabad
+GJ,Gujarat,Ahmedabad Corporation,Ahmedabad
+GJ,Gujarat,Amreli,Amreli
+GJ,Gujarat,Anand,Anand
+GJ,Gujarat,Aravalli,Aravalli
+GJ,Gujarat,Banaskantha,Banaskantha
+GJ,Gujarat,Bharuch,Bharuch
+GJ,Gujarat,Bhavnagar,Bhavnagar
+GJ,Gujarat,Bhavnagar Corporation,Bhavnagar
+GJ,Gujarat,Botad,Botad
+GJ,Gujarat,Chhotaudepur,Chhota Udaipur
+GJ,Gujarat,Dahod,Dahod
+GJ,Gujarat,Dang,Dang
+GJ,Gujarat,Devbhumi Dwaraka,Devbhumi Dwarka
+GJ,Gujarat,Gandhinagar,Gandhinagar
+GJ,Gujarat,Gandhinagar Corporation,Gandhinagar
+GJ,Gujarat,Gir Somnath,Gir Somnath
+GJ,Gujarat,Jamnagar,Jamnagar
+GJ,Gujarat,Jamnagar Corporation,Jamnagar
+GJ,Gujarat,Junagadh,Junagadh
+GJ,Gujarat,Junagadh Corporation,Junagadh
+GJ,Gujarat,Kheda,Kheda
+GJ,Gujarat,Kutch,Kutch
+GJ,Gujarat,Mahisagar,Mahisagar
+GJ,Gujarat,Mehsana,Mehsana
+GJ,Gujarat,Morbi,Morbi
+GJ,Gujarat,Narmada,Narmada
+GJ,Gujarat,Navsari,Navsari
+GJ,Gujarat,Panchmahal,Panchmahal
+GJ,Gujarat,Patan,Patan
+GJ,Gujarat,Porbandar,Porbandar
+GJ,Gujarat,Rajkot,Rajkot
+GJ,Gujarat,Rajkot Corporation,Rajkot
+GJ,Gujarat,Sabarkantha,Sabarkantha
+GJ,Gujarat,Surat,Surat
+GJ,Gujarat,Surat Corporation,Surat
+GJ,Gujarat,Surendranagar,Surendranagar
+GJ,Gujarat,Tapi,Tapi
+GJ,Gujarat,Vadodara,Vadodara
+GJ,Gujarat,Vadodara Corporation,Vadodara
+GJ,Gujarat,Valsad,Valsad
+HR,Haryana,Ambala,Ambala
+HR,Haryana,Bhiwani,Bhiwani
+HR,Haryana,Charkhi Dadri,Charkhi Dadri
+HR,Haryana,Faridabad,Faridabad
+HR,Haryana,Fatehabad,Fatehabad
+HR,Haryana,Gurgaon,Gurugram
+HR,Haryana,Hisar,Hisar
+HR,Haryana,Jhajjar,Jhajjar
+HR,Haryana,Jind,Jind
+HR,Haryana,Kaithal,Kaithal
+HR,Haryana,Karnal,Karnal
+HR,Haryana,Kurukshetra,Kurukshetra
+HR,Haryana,Mahendragarh,Mahendragarh
+HR,Haryana,Nuh,Nuh
+HR,Haryana,Palwal,Palwal
+HR,Haryana,Panchkula,Panchkula
+HR,Haryana,Panipat,Panipat
+HR,Haryana,Rewari,Rewari
+HR,Haryana,Rohtak,Rohtak
+HR,Haryana,Sirsa,Sirsa
+HR,Haryana,Sonipat,Sonipat
+HR,Haryana,Yamunanagar,Yamunanagar
+HP,Himachal Pradesh,Bilaspur,Bilaspur
+HP,Himachal Pradesh,Chamba,Chamba
+HP,Himachal Pradesh,Hamirpur,Hamirpur
+HP,Himachal Pradesh,Kangra,Kangra
+HP,Himachal Pradesh,Kinnaur,Kinnaur
+HP,Himachal Pradesh,Kullu,Kullu
+HP,Himachal Pradesh,Lahaul Spiti,Lahaul and Spiti
+HP,Himachal Pradesh,Mandi,Mandi
+HP,Himachal Pradesh,Shimla,Shimla
+HP,Himachal Pradesh,Sirmaur,Sirmaur
+HP,Himachal Pradesh,Solan,Solan
+HP,Himachal Pradesh,Una,Una
+JK,Jammu and Kashmir,Anantnag,Anantnag
+JK,Jammu and Kashmir,Bandipore,Bandipora
+JK,Jammu and Kashmir,Baramulla,Baramulla
+JK,Jammu and Kashmir,Budgam,Budgam
+JK,Jammu and Kashmir,Doda,Doda
+JK,Jammu and Kashmir,Ganderbal,Ganderbal
+JK,Jammu and Kashmir,Jammu,Jammu
+JK,Jammu and Kashmir,Kathua,Kathua
+JK,Jammu and Kashmir,Kishtwar,Kishtwar
+JK,Jammu and Kashmir,Kulgam,Kulgam
+JK,Jammu and Kashmir,Kupwara,Kupwara
+JK,Jammu and Kashmir,Poonch,Punch
+JK,Jammu and Kashmir,Pulwama,Pulwama
+JK,Jammu and Kashmir,Rajouri,Rajouri
+JK,Jammu and Kashmir,Ramban,Ramban
+JK,Jammu and Kashmir,Reasi,Reasi
+JK,Jammu and Kashmir,Samba,Samba
+JK,Jammu and Kashmir,Shopian,Shopiyan
+JK,Jammu and Kashmir,Srinagar,Srinagar
+JK,Jammu and Kashmir,Udhampur,Udhampur
+JH,Jharkhand,Bokaro,Bokaro
+JH,Jharkhand,Chatra,Chatra
+JH,Jharkhand,Deoghar,Deoghar
+JH,Jharkhand,Dhanbad,Dhanbad
+JH,Jharkhand,Dumka,Dumka
+JH,Jharkhand,East Singhbhum,East Singhbhum
+JH,Jharkhand,Garhwa,Garhwa
+JH,Jharkhand,Giridih,Giridih
+JH,Jharkhand,Godda,Godda
+JH,Jharkhand,Gumla,Gumla
+JH,Jharkhand,Hazaribagh,Hazaribagh
+JH,Jharkhand,Jamtara,Jamtara
+JH,Jharkhand,Khunti,Khunti
+JH,Jharkhand,Koderma,Koderma
+JH,Jharkhand,Latehar,Latehar
+JH,Jharkhand,Lohardaga,Lohardaga
+JH,Jharkhand,Pakur,Pakur
+JH,Jharkhand,Palamu,Palamu
+JH,Jharkhand,Ramgarh,Ramgarh
+JH,Jharkhand,Ranchi,Ranchi
+JH,Jharkhand,Sahebganj,Sahibganj
+JH,Jharkhand,Seraikela Kharsawan,Saraikela-Kharsawan
+JH,Jharkhand,Simdega,Simdega
+JH,Jharkhand,West Singhbhum,West Singhbhum
+KA,Karnataka,Bagalkot,Bagalkote
+KA,Karnataka,Bangalore Rural,Bengaluru Rural
+KA,Karnataka,Bangalore Urban,Bengaluru Urban
+KA,Karnataka,BBMP,Bengaluru Urban
+KA,Karnataka,Belgaum,Belagavi
+KA,Karnataka,Bellary,Ballari
+KA,Karnataka,Bidar,Bidar
+KA,Karnataka,Chamarajanagar,Chamarajanagara
+KA,Karnataka,Chikamagalur,Chikkamagaluru
+KA,Karnataka,Chikkaballapur,Chikkaballapura
+KA,Karnataka,Chitradurga,Chitradurga
+KA,Karnataka,Dakshina Kannada,Dakshina Kannada
+KA,Karnataka,Davanagere,Davanagere
+KA,Karnataka,Dharwad,Dharwad
+KA,Karnataka,Gadag,Gadag
+KA,Karnataka,Gulbarga,Kalaburagi
+KA,Karnataka,Hassan,Hassan
+KA,Karnataka,Haveri,Haveri
+KA,Karnataka,Kodagu,Kodagu
+KA,Karnataka,Kolar,Kolar
+KA,Karnataka,Koppal,Koppal
+KA,Karnataka,Mandya,Mandya
+KA,Karnataka,Mysore,Mysuru
+KA,Karnataka,Raichur,Raichur
+KA,Karnataka,Ramanagara,Ramanagara
+KA,Karnataka,Shimoga,Shivamogga
+KA,Karnataka,Tumkur,Tumakuru
+KA,Karnataka,Udupi,Udupi
+KA,Karnataka,Uttar Kannada,Uttara Kannada
+KA,Karnataka,Vijayapura,Vijayapura
+KA,Karnataka,Yadgir,Yadgir
+KL,Kerala,Alappuzha,Alappuzha
+KL,Kerala,Ernakulam,Ernakulam
+KL,Kerala,Idukki,Idukki
+KL,Kerala,Kannur,Kannur
+KL,Kerala,Kasaragod,Kasaragod
+KL,Kerala,Kollam,Kollam
+KL,Kerala,Kottayam,Kottayam
+KL,Kerala,Kozhikode,Kozhikode
+KL,Kerala,Malappuram,Malappuram
+KL,Kerala,Palakkad,Palakkad
+KL,Kerala,Pathanamthitta,Pathanamthitta
+KL,Kerala,Thiruvananthapuram,Thiruvananthapuram
+KL,Kerala,Thrissur,Thrissur
+KL,Kerala,Wayanad,Wayanad
+LA,Ladakh,Kargil,Kargil
+LA,Ladakh,Leh,Leh
+LD,Lakshadweep,Lakshadweep,Lakshadweep
+MP,Madhya Pradesh,Agar,Agar Malwa
+MP,Madhya Pradesh,Alirajpur,Alirajpur
+MP,Madhya Pradesh,Anuppur,Anuppur
+MP,Madhya Pradesh,Ashoknagar,Ashoknagar
+MP,Madhya Pradesh,Balaghat,Balaghat
+MP,Madhya Pradesh,Barwani,Barwani
+MP,Madhya Pradesh,Betul,Betul
+MP,Madhya Pradesh,Bhind,Bhind
+MP,Madhya Pradesh,Bhopal,Bhopal
+MP,Madhya Pradesh,Burhanpur,Burhanpur
+MP,Madhya Pradesh,Chhatarpur,Chhatarpur
+MP,Madhya Pradesh,Chhindwara,Chhindwara
+MP,Madhya Pradesh,Damoh,Damoh
+MP,Madhya Pradesh,Datia,Datia
+MP,Madhya Pradesh,Dewas,Dewas
+MP,Madhya Pradesh,Dhar,Dhar
+MP,Madhya Pradesh,Dindori,Dindori
+MP,Madhya Pradesh,Guna,Guna
+MP,Madhya Pradesh,Gwalior,Gwalior
+MP,Madhya Pradesh,Harda,Harda
+MP,Madhya Pradesh,Hoshangabad,Hoshangabad
+MP,Madhya Pradesh,Indore,Indore
+MP,Madhya Pradesh,Jabalpur,Jabalpur
+MP,Madhya Pradesh,Jhabua,Jhabua
+MP,Madhya Pradesh,Katni,Katni
+MP,Madhya Pradesh,Khandwa,Khandwa
+MP,Madhya Pradesh,Khargone,Khargone
+MP,Madhya Pradesh,Mandla,Mandla
+MP,Madhya Pradesh,Mandsaur,Mandsaur
+MP,Madhya Pradesh,Morena,Morena
+MP,Madhya Pradesh,Narsinghpur,Narsinghpur
+MP,Madhya Pradesh,Neemuch,Neemuch
+MP,Madhya Pradesh,Panna,Panna
+MP,Madhya Pradesh,Raisen,Raisen
+MP,Madhya Pradesh,Rajgarh,Rajgarh
+MP,Madhya Pradesh,Ratlam,Ratlam
+MP,Madhya Pradesh,Rewa,Rewa
+MP,Madhya Pradesh,Sagar,Sagar
+MP,Madhya Pradesh,Satna,Satna
+MP,Madhya Pradesh,Sehore,Sehore
+MP,Madhya Pradesh,Seoni,Seoni
+MP,Madhya Pradesh,Shahdol,Shahdol
+MP,Madhya Pradesh,Shajapur,Shajapur
+MP,Madhya Pradesh,Sheopur,Sheopur
+MP,Madhya Pradesh,Shivpuri,Shivpuri
+MP,Madhya Pradesh,Sidhi,Sidhi
+MP,Madhya Pradesh,Singrauli,Singrauli
+MP,Madhya Pradesh,Tikamgarh,Tikamgarh
+MP,Madhya Pradesh,Ujjain,Ujjain
+MP,Madhya Pradesh,Umaria,Umaria
+MP,Madhya Pradesh,Vidisha,Vidisha
+MH,Maharashtra,Ahmednagar,Ahmednagar
+MH,Maharashtra,Akola,Akola
+MH,Maharashtra,Amravati,Amravati
+MH,Maharashtra,Aurangabad,Aurangabad
+MH,Maharashtra,Beed,Beed
+MH,Maharashtra,Bhandara,Bhandara
+MH,Maharashtra,Buldhana,Buldhana
+MH,Maharashtra,Chandrapur,Chandrapur
+MH,Maharashtra,Dhule,Dhule
+MH,Maharashtra,Gadchiroli,Gadchiroli
+MH,Maharashtra,Gondia,Gondia
+MH,Maharashtra,Hingoli,Hingoli
+MH,Maharashtra,Jalgaon,Jalgaon
+MH,Maharashtra,Jalna,Jalna
+MH,Maharashtra,Kolhapur,Kolhapur
+MH,Maharashtra,Latur,Latur
+MH,Maharashtra,Mumbai,Mumbai
+MH,Maharashtra,Nagpur,Nagpur
+MH,Maharashtra,Nanded,Nanded
+MH,Maharashtra,Nandurbar,Nandurbar
+MH,Maharashtra,Nashik,Nashik
+MH,Maharashtra,Osmanabad,Osmanabad
+MH,Maharashtra,Palghar,Palghar
+MH,Maharashtra,Parbhani,Parbhani
+MH,Maharashtra,Pune,Pune
+MH,Maharashtra,Raigad,Raigad
+MH,Maharashtra,Ratnagiri,Ratnagiri
+MH,Maharashtra,Sangli,Sangli
+MH,Maharashtra,Satara,Satara
+MH,Maharashtra,Sindhudurg,Sindhudurg
+MH,Maharashtra,Solapur,Solapur
+MH,Maharashtra,Thane,Thane
+MH,Maharashtra,Wardha,Wardha
+MH,Maharashtra,Washim,Washim
+MH,Maharashtra,Yavatmal,Yavatmal
+MN,Manipur,Bishnupur,Bishnupur
+MN,Manipur,Chandel,Chandel
+MN,Manipur,Churachandpur,Churachandpur
+MN,Manipur,Imphal East,Imphal East
+MN,Manipur,Imphal West,Imphal West
+MN,Manipur,Jiribam,Jiribam
+MN,Manipur,Kakching,Kakching
+MN,Manipur,Kamjong,Kamjong
+MN,Manipur,Kangpokpi,Kangpokpi
+MN,Manipur,Noney,Noney
+MN,Manipur,Pherzawl,Pherzawl
+MN,Manipur,Senapati,Senapati
+MN,Manipur,Tamenglong,Tamenglong
+MN,Manipur,Tengnoupal,Tengnoupal
+MN,Manipur,Thoubal,Thoubal
+MN,Manipur,Ukhrul,Ukhrul
+ML,Meghalaya,East Garo Hills,East Garo Hills
+ML,Meghalaya,East Jaintia Hills,East Jaintia Hills
+ML,Meghalaya,East Khasi Hills,East Khasi Hills
+ML,Meghalaya,North Garo Hills,North Garo Hills
+ML,Meghalaya,Ri-Bhoi,Ribhoi
+ML,Meghalaya,South Garo Hills,South Garo Hills
+ML,Meghalaya,South West Garo Hills,South West Garo Hills
+ML,Meghalaya,South West Khasi Hills,South West Khasi Hills
+ML,Meghalaya,West Garo Hills,West Garo Hills
+ML,Meghalaya,West Jaintia Hills,West Jaintia Hills
+ML,Meghalaya,West Khasi Hills,West Khasi Hills
+MZ,Mizoram,Aizawl East,Aizawl
+MZ,Mizoram,Aizawl West,Aizawl
+MZ,Mizoram,Champhai,Champhai
+MZ,Mizoram,Kolasib,Kolasib
+MZ,Mizoram,Lawngtlai,Lawngtlai
+MZ,Mizoram,Lunglei,Lunglei
+MZ,Mizoram,Mamit,Mamit
+MZ,Mizoram,Serchhip,Serchhip
+MZ,Mizoram,Siaha,Saiha
+NL,Nagaland,Dimapur,Dimapur
+NL,Nagaland,Kiphire,Kiphire
+NL,Nagaland,Kohima,Kohima
+NL,Nagaland,Longleng,Longleng
+NL,Nagaland,Mokokchung,Mokokchung
+NL,Nagaland,Mon,Mon
+NL,Nagaland,Peren,Peren
+NL,Nagaland,Phek,Phek
+NL,Nagaland,Tuensang,Tuensang
+NL,Nagaland,Wokha,Wokha
+NL,Nagaland,Zunheboto,Zunheboto
+OR,Odisha,Angul,Angul
+OR,Odisha,Balangir,Balangir
+OR,Odisha,Balasore,Balasore
+OR,Odisha,Bargarh,Bargarh
+OR,Odisha,Bhadrak,Bhadrak
+OR,Odisha,Boudh,Boudh
+OR,Odisha,Cuttack,Cuttack
+OR,Odisha,Deogarh,Deogarh
+OR,Odisha,Dhenkanal,Dhenkanal
+OR,Odisha,Gajapati,Gajapati
+OR,Odisha,Ganjam,Ganjam
+OR,Odisha,Jagatsinghpur,Jagatsinghpur
+OR,Odisha,Jajpur,Jajpur
+OR,Odisha,Jharsuguda,Jharsuguda
+OR,Odisha,Kalahandi,Kalahandi
+OR,Odisha,Kandhamal,Kandhamal
+OR,Odisha,Kendrapara,Kendrapara
+OR,Odisha,Kendujhar,Kendujhar
+OR,Odisha,Khurda,Khordha
+OR,Odisha,Koraput,Koraput
+OR,Odisha,Malkangiri,Malkangiri
+OR,Odisha,Mayurbhanj,Mayurbhanj
+OR,Odisha,Nabarangpur,Nabarangapur
+OR,Odisha,Nayagarh,Nayagarh
+OR,Odisha,Nuapada,Nuapada
+OR,Odisha,Puri,Puri
+OR,Odisha,Rayagada,Rayagada
+OR,Odisha,Sambalpur,Sambalpur
+OR,Odisha,Subarnapur,Subarnapur
+OR,Odisha,Sundargarh,Sundargarh
+PY,Puducherry,Karaikal,Karaikal
+PY,Puducherry,Mahe,Mahe
+PY,Puducherry,Puducherry,Puducherry
+PY,Puducherry,Yanam,Yanam
+PB,Punjab,Amritsar,Amritsar
+PB,Punjab,Barnala,Barnala
+PB,Punjab,Bathinda,Bathinda
+PB,Punjab,Faridkot,Faridkot
+PB,Punjab,Fatehgarh Sahib,Fatehgarh Sahib
+PB,Punjab,Fazilka,Fazilka
+PB,Punjab,Ferozpur,Ferozepur
+PB,Punjab,Gurdaspur,Gurdaspur
+PB,Punjab,Hoshiarpur,Hoshiarpur
+PB,Punjab,Jalandhar,Jalandhar
+PB,Punjab,Kapurthala,Kapurthala
+PB,Punjab,Ludhiana,Ludhiana
+PB,Punjab,Mansa,Mansa
+PB,Punjab,Moga,Moga
+PB,Punjab,Pathankot,Pathankot
+PB,Punjab,Patiala,Patiala
+PB,Punjab,Rup Nagar,Rupnagar
+PB,Punjab,Sangrur,Sangrur
+PB,Punjab,SAS Nagar,S.A.S. Nagar
+PB,Punjab,SBS Nagar,Shahid Bhagat Singh Nagar
+PB,Punjab,Sri Muktsar Sahib,Sri Muktsar Sahib
+PB,Punjab,Tarn Taran,Tarn Taran
+RJ,Rajasthan,Ajmer,Ajmer
+RJ,Rajasthan,Alwar,Alwar
+RJ,Rajasthan,Banswara,Banswara
+RJ,Rajasthan,Baran,Baran
+RJ,Rajasthan,Barmer,Barmer
+RJ,Rajasthan,Bharatpur,Bharatpur
+RJ,Rajasthan,Bhilwara,Bhilwara
+RJ,Rajasthan,Bikaner,Bikaner
+RJ,Rajasthan,Bundi,Bundi
+RJ,Rajasthan,Chittorgarh,Chittorgarh
+RJ,Rajasthan,Churu,Churu
+RJ,Rajasthan,Dausa,Dausa
+RJ,Rajasthan,Dholpur,Dholpur
+RJ,Rajasthan,Dungarpur,Dungarpur
+RJ,Rajasthan,Hanumangarh,Hanumangarh
+RJ,Rajasthan,Jaipur I,Jaipur
+RJ,Rajasthan,Jaipur II,Jaipur
+RJ,Rajasthan,Jaisalmer,Jaisalmer
+RJ,Rajasthan,Jalore,Jalore
+RJ,Rajasthan,Jhalawar,Jhalawar
+RJ,Rajasthan,Jhunjhunu,Jhunjhunu
+RJ,Rajasthan,Jodhpur,Jodhpur
+RJ,Rajasthan,Karauli,Karauli
+RJ,Rajasthan,Kota,Kota
+RJ,Rajasthan,Nagaur,Nagaur
+RJ,Rajasthan,Pali,Pali
+RJ,Rajasthan,Pratapgarh,Pratapgarh
+RJ,Rajasthan,Rajsamand,Rajsamand
+RJ,Rajasthan,Sawai Madhopur,Sawai Madhopur
+RJ,Rajasthan,Sikar,Sikar
+RJ,Rajasthan,Sirohi,Sirohi
+RJ,Rajasthan,Sri Ganganagar,Ganganagar
+RJ,Rajasthan,Tonk,Tonk
+RJ,Rajasthan,Udaipur,Udaipur
+SK,Sikkim,East Sikkim,East Sikkim
+SK,Sikkim,North Sikkim,North Sikkim
+SK,Sikkim,South Sikkim,South Sikkim
+SK,Sikkim,West Sikkim,West Sikkim
+TN,Tamil Nadu,Aranthangi,Pudukkottai
+TN,Tamil Nadu,Ariyalur,Ariyalur
+TN,Tamil Nadu,Attur,Salem
+TN,Tamil Nadu,Chengalpet,Chengalpattu
+TN,Tamil Nadu,Chennai,Chennai
+TN,Tamil Nadu,Cheyyar,Tiruvannamalai
+TN,Tamil Nadu,Coimbatore,Coimbatore
+TN,Tamil Nadu,Cuddalore,Cuddalore
+TN,Tamil Nadu,Dharmapuri,Dharmapuri
+TN,Tamil Nadu,Dindigul,Dindigul
+TN,Tamil Nadu,Erode,Erode
+TN,Tamil Nadu,Kallakurichi,Kallakurichi
+TN,Tamil Nadu,Kanchipuram,Kancheepuram
+TN,Tamil Nadu,Kanyakumari,Kanyakumari
+TN,Tamil Nadu,Karur,Karur
+TN,Tamil Nadu,Kovilpatti,Thoothukkudi
+TN,Tamil Nadu,Krishnagiri,Krishnagiri
+TN,Tamil Nadu,Madurai,Madurai
+TN,Tamil Nadu,Nagapattinam,Nagapattinam
+TN,Tamil Nadu,Namakkal,Namakkal
+TN,Tamil Nadu,Nilgiris,Nilgiris
+TN,Tamil Nadu,Palani,Dindigul
+TN,Tamil Nadu,Paramakudi,Ramanathapuram
+TN,Tamil Nadu,Perambalur,Perambalur
+TN,Tamil Nadu,Poonamallee,Thiruvallur
+TN,Tamil Nadu,Pudukkottai,Pudukkottai
+TN,Tamil Nadu,Ramanathapuram,Ramanathapuram
+TN,Tamil Nadu,Ranipet,Ranipet
+TN,Tamil Nadu,Salem,Salem
+TN,Tamil Nadu,Sivaganga,Sivaganga
+TN,Tamil Nadu,Sivakasi,Virudhunagar
+TN,Tamil Nadu,Tenkasi,Tenkasi
+TN,Tamil Nadu,Thanjavur,Thanjavur
+TN,Tamil Nadu,Theni,Theni
+TN,Tamil Nadu,Thoothukudi (Tuticorin),Thoothukkudi
+TN,Tamil Nadu,Tiruchirappalli,Tiruchirappalli
+TN,Tamil Nadu,Tirunelveli,Tirunelveli
+TN,Tamil Nadu,Tirupattur,Tirupathur
+TN,Tamil Nadu,Tiruppur,Tiruppur
+TN,Tamil Nadu,Tiruvallur,Thiruvallur
+TN,Tamil Nadu,Tiruvannamalai,Tiruvannamalai
+TN,Tamil Nadu,Tiruvarur,Thiruvarur
+TN,Tamil Nadu,Vellore,Vellore
+TN,Tamil Nadu,Viluppuram,Viluppuram
+TN,Tamil Nadu,Virudhunagar,Virudhunagar
+TG,Telangana,Adilabad,Adilabad
+TG,Telangana,Bhadradri Kothagudem,Bhadradri Kothagudem
+TG,Telangana,Hyderabad,Hyderabad
+TG,Telangana,Jagtial,Jagtial
+TG,Telangana,Jangaon,Jangaon
+TG,Telangana,Jayashankar Bhupalpally,Jayashankar Bhupalapally
+TG,Telangana,Jogulamba Gadwal,Jogulamba Gadwal
+TG,Telangana,Kamareddy,Kamareddy
+TG,Telangana,Karimnagar,Karimnagar
+TG,Telangana,Khammam,Khammam
+TG,Telangana,Kumuram Bheem,Komaram Bheem
+TG,Telangana,Mahabubabad,Mahabubabad
+TG,Telangana,Mahabubnagar,Mahabubnagar
+TG,Telangana,Mancherial,Mancherial
+TG,Telangana,Medak,Medak
+TG,Telangana,Medchal,Medchal Malkajgiri
+TG,Telangana,Mulugu,Mulugu
+TG,Telangana,Nagarkurnool,Nagarkurnool
+TG,Telangana,Nalgonda,Nalgonda
+TG,Telangana,Narayanpet,Narayanpet
+TG,Telangana,Nirmal,Nirmal
+TG,Telangana,Nizamabad,Nizamabad
+TG,Telangana,Peddapalli,Peddapalli
+TG,Telangana,Rajanna Sircilla,Rajanna Sircilla
+TG,Telangana,Rangareddy,Ranga Reddy
+TG,Telangana,Sangareddy,Sangareddy
+TG,Telangana,Siddipet,Siddipet
+TG,Telangana,Suryapet,Suryapet
+TG,Telangana,Vikarabad,Vikarabad
+TG,Telangana,Wanaparthy,Wanaparthy
+TG,Telangana,Warangal(Rural),Warangal Rural
+TG,Telangana,Warangal(Urban),Warangal Urban
+TG,Telangana,Yadadri Bhuvanagiri,Yadadri Bhuvanagiri
+TR,Tripura,Dhalai,Dhalai
+TR,Tripura,Gomati,Gomati
+TR,Tripura,Khowai,Khowai
+TR,Tripura,North Tripura,North Tripura
+TR,Tripura,Sepahijala,Sipahijala
+TR,Tripura,South Tripura,South Tripura
+TR,Tripura,Unakoti,Unokoti
+TR,Tripura,West Tripura,West Tripura
+UP,Uttar Pradesh,Agra,Agra
+UP,Uttar Pradesh,Aligarh,Aligarh
+UP,Uttar Pradesh,Ambedkar Nagar,Ambedkar Nagar
+UP,Uttar Pradesh,Amethi,Amethi
+UP,Uttar Pradesh,Amroha,Amroha
+UP,Uttar Pradesh,Auraiya,Auraiya
+UP,Uttar Pradesh,Ayodhya,Ayodhya
+UP,Uttar Pradesh,Azamgarh,Azamgarh
+UP,Uttar Pradesh,Badaun,Budaun
+UP,Uttar Pradesh,Baghpat,Baghpat
+UP,Uttar Pradesh,Bahraich,Bahraich
+UP,Uttar Pradesh,Balarampur,Balrampur
+UP,Uttar Pradesh,Ballia,Ballia
+UP,Uttar Pradesh,Banda,Banda
+UP,Uttar Pradesh,Barabanki,Barabanki
+UP,Uttar Pradesh,Bareilly,Bareilly
+UP,Uttar Pradesh,Basti,Basti
+UP,Uttar Pradesh,Bhadohi,Bhadohi
+UP,Uttar Pradesh,Bijnour,Bijnor
+UP,Uttar Pradesh,Bulandshahr,Bulandshahr
+UP,Uttar Pradesh,Chandauli,Chandauli
+UP,Uttar Pradesh,Chitrakoot,Chitrakoot
+UP,Uttar Pradesh,Deoria,Deoria
+UP,Uttar Pradesh,Etah,Etah
+UP,Uttar Pradesh,Etawah,Etawah
+UP,Uttar Pradesh,Farrukhabad,Farrukhabad
+UP,Uttar Pradesh,Fatehpur,Fatehpur
+UP,Uttar Pradesh,Firozabad,Firozabad
+UP,Uttar Pradesh,Gautam Buddha Nagar,Gautam Buddha Nagar
+UP,Uttar Pradesh,Ghaziabad,Ghaziabad
+UP,Uttar Pradesh,Ghazipur,Ghazipur
+UP,Uttar Pradesh,Gonda,Gonda
+UP,Uttar Pradesh,Gorakhpur,Gorakhpur
+UP,Uttar Pradesh,Hamirpur,Hamirpur
+UP,Uttar Pradesh,Hapur,Hapur
+UP,Uttar Pradesh,Hardoi,Hardoi
+UP,Uttar Pradesh,Hathras,Hathras
+UP,Uttar Pradesh,Jalaun,Jalaun
+UP,Uttar Pradesh,Jaunpur,Jaunpur
+UP,Uttar Pradesh,Jhansi,Jhansi
+UP,Uttar Pradesh,Kannauj,Kannauj
+UP,Uttar Pradesh,Kanpur Dehat,Kanpur Dehat
+UP,Uttar Pradesh,Kanpur Nagar,Kanpur Nagar
+UP,Uttar Pradesh,Kasganj,Kasganj
+UP,Uttar Pradesh,Kaushambi,Kaushambi
+UP,Uttar Pradesh,Kushinagar,Kushinagar
+UP,Uttar Pradesh,Lakhimpur Kheri,Lakhimpur Kheri
+UP,Uttar Pradesh,Lalitpur,Lalitpur
+UP,Uttar Pradesh,Lucknow,Lucknow
+UP,Uttar Pradesh,Maharajganj,Maharajganj
+UP,Uttar Pradesh,Mahoba,Mahoba
+UP,Uttar Pradesh,Mainpuri,Mainpuri
+UP,Uttar Pradesh,Mathura,Mathura
+UP,Uttar Pradesh,Mau,Mau
+UP,Uttar Pradesh,Meerut,Meerut
+UP,Uttar Pradesh,Mirzapur,Mirzapur
+UP,Uttar Pradesh,Moradabad,Moradabad
+UP,Uttar Pradesh,Muzaffarnagar,Muzaffarnagar
+UP,Uttar Pradesh,Pilibhit,Pilibhit
+UP,Uttar Pradesh,Pratapgarh,Pratapgarh
+UP,Uttar Pradesh,Prayagraj,Prayagraj
+UP,Uttar Pradesh,Raebareli,Rae Bareli
+UP,Uttar Pradesh,Rampur,Rampur
+UP,Uttar Pradesh,Saharanpur,Saharanpur
+UP,Uttar Pradesh,Sambhal,Sambhal
+UP,Uttar Pradesh,Sant Kabir Nagar,Sant Kabir Nagar
+UP,Uttar Pradesh,Shahjahanpur,Shahjahanpur
+UP,Uttar Pradesh,Shamli,Shamli
+UP,Uttar Pradesh,Shravasti,Shrawasti
+UP,Uttar Pradesh,Siddharthnagar,Siddharthnagar
+UP,Uttar Pradesh,Sitapur,Sitapur
+UP,Uttar Pradesh,Sonbhadra,Sonbhadra
+UP,Uttar Pradesh,Sultanpur,Sultanpur
+UP,Uttar Pradesh,Unnao,Unnao
+UP,Uttar Pradesh,Varanasi,Varanasi
+UT,Uttarakhand,Almora,Almora
+UT,Uttarakhand,Bageshwar,Bageshwar
+UT,Uttarakhand,Chamoli,Chamoli
+UT,Uttarakhand,Champawat,Champawat
+UT,Uttarakhand,Dehradun,Dehradun
+UT,Uttarakhand,Haridwar,Haridwar
+UT,Uttarakhand,Nainital,Nainital
+UT,Uttarakhand,Pauri Garhwal,Pauri Garhwal
+UT,Uttarakhand,Pithoragarh,Pithoragarh
+UT,Uttarakhand,Rudraprayag,Rudraprayag
+UT,Uttarakhand,Tehri Garhwal,Tehri Garhwal
+UT,Uttarakhand,Udham Singh Nagar,Udham Singh Nagar
+UT,Uttarakhand,Uttarkashi,Uttarkashi
+WB,West Bengal,Alipurduar District,Alipurduar
+WB,West Bengal,Bankura,Bankura
+WB,West Bengal,Basirhat HD (North 24 Parganas),North 24 Parganas
+WB,West Bengal,Birbhum,Birbhum
+WB,West Bengal,Bishnupur HD (Bankura),Bankura
+WB,West Bengal,COOCHBEHAR,Cooch Behar
+WB,West Bengal,Dakshin Dinajpur,Dakshin Dinajpur
+WB,West Bengal,Darjeeling,Darjeeling
+WB,West Bengal,Diamond Harbor HD (S 24 Parganas),South 24 Parganas
+WB,West Bengal,East Bardhaman,Purba Bardhaman
+WB,West Bengal,Hoogly,Hooghly
+WB,West Bengal,Howrah,Howrah
+WB,West Bengal,Jalpaiguri,Jalpaiguri
+WB,West Bengal,Jhargram,Jhargram
+WB,West Bengal,Kalimpong,Kalimpong
+WB,West Bengal,Kolkata,Kolkata
+WB,West Bengal,Malda,Malda
+WB,West Bengal,Murshidabad,Murshidabad
+WB,West Bengal,Nadia,Nadia
+WB,West Bengal,Nandigram HD (East Medinipore),Purba Medinipur
+WB,West Bengal,North 24 Parganas,North 24 Parganas
+WB,West Bengal,Paschim Medinipore,Paschim Medinipur
+WB,West Bengal,Purba Medinipore,Purba Medinipur
+WB,West Bengal,Purulia,Purulia
+WB,West Bengal,Rampurhat HD (Birbhum),Birbhum
+WB,West Bengal,South 24 Parganas,South 24 Parganas
+WB,West Bengal,Uttar Dinajpur,Uttar Dinajpur
+WB,West Bengal,West Bardhaman,Paschim Bardhaman

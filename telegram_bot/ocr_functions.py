@@ -25,7 +25,7 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
     args = Args()
     args.state_code = state_code
     args.page = None
-    args.skip_output = True
+    args.skip_output = False
     args.type = url_type
     args.url = None
     if url_type == 'pdf':
@@ -63,4 +63,3 @@ def run_scraper(bot, chat_id, state_code, url_type, url):
         logging.error(e)
         bot.send_message(chat_id=chat_id, text=e)
         return
-

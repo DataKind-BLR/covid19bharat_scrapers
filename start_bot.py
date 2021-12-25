@@ -1,14 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import os
+import time
+import json
 import logging
 import telegram
+
 from telegram.error import NetworkError, Unauthorized
-import time
 from time import sleep
-import os
 from telegram_bot.entry import entry
-import json
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
@@ -20,6 +21,7 @@ logger = logging.getLogger("Start_Bot")
 
 try:
     COVID_BOT_TOKEN = os.environ["COVID_BOT_TOKEN"]
+    
 except KeyError:
     logger.error("Bot credentials not found in environment")
 try:
@@ -27,17 +29,15 @@ try:
     # print it to a file
     VISIONAPI_TOKEN = os.environ["VISIONAPI_TOKEN"]
     # TODO: Find a better fix 
-    if type(VISIONAPI_TOKEN) is dict:
-        with open("visionapi.json", "w") as f:
-            json.dump(VISIONAPI_TOKEN, f)
-    else:
-        pass
+    print("Creating visionapi.json at : " + os.path.dirname(os.path.realpath(__file__)))
+    with open("visionapi.json", "w") as f:
+        print(VISIONAPI_TOKEN, file=f)
 
 except KeyError:
     logger.error("VisionAPI credentials not found in environment")
 
 # How long the container exist
-LIFESPAN = 7200
+LIFESPAN = 1200
 
 
 def main():
