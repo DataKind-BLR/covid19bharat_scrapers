@@ -476,7 +476,7 @@ tn:
   type: pdf
   url: _inputs/TN.pdf
   config:
-    page: 7
+    page: 9
     start_key: Ariyalur
     end_key: Total
     # end_key: Railway
