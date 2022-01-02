@@ -137,21 +137,36 @@ def hr_format_line(row):
     row[3] = row[3].split('[')[0]
   if '[' in row[4]:
     row[4] = row[4].split('[')[0]
-  if '[' in row[7]:
-    row[7] = row[7].split('[')[0]
   if '[' in row[6]:
     row[6] = row[6].split('[')[0]
-  line = row[1] + "," + row[3] + "," + row[4] + "," + row[6] + "," + row[7] + "\n"
+  #if '[' in row[6]:
+  #  row[6] = row[6].split('[')[0]
+  #line = row[1] + "," + row[3] + "," + row[4] + "," + row[6] + "," + row[7] + "\n"
+  line = row[1] + "," + row[3] + "," + row[4] + "," + row[6] + "\n"
   return line
 
 def pb_format_line(row):
-  return row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "\n"
+  if len(row) == 6:
+    return row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "\n"
+  else:
+    return ''
+
 
 def kl_format_line(row):
   return row[0] + "," + row[1] + "," + row[2] + "\n"
 
+def kld_format_line(row):
+  return row[1] + "," + row[4] + "," + row[5] + "\n"
+
+def kldbl_format_line(row):
+  return row[0] + "," + row[2] + "," + row[3] + "\n"
+
 def ap_format_line(row):
   line = row[1] + "," + row[3] + "," + row[5] + "," + row[6] + "\n"
+  return line
+
+def ct_format_line(row):
+  line = row[1] + "," + row[3] + "," + row[8] + "," + row[11] + "\n"
   return line
 
 def wb_format_line(row):
