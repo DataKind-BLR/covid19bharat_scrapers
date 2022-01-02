@@ -20,9 +20,14 @@ ap:
   cowin_code: 2
   url_sources:
     - https://twitter.com/ArogyaAndhra
-  type: html
   url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+  type: html
+  page: 1
   config:
+    translation: False
+    #start_key: Anantapur
+    #start_key: District
+    #end_key: Total
     columns:
       district_name: Name of the District
       confirmed: Confirmed Cases
@@ -62,9 +67,9 @@ br:
   url: _inputs/br2.jpeg
   config:
     # >>>> for 1st image
-    start_key: अररिया
+    #start_key: अररिया
     # end_key: खगड़िया
-    end_key: शिवहर
+    #end_key: शिवहर
     # >>>> for 2nd image
     # start_key: किशनगंज
     # end_key: वैशाली
@@ -257,6 +262,37 @@ kl:
     start_key: District
     end_key: Total
 
+kld:
+  name: KeralaDeaths
+  state_code: KLD
+  url_sources:
+    - https://twitter.com/CMOKerala
+    - https://dashboard.kerala.gov.in/index.php
+    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
+    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
+  type: pdf
+  url: _inputs/kl.pdf
+  config:
+    page: 6-7
+    start_key: District
+    end_key: Detailed
+
+kldbl:
+  name: KeralaDeathsBacklog
+  state_code: KLDBL
+  url_sources:
+    - https://twitter.com/CMOKerala
+    - https://dashboard.kerala.gov.in/index.php
+    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
+    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
+  type: pdf
+  url: _inputs/kl.pdf
+  config:
+    page: 5
+    start_key: District
+    end_key: Total
+
+
 la:
   name: Ladakh
   state_code: LA
@@ -378,6 +414,7 @@ pb:
   type: image
   url: _inputs/pb3.jpeg
   config:
+    page: 4
     start_key: Ludhiana
     end_key: Total
     translation: False
@@ -494,7 +531,7 @@ ut:
   type: pdf
   url: _inputs/ut.pdf
   config:
-    page: 5
+    page: 2
     start_key: Cases
     end_key: Total
   # type: image
