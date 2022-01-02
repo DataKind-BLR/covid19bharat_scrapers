@@ -150,6 +150,12 @@ def pb_format_line(row):
 def kl_format_line(row):
   return row[0] + "," + row[1] + "," + row[2] + "\n"
 
+def kld_format_line(row):
+  return row[1] + "," + row[4] + "," + row[5] + "\n"
+
+def kldbl_format_line(row):
+  return row[0] + "," + row[2] + "," + row[3] + "\n"
+
 def ap_format_line(row):
   line = row[1] + "," + row[3] + "," + row[5] + "," + row[6] + "\n"
   return line
