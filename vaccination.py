@@ -137,6 +137,9 @@ def get_cowin_state(from_date, to_date, state_codes):
 
         # run for every state
         for state_code in state_codes:
+            if state_code in ['kld', 'kldbl']:
+                break
+
             params = {
                 's_id': states_all[state_code].get('cowin_code'),
                 'd_id': '',
