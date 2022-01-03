@@ -137,9 +137,10 @@ def get_cowin_state(from_date, to_date, state_codes):
 
         # run for every state
         for state_code in state_codes:
-            if state_code in ['kld', 'kldbl']:
-                break
-
+          if ((states_all[state_code].get('state_code') == 'KLD') or (states_all[state_code].get('state_code') == 'KLDBL')):
+            print('Not repeating for: ', states_all[state_code].get('state_code'))
+            continue
+          else:
             params = {
                 's_id': states_all[state_code].get('cowin_code'),
                 'd_id': '',
@@ -197,12 +198,16 @@ def get_cowin_district(from_date, to_date, state_codes):
     published_df = pd.read_csv(COWIN_META) # keep district names from c19b googlesheet & ignore API names
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
-        curr_date_str = curr_date.strftime('%d-%m-%Y')
+        curr_date_str = curr_date.strftime('%d/%m/%Y')
         print('Fetching for {}'.format(curr_date_str))
 
         district_rows = []
         # run for every state
         for state_code in state_codes:
+          if ((states_all[state_code].get('state_code') == 'KLD') or (states_all[state_code].get('state_code') == 'KLDBL')):
+            print('Not repeating for: ', states_all[state_code].get('state_code'))
+            continue
+          else:
             params = {
                 's_id': states_all[state_code].get('cowin_code'),
                 'd_id': '',
