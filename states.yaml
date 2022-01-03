@@ -103,7 +103,6 @@ ct:
     start_key: auto
     end_key: auto
 
-# Merged with Dadra & Nagar Haveli
 dd:
   name: Dadra and Nagar Haveli and Daman and Diu
   state_code: DD
@@ -291,7 +290,6 @@ kldbl:
     page: 5
     start_key: District
     end_key: Total
-
 
 la:
   name: Ladakh
