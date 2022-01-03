@@ -661,7 +661,27 @@ def ka_get_data(opt):
     return districts_data
 
 def kl_get_data(opt):
-  # if opt['type'] == 'html':
+  if opt['type'] == 'html':
+    response = requests.request('GET', opt['url'])
+  soup = BeautifulSoup(response.content, 'html.parser')
+  #table = soup.find('table', {'id': 'wrapper2'}).find_all('tr')
+  table = soup.find("table", {"class": "sortable"})#.find_all('tr')
+  #table = soup.find_all('table')[3]
+  print(table)
+  districts_data = []
+
+  for row in table[1:]:
+    # Ignoring 1st row containing table headers
+    d = row.find_all('td')
+    districts_data.append({
+      'districtName': d[0].get_text(),
+      'confirmed': int(d[1].get_text().strip()),
+      'recovered': int(d[3].get_text().strip()),
+      'deceased': int(d[5].get_text().strip())
+    })
+
+  return districts_data
+
   #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
   #   print('Fetching KL data', opt)
   #   response = requests.request("GET", opt['url'])

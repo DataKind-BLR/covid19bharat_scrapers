@@ -22,7 +22,12 @@ ap:
     - https://twitter.com/ArogyaAndhra
   type: html
   url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+  page: 1
   config:
+    translation: False
+    #start_key: Anantapur
+    #start_key: District
+    #end_key: Total
     columns:
       district_name: Name of the District
       confirmed: Confirmed Cases
@@ -59,15 +64,8 @@ br:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna/media
   type: image
-  url: _inputs/br2.jpeg
+  url: _inputs/br1.jpg
   config:
-    # >>>> for 1st image
-    start_key: अररिया
-    # end_key: खगड़िया
-    end_key: शिवहर
-    # >>>> for 2nd image
-    # start_key: किशनगंज
-    # end_key: वैशाली
     translation: True
 
 ch:
@@ -95,8 +93,8 @@ ct:
   url: _inputs/ct.jpeg
   config:
     translation: True
-    start_key: auto
-    end_key: auto
+    #start_key: auto
+    #end_key: auto
 
 # Merged with Dadra & Nagar Haveli
 dd:
@@ -184,7 +182,7 @@ hr:
   config:
     page: 2
     start_key: Gurugram
-    end_key: Total
+    end_key: Haryana
 
 hp:
   name: Himachal Pradesh
@@ -250,8 +248,8 @@ kl:
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: pdf
-  url: _inputs/kl.pdf
+  type: html
+  url: https://dashboard.kerala.gov.in/covid/daily.php
   config:
     page: 4
     start_key: District
@@ -407,12 +405,12 @@ pb:
   url_sources:
     - https://nhm.punjab.gov.in/media-bulletin_Nov21.htm
     - Ask Rukmini
-  type: image
-  url: _inputs/pb3.jpeg
+  type: pdf
+  url: _inputs/pb.pdf
   config:
+    page: 5,6
     start_key: Ludhiana
     end_key: Total
-    translation: False
 
 py:
   name: Puducherry
@@ -526,7 +524,7 @@ ut:
   type: pdf
   url: _inputs/ut.pdf
   config:
-    page: 5
+    page: 2
     start_key: Cases
     end_key: Total
   # type: image
