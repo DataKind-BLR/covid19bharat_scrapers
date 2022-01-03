@@ -133,8 +133,8 @@ def run(args):
   url_type = args.type
   page = args.page
   skip_output = vars(args)['skip_output']
-  is_verbose = True #vars(args)['verbose']
-  #logging.info('scraper', args.url)
+  is_verbose = vars(args)['verbose']
+  logging.info('scraper', args.url)
 
   # default update skip_output key value
   states_all[state_code].update({ 'skip_output': skip_output })
@@ -184,7 +184,7 @@ if __name__ == '__main__':
   '''
   console = Console(record=True)
   parser = argparse.ArgumentParser()
-  parser.add_argument('-s', '--state_code', type=str, nargs='?', required=True, help=f'provide 2 letter state code. Possible options = {states_all.keys()}')
+  parser.add_argument('-s', '--state_code', type=str, nargs='?', default='all', help=f'provide 2 letter state code. Defaults to all. Possible options = {states_all.keys()}')
   parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
   parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
   parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')

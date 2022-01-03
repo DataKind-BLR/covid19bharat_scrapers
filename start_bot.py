@@ -7,9 +7,9 @@ import json
 import logging
 import telegram
 
-from telegram.error import NetworkError, Unauthorized
 from time import sleep
 from telegram_bot.entry import entry
+from telegram.error import NetworkError, Unauthorized
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",

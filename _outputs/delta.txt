@@ -1,5 +1,0 @@
-Lohit,Arunachal Pradesh,AR,1,Hospitalized
-Namsai,Arunachal Pradesh,AR,1,Hospitalized
-West Kameng,Arunachal Pradesh,AR,1,Hospitalized
-Papum Pare,Arunachal Pradesh,AR,4,Hospitalized
-Tawang,Arunachal Pradesh,AR,1,Recovered

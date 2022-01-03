@@ -37,7 +37,6 @@ def draw_table(data, info, console):
 
 def state_level_delta(name, live_data, console):
     DASHBOARD_URL = 'https://data.covid19bharat.org/csv/latest/state_wise.csv'
-    DASHBOARD_URL = '_inputs/state_wise.csv'
     state_data = pd.read_csv(DASHBOARD_URL).set_index('State').loc[name]
     state_data.index = state_data.index.str.lower()
     state_code = state_data['state_code']
