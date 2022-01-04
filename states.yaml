@@ -271,7 +271,7 @@ kld:
     start_key: District
     end_key: Detailed
 
-klbl:
+kldbl:
   name: KeralaDeathsBacklog
   state_code: KLDBL
   cowin_code: 17

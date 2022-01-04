@@ -663,24 +663,24 @@ def ka_get_data(opt):
 def kl_get_data(opt):
   if opt['type'] == 'html':
     response = requests.request('GET', opt['url'])
-  soup = BeautifulSoup(response.content, 'html.parser')
-  #table = soup.find('table', {'id': 'wrapper2'}).find_all('tr')
-  table = soup.find("table", {"class": "sortable"})#.find_all('tr')
-  #table = soup.find_all('table')[3]
-  print(table)
-  districts_data = []
+    soup = BeautifulSoup(response.content, 'html.parser')
+    #table = soup.find('table', {'id': 'wrapper2'}).find_all('tr')
+    table = soup.find("table", {"class": "sortable"})#.find_all('tr')
+    #table = soup.find_all('table')[3]
+    print(table)
+    districts_data = []
 
-  for row in table[1:]:
-    # Ignoring 1st row containing table headers
-    d = row.find_all('td')
-    districts_data.append({
-      'districtName': d[0].get_text(),
-      'confirmed': int(d[1].get_text().strip()),
-      'recovered': int(d[3].get_text().strip()),
-      'deceased': int(d[5].get_text().strip())
-    })
+    for row in table[1:]:
+      # Ignoring 1st row containing table headers
+      d = row.find_all('td')
+      districts_data.append({
+        'districtName': d[0].get_text(),
+        'confirmed': int(d[1].get_text().strip()),
+        'recovered': int(d[3].get_text().strip()),
+        'deceased': int(d[5].get_text().strip())
+      })
 
-  return districts_data
+    return districts_data
 
   #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
   #   print('Fetching KL data', opt)
@@ -726,7 +726,7 @@ def kl_get_data(opt):
     linesArray = []
     districtDictionary = {}
     districts_data = []
-    print("\n")
+    print("\n***Caution Kerala scrap will always show deltas for that day.\n It is not compared to previous day data in our API. \nEnsure that you are scrapping correct file ;))\n")
 
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
     with open(csv_file, "r") as upFile:
@@ -740,7 +740,10 @@ def kl_get_data(opt):
           print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
           # TODO - append to districts_data
     upFile.close()
-    print("\n")
+    print("\n===>Scrapping Deaths reported\n")
+    os.system("python scrapers.py --state_code KLD --type pdf -u _inputs/kl.pdf")
+    print("\n===>Scrapping BACKLOG Deaths reported\n")
+    os.system("python scrapers.py --state_code KLDBL --type pdf -u _inputs/kl.pdf")
     quit()
     #return districts_data
 
@@ -772,6 +775,7 @@ def kld_get_data(opt):
         print("{},{},,{},Kerala,KL,1,Deceased".format(linesArray[1], gender, linesArray[0].strip().title()))
 
     print('\n---------------------------------------------------------------------\n')
+
     upFile.close()
     quit()
     #return districts_data
