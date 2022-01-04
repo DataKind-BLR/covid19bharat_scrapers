@@ -1618,32 +1618,3 @@ def wb_get_data(opt):
   return districts_data
 
 ## ------------------------ <STATE_CODE>_get_data functions END HERE
-
-
-def vaccination_data(opt):
-  ## TODO - looks like this is vaccination data, not cases
-  print("Date, State, First Dose, Second Dose, Total Doses")
-
-  lookback = int(opt['config']['page']) if len(opt['config']['page']) != 0 else 0
-  for day in range(lookback, -1, -1):
-    today = (datetime.date.today() - datetime.timedelta(days = day)).strftime("%Y-%m-%d")
-    fileName=today+"-at-07-00-AM.pdf"
-
-    read_pdf(opt)
-
-    dadra = {'firstDose': 0, 'secondDose': 0, 'totalDose': 0}
-
-    try:
-      with open("vcm.csv", "r") as upFile:
-        for line in upFile:
-          if "Dadra" in line or "Daman" in line:
-            dadra['firstDose'] += int(line.split(',')[1])
-            dadra['secondDose'] += int(line.split(',')[2])
-            dadra['totalDose'] += int(line.split(',')[3])
-            continue
-          print(today + "," + line, end = "")
-
-      print("{}, DnH, {}, {}, {}".format(today, dadra['firstDose'], dadra['secondDose'], dadra['totalDose']))
-    except FileNotFoundError:
-      print("output.txt missing. Generate through pdf or ocr and rerun.")
-    return dadra

@@ -18,26 +18,15 @@ this file will do the following
 
 #!/usr/bin/python3
 import os
-import re
-import sys
-import csv
 import yaml
-import json
-import urllib
 import logging
-import camelot
 import argparse
-import html5lib
-import requests
-import pdftotext
-from bs4 import BeautifulSoup
+
 from rich.pretty  import pprint
 from rich.console import Console
 from rich.table import Table
-
-from delta_calculator import DeltaCalculator, state_level_delta
-
 from statewise_get_data import *
+from delta_calculator import DeltaCalculator, state_level_delta
 
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
