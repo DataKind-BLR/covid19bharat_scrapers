@@ -740,10 +740,11 @@ def kl_get_data(opt):
           print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
           # TODO - append to districts_data
     upFile.close()
+
     print("\n===>Scrapping Deaths reported\n")
-    os.system("python scrapers.py --state_code KLD --type pdf -u _inputs/kl.pdf")
+    os.system("python scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
     print("\n===>Scrapping BACKLOG Deaths reported\n")
-    os.system("python scrapers.py --state_code KLDBL --type pdf -u _inputs/kl.pdf")
+    os.system("python scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
     quit()
     #return districts_data
 
