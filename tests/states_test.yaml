@@ -1,0 +1,557 @@
+an:
+  name: Andaman and Nicobar Islands
+  state_code: AN
+  cowin_code: 1
+  url_sources:
+    - https://twitter.com/ChetanSanghi
+    - https://twitter.com/Andaman_admin
+    - https://dhs.andaman.gov.in/
+  notes: Need to read PDF / Image manually and enter into google sheets
+  type: pdf
+  url:
+  config:
+    page: 1
+    start_key: 'A & N Islands'
+    end_key: 'Total Deaths'
+
+ap:
+  name: Andhra Pradesh
+  state_code: AP
+  cowin_code: 2
+  url_sources:
+    - https://twitter.com/ArogyaAndhra
+  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+  type: html
+  page: 1
+  config:
+    translation: False
+    #start_key: Anantapur
+    #start_key: District
+    #end_key: Total
+    columns:
+      district_name: Name of the District
+      confirmed: Confirmed Cases
+      recovered: Cured/ Discharged
+      deceased: Deceased
+
+ar:
+  name: Arunachal Pradesh
+  state_code: AR
+  cowin_code: 3
+  url_sources:
+    - https://twitter.com/DirHealth_ArPr
+  type: image
+  url: _inputs/ar.jpeg
+
+as:
+  name: Assam
+  state_code: AS
+  cowin_code: 4
+  url_sources:
+    - https://twitter.com/himantabiswa
+    - https://twitter.com/nhm_assam
+    - https://covid19.assam.gov.in/all-districts/
+  type: image
+  url: _inputs/as.jpeg
+  config:
+    translation: False
+
+br:
+  name: Bihar
+  state_code: BR
+  cowin_code: 5
+  url_sources:
+    - https://twitter.com/BiharHealthDept
+    - https://twitter.com/pib_patna/media
+  type: image
+  url: _inputs/br2.jpeg
+  config:
+    # >>>> for 1st image
+    # start_key: अररिया
+    # end_key: खगड़िया
+    # end_key: शिवहर
+    # >>>> for 2nd image
+    # start_key: किशनगंज
+    # end_key: वैशाली
+    translation: True
+
+ch:
+  name: Chandigarh
+  state_code: CH
+  cowin_code: 6
+  url_sources:
+    - https://twitter.com/ani
+    - https://twitter.com/
+    - http://chdcovid19.in/
+  type: html
+  url: http://chdcovid19.in/
+
+ct:
+  name: Chhattisgarh
+  state_code: CT
+  cowin_code: 7
+  url_sources:
+    - https://twitter.com/HealthCgGov
+    - http://cghealth.nic.in/cghealth17/
+    # pattern
+    # ...MediaBulletin<31><oct><2021>.pdf
+    # - http://cghealth.nic.in/cghealth17/Information/content/CORONA/MediaBulletin31oct2021.pdf
+  type: pdf
+  url: _inputs/ct.jpeg
+  config:
+    page: 2
+    translation: True
+    #start_key: auto
+    end_key: अन्य
+
+dd:
+  name: Dadra and Nagar Haveli and Daman and Diu
+  state_code: DD
+  cowin_code: 37
+  notes: Need to read Image manually and enter into google sheets
+  url_sources:
+    - https://twitter.com/charmieparekh
+    - https://twitter.com/collectordaman
+    - https://twitter.com/rai_saloni
+    - https://twitter.com/diudistrict
+  type: image
+  url: _inputs/dd.jpeg
+  config:
+    translation: False
+
+dn:
+  name: Dadra and Nagar Haveli and Daman and Diu
+  state_code: DN
+  cowin_code: 8
+  lazy: True
+  url_sources:
+    - https://twitter.com/DnhPublicity
+    - https://twitter.com/collectordaman
+    - https://twitter.com/rai_saloni
+    - https://twitter.com/diudistrict
+  type: image
+  url: https://www.mohfw.gov.in/
+  config:
+    translation: False
+
+dh:
+  name: Delhi
+  state_code: DH
+  cowin_code: 9
+  notes: Need to read PDF / Image manually and enter into google sheets
+  url_sources:
+    - https://twitter.com/CMODelhi
+    - https://twitter.com/ani
+    - https://twitter.com/ICMRDELHI
+  type: image
+  url:
+  config:
+    translation: False
+
+ga:
+  name: Goa
+  state_code: GA
+  cowin_code: 10
+  url_sources:
+    - https://twitter.com/DHS_Goa
+    - https://www.goa.gov.in/covid-19/
+  type: html
+  url: https://www.goa.gov.in/covid-19/
+
+gj:
+  name: Gujarat
+  state_code: GJ
+  cowin_code: 11
+  url: https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
+  url_sources:
+    - https://twitter.com/PIBAhmedabad
+    - https://twitter.com/DDNewsGujarati
+    - https://twitter.com/gujhfwdept
+    - https://gujcovid19.gujarat.gov.in/DrillDownCharts.aspx/GetDistDataForLineCovidDisrtict
+  type: html
+  config:
+    columns:
+      district_name: District
+      confirmed: Confirmed Positive Cases
+      recovered: Patients Recovered
+      deceased: Total Deaths
+
+hr:
+  name: Haryana
+  state_code: HR
+  cowin_code: 12
+  url_sources:
+    - https://twitter.com/ani
+    - http://nhmharyana.gov.in/page?id=208
+  # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
+  type: pdf
+  url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
+  config:
+    page: 2
+    start_key: Gurugram
+    end_key: Haryana
+
+hp:
+  name: Himachal Pradesh
+  state_code: HP
+  # cowin_code: 39
+  cowin_code: 13
+  notes: Please crop the image to only show case statistics
+  url_sources:
+    - https://twitter.com/nhm_hp
+  type: image
+  url: _inputs/hp.jpeg
+  config:
+    translation: False
+    # start_key: Bilaspur
+    # end_key: Total
+
+jk:
+  name: Jammu and Kashmir
+  state_code: JK
+  cowin_code: 14
+  url_sources:
+    - https://twitter.com/diprjk
+  type: image
+  url: _inputs/jk.jpeg
+  config:
+    translation: False
+
+jh:
+  name: Jharkhand
+  state_code: JH
+  cowin_code: 15
+  notes: Crop the image properly
+  url_sources:
+    - https://twitter.com/RanchiPIB
+    - https://twitter.com/Fobgumla
+    - https://twitter.com/rnuddkranchi
+  type: image
+  url: _inputs/jh.jpeg
+  config:
+    translation: False
+    start_key: Bokaro
+    end_key: Total
+
+ka:
+  name: Karnataka
+  state_code: KA
+  cowin_code: 16
+  url_sources:
+    - https://covid19.karnataka.gov.in/govt_bulletin/en
+  type: pdf
+  url: _inputs/ka.pdf
+  config:
+    page: 5
+    start_key: Bagalakote
+    end_key: Total
+
+kl:
+  name: Kerala
+  state_code: KL
+  cowin_code: 17
+  url_sources:
+    - https://twitter.com/CMOKerala
+    - https://dashboard.kerala.gov.in/index.php
+    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
+    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
+  type: pdf
+  url: _inputs/kl.pdf
+  config:
+    page: 4
+    start_key: District
+    end_key: Total
+
+kld:
+  name: KeralaDeaths
+  state_code: KLD
+  url_sources:
+    - https://twitter.com/CMOKerala
+    - https://dashboard.kerala.gov.in/index.php
+    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
+    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
+  type: pdf
+  url: _inputs/kl.pdf
+  config:
+    page: 6-7
+    start_key: District
+    end_key: Detailed
+
+kldbl:
+  name: KeralaDeathsBacklog
+  state_code: KLDBL
+  url_sources:
+    - https://twitter.com/CMOKerala
+    - https://dashboard.kerala.gov.in/index.php
+    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
+    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
+  type: pdf
+  url: _inputs/kl.pdf
+  config:
+    page: 5
+    start_key: District
+    end_key: Total
+
+la:
+  name: Ladakh
+  state_code: LA
+  cowin_code: 18
+  url_sources:
+    - https://twitter.com/prasarbharti
+    - http://covid.ladakh.gov.in/#dataInsights
+    - https://twitter.com/DIPR_Leh
+  lazy: True
+  type: html
+  url: https://www.mohfw.gov.in/
+
+ld:
+  name: Lakshadweep
+  state_code: LD
+  cowin_code: 19
+  url_sources:
+    - MoHFW
+  lazy: True
+  type: html
+  url: https://www.mohfw.gov.in/
+
+mh:
+  name: Maharashtra
+  state_code: MH
+  cowin_code: 21
+  url_sources:
+    - https://twitter.com/ani
+    - https://twitter.com/pibmumbai
+    - https://twitter.com/sanjayjog7
+  type: image
+  url:
+  config:
+    translation: False
+    #end_key: Auto
+ml:
+  name: Meghalaya
+  state_code: ML
+  cowin_code: 23
+  url_sources:
+    - https://twitter.com/SangmaConrad
+    - https://twitter.com/ddnewsshillong
+    - https://twitter.com/pibshillong
+    - https://twitter.com/ShillongTimesIn
+  type: html
+  url: https://mbdasankalp.in/auth/local/embed
+
+mn:
+  name: Manipur
+  state_code: MN
+  cowin_code: 22
+  notes: Recovered are mentioned at state level only. Hospitalised and Deceased are mentioned at district level
+  url_sources:
+    - https://twitter.com/imphalrob
+    - https://nrhmmanipur.org/?p=7999
+  type: image
+  url: _inputs/mn.jpeg
+  config:
+    translation: False
+    start_key: Bishnupur
+    end_key: Ukhrul
+
+mp:
+  name: Madhya Pradesh
+  state_code: MP
+  cowin_code: 20
+  url_sources:
+    - https://twitter.com/JansamparkMP
+    - https://twitter.com/healthminmp
+  notes: Read the paragraph text in hindi in the image, it contains district-wise hospitalised cases :(
+  type: image
+  url: _inputs/mp.jpeg
+  config:
+    translation: False
+    start_key: Agar
+    end_key: Khandwa
+
+mz:
+  name: Mizoram
+  state_code: MZ
+  cowin_code: 24
+  url_sources:
+    - https://twitter.com/dipr_mizoram
+  type: image
+  url: _inputs/mz.jpeg
+  config:
+    translation: False
+
+nl:
+  name: Nagaland
+  state_code: NL
+  cowin_code: 25
+  url_sources:
+    - https://twitter.com/pangnyu
+    - https://twitter.com/mygovnagaland
+  type: image
+  url: _inputs/nl.jpeg
+  config:
+    translation: False
+
+or:
+  name: Odisha
+  state_code: OR
+  cowin_code: 26
+  url_sources:
+    - https://twitter.com/HFWOdisha
+    - https://twitter.com/HFWOdisha
+    - https://twitter.com/IPR_Odisha
+    - https://twitter.com/IPR_Odisha
+    - https://health.odisha.gov.in/js/distDtls.js
+  type: html
+  url: https://statedashboard.odisha.gov.in/
+
+pb:
+  name: Punjab
+  state_code: PB
+  cowin_code: 28
+  url_sources:
+    - https://nhm.punjab.gov.in/media-bulletin_Nov21.htm
+    - Ask Rukmini
+  type: pdf
+  url: _inputs/pb.pdf
+  config:
+    page: 5,6
+    start_key: Ludhiana
+    end_key: Total
+
+
+py:
+  name: Puducherry
+  state_code: PY
+  cowin_code: 27
+  lazy: True
+  url_sources:
+    - https://twitter.com/ani
+    - https://covid19dashboard.py.gov.in/Reporting/DateWise
+  type: html
+  url: https://www.mohfw.gov.in/
+
+rj:
+  name: Rajasthan
+  state_code: RJ
+  cowin_code: 29
+  url_sources:
+    - Ask Rukmini S
+  # type: image
+  # url: _inputs/rj.jpeg
+  # config:
+  #   start_key: auto
+  #   end_key: auto
+  #   translation: True
+  type: pdf
+  url: _inputs/rj.pdf
+  config:
+    page: 1,2
+    start_key: AJMER
+    end_key: Total
+
+sk:
+  name: Sikkim
+  state_code: SK
+  cowin_code: 30
+  url_sources:
+    - https://twitter.com/airnews_gangtok
+    - https://twitter.com/sikkimgovt
+  type: image
+  url: _inputs/sk.jpeg
+  notes: Sikkim doesn't provide district wise info, gives for full state
+  config:
+    translation: False
+
+tn:
+  name: Tamil Nadu
+  state_code: TN
+  cowin_code: 31
+  url_sources:
+    - https://twitter.com/ani
+    - https://stopcorona.tn.gov.in/daily-bulletin/
+    - '@TN_Together_AgainstCorona Telegram channel'
+  type: pdf
+  url: _inputs/TN.pdf
+  config:
+    page: 9
+    start_key: Ariyalur
+    end_key: Total
+    # end_key: Railway
+
+tg:
+  name: Telangana
+  state_code: TG
+  cowin_code: 32
+  url_sources:
+    - https://twitter.com/Eatala_Rajender
+    - https://covid19.telangana.gov.in/
+    - https://covid19.telangana.gov.in/announcements/media-bulletins/
+  type: image
+  url: _inputs/tg.jpeg
+  #config:
+    #translation: False
+    #start_key: ADILABAD
+    #end_key: YADADRI
+tr:
+  name: Tripura
+  state_code: TR
+  cowin_code: 33
+  url_sources:
+    - https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
+    - https://twitter.com/HeadlinesTripu2
+    - https://twitter.com/BjpBiplab
+  type: html
+  url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
+
+up:
+  name: Uttar Pradesh
+  state_code: UP
+  cowin_code: 34
+  url_sources:
+    - https://twitter.com/shalabhTOI
+    - https://twitter.com/sengarlive
+    - https://twitter.com/74_alok
+  type: pdf
+  url: _inputs/up.pdf
+  config:
+    translation: True
+    page: 1, 2
+    # start_key: लखनऊ
+    start_key: auto
+    # end_key: उन्नाव
+    end_key: Total
+
+ut:
+  name: Uttarakhand
+  state_code: UT
+  cowin_code: 35
+  url_sources:
+    - https://twitter.com/PIBDehradun
+    - https://twitter.com/ddnews_dehradun
+    - https://health.uk.gov.in/pages/view/154-covid19-health-bulletin-for-uttarakhand-page-11
+  type: pdf
+  url: _inputs/ut.pdf
+  config:
+    page: 2
+    start_key: Cases
+    end_key: Total
+  # type: image
+  # url: _inputs/ut.jpeg
+  # config:
+  #   translation: False
+  #   start_key: Almora
+  #   end_key: Total
+
+wb:
+  name: West Bengal
+  state_code: WB
+  cowin_code: 36
+  url_sources:
+    - https://www.wbhealth.gov.in/pages/corona/bulletin
+  type: pdf
+  url: _inputs/wb.pdf
+  config:
+    page: 2
+    start_key: Alipurduar
+    end_key: TOTAL
