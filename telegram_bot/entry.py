@@ -5,10 +5,10 @@ import telegram
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram_bot.util import build_menu, states_map
-from telegram_bot.ocr_functions import run_scraper, run_scraper2
+from telegram_bot.ocr_functions import run_scraper
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'states.yaml')
-OPT = dict() # global value to store state config options
+# OPT = dict() # global value to store state config options
 logger = logging.getLogger("Bot_Entry")
 
 with open(STATES_YAML, 'r') as stream:
@@ -27,24 +27,29 @@ def entry(bot, update):
         # if this is a reply to the `/start` message, it should contain a state code
         if update.callback_query.message.reply_to_message.text == '/start':
             state_code = update.callback_query.data.lower()
-            OPT = states_all[state_code]
-            logger.info(f"Expecting {OPT['type']} for State Code {OPT['state_code']}")
+            os.environ['ST_CODE'] = state_code
+            opt = states_all[state_code]
+            logger.info(f"Expecting {opt['type']} for State Code {opt['state_code']}")
 
-            if OPT['type'] == 'html':
-                logger.info(f"Running Scraper for HTML. State Code = {OPT['state_code']}")
+            if opt['type'] == 'html':
+                logger.info(f"Running Scraper for HTML. State Code = {opt['state_code']}")
                 # run directly
-                run_scraper2(bot, update.callback_query.message.chat.id, OPT)
-                # run_scraper(bot, update.callback_query.message.chat.id, OPT['state_code'], OPT['type'], states_all[state_code]['url'])
+                run_scraper(bot, update.callback_query.message.chat.id, opt)
             else:
                 # reply back asking for file
                 bot.send_message(
                     chat_id=update.callback_query.message.reply_to_message.chat.id,
-                    text=f"Upload {OPT['type']} for {OPT['name']} from the following sources {OPT['url_sources']}"
+                    text=f"Upload {opt['type']} for {opt['name']} from the following sources {opt['url_sources']}"
                 )
 
     # Is this a direct message?
     if update.message:
         logger.info('Analysing direct message.')
+        st_code  = os.getenv('ST_CODE') or None
+        opt = None
+        if st_code is not None:
+            opt = states_all[st_code]
+
         # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
             logger.info('/start')
@@ -108,7 +113,7 @@ def entry(bot, update):
             # )
             logger.info("Analysing input PDF.")
             # TODO - save datetime stamp with the state_code as file name
-            pdf_path = '/tmp/{}.pdf'.format(OPT['state_code'].lower())
+            pdf_path = '/tmp/{}.pdf'.format(opt['state_code'].lower())
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)
             bot.send_message(
@@ -117,7 +122,6 @@ def entry(bot, update):
                 reply_to_message_id=update.message.message_id
             )
             run_scraper(bot, update.message.chat.id, opt)
-            # run_scraper(bot, update.message.chat.id, OPT['state_code'], 'pdf', pdf_path)
 
         # If the direct message is file type of image
         # TODO accommodate other formats of images like pngs etc or convert any format to jpg
@@ -127,13 +131,13 @@ def entry(bot, update):
                 bot.send_chat_action(
                     chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
                 )
-                print('Analysing input image -', OPT)
+                print('Analysing input image -', opt)
                 if len(update.message.photo) > 0:
                     photo = update.message.photo[-1]
-                    image_path = '/tmp/{}.jpg'.format(OPT['state_code'].lower())
+                    image_path = '/tmp/{}.jpg'.format(opt['state_code'].lower())
                 else:
                     photo = update.message.document
-                    image_path = '/tmp/{}.jpeg'.format(OPT['state_code'].lower())
+                    image_path = '/tmp/{}.jpeg'.format(opt['state_code'].lower())
                 image_file = bot.get_file(photo.file_id)
                 image_file.download()
                 bot.send_message(
@@ -141,7 +145,7 @@ def entry(bot, update):
                     text="Extracting data from Image",
                     reply_to_message_id=update.message.message_id
                 )
-                run_scraper(bot, update.message.chat.id, OPT['state_code'], 'image', image_path)
+                run_scraper(bot, update.message.chat.id, opt)
             except Exception as e:
                 logger.exception(f"Error in image parsing : {e}")
                 bot.send_message(
