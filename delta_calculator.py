@@ -12,6 +12,7 @@ from rich.console import Console
 from rich.table import Table
 
 DELTA_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'delta.txt')
+DELTA_MAPPING = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_meta', 'delta_mapping.meta')
 
 def draw_table(data, info, console):
     table = Table(title=f"{info['name']} last updated data from <data.covid19bharat.org>", title_justify="left", style="bold")
@@ -104,7 +105,7 @@ class DeltaCalculator:
         """
         :return: load data into name_mapping dict
         """
-        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "delta_mapping.meta"), "r", encoding="utf-8") as meta_file:
+        with open(DELTA_MAPPING, "r", encoding="utf-8") as meta_file:
             for line in meta_file:
                 line_array = line.split(',')
                 if line_array[0] not in self.name_mapping:
