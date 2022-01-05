@@ -46,10 +46,6 @@ def entry(bot, update):
     if update.message:
         logger.info('Analysing direct message.')
 
-        # retreive which state was selected first, if none was, ask to select one
-        st_code  = os.getenv('ST_CODE') or None
-        opt = None
-
         # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
             logger.info('/start')
@@ -107,12 +103,17 @@ def entry(bot, update):
 
         # If the direct message is file type of PDF
         elif update.message.document and update.message.document.mime_type == 'application/pdf':
-            logger.info('Received PDF file')
-            # bot.send_chat_action(
-                # chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
-            # )
-            logger.info("Analysing input PDF.")
-            # TODO - save datetime stamp with the state_code as file name
+            st_code = os.getenv('ST_CODE')
+            if st_code is None:
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text="Please select state name first from /start then upload file again.",
+                    reply_to_message_id=update.message.message_id
+                )
+                return
+
+            opt = states_all[st_code.lower()]
+            logger.info('Received PDF file. Analysing input PDF')
             pdf_path = '/tmp/{}.pdf'.format(opt['state_code'].lower())
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)
@@ -126,6 +127,16 @@ def entry(bot, update):
         # If the direct message is file type of image
         # TODO accommodate other formats of images like pngs etc or convert any format to jpg
         elif update.message.photo or (update.message.document and update.message.document.mime_type == 'image/jpeg'):
+            st_code = os.getenv('ST_CODE')
+            if st_code is None:
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text="Please select state name first from /start then upload file again. NOTE: Do not compress the file",
+                    reply_to_message_id=update.message.message_id
+                )
+                return
+
+            opt = states_all[st_code.lower()]
             logger.info('Received image/jpeg/png file')
             try:
                 bot.send_chat_action(

@@ -5,6 +5,7 @@ import logging
 import scrapers
 import telegram
 import colorama
+import argparse
 import traceback
 import subprocess
 
@@ -15,16 +16,17 @@ from telegram_bot.util import states_map
 colorama.init(strip=True)
 CURR_DIR = os.path.abspath('.')
 
+
 def run_scraper(bot, chat_id, opt):
-    args = {}
-    args['state_code'] = opt['state_code']
-    args['page'] = None
-    args['skip_output'] = False
-    args['type'] = opt['type']
-    args['url'] = None
-    args['verbose'] = False
-    if opt['type'] == 'pdf':
-        args['url'] = opt['url']
+    # simulate argparse namespace object
+    args = argparse.Namespace(
+        state_code = opt['state_code'],
+        page = None,
+        skip_output = False,
+        type = opt['type'],
+        url = opt['url'] if opt['type'] == 'pdf' else None,
+        verbose = False
+    )
 
     dash_log_file = "/tmp/bot_html_output.txt"
     dash_err_file = "/tmp/bot_html_err.txt"

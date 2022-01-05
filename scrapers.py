@@ -128,6 +128,9 @@ def fetch_data(st_obj):
         print('no function definition in fn_map for state code {}'.format(st_obj['state_code']))
 
 def run(args):
+    '''
+    :param: <argparse Namespace> - argparse namespace object with configurations
+    '''
     state_code = args.state_code.lower()
     url = args.url
     url_type = args.type
