@@ -170,6 +170,7 @@ def run(args):
       print(f"Delta unchanged.")
 
   console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
+  return delta
 
 if __name__ == '__main__':
   '''
