@@ -8,7 +8,6 @@ from telegram_bot.util import build_menu, states_map
 from telegram_bot.ocr_functions import run_scraper
 
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'states.yaml')
-# OPT = dict() # global value to store state config options
 logger = logging.getLogger("Bot_Entry")
 
 with open(STATES_YAML, 'r') as stream:
@@ -27,13 +26,14 @@ def entry(bot, update):
         # if this is a reply to the `/start` message, it should contain a state code
         if update.callback_query.message.reply_to_message.text == '/start':
             state_code = update.callback_query.data.lower()
+            # as soon as the user selects a state, sate the state code in os environ
             os.environ['ST_CODE'] = state_code
             opt = states_all[state_code]
             logger.info(f"Expecting {opt['type']} for State Code {opt['state_code']}")
 
+            # if the source type is `html` run directly & give output
             if opt['type'] == 'html':
                 logger.info(f"Running Scraper for HTML. State Code = {opt['state_code']}")
-                # run directly
                 run_scraper(bot, update.callback_query.message.chat.id, opt)
             else:
                 # reply back asking for file
@@ -45,10 +45,10 @@ def entry(bot, update):
     # Is this a direct message?
     if update.message:
         logger.info('Analysing direct message.')
+
+        # retreive which state was selected first, if none was, ask to select one
         st_code  = os.getenv('ST_CODE') or None
         opt = None
-        if st_code is not None:
-            opt = states_all[st_code]
 
         # If the direct message is `/start`
         if update.message.text and update.message.text.startswith("/start"):
