@@ -20,8 +20,8 @@ ap:
   cowin_code: 2
   url_sources:
     - https://twitter.com/ArogyaAndhra
-  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
   type: html
+  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
   page: 1
   config:
     translation: False
@@ -64,15 +64,8 @@ br:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna/media
   type: image
-  url: _inputs/br2.jpeg
+  url: _inputs/br1.jpg
   config:
-    # >>>> for 1st image
-    # start_key: अररिया
-    # end_key: खगड़िया
-    # end_key: शिवहर
-    # >>>> for 2nd image
-    # start_key: किशनगंज
-    # end_key: वैशाली
     translation: True
 
 ch:
@@ -96,14 +89,14 @@ ct:
     # pattern
     # ...MediaBulletin<31><oct><2021>.pdf
     # - http://cghealth.nic.in/cghealth17/Information/content/CORONA/MediaBulletin31oct2021.pdf
-  type: pdf
+  type: image
   url: _inputs/ct.jpeg
   config:
-    page: 2
     translation: True
     #start_key: auto
-    end_key: अन्य
+    #end_key: auto
 
+# Merged with Dadra & Nagar Haveli
 dd:
   name: Dadra and Nagar Haveli and Daman and Diu
   state_code: DD
@@ -255,8 +248,8 @@ kl:
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: pdf
-  url: _inputs/kl.pdf
+  type: html
+  url: https://dashboard.kerala.gov.in/covid/daily.php
   config:
     page: 4
     start_key: District
@@ -265,6 +258,7 @@ kl:
 kld:
   name: KeralaDeaths
   state_code: KLD
+  cowin_code: 17
   url_sources:
     - https://twitter.com/CMOKerala
     - https://dashboard.kerala.gov.in/index.php
@@ -280,6 +274,7 @@ kld:
 kldbl:
   name: KeralaDeathsBacklog
   state_code: KLDBL
+  cowin_code: 17
   url_sources:
     - https://twitter.com/CMOKerala
     - https://dashboard.kerala.gov.in/index.php
@@ -322,11 +317,9 @@ mh:
     - https://twitter.com/ani
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
-  type: image
-  url:
-  config:
-    translation: False
-    #end_key: Auto
+  type: html
+  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+
 ml:
   name: Meghalaya
   state_code: ML
@@ -419,7 +412,6 @@ pb:
     start_key: Ludhiana
     end_key: Total
 
-
 py:
   name: Puducherry
   state_code: PY
@@ -474,7 +466,7 @@ tn:
   type: pdf
   url: _inputs/TN.pdf
   config:
-    page: 9
+    page: 7
     start_key: Ariyalur
     end_key: Total
     # end_key: Railway
@@ -489,10 +481,9 @@ tg:
     - https://covid19.telangana.gov.in/announcements/media-bulletins/
   type: image
   url: _inputs/tg.jpeg
-  #config:
-    #translation: False
-    #start_key: ADILABAD
-    #end_key: YADADRI
+  config:
+    translation: False
+
 tr:
   name: Tripura
   state_code: TR
