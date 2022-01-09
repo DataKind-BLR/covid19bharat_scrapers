@@ -7,6 +7,8 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram_bot.util import build_menu, states_map
 from telegram_bot.ocr_functions import run_scraper
 
+DOWNLD_DIR = os.path.join('/', 'tmp')
+# DOWNLD_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'states.yaml')
 logger = logging.getLogger("Bot_Entry")
 
@@ -114,9 +116,12 @@ def entry(bot, update):
 
             opt = states_all[st_code.lower()]
             logger.info('Received PDF file. Analysing input PDF')
-            pdf_path = '/tmp/{}.pdf'.format(opt['state_code'].lower())
+            pdf_path = os.path.join(DOWNLD_DIR, '{}.pdf'.format(opt['state_code'].lower()))
             pdf_file = update.message.document.get_file()
             pdf_file.download(pdf_path)
+
+            # update downloaded file path
+            opt['url'] = pdf_path
             bot.send_message(
                 chat_id=update.message.chat.id,
                 text="Extracting data from PDF",
@@ -145,12 +150,15 @@ def entry(bot, update):
                 print('Analysing input image -', opt)
                 if len(update.message.photo) > 0:
                     photo = update.message.photo[-1]
-                    image_path = '/tmp/{}.jpg'.format(opt['state_code'].lower())
+                    image_path = os.path.join(DOWNLD_DIR, '{}.jpg'.format(opt['state_code'].lower()))
                 else:
                     photo = update.message.document
-                    image_path = '/tmp/{}.jpeg'.format(opt['state_code'].lower())
+                    image_path = os.path.join(DOWNLD_DIR, '{}.jpeg'.format(opt['state_code'].lower()))
+
                 image_file = bot.get_file(photo.file_id)
                 image_file.download()
+
+                opt['url'] = image_path
                 bot.send_message(
                     chat_id=update.message.chat.id,
                     text="Extracting data from Image",
