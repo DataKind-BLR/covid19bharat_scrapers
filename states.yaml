@@ -20,8 +20,10 @@ ap:
   cowin_code: 2
   url_sources:
     - https://twitter.com/ArogyaAndhra
-  type: html
-  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+    - http://hmfw.ap.gov.in/covid_dashboard.aspx
+    - notes If full image fails, clip only table and submit 
+  type: image
+  url: 
   page: 1
   config:
     translation: False
@@ -214,14 +216,15 @@ jh:
   name: Jharkhand
   state_code: JH
   cowin_code: 15
-  notes: Crop the image properly
+  notes: Both pdf and image files are accepted. Crop the image properly
   url_sources:
     - https://twitter.com/RanchiPIB
-    - https://twitter.com/Fobgumla
-    - https://twitter.com/rnuddkranchi
-  type: image
-  url: _inputs/jh.jpeg
+    - http://jrhms.jharkhand.gov.in/covid-19
+    - Look in our telegram Data dump or ask Rukmini
+  type: pdf
+  url: 
   config:
+    page: 1
     translation: False
     start_key: Bokaro
     end_key: Total
@@ -466,7 +469,7 @@ tn:
   type: pdf
   url: _inputs/TN.pdf
   config:
-    page: 7
+    page: 9
     start_key: Ariyalur
     end_key: Total
     # end_key: Railway

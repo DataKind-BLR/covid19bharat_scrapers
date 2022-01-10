@@ -99,6 +99,9 @@ def up_format_line(opt, row, translation_dict):
     # ---->       dist_name,     confirmed,     discharged, cum discharged,   deceased,     cum deceased,    active
     modifiedRow = dist_eng + ',' + row[2] + ',' + row[3] + ',' + row[4] + ',' + row[5] + ',' + row[6] + ',' + row[7] + '\n'
     return modifiedRow
+  elif (("S.No." in row[0].strip()) or ("Total" in row[0].strip()) or ("कोविड" in row[0].strip())):
+    print('')
+    return ''
   else:
     print("--> Issue with {}".format(row[1].strip()))
     return ''
@@ -149,6 +152,12 @@ def hr_format_line(row):
 def pb_format_line(row):
   if len(row) == 6:
     return row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "\n"
+  else:
+    return ''
+
+def jh_format_line(row):
+  if len(row) == 9:
+    return row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6] + "," + row[7] + "," + row[8] + "\n"
   else:
     return ''
 

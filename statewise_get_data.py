@@ -525,33 +525,60 @@ def jh_get_data(opt):
   print('fetching JH data')
   pprint(opt)
 
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
+  if opt['type'] == 'pdf':
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-  try:
-    with open(OUTPUT_TXT, "r") as upFile:
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
       for line in upFile:
-        linesArray = line.split('|')[0].split(',')
-        availableColumns = line.split('|')[1].split(',')
-
+        linesArray = line.split(',')
         if len(linesArray) != 8:
-          print("--> Confirm for {}".format(linesArray))
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
-
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
         districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
         districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
-
         districts_data.append(districtDictionary)
+
     upFile.close()
-  except FileNotFoundError:
-    print("output.txt missing. Generate through pdf or ocr and rerun.")
-  return districts_data
+    return districts_data
+
+  elif opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    try:
+      with open(OUTPUT_TXT, "r") as upFile:
+        for line in upFile:
+          linesArray = line.split('|')[0].split(',')
+          availableColumns = line.split('|')[1].split(',')
+
+          if len(linesArray) != 8:
+            print("--> Confirm for {}".format(linesArray))
+            continue
+
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
+          districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
+          districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
+
+          districts_data.append(districtDictionary)
+      upFile.close()
+    except FileNotFoundError:
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
+    return districts_data
 
 def jk_get_data(opt):
   print('Fetching JK data')
