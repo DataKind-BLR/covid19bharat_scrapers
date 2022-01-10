@@ -8,7 +8,7 @@ an:
     - https://dhs.andaman.gov.in/
   notes: Need to read PDF / Image manually and enter into google sheets
   type: pdf
-  url:
+  url: _inputs/ar.pdf
   config:
     page: 1
     start_key: 'A & N Islands'
