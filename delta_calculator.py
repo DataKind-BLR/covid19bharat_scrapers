@@ -48,7 +48,8 @@ def state_level_delta(name, live_data, console):
     delta = {
         'Hospitalized': live_data[0]['confirmed'] - state_data['confirmed'],
         'Recovered':    live_data[0]['recovered'] - state_data['recovered'],
-        'Deceased':     live_data[0]['deceased']  - state_data['deceased']
+        'Deceased':     live_data[0]['deceased']  - state_data['deceased'],
+        'Migrated_Other':     live_data[0]['migrated']  - state_data['migrated_other']
     }
     
     if list(delta.values()) == [0,0,0]:
@@ -155,6 +156,7 @@ class DeltaCalculator:
         recovered_dist_tot_api = 0
         deceased_dist_tot_current = 0
         deceased_dist_tot_api = 0
+        district_count = 0
         for district_details in live_data:
             district_name = ""
             try:
@@ -191,6 +193,7 @@ class DeltaCalculator:
                 recovered_dist_tot_api = recovered_dist_tot_api + state_data[district_name]['recovered']
                 deceased_dist_tot_current = deceased_dist_tot_current + district_details['deceased']
                 deceased_dist_tot_api = deceased_dist_tot_api + state_data[district_name]['deceased']
+                district_count = district_count + 1
 
             
             except KeyError:
@@ -219,10 +222,12 @@ class DeltaCalculator:
             self.print_full_details(
                 migrated_delta_array, "Migrated_Other", state_name, state_code, districts, color='yellow')
             print('\n')
-            print('------------------------------------------------------------------------')
-            print('Districts Total Current: C = ',confirmed_dist_tot_current,' R = ',recovered_dist_tot_current,' D = ',deceased_dist_tot_current)
-            print('Districts Total API    : C = ', confirmed_dist_tot_api,' R = ',recovered_dist_tot_api,' D = ',deceased_dist_tot_api)
-            print('------------------------------------------------------------------------')
+            print('--------------------------------------------------------------------------------')
+            self.console.print('Districts Total Current: C=',confirmed_dist_tot_current,' R=',\
+                    recovered_dist_tot_current,' D=',deceased_dist_tot_current,' No of Districts=',district_count, style="bold red")
+            self.console.print('Districts Total API    : C=', confirmed_dist_tot_api,' R=',\
+                                recovered_dist_tot_api,' D=',deceased_dist_tot_api, style="green")
+            print('--------------------------------------------------------------------------------')
             print('\n')
 
         if len(error_array) > 0:
