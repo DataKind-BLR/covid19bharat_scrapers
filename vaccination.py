@@ -132,6 +132,9 @@ def get_cowin_state(from_date, to_date, state_codes):
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         curr_date_str = curr_date.strftime('%d/%m/%Y')
+        if curr_date > datetime.datetime.today():
+            break
+
         print('Fetching for {}'.format(curr_date_str))
         district_rows = []
 
@@ -156,12 +159,12 @@ def get_cowin_state(from_date, to_date, state_codes):
                 datum = [
                     curr_date_str, \
                     states_all[state_code].get('name'), \
-                    # 'TEST_districtName', \
                     state_data['topBlock'].get('vaccination')['total'], \
                     state_data['topBlock']['sessions']['total'], \
                     state_data['topBlock']['sites']['total'], \
                     state_data['topBlock']['vaccination']['tot_dose_1'], \
                     state_data['topBlock']['vaccination']['tot_dose_2'], \
+                    # state_data['topBlock']['vaccination'].get('tot_pd'), \
                     state_data['topBlock']['vaccination']['male'], \
                     state_data['topBlock']['vaccination']['female'], \
                     state_data['topBlock']['vaccination']['others'], \
@@ -169,6 +172,7 @@ def get_cowin_state(from_date, to_date, state_codes):
                     state_data['topBlock']['vaccination']['covishield'], \
                     state_data['topBlock']['vaccination'].get('sputnik'), \
                     state_data['topBlock']['vaccination'].get('aefi'), \
+                    # state_data['topBlock']['vaccination'].get('zycov'), \
                     state_data['vaccinationByAge'].get('vac_18_45'), \
                     state_data['vaccinationByAge'].get('vac_45_60'), \
                     state_data['vaccinationByAge'].get('above_60')
@@ -199,6 +203,8 @@ def get_cowin_district(from_date, to_date, state_codes):
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         curr_date_str = curr_date.strftime('%d/%m/%Y')
+        if curr_date > datetime.datetime.today():
+            break
         print('Fetching for {}'.format(curr_date_str))
 
         district_rows = []
@@ -246,6 +252,7 @@ def get_cowin_district(from_date, to_date, state_codes):
                             'Sites': district_data['topBlock'].get('sites').get('total'), \
                             'First Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_1'), \
                             'Second Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_2'), \
+                            # 'Precautionary Dose Administered': district_data['topBlock'].get('vaccination').get('tot_pd'), \
                             'Male(Doses Administered)': district_data['topBlock'].get('vaccination').get('male'), \
                             'Female(Doses Administered)': district_data['topBlock'].get('vaccination').get('female'), \
                             'Transgender(Doses Administered)': district_data['topBlock'].get('vaccination').get('others'), \
