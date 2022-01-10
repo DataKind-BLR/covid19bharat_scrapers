@@ -20,8 +20,10 @@ ap:
   cowin_code: 2
   url_sources:
     - https://twitter.com/ArogyaAndhra
-  type: html
-  url: http://hmfw.ap.gov.in/covid_dashboard.aspx
+    - http://hmfw.ap.gov.in/covid_dashboard.aspx
+    - notes If full image fails, clip only table and submit 
+  type: image
+  url: 
   page: 1
   config:
     translation: False
