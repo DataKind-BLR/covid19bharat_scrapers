@@ -34,6 +34,14 @@ STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.
 
 console = Console(record=True, force_terminal=False)
 
+# read the config file first
+with open(STATES_YAML, 'r') as stream:
+    try:
+        states_all = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
+
+
 def draw_table(data, info):
     table = Table(title=f"{info['name']} data from your current input.", title_justify="left", style="bold")
 
@@ -52,12 +60,6 @@ def draw_table(data, info):
 
     console.print(table, justify="left")
 
-# read the config file first
-with open(STATES_YAML, 'r') as stream:
-    try:
-        states_all = yaml.safe_load(stream)
-    except yaml.YAMLError as exc:
-        print(exc)
 
 def fetch_data(st_obj):
     '''
@@ -120,14 +122,16 @@ def fetch_data(st_obj):
 
 def run(args):
     '''
-    :param: <argparse Namespace> - argparse namespace object with configurations
+    Based on set of configuration dictionary, trigger appropriate scraper for a state
+
+    :param: <dict> - dictionary of configurations (see structure in `states.yaml`)
     '''
-    state_code = args.state_code.lower()
-    url = args.url
-    url_type = args.type
-    page = args.page if 'page' in args else None
-    skip_output = args.skip_output if 'skip_output' in args else False
-    is_verbose = args.verbose if 'verbose' in args else False
+    state_code = args['state_code'].lower()
+    url = args['url']
+    url_type = args['type']
+    page = args['page'] if 'page' in args else None
+    skip_output = args['skip_output'] if 'skip_output' in args else False
+    is_verbose = args['verbose'] if 'verbose' in args else False
 
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
@@ -140,12 +144,19 @@ def run(args):
     if url_type is not None and url is not None:
         # if there's a url & type provided as args, use that
         states_all[state_code].update({
-              'url': url,
-              'type': url_type
+            'url': url,
+            'type': url_type
         })
 
     # always use default `url` & `type` from yaml file
     live_data = fetch_data(states_all[state_code])
+
+    # if there were problem with reading images, return the output file for corrections
+    if 'output.txt' in live_data:
+        with open(live_data, "r") as txt_file:
+            data = txt_file.read()
+        return data
+
     if is_verbose:
         draw_table(live_data, states_all[state_code])
 
@@ -169,6 +180,7 @@ def run(args):
     console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
     return delta
 
+
 if __name__ == '__main__':
     '''
     Example to extract from html dashboard (the url will be taken from states.yaml file by default)
@@ -187,4 +199,4 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbose', action='store_true', help='verbose will print out all the details in a tabular format')
 
     args = parser.parse_args()
-    run(args)
+    run(vars(args))
