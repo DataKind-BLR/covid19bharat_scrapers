@@ -1,5 +1,7 @@
 # Covid19Bharat Scrapers
 
+<img width="2161" alt="covid19bharat" src="https://user-images.githubusercontent.com/7732220/148899680-b2525ab1-3058-406c-9c5a-9fa26ce6ddd0.png">
+
 ### Setup
 
 - If you're using Anaconda to create a virtual environment
