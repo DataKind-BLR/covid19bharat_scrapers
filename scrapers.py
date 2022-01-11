@@ -148,14 +148,21 @@ def run(args):
             'type': url_type
         })
 
-    # always use default `url` & `type` from yaml file
     live_data = fetch_data(states_all[state_code])
 
-    # if there were problem with reading images, return the output file for corrections
-    if 'output.txt' in live_data:
-        with open(live_data, "r") as txt_file:
-            data = txt_file.read()
-        return data
+    # try:
+    #     live_data = fetch_data(states_all[state_code])
+    # except:
+    #     # if fetch_data raised errors, return output as is
+    #     output_file = os.path.join(OUTPUTS_DIR, 'output.txt')
+    #     print('Modify {} file and re-run with the `--skip_output` flag'.format(output_file))
+    #     return output_file
+
+    # # if there were problem with reading images, return the output file for corrections
+    # if 'output.txt' in live_data:
+    #     with open(live_data, "r") as txt_file:
+    #         data = txt_file.read()
+    #     return data
 
     if is_verbose:
         draw_table(live_data, states_all[state_code])

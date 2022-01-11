@@ -46,10 +46,10 @@ def state_level_delta(name, live_data, console):
     draw_table(state_data.to_frame(), {'name': name}, console)
     
     delta = {
-        'Hospitalized': live_data[0]['confirmed'] - state_data['confirmed'],
-        'Recovered':    live_data[0]['recovered'] - state_data['recovered'],
-        'Deceased':     live_data[0]['deceased']  - state_data['deceased'],
-        'Migrated_Other':     live_data[0]['migrated']  - state_data['migrated_other']
+        'Hospitalized':     live_data[0]['confirmed'] - state_data['confirmed'],
+        'Recovered':        live_data[0]['recovered'] - state_data['recovered'],
+        'Deceased':         live_data[0]['deceased']  - state_data['deceased'],
+        'Migrated_Other':   live_data[0]['migrated']  - state_data['migrated_other']
     }
     
     if list(delta.values()) == [0,0,0]:
@@ -146,9 +146,10 @@ class DeltaCalculator:
         error_array = []
 
         # Do a check if the order of the districts in both dataframes are the same, then take a diff
-        self.console.print(f'\nMapping for district names')
-        for (_name,name) in name_mapping.items():
-            self.console.print(f"[dim cyan]{_name}[/] -> [b u cyan]{name}[/]")
+        if is_verbose:
+            self.console.print(f'\nMapping for district names')
+            for (_name,name) in name_mapping.items():
+                self.console.print(f"[dim cyan]{_name}[/] -> [b u cyan]{name}[/]")
             
         confirmed_dist_tot_current = 0
         confirmed_dist_tot_api = 0
@@ -210,7 +211,8 @@ class DeltaCalculator:
                 active_delta_array.append(active_delta)
                 migrated_delta_array.append(migrated_delta)
 
-        if options == "full":
+        # if options == "full":
+        if is_verbose:
             self.clear_delta_file(DELTA_TXT)
             self.console.print('\nDelta statistics\n', style="bold cyan")
             self.print_full_details(

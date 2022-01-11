@@ -127,12 +127,15 @@ def an_get_data(opt):
   return []
 
 def ar_get_data(opt):
-  print('Fetching AR data')
-  pprint(opt)
+  if opt['verbose']:
+    print('Fetching AR data')
+    pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
+  to_correct = []
+  skipped_lines = False
   districts_data = []
   additionalDistrictInfo = {}
   additionalDistrictInfo['districtName'] = 'Papum Pare'
@@ -146,7 +149,10 @@ def ar_get_data(opt):
         continue
 
       linesArray = line.split('|')[0].split(',')
+      to_correct.append(line.split('|')[0])
+
       if len(linesArray) != 14:
+        skipped_lines = True
         print("--> Issue with {}".format(linesArray))
         continue
 
@@ -166,10 +172,15 @@ def ar_get_data(opt):
       districtDictionary['deceased'] = int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
       districts_data.append(districtDictionary)
 
-  upFile.close()
+    upFile.close()
 
   # lastly, add the additional district calculated for `Papum Pare`
   districts_data.append(additionalDistrictInfo)
+
+  if skipped_lines:
+    # return OUTPUT_TXT
+    print('correct this and re-send')
+    print('\n'.join(to_correct))
 
   return districts_data
 
@@ -1426,16 +1437,21 @@ def tg_get_data(opt):
   district_data = []
   if opt['skip_output'] == False:
     run_for_ocr(opt)
-  print('\n')
+
   linesArray = []
   districtDictionary = {}
+  skipped_lines = False
 
+  print('\n\n')
   with open(OUTPUT_TXT, "r") as upFile:
     for line in upFile:
       linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 2:
-        print("\n--> Issue with {}\n".format(linesArray))
+
+      if len(linesArray) != 8:
+        print("--> Issue with {}".format(linesArray))
+        skipped_lines = True
         continue
+
       if linesArray[0].strip().capitalize() == "Ghmc":
         linesArray[0] = "Hyderabad"
 
@@ -1444,13 +1460,17 @@ def tg_get_data(opt):
       districtDictionary['recovered'] = 0
       districtDictionary['deceased'] = 0
       district_data.append(districtDictionary)
+
       if linesArray[1].strip() != '0':
         print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-      
-  print('\n')
+
+  print('\n\n')
   upFile.close()
-  quit()
-  # return district_data
+
+  if skipped_lines:
+    print('\n'.join(linesArray))
+
+  return district_data
 
 def tr_get_data(opt):
   print('fetching TR data')
