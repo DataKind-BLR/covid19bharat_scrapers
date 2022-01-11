@@ -151,23 +151,31 @@ def run(args):
 
     if 'lazy' in states_all[state_code]:
         state_level_delta(states_all[state_code]['name'], live_data, console)
-    else:
-        # TODO - get delta for states
-        dc = DeltaCalculator(console)
-        delta = dc.get_state_data_from_site(
-            states_all[state_code]['name'],
-            live_data,
-            'full',
-            is_verbose
-        )
 
-    if delta:
-        print(f"Delta processing complete. Written to delta.txt")
-    else:
-        print(f"Delta unchanged.")
+    elif (('Assam' == states_all[state_code]['name']) or \
+          ('Telangana' == states_all[state_code]['name']) or \
+          ('Kerala' == states_all[state_code]['name']) or \
+          ('KeralaDeaths' == states_all[state_code]['name']) or \
+          ('KeralaDeathsBacklog' == states_all[state_code]['name'])):
+      print('No delta processing for: ',states_all[state_code]['name'])
 
-    console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
-    return delta
+    else:
+      # TODO - get delta for states
+      dc = DeltaCalculator(console)
+      delta = dc.get_state_data_from_site(
+          states_all[state_code]['name'],
+          live_data,
+          'full',
+          is_verbose
+      )
+
+      if delta:
+          print(f"Delta processing complete. Written to delta.txt")
+      else:
+          print(f"Delta unchanged.")
+
+      console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
+      return delta
 
 if __name__ == '__main__':
     '''

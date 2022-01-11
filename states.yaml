@@ -43,7 +43,7 @@ ar:
   url_sources:
     - https://twitter.com/DirHealth_ArPr
   type: image
-  url: _inputs/ar.jpeg
+  url:
 
 as:
   name: Assam
@@ -54,7 +54,7 @@ as:
     - https://twitter.com/nhm_assam
     - https://covid19.assam.gov.in/all-districts/
   type: image
-  url: _inputs/as.jpeg
+  url:
   config:
     translation: False
 
@@ -66,7 +66,7 @@ br:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna/media
   type: image
-  url: _inputs/br1.jpg
+  url:
   config:
     translation: True
 
@@ -78,8 +78,8 @@ ch:
     - https://twitter.com/ani
     - https://twitter.com/
     - http://chdcovid19.in/
-  type: html
-  url: http://chdcovid19.in/
+  type: image
+  url: 
 
 ct:
   name: Chhattisgarh
@@ -92,7 +92,7 @@ ct:
     # ...MediaBulletin<31><oct><2021>.pdf
     # - http://cghealth.nic.in/cghealth17/Information/content/CORONA/MediaBulletin31oct2021.pdf
   type: image
-  url: _inputs/ct.jpeg
+  url: 
   config:
     translation: True
     #start_key: auto
@@ -110,7 +110,7 @@ dd:
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
   type: image
-  url: _inputs/dd.jpeg
+  url: 
   config:
     translation: False
 
@@ -125,7 +125,7 @@ dn:
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
   type: image
-  url: https://www.mohfw.gov.in/
+  url: 
   config:
     translation: False
 
@@ -150,8 +150,8 @@ ga:
   url_sources:
     - https://twitter.com/DHS_Goa
     - https://www.goa.gov.in/covid-19/
-  type: html
-  url: https://www.goa.gov.in/covid-19/
+  type: image
+  url: 
 
 gj:
   name: Gujarat
@@ -180,7 +180,7 @@ hr:
     - http://nhmharyana.gov.in/page?id=208
   # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
   type: pdf
-  url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
+  url: 
   config:
     page: 2
     start_key: Gurugram
@@ -195,7 +195,7 @@ hp:
   url_sources:
     - https://twitter.com/nhm_hp
   type: image
-  url: _inputs/hp.jpeg
+  url: 
   config:
     translation: False
     # start_key: Bilaspur
@@ -208,7 +208,7 @@ jk:
   url_sources:
     - https://twitter.com/diprjk
   type: image
-  url: _inputs/jk.jpeg
+  url:
   config:
     translation: False
 
@@ -236,7 +236,7 @@ ka:
   url_sources:
     - https://covid19.karnataka.gov.in/govt_bulletin/en
   type: pdf
-  url: _inputs/ka.pdf
+  url: 
   config:
     page: 5
     start_key: Bagalakote
@@ -251,8 +251,8 @@ kl:
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: html
-  url: https://dashboard.kerala.gov.in/covid/daily.php
+  type: pdf
+  url:
   config:
     page: 4
     start_key: District
@@ -268,7 +268,7 @@ kld:
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
-  url: _inputs/kl.pdf
+  url:
   config:
     page: 6-7
     start_key: District
@@ -284,7 +284,7 @@ kldbl:
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
-  url: _inputs/kl.pdf
+  url:
   config:
     page: 5
     start_key: District
@@ -299,8 +299,8 @@ la:
     - http://covid.ladakh.gov.in/#dataInsights
     - https://twitter.com/DIPR_Leh
   lazy: True
-  type: html
-  url: https://www.mohfw.gov.in/
+  type: image
+  url: 
 
 ld:
   name: Lakshadweep
@@ -320,8 +320,8 @@ mh:
     - https://twitter.com/ani
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
-  type: html
-  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+  type: image
+  url: 
 
 ml:
   name: Meghalaya
@@ -344,7 +344,7 @@ mn:
     - https://twitter.com/imphalrob
     - https://nrhmmanipur.org/?p=7999
   type: image
-  url: _inputs/mn.jpeg
+  url: 
   config:
     translation: False
     start_key: Bishnupur
@@ -359,7 +359,7 @@ mp:
     - https://twitter.com/healthminmp
   notes: Read the paragraph text in hindi in the image, it contains district-wise hospitalised cases :(
   type: image
-  url: _inputs/mp.jpeg
+  url: 
   config:
     translation: False
     start_key: Agar
@@ -372,7 +372,7 @@ mz:
   url_sources:
     - https://twitter.com/dipr_mizoram
   type: image
-  url: _inputs/mz.jpeg
+  url: 
   config:
     translation: False
 
@@ -384,7 +384,7 @@ nl:
     - https://twitter.com/pangnyu
     - https://twitter.com/mygovnagaland
   type: image
-  url: _inputs/nl.jpeg
+  url: 
   config:
     translation: False
 
@@ -409,7 +409,7 @@ pb:
     - https://nhm.punjab.gov.in/media-bulletin_Nov21.htm
     - Ask Rukmini
   type: pdf
-  url: _inputs/pb.pdf
+  url: 
   config:
     page: 5,6
     start_key: Ludhiana
@@ -423,8 +423,8 @@ py:
   url_sources:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
-  type: html
-  url: https://www.mohfw.gov.in/
+  type: image
+  url: 
 
 rj:
   name: Rajasthan
@@ -432,14 +432,8 @@ rj:
   cowin_code: 29
   url_sources:
     - Ask Rukmini S
-  # type: image
-  # url: _inputs/rj.jpeg
-  # config:
-  #   start_key: auto
-  #   end_key: auto
-  #   translation: True
   type: pdf
-  url: _inputs/rj.pdf
+  url: 
   config:
     page: 1,2
     start_key: AJMER
@@ -452,9 +446,9 @@ sk:
   url_sources:
     - https://twitter.com/airnews_gangtok
     - https://twitter.com/sikkimgovt
-  type: image
-  url: _inputs/sk.jpeg
-  notes: Sikkim doesn't provide district wise info, gives for full state
+  type: pdf
+  url: 
+  notes: PDF has district info. Todo code
   config:
     translation: False
 
@@ -467,12 +461,11 @@ tn:
     - https://stopcorona.tn.gov.in/daily-bulletin/
     - '@TN_Together_AgainstCorona Telegram channel'
   type: pdf
-  url: _inputs/TN.pdf
+  url: 
   config:
     page: 9
     start_key: Ariyalur
     end_key: Total
-    # end_key: Railway
 
 tg:
   name: Telangana
@@ -483,7 +476,7 @@ tg:
     - https://covid19.telangana.gov.in/
     - https://covid19.telangana.gov.in/announcements/media-bulletins/
   type: image
-  url: _inputs/tg.jpeg
+  url: 
   config:
     translation: False
 
@@ -507,7 +500,7 @@ up:
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
   type: pdf
-  url: _inputs/up.pdf
+  url: 
   config:
     translation: True
     page: 1, 2
@@ -525,17 +518,11 @@ ut:
     - https://twitter.com/ddnews_dehradun
     - https://health.uk.gov.in/pages/view/154-covid19-health-bulletin-for-uttarakhand-page-11
   type: pdf
-  url: _inputs/ut.pdf
+  url: 
   config:
     page: 2
     start_key: Cases
     end_key: Total
-  # type: image
-  # url: _inputs/ut.jpeg
-  # config:
-  #   translation: False
-  #   start_key: Almora
-  #   end_key: Total
 
 wb:
   name: West Bengal
@@ -544,7 +531,7 @@ wb:
   url_sources:
     - https://www.wbhealth.gov.in/pages/corona/bulletin
   type: pdf
-  url: _inputs/wb.pdf
+  url: 
   config:
     page: 2
     start_key: Alipurduar

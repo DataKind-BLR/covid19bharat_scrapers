@@ -124,7 +124,6 @@ class DeltaCalculator:
         :param options:
         :return: print all deltas
         """
-
         state_data = self.covid_dashboard_data[state_name]['district_data']
         state_code = self.covid_dashboard_data[state_name]['state_code']
 
