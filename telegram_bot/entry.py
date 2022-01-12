@@ -131,7 +131,8 @@ def entry(bot, update):
 
         # If the direct message is file type of image
         # TODO accommodate other formats of images like pngs etc or convert any format to jpg
-        elif update.message.photo or (update.message.document and update.message.document.mime_type == 'image/jpeg'):
+        elif update.message.photo or (update.message.document and \
+                                  (update.message.document.mime_type == 'image/jpeg' or update.message.document.mime_type == 'image/png')):
             st_code = os.getenv('ST_CODE')
             if st_code is None:
                 bot.send_message(
@@ -151,12 +152,15 @@ def entry(bot, update):
                 if len(update.message.photo) > 0:
                     photo = update.message.photo[-1]
                     image_path = os.path.join(DOWNLD_DIR, '{}.jpg'.format(opt['state_code'].lower()))
-                else:
+                elif:
                     photo = update.message.document
                     image_path = os.path.join(DOWNLD_DIR, '{}.jpeg'.format(opt['state_code'].lower()))
+                else:
+                    photo = update.message.document
+                    image_path = os.path.join(DOWNLD_DIR, '{}.png'.format(opt['state_code'].lower()))
 
                 image_file = bot.get_file(photo.file_id)
-                image_file.download()
+                image_file.download(image_path)
 
                 opt['url'] = image_path
                 bot.send_message(
