@@ -155,9 +155,6 @@ def entry(bot, update):
                 elif:
                     photo = update.message.document
                     image_path = os.path.join(DOWNLD_DIR, '{}.jpeg'.format(opt['state_code'].lower()))
-                else:
-                    photo = update.message.document
-                    image_path = os.path.join(DOWNLD_DIR, '{}.png'.format(opt['state_code'].lower()))
 
                 image_file = bot.get_file(photo.file_id)
                 image_file.download(image_path)
