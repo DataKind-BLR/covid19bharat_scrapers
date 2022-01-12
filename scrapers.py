@@ -179,6 +179,10 @@ def run(args):
             is_verbose
         )
 
+    if 'calculate_delta' in states_all[state_code]['config'] and\
+        states_all[state_code]['config']['calculate_delta'] == False:
+        print('No delta processing for: {}'.format(states_all[state_code]['name']))
+
     if delta:
         print(f"Delta processing complete. Written to delta.txt")
     else:
