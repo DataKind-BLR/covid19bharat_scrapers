@@ -448,7 +448,9 @@ def printOutput():
             fuzzyDistrict = fuzzyLookup(translationDictionary,districtName)
             translatedValue = translationDictionary[fuzzyDistrict]
           except:
-            print(f"Failed to find lookup for {districtName}")
+            print('-------------------------------------------------------------')
+            print(f"\n====>>Failed to find lookup for {districtName}\n")
+            print('-------------------------------------------------------------')
             continue
 
         outputString = translatedValue

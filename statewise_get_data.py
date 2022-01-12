@@ -360,13 +360,15 @@ def ct_get_data(opt):
     masterColumnList = ""
     masterColumnArray = []
     splitArray = []
+    nColRef = 10
+    print('\nDeaths today column is not scraped if empty. \nThis will throwup issue if there are deaths today showing extra column. Remove that number\n')
     try:
       with open(OUTPUT_TXT, "r") as upFile:
         for line in upFile:
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
-          if len(linesArray) != 10:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          if len(linesArray) != nColRef:
+            print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
             print('--------------------------------------------------------------------------------')
             continue
           if linesArray[0].strip() == "Total":
