@@ -23,18 +23,18 @@ ap:
     - http://hmfw.ap.gov.in/covid_dashboard.aspx
     - notes If full image fails, clip only table and submit
   type: image
-  url:
+  url: _inputs/ap.png
   page: 1
   config:
     translation: False
     #start_key: Anantapur
     #start_key: District
     #end_key: Total
-    columns:
-      district_name: Name of the District
-      confirmed: Confirmed Cases
-      recovered: Cured/ Discharged
-      deceased: Deceased
+    #columns:
+    #  district_name: Name of the District
+    #  confirmed: Confirmed Cases
+    #  recovered: Cured/ Discharged
+    #  deceased: Deceased
 
 ar:
   name: Arunachal Pradesh
@@ -78,8 +78,8 @@ ch:
     - https://twitter.com/ani
     - https://twitter.com/
     - http://chdcovid19.in/
-  type: html
-  url: http://chdcovid19.in/
+  type: image
+  url: _inputs/ch.jpg
 
 ct:
   name: Chhattisgarh
@@ -139,7 +139,7 @@ dh:
     - https://twitter.com/ani
     - https://twitter.com/ICMRDELHI
   type: image
-  url:
+  url: _inputs/dh.jpg
   config:
     translation: False
 
@@ -150,8 +150,8 @@ ga:
   url_sources:
     - https://twitter.com/DHS_Goa
     - https://www.goa.gov.in/covid-19/
-  type: html
-  url: https://www.goa.gov.in/covid-19/
+  type: image
+  url: _inputs/ga.jpg
 
 gj:
   name: Gujarat
@@ -180,7 +180,7 @@ hr:
     - http://nhmharyana.gov.in/page?id=208
   # append (date as dd-mm-yyyy) and file extension (.pdf) for atleast T-1 day to the below url. Eg: append `20-10-2021.pdf`
   type: pdf
-  url: http://nhmharyana.gov.in/WriteReadData/userfiles/file/CoronaVirus/Daily%20Bulletin%20of%20COVID%2019%20as%20on%20
+  url: hr.pdf
   config:
     page: 2
     start_key: Gurugram
@@ -251,8 +251,8 @@ kl:
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: html
-  url: https://dashboard.kerala.gov.in/covid/daily.php
+  type: pdf
+  url: _inputs/kl.pdf
   config:
     page: 4
     start_key: District
@@ -320,8 +320,8 @@ mh:
     - https://twitter.com/ani
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
-  type: html
-  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+  type: image
+  url: _inputs/mh.png
 
 ml:
   name: Meghalaya
@@ -423,8 +423,8 @@ py:
   url_sources:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
-  type: html
-  url: https://www.mohfw.gov.in/
+  type: image
+  url: _inputs/py.jpg
 
 rj:
   name: Rajasthan
@@ -467,7 +467,7 @@ tn:
     - https://stopcorona.tn.gov.in/daily-bulletin/
     - '@TN_Together_AgainstCorona Telegram channel'
   type: pdf
-  url: _inputs/TN.pdf
+  url: _inputs/tn.pdf
   config:
     page: 9
     start_key: Ariyalur
@@ -511,9 +511,7 @@ up:
   config:
     translation: True
     page: 1, 2
-    # start_key: लखनऊ
     start_key: auto
-    # end_key: उन्नाव
     end_key: Total
 
 ut:
