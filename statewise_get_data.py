@@ -729,43 +729,43 @@ def kl_get_data(opt):
 
     return districts_data
 
-  #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
-  #   print('Fetching KL data', opt)
-  #   response = requests.request("GET", opt['url'])
+    #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
+    #   print('Fetching KL data', opt)
+    #   response = requests.request("GET", opt['url'])
 
-  #   # sessionId = (response.headers['Set-Cookie']).split(';')[0].split('=')[1]
+    #   # sessionId = (response.headers['Set-Cookie']).split(';')[0].split('=')[1]
 
-  #   cookies = {
-  #     '_ga': 'GA1.3.594771251.1592531338',
-  #     '_gid': 'GA1.3.674470591.1592531338',
-  #     # 'PHPSESSID': sessionId,
-  #     '_gat_gtag_UA_162482846_1': '1'
-  #   }
+    #   cookies = {
+    #     '_ga': 'GA1.3.594771251.1592531338',
+    #     '_gid': 'GA1.3.674470591.1592531338',
+    #     # 'PHPSESSID': sessionId,
+    #     '_gat_gtag_UA_162482846_1': '1'
+    #   }
 
-  #   headers = {
-  #     'Connection': 'keep-alive',
-  #     'Accept': 'application/json, text/javascript, */*; q=0.01',
-  #     'X-Requested-With': 'XMLHttpRequest',
-  #     'Sec-Fetch-Site': 'same-origin',
-  #     'Sec-Fetch-Mode': 'cors',
-  #     'Sec-Fetch-Dest': 'empty',
-  #     'Referer': 'https://dashboard.kerala.gov.in/index.php',
-  #     'Accept-Language': 'en-US,en;q=0.9'
-  #   }
-  #   stateDashboard = requests.get(opt['url'], headers=headers).json()
+    #   headers = {
+    #     'Connection': 'keep-alive',
+    #     'Accept': 'application/json, text/javascript, */*; q=0.01',
+    #     'X-Requested-With': 'XMLHttpRequest',
+    #     'Sec-Fetch-Site': 'same-origin',
+    #     'Sec-Fetch-Mode': 'cors',
+    #     'Sec-Fetch-Dest': 'empty',
+    #     'Referer': 'https://dashboard.kerala.gov.in/index.php',
+    #     'Accept-Language': 'en-US,en;q=0.9'
+    #   }
+    #   stateDashboard = requests.get(opt['url'], headers=headers).json()
 
-  #   districtArray = []
-  #   for districtDetails in stateDashboard['features']:
-  #     districtDictionary = {}
-  #     districtDictionary['districtName'] = districtDetails['properties']['District']
-  #     districtDictionary['confirmed'] = districtDetails['properties']['covid_stat']
-  #     districtDictionary['recovered'] = districtDetails['properties']['covid_statcured']
-  #     districtDictionary['deceased'] = districtDetails['properties']['covid_statdeath']
-  #     districtArray.append(districtDictionary)
-  #   # deltaCalculator.getStateDataFromSite("Kerala", districtArray, option)
-  #   return districtArray
+    #   districtArray = []
+    #   for districtDetails in stateDashboard['features']:
+    #     districtDictionary = {}
+    #     districtDictionary['districtName'] = districtDetails['properties']['District']
+    #     districtDictionary['confirmed'] = districtDetails['properties']['covid_stat']
+    #     districtDictionary['recovered'] = districtDetails['properties']['covid_statcured']
+    #     districtDictionary['deceased'] = districtDetails['properties']['covid_statdeath']
+    #     districtArray.append(districtDictionary)
+    #   # deltaCalculator.getStateDataFromSite("Kerala", districtArray, option)
+    #   return districtArray
 
-  if opt['type'] == 'pdf':
+  elif opt['type'] == 'pdf':
 
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
@@ -1458,35 +1458,84 @@ def tg_get_data(opt):
   print('Fetching TG data')
   pprint(opt)
 
-  district_data = []
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
-  print('\n')
-  linesArray = []
-  districtDictionary = {}
+  print('\n*** Do Manual entry of Recovered and Deaths\nDistrictwise Hospitalized \n')
+  
+  if opt['type'] == 'pdf':
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
 
-  with open(OUTPUT_TXT, "r") as upFile:
-    for line in upFile:
-      linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 2:
-        print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
-        print('--------------------------------------------------------------------------------')
-        continue
-      if linesArray[0].strip().capitalize() == "Ghmc":
-        linesArray[0] = "Hyderabad"
+    linesArray = []
+    districtDictionary = {}
+    district_data = []
+    ignoreLines = False
+    try:
+      csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+      with open(csv_file, "r") as upFile:
+        for line in upFile:
+          '''
+          if ignoreLines == True:
+            continue
 
-      districtDictionary['districtName'] = linesArray[0].strip().title()
-      districtDictionary['confirmed'] = int(linesArray[1].strip())
-      districtDictionary['recovered'] = 0
-      districtDictionary['deceased'] = 0
-      district_data.append(districtDictionary)
-      if linesArray[1].strip() != '0':
-        print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-      
-  print('\n')
-  upFile.close()
-  #quit()
-  # return district_data
+          if 'Total' in line:
+            ignoreLines = True
+            continue
+          '''
+          linesArray = line.split(',')
+          if len(linesArray) != 2:
+            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+            print('--------------------------------------------------------------------------------')
+            continue
+          if linesArray[0].strip().capitalize() == "Ghmc":
+            linesArray[0] = "Hyderabad"
+
+          districtDictionary['districtName'] = linesArray[0].strip().title()
+          districtDictionary['confirmed'] = int(linesArray[1].strip())
+          districtDictionary['recovered'] = 0
+          districtDictionary['deceased'] = 0
+          #district_data.append(districtDictionary)
+          if linesArray[1].strip() != '0':
+            print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+
+      print('\n')
+      print('\nRecovery & Deaths available at state level file')
+      upFile.close()
+    except FileNotFoundError:
+      print("output.txt missing. Generate through pdf or ocr and rerun.")
+    return district_data
+
+  elif opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
+
+    print('\n')
+    linesArray = []
+    districtDictionary = {}
+    district_data = []
+    ignoreLines = False
+
+    with open(OUTPUT_TXT, "r") as upFile:
+      for line in upFile:
+        linesArray = line.split('|')[0].split(',')
+        if len(linesArray) != 2:
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
+          continue
+        if linesArray[0].strip().capitalize() == "Ghmc":
+          linesArray[0] = "Hyderabad"
+
+        districtDictionary['districtName'] = linesArray[0].strip().title()
+        districtDictionary['confirmed'] = int(linesArray[1].strip())
+        districtDictionary['recovered'] = 0
+        districtDictionary['deceased'] = 0
+        #district_data.append(districtDictionary)
+        if linesArray[1].strip() != '0':
+          print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+        
+    print('\n')
+    print('\nRecovery & Deaths available at state level in Image-1')
+    upFile.close()
+  #return district_data
+
 
 def tr_get_data(opt):
   print('fetching TR data')
@@ -1542,10 +1591,11 @@ def up_get_data(opt):
         # districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
         districts_data.append(districtDictionary)
 
+    print('\n')
     upFile.close()
   except FileNotFoundError:
     print("_outputs/output.txt missing. Generate through pdf or ocr and rerun.")
-  return districts_data
+  #return districts_data
 
 def ut_get_data(opt):
   print('Fetching UT data')

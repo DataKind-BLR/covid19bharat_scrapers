@@ -482,10 +482,13 @@ tg:
     - https://twitter.com/Eatala_Rajender
     - https://covid19.telangana.gov.in/
     - https://covid19.telangana.gov.in/announcements/media-bulletins/
-  type: image
-  url: _inputs/tg.jpeg
+  type: pdf
+  url:
   config:
+    page: 2
     translation: False
+    start_key: ADILABAD
+    end_key: YADADRI
 
 tr:
   name: Tripura

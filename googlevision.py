@@ -430,10 +430,10 @@ def printOutput():
         districtIndex = 0
 #If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
         if(is_number(outputArray[0])):
-          districtName = outputArray[1].strip().capitalize()
+          districtName = outputArray[1].strip()#.capitalize()
           distrinctIndex = 1
         else:
-          districtName = outputArray[0].strip().capitalize()
+          districtName = outputArray[0].strip()#.capitalize()
           distrinctIndex = 0
 
 #Do a lookup for district name, if not found, discard the record and print a message.
