@@ -79,9 +79,14 @@ def read_pdf_from_url(opt):
 
         if opt['config']['start_key'] in line:
           startedReadingDistricts = True
-        if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
-          startedReadingDistricts = False
-          continue
+        if opt['state_code'] != 'TG':
+          if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
+            startedReadingDistricts = False
+            continue
+        elif row[3] == "":
+            startedReadingDistricts = False
+            continue
+
         if startedReadingDistricts == False:
           continue
 
@@ -195,8 +200,14 @@ def tn_format_line(row):
   return line
 
 def tg_format_line(row):
-    line = row[1] + "," + row[2] + "\n"
-    return line
+  #if row[2] != "":
+  line = row[1] + "," + row[2] + "\n"
+  #print(line)
+  return line
+  #elif "YADADRI" in row[2]:
+  #  line = row[1] + "," + row[2] + "\n"
+  #  print(line)
+  #  return line
 
 
 def vaccination_mohfw_format_line(row):

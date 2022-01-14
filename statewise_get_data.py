@@ -1482,16 +1482,16 @@ def tg_get_data(opt):
           '''
           linesArray = line.split(',')
           if len(linesArray) != 2:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+            print("=====> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
             print('--------------------------------------------------------------------------------')
             continue
           if linesArray[0].strip().capitalize() == "Ghmc":
             linesArray[0] = "Hyderabad"
 
-          districtDictionary['districtName'] = linesArray[0].strip().title()
-          districtDictionary['confirmed'] = int(linesArray[1].strip())
-          districtDictionary['recovered'] = 0
-          districtDictionary['deceased'] = 0
+          #districtDictionary['districtName'] = linesArray[0].strip().title()
+          #districtDictionary['confirmed'] = int(linesArray[1].strip())
+          #districtDictionary['recovered'] = 0
+          #districtDictionary['deceased'] = 0
           #district_data.append(districtDictionary)
           if linesArray[1].strip() != '0':
             print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
@@ -1501,7 +1501,7 @@ def tg_get_data(opt):
       upFile.close()
     except FileNotFoundError:
       print("output.txt missing. Generate through pdf or ocr and rerun.")
-    return district_data
+    #return district_data
 
   elif opt['type'] == 'image':
     if opt['skip_output'] == False:
@@ -1517,16 +1517,16 @@ def tg_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
         if len(linesArray) != 2:
-          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print("=====> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
           print('--------------------------------------------------------------------------------')
           continue
         if linesArray[0].strip().capitalize() == "Ghmc":
           linesArray[0] = "Hyderabad"
 
-        districtDictionary['districtName'] = linesArray[0].strip().title()
-        districtDictionary['confirmed'] = int(linesArray[1].strip())
-        districtDictionary['recovered'] = 0
-        districtDictionary['deceased'] = 0
+        #districtDictionary['districtName'] = linesArray[0].strip().title()
+        #districtDictionary['confirmed'] = int(linesArray[1].strip())
+        #districtDictionary['recovered'] = 0
+        #districtDictionary['deceased'] = 0
         #district_data.append(districtDictionary)
         if linesArray[1].strip() != '0':
           print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
@@ -1534,7 +1534,7 @@ def tg_get_data(opt):
     print('\n')
     print('\nRecovery & Deaths available at state level in Image-1')
     upFile.close()
-  #return district_data
+  return district_data
 
 
 def tr_get_data(opt):
