@@ -79,11 +79,7 @@ def read_pdf_from_url(opt):
 
         if opt['config']['start_key'] in line:
           startedReadingDistricts = True
-        if opt['state_code'] != 'TG':
-          if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
-            startedReadingDistricts = False
-            continue
-        elif row[3] == "":
+        if len(opt['config']['end_key']) > 0 and opt['config']['end_key'] in line:
             startedReadingDistricts = False
             continue
 

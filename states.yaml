@@ -487,8 +487,10 @@ tg:
   config:
     page: 2
     translation: False
-    #start_key: ADILABAD
-    #end_key: 
+    #Starting text: Adilabad
+    #Ending text: Yadadri
+    start_key: ADILABAD
+    #end_key: YADADRI BHONIGIR
 
 tr:
   name: Tripura

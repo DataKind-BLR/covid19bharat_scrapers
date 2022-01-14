@@ -1150,7 +1150,9 @@ def nl_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[12])
         districtDictionary['recovered'] = int(linesArray[7])
         districtDictionary['migrated'] = int(linesArray[11])
-        districtDictionary['deceased'] = int(linesArray[8]) if len(re.sub('\n', '', linesArray[8])) != 0 else 0
+        #districtDictionary['deceased'] = int(linesArray[8]) if len(re.sub('\n', '', linesArray[8])) != 0 else 0
+        #NL now has deaths due to other couses as separate column
+        districtDictionary['deceased'] = int(linesArray[8]) + int(linesArray[9])
         districts_data.append(districtDictionary)
 
     upFile.close()
