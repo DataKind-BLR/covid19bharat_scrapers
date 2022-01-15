@@ -156,7 +156,7 @@ def entry(bot, update):
                     image_path = os.path.join(DOWNLD_DIR, '{}.jpeg'.format(opt['state_code'].lower()))
 
                 image_file = bot.get_file(photo.file_id)
-                image_file.download(image_path)
+                image_file.download(image_path, timeout=60)
 
                 opt['url'] = image_path
                 bot.send_message(
