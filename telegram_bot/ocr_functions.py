@@ -24,7 +24,7 @@ def run_scraper(bot, chat_id, opt):
         page = None,
         skip_output = False,
         type = opt['type'],
-        url = opt['url'] if opt['type'] == 'pdf' else None,
+        url = opt['url'] if opt['type'] in ['pdf','image'] else None,
         verbose = False
     )
 
