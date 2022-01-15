@@ -41,7 +41,7 @@ def main():
     start_time = int(time.time())
     formatted_time = time.ctime(start_time)
     logger.info(f"Bot started at {formatted_time}")
-    bot = telegram.Bot(COVID_BOT_TOKEN, )
+    bot = telegram.Bot(COVID_BOT_TOKEN)
 
     while True:
         try:
