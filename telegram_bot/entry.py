@@ -118,7 +118,7 @@ def entry(bot, update):
             logger.info('Received PDF file. Analysing input PDF')
             pdf_path = os.path.join(DOWNLD_DIR, '{}.pdf'.format(opt['state_code'].lower()))
             pdf_file = update.message.document.get_file()
-            pdf_file.download(pdf_path)
+            pdf_file.download(pdf_path, timeout=60)
 
             # update downloaded file path
             opt['url'] = pdf_path
