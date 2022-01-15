@@ -4,6 +4,7 @@ visionapi*.json
 _inputs/*
 _outputs/*
 tmp/*
+file_*.jpg
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
