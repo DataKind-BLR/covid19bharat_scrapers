@@ -363,7 +363,7 @@ mp:
   config:
     translation: False
     start_key: Agar
-    end_key: Khandwa
+    #end_key: Khandwa
 
 mz:
   name: Mizoram

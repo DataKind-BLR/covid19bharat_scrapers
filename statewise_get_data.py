@@ -1070,6 +1070,9 @@ def mp_get_data(opt):
   linesArray = []
   districtDictionary = {}
   districts_data = []
+  nColRef = 8
+  print('\n')
+  
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       isIgnoreFlagSet = False
@@ -1078,14 +1081,15 @@ def mp_get_data(opt):
         if 'Total' in line or isIgnoreFlagSet == True:
           isIgnoreFlagSet = True
           print("--> Ignoring {} ".format(line))
-        if len(linesArray) != 8:
-          print("--> Ignoring due to invalid length: {}".format(linesArray))
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
         districtDictionary = {}
         try:
-          if is_number(linesArray[0].strip()):
-            print("--> Ignoring: {}".format(linesArray))
-            continue
+          #if is_number(linesArray[0].strip()):
+          #  print("--> Ignoring: {}".format(linesArray))
+          #  continue
 
           districtDictionary['districtName'] = linesArray[0].strip().title()
           districtDictionary['confirmed'] = int(linesArray[2])
