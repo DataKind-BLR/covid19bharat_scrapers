@@ -1,8 +1,6 @@
 # Custom files
 run_me_first.sh
 visionapi*.json
-_inputs/*
-_outputs/*
 tmp/*
 file_*.jpg
 
