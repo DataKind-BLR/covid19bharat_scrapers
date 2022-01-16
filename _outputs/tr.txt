@@ -1,0 +1,11 @@
+
+********** Computing Delta for Tripura **********
+
+Mapping for district names
+Sepahijala -> Sipahijala
+Unakoti -> Unokoti
+
+Delta statistics
+
+Districts Total Current: C= 85933  R= 84238  D= 827  No of Districts= 8
+Districts Total API    : C= 85933  R= 84238  D= 827

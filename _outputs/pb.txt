@@ -1,0 +1,12 @@
+
+********** Computing Delta for Punjab **********
+
+Mapping for district names
+SBS Nagar -> Shahid Bhagat Singh Nagar
+Muktsar -> Sri Muktsar Sahib
+FG Sahib -> Fatehgarh Sahib
+SAS Nagar -> S.A.S. Nagar
+Ropar -> Rupnagar
+
+Delta statistics
+

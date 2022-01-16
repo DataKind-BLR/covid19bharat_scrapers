@@ -1,0 +1,47 @@
+Nagaland data from your current input.                                                                                                                                            
+┏━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                 
+┃ district   ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                 
+┡━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                 
+│ Dimapur    │     14775 │     13572 │      414 │                                                                                                                                 
+│ Longleng   │       307 │       287 │        0 │                                                                                                                                 
+│ Mokokchung │      2357 │      2202 │       55 │                                                                                                                                 
+│ Tuensang   │      1100 │      1083 │       13 │                                                                                                                                 
+│ Zunheboto  │       624 │       594 │       15 │                                                                                                                                 
+│ TOTAL      │     31997 │     30088 │      676 │                                                                                                                                 
+└────────────┴───────────┴───────────┴──────────┘                                                                                                                                 
+Nagaland last updated data from <data.covid19bharat.org>                                                                                                                          
+┏━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                       
+┃ district   ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                       
+┡━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                       
+│ Others     │         0 │         0 │        0 │              0 │      0 │                                                                                                       
+│ Dimapur    │     14769 │     13567 │      425 │            689 │     88 │                                                                                                       
+│ Kiphire    │       262 │       246 │        9 │              1 │      6 │                                                                                                       
+│ Kohima     │      9481 │      9129 │      124 │            202 │     26 │                                                                                                       
+│ Longleng   │       307 │       287 │        2 │             18 │      0 │                                                                                                       
+│ Mokokchung │      2343 │      2200 │       55 │             62 │     26 │                                                                                                       
+│ Mon        │      1159 │      1124 │       14 │             17 │      4 │                                                                                                       
+│ Peren      │       922 │       899 │        6 │             15 │      2 │                                                                                                       
+│ Phek       │       604 │       575 │       18 │              9 │      2 │                                                                                                       
+│ Tuensang   │      1098 │      1079 │       13 │              3 │      3 │                                                                                                       
+│ Wokha      │       405 │       373 │       11 │             16 │      5 │                                                                                                       
+│ Zunheboto  │       624 │       594 │       15 │             11 │      4 │                                                                                                       
+│ Unknown    │         0 │         0 │        0 │              0 │      0 │                                                                                                       
+└────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                       
+
+********** Computing Delta for Nagaland **********
+
+Mapping for district names
+
+Delta statistics
+
+Dimapur,Nagaland,NL,6,Hospitalized
+Mokokchung,Nagaland,NL,14,Hospitalized
+Tuensang,Nagaland,NL,2,Hospitalized
+Dimapur,Nagaland,NL,5,Recovered
+Mokokchung,Nagaland,NL,2,Recovered
+Tuensang,Nagaland,NL,4,Recovered
+Dimapur,Nagaland,NL,-11,Deceased
+Longleng,Nagaland,NL,-2,Deceased
+Dimapur,Nagaland,NL,3,Migrated_Other
+Mokokchung,Nagaland,NL,3,Migrated_Other
+--> ERROR: Failed to find key mapping for district: TOTAL, state: Nagaland

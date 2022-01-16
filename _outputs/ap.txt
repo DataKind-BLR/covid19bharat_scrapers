@@ -1,0 +1,17 @@
+
+********** Computing Delta for Andhra Pradesh **********
+
+Mapping for district names
+Kadapa -> Y.S.R. Kadapa
+YSR Kadapa -> Y.S.R. Kadapa
+Nellore -> S.P.S. Nellore
+lOther States * -> Other State
+lOther Countries ** -> Foreign Evacuees
+Other States * -> Other State
+Other Countries ** -> Foreign Evacuees
+Other States -> Other State
+Other Countries -> Foreign Evacuees
+Ananthapur -> Anantapur
+
+Delta statistics
+

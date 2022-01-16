@@ -1,0 +1,17 @@
+Puducherry data from your current input.                                                                                                                                          
+┏━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                 
+┃ district   ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                 
+┡━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                 
+│ Puducherry │    129028 │    126855 │     1874 │                                                                                                                                 
+└────────────┴───────────┴───────────┴──────────┘                                                                                                                                 
+Puducherry last updated data from <data.covid19bharat.org>                                                                                                                        
+┏━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                       
+┃ district   ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                       
+┡━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                       
+│ Puducherry │    128998 │    126826 │     1873 │              0 │    299 │                                                                                                       
+└────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                       
+Puducherry,PY,30,Hospitalized
+Puducherry,PY,29,Recovered
+Puducherry,PY,1,Deceased
+
+Delta Processing complete.

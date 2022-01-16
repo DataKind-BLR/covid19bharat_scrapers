@@ -1,0 +1,84 @@
+Haryana data from your current input.                                                                                                                                             
+┏━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                              
+┃ district      ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                              
+┡━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                              
+│ Gurugram      │    182053 │    180988 │      926 │                                                                                                                              
+│ Faridabad     │    100046 │     99288 │      717 │                                                                                                                              
+│ Hisar         │     54002 │     52865 │     1137 │                                                                                                                              
+│ Sonepat       │     47146 │     46891 │      254 │                                                                                                                              
+│ Karnal        │     40068 │     39497 │      554 │                                                                                                                              
+│ Panipat       │     31160 │     30517 │      638 │                                                                                                                              
+│ Panchkula     │     30927 │     30493 │      381 │                                                                                                                              
+│ Ambala        │     30165 │     29646 │      509 │                                                                                                                              
+│ Sirsa         │     29304 │     28788 │      509 │                                                                                                                              
+│ Rohtak        │     25923 │     25371 │      534 │                                                                                                                              
+│ Yamunanagar   │     24664 │     24242 │      414 │                                                                                                                              
+│ Bhiwani       │     22412 │     21758 │      652 │                                                                                                                              
+│ Kurukshetra   │     22165 │     21803 │      357 │                                                                                                                              
+│ Mahindergarh  │     21689 │     21534 │      155 │                                                                                                                              
+│ Jind          │     21210 │     20677 │      533 │                                                                                                                              
+│ Rewari        │     20330 │     20108 │      221 │                                                                                                                              
+│ Jhajjar       │     18853 │     18516 │      328 │                                                                                                                              
+│ Fatehabad     │     17880 │     17398 │      482 │                                                                                                                              
+│ Kaithal       │     11251 │     10904 │      346 │                                                                                                                              
+│ Palwal        │     11031 │     10877 │      153 │                                                                                                                              
+│ Charkhi Dadri │      5079 │      4940 │      139 │                                                                                                                              
+│ Nuh           │      5014 │      4891 │      123 │                                                                                                                              
+└───────────────┴───────────┴───────────┴──────────┘                                                                                                                              
+Haryana last updated data from <data.covid19bharat.org>                                                                                                                           
+┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                 
+┃ district         ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                 
+┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                 
+│ Foreign Evacuees │         0 │         0 │        0 │              0 │      0 │                                                                                                 
+│ Ambala           │     30163 │     29646 │      509 │              0 │      8 │                                                                                                 
+│ Bhiwani          │     22412 │     21758 │      652 │              0 │      2 │                                                                                                 
+│ Charkhi Dadri    │      5079 │      4940 │      139 │              0 │      0 │                                                                                                 
+│ Faridabad        │    100043 │     99286 │      717 │              0 │     40 │                                                                                                 
+│ Fatehabad        │     17880 │     17398 │      482 │              0 │      0 │                                                                                                 
+│ Gurugram         │    182025 │    180969 │      926 │              0 │    130 │                                                                                                 
+│ Hisar            │     54002 │     52865 │     1137 │              0 │      0 │                                                                                                 
+│ Italians         │         0 │         0 │        0 │              0 │      0 │                                                                                                 
+│ Jhajjar          │     18852 │     18516 │      328 │              0 │      8 │                                                                                                 
+│ Jind             │     21210 │     20677 │      533 │              0 │      0 │                                                                                                 
+│ Kaithal          │     11251 │     10903 │      346 │              0 │      2 │                                                                                                 
+│ Karnal           │     40068 │     39497 │      554 │              0 │     17 │                                                                                                 
+│ Kurukshetra      │     22163 │     21803 │      357 │              0 │      3 │                                                                                                 
+│ Mahendragarh     │     21689 │     21534 │      155 │              0 │      0 │                                                                                                 
+│ Nuh              │      5014 │      4891 │      123 │              0 │      0 │                                                                                                 
+│ Palwal           │     11031 │     10877 │      153 │              0 │      1 │                                                                                                 
+│ Panchkula        │     30921 │     30490 │      381 │              0 │     50 │                                                                                                 
+│ Panipat          │     31158 │     30517 │      638 │              0 │      3 │                                                                                                 
+│ Rewari           │     20330 │     20108 │      221 │              0 │      1 │                                                                                                 
+│ Rohtak           │     25923 │     25371 │      534 │              0 │     18 │                                                                                                 
+│ Sirsa            │     29303 │     28788 │      509 │              0 │      6 │                                                                                                 
+│ Sonipat          │     47146 │     46891 │      254 │              0 │      1 │                                                                                                 
+│ Yamunanagar      │     24663 │     24241 │      414 │              0 │      8 │                                                                                                 
+│ Unknown          │         0 │         0 │        0 │              0 │      0 │                                                                                                 
+└──────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                 
+
+********** Computing Delta for Haryana **********
+
+Mapping for district names
+Foreign returnee (USA) -> Foreign Evacuees
+Charkhi -> Charkhi Dadri
+CharkhiDadri -> Charkhi Dadri
+Sonepat -> Sonipat
+Mohindergarh -> Mahendragarh
+Mahindergarh -> Mahendragarh
+
+Delta statistics
+
+Gurugram,Haryana,HR,28,Hospitalized
+Faridabad,Haryana,HR,3,Hospitalized
+Panipat,Haryana,HR,2,Hospitalized
+Panchkula,Haryana,HR,6,Hospitalized
+Ambala,Haryana,HR,2,Hospitalized
+Sirsa,Haryana,HR,1,Hospitalized
+Yamunanagar,Haryana,HR,1,Hospitalized
+Kurukshetra,Haryana,HR,2,Hospitalized
+Jhajjar,Haryana,HR,1,Hospitalized
+Gurugram,Haryana,HR,19,Recovered
+Faridabad,Haryana,HR,2,Recovered
+Panchkula,Haryana,HR,3,Recovered
+Yamunanagar,Haryana,HR,1,Recovered
+Kaithal,Haryana,HR,1,Recovered

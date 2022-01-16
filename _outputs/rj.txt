@@ -1,0 +1,63 @@
+
+********** Computing Delta for Rajasthan **********
+
+Mapping for district names
+S. Madhopur -> Sawai Madhopur
+Other State / Country -> Other State
+Other State/ Country -> Other State
+Other State/Country -> Other State
+S.Madhopur -> Sawai Madhopur
+
+Delta statistics
+
+Ajmer,Rajasthan,RJ,-128,Hospitalized
+Alwar,Rajasthan,RJ,-375,Hospitalized
+Banswara,Rajasthan,RJ,-48,Hospitalized
+Barmer,Rajasthan,RJ,-234,Hospitalized
+Bharatpur,Rajasthan,RJ,-80,Hospitalized
+Bhilwara,Rajasthan,RJ,-95,Hospitalized
+Bikaner,Rajasthan,RJ,-201,Hospitalized
+Bundi,Rajasthan,RJ,-6,Hospitalized
+Chittorgarh,Rajasthan,RJ,-180,Hospitalized
+Churu,Rajasthan,RJ,-17,Hospitalized
+Dausa,Rajasthan,RJ,-59,Hospitalized
+Dholpur,Rajasthan,RJ,-11,Hospitalized
+Dungarpur,Rajasthan,RJ,-23,Hospitalized
+Ganganagar,Rajasthan,RJ,-56,Hospitalized
+Hanumangarh,Rajasthan,RJ,-47,Hospitalized
+Jaipur,Rajasthan,RJ,-2749,Hospitalized
+Jaisalmer,Rajasthan,RJ,-48,Hospitalized
+Jhalawar,Rajasthan,RJ,-62,Hospitalized
+Jhunjhunu,Rajasthan,RJ,-29,Hospitalized
+Jodhpur,Rajasthan,RJ,-601,Hospitalized
+Kota,Rajasthan,RJ,-325,Hospitalized
+Nagaur,Rajasthan,RJ,-17,Hospitalized
+Pali,Rajasthan,RJ,-41,Hospitalized
+Pratapgarh,Rajasthan,RJ,-22,Hospitalized
+Sawai Madhopur,Rajasthan,RJ,-45,Hospitalized
+Sikar,Rajasthan,RJ,-173,Hospitalized
+Sirohi,Rajasthan,RJ,-81,Hospitalized
+Tonk,Rajasthan,RJ,-18,Hospitalized
+Udaipur,Rajasthan,RJ,-324,Hospitalized
+Ajmer,Rajasthan,RJ,-17,Recovered
+Alwar,Rajasthan,RJ,-16,Recovered
+Banswara,Rajasthan,RJ,-1,Recovered
+Barmer,Rajasthan,RJ,-1,Recovered
+Bhilwara,Rajasthan,RJ,-6,Recovered
+Bikaner,Rajasthan,RJ,-2,Recovered
+Chittorgarh,Rajasthan,RJ,-1,Recovered
+Dausa,Rajasthan,RJ,-4,Recovered
+Ganganagar,Rajasthan,RJ,-4,Recovered
+Hanumangarh,Rajasthan,RJ,-2,Recovered
+Jaipur,Rajasthan,RJ,-192,Recovered
+Jhalawar,Rajasthan,RJ,-5,Recovered
+Jhunjhunu,Rajasthan,RJ,-1,Recovered
+Jodhpur,Rajasthan,RJ,-185,Recovered
+Kota,Rajasthan,RJ,-11,Recovered
+Pratapgarh,Rajasthan,RJ,-6,Recovered
+Sikar,Rajasthan,RJ,-2,Recovered
+Sirohi,Rajasthan,RJ,-5,Recovered
+Udaipur,Rajasthan,RJ,-11,Recovered
+Jaipur,Rajasthan,RJ,-2,Deceased
+Districts Total Current: C= 975840  R= 947440  D= 8933  No of Districts= 33
+Districts Total API    : C= 981935  R= 947912  D= 8935

@@ -1,0 +1,106 @@
+Bihar data from your current input.                                                                                                                                               
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                             
+┃ district       ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                             
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                             
+│ Araria         │     14979 │     14840 │      116 │                                                                                                                             
+│ Arwal          │      7381 │      7272 │       74 │                                                                                                                             
+│ Banka          │      7379 │      7267 │      112 │                                                                                                                             
+│ Begusarai      │     27215 │     26654 │      457 │                                                                                                                             
+│ Bhojpur        │     10210 │      9972 │      159 │                                                                                                                             
+│ Gaya           │     33953 │     33589 │      280 │                                                                                                                             
+│ Gopalganj      │     16689 │     16432 │       94 │                                                                                                                             
+│ Jamui          │      9418 │      9300 │      106 │                                                                                                                             
+│ Jehanabad      │     10784 │     10540 │      109 │                                                                                                                             
+│ Katihar        │     18146 │     17878 │       94 │                                                                                                                             
+│ Khagaria       │     10054 │      9900 │       88 │                                                                                                                             
+│ Kishanganj     │     10138 │     10030 │       66 │                                                                                                                             
+│ Lakhisarai     │      7778 │      7676 │      102 │                                                                                                                             
+│ Madhepura      │     12547 │     12436 │      111 │                                                                                                                             
+│ Madhubani      │     18365 │     17978 │      339 │                                                                                                                             
+│ Munger         │     15112 │     14840 │      158 │                                                                                                                             
+│ Muzaffarpur    │     31403 │     30781 │      621 │                                                                                                                             
+│ Nalanda        │     23434 │     22966 │      468 │                                                                                                                             
+│ Nawada         │     10353 │     10098 │      178 │                                                                                                                             
+│ West Champaran │     20890 │     20497 │      358 │                                                                                                                             
+│ East Champaran │     19021 │     18495 │      430 │                                                                                                                             
+│ Purnia         │     24428 │     24202 │      180 │                                                                                                                             
+│ Rohtas         │     13981 │     13709 │      271 │                                                                                                                             
+│ Saharsa        │     17617 │     17425 │      134 │                                                                                                                             
+│ Samastipur     │     20027 │     19766 │      155 │                                                                                                                             
+│ Saran          │     23280 │     23025 │      255 │                                                                                                                             
+│ Sheikhpura     │      7693 │      7588 │       75 │                                                                                                                             
+│ Sheohar        │      4404 │      4352 │       36 │                                                                                                                             
+└────────────────┴───────────┴───────────┴──────────┘                                                                                                                             
+Bihar last updated data from <data.covid19bharat.org>                                                                                                                             
+┏━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                   
+┃ district       ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                   
+┡━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                   
+│ Araria         │     14979 │     14863 │      116 │              0 │      0 │                                                                                                   
+│ Arwal          │      7381 │      7307 │       74 │              0 │      0 │                                                                                                   
+│ Aurangabad     │     20011 │     19936 │       75 │              0 │      0 │                                                                                                   
+│ Banka          │      7379 │      7267 │      112 │              0 │      0 │                                                                                                   
+│ Begusarai      │     27215 │     26758 │      457 │              0 │      0 │                                                                                                   
+│ Bhagalpur      │     25842 │     25532 │      309 │              0 │      1 │                                                                                                   
+│ Bhojpur        │     10210 │     10051 │      159 │              0 │      0 │                                                                                                   
+│ Buxar          │      9252 │      9070 │      182 │              0 │      0 │                                                                                                   
+│ Darbhanga      │     10941 │     10570 │      370 │              0 │      1 │                                                                                                   
+│ East Champaran │     19021 │     18591 │      430 │              0 │      0 │                                                                                                   
+│ Gaya           │     33953 │     33673 │      280 │              0 │      0 │                                                                                                   
+│ Gopalganj      │     16689 │     16594 │       94 │              0 │      1 │                                                                                                   
+│ Jamui          │      9418 │      9312 │      106 │              0 │      0 │                                                                                                   
+│ Jehanabad      │     10784 │     10675 │      109 │              0 │      0 │                                                                                                   
+│ Kaimur         │      4984 │      4837 │      147 │              0 │      0 │                                                                                                   
+│ Katihar        │     18146 │     18052 │       94 │              0 │      0 │                                                                                                   
+│ Khagaria       │     10064 │      9976 │       88 │              0 │      0 │                                                                                                   
+│ Kishanganj     │     10138 │     10068 │       66 │              0 │      4 │                                                                                                   
+│ Lakhisarai     │      7778 │      7676 │      102 │              0 │      0 │                                                                                                   
+│ Madhepura      │     12547 │     12436 │      111 │              0 │      0 │                                                                                                   
+│ Madhubani      │     18365 │     18026 │      339 │              0 │      0 │                                                                                                   
+│ Munger         │     15112 │     14954 │      158 │              0 │      0 │                                                                                                   
+│ Muzaffarpur    │     31403 │     30781 │      621 │              0 │      1 │                                                                                                   
+│ Nalanda        │     23434 │     22966 │      468 │              0 │      0 │                                                                                                   
+│ Nawada         │     10353 │     10175 │      178 │              0 │      0 │                                                                                                   
+│ Patna          │    147076 │    144721 │     2337 │              0 │     18 │                                                                                                   
+│ Purnia         │     24428 │     24248 │      180 │              0 │      0 │                                                                                                   
+│ Rohtas         │     13981 │     13709 │      271 │              0 │      1 │                                                                                                   
+│ Saharsa        │     17617 │     17483 │      134 │              0 │      0 │                                                                                                   
+│ Samastipur     │     20027 │     19870 │      155 │              0 │      2 │                                                                                                   
+│ Saran          │     23280 │     23025 │      255 │              0 │      0 │                                                                                                   
+│ Sheikhpura     │      7693 │      7618 │       75 │              0 │      0 │                                                                                                   
+│ Sheohar        │      4404 │      4368 │       36 │              0 │      0 │                                                                                                   
+│ Sitamarhi      │      9185 │      9058 │      127 │              0 │      0 │                                                                                                   
+│ Siwan          │     15197 │     15027 │      170 │              0 │      0 │                                                                                                   
+│ Supaul         │     17222 │     17093 │      129 │              0 │      0 │                                                                                                   
+│ Vaishali       │     19831 │     19636 │      192 │              1 │      2 │                                                                                                   
+│ West Champaran │     20890 │     20532 │      358 │              0 │      0 │                                                                                                   
+│ Unknown        │         0 │         0 │        0 │              0 │      0 │                                                                                                   
+└────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                   
+
+********** Computing Delta for Bihar **********
+
+Mapping for district names
+
+Delta statistics
+
+Khagaria,Bihar,BR,-10,Hospitalized
+Araria,Bihar,BR,-23,Recovered
+Arwal,Bihar,BR,-35,Recovered
+Begusarai,Bihar,BR,-104,Recovered
+Bhojpur,Bihar,BR,-79,Recovered
+Gaya,Bihar,BR,-84,Recovered
+Gopalganj,Bihar,BR,-162,Recovered
+Jamui,Bihar,BR,-12,Recovered
+Jehanabad,Bihar,BR,-135,Recovered
+Katihar,Bihar,BR,-174,Recovered
+Khagaria,Bihar,BR,-76,Recovered
+Kishanganj,Bihar,BR,-38,Recovered
+Madhubani,Bihar,BR,-48,Recovered
+Munger,Bihar,BR,-114,Recovered
+Nawada,Bihar,BR,-77,Recovered
+West Champaran,Bihar,BR,-35,Recovered
+East Champaran,Bihar,BR,-96,Recovered
+Purnia,Bihar,BR,-46,Recovered
+Saharsa,Bihar,BR,-58,Recovered
+Samastipur,Bihar,BR,-104,Recovered
+Sheikhpura,Bihar,BR,-30,Recovered
+Sheohar,Bihar,BR,-16,Recovered

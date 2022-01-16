@@ -1,0 +1,45 @@
+Jharkhand data from your current input.                                                                                                                                           
+┏━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                   
+┃ district ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                   
+┡━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                   
+└──────────┴───────────┴───────────┴──────────┘                                                                                                                                   
+Jharkhand last updated data from <data.covid19bharat.org>                                                                                                                         
+┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                              
+┃ district            ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                              
+┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                              
+│ Bokaro              │     19485 │     19192 │      286 │              0 │      7 │                                                                                              
+│ Chatra              │      6033 │      5977 │       53 │              0 │      3 │                                                                                              
+│ Deoghar             │     10847 │     10731 │      115 │              0 │      1 │                                                                                              
+│ Dhanbad             │     16629 │     16234 │      382 │              0 │     13 │                                                                                              
+│ Dumka               │      4653 │      4605 │       47 │              0 │      1 │                                                                                              
+│ East Singhbhum      │     52132 │     51053 │     1048 │              0 │     31 │                                                                                              
+│ Garhwa              │      6901 │      6807 │       94 │              0 │      0 │                                                                                              
+│ Giridih             │      8964 │      8834 │      130 │              0 │      0 │                                                                                              
+│ Godda               │      5840 │      5753 │       87 │              0 │      0 │                                                                                              
+│ Gumla               │      9910 │      9868 │       38 │              0 │      4 │                                                                                              
+│ Hazaribagh          │     19595 │     19408 │      186 │              0 │      1 │                                                                                              
+│ Jamtara             │      5606 │      5545 │       61 │              0 │      0 │                                                                                              
+│ Khunti              │      7822 │      7725 │       96 │              0 │      1 │                                                                                              
+│ Koderma             │     12876 │     12738 │      136 │              0 │      2 │                                                                                              
+│ Latehar             │      7872 │      7815 │       57 │              0 │      0 │                                                                                              
+│ Lohardaga           │      6714 │      6626 │       88 │              0 │      0 │                                                                                              
+│ Pakur               │      2552 │      2540 │       12 │              0 │      0 │                                                                                              
+│ Palamu              │     12295 │     12185 │      110 │              0 │      0 │                                                                                              
+│ Ramgarh             │     13932 │     13735 │      197 │              0 │      0 │                                                                                              
+│ Ranchi              │     86441 │     84798 │     1585 │              0 │     58 │                                                                                              
+│ Sahibganj           │      4834 │      4792 │       42 │              0 │      0 │                                                                                              
+│ Saraikela-Kharsawan │      7207 │      7137 │       67 │              0 │      3 │                                                                                              
+│ Simdega             │      7205 │      7110 │       92 │              0 │      3 │                                                                                              
+│ West Singhbhum      │     13073 │     12938 │      133 │              0 │      2 │                                                                                              
+│ Unknown             │        51 │        59 │        0 │              0 │     -8 │                                                                                              
+└─────────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                              
+
+********** Computing Delta for Jharkhand **********
+
+Mapping for district names
+Saraikela -> Saraikela-Kharsawan
+Sahebgani -> Sahebganj
+Sahebganj -> Sahibganj
+
+Delta statistics
+

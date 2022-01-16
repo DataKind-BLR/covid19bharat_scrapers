@@ -1,0 +1,10 @@
+
+********** Computing Delta for West Bengal **********
+
+Mapping for district names
+Coochbehar -> Cooch Behar
+Bankura* -> Bankura
+Purba Bardhaman* -> Purba Bardhaman
+
+Delta statistics
+

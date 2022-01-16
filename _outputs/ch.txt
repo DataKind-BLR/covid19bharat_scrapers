@@ -1,0 +1,22 @@
+Chandigarh data from your current input.                                                                                                                                          
+┏━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                 
+┃ district   ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                 
+┡━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                 
+│ Chandigarh │     65488 │     64610 │      820 │                                                                                                                                 
+└────────────┴───────────┴───────────┴──────────┘                                                                                                                                 
+Chandigarh last updated data from <data.covid19bharat.org>                                                                                                                        
+┏━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                       
+┃ district   ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                       
+┡━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                       
+│ Chandigarh │     65429 │     64557 │      820 │              0 │     52 │                                                                                                       
+│ Unknown    │        86 │        71 │        0 │              0 │     15 │                                                                                                       
+└────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                       
+
+********** Computing Delta for Chandigarh **********
+
+Mapping for district names
+
+Delta statistics
+
+Chandigarh,Chandigarh,CH,59,Hospitalized
+Chandigarh,Chandigarh,CH,53,Recovered

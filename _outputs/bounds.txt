@@ -1,0 +1,5073 @@
+[locale: "en"
+description: "HEALTH\n5H MISSIO\nVNOTEV\nHealth and Family Welfare Department,\nGovernment of Assam &\nNational Health Mission, Assam\n09\nNational Health Mission Assam\nGovernment of Asia\nCOVID-19 Media Bulletin: Dated-29/11/2021\nAssam has been at the forefront of the fight against Covid19 since the first patient was detected on\n31st March 2020. The State has successfully combated this disease this far by following all health\nprotocols & guidelines issued by WHO & MOHFW. The State is still relentlessly fighting the\npandemic with the support of its health department in convergence with other departments.\nProtect yourself and the society from COVID-19\nWe Mask\nUse Saniti\nAvoid Crowds\nWash Hands\nCet Vaccinated\nPresent status of COVID-19 as on 29\" November, 2021\nCOVID-19 tests\nconducted\nNew cases\ndetected today\nToday\'s\npositivity\nrate\nPatients\ndischarged today\nToday\'s death\nActive Cases\n35,539\n140\n0.39%\n230\n6\n1,248\nToday\'s high case load districts\nKamrup(M): 54\nKamrup(R): 8\nJorhat: 16\nBarpeta: 8\nDistrict wise death(Today)\nGolaghat: 1\nJorhat: 1\nNalbari: 2\nNagaon: 1\nSivasagar: 1\nCOVID-19 Tests\nconducted\n(Cumulative)\nCOVID Positive\nCases\nDischarged\nCOVID Deaths\n2,57,09,342\n6,16,708\n6,08,015\n6,098\nTest per million population\nRecovery rate\nCOVID-19\nDeath %\nCOVID Positive\nPatient dead for\nother reasons\n7.49 Lakhs\n98.59%\n0.99%\n1,347\n"
+bounding_poly {
+  vertices {
+    x: 83
+    y: 42
+  }
+  vertices {
+    x: 878
+    y: 42
+  }
+  vertices {
+    x: 878
+    y: 1153
+  }
+  vertices {
+    x: 83
+    y: 1153
+  }
+}
+, description: "HEALTH"
+bounding_poly {
+  vertices {
+    x: 785
+    y: 43
+  }
+  vertices {
+    x: 812
+    y: 47
+  }
+  vertices {
+    x: 810
+    y: 59
+  }
+  vertices {
+    x: 783
+    y: 55
+  }
+}
+, description: "5H"
+bounding_poly {
+  vertices {
+    x: 812
+    y: 42
+  }
+  vertices {
+    x: 818
+    y: 47
+  }
+  vertices {
+    x: 807
+    y: 59
+  }
+  vertices {
+    x: 801
+    y: 54
+  }
+}
+, description: "MISSIO"
+bounding_poly {
+  vertices {
+    x: 822
+    y: 51
+  }
+  vertices {
+    x: 840
+    y: 68
+  }
+  vertices {
+    x: 830
+    y: 80
+  }
+  vertices {
+    x: 811
+    y: 63
+  }
+}
+, description: "VNOTEV"
+bounding_poly {
+  vertices {
+    x: 787
+    y: 53
+  }
+  vertices {
+    x: 762
+    y: 83
+  }
+  vertices {
+    x: 752
+    y: 74
+  }
+  vertices {
+    x: 776
+    y: 44
+  }
+}
+, description: "Health"
+bounding_poly {
+  vertices {
+    x: 312
+    y: 51
+  }
+  vertices {
+    x: 371
+    y: 51
+  }
+  vertices {
+    x: 371
+    y: 74
+  }
+  vertices {
+    x: 312
+    y: 74
+  }
+}
+, description: "and"
+bounding_poly {
+  vertices {
+    x: 378
+    y: 51
+  }
+  vertices {
+    x: 411
+    y: 51
+  }
+  vertices {
+    x: 411
+    y: 74
+  }
+  vertices {
+    x: 378
+    y: 74
+  }
+}
+, description: "Family"
+bounding_poly {
+  vertices {
+    x: 420
+    y: 51
+  }
+  vertices {
+    x: 479
+    y: 51
+  }
+  vertices {
+    x: 479
+    y: 75
+  }
+  vertices {
+    x: 420
+    y: 75
+  }
+}
+, description: "Welfare"
+bounding_poly {
+  vertices {
+    x: 486
+    y: 52
+  }
+  vertices {
+    x: 558
+    y: 52
+  }
+  vertices {
+    x: 558
+    y: 75
+  }
+  vertices {
+    x: 486
+    y: 75
+  }
+}
+, description: "Department"
+bounding_poly {
+  vertices {
+    x: 567
+    y: 52
+  }
+  vertices {
+    x: 679
+    y: 53
+  }
+  vertices {
+    x: 679
+    y: 77
+  }
+  vertices {
+    x: 567
+    y: 76
+  }
+}
+, description: ","
+bounding_poly {
+  vertices {
+    x: 681
+    y: 53
+  }
+  vertices {
+    x: 684
+    y: 53
+  }
+  vertices {
+    x: 684
+    y: 76
+  }
+  vertices {
+    x: 681
+    y: 76
+  }
+}
+, description: "Government"
+bounding_poly {
+  vertices {
+    x: 383
+    y: 83
+  }
+  vertices {
+    x: 500
+    y: 83
+  }
+  vertices {
+    x: 500
+    y: 102
+  }
+  vertices {
+    x: 383
+    y: 102
+  }
+}
+, description: "of"
+bounding_poly {
+  vertices {
+    x: 507
+    y: 83
+  }
+  vertices {
+    x: 525
+    y: 83
+  }
+  vertices {
+    x: 525
+    y: 102
+  }
+  vertices {
+    x: 507
+    y: 102
+  }
+}
+, description: "Assam"
+bounding_poly {
+  vertices {
+    x: 531
+    y: 83
+  }
+  vertices {
+    x: 590
+    y: 83
+  }
+  vertices {
+    x: 590
+    y: 102
+  }
+  vertices {
+    x: 531
+    y: 102
+  }
+}
+, description: "&"
+bounding_poly {
+  vertices {
+    x: 598
+    y: 83
+  }
+  vertices {
+    x: 611
+    y: 83
+  }
+  vertices {
+    x: 611
+    y: 102
+  }
+  vertices {
+    x: 598
+    y: 102
+  }
+}
+, description: "National"
+bounding_poly {
+  vertices {
+    x: 343
+    y: 110
+  }
+  vertices {
+    x: 417
+    y: 110
+  }
+  vertices {
+    x: 417
+    y: 132
+  }
+  vertices {
+    x: 343
+    y: 132
+  }
+}
+, description: "Health"
+bounding_poly {
+  vertices {
+    x: 426
+    y: 110
+  }
+  vertices {
+    x: 482
+    y: 110
+  }
+  vertices {
+    x: 482
+    y: 132
+  }
+  vertices {
+    x: 426
+    y: 132
+  }
+}
+, description: "Mission"
+bounding_poly {
+  vertices {
+    x: 492
+    y: 110
+  }
+  vertices {
+    x: 559
+    y: 110
+  }
+  vertices {
+    x: 559
+    y: 132
+  }
+  vertices {
+    x: 492
+    y: 132
+  }
+}
+, description: ","
+bounding_poly {
+  vertices {
+    x: 562
+    y: 110
+  }
+  vertices {
+    x: 565
+    y: 110
+  }
+  vertices {
+    x: 565
+    y: 132
+  }
+  vertices {
+    x: 562
+    y: 132
+  }
+}
+, description: "Assam"
+bounding_poly {
+  vertices {
+    x: 573
+    y: 110
+  }
+  vertices {
+    x: 630
+    y: 110
+  }
+  vertices {
+    x: 630
+    y: 132
+  }
+  vertices {
+    x: 573
+    y: 132
+  }
+}
+, description: "09"
+bounding_poly {
+  vertices {
+    x: 157
+    y: 103
+  }
+  vertices {
+    x: 180
+    y: 103
+  }
+  vertices {
+    x: 180
+    y: 117
+  }
+  vertices {
+    x: 157
+    y: 117
+  }
+}
+, description: "National"
+bounding_poly {
+  vertices {
+    x: 731
+    y: 114
+  }
+  vertices {
+    x: 765
+    y: 114
+  }
+  vertices {
+    x: 765
+    y: 124
+  }
+  vertices {
+    x: 731
+    y: 124
+  }
+}
+, description: "Health"
+bounding_poly {
+  vertices {
+    x: 769
+    y: 114
+  }
+  vertices {
+    x: 794
+    y: 114
+  }
+  vertices {
+    x: 794
+    y: 124
+  }
+  vertices {
+    x: 769
+    y: 124
+  }
+}
+, description: "Mission"
+bounding_poly {
+  vertices {
+    x: 798
+    y: 114
+  }
+  vertices {
+    x: 830
+    y: 114
+  }
+  vertices {
+    x: 830
+    y: 124
+  }
+  vertices {
+    x: 798
+    y: 124
+  }
+}
+, description: "Assam"
+bounding_poly {
+  vertices {
+    x: 834
+    y: 114
+  }
+  vertices {
+    x: 861
+    y: 114
+  }
+  vertices {
+    x: 861
+    y: 124
+  }
+  vertices {
+    x: 834
+    y: 124
+  }
+}
+, description: "Government"
+bounding_poly {
+  vertices {
+    x: 129
+    y: 125
+  }
+  vertices {
+    x: 164
+    y: 125
+  }
+  vertices {
+    x: 164
+    y: 132
+  }
+  vertices {
+    x: 129
+    y: 132
+  }
+}
+, description: "of"
+bounding_poly {
+  vertices {
+    x: 166
+    y: 125
+  }
+  vertices {
+    x: 171
+    y: 125
+  }
+  vertices {
+    x: 171
+    y: 132
+  }
+  vertices {
+    x: 166
+    y: 132
+  }
+}
+, description: "Asia"
+bounding_poly {
+  vertices {
+    x: 174
+    y: 125
+  }
+  vertices {
+    x: 193
+    y: 125
+  }
+  vertices {
+    x: 193
+    y: 132
+  }
+  vertices {
+    x: 174
+    y: 132
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 277
+    y: 189
+  }
+  vertices {
+    x: 336
+    y: 189
+  }
+  vertices {
+    x: 336
+    y: 213
+  }
+  vertices {
+    x: 277
+    y: 213
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 338
+    y: 189
+  }
+  vertices {
+    x: 343
+    y: 189
+  }
+  vertices {
+    x: 343
+    y: 213
+  }
+  vertices {
+    x: 338
+    y: 213
+  }
+}
+, description: "19"
+bounding_poly {
+  vertices {
+    x: 346
+    y: 189
+  }
+  vertices {
+    x: 365
+    y: 189
+  }
+  vertices {
+    x: 365
+    y: 213
+  }
+  vertices {
+    x: 346
+    y: 213
+  }
+}
+, description: "Media"
+bounding_poly {
+  vertices {
+    x: 374
+    y: 189
+  }
+  vertices {
+    x: 430
+    y: 189
+  }
+  vertices {
+    x: 430
+    y: 213
+  }
+  vertices {
+    x: 374
+    y: 213
+  }
+}
+, description: "Bulletin"
+bounding_poly {
+  vertices {
+    x: 439
+    y: 189
+  }
+  vertices {
+    x: 508
+    y: 189
+  }
+  vertices {
+    x: 508
+    y: 213
+  }
+  vertices {
+    x: 439
+    y: 213
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 512
+    y: 189
+  }
+  vertices {
+    x: 514
+    y: 189
+  }
+  vertices {
+    x: 514
+    y: 213
+  }
+  vertices {
+    x: 512
+    y: 213
+  }
+}
+, description: "Dated"
+bounding_poly {
+  vertices {
+    x: 523
+    y: 189
+  }
+  vertices {
+    x: 576
+    y: 189
+  }
+  vertices {
+    x: 576
+    y: 213
+  }
+  vertices {
+    x: 523
+    y: 213
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 579
+    y: 189
+  }
+  vertices {
+    x: 584
+    y: 189
+  }
+  vertices {
+    x: 584
+    y: 213
+  }
+  vertices {
+    x: 579
+    y: 213
+  }
+}
+, description: "29"
+bounding_poly {
+  vertices {
+    x: 587
+    y: 189
+  }
+  vertices {
+    x: 607
+    y: 189
+  }
+  vertices {
+    x: 607
+    y: 213
+  }
+  vertices {
+    x: 587
+    y: 213
+  }
+}
+, description: "/"
+bounding_poly {
+  vertices {
+    x: 609
+    y: 189
+  }
+  vertices {
+    x: 617
+    y: 189
+  }
+  vertices {
+    x: 617
+    y: 213
+  }
+  vertices {
+    x: 609
+    y: 213
+  }
+}
+, description: "11"
+bounding_poly {
+  vertices {
+    x: 620
+    y: 189
+  }
+  vertices {
+    x: 639
+    y: 189
+  }
+  vertices {
+    x: 639
+    y: 213
+  }
+  vertices {
+    x: 620
+    y: 213
+  }
+}
+, description: "/"
+bounding_poly {
+  vertices {
+    x: 641
+    y: 189
+  }
+  vertices {
+    x: 649
+    y: 189
+  }
+  vertices {
+    x: 649
+    y: 213
+  }
+  vertices {
+    x: 641
+    y: 213
+  }
+}
+, description: "2021"
+bounding_poly {
+  vertices {
+    x: 652
+    y: 189
+  }
+  vertices {
+    x: 694
+    y: 189
+  }
+  vertices {
+    x: 694
+    y: 213
+  }
+  vertices {
+    x: 652
+    y: 213
+  }
+}
+, description: "Assam"
+bounding_poly {
+  vertices {
+    x: 83
+    y: 258
+  }
+  vertices {
+    x: 130
+    y: 258
+  }
+  vertices {
+    x: 130
+    y: 277
+  }
+  vertices {
+    x: 83
+    y: 277
+  }
+}
+, description: "has"
+bounding_poly {
+  vertices {
+    x: 139
+    y: 258
+  }
+  vertices {
+    x: 162
+    y: 258
+  }
+  vertices {
+    x: 162
+    y: 277
+  }
+  vertices {
+    x: 139
+    y: 277
+  }
+}
+, description: "been"
+bounding_poly {
+  vertices {
+    x: 171
+    y: 258
+  }
+  vertices {
+    x: 205
+    y: 258
+  }
+  vertices {
+    x: 205
+    y: 277
+  }
+  vertices {
+    x: 171
+    y: 277
+  }
+}
+, description: "at"
+bounding_poly {
+  vertices {
+    x: 214
+    y: 258
+  }
+  vertices {
+    x: 227
+    y: 258
+  }
+  vertices {
+    x: 227
+    y: 277
+  }
+  vertices {
+    x: 214
+    y: 277
+  }
+}
+, description: "the"
+bounding_poly {
+  vertices {
+    x: 234
+    y: 258
+  }
+  vertices {
+    x: 258
+    y: 258
+  }
+  vertices {
+    x: 258
+    y: 277
+  }
+  vertices {
+    x: 234
+    y: 277
+  }
+}
+, description: "forefront"
+bounding_poly {
+  vertices {
+    x: 265
+    y: 258
+  }
+  vertices {
+    x: 333
+    y: 258
+  }
+  vertices {
+    x: 333
+    y: 277
+  }
+  vertices {
+    x: 265
+    y: 277
+  }
+}
+, description: "of"
+bounding_poly {
+  vertices {
+    x: 341
+    y: 258
+  }
+  vertices {
+    x: 356
+    y: 258
+  }
+  vertices {
+    x: 356
+    y: 277
+  }
+  vertices {
+    x: 341
+    y: 277
+  }
+}
+, description: "the"
+bounding_poly {
+  vertices {
+    x: 362
+    y: 258
+  }
+  vertices {
+    x: 386
+    y: 258
+  }
+  vertices {
+    x: 386
+    y: 277
+  }
+  vertices {
+    x: 362
+    y: 277
+  }
+}
+, description: "fight"
+bounding_poly {
+  vertices {
+    x: 393
+    y: 258
+  }
+  vertices {
+    x: 426
+    y: 258
+  }
+  vertices {
+    x: 426
+    y: 277
+  }
+  vertices {
+    x: 393
+    y: 277
+  }
+}
+, description: "against"
+bounding_poly {
+  vertices {
+    x: 434
+    y: 258
+  }
+  vertices {
+    x: 486
+    y: 258
+  }
+  vertices {
+    x: 486
+    y: 277
+  }
+  vertices {
+    x: 434
+    y: 277
+  }
+}
+, description: "Covid19"
+bounding_poly {
+  vertices {
+    x: 494
+    y: 258
+  }
+  vertices {
+    x: 553
+    y: 258
+  }
+  vertices {
+    x: 553
+    y: 277
+  }
+  vertices {
+    x: 494
+    y: 277
+  }
+}
+, description: "since"
+bounding_poly {
+  vertices {
+    x: 562
+    y: 258
+  }
+  vertices {
+    x: 597
+    y: 258
+  }
+  vertices {
+    x: 597
+    y: 277
+  }
+  vertices {
+    x: 562
+    y: 277
+  }
+}
+, description: "the"
+bounding_poly {
+  vertices {
+    x: 605
+    y: 258
+  }
+  vertices {
+    x: 628
+    y: 258
+  }
+  vertices {
+    x: 628
+    y: 277
+  }
+  vertices {
+    x: 605
+    y: 277
+  }
+}
+, description: "first"
+bounding_poly {
+  vertices {
+    x: 637
+    y: 258
+  }
+  vertices {
+    x: 665
+    y: 258
+  }
+  vertices {
+    x: 665
+    y: 277
+  }
+  vertices {
+    x: 637
+    y: 277
+  }
+}
+, description: "patient"
+bounding_poly {
+  vertices {
+    x: 673
+    y: 258
+  }
+  vertices {
+    x: 725
+    y: 258
+  }
+  vertices {
+    x: 725
+    y: 277
+  }
+  vertices {
+    x: 673
+    y: 277
+  }
+}
+, description: "was"
+bounding_poly {
+  vertices {
+    x: 733
+    y: 258
+  }
+  vertices {
+    x: 760
+    y: 258
+  }
+  vertices {
+    x: 760
+    y: 277
+  }
+  vertices {
+    x: 733
+    y: 277
+  }
+}
+, description: "detected"
+bounding_poly {
+  vertices {
+    x: 769
+    y: 258
+  }
+  vertices {
+    x: 834
+    y: 258
+  }
+  vertices {
+    x: 834
+    y: 277
+  }
+  vertices {
+    x: 769
+    y: 277
+  }
+}
+, description: "on"
+bounding_poly {
+  vertices {
+    x: 843
+    y: 258
+  }
+  vertices {
+    x: 861
+    y: 258
+  }
+  vertices {
+    x: 861
+    y: 277
+  }
+  vertices {
+    x: 843
+    y: 277
+  }
+}
+, description: "31st"
+bounding_poly {
+  vertices {
+    x: 83
+    y: 278
+  }
+  vertices {
+    x: 109
+    y: 278
+  }
+  vertices {
+    x: 109
+    y: 299
+  }
+  vertices {
+    x: 83
+    y: 299
+  }
+}
+, description: "March"
+bounding_poly {
+  vertices {
+    x: 119
+    y: 278
+  }
+  vertices {
+    x: 165
+    y: 278
+  }
+  vertices {
+    x: 165
+    y: 299
+  }
+  vertices {
+    x: 119
+    y: 299
+  }
+}
+, description: "2020."
+bounding_poly {
+  vertices {
+    x: 175
+    y: 278
+  }
+  vertices {
+    x: 215
+    y: 278
+  }
+  vertices {
+    x: 215
+    y: 299
+  }
+  vertices {
+    x: 175
+    y: 299
+  }
+}
+, description: "The"
+bounding_poly {
+  vertices {
+    x: 225
+    y: 278
+  }
+  vertices {
+    x: 251
+    y: 278
+  }
+  vertices {
+    x: 251
+    y: 299
+  }
+  vertices {
+    x: 225
+    y: 299
+  }
+}
+, description: "State"
+bounding_poly {
+  vertices {
+    x: 261
+    y: 278
+  }
+  vertices {
+    x: 298
+    y: 278
+  }
+  vertices {
+    x: 298
+    y: 299
+  }
+  vertices {
+    x: 261
+    y: 299
+  }
+}
+, description: "has"
+bounding_poly {
+  vertices {
+    x: 309
+    y: 278
+  }
+  vertices {
+    x: 331
+    y: 278
+  }
+  vertices {
+    x: 331
+    y: 299
+  }
+  vertices {
+    x: 309
+    y: 299
+  }
+}
+, description: "successfully"
+bounding_poly {
+  vertices {
+    x: 341
+    y: 278
+  }
+  vertices {
+    x: 429
+    y: 278
+  }
+  vertices {
+    x: 429
+    y: 299
+  }
+  vertices {
+    x: 341
+    y: 299
+  }
+}
+, description: "combated"
+bounding_poly {
+  vertices {
+    x: 438
+    y: 278
+  }
+  vertices {
+    x: 512
+    y: 278
+  }
+  vertices {
+    x: 512
+    y: 299
+  }
+  vertices {
+    x: 438
+    y: 299
+  }
+}
+, description: "this"
+bounding_poly {
+  vertices {
+    x: 522
+    y: 278
+  }
+  vertices {
+    x: 548
+    y: 278
+  }
+  vertices {
+    x: 548
+    y: 299
+  }
+  vertices {
+    x: 522
+    y: 299
+  }
+}
+, description: "disease"
+bounding_poly {
+  vertices {
+    x: 558
+    y: 278
+  }
+  vertices {
+    x: 612
+    y: 278
+  }
+  vertices {
+    x: 612
+    y: 299
+  }
+  vertices {
+    x: 558
+    y: 299
+  }
+}
+, description: "this"
+bounding_poly {
+  vertices {
+    x: 621
+    y: 278
+  }
+  vertices {
+    x: 647
+    y: 278
+  }
+  vertices {
+    x: 647
+    y: 299
+  }
+  vertices {
+    x: 621
+    y: 299
+  }
+}
+, description: "far"
+bounding_poly {
+  vertices {
+    x: 657
+    y: 278
+  }
+  vertices {
+    x: 676
+    y: 278
+  }
+  vertices {
+    x: 676
+    y: 299
+  }
+  vertices {
+    x: 657
+    y: 299
+  }
+}
+, description: "by"
+bounding_poly {
+  vertices {
+    x: 686
+    y: 278
+  }
+  vertices {
+    x: 702
+    y: 278
+  }
+  vertices {
+    x: 702
+    y: 299
+  }
+  vertices {
+    x: 686
+    y: 299
+  }
+}
+, description: "following"
+bounding_poly {
+  vertices {
+    x: 711
+    y: 278
+  }
+  vertices {
+    x: 779
+    y: 278
+  }
+  vertices {
+    x: 779
+    y: 299
+  }
+  vertices {
+    x: 711
+    y: 299
+  }
+}
+, description: "all"
+bounding_poly {
+  vertices {
+    x: 789
+    y: 278
+  }
+  vertices {
+    x: 804
+    y: 278
+  }
+  vertices {
+    x: 804
+    y: 299
+  }
+  vertices {
+    x: 789
+    y: 299
+  }
+}
+, description: "health"
+bounding_poly {
+  vertices {
+    x: 815
+    y: 278
+  }
+  vertices {
+    x: 860
+    y: 278
+  }
+  vertices {
+    x: 860
+    y: 299
+  }
+  vertices {
+    x: 815
+    y: 299
+  }
+}
+, description: "protocols"
+bounding_poly {
+  vertices {
+    x: 84
+    y: 302
+  }
+  vertices {
+    x: 152
+    y: 302
+  }
+  vertices {
+    x: 152
+    y: 324
+  }
+  vertices {
+    x: 84
+    y: 324
+  }
+}
+, description: "&"
+bounding_poly {
+  vertices {
+    x: 164
+    y: 302
+  }
+  vertices {
+    x: 174
+    y: 302
+  }
+  vertices {
+    x: 174
+    y: 324
+  }
+  vertices {
+    x: 164
+    y: 324
+  }
+}
+, description: "guidelines"
+bounding_poly {
+  vertices {
+    x: 185
+    y: 302
+  }
+  vertices {
+    x: 260
+    y: 302
+  }
+  vertices {
+    x: 260
+    y: 324
+  }
+  vertices {
+    x: 185
+    y: 324
+  }
+}
+, description: "issued"
+bounding_poly {
+  vertices {
+    x: 272
+    y: 302
+  }
+  vertices {
+    x: 316
+    y: 302
+  }
+  vertices {
+    x: 316
+    y: 324
+  }
+  vertices {
+    x: 272
+    y: 324
+  }
+}
+, description: "by"
+bounding_poly {
+  vertices {
+    x: 329
+    y: 302
+  }
+  vertices {
+    x: 344
+    y: 302
+  }
+  vertices {
+    x: 344
+    y: 324
+  }
+  vertices {
+    x: 329
+    y: 324
+  }
+}
+, description: "WHO"
+bounding_poly {
+  vertices {
+    x: 355
+    y: 302
+  }
+  vertices {
+    x: 394
+    y: 302
+  }
+  vertices {
+    x: 394
+    y: 324
+  }
+  vertices {
+    x: 355
+    y: 324
+  }
+}
+, description: "&"
+bounding_poly {
+  vertices {
+    x: 405
+    y: 302
+  }
+  vertices {
+    x: 415
+    y: 302
+  }
+  vertices {
+    x: 415
+    y: 324
+  }
+  vertices {
+    x: 405
+    y: 324
+  }
+}
+, description: "MOHFW"
+bounding_poly {
+  vertices {
+    x: 428
+    y: 302
+  }
+  vertices {
+    x: 488
+    y: 302
+  }
+  vertices {
+    x: 488
+    y: 324
+  }
+  vertices {
+    x: 428
+    y: 324
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 490
+    y: 302
+  }
+  vertices {
+    x: 492
+    y: 302
+  }
+  vertices {
+    x: 492
+    y: 324
+  }
+  vertices {
+    x: 490
+    y: 324
+  }
+}
+, description: "The"
+bounding_poly {
+  vertices {
+    x: 504
+    y: 302
+  }
+  vertices {
+    x: 532
+    y: 302
+  }
+  vertices {
+    x: 532
+    y: 324
+  }
+  vertices {
+    x: 504
+    y: 324
+  }
+}
+, description: "State"
+bounding_poly {
+  vertices {
+    x: 544
+    y: 302
+  }
+  vertices {
+    x: 585
+    y: 302
+  }
+  vertices {
+    x: 585
+    y: 324
+  }
+  vertices {
+    x: 544
+    y: 324
+  }
+}
+, description: "is"
+bounding_poly {
+  vertices {
+    x: 598
+    y: 302
+  }
+  vertices {
+    x: 607
+    y: 302
+  }
+  vertices {
+    x: 607
+    y: 324
+  }
+  vertices {
+    x: 598
+    y: 324
+  }
+}
+, description: "still"
+bounding_poly {
+  vertices {
+    x: 620
+    y: 302
+  }
+  vertices {
+    x: 646
+    y: 302
+  }
+  vertices {
+    x: 646
+    y: 324
+  }
+  vertices {
+    x: 620
+    y: 324
+  }
+}
+, description: "relentlessly"
+bounding_poly {
+  vertices {
+    x: 659
+    y: 302
+  }
+  vertices {
+    x: 751
+    y: 302
+  }
+  vertices {
+    x: 751
+    y: 324
+  }
+  vertices {
+    x: 659
+    y: 324
+  }
+}
+, description: "fighting"
+bounding_poly {
+  vertices {
+    x: 762
+    y: 302
+  }
+  vertices {
+    x: 823
+    y: 302
+  }
+  vertices {
+    x: 823
+    y: 324
+  }
+  vertices {
+    x: 762
+    y: 324
+  }
+}
+, description: "the"
+bounding_poly {
+  vertices {
+    x: 835
+    y: 302
+  }
+  vertices {
+    x: 861
+    y: 302
+  }
+  vertices {
+    x: 861
+    y: 324
+  }
+  vertices {
+    x: 835
+    y: 324
+  }
+}
+, description: "pandemic"
+bounding_poly {
+  vertices {
+    x: 84
+    y: 326
+  }
+  vertices {
+    x: 162
+    y: 326
+  }
+  vertices {
+    x: 162
+    y: 348
+  }
+  vertices {
+    x: 84
+    y: 348
+  }
+}
+, description: "with"
+bounding_poly {
+  vertices {
+    x: 169
+    y: 326
+  }
+  vertices {
+    x: 203
+    y: 326
+  }
+  vertices {
+    x: 203
+    y: 348
+  }
+  vertices {
+    x: 169
+    y: 348
+  }
+}
+, description: "the"
+bounding_poly {
+  vertices {
+    x: 209
+    y: 326
+  }
+  vertices {
+    x: 235
+    y: 326
+  }
+  vertices {
+    x: 235
+    y: 348
+  }
+  vertices {
+    x: 209
+    y: 348
+  }
+}
+, description: "support"
+bounding_poly {
+  vertices {
+    x: 242
+    y: 326
+  }
+  vertices {
+    x: 304
+    y: 326
+  }
+  vertices {
+    x: 304
+    y: 348
+  }
+  vertices {
+    x: 242
+    y: 348
+  }
+}
+, description: "of"
+bounding_poly {
+  vertices {
+    x: 311
+    y: 326
+  }
+  vertices {
+    x: 326
+    y: 326
+  }
+  vertices {
+    x: 326
+    y: 348
+  }
+  vertices {
+    x: 311
+    y: 348
+  }
+}
+, description: "its"
+bounding_poly {
+  vertices {
+    x: 333
+    y: 326
+  }
+  vertices {
+    x: 350
+    y: 326
+  }
+  vertices {
+    x: 350
+    y: 348
+  }
+  vertices {
+    x: 333
+    y: 348
+  }
+}
+, description: "health"
+bounding_poly {
+  vertices {
+    x: 357
+    y: 326
+  }
+  vertices {
+    x: 406
+    y: 326
+  }
+  vertices {
+    x: 406
+    y: 348
+  }
+  vertices {
+    x: 357
+    y: 348
+  }
+}
+, description: "department"
+bounding_poly {
+  vertices {
+    x: 413
+    y: 326
+  }
+  vertices {
+    x: 509
+    y: 326
+  }
+  vertices {
+    x: 509
+    y: 348
+  }
+  vertices {
+    x: 413
+    y: 348
+  }
+}
+, description: "in"
+bounding_poly {
+  vertices {
+    x: 517
+    y: 326
+  }
+  vertices {
+    x: 529
+    y: 326
+  }
+  vertices {
+    x: 529
+    y: 348
+  }
+  vertices {
+    x: 517
+    y: 348
+  }
+}
+, description: "convergence"
+bounding_poly {
+  vertices {
+    x: 536
+    y: 326
+  }
+  vertices {
+    x: 638
+    y: 326
+  }
+  vertices {
+    x: 638
+    y: 348
+  }
+  vertices {
+    x: 536
+    y: 348
+  }
+}
+, description: "with"
+bounding_poly {
+  vertices {
+    x: 645
+    y: 326
+  }
+  vertices {
+    x: 679
+    y: 326
+  }
+  vertices {
+    x: 679
+    y: 348
+  }
+  vertices {
+    x: 645
+    y: 348
+  }
+}
+, description: "other"
+bounding_poly {
+  vertices {
+    x: 686
+    y: 326
+  }
+  vertices {
+    x: 729
+    y: 326
+  }
+  vertices {
+    x: 729
+    y: 348
+  }
+  vertices {
+    x: 686
+    y: 348
+  }
+}
+, description: "departments"
+bounding_poly {
+  vertices {
+    x: 735
+    y: 326
+  }
+  vertices {
+    x: 841
+    y: 326
+  }
+  vertices {
+    x: 841
+    y: 348
+  }
+  vertices {
+    x: 735
+    y: 348
+  }
+}
+, description: "."
+bounding_poly {
+  vertices {
+    x: 841
+    y: 326
+  }
+  vertices {
+    x: 845
+    y: 326
+  }
+  vertices {
+    x: 845
+    y: 348
+  }
+  vertices {
+    x: 841
+    y: 348
+  }
+}
+, description: "Protect"
+bounding_poly {
+  vertices {
+    x: 282
+    y: 393
+  }
+  vertices {
+    x: 341
+    y: 393
+  }
+  vertices {
+    x: 341
+    y: 414
+  }
+  vertices {
+    x: 282
+    y: 414
+  }
+}
+, description: "yourself"
+bounding_poly {
+  vertices {
+    x: 348
+    y: 393
+  }
+  vertices {
+    x: 415
+    y: 393
+  }
+  vertices {
+    x: 415
+    y: 414
+  }
+  vertices {
+    x: 348
+    y: 414
+  }
+}
+, description: "and"
+bounding_poly {
+  vertices {
+    x: 421
+    y: 393
+  }
+  vertices {
+    x: 450
+    y: 393
+  }
+  vertices {
+    x: 450
+    y: 414
+  }
+  vertices {
+    x: 421
+    y: 414
+  }
+}
+, description: "the"
+bounding_poly {
+  vertices {
+    x: 457
+    y: 393
+  }
+  vertices {
+    x: 483
+    y: 393
+  }
+  vertices {
+    x: 483
+    y: 414
+  }
+  vertices {
+    x: 457
+    y: 414
+  }
+}
+, description: "society"
+bounding_poly {
+  vertices {
+    x: 490
+    y: 393
+  }
+  vertices {
+    x: 547
+    y: 393
+  }
+  vertices {
+    x: 547
+    y: 414
+  }
+  vertices {
+    x: 490
+    y: 414
+  }
+}
+, description: "from"
+bounding_poly {
+  vertices {
+    x: 554
+    y: 393
+  }
+  vertices {
+    x: 592
+    y: 393
+  }
+  vertices {
+    x: 592
+    y: 414
+  }
+  vertices {
+    x: 554
+    y: 414
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 600
+    y: 393
+  }
+  vertices {
+    x: 652
+    y: 393
+  }
+  vertices {
+    x: 652
+    y: 414
+  }
+  vertices {
+    x: 600
+    y: 414
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 655
+    y: 393
+  }
+  vertices {
+    x: 659
+    y: 393
+  }
+  vertices {
+    x: 659
+    y: 414
+  }
+  vertices {
+    x: 655
+    y: 414
+  }
+}
+, description: "19"
+bounding_poly {
+  vertices {
+    x: 662
+    y: 393
+  }
+  vertices {
+    x: 679
+    y: 393
+  }
+  vertices {
+    x: 679
+    y: 414
+  }
+  vertices {
+    x: 662
+    y: 414
+  }
+}
+, description: "We"
+bounding_poly {
+  vertices {
+    x: 278
+    y: 496
+  }
+  vertices {
+    x: 300
+    y: 496
+  }
+  vertices {
+    x: 300
+    y: 505
+  }
+  vertices {
+    x: 278
+    y: 505
+  }
+}
+, description: "Mask"
+bounding_poly {
+  vertices {
+    x: 305
+    y: 496
+  }
+  vertices {
+    x: 327
+    y: 496
+  }
+  vertices {
+    x: 327
+    y: 505
+  }
+  vertices {
+    x: 305
+    y: 505
+  }
+}
+, description: "Use"
+bounding_poly {
+  vertices {
+    x: 370
+    y: 497
+  }
+  vertices {
+    x: 385
+    y: 497
+  }
+  vertices {
+    x: 385
+    y: 505
+  }
+  vertices {
+    x: 370
+    y: 505
+  }
+}
+, description: "Saniti"
+bounding_poly {
+  vertices {
+    x: 389
+    y: 497
+  }
+  vertices {
+    x: 427
+    y: 498
+  }
+  vertices {
+    x: 427
+    y: 506
+  }
+  vertices {
+    x: 389
+    y: 505
+  }
+}
+, description: "Avoid"
+bounding_poly {
+  vertices {
+    x: 466
+    y: 497
+  }
+  vertices {
+    x: 490
+    y: 497
+  }
+  vertices {
+    x: 490
+    y: 507
+  }
+  vertices {
+    x: 466
+    y: 507
+  }
+}
+, description: "Crowds"
+bounding_poly {
+  vertices {
+    x: 494
+    y: 497
+  }
+  vertices {
+    x: 527
+    y: 497
+  }
+  vertices {
+    x: 527
+    y: 507
+  }
+  vertices {
+    x: 494
+    y: 507
+  }
+}
+, description: "Wash"
+bounding_poly {
+  vertices {
+    x: 560
+    y: 496
+  }
+  vertices {
+    x: 584
+    y: 496
+  }
+  vertices {
+    x: 584
+    y: 505
+  }
+  vertices {
+    x: 560
+    y: 505
+  }
+}
+, description: "Hands"
+bounding_poly {
+  vertices {
+    x: 589
+    y: 496
+  }
+  vertices {
+    x: 616
+    y: 496
+  }
+  vertices {
+    x: 616
+    y: 505
+  }
+  vertices {
+    x: 589
+    y: 505
+  }
+}
+, description: "Cet"
+bounding_poly {
+  vertices {
+    x: 644
+    y: 498
+  }
+  vertices {
+    x: 659
+    y: 498
+  }
+  vertices {
+    x: 659
+    y: 506
+  }
+  vertices {
+    x: 644
+    y: 506
+  }
+}
+, description: "Vaccinated"
+bounding_poly {
+  vertices {
+    x: 663
+    y: 497
+  }
+  vertices {
+    x: 713
+    y: 498
+  }
+  vertices {
+    x: 713
+    y: 507
+  }
+  vertices {
+    x: 663
+    y: 506
+  }
+}
+, description: "Present"
+bounding_poly {
+  vertices {
+    x: 218
+    y: 541
+  }
+  vertices {
+    x: 290
+    y: 541
+  }
+  vertices {
+    x: 290
+    y: 572
+  }
+  vertices {
+    x: 218
+    y: 572
+  }
+}
+, description: "status"
+bounding_poly {
+  vertices {
+    x: 298
+    y: 541
+  }
+  vertices {
+    x: 355
+    y: 541
+  }
+  vertices {
+    x: 355
+    y: 572
+  }
+  vertices {
+    x: 298
+    y: 572
+  }
+}
+, description: "of"
+bounding_poly {
+  vertices {
+    x: 364
+    y: 541
+  }
+  vertices {
+    x: 382
+    y: 541
+  }
+  vertices {
+    x: 382
+    y: 572
+  }
+  vertices {
+    x: 364
+    y: 572
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 389
+    y: 541
+  }
+  vertices {
+    x: 450
+    y: 541
+  }
+  vertices {
+    x: 450
+    y: 572
+  }
+  vertices {
+    x: 389
+    y: 572
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 453
+    y: 541
+  }
+  vertices {
+    x: 458
+    y: 541
+  }
+  vertices {
+    x: 458
+    y: 572
+  }
+  vertices {
+    x: 453
+    y: 572
+  }
+}
+, description: "19"
+bounding_poly {
+  vertices {
+    x: 461
+    y: 541
+  }
+  vertices {
+    x: 482
+    y: 541
+  }
+  vertices {
+    x: 482
+    y: 572
+  }
+  vertices {
+    x: 461
+    y: 572
+  }
+}
+, description: "as"
+bounding_poly {
+  vertices {
+    x: 490
+    y: 541
+  }
+  vertices {
+    x: 508
+    y: 541
+  }
+  vertices {
+    x: 508
+    y: 572
+  }
+  vertices {
+    x: 490
+    y: 572
+  }
+}
+, description: "on"
+bounding_poly {
+  vertices {
+    x: 516
+    y: 541
+  }
+  vertices {
+    x: 538
+    y: 541
+  }
+  vertices {
+    x: 538
+    y: 572
+  }
+  vertices {
+    x: 516
+    y: 572
+  }
+}
+, description: "29"
+bounding_poly {
+  vertices {
+    x: 547
+    y: 541
+  }
+  vertices {
+    x: 568
+    y: 541
+  }
+  vertices {
+    x: 568
+    y: 572
+  }
+  vertices {
+    x: 547
+    y: 572
+  }
+}
+, description: "\""
+bounding_poly {
+  vertices {
+    x: 572
+    y: 541
+  }
+  vertices {
+    x: 577
+    y: 541
+  }
+  vertices {
+    x: 577
+    y: 572
+  }
+  vertices {
+    x: 572
+    y: 572
+  }
+}
+, description: "November"
+bounding_poly {
+  vertices {
+    x: 585
+    y: 541
+  }
+  vertices {
+    x: 686
+    y: 541
+  }
+  vertices {
+    x: 686
+    y: 572
+  }
+  vertices {
+    x: 585
+    y: 572
+  }
+}
+, description: ","
+bounding_poly {
+  vertices {
+    x: 689
+    y: 541
+  }
+  vertices {
+    x: 692
+    y: 541
+  }
+  vertices {
+    x: 692
+    y: 572
+  }
+  vertices {
+    x: 689
+    y: 572
+  }
+}
+, description: "2021"
+bounding_poly {
+  vertices {
+    x: 700
+    y: 541
+  }
+  vertices {
+    x: 745
+    y: 541
+  }
+  vertices {
+    x: 745
+    y: 572
+  }
+  vertices {
+    x: 700
+    y: 572
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 99
+    y: 616
+  }
+  vertices {
+    x: 145
+    y: 616
+  }
+  vertices {
+    x: 145
+    y: 630
+  }
+  vertices {
+    x: 99
+    y: 630
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 147
+    y: 616
+  }
+  vertices {
+    x: 150
+    y: 616
+  }
+  vertices {
+    x: 150
+    y: 630
+  }
+  vertices {
+    x: 147
+    y: 630
+  }
+}
+, description: "19"
+bounding_poly {
+  vertices {
+    x: 153
+    y: 616
+  }
+  vertices {
+    x: 168
+    y: 616
+  }
+  vertices {
+    x: 168
+    y: 630
+  }
+  vertices {
+    x: 153
+    y: 630
+  }
+}
+, description: "tests"
+bounding_poly {
+  vertices {
+    x: 174
+    y: 616
+  }
+  vertices {
+    x: 207
+    y: 616
+  }
+  vertices {
+    x: 207
+    y: 630
+  }
+  vertices {
+    x: 174
+    y: 630
+  }
+}
+, description: "conducted"
+bounding_poly {
+  vertices {
+    x: 114
+    y: 636
+  }
+  vertices {
+    x: 189
+    y: 635
+  }
+  vertices {
+    x: 189
+    y: 652
+  }
+  vertices {
+    x: 114
+    y: 653
+  }
+}
+, description: "New"
+bounding_poly {
+  vertices {
+    x: 265
+    y: 616
+  }
+  vertices {
+    x: 297
+    y: 617
+  }
+  vertices {
+    x: 297
+    y: 631
+  }
+  vertices {
+    x: 265
+    y: 630
+  }
+}
+, description: "cases"
+bounding_poly {
+  vertices {
+    x: 302
+    y: 616
+  }
+  vertices {
+    x: 340
+    y: 617
+  }
+  vertices {
+    x: 340
+    y: 632
+  }
+  vertices {
+    x: 302
+    y: 631
+  }
+}
+, description: "detected"
+bounding_poly {
+  vertices {
+    x: 247
+    y: 634
+  }
+  vertices {
+    x: 310
+    y: 635
+  }
+  vertices {
+    x: 310
+    y: 653
+  }
+  vertices {
+    x: 247
+    y: 652
+  }
+}
+, description: "today"
+bounding_poly {
+  vertices {
+    x: 316
+    y: 636
+  }
+  vertices {
+    x: 358
+    y: 637
+  }
+  vertices {
+    x: 358
+    y: 654
+  }
+  vertices {
+    x: 316
+    y: 653
+  }
+}
+, description: "Today\'s"
+bounding_poly {
+  vertices {
+    x: 401
+    y: 605
+  }
+  vertices {
+    x: 456
+    y: 605
+  }
+  vertices {
+    x: 456
+    y: 623
+  }
+  vertices {
+    x: 401
+    y: 623
+  }
+}
+, description: "positivity"
+bounding_poly {
+  vertices {
+    x: 396
+    y: 625
+  }
+  vertices {
+    x: 462
+    y: 625
+  }
+  vertices {
+    x: 462
+    y: 646
+  }
+  vertices {
+    x: 396
+    y: 646
+  }
+}
+, description: "rate"
+bounding_poly {
+  vertices {
+    x: 414
+    y: 650
+  }
+  vertices {
+    x: 442
+    y: 650
+  }
+  vertices {
+    x: 442
+    y: 662
+  }
+  vertices {
+    x: 414
+    y: 662
+  }
+}
+, description: "Patients"
+bounding_poly {
+  vertices {
+    x: 536
+    y: 616
+  }
+  vertices {
+    x: 594
+    y: 615
+  }
+  vertices {
+    x: 594
+    y: 630
+  }
+  vertices {
+    x: 536
+    y: 631
+  }
+}
+, description: "discharged"
+bounding_poly {
+  vertices {
+    x: 504
+    y: 637
+  }
+  vertices {
+    x: 581
+    y: 637
+  }
+  vertices {
+    x: 581
+    y: 655
+  }
+  vertices {
+    x: 504
+    y: 655
+  }
+}
+, description: "today"
+bounding_poly {
+  vertices {
+    x: 587
+    y: 637
+  }
+  vertices {
+    x: 628
+    y: 637
+  }
+  vertices {
+    x: 628
+    y: 655
+  }
+  vertices {
+    x: 587
+    y: 655
+  }
+}
+, description: "Today\'s"
+bounding_poly {
+  vertices {
+    x: 657
+    y: 625
+  }
+  vertices {
+    x: 712
+    y: 624
+  }
+  vertices {
+    x: 712
+    y: 643
+  }
+  vertices {
+    x: 657
+    y: 644
+  }
+}
+, description: "death"
+bounding_poly {
+  vertices {
+    x: 718
+    y: 624
+  }
+  vertices {
+    x: 759
+    y: 623
+  }
+  vertices {
+    x: 759
+    y: 642
+  }
+  vertices {
+    x: 718
+    y: 643
+  }
+}
+, description: "Active"
+bounding_poly {
+  vertices {
+    x: 789
+    y: 626
+  }
+  vertices {
+    x: 833
+    y: 626
+  }
+  vertices {
+    x: 833
+    y: 640
+  }
+  vertices {
+    x: 789
+    y: 640
+  }
+}
+, description: "Cases"
+bounding_poly {
+  vertices {
+    x: 839
+    y: 626
+  }
+  vertices {
+    x: 878
+    y: 626
+  }
+  vertices {
+    x: 878
+    y: 640
+  }
+  vertices {
+    x: 839
+    y: 640
+  }
+}
+, description: "35,539"
+bounding_poly {
+  vertices {
+    x: 128
+    y: 682
+  }
+  vertices {
+    x: 176
+    y: 682
+  }
+  vertices {
+    x: 176
+    y: 700
+  }
+  vertices {
+    x: 128
+    y: 700
+  }
+}
+, description: "140"
+bounding_poly {
+  vertices {
+    x: 290
+    y: 683
+  }
+  vertices {
+    x: 316
+    y: 685
+  }
+  vertices {
+    x: 315
+    y: 700
+  }
+  vertices {
+    x: 289
+    y: 698
+  }
+}
+, description: "0.39"
+bounding_poly {
+  vertices {
+    x: 407
+    y: 683
+  }
+  vertices {
+    x: 437
+    y: 683
+  }
+  vertices {
+    x: 437
+    y: 700
+  }
+  vertices {
+    x: 407
+    y: 700
+  }
+}
+, description: "%"
+bounding_poly {
+  vertices {
+    x: 439
+    y: 683
+  }
+  vertices {
+    x: 450
+    y: 683
+  }
+  vertices {
+    x: 450
+    y: 700
+  }
+  vertices {
+    x: 439
+    y: 700
+  }
+}
+, description: "230"
+bounding_poly {
+  vertices {
+    x: 552
+    y: 683
+  }
+  vertices {
+    x: 577
+    y: 683
+  }
+  vertices {
+    x: 577
+    y: 698
+  }
+  vertices {
+    x: 552
+    y: 698
+  }
+}
+, description: "6"
+bounding_poly {
+  vertices {
+    x: 705
+    y: 684
+  }
+  vertices {
+    x: 712
+    y: 684
+  }
+  vertices {
+    x: 712
+    y: 697
+  }
+  vertices {
+    x: 705
+    y: 697
+  }
+}
+, description: "1,248"
+bounding_poly {
+  vertices {
+    x: 815
+    y: 683
+  }
+  vertices {
+    x: 853
+    y: 682
+  }
+  vertices {
+    x: 853
+    y: 700
+  }
+  vertices {
+    x: 815
+    y: 701
+  }
+}
+, description: "Today\'s"
+bounding_poly {
+  vertices {
+    x: 369
+    y: 740
+  }
+  vertices {
+    x: 425
+    y: 739
+  }
+  vertices {
+    x: 425
+    y: 757
+  }
+  vertices {
+    x: 369
+    y: 758
+  }
+}
+, description: "high"
+bounding_poly {
+  vertices {
+    x: 431
+    y: 740
+  }
+  vertices {
+    x: 460
+    y: 740
+  }
+  vertices {
+    x: 460
+    y: 757
+  }
+  vertices {
+    x: 431
+    y: 757
+  }
+}
+, description: "case"
+bounding_poly {
+  vertices {
+    x: 467
+    y: 739
+  }
+  vertices {
+    x: 496
+    y: 739
+  }
+  vertices {
+    x: 496
+    y: 756
+  }
+  vertices {
+    x: 467
+    y: 756
+  }
+}
+, description: "load"
+bounding_poly {
+  vertices {
+    x: 503
+    y: 739
+  }
+  vertices {
+    x: 532
+    y: 739
+  }
+  vertices {
+    x: 532
+    y: 756
+  }
+  vertices {
+    x: 503
+    y: 756
+  }
+}
+, description: "districts"
+bounding_poly {
+  vertices {
+    x: 539
+    y: 738
+  }
+  vertices {
+    x: 595
+    y: 737
+  }
+  vertices {
+    x: 595
+    y: 755
+  }
+  vertices {
+    x: 539
+    y: 756
+  }
+}
+, description: "Kamrup"
+bounding_poly {
+  vertices {
+    x: 121
+    y: 770
+  }
+  vertices {
+    x: 176
+    y: 770
+  }
+  vertices {
+    x: 176
+    y: 789
+  }
+  vertices {
+    x: 121
+    y: 789
+  }
+}
+, description: "("
+bounding_poly {
+  vertices {
+    x: 179
+    y: 770
+  }
+  vertices {
+    x: 181
+    y: 770
+  }
+  vertices {
+    x: 181
+    y: 789
+  }
+  vertices {
+    x: 179
+    y: 789
+  }
+}
+, description: "M"
+bounding_poly {
+  vertices {
+    x: 185
+    y: 770
+  }
+  vertices {
+    x: 197
+    y: 770
+  }
+  vertices {
+    x: 197
+    y: 789
+  }
+  vertices {
+    x: 185
+    y: 789
+  }
+}
+, description: ")"
+bounding_poly {
+  vertices {
+    x: 200
+    y: 770
+  }
+  vertices {
+    x: 202
+    y: 770
+  }
+  vertices {
+    x: 202
+    y: 789
+  }
+  vertices {
+    x: 200
+    y: 789
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 206
+    y: 770
+  }
+  vertices {
+    x: 207
+    y: 770
+  }
+  vertices {
+    x: 207
+    y: 789
+  }
+  vertices {
+    x: 206
+    y: 789
+  }
+}
+, description: "54"
+bounding_poly {
+  vertices {
+    x: 214
+    y: 770
+  }
+  vertices {
+    x: 230
+    y: 770
+  }
+  vertices {
+    x: 230
+    y: 789
+  }
+  vertices {
+    x: 214
+    y: 789
+  }
+}
+, description: "Kamrup"
+bounding_poly {
+  vertices {
+    x: 747
+    y: 771
+  }
+  vertices {
+    x: 802
+    y: 771
+  }
+  vertices {
+    x: 802
+    y: 790
+  }
+  vertices {
+    x: 747
+    y: 790
+  }
+}
+, description: "("
+bounding_poly {
+  vertices {
+    x: 806
+    y: 771
+  }
+  vertices {
+    x: 809
+    y: 771
+  }
+  vertices {
+    x: 809
+    y: 790
+  }
+  vertices {
+    x: 806
+    y: 790
+  }
+}
+, description: "R"
+bounding_poly {
+  vertices {
+    x: 814
+    y: 771
+  }
+  vertices {
+    x: 817
+    y: 771
+  }
+  vertices {
+    x: 817
+    y: 790
+  }
+  vertices {
+    x: 814
+    y: 790
+  }
+}
+, description: ")"
+bounding_poly {
+  vertices {
+    x: 822
+    y: 771
+  }
+  vertices {
+    x: 825
+    y: 771
+  }
+  vertices {
+    x: 825
+    y: 790
+  }
+  vertices {
+    x: 822
+    y: 790
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 826
+    y: 771
+  }
+  vertices {
+    x: 829
+    y: 771
+  }
+  vertices {
+    x: 829
+    y: 790
+  }
+  vertices {
+    x: 826
+    y: 790
+  }
+}
+, description: "8"
+bounding_poly {
+  vertices {
+    x: 835
+    y: 771
+  }
+  vertices {
+    x: 842
+    y: 771
+  }
+  vertices {
+    x: 842
+    y: 790
+  }
+  vertices {
+    x: 835
+    y: 790
+  }
+}
+, description: "Jorhat"
+bounding_poly {
+  vertices {
+    x: 344
+    y: 771
+  }
+  vertices {
+    x: 389
+    y: 771
+  }
+  vertices {
+    x: 389
+    y: 788
+  }
+  vertices {
+    x: 344
+    y: 788
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 392
+    y: 771
+  }
+  vertices {
+    x: 393
+    y: 771
+  }
+  vertices {
+    x: 393
+    y: 788
+  }
+  vertices {
+    x: 392
+    y: 788
+  }
+}
+, description: "16"
+bounding_poly {
+  vertices {
+    x: 401
+    y: 771
+  }
+  vertices {
+    x: 416
+    y: 771
+  }
+  vertices {
+    x: 416
+    y: 788
+  }
+  vertices {
+    x: 401
+    y: 788
+  }
+}
+, description: "Barpeta"
+bounding_poly {
+  vertices {
+    x: 552
+    y: 771
+  }
+  vertices {
+    x: 608
+    y: 771
+  }
+  vertices {
+    x: 608
+    y: 789
+  }
+  vertices {
+    x: 552
+    y: 789
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 610
+    y: 771
+  }
+  vertices {
+    x: 613
+    y: 771
+  }
+  vertices {
+    x: 613
+    y: 789
+  }
+  vertices {
+    x: 610
+    y: 789
+  }
+}
+, description: "8"
+bounding_poly {
+  vertices {
+    x: 619
+    y: 771
+  }
+  vertices {
+    x: 626
+    y: 771
+  }
+  vertices {
+    x: 626
+    y: 789
+  }
+  vertices {
+    x: 619
+    y: 789
+  }
+}
+, description: "District"
+bounding_poly {
+  vertices {
+    x: 388
+    y: 800
+  }
+  vertices {
+    x: 439
+    y: 800
+  }
+  vertices {
+    x: 439
+    y: 817
+  }
+  vertices {
+    x: 388
+    y: 817
+  }
+}
+, description: "wise"
+bounding_poly {
+  vertices {
+    x: 445
+    y: 800
+  }
+  vertices {
+    x: 476
+    y: 800
+  }
+  vertices {
+    x: 476
+    y: 817
+  }
+  vertices {
+    x: 445
+    y: 817
+  }
+}
+, description: "death"
+bounding_poly {
+  vertices {
+    x: 482
+    y: 800
+  }
+  vertices {
+    x: 523
+    y: 800
+  }
+  vertices {
+    x: 523
+    y: 818
+  }
+  vertices {
+    x: 482
+    y: 818
+  }
+}
+, description: "("
+bounding_poly {
+  vertices {
+    x: 526
+    y: 801
+  }
+  vertices {
+    x: 528
+    y: 801
+  }
+  vertices {
+    x: 528
+    y: 818
+  }
+  vertices {
+    x: 526
+    y: 818
+  }
+}
+, description: "Today"
+bounding_poly {
+  vertices {
+    x: 530
+    y: 801
+  }
+  vertices {
+    x: 574
+    y: 801
+  }
+  vertices {
+    x: 574
+    y: 818
+  }
+  vertices {
+    x: 530
+    y: 818
+  }
+}
+, description: ")"
+bounding_poly {
+  vertices {
+    x: 576
+    y: 801
+  }
+  vertices {
+    x: 579
+    y: 801
+  }
+  vertices {
+    x: 579
+    y: 818
+  }
+  vertices {
+    x: 576
+    y: 818
+  }
+}
+, description: "Golaghat"
+bounding_poly {
+  vertices {
+    x: 337
+    y: 829
+  }
+  vertices {
+    x: 402
+    y: 828
+  }
+  vertices {
+    x: 402
+    y: 847
+  }
+  vertices {
+    x: 337
+    y: 848
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 405
+    y: 829
+  }
+  vertices {
+    x: 406
+    y: 829
+  }
+  vertices {
+    x: 406
+    y: 847
+  }
+  vertices {
+    x: 405
+    y: 847
+  }
+}
+, description: "1"
+bounding_poly {
+  vertices {
+    x: 414
+    y: 829
+  }
+  vertices {
+    x: 420
+    y: 829
+  }
+  vertices {
+    x: 420
+    y: 847
+  }
+  vertices {
+    x: 414
+    y: 847
+  }
+}
+, description: "Jorhat"
+bounding_poly {
+  vertices {
+    x: 556
+    y: 831
+  }
+  vertices {
+    x: 600
+    y: 831
+  }
+  vertices {
+    x: 600
+    y: 846
+  }
+  vertices {
+    x: 556
+    y: 846
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 603
+    y: 831
+  }
+  vertices {
+    x: 605
+    y: 831
+  }
+  vertices {
+    x: 605
+    y: 846
+  }
+  vertices {
+    x: 603
+    y: 846
+  }
+}
+, description: "1"
+bounding_poly {
+  vertices {
+    x: 612
+    y: 831
+  }
+  vertices {
+    x: 618
+    y: 831
+  }
+  vertices {
+    x: 618
+    y: 846
+  }
+  vertices {
+    x: 612
+    y: 846
+  }
+}
+, description: "Nalbari"
+bounding_poly {
+  vertices {
+    x: 140
+    y: 829
+  }
+  vertices {
+    x: 191
+    y: 829
+  }
+  vertices {
+    x: 191
+    y: 845
+  }
+  vertices {
+    x: 140
+    y: 845
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 194
+    y: 829
+  }
+  vertices {
+    x: 196
+    y: 829
+  }
+  vertices {
+    x: 196
+    y: 845
+  }
+  vertices {
+    x: 194
+    y: 845
+  }
+}
+, description: "2"
+bounding_poly {
+  vertices {
+    x: 203
+    y: 829
+  }
+  vertices {
+    x: 209
+    y: 829
+  }
+  vertices {
+    x: 209
+    y: 845
+  }
+  vertices {
+    x: 203
+    y: 845
+  }
+}
+, description: "Nagaon"
+bounding_poly {
+  vertices {
+    x: 757
+    y: 830
+  }
+  vertices {
+    x: 810
+    y: 829
+  }
+  vertices {
+    x: 810
+    y: 847
+  }
+  vertices {
+    x: 757
+    y: 848
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 813
+    y: 830
+  }
+  vertices {
+    x: 816
+    y: 830
+  }
+  vertices {
+    x: 816
+    y: 847
+  }
+  vertices {
+    x: 813
+    y: 847
+  }
+}
+, description: "1"
+bounding_poly {
+  vertices {
+    x: 823
+    y: 830
+  }
+  vertices {
+    x: 829
+    y: 830
+  }
+  vertices {
+    x: 829
+    y: 847
+  }
+  vertices {
+    x: 823
+    y: 847
+  }
+}
+, description: "Sivasagar"
+bounding_poly {
+  vertices {
+    x: 441
+    y: 865
+  }
+  vertices {
+    x: 509
+    y: 865
+  }
+  vertices {
+    x: 509
+    y: 884
+  }
+  vertices {
+    x: 441
+    y: 884
+  }
+}
+, description: ":"
+bounding_poly {
+  vertices {
+    x: 511
+    y: 865
+  }
+  vertices {
+    x: 513
+    y: 865
+  }
+  vertices {
+    x: 513
+    y: 884
+  }
+  vertices {
+    x: 511
+    y: 884
+  }
+}
+, description: "1"
+bounding_poly {
+  vertices {
+    x: 520
+    y: 865
+  }
+  vertices {
+    x: 524
+    y: 865
+  }
+  vertices {
+    x: 524
+    y: 884
+  }
+  vertices {
+    x: 520
+    y: 884
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 123
+    y: 947
+  }
+  vertices {
+    x: 165
+    y: 947
+  }
+  vertices {
+    x: 165
+    y: 963
+  }
+  vertices {
+    x: 123
+    y: 963
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 172
+    y: 947
+  }
+  vertices {
+    x: 174
+    y: 947
+  }
+  vertices {
+    x: 174
+    y: 963
+  }
+  vertices {
+    x: 172
+    y: 963
+  }
+}
+, description: "19"
+bounding_poly {
+  vertices {
+    x: 180
+    y: 947
+  }
+  vertices {
+    x: 192
+    y: 947
+  }
+  vertices {
+    x: 192
+    y: 963
+  }
+  vertices {
+    x: 180
+    y: 963
+  }
+}
+, description: "Tests"
+bounding_poly {
+  vertices {
+    x: 198
+    y: 947
+  }
+  vertices {
+    x: 234
+    y: 947
+  }
+  vertices {
+    x: 234
+    y: 963
+  }
+  vertices {
+    x: 198
+    y: 963
+  }
+}
+, description: "conducted"
+bounding_poly {
+  vertices {
+    x: 141
+    y: 969
+  }
+  vertices {
+    x: 216
+    y: 970
+  }
+  vertices {
+    x: 216
+    y: 986
+  }
+  vertices {
+    x: 141
+    y: 985
+  }
+}
+, description: "("
+bounding_poly {
+  vertices {
+    x: 126
+    y: 990
+  }
+  vertices {
+    x: 136
+    y: 990
+  }
+  vertices {
+    x: 136
+    y: 1011
+  }
+  vertices {
+    x: 126
+    y: 1011
+  }
+}
+, description: "Cumulative"
+bounding_poly {
+  vertices {
+    x: 141
+    y: 990
+  }
+  vertices {
+    x: 218
+    y: 990
+  }
+  vertices {
+    x: 218
+    y: 1011
+  }
+  vertices {
+    x: 141
+    y: 1011
+  }
+}
+, description: ")"
+bounding_poly {
+  vertices {
+    x: 225
+    y: 990
+  }
+  vertices {
+    x: 229
+    y: 990
+  }
+  vertices {
+    x: 229
+    y: 1011
+  }
+  vertices {
+    x: 225
+    y: 1011
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 312
+    y: 959
+  }
+  vertices {
+    x: 359
+    y: 959
+  }
+  vertices {
+    x: 359
+    y: 974
+  }
+  vertices {
+    x: 312
+    y: 974
+  }
+}
+, description: "Positive"
+bounding_poly {
+  vertices {
+    x: 365
+    y: 958
+  }
+  vertices {
+    x: 421
+    y: 957
+  }
+  vertices {
+    x: 421
+    y: 973
+  }
+  vertices {
+    x: 365
+    y: 974
+  }
+}
+, description: "Cases"
+bounding_poly {
+  vertices {
+    x: 347
+    y: 981
+  }
+  vertices {
+    x: 387
+    y: 980
+  }
+  vertices {
+    x: 387
+    y: 994
+  }
+  vertices {
+    x: 347
+    y: 995
+  }
+}
+, description: "Discharged"
+bounding_poly {
+  vertices {
+    x: 500
+    y: 970
+  }
+  vertices {
+    x: 579
+    y: 971
+  }
+  vertices {
+    x: 579
+    y: 989
+  }
+  vertices {
+    x: 500
+    y: 988
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 710
+    y: 970
+  }
+  vertices {
+    x: 756
+    y: 970
+  }
+  vertices {
+    x: 756
+    y: 985
+  }
+  vertices {
+    x: 710
+    y: 985
+  }
+}
+, description: "Deaths"
+bounding_poly {
+  vertices {
+    x: 763
+    y: 970
+  }
+  vertices {
+    x: 812
+    y: 970
+  }
+  vertices {
+    x: 812
+    y: 985
+  }
+  vertices {
+    x: 763
+    y: 985
+  }
+}
+, description: "2,57,09,342"
+bounding_poly {
+  vertices {
+    x: 137
+    y: 1026
+  }
+  vertices {
+    x: 221
+    y: 1026
+  }
+  vertices {
+    x: 221
+    y: 1042
+  }
+  vertices {
+    x: 137
+    y: 1042
+  }
+}
+, description: "6,16,708"
+bounding_poly {
+  vertices {
+    x: 336
+    y: 1025
+  }
+  vertices {
+    x: 398
+    y: 1024
+  }
+  vertices {
+    x: 398
+    y: 1041
+  }
+  vertices {
+    x: 336
+    y: 1042
+  }
+}
+, description: "6,08,015"
+bounding_poly {
+  vertices {
+    x: 508
+    y: 1025
+  }
+  vertices {
+    x: 569
+    y: 1025
+  }
+  vertices {
+    x: 569
+    y: 1040
+  }
+  vertices {
+    x: 508
+    y: 1040
+  }
+}
+, description: "6,098"
+bounding_poly {
+  vertices {
+    x: 742
+    y: 1026
+  }
+  vertices {
+    x: 781
+    y: 1026
+  }
+  vertices {
+    x: 781
+    y: 1042
+  }
+  vertices {
+    x: 742
+    y: 1042
+  }
+}
+, description: "Test"
+bounding_poly {
+  vertices {
+    x: 163
+    y: 1080
+  }
+  vertices {
+    x: 192
+    y: 1080
+  }
+  vertices {
+    x: 192
+    y: 1099
+  }
+  vertices {
+    x: 163
+    y: 1099
+  }
+}
+, description: "per"
+bounding_poly {
+  vertices {
+    x: 199
+    y: 1080
+  }
+  vertices {
+    x: 222
+    y: 1080
+  }
+  vertices {
+    x: 222
+    y: 1099
+  }
+  vertices {
+    x: 199
+    y: 1099
+  }
+}
+, description: "million"
+bounding_poly {
+  vertices {
+    x: 228
+    y: 1080
+  }
+  vertices {
+    x: 276
+    y: 1080
+  }
+  vertices {
+    x: 276
+    y: 1099
+  }
+  vertices {
+    x: 228
+    y: 1099
+  }
+}
+, description: "population"
+bounding_poly {
+  vertices {
+    x: 283
+    y: 1080
+  }
+  vertices {
+    x: 361
+    y: 1080
+  }
+  vertices {
+    x: 361
+    y: 1099
+  }
+  vertices {
+    x: 283
+    y: 1099
+  }
+}
+, description: "Recovery"
+bounding_poly {
+  vertices {
+    x: 489
+    y: 1082
+  }
+  vertices {
+    x: 555
+    y: 1081
+  }
+  vertices {
+    x: 555
+    y: 1098
+  }
+  vertices {
+    x: 489
+    y: 1099
+  }
+}
+, description: "rate"
+bounding_poly {
+  vertices {
+    x: 561
+    y: 1081
+  }
+  vertices {
+    x: 588
+    y: 1081
+  }
+  vertices {
+    x: 588
+    y: 1098
+  }
+  vertices {
+    x: 561
+    y: 1098
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 650
+    y: 1069
+  }
+  vertices {
+    x: 691
+    y: 1069
+  }
+  vertices {
+    x: 691
+    y: 1083
+  }
+  vertices {
+    x: 650
+    y: 1083
+  }
+}
+, description: "-"
+bounding_poly {
+  vertices {
+    x: 699
+    y: 1069
+  }
+  vertices {
+    x: 701
+    y: 1069
+  }
+  vertices {
+    x: 701
+    y: 1083
+  }
+  vertices {
+    x: 699
+    y: 1083
+  }
+}
+, description: "19"
+bounding_poly {
+  vertices {
+    x: 705
+    y: 1069
+  }
+  vertices {
+    x: 719
+    y: 1069
+  }
+  vertices {
+    x: 719
+    y: 1083
+  }
+  vertices {
+    x: 705
+    y: 1083
+  }
+}
+, description: "Death"
+bounding_poly {
+  vertices {
+    x: 656
+    y: 1092
+  }
+  vertices {
+    x: 698
+    y: 1092
+  }
+  vertices {
+    x: 698
+    y: 1107
+  }
+  vertices {
+    x: 656
+    y: 1107
+  }
+}
+, description: "%"
+bounding_poly {
+  vertices {
+    x: 704
+    y: 1092
+  }
+  vertices {
+    x: 716
+    y: 1092
+  }
+  vertices {
+    x: 716
+    y: 1107
+  }
+  vertices {
+    x: 704
+    y: 1107
+  }
+}
+, description: "COVID"
+bounding_poly {
+  vertices {
+    x: 765
+    y: 1058
+  }
+  vertices {
+    x: 811
+    y: 1058
+  }
+  vertices {
+    x: 811
+    y: 1075
+  }
+  vertices {
+    x: 765
+    y: 1075
+  }
+}
+, description: "Positive"
+bounding_poly {
+  vertices {
+    x: 818
+    y: 1058
+  }
+  vertices {
+    x: 874
+    y: 1058
+  }
+  vertices {
+    x: 874
+    y: 1075
+  }
+  vertices {
+    x: 818
+    y: 1075
+  }
+}
+, description: "Patient"
+bounding_poly {
+  vertices {
+    x: 760
+    y: 1079
+  }
+  vertices {
+    x: 811
+    y: 1079
+  }
+  vertices {
+    x: 811
+    y: 1095
+  }
+  vertices {
+    x: 760
+    y: 1095
+  }
+}
+, description: "dead"
+bounding_poly {
+  vertices {
+    x: 817
+    y: 1079
+  }
+  vertices {
+    x: 851
+    y: 1079
+  }
+  vertices {
+    x: 851
+    y: 1095
+  }
+  vertices {
+    x: 817
+    y: 1095
+  }
+}
+, description: "for"
+bounding_poly {
+  vertices {
+    x: 858
+    y: 1079
+  }
+  vertices {
+    x: 878
+    y: 1079
+  }
+  vertices {
+    x: 878
+    y: 1095
+  }
+  vertices {
+    x: 858
+    y: 1095
+  }
+}
+, description: "other"
+bounding_poly {
+  vertices {
+    x: 770
+    y: 1102
+  }
+  vertices {
+    x: 809
+    y: 1103
+  }
+  vertices {
+    x: 809
+    y: 1118
+  }
+  vertices {
+    x: 770
+    y: 1117
+  }
+}
+, description: "reasons"
+bounding_poly {
+  vertices {
+    x: 815
+    y: 1103
+  }
+  vertices {
+    x: 870
+    y: 1104
+  }
+  vertices {
+    x: 870
+    y: 1119
+  }
+  vertices {
+    x: 815
+    y: 1118
+  }
+}
+, description: "7.49"
+bounding_poly {
+  vertices {
+    x: 225
+    y: 1135
+  }
+  vertices {
+    x: 255
+    y: 1135
+  }
+  vertices {
+    x: 255
+    y: 1150
+  }
+  vertices {
+    x: 225
+    y: 1150
+  }
+}
+, description: "Lakhs"
+bounding_poly {
+  vertices {
+    x: 261
+    y: 1135
+  }
+  vertices {
+    x: 300
+    y: 1136
+  }
+  vertices {
+    x: 300
+    y: 1151
+  }
+  vertices {
+    x: 261
+    y: 1150
+  }
+}
+, description: "98.59"
+bounding_poly {
+  vertices {
+    x: 514
+    y: 1135
+  }
+  vertices {
+    x: 552
+    y: 1135
+  }
+  vertices {
+    x: 552
+    y: 1150
+  }
+  vertices {
+    x: 514
+    y: 1150
+  }
+}
+, description: "%"
+bounding_poly {
+  vertices {
+    x: 554
+    y: 1135
+  }
+  vertices {
+    x: 565
+    y: 1135
+  }
+  vertices {
+    x: 565
+    y: 1150
+  }
+  vertices {
+    x: 554
+    y: 1150
+  }
+}
+, description: "0.99"
+bounding_poly {
+  vertices {
+    x: 663
+    y: 1136
+  }
+  vertices {
+    x: 692
+    y: 1135
+  }
+  vertices {
+    x: 693
+    y: 1152
+  }
+  vertices {
+    x: 664
+    y: 1153
+  }
+}
+, description: "%"
+bounding_poly {
+  vertices {
+    x: 699
+    y: 1135
+  }
+  vertices {
+    x: 706
+    y: 1135
+  }
+  vertices {
+    x: 707
+    y: 1151
+  }
+  vertices {
+    x: 700
+    y: 1151
+  }
+}
+, description: "1,347"
+bounding_poly {
+  vertices {
+    x: 799
+    y: 1135
+  }
+  vertices {
+    x: 838
+    y: 1134
+  }
+  vertices {
+    x: 839
+    y: 1151
+  }
+  vertices {
+    x: 800
+    y: 1152
+  }
+}
+]
+HEALTH
+5H MISSIO
+VNOTEV
+Health and Family Welfare Department,
+Government of Assam &
+National Health Mission, Assam
+09
+National Health Mission Assam
+Government of Asia
+COVID-19 Media Bulletin: Dated-29/11/2021
+Assam has been at the forefront of the fight against Covid19 since the first patient was detected on
+31st March 2020. The State has successfully combated this disease this far by following all health
+protocols & guidelines issued by WHO & MOHFW. The State is still relentlessly fighting the
+pandemic with the support of its health department in convergence with other departments.
+Protect yourself and the society from COVID-19
+We Mask
+Use Saniti
+Avoid Crowds
+Wash Hands
+Cet Vaccinated
+Present status of COVID-19 as on 29" November, 2021
+COVID-19 tests
+conducted
+New cases
+detected today
+Today's
+positivity
+rate
+Patients
+discharged today
+Today's death
+Active Cases
+35,539
+140
+0.39%
+230
+6
+1,248
+Today's high case load districts
+Kamrup(M): 54
+Kamrup(R): 8
+Jorhat: 16
+Barpeta: 8
+District wise death(Today)
+Golaghat: 1
+Jorhat: 1
+Nalbari: 2
+Nagaon: 1
+Sivasagar: 1
+COVID-19 Tests
+conducted
+(Cumulative)
+COVID Positive
+Cases
+Discharged
+COVID Deaths
+2,57,09,342
+6,16,708
+6,08,015
+6,098
+Test per million population
+Recovery rate
+COVID-19
+Death %
+COVID Positive
+Patient dead for
+other reasons
+7.49 Lakhs
+98.59%
+0.99%
+1,347
+|bounds|83,42|878,42|878,1153|83,1153
+HEALTH|bounds|785,43|812,47|810,59|783,55
+5H|bounds|812,42|818,47|807,59|801,54
+MISSIO|bounds|822,51|840,68|830,80|811,63
+VNOTEV|bounds|787,53|762,83|752,74|776,44
+Health|bounds|312,51|371,51|371,74|312,74
+and|bounds|378,51|411,51|411,74|378,74
+Family|bounds|420,51|479,51|479,75|420,75
+Welfare|bounds|486,52|558,52|558,75|486,75
+Department|bounds|567,52|679,53|679,77|567,76
+,|bounds|681,53|684,53|684,76|681,76
+Government|bounds|383,83|500,83|500,102|383,102
+of|bounds|507,83|525,83|525,102|507,102
+Assam|bounds|531,83|590,83|590,102|531,102
+&|bounds|598,83|611,83|611,102|598,102
+National|bounds|343,110|417,110|417,132|343,132
+Health|bounds|426,110|482,110|482,132|426,132
+Mission|bounds|492,110|559,110|559,132|492,132
+,|bounds|562,110|565,110|565,132|562,132
+Assam|bounds|573,110|630,110|630,132|573,132
+09|bounds|157,103|180,103|180,117|157,117
+National|bounds|731,114|765,114|765,124|731,124
+Health|bounds|769,114|794,114|794,124|769,124
+Mission|bounds|798,114|830,114|830,124|798,124
+Assam|bounds|834,114|861,114|861,124|834,124
+Government|bounds|129,125|164,125|164,132|129,132
+of|bounds|166,125|171,125|171,132|166,132
+Asia|bounds|174,125|193,125|193,132|174,132
+COVID|bounds|277,189|336,189|336,213|277,213
+-|bounds|338,189|343,189|343,213|338,213
+19|bounds|346,189|365,189|365,213|346,213
+Media|bounds|374,189|430,189|430,213|374,213
+Bulletin|bounds|439,189|508,189|508,213|439,213
+:|bounds|512,189|514,189|514,213|512,213
+Dated|bounds|523,189|576,189|576,213|523,213
+-|bounds|579,189|584,189|584,213|579,213
+29|bounds|587,189|607,189|607,213|587,213
+/|bounds|609,189|617,189|617,213|609,213
+11|bounds|620,189|639,189|639,213|620,213
+/|bounds|641,189|649,189|649,213|641,213
+2021|bounds|652,189|694,189|694,213|652,213
+Assam|bounds|83,258|130,258|130,277|83,277
+has|bounds|139,258|162,258|162,277|139,277
+been|bounds|171,258|205,258|205,277|171,277
+at|bounds|214,258|227,258|227,277|214,277
+the|bounds|234,258|258,258|258,277|234,277
+forefront|bounds|265,258|333,258|333,277|265,277
+of|bounds|341,258|356,258|356,277|341,277
+the|bounds|362,258|386,258|386,277|362,277
+fight|bounds|393,258|426,258|426,277|393,277
+against|bounds|434,258|486,258|486,277|434,277
+Covid19|bounds|494,258|553,258|553,277|494,277
+since|bounds|562,258|597,258|597,277|562,277
+the|bounds|605,258|628,258|628,277|605,277
+first|bounds|637,258|665,258|665,277|637,277
+patient|bounds|673,258|725,258|725,277|673,277
+was|bounds|733,258|760,258|760,277|733,277
+detected|bounds|769,258|834,258|834,277|769,277
+on|bounds|843,258|861,258|861,277|843,277
+31st|bounds|83,278|109,278|109,299|83,299
+March|bounds|119,278|165,278|165,299|119,299
+2020.|bounds|175,278|215,278|215,299|175,299
+The|bounds|225,278|251,278|251,299|225,299
+State|bounds|261,278|298,278|298,299|261,299
+has|bounds|309,278|331,278|331,299|309,299
+successfully|bounds|341,278|429,278|429,299|341,299
+combated|bounds|438,278|512,278|512,299|438,299
+this|bounds|522,278|548,278|548,299|522,299
+disease|bounds|558,278|612,278|612,299|558,299
+this|bounds|621,278|647,278|647,299|621,299
+far|bounds|657,278|676,278|676,299|657,299
+by|bounds|686,278|702,278|702,299|686,299
+following|bounds|711,278|779,278|779,299|711,299
+all|bounds|789,278|804,278|804,299|789,299
+health|bounds|815,278|860,278|860,299|815,299
+protocols|bounds|84,302|152,302|152,324|84,324
+&|bounds|164,302|174,302|174,324|164,324
+guidelines|bounds|185,302|260,302|260,324|185,324
+issued|bounds|272,302|316,302|316,324|272,324
+by|bounds|329,302|344,302|344,324|329,324
+WHO|bounds|355,302|394,302|394,324|355,324
+&|bounds|405,302|415,302|415,324|405,324
+MOHFW|bounds|428,302|488,302|488,324|428,324
+.|bounds|490,302|492,302|492,324|490,324
+The|bounds|504,302|532,302|532,324|504,324
+State|bounds|544,302|585,302|585,324|544,324
+is|bounds|598,302|607,302|607,324|598,324
+still|bounds|620,302|646,302|646,324|620,324
+relentlessly|bounds|659,302|751,302|751,324|659,324
+fighting|bounds|762,302|823,302|823,324|762,324
+the|bounds|835,302|861,302|861,324|835,324
+pandemic|bounds|84,326|162,326|162,348|84,348
+with|bounds|169,326|203,326|203,348|169,348
+the|bounds|209,326|235,326|235,348|209,348
+support|bounds|242,326|304,326|304,348|242,348
+of|bounds|311,326|326,326|326,348|311,348
+its|bounds|333,326|350,326|350,348|333,348
+health|bounds|357,326|406,326|406,348|357,348
+department|bounds|413,326|509,326|509,348|413,348
+in|bounds|517,326|529,326|529,348|517,348
+convergence|bounds|536,326|638,326|638,348|536,348
+with|bounds|645,326|679,326|679,348|645,348
+other|bounds|686,326|729,326|729,348|686,348
+departments|bounds|735,326|841,326|841,348|735,348
+.|bounds|841,326|845,326|845,348|841,348
+Protect|bounds|282,393|341,393|341,414|282,414
+yourself|bounds|348,393|415,393|415,414|348,414
+and|bounds|421,393|450,393|450,414|421,414
+the|bounds|457,393|483,393|483,414|457,414
+society|bounds|490,393|547,393|547,414|490,414
+from|bounds|554,393|592,393|592,414|554,414
+COVID|bounds|600,393|652,393|652,414|600,414
+-|bounds|655,393|659,393|659,414|655,414
+19|bounds|662,393|679,393|679,414|662,414
+We|bounds|278,496|300,496|300,505|278,505
+Mask|bounds|305,496|327,496|327,505|305,505
+Use|bounds|370,497|385,497|385,505|370,505
+Saniti|bounds|389,497|427,498|427,506|389,505
+Avoid|bounds|466,497|490,497|490,507|466,507
+Crowds|bounds|494,497|527,497|527,507|494,507
+Wash|bounds|560,496|584,496|584,505|560,505
+Hands|bounds|589,496|616,496|616,505|589,505
+Cet|bounds|644,498|659,498|659,506|644,506
+Vaccinated|bounds|663,497|713,498|713,507|663,506
+Present|bounds|218,541|290,541|290,572|218,572
+status|bounds|298,541|355,541|355,572|298,572
+of|bounds|364,541|382,541|382,572|364,572
+COVID|bounds|389,541|450,541|450,572|389,572
+-|bounds|453,541|458,541|458,572|453,572
+19|bounds|461,541|482,541|482,572|461,572
+as|bounds|490,541|508,541|508,572|490,572
+on|bounds|516,541|538,541|538,572|516,572
+29|bounds|547,541|568,541|568,572|547,572
+"|bounds|572,541|577,541|577,572|572,572
+November|bounds|585,541|686,541|686,572|585,572
+,|bounds|689,541|692,541|692,572|689,572
+2021|bounds|700,541|745,541|745,572|700,572
+COVID|bounds|99,616|145,616|145,630|99,630
+-|bounds|147,616|150,616|150,630|147,630
+19|bounds|153,616|168,616|168,630|153,630
+tests|bounds|174,616|207,616|207,630|174,630
+conducted|bounds|114,636|189,635|189,652|114,653
+New|bounds|265,616|297,617|297,631|265,630
+cases|bounds|302,616|340,617|340,632|302,631
+detected|bounds|247,634|310,635|310,653|247,652
+today|bounds|316,636|358,637|358,654|316,653
+Today's|bounds|401,605|456,605|456,623|401,623
+positivity|bounds|396,625|462,625|462,646|396,646
+rate|bounds|414,650|442,650|442,662|414,662
+Patients|bounds|536,616|594,615|594,630|536,631
+discharged|bounds|504,637|581,637|581,655|504,655
+today|bounds|587,637|628,637|628,655|587,655
+Today's|bounds|657,625|712,624|712,643|657,644
+death|bounds|718,624|759,623|759,642|718,643
+Active|bounds|789,626|833,626|833,640|789,640
+Cases|bounds|839,626|878,626|878,640|839,640
+35,539|bounds|128,682|176,682|176,700|128,700
+140|bounds|290,683|316,685|315,700|289,698
+0.39|bounds|407,683|437,683|437,700|407,700
+%|bounds|439,683|450,683|450,700|439,700
+230|bounds|552,683|577,683|577,698|552,698
+6|bounds|705,684|712,684|712,697|705,697
+1,248|bounds|815,683|853,682|853,700|815,701
+Today's|bounds|369,740|425,739|425,757|369,758
+high|bounds|431,740|460,740|460,757|431,757
+case|bounds|467,739|496,739|496,756|467,756
+load|bounds|503,739|532,739|532,756|503,756
+districts|bounds|539,738|595,737|595,755|539,756
+Kamrup|bounds|121,770|176,770|176,789|121,789
+(|bounds|179,770|181,770|181,789|179,789
+M|bounds|185,770|197,770|197,789|185,789
+)|bounds|200,770|202,770|202,789|200,789
+:|bounds|206,770|207,770|207,789|206,789
+54|bounds|214,770|230,770|230,789|214,789
+Kamrup|bounds|747,771|802,771|802,790|747,790
+(|bounds|806,771|809,771|809,790|806,790
+R|bounds|814,771|817,771|817,790|814,790
+)|bounds|822,771|825,771|825,790|822,790
+:|bounds|826,771|829,771|829,790|826,790
+8|bounds|835,771|842,771|842,790|835,790
+Jorhat|bounds|344,771|389,771|389,788|344,788
+:|bounds|392,771|393,771|393,788|392,788
+16|bounds|401,771|416,771|416,788|401,788
+Barpeta|bounds|552,771|608,771|608,789|552,789
+:|bounds|610,771|613,771|613,789|610,789
+8|bounds|619,771|626,771|626,789|619,789
+District|bounds|388,800|439,800|439,817|388,817
+wise|bounds|445,800|476,800|476,817|445,817
+death|bounds|482,800|523,800|523,818|482,818
+(|bounds|526,801|528,801|528,818|526,818
+Today|bounds|530,801|574,801|574,818|530,818
+)|bounds|576,801|579,801|579,818|576,818
+Golaghat|bounds|337,829|402,828|402,847|337,848
+:|bounds|405,829|406,829|406,847|405,847
+1|bounds|414,829|420,829|420,847|414,847
+Jorhat|bounds|556,831|600,831|600,846|556,846
+:|bounds|603,831|605,831|605,846|603,846
+1|bounds|612,831|618,831|618,846|612,846
+Nalbari|bounds|140,829|191,829|191,845|140,845
+:|bounds|194,829|196,829|196,845|194,845
+2|bounds|203,829|209,829|209,845|203,845
+Nagaon|bounds|757,830|810,829|810,847|757,848
+:|bounds|813,830|816,830|816,847|813,847
+1|bounds|823,830|829,830|829,847|823,847
+Sivasagar|bounds|441,865|509,865|509,884|441,884
+:|bounds|511,865|513,865|513,884|511,884
+1|bounds|520,865|524,865|524,884|520,884
+COVID|bounds|123,947|165,947|165,963|123,963
+-|bounds|172,947|174,947|174,963|172,963
+19|bounds|180,947|192,947|192,963|180,963
+Tests|bounds|198,947|234,947|234,963|198,963
+conducted|bounds|141,969|216,970|216,986|141,985
+(|bounds|126,990|136,990|136,1011|126,1011
+Cumulative|bounds|141,990|218,990|218,1011|141,1011
+)|bounds|225,990|229,990|229,1011|225,1011
+COVID|bounds|312,959|359,959|359,974|312,974
+Positive|bounds|365,958|421,957|421,973|365,974
+Cases|bounds|347,981|387,980|387,994|347,995
+Discharged|bounds|500,970|579,971|579,989|500,988
+COVID|bounds|710,970|756,970|756,985|710,985
+Deaths|bounds|763,970|812,970|812,985|763,985
+2,57,09,342|bounds|137,1026|221,1026|221,1042|137,1042
+6,16,708|bounds|336,1025|398,1024|398,1041|336,1042
+6,08,015|bounds|508,1025|569,1025|569,1040|508,1040
+6,098|bounds|742,1026|781,1026|781,1042|742,1042
+Test|bounds|163,1080|192,1080|192,1099|163,1099
+per|bounds|199,1080|222,1080|222,1099|199,1099
+million|bounds|228,1080|276,1080|276,1099|228,1099
+population|bounds|283,1080|361,1080|361,1099|283,1099
+Recovery|bounds|489,1082|555,1081|555,1098|489,1099
+rate|bounds|561,1081|588,1081|588,1098|561,1098
+COVID|bounds|650,1069|691,1069|691,1083|650,1083
+-|bounds|699,1069|701,1069|701,1083|699,1083
+19|bounds|705,1069|719,1069|719,1083|705,1083
+Death|bounds|656,1092|698,1092|698,1107|656,1107
+%|bounds|704,1092|716,1092|716,1107|704,1107
+COVID|bounds|765,1058|811,1058|811,1075|765,1075
+Positive|bounds|818,1058|874,1058|874,1075|818,1075
+Patient|bounds|760,1079|811,1079|811,1095|760,1095
+dead|bounds|817,1079|851,1079|851,1095|817,1095
+for|bounds|858,1079|878,1079|878,1095|858,1095
+other|bounds|770,1102|809,1103|809,1118|770,1117
+reasons|bounds|815,1103|870,1104|870,1119|815,1118
+7.49|bounds|225,1135|255,1135|255,1150|225,1150
+Lakhs|bounds|261,1135|300,1136|300,1151|261,1150
+98.59|bounds|514,1135|552,1135|552,1150|514,1150
+%|bounds|554,1135|565,1135|565,1150|554,1150
+0.99|bounds|663,1136|692,1135|693,1152|664,1153
+%|bounds|699,1135|706,1135|707,1151|700,1151
+1,347|bounds|799,1135|838,1134|839,1151|800,1152

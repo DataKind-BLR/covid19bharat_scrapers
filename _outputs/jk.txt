@@ -1,0 +1,96 @@
+Jammu and Kashmir data from your current input.                                                                                                                                   
+┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                  
+┃ district  ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                  
+┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                  
+│ Srinagar  │     76953 │     75510 │      862 │                                                                                                                                  
+│ Baramulla │     25257 │     24616 │      286 │                                                                                                                                  
+│ Budgam    │     24105 │     23796 │      210 │                                                                                                                                  
+│ Pulwama   │     15581 │     15336 │      194 │                                                                                                                                  
+│ Kupwara   │     14694 │     14411 │      166 │                                                                                                                                  
+│ Anantnag  │     16661 │     16435 │      205 │                                                                                                                                  
+│ Bandipora │      9954 │      9790 │      104 │                                                                                                                                  
+│ Ganderbal │     10695 │     10473 │       79 │                                                                                                                                  
+│ Kulgam    │     11505 │     11380 │      117 │                                                                                                                                  
+│ Shopian   │      5612 │      5551 │       59 │                                                                                                                                  
+│ Jammu     │     53571 │     52290 │     1151 │                                                                                                                                  
+│ Udhampur  │     11432 │     11289 │      137 │                                                                                                                                  
+│ Rajouri   │     11315 │     11057 │      238 │                                                                                                                                  
+│ Doda      │      7915 │      7766 │      133 │                                                                                                                                  
+│ Kathua    │      9346 │      9188 │      152 │                                                                                                                                  
+│ Samba     │      7163 │      7041 │      120 │                                                                                                                                  
+│ Kishtwar  │      4826 │      4776 │       44 │                                                                                                                                  
+│ Poonch    │      6514 │      6404 │       99 │                                                                                                                                  
+│ Ramban    │      6054 │      5984 │       67 │                                                                                                                                  
+│ Reasi     │      6728 │      6638 │       43 │                                                                                                                                  
+│ Division  │    124864 │    122433 │     2184 │                                                                                                                                  
+└───────────┴───────────┴───────────┴──────────┘                                                                                                                                  
+Jammu and Kashmir last updated data from <data.covid19bharat.org>                                                                                                                 
+┏━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                     
+┃ district     ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                     
+┡━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                     
+│ Anantnag     │     16658 │     16431 │      205 │              0 │     22 │                                                                                                     
+│ Bandipora    │      9946 │      9778 │      104 │              0 │     64 │                                                                                                     
+│ Baramulla    │     25214 │     24587 │      286 │              0 │    341 │                                                                                                     
+│ Budgam       │     24087 │     23792 │      209 │              0 │     86 │                                                                                                     
+│ Doda         │      7913 │      7762 │      133 │              0 │     18 │                                                                                                     
+│ Ganderbal    │     10688 │     10466 │       79 │              0 │    143 │                                                                                                     
+│ Jammu        │     53560 │     52281 │     1150 │              0 │    129 │                                                                                                     
+│ Kathua       │      9346 │      9188 │      152 │              0 │      6 │                                                                                                     
+│ Kishtwar     │      4822 │      4776 │       44 │              0 │      2 │                                                                                                     
+│ Kulgam       │     11505 │     11379 │      117 │              0 │      9 │                                                                                                     
+│ Kupwara      │     14683 │     14401 │      166 │              0 │    116 │                                                                                                     
+│ Mirpur       │         0 │         0 │        0 │              0 │      0 │                                                                                                     
+│ Muzaffarabad │         0 │         0 │        0 │              0 │      0 │                                                                                                     
+│ Pulwama      │     15581 │     15336 │      194 │              0 │     51 │                                                                                                     
+│ Punch        │      6513 │      6403 │       99 │              0 │     11 │                                                                                                     
+│ Rajouri      │     11310 │     11055 │      238 │              0 │     17 │                                                                                                     
+│ Ramban       │      6054 │      5984 │       67 │              0 │      3 │                                                                                                     
+│ Reasi        │      6727 │      6630 │       43 │              0 │     54 │                                                                                                     
+│ Samba        │      7163 │      7041 │      120 │              0 │      2 │                                                                                                     
+│ Shopiyan     │      5611 │      5550 │       59 │              0 │      2 │                                                                                                     
+│ Srinagar     │     76895 │     75468 │      862 │              0 │    565 │                                                                                                     
+│ Udhampur     │     11431 │     11288 │      137 │              0 │      6 │                                                                                                     
+│ Unknown      │         0 │         0 │        0 │              0 │      0 │                                                                                                     
+└──────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                     
+
+********** Computing Delta for Jammu and Kashmir **********
+
+Mapping for district names
+Shopian -> Shopiyan
+Poonch -> Punch
+
+Delta statistics
+
+Srinagar,Jammu and Kashmir,JK,58,Hospitalized
+Baramulla,Jammu and Kashmir,JK,43,Hospitalized
+Budgam,Jammu and Kashmir,JK,18,Hospitalized
+Kupwara,Jammu and Kashmir,JK,11,Hospitalized
+Anantnag,Jammu and Kashmir,JK,3,Hospitalized
+Bandipora,Jammu and Kashmir,JK,8,Hospitalized
+Ganderbal,Jammu and Kashmir,JK,7,Hospitalized
+Shopiyan,Jammu and Kashmir,JK,1,Hospitalized
+Jammu,Jammu and Kashmir,JK,11,Hospitalized
+Udhampur,Jammu and Kashmir,JK,1,Hospitalized
+Rajouri,Jammu and Kashmir,JK,5,Hospitalized
+Doda,Jammu and Kashmir,JK,2,Hospitalized
+Kishtwar,Jammu and Kashmir,JK,4,Hospitalized
+Punch,Jammu and Kashmir,JK,1,Hospitalized
+Reasi,Jammu and Kashmir,JK,1,Hospitalized
+Srinagar,Jammu and Kashmir,JK,42,Recovered
+Baramulla,Jammu and Kashmir,JK,29,Recovered
+Budgam,Jammu and Kashmir,JK,4,Recovered
+Kupwara,Jammu and Kashmir,JK,10,Recovered
+Anantnag,Jammu and Kashmir,JK,4,Recovered
+Bandipora,Jammu and Kashmir,JK,12,Recovered
+Ganderbal,Jammu and Kashmir,JK,7,Recovered
+Kulgam,Jammu and Kashmir,JK,1,Recovered
+Shopiyan,Jammu and Kashmir,JK,1,Recovered
+Jammu,Jammu and Kashmir,JK,9,Recovered
+Udhampur,Jammu and Kashmir,JK,1,Recovered
+Rajouri,Jammu and Kashmir,JK,2,Recovered
+Doda,Jammu and Kashmir,JK,4,Recovered
+Punch,Jammu and Kashmir,JK,1,Recovered
+Reasi,Jammu and Kashmir,JK,8,Recovered
+Budgam,Jammu and Kashmir,JK,1,Deceased
+Jammu,Jammu and Kashmir,JK,1,Deceased
+--> ERROR: Failed to find key mapping for district: Division, state: Jammu and Kashmir

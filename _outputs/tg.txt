@@ -1,0 +1,39 @@
+
+********** Computing Delta for Telangana **********
+
+Mapping for district names
+
+Delta statistics
+
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Yadadri Bhuvanagiri,Telangana,TG,-11721,Hospitalized
+Districts Total Current: C= 450  R= 0  D= 0  No of Districts= 30
+Districts Total API    : C= 352080  R= 0  D= 0

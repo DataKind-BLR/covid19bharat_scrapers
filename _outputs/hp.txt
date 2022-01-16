@@ -1,0 +1,55 @@
+Himachal Pradesh data from your current input.                                                                                                                                    
+┏━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                   
+┃ district ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                   
+┡━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                   
+│ Bilaspur │     14583 │     14477 │       86 │                                                                                                                                   
+│ Chamba   │     13734 │     13559 │      160 │                                                                                                                                   
+│ Hamirpur │     17972 │     17581 │      305 │                                                                                                                                   
+│ Kullu    │      9739 │      9576 │      158 │                                                                                                                                   
+│ Spiti    │      2960 │      2942 │       18 │                                                                                                                                   
+│ Mandi    │     31996 │     31416 │      462 │                                                                                                                                   
+│ Shimla   │     27982 │     27189 │      651 │                                                                                                                                   
+│ Sirmour  │     15465 │     15254 │      211 │                                                                                                                                   
+│ Solan    │     22996 │     22643 │      314 │                                                                                                                                   
+└──────────┴───────────┴───────────┴──────────┘                                                                                                                                   
+Himachal Pradesh last updated data from <data.covid19bharat.org>                                                                                                                  
+┏━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                 
+┃ district         ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                 
+┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                 
+│ Bilaspur         │     14581 │     14474 │       86 │              1 │     20 │                                                                                                 
+│ Chamba           │     13734 │     13559 │      160 │              2 │     13 │                                                                                                 
+│ Hamirpur         │     17967 │     17565 │      304 │              1 │     97 │                                                                                                 
+│ Kangra           │     52045 │     50648 │     1172 │              5 │    220 │                                                                                                 
+│ Kinnaur          │      3528 │      3487 │       39 │              0 │      2 │                                                                                                 
+│ Kullu            │      9739 │      9576 │      158 │              2 │      3 │                                                                                                 
+│ Lahaul and Spiti │      2960 │      2942 │       18 │              0 │      0 │                                                                                                 
+│ Mandi            │     31993 │     31396 │      461 │              0 │    136 │                                                                                                 
+│ Shimla           │     27967 │     27177 │      651 │              4 │    135 │                                                                                                 
+│ Sirmaur          │     15465 │     15254 │      211 │              0 │      0 │                                                                                                 
+│ Solan            │     22992 │     22633 │      314 │              0 │     45 │                                                                                                 
+│ Una              │     14659 │     14290 │      262 │              2 │    105 │                                                                                                 
+│ Unknown          │         0 │         0 │        0 │              0 │      0 │                                                                                                 
+└──────────────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                 
+
+********** Computing Delta for Himachal Pradesh **********
+
+Mapping for district names
+Sirmour -> Sirmaur
+L & Spiti -> Lahaul and Spiti
+Spiti -> Lahaul and Spiti
+& Spiti -> Lahaul and Spiti
+
+Delta statistics
+
+Bilaspur,Himachal Pradesh,HP,2,Hospitalized
+Hamirpur,Himachal Pradesh,HP,5,Hospitalized
+Mandi,Himachal Pradesh,HP,3,Hospitalized
+Shimla,Himachal Pradesh,HP,15,Hospitalized
+Solan,Himachal Pradesh,HP,4,Hospitalized
+Bilaspur,Himachal Pradesh,HP,3,Recovered
+Hamirpur,Himachal Pradesh,HP,16,Recovered
+Mandi,Himachal Pradesh,HP,20,Recovered
+Shimla,Himachal Pradesh,HP,12,Recovered
+Solan,Himachal Pradesh,HP,10,Recovered
+Hamirpur,Himachal Pradesh,HP,1,Deceased
+Mandi,Himachal Pradesh,HP,1,Deceased

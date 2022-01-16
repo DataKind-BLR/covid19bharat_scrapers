@@ -1,0 +1,36 @@
+
+********** Computing Delta for Karnataka **********
+
+Mapping for district names
+Gadaga -> Gadag
+Bengaluru -> Bengaluru Urban
+Vijayapur -> Vijayapura
+Chikballapura -> Chikkaballapura
+Chamarajanagar -> Chamarajanagara
+Chikkamgaluru -> Chikkamagaluru
+Davangere -> Davanagere
+Mysore -> Mysuru
+Uttar Kannada -> Uttara Kannada
+Others -> Other State
+Dakshin Kannada -> Dakshina Kannada
+Yadagiri -> Yadgir
+Yadgiri -> Yadgir
+Koppala -> Koppal
+Dharawada -> Dharwad
+Dharwada -> Dharwad
+Bagalakote -> Bagalkote
+Bagalkot -> Bagalkote
+Raichuru -> Raichur
+Kolara -> Kolar
+Hassana -> Hassan
+Others* -> Other State
+Bellary -> Ballari
+Ramanagar -> Ramanagara
+Kalaburgi -> Kalaburagi
+Kalburgi -> Kalaburagi
+Bangalore Urban -> Bengaluru Urban
+Bangalore Rural -> Bengaluru Rural
+Tumkur -> Tumakuru
+
+Delta statistics
+
