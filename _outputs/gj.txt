@@ -1,8 +1,0 @@
-
-********** Computing Delta for Gujarat **********
-
-Mapping for district names
-Devbhoomi Dwarka -> Devbhumi Dwarka
-
-Delta statistics
-

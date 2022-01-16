@@ -462,7 +462,7 @@ def printOutput():
   outputFile.close()
   ax.imshow(image)
   plt.savefig(OUTPUT_PNG, dpi=300)
-  plt.show()
+  #plt.show()
 
 def fuzzyLookup(translationDictionary,districtName):
   '''
