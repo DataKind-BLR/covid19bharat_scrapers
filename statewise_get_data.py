@@ -360,8 +360,9 @@ def ct_get_data(opt):
     masterColumnList = ""
     masterColumnArray = []
     splitArray = []
-    nColRef = 10
-    print('\nDeaths today column is not scraped if empty. \nThis will throwup issue if there are deaths today showing extra column. Remove that number\n')
+    #columns reduced to remove dD & D
+    nColRef = 9
+    print('\nDeaths today column is not scraped if empty. \n last two columns should be clipped for file submission\n')
     try:
       with open(OUTPUT_TXT, "r") as upFile:
         for line in upFile:
@@ -377,7 +378,8 @@ def ct_get_data(opt):
           districtDictionary['districtName'] = linesArray[0].strip()
           districtDictionary['confirmed'] = int(linesArray[2].strip())
           districtDictionary['recovered'] = int(linesArray[7].strip())
-          districtDictionary['deceased'] = int(linesArray[9].strip())
+          #districtDictionary['deceased'] = int(linesArray[10].strip())
+          districtDictionary['deceased'] = int(linesArray[2].strip()) - (int(linesArray[7].strip()) + int(linesArray[8].strip()))
           districts_data.append(districtDictionary)
 
       upFile.close()
@@ -1154,7 +1156,8 @@ def nl_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[12])
         districtDictionary['recovered'] = int(linesArray[7])
         districtDictionary['migrated'] = int(linesArray[11])
-        districtDictionary['deceased'] = int(linesArray[8]) if len(re.sub('\n', '', linesArray[8])) != 0 else 0
+        #Nagaland has detahs due to other causes as additional column
+        districtDictionary['deceased'] = int(linesArray[8]) + int(linesArray[9]) 
         districts_data.append(districtDictionary)
 
     upFile.close()
