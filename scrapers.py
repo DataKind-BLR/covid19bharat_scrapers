@@ -131,7 +131,7 @@ def run(args):
     url_type = args['type']
     page = args['page'] if 'page' in args else None
     skip_output = args['skip_output'] if 'skip_output' in args else False
-    is_verbose = args['verbose'] if 'verbose' in args else False
+    verbose = args['verbose'] if 'verbose' in args else False
 
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
@@ -150,6 +150,11 @@ def run(args):
 
     live_data = fetch_data(states_all[state_code])
 
+    if 'is_error' in live_data and\
+        live_data['is_error'] == True:
+        # send path to file
+        return live_data
+
     # try:
     #     live_data = fetch_data(states_all[state_code])
     # except:
@@ -164,7 +169,7 @@ def run(args):
     #         data = txt_file.read()
     #     return data
 
-    if is_verbose:
+    if verbose:
         draw_table(live_data, states_all[state_code])
 
     if 'lazy' in states_all[state_code]:
@@ -176,10 +181,11 @@ def run(args):
             states_all[state_code]['name'],
             live_data,
             'full',
-            is_verbose
+            verbose
         )
 
-    if 'calculate_delta' in states_all[state_code]['config'] and\
+    if 'config' in states_all[state_code] and\
+        'calculate_delta' in states_all[state_code]['config'] and\
         states_all[state_code]['config']['calculate_delta'] == False:
         print('No delta processing for: {}'.format(states_all[state_code]['name']))
 

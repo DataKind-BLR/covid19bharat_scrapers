@@ -6,7 +6,6 @@ import scrapers
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram_bot.util import build_menu, states_map
-from telegram_bot.ocr_functions import run_scraper
 
 
 DOWNLD_DIR = os.path.join('/', 'tmp')
@@ -23,16 +22,26 @@ with open(STATES_YAML, 'r') as stream:
     print(f"Error in Opening YAML States - {e}")
 
 
-# def run_scraper(opt):
-#     updated_opt = {
-#         'state_code': opt['state_code'],
-#         'page': opt['page'] if 'page' in opt else None,
-#         'skip_output': opt['skip_output'] if 'skip_output' in opt else False,
-#         'type': opt['type'],
-#         'url': opt['url'] if opt['type'] == 'pdf' else None,
-#         'verbose': opt['verbose'] if 'verbose' in opt else None
-#     }
-#     return scrapers.run(updated_opt)
+def run_scraper(bot, chat_id, opt):
+    '''
+    triggers the command line scraper and fetches the output
+    '''
+    args = {
+        'state_code': opt['state_code'],
+        'page': opt['page'] if 'page' in opt else None,
+        'skip_output': opt['skip_output'] if 'skip_output' in opt else False,
+        'type': opt['type'],
+        'url': opt['url'] if opt['type'] == 'pdf' else None,
+        'verbose': opt['verbose'] if 'verbose' in opt else None
+    }
+    result = scrapers.run(args)
+    if 'is_error' in result and\
+        result['is_error'] == True:
+        # read the file & return the contents
+        output_file = open(result['output'], 'r')
+        return output_file.read()
+    else:
+        return result
 
 
 def entry(bot, update):
@@ -54,7 +63,7 @@ def entry(bot, update):
             if opt['type'] == 'html':
                 logger.info(f"Running Scraper for HTML. State Code = {opt['state_code']}")
                 # rslt = run_scraper(opt)
-                run_scraper(bot, update.callback_query.message.chat.id, opt)
+                rslt = run_scraper(bot, update.callback_query.message.chat.id, opt)
                 # bot.send_document(chat_id=update.callback_query.message.reply_to_message.chat.id, document=log_file)
                 bot.send_message(chat_id=update.callback_query.message.reply_to_message.chat.id, text=rslt)
 
@@ -181,7 +190,15 @@ def entry(bot, update):
                 reply_to_message_id=update.message.message_id
             )
             # run_scraper(opt)
-            run_scraper(bot, update.message.chat.id, opt)
+            rslt = run_scraper(bot, update.message.chat.id, opt)
+            print('*'*30)
+            print(rslt)
+            print('*'*30)
+            bot.send_message(
+                chat_id=update.message.chat.id,
+                text=rslt,
+                reply_to_message_id=update.message.message_id
+            )
             return
 
         # If the direct message is file type of image
