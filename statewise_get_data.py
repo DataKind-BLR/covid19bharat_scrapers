@@ -7,6 +7,7 @@ import pandas as pd
 
 from bs4 import BeautifulSoup
 from rich.pretty import pprint
+from rich.console import Console
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
@@ -457,6 +458,10 @@ def hp_get_data(opt):
   districts_data = []
   districtTableBeingRead = False
   print('\n')
+  #whats up HP?
+  #keep changing columns....
+  #now it is 12 (02-01-2022)
+  nColRef = 12
 
   try:
     with open(OUTPUT_TXT, "r") as upFile:
@@ -470,13 +475,9 @@ def hp_get_data(opt):
         recoveredFound = False
         deceasedFound = False
 
-        #whats up HP?
-        #keep changing columns....
-        #now it is 12 (02-01-2022)
-        if len(linesArray) != 12: 
-        #if len(linesArray) != 9: 
-          print("--> Issue with Columns {}".format(linesArray))
-          #print("try cropping the image to only show the case details part of the image")
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
 
         # if reached the last item, break
@@ -488,7 +489,7 @@ def hp_get_data(opt):
         #if columns are 11
         districtDictionary['recovered'] = int(linesArray[8].strip())
         districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[10].strip()).strip())
-        districtDictionary['migrated'] = int(linesArray[11].strip())        
+        #districtDictionary['migrated'] = int(linesArray[11].strip())        
         #if columns are 9
         #districtDictionary['recovered'] = int(linesArray[6].strip())
         #districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
@@ -496,6 +497,7 @@ def hp_get_data(opt):
         #districtDictionary['migrated'] = int(linesArray[10].strip())
         districts_data.append(districtDictionary)
 
+    pprint('Migrated for HP is not calculated. Always check active and  do manual entry for Migrated')
     print('\n')
     upFile.close()
     return districts_data
