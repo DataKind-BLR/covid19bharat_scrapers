@@ -19,6 +19,7 @@ VACC_OUTPUT_MOHFW = os.path.join(ROOT_DIR, '_outputs', 'vaccination_mohfw.csv')
 COWIN_META = os.path.join(ROOT_DIR, '_meta', 'cowin_district_mapping.csv')
 COWIN_DIST_LIVE = os.path.join(ROOT_DIR, '_outputs', 'cowin_downloaded_district_data.csv')
 STATES_YAML = os.path.join(ROOT_DIR, 'states.yaml')
+IGNORE_STATE_CODES = ['KLD', 'KLDBL']
 
 with open(STATES_YAML, 'r') as stream:
     try:
@@ -140,8 +141,8 @@ def get_cowin_state(from_date, to_date, state_codes):
 
         # run for every state
         for state_code in state_codes:
-          if ((states_all[state_code].get('state_code') == 'KLD') or (states_all[state_code].get('state_code') == 'KLDBL')):
-            print('Not repeating for: ', states_all[state_code].get('state_code'))
+          if states_all[state_code].get('state_code') in IGNORE_STATE_CODES:
+            print('Skipping: ', states_all[state_code].get('state_code'))
             continue
           else:
             params = {
