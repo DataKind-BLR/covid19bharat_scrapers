@@ -407,7 +407,7 @@ pb:
   cowin_code: 28
   url_sources:
     - https://nhm.punjab.gov.in/media-bulletin_Nov21.htm
-    - Ask Rukmini
+    - Check @c19b_data_dump telegram channel
   type: pdf
   url: _inputs/pb.pdf
   config:
@@ -431,7 +431,7 @@ rj:
   state_code: RJ
   cowin_code: 29
   url_sources:
-    - Ask Rukmini S
+    - Check @c19b_data_dump telegram channel
   # type: image
   # url: _inputs/rj.jpeg
   # config:
