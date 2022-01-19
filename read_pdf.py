@@ -137,16 +137,13 @@ def ka_format_line(row):
 
 def hr_format_line(row):
   row[1] = re.sub('\*', '', row[1])
-  if '[' in row[3]:
-    row[3] = row[3].split('[')[0]
   if '[' in row[4]:
     row[4] = row[4].split('[')[0]
-  if '[' in row[6]:
-    row[6] = row[6].split('[')[0]
-  #if '[' in row[6]:
-  #  row[6] = row[6].split('[')[0]
-  #line = row[1] + "," + row[3] + "," + row[4] + "," + row[6] + "," + row[7] + "\n"
-  line = row[1] + "," + row[3] + "," + row[4] + "," + row[6] + "\n"
+  if '[' in row[5]:
+    row[5] = row[5].split('[')[0]
+  if '[' in row[7]:
+    row[7] = row[7].split('[')[0]
+  line = row[1] + "," + row[4] + "," + row[5] + "," + row[7] + "\n"
   return line
 
 def pb_format_line(row):

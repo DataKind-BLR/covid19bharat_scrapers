@@ -7,6 +7,7 @@ import pandas as pd
 
 from bs4 import BeautifulSoup
 from rich.pretty import pprint
+from rich.console import Console
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
@@ -360,8 +361,9 @@ def ct_get_data(opt):
     masterColumnList = ""
     masterColumnArray = []
     splitArray = []
-    nColRef = 10
-    print('\nDeaths today column is not scraped if empty. \nThis will throwup issue if there are deaths today showing extra column. Remove that number\n')
+    #columns reduced to remove dD & D
+    nColRef = 9
+    print('\nDeaths today column is not scraped if empty. \n last two columns should be clipped for file submission\n')
     try:
       with open(OUTPUT_TXT, "r") as upFile:
         for line in upFile:
@@ -377,7 +379,8 @@ def ct_get_data(opt):
           districtDictionary['districtName'] = linesArray[0].strip()
           districtDictionary['confirmed'] = int(linesArray[2].strip())
           districtDictionary['recovered'] = int(linesArray[7].strip())
-          districtDictionary['deceased'] = int(linesArray[9].strip())
+          #districtDictionary['deceased'] = int(linesArray[10].strip())
+          districtDictionary['deceased'] = int(linesArray[2].strip()) - (int(linesArray[7].strip()) + int(linesArray[8].strip()))
           districts_data.append(districtDictionary)
 
       upFile.close()
@@ -455,6 +458,10 @@ def hp_get_data(opt):
   districts_data = []
   districtTableBeingRead = False
   print('\n')
+  #whats up HP?
+  #keep changing columns....
+  #now it is 12 (02-01-2022)
+  nColRef = 12
 
   try:
     with open(OUTPUT_TXT, "r") as upFile:
@@ -468,13 +475,9 @@ def hp_get_data(opt):
         recoveredFound = False
         deceasedFound = False
 
-        #whats up HP?
-        #keep changing columns....
-        #now it is 12 (02-01-2022)
-        if len(linesArray) != 12: 
-        #if len(linesArray) != 9: 
-          print("--> Issue with Columns {}".format(linesArray))
-          #print("try cropping the image to only show the case details part of the image")
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
 
         # if reached the last item, break
@@ -486,7 +489,7 @@ def hp_get_data(opt):
         #if columns are 11
         districtDictionary['recovered'] = int(linesArray[8].strip())
         districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[10].strip()).strip())
-        districtDictionary['migrated'] = int(linesArray[11].strip())        
+        #districtDictionary['migrated'] = int(linesArray[11].strip())        
         #if columns are 9
         #districtDictionary['recovered'] = int(linesArray[6].strip())
         #districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
@@ -494,6 +497,7 @@ def hp_get_data(opt):
         #districtDictionary['migrated'] = int(linesArray[10].strip())
         districts_data.append(districtDictionary)
 
+    pprint('Migrated for HP is not calculated. Always check active and  do manual entry for Migrated')
     print('\n')
     upFile.close()
     return districts_data
@@ -1070,6 +1074,9 @@ def mp_get_data(opt):
   linesArray = []
   districtDictionary = {}
   districts_data = []
+  nColRef = 8
+  print('\n')
+  
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       isIgnoreFlagSet = False
@@ -1078,14 +1085,15 @@ def mp_get_data(opt):
         if 'Total' in line or isIgnoreFlagSet == True:
           isIgnoreFlagSet = True
           print("--> Ignoring {} ".format(line))
-        if len(linesArray) != 8:
-          print("--> Ignoring due to invalid length: {}".format(linesArray))
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
         districtDictionary = {}
         try:
-          if is_number(linesArray[0].strip()):
-            print("--> Ignoring: {}".format(linesArray))
-            continue
+          #if is_number(linesArray[0].strip()):
+          #  print("--> Ignoring: {}".format(linesArray))
+          #  continue
 
           districtDictionary['districtName'] = linesArray[0].strip().title()
           districtDictionary['confirmed'] = int(linesArray[2])
@@ -1150,7 +1158,8 @@ def nl_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[12])
         districtDictionary['recovered'] = int(linesArray[7])
         districtDictionary['migrated'] = int(linesArray[11])
-        districtDictionary['deceased'] = int(linesArray[8]) if len(re.sub('\n', '', linesArray[8])) != 0 else 0
+        #Nagaland has detahs due to other causes as additional column
+        districtDictionary['deceased'] = int(linesArray[8]) + int(linesArray[9]) 
         districts_data.append(districtDictionary)
 
     upFile.close()
