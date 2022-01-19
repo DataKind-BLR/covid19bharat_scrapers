@@ -10,3 +10,57 @@ Ropar -> Rupnagar
 
 Delta statistics
 
+Ludhiana,Punjab,PB,914,Hospitalized
+S.A.S. Nagar,Punjab,PB,1196,Hospitalized
+Jalandhar,Punjab,PB,563,Hospitalized
+Patiala,Punjab,PB,578,Hospitalized
+Amritsar,Punjab,PB,612,Hospitalized
+Bathinda,Punjab,PB,578,Hospitalized
+Hoshiarpur,Punjab,PB,508,Hospitalized
+Gurdaspur,Punjab,PB,130,Hospitalized
+Pathankot,Punjab,PB,24,Hospitalized
+Fazilka,Punjab,PB,71,Hospitalized
+Kapurthala,Punjab,PB,95,Hospitalized
+Sri Muktsar Sahib,Punjab,PB,79,Hospitalized
+Sangrur,Punjab,PB,32,Hospitalized
+Mansa,Punjab,PB,81,Hospitalized
+Ferozepur,Punjab,PB,215,Hospitalized
+Rupnagar,Punjab,PB,155,Hospitalized
+Faridkot,Punjab,PB,178,Hospitalized
+Shahid Bhagat Singh Nagar,Punjab,PB,52,Hospitalized
+Fatehgarh Sahib,Punjab,PB,152,Hospitalized
+Moga,Punjab,PB,58,Hospitalized
+Tarn Taran,Punjab,PB,167,Hospitalized
+Barnala,Punjab,PB,49,Hospitalized
+Ludhiana,Punjab,PB,675,Recovered
+S.A.S. Nagar,Punjab,PB,707,Recovered
+Jalandhar,Punjab,PB,574,Recovered
+Patiala,Punjab,PB,875,Recovered
+Amritsar,Punjab,PB,455,Recovered
+Bathinda,Punjab,PB,200,Recovered
+Hoshiarpur,Punjab,PB,515,Recovered
+Gurdaspur,Punjab,PB,286,Recovered
+Pathankot,Punjab,PB,467,Recovered
+Fazilka,Punjab,PB,17,Recovered
+Kapurthala,Punjab,PB,157,Recovered
+Sri Muktsar Sahib,Punjab,PB,84,Recovered
+Mansa,Punjab,PB,22,Recovered
+Ferozepur,Punjab,PB,123,Recovered
+Rupnagar,Punjab,PB,214,Recovered
+Faridkot,Punjab,PB,98,Recovered
+Shahid Bhagat Singh Nagar,Punjab,PB,116,Recovered
+Fatehgarh Sahib,Punjab,PB,161,Recovered
+Moga,Punjab,PB,50,Recovered
+Barnala,Punjab,PB,116,Recovered
+Ludhiana,Punjab,PB,3,Deceased
+S.A.S. Nagar,Punjab,PB,5,Deceased
+Jalandhar,Punjab,PB,2,Deceased
+Patiala,Punjab,PB,7,Deceased
+Hoshiarpur,Punjab,PB,2,Deceased
+Gurdaspur,Punjab,PB,2,Deceased
+Sangrur,Punjab,PB,1,Deceased
+Ferozepur,Punjab,PB,3,Deceased
+Fatehgarh Sahib,Punjab,PB,1,Deceased
+Tarn Taran,Punjab,PB,1,Deceased
+Districts Total Current: C= 676947  R= 616153  D= 16817  No of Districts= 22
+Districts Total API    : C= 670460  R= 610241  D= 16790

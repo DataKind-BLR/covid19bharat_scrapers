@@ -34,3 +34,79 @@ Tumkur -> Tumakuru
 
 Delta statistics
 
+Bagalkote,Karnataka,KA,-140,Hospitalized
+Ballari,Karnataka,KA,-1274,Hospitalized
+Belagavi,Karnataka,KA,-712,Hospitalized
+Bengaluru Rural,Karnataka,KA,-1654,Hospitalized
+Bengaluru Urban,Karnataka,KA,-41542,Hospitalized
+Bidar,Karnataka,KA,-310,Hospitalized
+Chamarajanagara,Karnataka,KA,-299,Hospitalized
+Chikkaballapura,Karnataka,KA,-567,Hospitalized
+Chikkamagaluru,Karnataka,KA,-598,Hospitalized
+Chitradurga,Karnataka,KA,-580,Hospitalized
+Dakshina Kannada,Karnataka,KA,-1548,Hospitalized
+Davanagere,Karnataka,KA,-378,Hospitalized
+Dharwad,Karnataka,KA,-1510,Hospitalized
+Gadag,Karnataka,KA,-221,Hospitalized
+Hassan,Karnataka,KA,-2789,Hospitalized
+Haveri,Karnataka,KA,-71,Hospitalized
+Kalaburagi,Karnataka,KA,-993,Hospitalized
+Kodagu,Karnataka,KA,-226,Hospitalized
+Kolar,Karnataka,KA,-944,Hospitalized
+Koppal,Karnataka,KA,-172,Hospitalized
+Mandya,Karnataka,KA,-1812,Hospitalized
+Mysuru,Karnataka,KA,-3618,Hospitalized
+Raichur,Karnataka,KA,-345,Hospitalized
+Ramanagara,Karnataka,KA,-475,Hospitalized
+Shivamogga,Karnataka,KA,-670,Hospitalized
+Tumakuru,Karnataka,KA,-2878,Hospitalized
+Udupi,Karnataka,KA,-1243,Hospitalized
+Uttara Kannada,Karnataka,KA,-790,Hospitalized
+Vijayapura,Karnataka,KA,-181,Hospitalized
+Yadgir,Karnataka,KA,-73,Hospitalized
+Bagalkote,Karnataka,KA,-58,Recovered
+Ballari,Karnataka,KA,-129,Recovered
+Belagavi,Karnataka,KA,-190,Recovered
+Bengaluru Rural,Karnataka,KA,-264,Recovered
+Bengaluru Urban,Karnataka,KA,-9402,Recovered
+Bidar,Karnataka,KA,-252,Recovered
+Chamarajanagara,Karnataka,KA,-147,Recovered
+Chikkaballapura,Karnataka,KA,-151,Recovered
+Chikkamagaluru,Karnataka,KA,-87,Recovered
+Chitradurga,Karnataka,KA,-54,Recovered
+Dakshina Kannada,Karnataka,KA,-592,Recovered
+Davanagere,Karnataka,KA,-205,Recovered
+Dharwad,Karnataka,KA,-426,Recovered
+Gadag,Karnataka,KA,-48,Recovered
+Hassan,Karnataka,KA,-3,Recovered
+Haveri,Karnataka,KA,-41,Recovered
+Kalaburagi,Karnataka,KA,-320,Recovered
+Kodagu,Karnataka,KA,-88,Recovered
+Kolar,Karnataka,KA,-389,Recovered
+Koppal,Karnataka,KA,-73,Recovered
+Mandya,Karnataka,KA,-984,Recovered
+Mysuru,Karnataka,KA,-817,Recovered
+Raichur,Karnataka,KA,-7,Recovered
+Ramanagara,Karnataka,KA,-87,Recovered
+Shivamogga,Karnataka,KA,-359,Recovered
+Tumakuru,Karnataka,KA,-274,Recovered
+Udupi,Karnataka,KA,-334,Recovered
+Uttara Kannada,Karnataka,KA,-328,Recovered
+Vijayapura,Karnataka,KA,-53,Recovered
+Yadgir,Karnataka,KA,-18,Recovered
+Bengaluru Rural,Karnataka,KA,-1,Deceased
+Bengaluru Urban,Karnataka,KA,-12,Deceased
+Chamarajanagara,Karnataka,KA,-1,Deceased
+Chikkaballapura,Karnataka,KA,-1,Deceased
+Chitradurga,Karnataka,KA,-2,Deceased
+Dakshina Kannada,Karnataka,KA,-3,Deceased
+Davanagere,Karnataka,KA,-1,Deceased
+Dharwad,Karnataka,KA,-2,Deceased
+Hassan,Karnataka,KA,-1,Deceased
+Kalaburagi,Karnataka,KA,-1,Deceased
+Mysuru,Karnataka,KA,-3,Deceased
+Ramanagara,Karnataka,KA,-2,Deceased
+Tumakuru,Karnataka,KA,-3,Deceased
+Uttara Kannada,Karnataka,KA,-1,Deceased
+Districts Total Current: C= 3220087  R= 2983645  D= 38431  No of Districts= 31
+Districts Total API    : C= 3288700  R= 2999825  D= 38465

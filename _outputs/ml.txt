@@ -1,0 +1,29 @@
+
+********** Computing Delta for Meghalaya **********
+
+Mapping for district names
+South -West Garo Hills -> South West Garo Hills
+Ri Bhoi -> Ribhoi
+Ri - Bhoi District -> Ribhoi
+RiBhoi -> Ribhoi
+
+Delta statistics
+
+East Khasi Hills,Meghalaya,ML,193,Hospitalized
+Ribhoi,Meghalaya,ML,20,Hospitalized
+West Garo Hills,Meghalaya,ML,35,Hospitalized
+West Jaintia Hills,Meghalaya,ML,6,Hospitalized
+West Khasi Hills,Meghalaya,ML,9,Hospitalized
+South West Khasi Hills,Meghalaya,ML,4,Hospitalized
+East Jaintia Hills,Meghalaya,ML,3,Hospitalized
+East Garo Hills,Meghalaya,ML,1,Hospitalized
+South West Garo Hills,Meghalaya,ML,3,Hospitalized
+South Garo Hills,Meghalaya,ML,1,Hospitalized
+East Khasi Hills,Meghalaya,ML,142,Recovered
+Ribhoi,Meghalaya,ML,6,Recovered
+West Garo Hills,Meghalaya,ML,11,Recovered
+West Jaintia Hills,Meghalaya,ML,2,Recovered
+North Garo Hills,Meghalaya,ML,1,Recovered
+East Khasi Hills,Meghalaya,ML,2,Deceased
+Districts Total Current: C= 86807  R= 83997  D= 1492  No of Districts= 11
+Districts Total API    : C= 86532  R= 83835  D= 1490

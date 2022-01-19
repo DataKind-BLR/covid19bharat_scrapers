@@ -1,2 +1,22 @@
 
 ********** Computing Delta for Arunachal Pradesh **********
+
+Mapping for district names
+Kessang -> Pakke Kessang
+Kumey -> Kurung Kumey
+Leparada -> Lepa Rada
+Dibang Valley -> Upper Dibang Valley
+Capital Region -> Papum Pare
+Capital Complex -> Papum Pare
+Kra - Daadi -> Kra Daadi
+Lower Dibang -> Lower Dibang Valley
+Lower Diban -> Lower Dibang Valley
+Lower Valley Dibang -> Lower Dibang Valley
+
+Delta statistics
+
+Papum Pare,Arunachal Pradesh,AR,-19244,Hospitalized
+Papum Pare,Arunachal Pradesh,AR,-18457,Recovered
+Papum Pare,Arunachal Pradesh,AR,-98,Deceased
+Districts Total Current: C= 0  R= 0  D= 0  No of Districts= 1
+Districts Total API    : C= 19244  R= 18457  D= 98

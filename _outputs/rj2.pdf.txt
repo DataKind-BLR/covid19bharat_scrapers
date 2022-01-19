@@ -1,4 +1,4 @@
 "Total Status"
-"16637700Sample Received In State"
-"976177Sample Positive In State"
-"Active Cases In State 19467"
+"17171933Sample Received In State"
+"1056606Sample Positive In State"
+"Active Cases In State 69388"

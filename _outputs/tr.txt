@@ -7,5 +7,5 @@ Unakoti -> Unokoti
 
 Delta statistics
 
-Districts Total Current: C= 85933  R= 84238  D= 827  No of Districts= 8
-Districts Total API    : C= 85933  R= 84238  D= 827
+Districts Total Current: C= 92958  R= 85561  D= 841  No of Districts= 8
+Districts Total API    : C= 92958  R= 85561  D= 841
