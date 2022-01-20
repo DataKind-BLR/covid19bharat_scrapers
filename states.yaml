@@ -189,7 +189,6 @@ hr:
 hp:
   name: Himachal Pradesh
   state_code: HP
-  # cowin_code: 39
   cowin_code: 13
   notes: Please crop the image to only show case statistics
   url_sources:
