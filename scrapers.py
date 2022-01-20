@@ -135,6 +135,7 @@ def run(args):
 
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
+    states_all[state_code].update({ 'verbose': verbose })
 
     if page is not None:
         states_all[state_code]['config'].update({
@@ -150,9 +151,10 @@ def run(args):
 
     live_data = fetch_data(states_all[state_code])
 
-    if 'is_error' in live_data and\
-        live_data['is_error'] == True:
-        # send path to file
+    if 'needs_correction' in live_data and live_data['needs_correction'] == True:
+        print(live_data)
+        import pdb
+        pdb.set_trace()
         return live_data
 
     # try:
@@ -169,6 +171,11 @@ def run(args):
     #         data = txt_file.read()
     #     return data
 
+    if 'config' in states_all[state_code] and\
+        'calculate_delta' in states_all[state_code]['config'] and\
+        states_all[state_code]['config']['calculate_delta'] == False:
+        print('No delta processing for: {}'.format(states_all[state_code]['name']))
+
     if verbose:
         draw_table(live_data, states_all[state_code])
 
@@ -183,11 +190,6 @@ def run(args):
             'full',
             verbose
         )
-
-    if 'config' in states_all[state_code] and\
-        'calculate_delta' in states_all[state_code]['config'] and\
-        states_all[state_code]['config']['calculate_delta'] == False:
-        print('No delta processing for: {}'.format(states_all[state_code]['name']))
 
     if delta:
         print(f"Delta processing complete. Written to delta.txt")
