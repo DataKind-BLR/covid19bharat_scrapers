@@ -38,8 +38,9 @@ def run_scraper(bot, chat_id, opt):
     if 'is_error' in result and\
         result['is_error'] == True:
         # read the file & return the contents
-        output_file = open(result['output'], 'r')
-        return output_file.read()
+        # output_file = open(result['output'], 'r')
+        # return output_file.read()
+        bot.send_document(chat_id=chat_id, document=result['output'])
     else:
         return result
 
@@ -191,9 +192,6 @@ def entry(bot, update):
             )
             # run_scraper(opt)
             rslt = run_scraper(bot, update.message.chat.id, opt)
-            print('*'*30)
-            print(rslt)
-            print('*'*30)
             bot.send_message(
                 chat_id=update.message.chat.id,
                 text=rslt,
@@ -237,7 +235,12 @@ def entry(bot, update):
                     reply_to_message_id=update.message.message_id
                 )
                 # run_scraper(opt)
-                run_scraper(bot, update.message.chat.id, opt)
+                rslt = run_scraper(bot, update.message.chat.id, opt)
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text=rslt,
+                    reply_to_message_id=update.message.message_id
+                )
                 return
 
             except Exception as e:
