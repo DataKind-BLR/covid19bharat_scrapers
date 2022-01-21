@@ -134,7 +134,7 @@ def run(args):
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
 
-    if page is not None:
+    if (page is not None) and (url_type!="html"):
         states_all[state_code]['config'].update({
             'page': page
         })

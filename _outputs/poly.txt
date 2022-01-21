@@ -1,1275 +1,1104 @@
 [locale: "mi"
-description: "1 Aizawl\n2 Lunglei\n3 Siaha\n4 Champhai\n5 Kolasib\n6 Serchhip\n7 Lawngtlai\n8 Mamit\n9 Khawzawl\n10 Hnahthial\n11 Saitual\n3512\n664\n79\n370\n325\n1038\n163\n663\n372\n425\n537\n86256\n12391\n5921\n7184\n8623\n7033\n7543\n6523\n2623\n1738\n1495\n381\n32\n20\n24\n37\n23\n27\n16\n5\n6\n5\n90149\n13087\n6020\n7578\n8985\n8094\n7733\n7202\n3000\n2169\n2037\n"
+description: "Aizawl\nLunglei\nSiaha\nChamphai\nKolasib\nSerchhip\nLawngtlai\nMamit\nKhawzawl\nHnahthial\nSaitual\n3940\n700\n75\n350\n379\n880\n162\n699\n389\n382\n539\n86479\n12441\n5930\n7233\n8637\n7234\n7559\n6578\n2665\n1812\n1614\n381\n32\n20\n24\n37\n23\n27\n16\n5\n6\n5\n90800\n13173\n6025\n7607\n9053\n8137\n7748\n7293\n3059\n2200\n2158\nLO LO\n"
 bounding_poly {
   vertices {
-    x: 27
-    y: 5
+    x: 15
+    y: 4
   }
   vertices {
-    x: 997
-    y: 5
+    x: 1147
+    y: 4
   }
   vertices {
-    x: 997
-    y: 464
+    x: 1147
+    y: 576
   }
   vertices {
-    x: 27
-    y: 464
-  }
-}
-, description: "1"
-bounding_poly {
-  vertices {
-    x: 34
-    y: 7
-  }
-  vertices {
-    x: 41
-    y: 7
-  }
-  vertices {
-    x: 41
-    y: 34
-  }
-  vertices {
-    x: 34
-    y: 34
+    x: 15
+    y: 576
   }
 }
 , description: "Aizawl"
 bounding_poly {
   vertices {
-    x: 92
-    y: 6
+    x: 15
+    y: 5
   }
   vertices {
-    x: 175
-    y: 6
+    x: 119
+    y: 5
   }
   vertices {
-    x: 175
-    y: 35
+    x: 119
+    y: 43
   }
   vertices {
-    x: 92
-    y: 35
-  }
-}
-, description: "2"
-bounding_poly {
-  vertices {
-    x: 32
-    y: 49
-  }
-  vertices {
-    x: 46
-    y: 49
-  }
-  vertices {
-    x: 46
-    y: 78
-  }
-  vertices {
-    x: 32
-    y: 78
+    x: 15
+    y: 43
   }
 }
 , description: "Lunglei"
 bounding_poly {
   vertices {
-    x: 94
-    y: 49
+    x: 15
+    y: 59
   }
   vertices {
-    x: 185
-    y: 49
+    x: 130
+    y: 58
   }
   vertices {
-    x: 185
-    y: 83
+    x: 130
+    y: 100
   }
   vertices {
-    x: 94
-    y: 83
-  }
-}
-, description: "3"
-bounding_poly {
-  vertices {
-    x: 33
-    y: 92
-  }
-  vertices {
-    x: 46
-    y: 92
-  }
-  vertices {
-    x: 46
-    y: 119
-  }
-  vertices {
-    x: 33
-    y: 119
+    x: 15
+    y: 101
   }
 }
 , description: "Siaha"
 bounding_poly {
   vertices {
-    x: 94
-    y: 91
+    x: 16
+    y: 111
   }
   vertices {
-    x: 165
-    y: 92
+    x: 106
+    y: 111
   }
   vertices {
-    x: 165
-    y: 120
+    x: 106
+    y: 147
   }
   vertices {
-    x: 94
-    y: 119
-  }
-}
-, description: "4"
-bounding_poly {
-  vertices {
-    x: 32
-    y: 134
-  }
-  vertices {
-    x: 46
-    y: 134
-  }
-  vertices {
-    x: 46
-    y: 161
-  }
-  vertices {
-    x: 32
-    y: 161
+    x: 16
+    y: 147
   }
 }
 , description: "Champhai"
 bounding_poly {
   vertices {
-    x: 93
-    y: 132
+    x: 16
+    y: 166
   }
   vertices {
-    x: 225
-    y: 133
+    x: 181
+    y: 166
   }
   vertices {
-    x: 225
-    y: 168
+    x: 181
+    y: 207
   }
   vertices {
-    x: 93
-    y: 167
-  }
-}
-, description: "5"
-bounding_poly {
-  vertices {
-    x: 33
-    y: 177
-  }
-  vertices {
-    x: 46
-    y: 177
-  }
-  vertices {
-    x: 46
-    y: 205
-  }
-  vertices {
-    x: 33
-    y: 205
+    x: 16
+    y: 207
   }
 }
 , description: "Kolasib"
 bounding_poly {
   vertices {
-    x: 93
-    y: 176
+    x: 17
+    y: 220
   }
   vertices {
-    x: 186
-    y: 176
+    x: 134
+    y: 220
   }
   vertices {
-    x: 186
-    y: 203
+    x: 134
+    y: 254
   }
   vertices {
-    x: 93
-    y: 203
-  }
-}
-, description: "6"
-bounding_poly {
-  vertices {
-    x: 33
-    y: 221
-  }
-  vertices {
-    x: 46
-    y: 221
-  }
-  vertices {
-    x: 46
-    y: 247
-  }
-  vertices {
-    x: 33
-    y: 247
+    x: 17
+    y: 254
   }
 }
 , description: "Serchhip"
 bounding_poly {
   vertices {
-    x: 93
-    y: 218
+    x: 16
+    y: 271
   }
   vertices {
-    x: 207
-    y: 219
+    x: 159
+    y: 272
   }
   vertices {
-    x: 207
-    y: 252
+    x: 159
+    y: 312
   }
   vertices {
-    x: 93
-    y: 251
-  }
-}
-, description: "7"
-bounding_poly {
-  vertices {
-    x: 33
-    y: 262
-  }
-  vertices {
-    x: 46
-    y: 262
-  }
-  vertices {
-    x: 46
-    y: 289
-  }
-  vertices {
-    x: 33
-    y: 289
+    x: 16
+    y: 311
   }
 }
 , description: "Lawngtlai"
 bounding_poly {
   vertices {
-    x: 93
-    y: 261
+    x: 18
+    y: 324
   }
   vertices {
-    x: 213
-    y: 260
+    x: 169
+    y: 324
   }
   vertices {
-    x: 213
-    y: 293
+    x: 169
+    y: 367
   }
   vertices {
-    x: 93
-    y: 294
-  }
-}
-, description: "8"
-bounding_poly {
-  vertices {
-    x: 33
-    y: 304
-  }
-  vertices {
-    x: 46
-    y: 304
-  }
-  vertices {
-    x: 46
-    y: 332
-  }
-  vertices {
-    x: 33
-    y: 332
+    x: 18
+    y: 367
   }
 }
 , description: "Mamit"
 bounding_poly {
   vertices {
-    x: 94
-    y: 304
+    x: 17
+    y: 379
   }
   vertices {
-    x: 171
-    y: 304
+    x: 114
+    y: 379
   }
   vertices {
-    x: 171
-    y: 331
+    x: 114
+    y: 413
   }
   vertices {
-    x: 94
-    y: 331
-  }
-}
-, description: "9"
-bounding_poly {
-  vertices {
-    x: 32
-    y: 348
-  }
-  vertices {
-    x: 45
-    y: 348
-  }
-  vertices {
-    x: 45
-    y: 372
-  }
-  vertices {
-    x: 32
-    y: 372
+    x: 17
+    y: 413
   }
 }
 , description: "Khawzawl"
 bounding_poly {
   vertices {
-    x: 94
-    y: 345
+    x: 17
+    y: 431
   }
   vertices {
-    x: 223
-    y: 346
+    x: 179
+    y: 431
   }
   vertices {
-    x: 223
-    y: 376
+    x: 179
+    y: 467
   }
   vertices {
-    x: 94
-    y: 375
-  }
-}
-, description: "10"
-bounding_poly {
-  vertices {
-    x: 27
-    y: 390
-  }
-  vertices {
-    x: 54
-    y: 390
-  }
-  vertices {
-    x: 54
-    y: 418
-  }
-  vertices {
-    x: 27
-    y: 418
+    x: 17
+    y: 467
   }
 }
 , description: "Hnahthial"
 bounding_poly {
   vertices {
-    x: 94
-    y: 390
+    x: 17
+    y: 484
   }
   vertices {
-    x: 214
-    y: 390
+    x: 168
+    y: 484
   }
   vertices {
-    x: 214
-    y: 418
+    x: 168
+    y: 520
   }
   vertices {
-    x: 94
-    y: 418
-  }
-}
-, description: "11"
-bounding_poly {
-  vertices {
-    x: 28
-    y: 431
-  }
-  vertices {
-    x: 49
-    y: 431
-  }
-  vertices {
-    x: 49
-    y: 458
-  }
-  vertices {
-    x: 28
-    y: 458
+    x: 17
+    y: 520
   }
 }
 , description: "Saitual"
 bounding_poly {
   vertices {
-    x: 93
-    y: 432
+    x: 16
+    y: 538
   }
   vertices {
-    x: 180
-    y: 432
+    x: 124
+    y: 538
   }
   vertices {
-    x: 180
-    y: 460
+    x: 124
+    y: 575
   }
   vertices {
-    x: 93
-    y: 460
+    x: 16
+    y: 575
   }
 }
-, description: "3512"
+, description: "3940"
 bounding_poly {
   vertices {
-    x: 305
+    x: 284
     y: 7
   }
   vertices {
-    x: 377
-    y: 7
+    x: 374
+    y: 8
   }
   vertices {
-    x: 377
-    y: 37
+    x: 374
+    y: 44
   }
   vertices {
-    x: 305
-    y: 37
-  }
-}
-, description: "664"
-bounding_poly {
-  vertices {
-    x: 314
-    y: 49
-  }
-  vertices {
-    x: 367
-    y: 49
-  }
-  vertices {
-    x: 367
-    y: 78
-  }
-  vertices {
-    x: 314
-    y: 78
+    x: 284
+    y: 43
   }
 }
-, description: "79"
+, description: "700"
 bounding_poly {
   vertices {
-    x: 325
-    y: 92
+    x: 296
+    y: 56
   }
   vertices {
-    x: 359
-    y: 92
+    x: 363
+    y: 56
   }
   vertices {
-    x: 359
-    y: 120
+    x: 363
+    y: 95
   }
   vertices {
-    x: 325
-    y: 120
+    x: 296
+    y: 95
   }
 }
-, description: "370"
+, description: "75"
 bounding_poly {
   vertices {
-    x: 315
-    y: 134
+    x: 308
+    y: 112
   }
   vertices {
-    x: 369
-    y: 135
+    x: 351
+    y: 112
   }
   vertices {
-    x: 368
-    y: 165
+    x: 351
+    y: 147
   }
   vertices {
-    x: 314
-    y: 164
+    x: 308
+    y: 147
   }
 }
-, description: "325"
+, description: "350"
 bounding_poly {
   vertices {
-    x: 314
-    y: 177
+    x: 296
+    y: 166
   }
   vertices {
-    x: 368
-    y: 177
+    x: 363
+    y: 167
   }
   vertices {
-    x: 368
-    y: 207
+    x: 363
+    y: 203
   }
   vertices {
-    x: 314
-    y: 207
+    x: 296
+    y: 202
   }
 }
-, description: "1038"
+, description: "379"
 bounding_poly {
   vertices {
-    x: 306
-    y: 221
+    x: 295
+    y: 217
   }
   vertices {
-    x: 377
-    y: 221
+    x: 362
+    y: 217
   }
   vertices {
-    x: 377
-    y: 249
+    x: 362
+    y: 252
   }
   vertices {
-    x: 306
-    y: 249
+    x: 295
+    y: 252
   }
 }
-, description: "163"
+, description: "880"
 bounding_poly {
   vertices {
-    x: 317
-    y: 263
+    x: 295
+    y: 273
   }
   vertices {
-    x: 369
-    y: 263
+    x: 362
+    y: 272
   }
   vertices {
-    x: 369
-    y: 292
-  }
-  vertices {
-    x: 317
-    y: 292
-  }
-}
-, description: "663"
-bounding_poly {
-  vertices {
-    x: 315
+    x: 362
     y: 305
   }
   vertices {
-    x: 369
+    x: 295
     y: 306
   }
-  vertices {
-    x: 369
-    y: 335
-  }
-  vertices {
-    x: 315
-    y: 334
-  }
 }
-, description: "372"
+, description: "162"
 bounding_poly {
   vertices {
-    x: 315
-    y: 349
+    x: 297
+    y: 325
   }
   vertices {
-    x: 368
-    y: 349
+    x: 362
+    y: 324
   }
   vertices {
-    x: 368
+    x: 362
+    y: 357
+  }
+  vertices {
+    x: 297
+    y: 358
+  }
+}
+, description: "699"
+bounding_poly {
+  vertices {
+    x: 295
     y: 379
   }
   vertices {
-    x: 315
-    y: 379
+    x: 362
+    y: 378
+  }
+  vertices {
+    x: 362
+    y: 411
+  }
+  vertices {
+    x: 295
+    y: 412
   }
 }
-, description: "425"
+, description: "389"
 bounding_poly {
   vertices {
-    x: 313
-    y: 391
-  }
-  vertices {
-    x: 368
-    y: 391
-  }
-  vertices {
-    x: 368
-    y: 421
-  }
-  vertices {
-    x: 313
-    y: 421
-  }
-}
-, description: "537"
-bounding_poly {
-  vertices {
-    x: 315
+    x: 295
     y: 433
   }
   vertices {
-    x: 369
+    x: 362
     y: 433
   }
   vertices {
-    x: 369
-    y: 463
+    x: 362
+    y: 466
   }
   vertices {
-    x: 315
-    y: 463
-  }
-}
-, description: "86256"
-bounding_poly {
-  vertices {
-    x: 503
-    y: 7
-  }
-  vertices {
-    x: 595
-    y: 7
-  }
-  vertices {
-    x: 595
-    y: 37
-  }
-  vertices {
-    x: 503
-    y: 37
+    x: 295
+    y: 466
   }
 }
-, description: "12391"
+, description: "382"
 bounding_poly {
   vertices {
-    x: 506
-    y: 49
+    x: 295
+    y: 485
   }
   vertices {
-    x: 590
-    y: 49
+    x: 362
+    y: 484
   }
   vertices {
-    x: 590
-    y: 80
+    x: 362
+    y: 517
   }
   vertices {
-    x: 506
-    y: 80
+    x: 295
+    y: 518
   }
 }
-, description: "5921"
+, description: "539"
 bounding_poly {
   vertices {
-    x: 513
-    y: 92
+    x: 295
+    y: 535
   }
   vertices {
-    x: 581
-    y: 92
+    x: 362
+    y: 535
   }
   vertices {
-    x: 581
-    y: 121
+    x: 362
+    y: 570
   }
   vertices {
-    x: 513
-    y: 121
+    x: 295
+    y: 570
   }
 }
-, description: "7184"
+, description: "86479"
 bounding_poly {
   vertices {
-    x: 513
-    y: 133
+    x: 527
+    y: 5
   }
   vertices {
-    x: 586
-    y: 134
+    x: 644
+    y: 4
   }
   vertices {
-    x: 585
-    y: 165
+    x: 644
+    y: 40
   }
   vertices {
-    x: 512
-    y: 164
+    x: 527
+    y: 41
   }
 }
-, description: "8623"
+, description: "12441"
 bounding_poly {
   vertices {
-    x: 513
-    y: 178
+    x: 531
+    y: 61
   }
   vertices {
-    x: 585
-    y: 178
+    x: 638
+    y: 61
   }
   vertices {
-    x: 585
-    y: 208
+    x: 638
+    y: 97
   }
   vertices {
-    x: 513
-    y: 208
+    x: 531
+    y: 97
   }
 }
-, description: "7033"
+, description: "5930"
 bounding_poly {
   vertices {
-    x: 513
+    x: 541
+    y: 113
+  }
+  vertices {
+    x: 632
+    y: 114
+  }
+  vertices {
+    x: 632
+    y: 150
+  }
+  vertices {
+    x: 541
+    y: 149
+  }
+}
+, description: "7233"
+bounding_poly {
+  vertices {
+    x: 542
+    y: 166
+  }
+  vertices {
+    x: 633
+    y: 166
+  }
+  vertices {
+    x: 633
+    y: 203
+  }
+  vertices {
+    x: 542
+    y: 203
+  }
+}
+, description: "8637"
+bounding_poly {
+  vertices {
+    x: 542
     y: 219
   }
   vertices {
-    x: 586
-    y: 220
+    x: 632
+    y: 221
   }
   vertices {
-    x: 586
-    y: 250
+    x: 631
+    y: 258
   }
   vertices {
-    x: 513
-    y: 249
-  }
-}
-, description: "7543"
-bounding_poly {
-  vertices {
-    x: 513
-    y: 261
-  }
-  vertices {
-    x: 586
-    y: 262
-  }
-  vertices {
-    x: 586
-    y: 293
-  }
-  vertices {
-    x: 513
-    y: 292
+    x: 541
+    y: 256
   }
 }
-, description: "6523"
+, description: "7234"
 bounding_poly {
   vertices {
-    x: 513
-    y: 305
+    x: 541
+    y: 272
   }
   vertices {
-    x: 586
-    y: 305
+    x: 632
+    y: 273
   }
   vertices {
-    x: 586
-    y: 336
+    x: 631
+    y: 310
   }
   vertices {
-    x: 513
-    y: 336
+    x: 540
+    y: 309
   }
 }
-, description: "2623"
+, description: "7559"
 bounding_poly {
   vertices {
-    x: 511
-    y: 349
+    x: 542
+    y: 326
   }
   vertices {
-    x: 584
-    y: 349
+    x: 633
+    y: 326
   }
   vertices {
-    x: 584
-    y: 377
+    x: 633
+    y: 361
   }
   vertices {
-    x: 511
-    y: 377
+    x: 542
+    y: 361
   }
 }
-, description: "1738"
+, description: "6578"
 bounding_poly {
   vertices {
-    x: 515
-    y: 390
+    x: 541
+    y: 383
   }
   vertices {
-    x: 586
-    y: 391
+    x: 632
+    y: 383
   }
   vertices {
-    x: 586
-    y: 421
+    x: 632
+    y: 417
   }
   vertices {
-    x: 515
-    y: 420
+    x: 541
+    y: 417
   }
 }
-, description: "1495"
+, description: "2665"
 bounding_poly {
   vertices {
-    x: 515
-    y: 434
+    x: 542
+    y: 432
   }
   vertices {
-    x: 586
-    y: 434
+    x: 633
+    y: 432
   }
   vertices {
-    x: 586
-    y: 464
+    x: 633
+    y: 467
   }
   vertices {
-    x: 515
-    y: 464
+    x: 542
+    y: 467
+  }
+}
+, description: "1812"
+bounding_poly {
+  vertices {
+    x: 544
+    y: 486
+  }
+  vertices {
+    x: 632
+    y: 487
+  }
+  vertices {
+    x: 632
+    y: 523
+  }
+  vertices {
+    x: 544
+    y: 522
+  }
+}
+, description: "1614"
+bounding_poly {
+  vertices {
+    x: 544
+    y: 540
+  }
+  vertices {
+    x: 632
+    y: 540
+  }
+  vertices {
+    x: 632
+    y: 576
+  }
+  vertices {
+    x: 544
+    y: 576
   }
 }
 , description: "381"
 bounding_poly {
   vertices {
-    x: 717
+    x: 799
     y: 7
   }
   vertices {
-    x: 767
-    y: 5
+    x: 860
+    y: 8
   }
   vertices {
-    x: 768
-    y: 35
+    x: 860
+    y: 43
   }
   vertices {
-    x: 718
-    y: 37
+    x: 799
+    y: 42
   }
 }
 , description: "32"
 bounding_poly {
   vertices {
-    x: 728
-    y: 49
+    x: 811
+    y: 61
   }
   vertices {
-    x: 761
-    y: 49
+    x: 853
+    y: 61
   }
   vertices {
-    x: 761
-    y: 79
+    x: 853
+    y: 98
   }
   vertices {
-    x: 728
-    y: 79
+    x: 811
+    y: 98
   }
 }
 , description: "20"
 bounding_poly {
   vertices {
-    x: 728
-    y: 93
+    x: 810
+    y: 112
   }
   vertices {
-    x: 763
-    y: 93
+    x: 853
+    y: 112
   }
   vertices {
-    x: 763
-    y: 120
+    x: 853
+    y: 147
   }
   vertices {
-    x: 728
-    y: 120
+    x: 810
+    y: 147
   }
 }
 , description: "24"
 bounding_poly {
   vertices {
-    x: 728
-    y: 135
+    x: 809
+    y: 167
   }
   vertices {
-    x: 763
-    y: 135
+    x: 852
+    y: 167
   }
   vertices {
-    x: 763
-    y: 166
+    x: 852
+    y: 200
   }
   vertices {
-    x: 728
-    y: 166
+    x: 809
+    y: 200
   }
 }
 , description: "37"
 bounding_poly {
   vertices {
-    x: 727
-    y: 177
+    x: 811
+    y: 221
   }
   vertices {
-    x: 762
-    y: 176
+    x: 854
+    y: 222
   }
   vertices {
-    x: 763
-    y: 205
+    x: 853
+    y: 256
   }
   vertices {
-    x: 728
-    y: 206
+    x: 810
+    y: 255
   }
 }
 , description: "23"
 bounding_poly {
   vertices {
-    x: 728
-    y: 221
+    x: 810
+    y: 274
   }
   vertices {
-    x: 763
-    y: 221
+    x: 855
+    y: 274
   }
   vertices {
-    x: 763
-    y: 248
+    x: 855
+    y: 309
   }
   vertices {
-    x: 728
-    y: 248
+    x: 810
+    y: 309
   }
 }
 , description: "27"
 bounding_poly {
   vertices {
-    x: 729
-    y: 263
+    x: 809
+    y: 327
   }
   vertices {
-    x: 763
-    y: 263
+    x: 852
+    y: 327
   }
   vertices {
-    x: 763
-    y: 293
+    x: 852
+    y: 362
   }
   vertices {
-    x: 729
-    y: 293
+    x: 809
+    y: 362
   }
 }
 , description: "16"
 bounding_poly {
   vertices {
-    x: 731
-    y: 305
+    x: 813
+    y: 379
   }
   vertices {
-    x: 763
-    y: 305
+    x: 852
+    y: 379
   }
   vertices {
-    x: 763
-    y: 335
+    x: 852
+    y: 414
   }
   vertices {
-    x: 731
-    y: 335
+    x: 813
+    y: 414
   }
 }
 , description: "5"
 bounding_poly {
   vertices {
-    x: 738
-    y: 349
+    x: 822
+    y: 435
   }
   vertices {
-    x: 753
-    y: 349
+    x: 842
+    y: 435
   }
   vertices {
-    x: 753
-    y: 376
+    x: 842
+    y: 468
   }
   vertices {
-    x: 738
-    y: 376
+    x: 822
+    y: 468
   }
 }
 , description: "6"
 bounding_poly {
   vertices {
-    x: 738
-    y: 393
+    x: 821
+    y: 487
   }
   vertices {
-    x: 753
-    y: 393
+    x: 840
+    y: 487
   }
   vertices {
-    x: 753
-    y: 419
+    x: 840
+    y: 520
   }
   vertices {
-    x: 738
-    y: 419
+    x: 821
+    y: 520
   }
 }
 , description: "5"
 bounding_poly {
   vertices {
-    x: 738
-    y: 434
+    x: 822
+    y: 542
   }
   vertices {
-    x: 753
-    y: 434
+    x: 842
+    y: 542
   }
   vertices {
-    x: 753
-    y: 462
+    x: 842
+    y: 576
   }
   vertices {
-    x: 738
-    y: 462
+    x: 822
+    y: 576
   }
 }
-, description: "90149"
+, description: "90800"
 bounding_poly {
   vertices {
-    x: 904
-    y: 7
-  }
-  vertices {
-    x: 996
+    x: 1032
     y: 6
   }
   vertices {
-    x: 996
-    y: 35
+    x: 1147
+    y: 6
   }
   vertices {
-    x: 904
-    y: 36
-  }
-}
-, description: "13087"
-bounding_poly {
-  vertices {
-    x: 907
-    y: 49
+    x: 1147
+    y: 41
   }
   vertices {
-    x: 997
-    y: 49
-  }
-  vertices {
-    x: 997
-    y: 80
-  }
-  vertices {
-    x: 907
-    y: 80
+    x: 1032
+    y: 41
   }
 }
-, description: "6020"
+, description: "13173"
 bounding_poly {
   vertices {
-    x: 914
-    y: 93
+    x: 1033
+    y: 60
   }
   vertices {
-    x: 988
-    y: 93
+    x: 1146
+    y: 61
   }
   vertices {
-    x: 988
-    y: 122
+    x: 1146
+    y: 97
   }
   vertices {
-    x: 914
-    y: 122
+    x: 1033
+    y: 96
   }
 }
-, description: "7578"
+, description: "6025"
 bounding_poly {
   vertices {
-    x: 914
-    y: 135
+    x: 1044
+    y: 112
   }
   vertices {
-    x: 987
-    y: 135
+    x: 1135
+    y: 113
   }
   vertices {
-    x: 987
-    y: 164
+    x: 1135
+    y: 148
   }
   vertices {
-    x: 914
-    y: 164
+    x: 1044
+    y: 147
   }
 }
-, description: "8985"
+, description: "7607"
 bounding_poly {
   vertices {
-    x: 915
-    y: 177
+    x: 1044
+    y: 166
   }
   vertices {
-    x: 988
-    y: 177
+    x: 1135
+    y: 166
   }
   vertices {
-    x: 988
-    y: 207
+    x: 1135
+    y: 203
   }
   vertices {
-    x: 915
-    y: 207
+    x: 1044
+    y: 203
   }
 }
-, description: "8094"
+, description: "9053"
 bounding_poly {
   vertices {
-    x: 914
-    y: 220
+    x: 1043
+    y: 221
   }
   vertices {
-    x: 988
-    y: 220
+    x: 1134
+    y: 221
   }
   vertices {
-    x: 988
-    y: 250
+    x: 1134
+    y: 255
   }
   vertices {
-    x: 914
-    y: 250
+    x: 1043
+    y: 255
   }
 }
-, description: "7733"
+, description: "8137"
 bounding_poly {
   vertices {
-    x: 915
-    y: 263
+    x: 1043
+    y: 273
   }
   vertices {
-    x: 988
-    y: 263
+    x: 1134
+    y: 274
   }
   vertices {
-    x: 988
-    y: 292
+    x: 1134
+    y: 310
   }
   vertices {
-    x: 915
-    y: 292
+    x: 1043
+    y: 309
   }
 }
-, description: "7202"
+, description: "7748"
 bounding_poly {
   vertices {
-    x: 915
-    y: 305
+    x: 1043
+    y: 327
   }
   vertices {
-    x: 988
-    y: 305
+    x: 1134
+    y: 325
   }
   vertices {
-    x: 988
-    y: 335
+    x: 1135
+    y: 360
   }
   vertices {
-    x: 915
-    y: 335
+    x: 1044
+    y: 362
   }
 }
-, description: "3000"
+, description: "7293"
 bounding_poly {
   vertices {
-    x: 914
-    y: 348
+    x: 1043
+    y: 379
   }
   vertices {
-    x: 987
-    y: 348
+    x: 1134
+    y: 378
   }
   vertices {
-    x: 987
-    y: 377
+    x: 1134
+    y: 413
   }
   vertices {
-    x: 914
-    y: 377
+    x: 1043
+    y: 414
   }
 }
-, description: "2169"
+, description: "3059"
 bounding_poly {
   vertices {
-    x: 913
-    y: 391
-  }
-  vertices {
-    x: 987
-    y: 391
-  }
-  vertices {
-    x: 987
-    y: 420
-  }
-  vertices {
-    x: 913
-    y: 420
-  }
-}
-, description: "2037"
-bounding_poly {
-  vertices {
-    x: 913
+    x: 1044
     y: 434
   }
   vertices {
-    x: 987
+    x: 1135
     y: 434
   }
   vertices {
-    x: 987
-    y: 463
+    x: 1135
+    y: 469
   }
   vertices {
-    x: 913
-    y: 463
+    x: 1044
+    y: 469
+  }
+}
+, description: "2200"
+bounding_poly {
+  vertices {
+    x: 1044
+    y: 486
+  }
+  vertices {
+    x: 1135
+    y: 486
+  }
+  vertices {
+    x: 1135
+    y: 519
+  }
+  vertices {
+    x: 1044
+    y: 519
+  }
+}
+, description: "2158"
+bounding_poly {
+  vertices {
+    x: 1041
+    y: 540
+  }
+  vertices {
+    x: 1133
+    y: 540
+  }
+  vertices {
+    x: 1133
+    y: 575
+  }
+  vertices {
+    x: 1041
+    y: 575
+  }
+}
+, description: "LO"
+bounding_poly {
+  vertices {
+    x: 848
+    y: 436
+  }
+  vertices {
+    x: 848
+    y: 519
+  }
+  vertices {
+    x: 820
+    y: 519
+  }
+  vertices {
+    x: 820
+    y: 436
+  }
+}
+, description: "LO"
+bounding_poly {
+  vertices {
+    x: 848
+    y: 543
+  }
+  vertices {
+    x: 848
+    y: 573
+  }
+  vertices {
+    x: 820
+    y: 573
+  }
+  vertices {
+    x: 820
+    y: 543
   }
 }
 ]
