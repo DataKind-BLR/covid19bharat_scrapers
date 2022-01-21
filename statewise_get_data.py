@@ -238,6 +238,7 @@ def as_get_data(opt):
   districtDictionary = {}
   districts_data = []
   splitArray = []
+  print('\n*** Do Manual entry of Recovered and Deaths\nDistrictwise Hospitalized \n')
 
   try:
     with open(OUTPUT_TXT, "r") as upFile:
@@ -245,10 +246,19 @@ def as_get_data(opt):
         splitArray = re.sub('\n', '', line.strip()).split('|')
         linesArray = splitArray[0].split(',')
 
+        ## Why is this not fixed in `as_districts.meta` ??
         if int(linesArray[len(linesArray) - 1]) > 0:
-          districtDictionary['districtName'] = linesArray[0].strip()
-          districtDictionary['confirmed'] = linesArray[len(linesArray) - 1].strip()
-          districts_data.append(districtDictionary)
+          if linesArray[0].strip() == 'Kamrup Metro':
+            print("Kamrup Metropolitan,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
+          elif linesArray[0].strip() == 'Kamrup Rural':
+            print("Kamrup,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
+          elif linesArray[0].strip() == 'South Salmara':
+            print("South Salmara Mankachar,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
+          else:
+            print("{},Assam,AS,{},Hospitalized".format(linesArray[0].strip(), linesArray[len(linesArray) - 1].strip()))
+          # districtDictionary['districtName'] = linesArray[0].strip()
+          # districtDictionary['confirmed'] = linesArray[len(linesArray) - 1].strip()
+          # districts_data.append(districtDictionary)
         else:
           needs_correction = True
           linesArray.insert(0, '--> Issue with')
@@ -535,7 +545,12 @@ def hp_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[1].strip())
         districtDictionary['recovered'] = int(linesArray[8].strip())
         districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[10].strip()).strip())
-        #districtDictionary['migrated'] = int(linesArray[10].strip())
+        districtDictionary['migrated'] = int(linesArray[11].strip())
+
+        # if columns are 9
+        # districtDictionary['recovered'] = int(linesArray[6].strip())
+        # districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
+        # districtDictionary['migrated'] = int(linesArray[10].strip())
         districts_data.append(districtDictionary)
   except:
     return {
@@ -880,20 +895,21 @@ def kl_get_data(opt):
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 3:
-          print("--> Issue with {}".format(linesArray))
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
         if "District" not in linesArray:
           print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
           print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
           # TODO - append to districts_data
-    upFile.close()
 
     print("\n===>Scrapping Deaths reported\n")
     os.system("python scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
     print("\n===>Scrapping BACKLOG Deaths reported\n")
     os.system("python scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
-    quit()
-    #return districts_data
+    upFile.close()
+    #quit()
+    return districts_data
 
 
 def kld_get_data(opt):
@@ -914,7 +930,8 @@ def kld_get_data(opt):
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 3:
-          print("--> Issue with {}".format(linesArray))
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
         if linesArray[0].strip() == "District":
           continue
@@ -926,7 +943,7 @@ def kld_get_data(opt):
     print('\n---------------------------------------------------------------------\n')
 
     upFile.close()
-    quit()
+    #quit()
     #return districts_data
 
 
@@ -950,7 +967,8 @@ def kldbl_get_data(opt):
         linecnt=linecnt+1
         linesArray = line.split(',')
         if len(linesArray) != 3:
-          print("--> Issue with {}".format(linesArray))
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
         if linecnt !=1:
            if int(linesArray[1].strip()) != 0:
@@ -959,7 +977,7 @@ def kldbl_get_data(opt):
               print("{},Kerala,KL,{},Deceased,,cat_C (G.O.(Rt) No.2219/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[2].strip()))
     print('\n---------------------------------------------------------------------\n')
     upFile.close()
-    quit()
+    #quit()
     #return districts_data
 
 
@@ -1002,7 +1020,9 @@ def mh_get_data(opt):
           districtDictionary['districtName'] = linesArray[0].strip()
           districtDictionary['confirmed'] = int(linesArray[1].strip())
           districtDictionary['recovered'] = int(linesArray[2].strip())
-          districtDictionary['deceased'] = int(linesArray[3].strip()) if len(re.sub('\n', '', linesArray[5])) != 0 else 0
+          # districtDictionary['deceased'] = int(linesArray[3].strip()) if len(re.sub('\n', '', linesArray[5])) != 0 else 0
+          districtDictionary['deceased'] = int(linesArray[3].strip())
+          districtDictionary['migrated'] = int(linesArray[4].strip())
           districts_data.append(districtDictionary)
     except:
       return {
@@ -1524,7 +1544,8 @@ def rj_get_data(opt):
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 8:
-          print("--> Issue with {}".format(linesArray))
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
 
         if 'Other' in linesArray[0].strip().title():
@@ -1617,7 +1638,8 @@ def tn_get_data(opt):
       for line in upFile:
         linesArray = line.split(',')
         if len(linesArray) != 5:
-          print("--> Issue with {}".format(linesArray))
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
           continue
         linesArray[4] = linesArray[4].replace('$', '')
 
