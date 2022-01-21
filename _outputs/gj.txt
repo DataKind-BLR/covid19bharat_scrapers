@@ -6,5 +6,76 @@ Devbhoomi Dwarka -> Devbhumi Dwarka
 
 Delta statistics
 
-Districts Total Current: C= 955950  R= 866179  D= 10171  No of Districts= 33
+Ahmedabad,Gujarat,GJ,8529,Hospitalized
+Amreli,Gujarat,GJ,47,Hospitalized
+Anand,Gujarat,GJ,247,Hospitalized
+Aravalli,Gujarat,GJ,4,Hospitalized
+Banaskantha,Gujarat,GJ,240,Hospitalized
+Bharuch,Gujarat,GJ,302,Hospitalized
+Bhavnagar,Gujarat,GJ,570,Hospitalized
+Botad,Gujarat,GJ,3,Hospitalized
+Chhota Udaipur,Gujarat,GJ,2,Hospitalized
+Dahod,Gujarat,GJ,75,Hospitalized
+Dang,Gujarat,GJ,9,Hospitalized
+Devbhumi Dwarka,Gujarat,GJ,46,Hospitalized
+Gandhinagar,Gujarat,GJ,624,Hospitalized
+Gir Somnath,Gujarat,GJ,39,Hospitalized
+Jamnagar,Gujarat,GJ,335,Hospitalized
+Junagadh,Gujarat,GJ,114,Hospitalized
+Kutch,Gujarat,GJ,194,Hospitalized
+Kheda,Gujarat,GJ,168,Hospitalized
+Mahisagar,Gujarat,GJ,37,Hospitalized
+Mehsana,Gujarat,GJ,258,Hospitalized
+Morbi,Gujarat,GJ,265,Hospitalized
+Narmada,Gujarat,GJ,84,Hospitalized
+Navsari,Gujarat,GJ,278,Hospitalized
+Panchmahal,Gujarat,GJ,42,Hospitalized
+Patan,Gujarat,GJ,151,Hospitalized
+Porbandar,Gujarat,GJ,61,Hospitalized
+Rajkot,Gujarat,GJ,1386,Hospitalized
+Sabarkantha,Gujarat,GJ,54,Hospitalized
+Surat,Gujarat,GJ,3974,Hospitalized
+Surendranagar,Gujarat,GJ,146,Hospitalized
+Tapi,Gujarat,GJ,43,Hospitalized
+Vadodara,Gujarat,GJ,2252,Hospitalized
+Valsad,Gujarat,GJ,387,Hospitalized
+Ahmedabad,Gujarat,GJ,3911,Recovered
+Amreli,Gujarat,GJ,92,Recovered
+Anand,Gujarat,GJ,105,Recovered
+Aravalli,Gujarat,GJ,3,Recovered
+Banaskantha,Gujarat,GJ,76,Recovered
+Bharuch,Gujarat,GJ,347,Recovered
+Bhavnagar,Gujarat,GJ,156,Recovered
+Botad,Gujarat,GJ,1,Recovered
+Chhota Udaipur,Gujarat,GJ,1,Recovered
+Dahod,Gujarat,GJ,15,Recovered
+Dang,Gujarat,GJ,1,Recovered
+Devbhumi Dwarka,Gujarat,GJ,28,Recovered
+Gandhinagar,Gujarat,GJ,242,Recovered
+Gir Somnath,Gujarat,GJ,38,Recovered
+Jamnagar,Gujarat,GJ,99,Recovered
+Junagadh,Gujarat,GJ,55,Recovered
+Kutch,Gujarat,GJ,140,Recovered
+Kheda,Gujarat,GJ,95,Recovered
+Mahisagar,Gujarat,GJ,21,Recovered
+Mehsana,Gujarat,GJ,66,Recovered
+Morbi,Gujarat,GJ,101,Recovered
+Narmada,Gujarat,GJ,8,Recovered
+Navsari,Gujarat,GJ,157,Recovered
+Panchmahal,Gujarat,GJ,31,Recovered
+Patan,Gujarat,GJ,36,Recovered
+Porbandar,Gujarat,GJ,11,Recovered
+Rajkot,Gujarat,GJ,479,Recovered
+Sabarkantha,Gujarat,GJ,50,Recovered
+Surat,Gujarat,GJ,2232,Recovered
+Surendranagar,Gujarat,GJ,29,Recovered
+Tapi,Gujarat,GJ,17,Recovered
+Vadodara,Gujarat,GJ,968,Recovered
+Valsad,Gujarat,GJ,217,Recovered
+Ahmedabad,Gujarat,GJ,6,Deceased
+Bharuch,Gujarat,GJ,1,Deceased
+Sabarkantha,Gujarat,GJ,2,Deceased
+Surat,Gujarat,GJ,1,Deceased
+Valsad,Gujarat,GJ,2,Deceased
+Districts Total Current: C= 976916  R= 876007  D= 10183  No of Districts= 33
 Districts Total API    : C= 955950  R= 866179  D= 10171

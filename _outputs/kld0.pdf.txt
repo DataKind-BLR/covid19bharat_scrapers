@@ -1,0 +1,3 @@
+"Total cases","5510345"
+"Cases with history of International/Interstate travel","111903"
+"Cases with history of contact","5398442"

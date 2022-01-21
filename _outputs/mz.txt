@@ -6,5 +6,27 @@ Siaha -> Saiha
 
 Delta statistics
 
-Districts Total Current: C= 0  R= 0  D= 0  No of Districts= 0
-Districts Total API    : C= 0  R= 0  D= 0
+Aizawl,Mizoram,MZ,556,Hospitalized
+Lunglei,Mizoram,MZ,48,Hospitalized
+Saiha,Mizoram,MZ,8,Hospitalized
+Champhai,Mizoram,MZ,29,Hospitalized
+Kolasib,Mizoram,MZ,69,Hospitalized
+Serchhip,Mizoram,MZ,17,Hospitalized
+Lawngtlai,Mizoram,MZ,11,Hospitalized
+Mamit,Mizoram,MZ,139,Hospitalized
+Khawzawl,Mizoram,MZ,43,Hospitalized
+Hnahthial,Mizoram,MZ,14,Hospitalized
+Saitual,Mizoram,MZ,50,Hospitalized
+Aizawl,Mizoram,MZ,378,Recovered
+Lunglei,Mizoram,MZ,44,Recovered
+Saiha,Mizoram,MZ,21,Recovered
+Champhai,Mizoram,MZ,96,Recovered
+Kolasib,Mizoram,MZ,33,Recovered
+Serchhip,Mizoram,MZ,143,Recovered
+Lawngtlai,Mizoram,MZ,8,Recovered
+Mamit,Mizoram,MZ,58,Recovered
+Khawzawl,Mizoram,MZ,42,Recovered
+Hnahthial,Mizoram,MZ,5,Recovered
+Saitual,Mizoram,MZ,99,Recovered
+Districts Total Current: C= 156054  R= 147330  D= 576  No of Districts= 11
+Districts Total API    : C= 155070  R= 146403  D= 576

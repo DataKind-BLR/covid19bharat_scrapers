@@ -1,0 +1,4 @@
+"Total cases","46387"
+"Cases with history of International/Interstate travel","172"
+"Cases with history of contact","43561"
+"Cases with no history of travel or contact","2654"

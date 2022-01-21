@@ -1,7 +1,7 @@
 startingText:auto,auto
 enableTranslation:False
-translationFile:ap_districts.meta
+translationFile:mz_districts.meta
 yInterval:0
 xInterval:0
-houghTransform:True
-configMinLineLength:300
+houghTransform:False
+configMinLineLength:400

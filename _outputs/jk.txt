@@ -7,5 +7,47 @@ Poonch -> Punch
 
 Delta statistics
 
-Districts Total Current: C= 0  R= 0  D= 0  No of Districts= 0
-Districts Total API    : C= 0  R= 0  D= 0
+Srinagar,Jammu and Kashmir,JK,1745,Hospitalized
+Baramulla,Jammu and Kashmir,JK,791,Hospitalized
+Budgam,Jammu and Kashmir,JK,594,Hospitalized
+Pulwama,Jammu and Kashmir,JK,230,Hospitalized
+Kupwara,Jammu and Kashmir,JK,93,Hospitalized
+Anantnag,Jammu and Kashmir,JK,217,Hospitalized
+Bandipora,Jammu and Kashmir,JK,130,Hospitalized
+Ganderbal,Jammu and Kashmir,JK,84,Hospitalized
+Kulgam,Jammu and Kashmir,JK,162,Hospitalized
+Shopiyan,Jammu and Kashmir,JK,20,Hospitalized
+Jammu,Jammu and Kashmir,JK,1131,Hospitalized
+Udhampur,Jammu and Kashmir,JK,105,Hospitalized
+Rajouri,Jammu and Kashmir,JK,85,Hospitalized
+Doda,Jammu and Kashmir,JK,63,Hospitalized
+Kathua,Jammu and Kashmir,JK,100,Hospitalized
+Samba,Jammu and Kashmir,JK,89,Hospitalized
+Kishtwar,Jammu and Kashmir,JK,5,Hospitalized
+Punch,Jammu and Kashmir,JK,66,Hospitalized
+Ramban,Jammu and Kashmir,JK,53,Hospitalized
+Reasi,Jammu and Kashmir,JK,55,Hospitalized
+Srinagar,Jammu and Kashmir,JK,262,Recovered
+Baramulla,Jammu and Kashmir,JK,42,Recovered
+Budgam,Jammu and Kashmir,JK,159,Recovered
+Pulwama,Jammu and Kashmir,JK,28,Recovered
+Kupwara,Jammu and Kashmir,JK,108,Recovered
+Bandipora,Jammu and Kashmir,JK,40,Recovered
+Ganderbal,Jammu and Kashmir,JK,4,Recovered
+Kulgam,Jammu and Kashmir,JK,20,Recovered
+Jammu,Jammu and Kashmir,JK,232,Recovered
+Udhampur,Jammu and Kashmir,JK,43,Recovered
+Rajouri,Jammu and Kashmir,JK,20,Recovered
+Doda,Jammu and Kashmir,JK,14,Recovered
+Kathua,Jammu and Kashmir,JK,82,Recovered
+Samba,Jammu and Kashmir,JK,56,Recovered
+Kishtwar,Jammu and Kashmir,JK,28,Recovered
+Punch,Jammu and Kashmir,JK,4,Recovered
+Ramban,Jammu and Kashmir,JK,6,Recovered
+Reasi,Jammu and Kashmir,JK,107,Recovered
+Jammu,Jammu and Kashmir,JK,1,Deceased
+Udhampur,Jammu and Kashmir,JK,1,Deceased
+Rajouri,Jammu and Kashmir,JK,1,Deceased
+Punch,Jammu and Kashmir,JK,1,Deceased
+Districts Total Current: C= 372669  R= 341854  D= 4579  No of Districts= 20
+Districts Total API    : C= 366851  R= 340599  D= 4575

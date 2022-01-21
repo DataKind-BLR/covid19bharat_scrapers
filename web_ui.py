@@ -41,10 +41,10 @@ async def homepage(request):
       url = None
       if form.get("file"):
         url = await write_file(form["file"])
-        
+      
       args = argparse.Namespace(
         state_code = form.get("state_code"),
-        page = None,
+        page = form.get("page"),
         skip_output = False,
         type = form.get("type"),
         url = url if form.get("type") in ["pdf","image"] else None,
@@ -55,7 +55,7 @@ async def homepage(request):
       with redirect_stdout(f):
         scrapers.run(args)
       delta = f.getvalue()
-         
+      
       return templates.TemplateResponse('index.html', {"request": request, "output": delta, "available_state_codes": available_state_codes})
     except Exception as e:
       output = traceback.format_exc()

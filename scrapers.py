@@ -130,7 +130,7 @@ def run(args):
     page = args.page if 'page' in args else None
     skip_output = args.skip_output if 'skip_output' in args else False
     is_verbose = args.verbose if 'verbose' in args else False
-
+    print(args)
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
 

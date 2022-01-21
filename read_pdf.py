@@ -30,7 +30,7 @@ def read_pdf_from_url(opt):
   }
   ```
   '''
-
+  
   if urllib.parse.urlparse(opt['url']).scheme != '':
     r = requests.get(opt['url'], allow_redirects=True, verify=False)
     DOWNLOADED_PDF = os.path.join(INPUTS_DIR, opt['state_code'].lower() + '.pdf')

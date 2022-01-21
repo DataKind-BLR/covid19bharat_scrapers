@@ -1,0 +1,37 @@
+District,Age,Gender
+Thiruvananthapuram,55,Male
+Thiruvananthapuram,54,Female
+Thiruvananthapuram,59,Female
+Thiruvananthapuram,75,Male
+Kollam,62,Male
+Kollam,72,Male
+Kollam,62,Male
+Kollam,59,Female
+Kollam,76,Male
+Pathanamthitta,73,Female
+Pathanamthitta,63,Male
+Pathanamthitta,77,Male
+Ernakulam,80,Female
+Ernakulam,64,Female
+Ernakulam,52,Male
+Ernakulam,56,Female
+Ernakulam,68,Male
+Ernakulam,69,Male
+Ernakulam,84,Male
+Ernakulam,85,Male
+Palakkad,49,Male
+Malappuram,65,Male
+Kozhikode,92,Female
+Kozhikode,94,Male
+Kozhikode,61,Male
+Kozhikode,78,Female
+Kannur,68,Male
+Kannur,62,Female
+Kannur,63,Male
+Kannur,91,Male
+Kannur,0,Male
+Kannur,60,Male
+Cumulative routine + Sentinel samples,True NAT,POCT PCR
+18491315,875068,133821
+Routine + Sentinel Samples (PCR),POCT PCR,RT LAMP
+72509,610,247

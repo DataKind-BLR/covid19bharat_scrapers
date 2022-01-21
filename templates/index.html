@@ -53,8 +53,13 @@
         $qs("#fileinputlabel").style.display = "block";
       }
       
+      $qs("#pageinputlabel").style.display = "none";
       if(stateDetails.type=="pdf") {
         $qs("#fileinputlabel span").innerHTML = "Drop PDF here:";
+        $qs("#pageinputlabel").style.display = "block";
+        if(stateDetails?.config?.page) {
+          $qs("#pageinput").value = stateDetails?.config?.page;
+        }
       } else if(stateDetails.type=="image") {
         $qs("#fileinputlabel span").innerHTML = "Drop Image here:";
       }
@@ -99,6 +104,10 @@
         </select>
         -->
       </label>  
+      <label id="pageinputlabel">
+        <span>Page:</span>
+        <input type="text" name="page" value="" id="pageinput">
+      </label>
       <label id="fileinputlabel">
         <span>Drop PDFs / Images here:</span>
         <input type="file" name="file">
