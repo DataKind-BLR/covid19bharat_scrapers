@@ -54,8 +54,9 @@ as:
     - https://twitter.com/nhm_assam
     - https://covid19.assam.gov.in/all-districts/
   type: image
-  url:
+  url: _inputs/as.jpeg
   config:
+    delta_calc: False
     translation: False
 
 br:
@@ -66,7 +67,7 @@ br:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna/media
   type: image
-  url:
+  url: _inputs/br.jpeg
   config:
     translation: True
 
@@ -249,10 +250,10 @@ kl:
     - https://twitter.com/CMOKerala
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
-    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
-  url:
+  url: _inputs/kl.pdf
   config:
+    delta_calc: False
     page: 4
     start_key: District
     end_key: Total
@@ -267,8 +268,9 @@ kld:
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
-  url:
+  url: _inputs/kld.pdf
   config:
+    delta_calc: False
     page: 6-7
     start_key: District
     end_key: Detailed
@@ -283,8 +285,9 @@ kldbl:
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
-  url:
+  url: _inputs/kldbl.pdf
   config:
+    delta_calc: False
     page: 5
     start_key: District
     end_key: Total
@@ -483,6 +486,7 @@ tg:
   type: image
   url: _inputs/tg.jpeg
   config:
+    delta_calc: False
     translation: False
 
 tr:

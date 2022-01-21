@@ -153,8 +153,6 @@ def run(args):
 
     if 'needs_correction' in live_data and live_data['needs_correction'] == True:
         print(live_data)
-        import pdb
-        pdb.set_trace()
         return live_data
 
     # try:
@@ -171,9 +169,8 @@ def run(args):
     #         data = txt_file.read()
     #     return data
 
-    if 'config' in states_all[state_code] and\
-        'calculate_delta' in states_all[state_code]['config'] and\
-        states_all[state_code]['config']['calculate_delta'] == False:
+    if 'delta_calc' in states_all[state_code]['config'] and\
+        states_all[state_code]['config']['delta_calc'] == False:
         print('No delta processing for: {}'.format(states_all[state_code]['name']))
 
     if verbose:
@@ -190,14 +187,6 @@ def run(args):
             'full',
             verbose
         )
-
-    # take this from states.yaml
-    elif (('Assam' == states_all[state_code]['name']) or \
-          ('Telangana' == states_all[state_code]['name']) or \
-          ('Kerala' == states_all[state_code]['name']) or \
-          ('KeralaDeaths' == states_all[state_code]['name']) or \
-          ('KeralaDeathsBacklog' == states_all[state_code]['name'])):
-      print('No delta processing for: ',states_all[state_code]['name'])
 
     else:
       # TODO - get delta for states
