@@ -347,8 +347,8 @@ mn:
   url: _inputs/mn.jpeg
   config:
     translation: False
-    start_key: Bishnupur
-    end_key: Ukhrul
+    #start_key: Bishnupur
+    #end_key: Ukhrul
 
 mp:
   name: Madhya Pradesh
@@ -440,10 +440,11 @@ rj:
   #   translation: True
   type: pdf
   url: _inputs/rj.pdf
+  page: 1,2
   config:
-    page: 1,2
+    translation: False
     start_key: AJMER
-    end_key: Total
+    #end_key: Total
 
 sk:
   name: Sikkim

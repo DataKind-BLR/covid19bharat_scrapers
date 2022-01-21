@@ -1041,12 +1041,15 @@ def mn_get_data(opt):
 
   linesArray = []
   districts_data = []
+  #clip from Districts to daily deaths
+  nColRef = 5
+
   with open(OUTPUT_TXT) as mnFile:
     for line in mnFile:
       districtDictionary = {}
       linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 8:
-        print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+      if len(linesArray) != nColRef:
+        print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
         print('--------------------------------------------------------------------------------')
         continue
 
