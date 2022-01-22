@@ -8,7 +8,7 @@ DELTA_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs',
 DELTA_MAPPING = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_meta', 'delta_mapping.meta')
 
 
-def sheet_print(opt, df):
+def format_df(opt, df):
     '''
     Given dataframe, format print as example shown as below
 
@@ -20,53 +20,36 @@ def sheet_print(opt, df):
     :param: <dict> - state config
     :param: <pd.DataFrame> - delta dataframe
 
-    :returns: <str> - string format required by sheets
+    :returns: <pd.DataFrame> - formatted for printing
     '''
-    hosp_df = reco_df = dece_df = migr_df = pd.DataFrame(columns=[
+    cols = [
         'district_name',
         'state_name',
         'state_code',
         'delta',
         'delta_type'
-    ])
-    # df = df.rename(columns={'Confirmed': 'Hospitalized'})
-    hosp_df['district_name'] = df['District']
-    hosp_df['delta'] = df['Confirmed']
-    hosp_df['delta_type'] = 'Hospitalized'
-    hosp_df['state_name'] = opt['name']
-    hosp_df['state_code'] = opt['state_code']
+    ]
+    frmts = {
+        'Confirmed': 'Hospitalized',
+        'Recovered': 'Recovered',
+        'Deceased': 'Deceased',
+        'Migrated_Other': 'Migrated_Other'
+    }
+    dfs = []
 
-    reco_df['district_name'] = df['District']
-    reco_df['delta'] = df['Recovered']
-    reco_df['delta_type'] = 'Recovered'
-    reco_df['state_name'] = opt['name']
-    reco_df['state_code'] = opt['state_code']
+    for f in frmts:
+        frmt_df = pd.DataFrame(columns=cols)
+        frmt_df['district_name'] = df['District']
+        frmt_df['delta'] = df[f]
+        frmt_df['delta_type'] = frmts[f]
+        frmt_df['state_name'] = opt['name']
+        frmt_df['state_code'] = opt['state_code']
+        dfs.append(frmt_df)
 
-    dece_df['district_name'] = df['District']
-    dece_df['delta'] = df['Deceased']
-    dece_df['delta_type'] = 'Deceased'
-    dece_df['state_name'] = opt['name']
-    dece_df['state_code'] = opt['state_code']
+    result_df = pd.concat(dfs)
+    result_df = result_df.drop(result_df[result_df['delta'] == 0].index)
 
-    migr_df['district_name'] = df['District']
-    migr_df['delta'] = df['Migrated_Other']
-    migr_df['delta_type'] = 'Migrated_Other'
-    migr_df['state_name'] = opt['name']
-    migr_df['state_code'] = opt['state_code']
-
-    str_hosp = hosp_df.to_string(header=False, index=False, index_names=False).split('\n')
-    print_hosp = '\n'.join([','.join(ele.split()) for ele in str_hosp])
-
-    str_reco = reco_df.to_string(header=False, index=False, index_names=False).split('\n')
-    print_reco = '\n'.join([','.join(ele.split()) for ele in str_reco])
-
-    str_dece = dece_df.to_string(header=False, index=False, index_names=False).split('\n')
-    print_dece = '\n'.join([','.join(ele.split()) for ele in str_dece])
-
-    str_migr = migr_df.to_string(header=False, index=False, index_names=False).split('\n')
-    print_migr = '\n'.join([','.join(ele.split()) for ele in str_migr])
-
-    print(print_hosp, print_reco, print_dece, print_migr)
+    return result_df
 
 
 def calculate_deltas(opt, live_data):
@@ -127,6 +110,6 @@ def calculate_deltas(opt, live_data):
             'migrated': delta_df['Migrated_Other'].sum()
         },
         'deltas': delta_df,
-        'api_state_data': state_df.reset_index()
-        # 'for_sheets': sheet_print(opt, delta_df)
+        'api_state_data': state_df.reset_index(),
+        'for_sheets': format_df(opt, delta_df)
     }

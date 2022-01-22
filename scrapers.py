@@ -184,7 +184,16 @@ def run(args):
 
         print('Delta Totals')
         print(dc['delta_totals'])
+        print('\n\n', '-*-'*20)
 
+        if dc['for_sheets'].empty:
+            print('No deltas')
+        else:
+            str_result = dc['for_sheets'].to_string(header=False, index=False, index_names=False).split('\n')
+            print_str = '\n'.join([','.join(ele.split()) for ele in str_result])
+            print(print_str)
+
+        print('\n\n')
 
 if __name__ == '__main__':
     '''
