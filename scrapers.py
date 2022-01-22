@@ -21,10 +21,11 @@ import os
 import yaml
 import logging
 import argparse
+import tabulate
 
-from rich.pretty  import pprint
-from rich.console import Console
-from rich.table import Table
+# from rich.pretty  import pprint
+# from rich.console import Console
+# from rich.table import Table
 from statewise_get_data import *
 from delta_calculator import calculate_deltas
 
@@ -32,7 +33,7 @@ OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 
-console = Console(record=True, force_terminal=False)
+# console = Console(record=True, force_terminal=False)
 
 # read the config file first
 with open(STATES_YAML, 'r') as stream:
@@ -42,23 +43,23 @@ with open(STATES_YAML, 'r') as stream:
         print(exc)
 
 
-def draw_table(data, info):
-    table = Table(title=f"{info['name']} data from your current input.", title_justify="left", style="bold")
+# def draw_table(data, info):
+#     table = Table(title=f"{info['name']} data from your current input.", title_justify="left", style="bold")
 
-    table.add_column('district', style='white')
-    table.add_column('confirmed', style='red', justify='right')
-    table.add_column('recovered', style='green', justify='right')
-    table.add_column('deceased', style='grey39', justify='right')
+#     table.add_column('district', style='white')
+#     table.add_column('confirmed', style='red', justify='right')
+#     table.add_column('recovered', style='green', justify='right')
+#     table.add_column('deceased', style='grey39', justify='right')
 
-    for row in data:
-        table.add_row(
-            row['districtName'],
-            str(row['confirmed']),
-            str(row['recovered']),
-            str(row['deceased'])
-        )
+#     for row in data:
+#         table.add_row(
+#             row['districtName'],
+#             str(row['confirmed']),
+#             str(row['recovered']),
+#             str(row['deceased'])
+#         )
 
-    console.print(table, justify="left")
+#     console.print(table, justify="left")
 
 
 def fetch_data(st_obj):
@@ -159,24 +160,18 @@ def run(args):
     if 'config' in states_all[state_code] and\
         'delta_calc' in states_all[state_code]['config'] and\
         states_all[state_code]['config']['delta_calc'] == False:
-        # print('No delta processing for: {}'.format(states_all[state_code]['name']))
         return None
 
-    # if verbose:
-    #     draw_table(live_data, states_all[state_code])
-
-    deltas = calculate_deltas(
+    dc = calculate_deltas(
         states_all[state_code],
         live_data
     )
 
-    # if delta:
-    #     print(f"Delta processing complete. Written to delta.txt")
-    # else:
-    #     print(f"Delta unchanged.")
-
-    # console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
-    return deltas
+    if verbose:
+        print(tabulate.tabulate(live_data, tablefmt='github'))
+        print(tabulate.tabulate(dc['api_state_data'], tablefmt='github'))
+        print(tabulate.tabulate(dc['deltas'], tablefmt='github'))
+        print(dc['totals'])
 
 
 if __name__ == '__main__':
@@ -187,7 +182,7 @@ if __name__ == '__main__':
     Example to overwrite settings already provided in yaml file:
     $python scrapers.py --state_code AP --type pdf --url 'https://path/to/file.pdf'
     '''
-    console = Console(record=True)
+    # console = Console(record=True)
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--state_code', type=str, nargs='?', required=True, help=f'provide 2 letter state code. Possible options = {states_all.keys()}')
     parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
@@ -197,4 +192,4 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbose', action='store_true', help='verbose will print out all the details in a tabular format')
 
     args = parser.parse_args()
-    print(run(vars(args)))
+    run(vars(args))
