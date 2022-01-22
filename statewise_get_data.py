@@ -12,6 +12,7 @@ from read_pdf import read_pdf_from_url
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
+
 def _get_mohfw_data(name):
   '''Fetch state-wise data from MOHFW website.
   
@@ -38,7 +39,7 @@ def _get_mohfw_data(name):
     'deceased':  datum['new_death']
   }] 
 
-## ------------------------ <STATE_CODE>_get_data functions START HERE
+
 def ap_get_data(opt):
 
   if opt['type'] == 'html':
@@ -152,6 +153,7 @@ def ap_get_data(opt):
 
 def an_get_data(opt):
   return []
+
 
 def ar_get_data(opt):
   if opt['skip_output'] == False:
@@ -539,7 +541,6 @@ def hp_get_data(opt):
   return districts_data
 
 
-
 def hr_get_data(opt):
   print('fetching HR data')
 
@@ -592,7 +593,6 @@ def hr_get_data(opt):
       'output': csv_file
     }
   return districts_data
-
 
 
 def jh_get_data(opt):
@@ -681,7 +681,6 @@ def jh_get_data(opt):
         'output': OUTPUT_TXT
       }
     return districts_data
-
 
 
 def jk_get_data(opt):
@@ -784,7 +783,6 @@ def ka_get_data(opt):
         'output': csv_file
       }
     return districts_data
-
 
 
 def kl_get_data(opt):
@@ -1021,7 +1019,6 @@ def mh_get_data(opt):
     return district_data
 
 
-
 def ml_get_data(opt):
 
   if opt['type'] == 'image':
@@ -1192,7 +1189,6 @@ def mp_get_data(opt):
   return districts_data
 
 
-
 def mz_get_data(opt):
 
   if opt['skip_output'] == False:
@@ -1235,7 +1231,6 @@ def mz_get_data(opt):
       'output': OUTPUT_TXT
     }
   return districts_data
-
 
 
 def nl_get_data(opt):
@@ -1282,7 +1277,6 @@ def nl_get_data(opt):
   return districts_data
 
 
-
 def or_get_data(opt):
   temp_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
   # temp_file = "./_cache/{}.csv".format(opt['state_code'].lower())
@@ -1307,7 +1301,6 @@ def or_get_data(opt):
       'deceased': int(d['intDeceased']) + int(d['intOthDeceased'])
     })
   return district_data
-
 
 
 def pb_get_data(opt):
@@ -1516,7 +1509,6 @@ def rj_get_data(opt):
   return district_data
 
 
-
 def sk_get_data(opt):
 
   if opt['skip_output'] == False:
@@ -1557,7 +1549,6 @@ def sk_get_data(opt):
       'output': OUTPUT_TXT
     }
   return district_data
-
 
 
 def tn_get_data(opt):
@@ -1676,7 +1667,6 @@ def tg_get_data(opt):
   return district_data
 
 
-
 def tr_get_data(opt):
   print('fetching TR data')
   response = requests.request('GET', opt['url'])
@@ -1695,7 +1685,6 @@ def tr_get_data(opt):
     district_data.append(district_dictionary)
 
   return district_data
-
 
 
 def up_get_data(opt):
@@ -1751,7 +1740,6 @@ def up_get_data(opt):
       'output': csv_file
     }
   return districts_data
-
 
 
 def ut_get_data(opt):
@@ -1853,7 +1841,6 @@ def ut_get_data(opt):
     return districts_data
 
 
-
 def wb_get_data(opt):
 
   needs_correction = False
@@ -1899,5 +1886,3 @@ def wb_get_data(opt):
       'output': csv_file
     }
   return districts_data
-
-## ------------------------ <STATE_CODE>_get_data functions END HERE

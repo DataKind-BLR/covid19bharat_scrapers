@@ -143,7 +143,9 @@ def run(args):
     if 'config' in states_all[state_code] and\
         'delta_calc' in states_all[state_code]['config'] and\
         states_all[state_code]['config']['delta_calc'] == False:
+        print('\n\n', '-*-'*20)
         print('Data provided as deltas - no calculations required')
+        print('\n\n', '-*-'*20)
         return None
 
     dc = calculate_deltas(
