@@ -464,7 +464,6 @@ def ga_get_data(opt):
 
 
 def gj_get_data(opt):
-  print('fetching GJ data')
 
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
@@ -542,7 +541,6 @@ def hp_get_data(opt):
 
 
 def hr_get_data(opt):
-  print('fetching HR data')
 
   if not opt['url'].endswith('.pdf'):
     today = datetime.date.today().strftime("%d-%m-%Y")
@@ -596,7 +594,6 @@ def hr_get_data(opt):
 
 
 def jh_get_data(opt):
-  print('fetching JH data')
 
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
@@ -735,7 +732,6 @@ def jk_get_data(opt):
 
 
 def ka_get_data(opt):
-  print('fetching KA data')
 
   if opt['type'] == 'pdf':
 
@@ -944,17 +940,14 @@ def kldbl_get_data(opt):
 
 
 def la_get_data(opt):
-  print('fetching LA data')
   return _get_mohfw_data(opt['name'])
 
 
 def ld_get_data(opt):
-  print('fetching LD data')
   return _get_mohfw_data(opt['name'])
 
 
 def mh_get_data(opt):
-  print('fetching MH data')
 
   if opt['type'] == 'image':
     if opt['skip_output'] == False:
@@ -1398,7 +1391,6 @@ def pb_get_data(opt):
 
 
 def py_get_data(opt):
-  print('fetching PY data')
   return _get_mohfw_data(opt['name'])
 
 
@@ -1668,7 +1660,6 @@ def tg_get_data(opt):
 
 
 def tr_get_data(opt):
-  print('fetching TR data')
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   table = soup.find('tbody').find_all('tr')
