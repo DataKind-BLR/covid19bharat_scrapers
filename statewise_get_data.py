@@ -1013,6 +1013,7 @@ def ml_get_data(opt):
 
     response = requests.request("POST", url, headers=headers, data = payload)
     stateDashboard = json.loads(response.text.encode('utf8'))
+    #pprint(stateDashboard)
 
     districts_data = []
     for data in stateDashboard[0]:
@@ -1029,7 +1030,8 @@ def ml_get_data(opt):
         except KeyError:
           continue
       districts_data.append(districtDictionary)
-
+      
+    #pprint(districts_data)
     return districts_data
 
 def mn_get_data(opt):
@@ -1041,12 +1043,15 @@ def mn_get_data(opt):
 
   linesArray = []
   districts_data = []
+  #clip from Districts to daily deaths
+  nColRef = 5
+
   with open(OUTPUT_TXT) as mnFile:
     for line in mnFile:
       districtDictionary = {}
       linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 8:
-        print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+      if len(linesArray) != nColRef:
+        print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
         print('--------------------------------------------------------------------------------')
         continue
 
