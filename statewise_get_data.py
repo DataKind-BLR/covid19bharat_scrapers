@@ -154,8 +154,6 @@ def an_get_data(opt):
   return []
 
 def ar_get_data(opt):
-  if opt['verbose']:
-
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
@@ -438,9 +436,11 @@ def ct_get_data(opt):
 
 
 def dd_get_data(opt):
+  pass
 
 
 def dh_get_data(opt):
+  pass
 
 
 def dn_get_data(opt):
@@ -448,7 +448,6 @@ def dn_get_data(opt):
 
 
 def ga_get_data(opt):
-
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   table = soup.find_all("div", {"class": "vc_col-md-2"})
