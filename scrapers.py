@@ -26,7 +26,7 @@ from rich.pretty  import pprint
 from rich.console import Console
 from rich.table import Table
 from statewise_get_data import *
-from delta_calculator import DeltaCalculator, state_level_delta
+from delta_calculator import calculate_deltas
 
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
@@ -120,30 +120,32 @@ def fetch_data(st_obj):
     except KeyError:
         print('no function definition in fn_map for state code {}'.format(st_obj['state_code']))
 
+
 def run(args):
     '''
     Based on set of configuration dictionary, trigger appropriate scraper for a state
 
     :param: <dict> - dictionary of configurations (see structure in `states.yaml`)
     '''
-    state_code = args['state_code'].lower()
-    url = args['url']
-    url_type = args['type']
-    page = args['page'] if 'page' in args else None
-    skip_output = args['skip_output'] if 'skip_output' in args else False
-    verbose = args['verbose'] if 'verbose' in args else False
+    state_code  = args.get('state_code').lower()
+    url         = args.get('url')
+    url_type    = args.get('type')
+    page        = args.get('page', None)
+    skip_output = args.get('skip_output', False)
+    verbose     = args.get('verbose', False)
 
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
     states_all[state_code].update({ 'verbose': verbose })
 
-    if page is not None:
+    # overwrite `page` provided by cmd
+    if page:
         states_all[state_code]['config'].update({
             'page': page
         })
 
+    # overwrite `type` & `url` provided by cmd
     if url_type is not None and url is not None:
-        # if there's a url & type provided as args, use that
         states_all[state_code].update({
             'url': url,
             'type': url_type
@@ -152,59 +154,29 @@ def run(args):
     live_data = fetch_data(states_all[state_code])
 
     if 'needs_correction' in live_data and live_data['needs_correction'] == True:
-        print(live_data)
         return live_data
 
-    # try:
-    #     live_data = fetch_data(states_all[state_code])
-    # except:
-    #     # if fetch_data raised errors, return output as is
-    #     output_file = os.path.join(OUTPUTS_DIR, 'output.txt')
-    #     print('Modify {} file and re-run with the `--skip_output` flag'.format(output_file))
-    #     return output_file
-
-    # # if there were problem with reading images, return the output file for corrections
-    # if 'output.txt' in live_data:
-    #     with open(live_data, "r") as txt_file:
-    #         data = txt_file.read()
-    #     return data
-
-    if 'delta_calc' in states_all[state_code]['config'] and\
+    if 'config' in states_all[state_code] and\
+        'delta_calc' in states_all[state_code]['config'] and\
         states_all[state_code]['config']['delta_calc'] == False:
-        print('No delta processing for: {}'.format(states_all[state_code]['name']))
+        # print('No delta processing for: {}'.format(states_all[state_code]['name']))
+        return None
 
-    if verbose:
-        draw_table(live_data, states_all[state_code])
+    # if verbose:
+    #     draw_table(live_data, states_all[state_code])
 
-    if 'lazy' in states_all[state_code]:
-        state_level_delta(states_all[state_code]['name'], live_data, console)
-    else:
-        # TODO - get delta for states
-        dc = DeltaCalculator(console)
-        delta = dc.get_state_data_from_site(
-            states_all[state_code]['name'],
-            live_data,
-            'full',
-            verbose
-        )
+    deltas = calculate_deltas(
+        states_all[state_code],
+        live_data
+    )
 
-    else:
-      # TODO - get delta for states
-      dc = DeltaCalculator(console)
-      delta = dc.get_state_data_from_site(
-          states_all[state_code]['name'],
-          live_data,
-          'full',
-          is_verbose
-      )
+    # if delta:
+    #     print(f"Delta processing complete. Written to delta.txt")
+    # else:
+    #     print(f"Delta unchanged.")
 
-      if delta:
-          print(f"Delta processing complete. Written to delta.txt")
-      else:
-          print(f"Delta unchanged.")
-
-      console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
-      return delta
+    # console.save_text(f'{OUTPUTS_DIR}/{state_code}.txt')
+    return deltas
 
 
 if __name__ == '__main__':
@@ -225,4 +197,4 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbose', action='store_true', help='verbose will print out all the details in a tabular format')
 
     args = parser.parse_args()
-    run(vars(args))
+    print(run(vars(args)))
