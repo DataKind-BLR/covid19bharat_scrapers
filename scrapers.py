@@ -1,29 +1,10 @@
-'''
-All this work because the indian govt can't have one unified single dashboard! sigh!
-
-What does this file do?
-
-Provided the following parameters
-- `state_code`: 2 letter upper or lower case state code for which you want to extract data for
-- `url`: the url or the file path of the pdf, image or html
-- `type`: can be either 1 of the 3  pdf, image or html for the url that you provided above
-
-this file will do the following
-
-1. extracts parameters passed from command line or if not, takes defaults from `states.yaml` file
-2. based on the provided `url` and the `type`
-...
-
-'''
-
-#!/usr/bin/python3
 import os
 import yaml
 import logging
 import argparse
 import tabulate
 
-# from rich.pretty  import pprint
+from rich.pretty import pprint
 # from rich.console import Console
 # from rich.table import Table
 from statewise_get_data import *
@@ -170,6 +151,8 @@ def run(args):
     if verbose:
         print('\n\n')
 
+        pprint(states_all[state_code])
+
         print('Current input data')
         print(tabulate.tabulate(live_data, headers='keys', tablefmt='github', showindex=False))
         print('\n\n', '-*-'*20)
@@ -186,14 +169,15 @@ def run(args):
         print(dc['delta_totals'])
         print('\n\n', '-*-'*20)
 
-        if dc['for_sheets'].empty:
-            print('No deltas')
-        else:
-            str_result = dc['for_sheets'].to_string(header=False, index=False, index_names=False).split('\n')
-            print_str = '\n'.join([','.join(ele.split()) for ele in str_result])
-            print(print_str)
+    if dc['for_sheets'].empty:
+        print('No deltas')
+    else:
+        str_result = dc['for_sheets'].to_string(header=False, index=False, index_names=False).split('\n')
+        print_str = '\n'.join([','.join(ele.split()) for ele in str_result])
+        print(print_str)
 
-        print('\n\n')
+    print('\n\n')
+
 
 if __name__ == '__main__':
     '''

@@ -6,7 +6,6 @@ import datetime
 import pandas as pd
 
 from bs4 import BeautifulSoup
-from rich.pretty import pprint
 from read_ocr import run_for_ocr
 from read_pdf import read_pdf_from_url
 
@@ -41,8 +40,6 @@ def _get_mohfw_data(name):
 
 ## ------------------------ <STATE_CODE>_get_data functions START HERE
 def ap_get_data(opt):
-  print('Fetching AP data')
-  pprint(opt)
 
   if opt['type'] == 'html':
     if opt['skip_output'] == False:
@@ -154,15 +151,10 @@ def ap_get_data(opt):
 
 
 def an_get_data(opt):
-  print('Fetching AN data')
-  pprint(opt)
-  pprint('You\'ve got to do this manually looking at the tweet/image')
   return []
 
 def ar_get_data(opt):
   if opt['verbose']:
-    print('Fetching AR data')
-    pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -226,8 +218,6 @@ def ar_get_data(opt):
 
 
 def as_get_data(opt):
-  print('Fetching AS data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -280,8 +270,6 @@ def as_get_data(opt):
 
 
 def br_get_data(opt):
-  print('Fetching BR data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -329,8 +317,6 @@ def br_get_data(opt):
 
 
 def ch_get_data(opt):
-  print('Fetching CH data')
-  pprint(opt)
   response = requests.request("GET", opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   divs = soup.find("div", {"class": "col-lg-8 col-md-9 form-group pt-10"}).find_all("div", {"class": "col-md-3"})
@@ -358,8 +344,6 @@ def ch_get_data(opt):
 
 
 def ct_get_data(opt):
-  print('Fetching CT data')
-  pprint(opt)
 
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
@@ -454,26 +438,16 @@ def ct_get_data(opt):
 
 
 def dd_get_data(opt):
-  print('Fetching DD data')
-  pprint(opt)
-  pprint('You\'ve got to do this manually looking at the tweet/image')
 
 
 def dh_get_data(opt):
-  print('Fetching DH data')
-  pprint(opt)
-  pprint('You\'ve got to do this manually looking at the tweet/image')
 
 
 def dn_get_data(opt):
-  print('Fetching DN data')
-  pprint(opt)
   return _get_mohfw_data(opt['name'])
 
 
 def ga_get_data(opt):
-  print('Fetching GA data')
-  pprint(opt)
 
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
@@ -490,7 +464,6 @@ def ga_get_data(opt):
 
 def gj_get_data(opt):
   print('fetching GJ data')
-  pprint(opt)
 
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
@@ -511,8 +484,6 @@ def gj_get_data(opt):
 
 
 def hp_get_data(opt):
-  print('Fetching HP data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -572,7 +543,6 @@ def hp_get_data(opt):
 
 def hr_get_data(opt):
   print('fetching HR data')
-  pprint(opt)
 
   if not opt['url'].endswith('.pdf'):
     today = datetime.date.today().strftime("%d-%m-%Y")
@@ -628,7 +598,6 @@ def hr_get_data(opt):
 
 def jh_get_data(opt):
   print('fetching JH data')
-  pprint(opt)
 
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
@@ -717,8 +686,6 @@ def jh_get_data(opt):
 
 
 def jk_get_data(opt):
-  print('Fetching JK data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -771,7 +738,6 @@ def jk_get_data(opt):
 
 def ka_get_data(opt):
   print('fetching KA data')
-  pprint(opt)
 
   if opt['type'] == 'pdf':
 
@@ -845,7 +811,6 @@ def kl_get_data(opt):
     return districts_data
 
   #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
-  #   print('Fetching KL data', opt)
   #   response = requests.request("GET", opt['url'])
 
   #   # sessionId = (response.headers['Set-Cookie']).split(';')[0].split('=')[1]
@@ -983,19 +948,16 @@ def kldbl_get_data(opt):
 
 def la_get_data(opt):
   print('fetching LA data')
-  pprint(opt)
   return _get_mohfw_data(opt['name'])
 
 
 def ld_get_data(opt):
   print('fetching LD data')
-  pprint(opt)
   return _get_mohfw_data(opt['name'])
 
 
 def mh_get_data(opt):
   print('fetching MH data')
-  pprint(opt)
 
   if opt['type'] == 'image':
     if opt['skip_output'] == False:
@@ -1062,8 +1024,6 @@ def mh_get_data(opt):
 
 
 def ml_get_data(opt):
-  print('Fetching ML data')
-  pprint(opt)
 
   if opt['type'] == 'image':
     if opt['skip_output'] == False:
@@ -1144,8 +1104,6 @@ def ml_get_data(opt):
 
 
 def mn_get_data(opt):
-  print('Fetching MN data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -1191,8 +1149,6 @@ def mn_get_data(opt):
 
 
 def mp_get_data(opt):
-  print('Fetching MP data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -1239,8 +1195,6 @@ def mp_get_data(opt):
 
 
 def mz_get_data(opt):
-  print('Fetching MZ data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -1286,8 +1240,6 @@ def mz_get_data(opt):
 
 
 def nl_get_data(opt):
-  print('Fetching NL data')
-  pprint(opt)
 
   needs_correction = False
   to_correct = []
@@ -1360,8 +1312,6 @@ def or_get_data(opt):
 
 
 def pb_get_data(opt):
-  print('Fetching PB data')
-  pprint(opt)
 
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
@@ -1457,13 +1407,10 @@ def pb_get_data(opt):
 
 def py_get_data(opt):
   print('fetching PY data')
-  pprint(opt)
   return _get_mohfw_data(opt['name'])
 
 
 def rj_get_data(opt):
-  print('Fetching RJ data')
-  pprint(opt)
 
   needs_correction = False
   to_correct = []
@@ -1572,8 +1519,6 @@ def rj_get_data(opt):
 
 
 def sk_get_data(opt):
-  print('Fetching SK data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -1617,8 +1562,6 @@ def sk_get_data(opt):
 
 
 def tn_get_data(opt):
-  print('Fetching TN data')
-  pprint(opt)
 
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
@@ -1685,8 +1628,6 @@ def tn_get_data(opt):
 
 
 def tg_get_data(opt):
-  print('Fetching TG data')
-  pprint(opt)
 
   district_data = []
   if opt['skip_output'] == False:
@@ -1739,7 +1680,6 @@ def tg_get_data(opt):
 
 def tr_get_data(opt):
   print('fetching TR data')
-  pprint(opt)
   response = requests.request('GET', opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   table = soup.find('tbody').find_all('tr')
@@ -1760,8 +1700,6 @@ def tr_get_data(opt):
 
 
 def up_get_data(opt):
-  print('Fetching UP data')
-  pprint(opt)
 
   if opt['skip_output'] == False:
     read_pdf_from_url(opt)
@@ -1818,8 +1756,6 @@ def up_get_data(opt):
 
 
 def ut_get_data(opt):
-  print('Fetching UT data')
-  pprint(opt)
 
   needs_correction = False
   to_correct = []
@@ -1920,8 +1856,6 @@ def ut_get_data(opt):
 
 
 def wb_get_data(opt):
-  print('Fetching WB data')
-  pprint(opt)
 
   needs_correction = False
   to_correct = []
