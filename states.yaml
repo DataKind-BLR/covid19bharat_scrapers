@@ -440,11 +440,11 @@ rj:
   #   translation: True
   type: pdf
   url: _inputs/rj.pdf
-  page: 1,2
   config:
+    page: 1,2
     translation: False
     start_key: AJMER
-    #end_key: Total
+    end_key: Total
 
 sk:
   name: Sikkim
@@ -453,11 +453,14 @@ sk:
   url_sources:
     - https://twitter.com/airnews_gangtok
     - https://twitter.com/sikkimgovt
-  type: image
-  url: _inputs/sk.jpeg
-  notes: Sikkim doesn't provide district wise info, gives for full state
+  type: pdf
+  url: _inputs/sk.pdf
+  notes: Get PDF from Data dump or ask Rukmini
   config:
+    page: 1
     translation: False
+    start_key: Auto
+    end_key: Auto
 
 tn:
   name: Tamil Nadu
