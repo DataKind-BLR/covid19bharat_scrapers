@@ -168,10 +168,22 @@ def run(args):
     )
 
     if verbose:
-        print(tabulate.tabulate(live_data, tablefmt='github'))
-        print(tabulate.tabulate(dc['api_state_data'], tablefmt='github'))
-        print(tabulate.tabulate(dc['deltas'], tablefmt='github'))
-        print(dc['totals'])
+        print('\n\n')
+
+        print('Current input data')
+        print(tabulate.tabulate(live_data, headers='keys', tablefmt='github', showindex=False))
+        print('\n\n', '-*-'*20)
+
+        print('API state data')
+        print(tabulate.tabulate(dc['api_state_data'], headers='keys', tablefmt='github', showindex=False))
+        print('\n\n', '-*-'*20)
+
+        print('Calculated deltas')
+        print(tabulate.tabulate(dc['deltas'], headers='keys', tablefmt='github', showindex=False))
+        print('\n\n', '-*-'*20)
+
+        print('Delta Totals')
+        print(dc['delta_totals'])
 
 
 if __name__ == '__main__':
