@@ -125,22 +125,25 @@ def run(args):
         states_all[state_code]['config'].update({
             'page': page
         })
-
     # overwrite `type` & `url` provided by cmd
     if url_type is not None and url is not None:
         states_all[state_code].update({
             'url': url,
             'type': url_type
         })
-
     live_data = fetch_data(states_all[state_code])
 
     if 'needs_correction' in live_data and live_data['needs_correction'] == True:
-        return live_data
+        print('\n\n', '-*-'*20)
+        print('Corrections required')
+        pprint(live_data)
+        print('-*-'*20, '\n\n')
+        return None
 
     if 'config' in states_all[state_code] and\
         'delta_calc' in states_all[state_code]['config'] and\
         states_all[state_code]['config']['delta_calc'] == False:
+        print('Data provided as deltas - no calculations required')
         return None
 
     dc = calculate_deltas(
