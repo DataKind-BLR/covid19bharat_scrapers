@@ -1013,6 +1013,7 @@ def ml_get_data(opt):
 
     response = requests.request("POST", url, headers=headers, data = payload)
     stateDashboard = json.loads(response.text.encode('utf8'))
+    #pprint(stateDashboard)
 
     districts_data = []
     for data in stateDashboard[0]:
@@ -1029,7 +1030,8 @@ def ml_get_data(opt):
         except KeyError:
           continue
       districts_data.append(districtDictionary)
-
+      
+    #pprint(districts_data)
     return districts_data
 
 def mn_get_data(opt):
