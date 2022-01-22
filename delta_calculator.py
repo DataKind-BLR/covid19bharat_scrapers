@@ -1,9 +1,9 @@
 import os
 import pandas as pd
 
+API_CSV = 'https://data.covid19bharat.org/csv/latest/district_wise.csv'
 DELTA_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'delta.txt')
 DELTA_MAPPING = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_meta', 'delta_mapping.meta')
-API_DATA_CSV = 'https://data.covid19bharat.org/csv/latest/district_wise.csv'
 
 
 def calculate_deltas(opt, live_data):
@@ -17,8 +17,8 @@ def calculate_deltas(opt, live_data):
     '''
 
     # 1. get updated API data & filter for selected state & sort
-    all_states_df = pd.read_csv(API_DATA_CSV)
-    state_df = all_states_df[all_states_df['State'] == opt['name']]
+    api_df = pd.read_csv(API_CSV)
+    state_df = api_df[api_df['State'] == opt['name']]
     state_df = state_df[[
         'District',
         'Confirmed',
@@ -48,7 +48,18 @@ def calculate_deltas(opt, live_data):
     # 4. calculate deltas, fill NA = 0, convert to int, structure it & return
     delta_df = live_df - state_df
     delta_df.fillna(0, inplace=True)
-    delta_df = delta_df.astype(int).reset_index().rename({
+    delta_df = delta_df.astype(int).reset_index().rename(columns={
         'index': 'District'
     })
-    return delta_df
+    delta_df = delta_df.drop(delta_df[delta_df['District'].str.contains('Total')].index)
+
+    return {
+        'totals': {
+            'confirmed': delta_df['Confirmed'].sum(),
+            'recovered': delta_df['Recovered'].sum(),
+            'deceased': delta_df['Deceased'].sum(),
+            'migrated': delta_df['Migrated_Other'].sum()
+        },
+        'deltas': delta_df,
+        'api_state_data': state_df
+    }
