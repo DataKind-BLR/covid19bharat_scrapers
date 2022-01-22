@@ -1,8 +1,11 @@
 # Custom files
 run_me_first.sh
 visionapi*.json
-tmp/*
 file_*.jpg
+
+# Custom folders
+tmp/*
+_outputs/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
