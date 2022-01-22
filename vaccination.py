@@ -253,7 +253,7 @@ def get_cowin_district(from_date, to_date, state_codes):
                             'Sites': district_data['topBlock'].get('sites').get('total'), \
                             'First Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_1'), \
                             'Second Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_2'), \
-                            'Precautionary Dose Administered': district_data['topBlock'].get('vaccination').get('tot_pd'), \
+                            # 'Precautionary Dose Administered': district_data['topBlock'].get('vaccination').get('tot_pd'), \
                             'Male(Doses Administered)': district_data['topBlock'].get('vaccination').get('male'), \
                             'Female(Doses Administered)': district_data['topBlock'].get('vaccination').get('female'), \
                             'Transgender(Doses Administered)': district_data['topBlock'].get('vaccination').get('others'), \
