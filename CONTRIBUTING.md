@@ -10,4 +10,4 @@ Need help? Browse the issues
 
 Want to report a bug or request a feature? Open an issue.
 
-Want to fix a bug or add a feature? Read the contributing guidelines. Fork this repo, make changes, test it, and send a pull request.
+Want to fix a bug or add a feature? Fork this repo, make changes, test it, and send a pull request.

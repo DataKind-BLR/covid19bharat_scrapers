@@ -1,0 +1,44 @@
+Anjaw,Arunachal Pradesh,AR,-9,Hospitalized
+Changlang,Arunachal Pradesh,AR,-129,Hospitalized
+Upper Dibang Valley,Arunachal Pradesh,AR,-3,Hospitalized
+East Siang,Arunachal Pradesh,AR,-81,Hospitalized
+East Kameng,Arunachal Pradesh,AR,988,Hospitalized
+Kamle,Arunachal Pradesh,AR,-6,Hospitalized
+Kurung Kumey,Arunachal Pradesh,AR,-2,Hospitalized
+Lepa Rada,Arunachal Pradesh,AR,-10,Hospitalized
+Lohit,Arunachal Pradesh,AR,-108,Hospitalized
+Longding,Arunachal Pradesh,AR,-20,Hospitalized
+Lower Dibang Valley,Arunachal Pradesh,AR,-97,Hospitalized
+Lower Siang,Arunachal Pradesh,AR,-23,Hospitalized
+Lower Subansiri,Arunachal Pradesh,AR,-55,Hospitalized
+Namsai,Arunachal Pradesh,AR,-162,Hospitalized
+Pakke Kessang,Arunachal Pradesh,AR,-16,Hospitalized
+Shi Yomi,Arunachal Pradesh,AR,-9,Hospitalized
+Siang,Arunachal Pradesh,AR,-7,Hospitalized
+Tawang,Arunachal Pradesh,AR,-31,Hospitalized
+Tirap,Arunachal Pradesh,AR,-66,Hospitalized
+Upper Siang,Arunachal Pradesh,AR,-19,Hospitalized
+Upper Subansiri,Arunachal Pradesh,AR,-6,Hospitalized
+West Kameng,Arunachal Pradesh,AR,-139,Hospitalized
+West Siang,Arunachal Pradesh,AR,3972,Hospitalized
+Papum Pare,Arunachal Pradesh,AR,-728,Hospitalized
+Anjaw,Arunachal Pradesh,AR,-1,Recovered
+Changlang,Arunachal Pradesh,AR,-50,Recovered
+Upper Dibang Valley,Arunachal Pradesh,AR,-3,Recovered
+East Siang,Arunachal Pradesh,AR,-18,Recovered
+East Kameng,Arunachal Pradesh,AR,-2,Recovered
+Kamle,Arunachal Pradesh,AR,-5,Recovered
+Lepa Rada,Arunachal Pradesh,AR,-3,Recovered
+Lohit,Arunachal Pradesh,AR,-45,Recovered
+Longding,Arunachal Pradesh,AR,-1,Recovered
+Lower Dibang Valley,Arunachal Pradesh,AR,-40,Recovered
+Lower Siang,Arunachal Pradesh,AR,-17,Recovered
+Lower Subansiri,Arunachal Pradesh,AR,-4,Recovered
+Namsai,Arunachal Pradesh,AR,-39,Recovered
+Pakke Kessang,Arunachal Pradesh,AR,-3,Recovered
+Tawang,Arunachal Pradesh,AR,-29,Recovered
+Tirap,Arunachal Pradesh,AR,-2,Recovered
+Upper Siang,Arunachal Pradesh,AR,-3,Recovered
+West Kameng,Arunachal Pradesh,AR,-48,Recovered
+West Siang,Arunachal Pradesh,AR,3983,Recovered
+Papum Pare,Arunachal Pradesh,AR,-252,Recovered

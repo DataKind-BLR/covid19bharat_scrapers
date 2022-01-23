@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Assam has been at the forefront of the fight against Covid19 since the first patient was detected on | None
 31st March , 2020 The State has successfully combated this disease this far by following all health | None, None
 protocols & guidelines issued by WHO & MOHFW  The State is still relentlessly fighting the | None
@@ -13,3 +14,14 @@ Kamrup ( M ) : , 54 Jorhat : , 16 Barpeta : , 8 Kamrup ( R ) :, 8 | None, None, 
 District wise death ( Today ) | None
 Nalbari : , 2 Golaghat : , 1 Jorhat : , 1 Nagaon :, 1 | None, None, None, None, None
 Sivasagar :, 1 | None, None
+=======
+Rural Hojai | None
+Goalpara Golaghat | None
+Metro Hasao | None
+Cachar Dhubri | None
+Nagaon Chirang | None
+Dibrugarh Karimganj | None
+Tinsukia Dhemaji Anglong Salmara Anglong | None
+Charaideo Hailakandi | None
+Karbi Karbi | None
+>>>>>>> bot_output_edits
