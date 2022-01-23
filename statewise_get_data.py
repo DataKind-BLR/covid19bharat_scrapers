@@ -408,9 +408,9 @@ def ct_get_data(opt):
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
 
-          if len(linesArray) != 10:
+          if len(linesArray) != 9:
             needs_correction = True
-            linesArray.inser(0, '--> Issue with')
+            linesArray.insert(0, '--> Issue with')
             to_correct.append(linesArray)
             continue
 
@@ -426,7 +426,7 @@ def ct_get_data(opt):
     except:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': f'{OUTPUT_TXT} was not read properly. please check file.',
         'output': OUTPUT_TXT
       }
 
