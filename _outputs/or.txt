@@ -1,5 +1,7 @@
 
 ********** Computing Delta for Odisha **********
+<<<<<<< HEAD
+=======
 
 Mapping for district names
 Sonepur -> Subarnapur
@@ -83,3 +85,4 @@ Jagatsinghpur,Odisha,OR,1,Deceased
 Puri,Odisha,OR,1,Deceased
 Districts Total Current: C= 1187295  R= 1099423  D= 8560  No of Districts= 31
 Districts Total API    : C= 1177462  R= 1089033  D= 8554
+>>>>>>> webui

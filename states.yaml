@@ -23,7 +23,7 @@ ap:
     - http://hmfw.ap.gov.in/covid_dashboard.aspx
     - notes If full image fails, clip only table and submit
   type: image
-  url: _inputs/ap.png
+  url: _inputs/ap.jpeg
   page: 1
   config:
     translation: False
@@ -44,6 +44,8 @@ ar:
     - https://twitter.com/DirHealth_ArPr
   type: image
   url: _inputs/ar.jpeg
+  config:
+    translation: False
 
 as:
   name: Assam
@@ -56,6 +58,7 @@ as:
   type: image
   url: _inputs/as.jpeg
   config:
+    delta_calc: False
     translation: False
 
 br:
@@ -66,7 +69,7 @@ br:
     - https://twitter.com/BiharHealthDept
     - https://twitter.com/pib_patna/media
   type: image
-  url: _inputs/br1.jpg
+  url: _inputs/br.jpeg
   config:
     translation: True
 
@@ -80,6 +83,8 @@ ch:
     - http://chdcovid19.in/
   type: image
   url: _inputs/ch.jpg
+  config:
+    translation: False
 
 ct:
   name: Chhattisgarh
@@ -118,7 +123,6 @@ dn:
   name: Dadra and Nagar Haveli and Daman and Diu
   state_code: DN
   cowin_code: 8
-  lazy: True
   url_sources:
     - https://twitter.com/DnhPublicity
     - https://twitter.com/collectordaman
@@ -152,6 +156,8 @@ ga:
     - https://www.goa.gov.in/covid-19/
   type: image
   url: _inputs/ga.jpg
+  config:
+    translation: False
 
 gj:
   name: Gujarat
@@ -189,7 +195,6 @@ hr:
 hp:
   name: Himachal Pradesh
   state_code: HP
-  # cowin_code: 39
   cowin_code: 13
   notes: Please crop the image to only show case statistics
   url_sources:
@@ -222,7 +227,7 @@ jh:
     - http://jrhms.jharkhand.gov.in/covid-19
     - Look in our telegram Data dump or ask Rukmini
   type: pdf
-  url:
+  url: _inputs/jh.pdf
   config:
     page: 1
     translation: False
@@ -250,10 +255,10 @@ kl:
     - https://twitter.com/CMOKerala
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
-    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
   type: pdf
   url: _inputs/kl.pdf
   config:
+    delta_calc: False
     page: 4
     start_key: District
     end_key: Total
@@ -270,6 +275,7 @@ kld:
   type: pdf
   url: _inputs/kl.pdf
   config:
+    delta_calc: False
     page: 6-7
     start_key: District
     end_key: Detailed
@@ -286,6 +292,7 @@ kldbl:
   type: pdf
   url: _inputs/kl.pdf
   config:
+    delta_calc: False
     page: 5
     start_key: District
     end_key: Total
@@ -298,9 +305,8 @@ la:
     - https://twitter.com/prasarbharti
     - http://covid.ladakh.gov.in/#dataInsights
     - https://twitter.com/DIPR_Leh
-  lazy: True
-  type: html
-  url: https://www.mohfw.gov.in/
+  type: image
+  url: _inputs/la.jpeg
 
 ld:
   name: Lakshadweep
@@ -308,9 +314,8 @@ ld:
   cowin_code: 19
   url_sources:
     - MoHFW
-  lazy: True
   type: html
-  url: https://www.mohfw.gov.in/
+  url:
 
 mh:
   name: Maharashtra
@@ -407,7 +412,7 @@ pb:
   cowin_code: 28
   url_sources:
     - https://nhm.punjab.gov.in/media-bulletin_Nov21.htm
-    - Ask Rukmini
+    - Check @c19b_data_dump telegram channel
   type: pdf
   url: _inputs/pb.pdf
   config:
@@ -419,19 +424,20 @@ py:
   name: Puducherry
   state_code: PY
   cowin_code: 27
-  lazy: True
   url_sources:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
   type: image
   url: _inputs/py.jpg
+  config:
+    translation: False
 
 rj:
   name: Rajasthan
   state_code: RJ
   cowin_code: 29
   url_sources:
-    - Ask Rukmini S
+    - Check @c19b_data_dump telegram channel
   # type: image
   # url: _inputs/rj.jpeg
   # config:
@@ -453,9 +459,12 @@ sk:
   url_sources:
     - https://twitter.com/airnews_gangtok
     - https://twitter.com/sikkimgovt
+  # type: image
+  # url: _inputs/sk.jpeg
+  # notes: Sikkim doesn't provide district wise info, gives for full state
   type: pdf
   url: _inputs/sk.pdf
-  notes: Get PDF from Data dump or ask Rukmini
+  notes: Check @c19b_data_dump telegram channel
   config:
     page: 1
     translation: False
@@ -489,6 +498,7 @@ tg:
   type: image
   url: _inputs/tg.jpeg
   config:
+    delta_calc: False
     translation: False
 
 tr:

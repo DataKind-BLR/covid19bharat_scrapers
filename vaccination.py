@@ -19,6 +19,7 @@ VACC_OUTPUT_MOHFW = os.path.join(ROOT_DIR, '_outputs', 'vaccination_mohfw.csv')
 COWIN_META = os.path.join(ROOT_DIR, '_meta', 'cowin_district_mapping.csv')
 COWIN_DIST_LIVE = os.path.join(ROOT_DIR, '_outputs', 'cowin_downloaded_district_data.csv')
 STATES_YAML = os.path.join(ROOT_DIR, 'states.yaml')
+IGNORE_STATE_CODES = ['KLD', 'KLDBL']
 
 with open(STATES_YAML, 'r') as stream:
     try:
@@ -140,8 +141,8 @@ def get_cowin_state(from_date, to_date, state_codes):
 
         # run for every state
         for state_code in state_codes:
-          if ((states_all[state_code].get('state_code') == 'KLD') or (states_all[state_code].get('state_code') == 'KLDBL')):
-            print('Not repeating for: ', states_all[state_code].get('state_code'))
+          if states_all[state_code].get('state_code') in IGNORE_STATE_CODES:
+            print('Skipping: ', states_all[state_code].get('state_code'))
             continue
           else:
             params = {
@@ -220,7 +221,6 @@ def get_cowin_district(from_date, to_date, state_codes):
                 'd': curr_date.strftime("%Y-%m-%d")
             }
             state_url = base_url.format(**params)
-            print(state_url)
             resp = requests.request('GET', state_url)
             state_data = resp.json()
             age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
@@ -272,7 +272,6 @@ def get_cowin_district(from_date, to_date, state_codes):
                         datum = ','.join(datum)
                         print(datum, file=file)
 
-        print("Making districts data file")
         cowin_df = pd.DataFrame(district_rows).drop('updated_at', 1)
         multi_dwnld_dfs.append(cowin_df)
         state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)

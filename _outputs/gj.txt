@@ -1,5 +1,7 @@
 
 ********** Computing Delta for Gujarat **********
+<<<<<<< HEAD
+=======
 
 Mapping for district names
 Devbhoomi Dwarka -> Devbhumi Dwarka
@@ -79,3 +81,4 @@ Surat,Gujarat,GJ,1,Deceased
 Valsad,Gujarat,GJ,2,Deceased
 Districts Total Current: C= 976916  R= 876007  D= 10183  No of Districts= 33
 Districts Total API    : C= 955950  R= 866179  D= 10171
+>>>>>>> webui
