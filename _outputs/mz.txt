@@ -1,36 +1,3 @@
-Mizoram data from your current input.                                                                                                                                             
-┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┓                                                                                                                                  
-┃ district  ┃ confirmed ┃ recovered ┃ deceased ┃                                                                                                                                  
-┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━┩                                                                                                                                  
-│ Aizawl    │     83980 │     82368 │      362 │                                                                                                                                  
-│ Lunglei   │     11898 │     11694 │       30 │                                                                                                                                  
-│ Siaha     │      5869 │      5828 │       18 │                                                                                                                                  
-│ Champhai  │      6553 │      6416 │       18 │                                                                                                                                  
-│ Kolasib   │      8343 │      8255 │       33 │                                                                                                                                  
-│ Serchhip  │      5714 │      5366 │       18 │                                                                                                                                  
-│ Lawngtlai │      7361 │      7261 │       25 │                                                                                                                                  
-│ Mamit     │      5554 │      5420 │       14 │                                                                                                                                  
-│ Khawzawl  │      1359 │      1140 │        2 │                                                                                                                                  
-│ Hnahthial │      1541 │      1428 │        6 │                                                                                                                                  
-│ Saitual   │      1055 │       991 │        4 │                                                                                                                                  
-└───────────┴───────────┴───────────┴──────────┘                                                                                                                                  
-Mizoram last updated data from <data.covid19bharat.org>                                                                                                                           
-┏━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━━━━━━━━━━━━━━┳━━━━━━━━┓                                                                                                        
-┃ district  ┃ confirmed ┃ recovered ┃ deceased ┃ migrated_other ┃ active ┃                                                                                                        
-┡━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━━╇━━━━━━━━━━╇━━━━━━━━━━━━━━━━╇━━━━━━━━┩                                                                                                        
-│ Aizawl    │     83856 │     82368 │      362 │              0 │   1126 │                                                                                                        
-│ Champhai  │      6553 │      6416 │       18 │              0 │    119 │                                                                                                        
-│ Hnahthial │      1528 │      1428 │        6 │              0 │     94 │                                                                                                        
-│ Khawzawl  │      1350 │      1140 │        2 │              0 │    208 │                                                                                                        
-│ Kolasib   │      8343 │      8255 │       60 │              0 │     28 │                                                                                                        
-│ Lawngtlai │      7355 │      7261 │       25 │              0 │     69 │                                                                                                        
-│ Lunglei   │     11893 │     11694 │       30 │              0 │    169 │                                                                                                        
-│ Mamit     │      5553 │      5420 │       14 │              0 │    119 │                                                                                                        
-│ Saiha     │      5868 │      5828 │       18 │              0 │     22 │                                                                                                        
-│ Saitual   │      1045 │       991 │        4 │              0 │     50 │                                                                                                        
-│ Serchhip  │      5680 │      5366 │       18 │              0 │    296 │                                                                                                        
-│ Unknown   │        61 │       107 │        1 │              0 │    -47 │                                                                                                        
-└───────────┴───────────┴───────────┴──────────┴────────────────┴────────┘                                                                                                        
 
 ********** Computing Delta for Mizoram **********
 
@@ -39,13 +6,27 @@ Siaha -> Saiha
 
 Delta statistics
 
-Aizawl,Mizoram,MZ,124,Hospitalized
-Lunglei,Mizoram,MZ,5,Hospitalized
-Saiha,Mizoram,MZ,1,Hospitalized
-Serchhip,Mizoram,MZ,34,Hospitalized
-Lawngtlai,Mizoram,MZ,6,Hospitalized
-Mamit,Mizoram,MZ,1,Hospitalized
-Khawzawl,Mizoram,MZ,9,Hospitalized
-Hnahthial,Mizoram,MZ,13,Hospitalized
-Saitual,Mizoram,MZ,10,Hospitalized
-Kolasib,Mizoram,MZ,-27,Deceased
+Aizawl,Mizoram,MZ,556,Hospitalized
+Lunglei,Mizoram,MZ,48,Hospitalized
+Saiha,Mizoram,MZ,8,Hospitalized
+Champhai,Mizoram,MZ,29,Hospitalized
+Kolasib,Mizoram,MZ,69,Hospitalized
+Serchhip,Mizoram,MZ,17,Hospitalized
+Lawngtlai,Mizoram,MZ,11,Hospitalized
+Mamit,Mizoram,MZ,139,Hospitalized
+Khawzawl,Mizoram,MZ,43,Hospitalized
+Hnahthial,Mizoram,MZ,14,Hospitalized
+Saitual,Mizoram,MZ,50,Hospitalized
+Aizawl,Mizoram,MZ,378,Recovered
+Lunglei,Mizoram,MZ,44,Recovered
+Saiha,Mizoram,MZ,21,Recovered
+Champhai,Mizoram,MZ,96,Recovered
+Kolasib,Mizoram,MZ,33,Recovered
+Serchhip,Mizoram,MZ,143,Recovered
+Lawngtlai,Mizoram,MZ,8,Recovered
+Mamit,Mizoram,MZ,58,Recovered
+Khawzawl,Mizoram,MZ,42,Recovered
+Hnahthial,Mizoram,MZ,5,Recovered
+Saitual,Mizoram,MZ,99,Recovered
+Districts Total Current: C= 156054  R= 147330  D= 576  No of Districts= 11
+Districts Total API    : C= 155070  R= 146403  D= 576

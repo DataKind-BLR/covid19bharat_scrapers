@@ -7,41 +7,43 @@ Chamoll -> Chamoli
 
 Delta statistics
 
-Almora,Uttarakhand,UT,-42,Hospitalized
-Bageshwar,Uttarakhand,UT,-11,Hospitalized
-Chamoli,Uttarakhand,UT,-8,Hospitalized
-Champawat,Uttarakhand,UT,-76,Hospitalized
-Dehradun,Uttarakhand,UT,-722,Hospitalized
-Haridwar,Uttarakhand,UT,-120,Hospitalized
-Nainital,Uttarakhand,UT,-242,Hospitalized
-Pauri Garhwal,Uttarakhand,UT,-138,Hospitalized
-Pithoragarh,Uttarakhand,UT,-55,Hospitalized
-Rudraprayag,Uttarakhand,UT,-5,Hospitalized
-Tehri Garhwal,Uttarakhand,UT,-19,Hospitalized
-Uttarkashi,Uttarakhand,UT,-7,Hospitalized
-Almora,Uttarakhand,UT,-21,Recovered
-Bageshwar,Uttarakhand,UT,-5,Recovered
-Chamoli,Uttarakhand,UT,-6,Recovered
-Champawat,Uttarakhand,UT,-74,Recovered
-Dehradun,Uttarakhand,UT,-409,Recovered
-Haridwar,Uttarakhand,UT,-73,Recovered
-Nainital,Uttarakhand,UT,-128,Recovered
-Pauri Garhwal,Uttarakhand,UT,-51,Recovered
-Pithoragarh,Uttarakhand,UT,-35,Recovered
-Rudraprayag,Uttarakhand,UT,-4,Recovered
-Tehri Garhwal,Uttarakhand,UT,-15,Recovered
-Almora,Uttarakhand,UT,-1,Deceased
-Bageshwar,Uttarakhand,UT,-1,Deceased
-Dehradun,Uttarakhand,UT,-4,Deceased
-Haridwar,Uttarakhand,UT,-2,Deceased
-Nainital,Uttarakhand,UT,-1,Deceased
-Almora,Uttarakhand,UT,-19,Migrated_Other
-Chamoli,Uttarakhand,UT,-3,Migrated_Other
-Dehradun,Uttarakhand,UT,-15,Migrated_Other
-Haridwar,Uttarakhand,UT,-16,Migrated_Other
-Nainital,Uttarakhand,UT,-13,Migrated_Other
-Pauri Garhwal,Uttarakhand,UT,-105,Migrated_Other
-Pithoragarh,Uttarakhand,UT,-6,Migrated_Other
-Rudraprayag,Uttarakhand,UT,-2,Migrated_Other
-Uttarkashi,Uttarakhand,UT,-5,Migrated_Other
---> ERROR: Failed to find key mapping for district: U.S.Nagar, state: Uttarakhand
+Almora,Uttarakhand,UT,261,Hospitalized
+Bageshwar,Uttarakhand,UT,214,Hospitalized
+Chamoli,Uttarakhand,UT,55,Hospitalized
+Champawat,Uttarakhand,UT,279,Hospitalized
+Dehradun,Uttarakhand,UT,1489,Hospitalized
+Haridwar,Uttarakhand,UT,706,Hospitalized
+Nainital,Uttarakhand,UT,666,Hospitalized
+Pauri Garhwal,Uttarakhand,UT,375,Hospitalized
+Pithoragarh,Uttarakhand,UT,195,Hospitalized
+Rudraprayag,Uttarakhand,UT,44,Hospitalized
+Tehri Garhwal,Uttarakhand,UT,120,Hospitalized
+Udham Singh Nagar,Uttarakhand,UT,485,Hospitalized
+Uttarkashi,Uttarakhand,UT,75,Hospitalized
+Bageshwar,Uttarakhand,UT,63,Recovered
+Chamoli,Uttarakhand,UT,67,Recovered
+Dehradun,Uttarakhand,UT,533,Recovered
+Haridwar,Uttarakhand,UT,542,Recovered
+Nainital,Uttarakhand,UT,356,Recovered
+Pauri Garhwal,Uttarakhand,UT,145,Recovered
+Pithoragarh,Uttarakhand,UT,22,Recovered
+Rudraprayag,Uttarakhand,UT,31,Recovered
+Tehri Garhwal,Uttarakhand,UT,92,Recovered
+Udham Singh Nagar,Uttarakhand,UT,320,Recovered
+Uttarkashi,Uttarakhand,UT,18,Recovered
+Almora,Uttarakhand,UT,1,Deceased
+Dehradun,Uttarakhand,UT,3,Deceased
+Haridwar,Uttarakhand,UT,2,Deceased
+Pithoragarh,Uttarakhand,UT,1,Deceased
+Udham Singh Nagar,Uttarakhand,UT,1,Deceased
+Bageshwar,Uttarakhand,UT,3,Migrated_Other
+Chamoli,Uttarakhand,UT,2,Migrated_Other
+Dehradun,Uttarakhand,UT,13,Migrated_Other
+Nainital,Uttarakhand,UT,1,Migrated_Other
+Pauri Garhwal,Uttarakhand,UT,36,Migrated_Other
+Pithoragarh,Uttarakhand,UT,2,Migrated_Other
+Rudraprayag,Uttarakhand,UT,7,Migrated_Other
+Udham Singh Nagar,Uttarakhand,UT,3,Migrated_Other
+Uttarkashi,Uttarakhand,UT,5,Migrated_Other
+Districts Total Current: C= 391915  R= 349364  D= 7468  No of Districts= 13
+Districts Total API    : C= 386951  R= 347175  D= 7460

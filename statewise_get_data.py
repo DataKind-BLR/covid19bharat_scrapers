@@ -870,9 +870,9 @@ def kl_get_data(opt):
           # TODO - append to districts_data
 
     print("\n===>Scrapping Deaths reported\n")
-    os.system("python scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
+    os.system("venv/bin/python3 scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
     print("\n===>Scrapping BACKLOG Deaths reported\n")
-    os.system("python scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
+    os.system("venv/bin/python3 scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
     upFile.close()
     #quit()
     return districts_data

@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+<head>
+  <title>Scrapers - Covid19Bharat.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {box-sizing: border-box; font-family: monospace;}
+    body {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    section {
+      display: inline-block;
+      width: 100%;
+      max-width: 720px;
+      padding: 16px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin: 3rem 0;
+    }
+    textarea {
+      width: 100%;
+      height: 65vh;
+      overflow-x: scroll;
+    }
+  </style>
+  <script>
+    $qs = (s) => document.querySelector(s);
+    
+    async function stateSelected() {
+      const stateCode = $qs('select[name=state_code]').value;
+      if(!stateCode) return;
+      
+      const response = await fetch(`/state_details/${stateCode}`);
+      const stateDetails = await response.json();
+      console.log(stateDetails);
+      
+      $qs("#statename").innerHTML = "Selected State: " + stateDetails.name;
+      $qs("#statenotes").innerHTML = "<b>Notes:</b> " + (stateDetails.notes||"-");
+      
+      const urlSources = (stateDetails.url_sources||[]).map(x => `<a href="${x}" target="_blank">${x}</a>`);
+      $qs("#urlsources").innerHTML = "<b>Sources:</b><br>" + urlSources.join("<br>")
+      
+      $qs("input[name=type]").value = stateDetails.type;
+      
+      if(stateDetails.type=="html") {
+        $qs("#fileinputlabel").style.display = "none";
+      } else {
+        $qs("#fileinputlabel").style.display = "block";
+      }
+      
+      $qs("#pageinputlabel").style.display = "none";
+      if(stateDetails.type=="pdf") {
+        $qs("#fileinputlabel span").innerHTML = "Drop PDF here:";
+        $qs("#pageinputlabel").style.display = "block";
+        if(stateDetails?.config?.page) {
+          $qs("#pageinput").value = stateDetails?.config?.page;
+        }
+      } else if(stateDetails.type=="image") {
+        $qs("#fileinputlabel span").innerHTML = "Drop Image here:";
+      }
+    }
+  </script>
+</head>
+<body>
+  {% if output %}
+  <section>
+    <h2>Output</h2>
+    <textarea wrap="off">{{output}}</textarea>
+  </section>
+  <br>
+  {% endif %}
+  <section>
+    <form method="post" action="/" enctype="multipart/form-data">
+      {% if output %}
+      <h2>Run one more</h2>
+      {% else %}
+      <h2>Input</h2> 
+      {% endif %}
+      <label>
+        <span>Select State Code:</span>
+        <select name="state_code" required onchange="stateSelected()">
+          <option value="">(Select)</option>
+          {% for code in available_state_codes %}
+          <option value="{{code}}">{{code}}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <h3 id="statename"></h3>
+      <p id="statenotes"></p>
+      <p id="urlsources"></p>
+      <label>
+        <span>Scraper Type:</span>
+        <input type="text" name="type" value="html" readonly>
+        <!--
+        <select name="type" required>
+          <option value="image">image</option>
+          <option value="pdf">pdf</option>
+          <option value="html">html</option>
+        </select>
+        -->
+      </label>  
+      <label id="pageinputlabel">
+        <span>Page:</span>
+        <input type="text" name="page" value="" id="pageinput">
+      </label>
+      <label id="fileinputlabel">
+        <span>Drop PDFs / Images here:</span>
+        <input type="file" name="file">
+      </label>
+      <button>Run</button>
+    </form>    
+  </section> 
+</body>  
+</html>

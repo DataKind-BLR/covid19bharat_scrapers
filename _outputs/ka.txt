@@ -34,3 +34,5 @@ Tumkur -> Tumakuru
 
 Delta statistics
 
+Districts Total Current: C= 3376953  R= 3045177  D= 38515  No of Districts= 31
+Districts Total API    : C= 3376953  R= 3045177  D= 38515

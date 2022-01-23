@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Anjaw,Arunachal Pradesh,AR,-9,Hospitalized
 Changlang,Arunachal Pradesh,AR,-129,Hospitalized
 Upper Dibang Valley,Arunachal Pradesh,AR,-3,Hospitalized
@@ -42,3 +43,24 @@ Upper Siang,Arunachal Pradesh,AR,-3,Recovered
 West Kameng,Arunachal Pradesh,AR,-48,Recovered
 West Siang,Arunachal Pradesh,AR,3983,Recovered
 Papum Pare,Arunachal Pradesh,AR,-252,Recovered
+=======
+East Khasi Hills,Meghalaya,ML,239,Hospitalized
+Ribhoi,Meghalaya,ML,21,Hospitalized
+West Garo Hills,Meghalaya,ML,44,Hospitalized
+West Jaintia Hills,Meghalaya,ML,8,Hospitalized
+West Khasi Hills,Meghalaya,ML,1,Hospitalized
+South West Khasi Hills,Meghalaya,ML,2,Hospitalized
+East Jaintia Hills,Meghalaya,ML,2,Hospitalized
+East Garo Hills,Meghalaya,ML,5,Hospitalized
+South West Garo Hills,Meghalaya,ML,4,Hospitalized
+North Garo Hills,Meghalaya,ML,1,Hospitalized
+South Garo Hills,Meghalaya,ML,2,Hospitalized
+East Khasi Hills,Meghalaya,ML,138,Recovered
+Ribhoi,Meghalaya,ML,9,Recovered
+West Garo Hills,Meghalaya,ML,22,Recovered
+West Jaintia Hills,Meghalaya,ML,3,Recovered
+East Jaintia Hills,Meghalaya,ML,2,Recovered
+East Garo Hills,Meghalaya,ML,1,Recovered
+South Garo Hills,Meghalaya,ML,2,Recovered
+East Khasi Hills,Meghalaya,ML,1,Deceased
+>>>>>>> webui

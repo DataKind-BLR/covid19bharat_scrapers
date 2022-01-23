@@ -30,7 +30,7 @@ def read_pdf_from_url(opt):
   }
   ```
   '''
-
+  
   if urllib.parse.urlparse(opt['url']).scheme != '':
     r = requests.get(opt['url'], allow_redirects=True, verify=False)
     DOWNLOADED_PDF = os.path.join(INPUTS_DIR, opt['state_code'].lower() + '.pdf')
@@ -137,6 +137,8 @@ def ka_format_line(row):
 
 def hr_format_line(row):
   row[1] = re.sub('\*', '', row[1])
+  if '[' in row[3]:
+    row[3] = row[3].split('[')[0]
   if '[' in row[4]:
     row[4] = row[4].split('[')[0]
   if '[' in row[7]:

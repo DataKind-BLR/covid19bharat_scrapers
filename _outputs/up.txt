@@ -1,0 +1,10 @@
+
+********** Computing Delta for Uttar Pradesh **********
+
+Mapping for district names
+
+Delta statistics
+
+Ballia,Uttar Pradesh,UP,-3,Hospitalized
+Districts Total Current: C= 1832075  R= 1709606  D= 22573  No of Districts= 72
+Districts Total API    : C= 1832078  R= 1709606  D= 22573

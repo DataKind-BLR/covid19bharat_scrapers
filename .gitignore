@@ -2,6 +2,7 @@
 run_me_first.sh
 visionapi*.json
 file_*.jpg
+web_ui_uploads/
 
 # Custom folders
 tmp/*
