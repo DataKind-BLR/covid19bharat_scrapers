@@ -138,7 +138,7 @@ def run(args):
         print('Corrections required')
         pprint(live_data)
         print('-*-'*20, '\n\n')
-        return None
+        return live_data
 
     if 'config' in states_all[state_code] and\
         'delta_calc' in states_all[state_code]['config'] and\
