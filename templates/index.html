@@ -69,14 +69,20 @@
 <body>
   {% if output %}
   <section>
-    <h2>Output</h2>
+    <h2>Results</h2>
     <textarea wrap="off">{{output}}</textarea>
   </section>
   <br>
   {% endif %}
   <section>
     <form method="post" action="/" enctype="multipart/form-data">
-      {% if output %}
+      {% if output_correction %}
+      <h2>Edit output.txt and rerun</h2>
+      <p>
+        You have to choose same state and upload same file once again. 
+        Sorry, I will automate this soon.
+      </p>  
+      {% elif output %}
       <h2>Run one more</h2>
       {% else %}
       <h2>Input</h2> 
@@ -112,6 +118,12 @@
         <span>Drop PDFs / Images here:</span>
         <input type="file" name="file">
       </label>
+      {% if output_correction %}
+      <label>
+        <span>Edit output.txt in below box</span>
+        <textarea name="output_txt" wrap="off">{{output_correction}}</textarea>
+      </label>
+      {% endif %}
       <button>Run</button>
     </form>    
   </section> 
