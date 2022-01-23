@@ -1,6 +1,6 @@
 startingText:auto,auto
-enableTranslation:False
-translationFile:as_districts.meta
+enableTranslation:True
+translationFile:ct_districts.meta
 yInterval:0
 xInterval:0
 houghTransform:True
