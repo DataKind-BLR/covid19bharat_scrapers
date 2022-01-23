@@ -1,5 +1,4 @@
 import os
-import datetime
 import pandas as pd
 
 API_DIST_CUM = 'https://data.covid19bharat.org/csv/latest/district_wise.csv'
@@ -13,14 +12,14 @@ def format_df(opt, df):
     Given dataframe, format print as example shown as below
 
     ---
-    Example: Lower Siang,    Arunachal Pradesh, AR          , -17    , Recovered
-    Format:  <districtname>, <state name>     , <state_code>, <delta>, <[Hospitalised, Recovered, Deceased, Migrated]>
+    Example: Lower Siang   , Arunachal Pradesh, AR          , -17    , Recovered
+    Format:  <districtname>, <state name>     , <state_code>, <delta>, <[Hospitalised, Recovered, Deceased, Migrated_Other]>
     ---
 
     :param: <dict> - state config
     :param: <pd.DataFrame> - delta dataframe
 
-    :returns: <pd.DataFrame> - formatted for printing
+    :returns: <dict> - deltas, other info and formatted data for printing
     '''
     cols = [
         'district_name',
