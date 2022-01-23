@@ -87,10 +87,10 @@ def ap_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[2])
           districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': csv_file
       }
 
@@ -133,11 +133,11 @@ def ap_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[4].strip())
           districtDictionary['deceased'] = int(linesArray[5].strip())
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
         'output': OUTPUT_TXT,
-        'to_correct': to_correct
+        'to_correct': e
       }
 
     upFile.close()
@@ -197,11 +197,11 @@ def ar_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[12])
         districtDictionary['deceased'] = int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
       'output': OUTPUT_TXT,
-      'to_correct': to_correct
+      'to_correct': e
     }
 
   # lastly, add the additional district calculated for `Papum Pare`
@@ -253,10 +253,10 @@ def as_get_data(opt):
           needs_correction = True
           linesArray.insert(0, '--> Issue with')
           to_correct.append(linesArray)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -298,11 +298,11 @@ def br_get_data(opt):
         districtDictionary['deceased'] = int(linesArray[3])
         #districtDictionary['deceased'] = int(linesArray[5])
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
       'output': OUTPUT_TXT,
-      'to_correct': to_correct
+      'to_correct': e
     }
 
   upFile.close()
@@ -373,10 +373,10 @@ def ct_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[2])
           districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': csv_file
       }
 
@@ -423,10 +423,10 @@ def ct_get_data(opt):
           #districtDictionary['deceased'] = int(linesArray[10].strip())
           districtDictionary['deceased'] = int(linesArray[2].strip()) - (int(linesArray[7].strip()) + int(linesArray[8].strip()))
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': f'{OUTPUT_TXT} was not read properly. please check file.',
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -488,7 +488,6 @@ def gj_get_data(opt):
 
 
 def hp_get_data(opt):
-
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
@@ -498,10 +497,6 @@ def hp_get_data(opt):
   districtDictionary = {}
   districts_data = []
   districtTableBeingRead = False
-  #whats up HP?
-  #keep changing columns....
-  #now it is 12 (02-01-2022)
-  # nColRef = 12
 
   try:
     with open(OUTPUT_TXT, "r") as upFile:
@@ -531,10 +526,10 @@ def hp_get_data(opt):
         # districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
         # districtDictionary['migrated'] = int(linesArray[10].strip())
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -545,7 +540,6 @@ def hp_get_data(opt):
       'to_correct': to_correct,
       'output': OUTPUT_TXT
     }
-  return districts_data
 
 
 def hr_get_data(opt):
@@ -584,10 +578,10 @@ def hr_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[2])
         districtDictionary['deceased'] = int(linesArray[3])
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': csv_file
     }
 
@@ -610,7 +604,6 @@ def jh_get_data(opt):
     needs_correction = False
     to_correct = []
     linesArray = []
-    districtDictionary = {}
     districts_data = []
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
 
@@ -618,20 +611,23 @@ def jh_get_data(opt):
       with open(csv_file, "r") as upFile:
         for line in upFile:
           linesArray = line.split(',')
+
           if len(linesArray) != 8:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
-            print('--------------------------------------------------------------------------------')
+            needs_correction = True
+            linesArray.insert(0, '---> Issue with')
+            to_correct.append(linesArray)
             continue
+
           districtDictionary = {}
           districtDictionary['districtName'] = linesArray[0].strip()
           districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
           districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
           districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': csv_file
       }
 
@@ -671,10 +667,10 @@ def jh_get_data(opt):
           districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
 
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -722,10 +718,10 @@ def jk_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[9])
         districtDictionary['deceased'] = int(linesArray[10])
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -772,10 +768,10 @@ def ka_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[2])
           districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': csv_file
       }
 
@@ -984,10 +980,10 @@ def mh_get_data(opt):
           districtDictionary['deceased'] = int(linesArray[3].strip())
           districtDictionary['migrated'] = int(linesArray[4].strip())
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -1047,10 +1043,10 @@ def ml_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[6].strip())
           districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -1130,10 +1126,10 @@ def mn_get_data(opt):
         if linesArray[4].strip() != "0":
           districtDictionary['deceased'] = linesArray[4].strip()
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -1175,10 +1171,10 @@ def mp_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[6])
         districtDictionary['deceased'] = int(linesArray[4])
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -1219,10 +1215,10 @@ def mz_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[2])
         districtDictionary['deceased'] = int(linesArray[3]) #if len(re.sub('\n', '', linesArray[3])) != 0 else 0
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -1264,10 +1260,10 @@ def nl_get_data(opt):
         #Nagaland has detahs due to other causes as additional column
         districtDictionary['deceased'] = int(linesArray[8]) + int(linesArray[9])
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -1337,10 +1333,10 @@ def pb_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[3])
           districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': csv_file
       }
 
@@ -1384,10 +1380,10 @@ def pb_get_data(opt):
           districtDictionary['recovered'] = int(linesArray[3])
           districtDictionary['deceased'] = int(linesArray[4])
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -1462,10 +1458,10 @@ def rj_get_data(opt):
             districtDictionary['recovered'] = int(linesArray[7].strip())
             districtDictionary['deceased'] = int(linesArray[5].strip())
           district_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -1538,10 +1534,10 @@ def sk_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[6].strip())
         districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
         district_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -1653,10 +1649,10 @@ def tg_get_data(opt):
 
         if linesArray[1].strip() != '0':
           print("{},Telangana,TG,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': OUTPUT_TXT
     }
 
@@ -1727,7 +1723,7 @@ def up_get_data(opt):
         districtDictionary['deceased'] = int(linesArray[5])
         # districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
       'to_correct': to_correct,
@@ -1787,10 +1783,10 @@ def ut_get_data(opt):
           districtDictionary['deceased'] = int(re.sub('[^A-Za-z0-9]+', '', linesArray[4]))
           districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': csv_file
       }
 
@@ -1826,10 +1822,10 @@ def ut_get_data(opt):
           districtDictionary['deceased'] = int(linesArray[4].strip())
           districtDictionary['migrated'] = int(linesArray[5].strip())
           districts_data.append(districtDictionary)
-    except:
+    except Exception as e:
       return {
         'needs_correction': True,
-        'to_correct': to_correct,
+        'to_correct': e,
         'output': OUTPUT_TXT
       }
 
@@ -1873,10 +1869,10 @@ def wb_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[2])
         districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
         districts_data.append(districtDictionary)
-  except:
+  except Exception as e:
     return {
       'needs_correction': True,
-      'to_correct': to_correct,
+      'to_correct': e,
       'output': csv_file
     }
 
