@@ -44,6 +44,8 @@ ar:
     - https://twitter.com/DirHealth_ArPr
   type: image
   url: _inputs/ar.jpeg
+  config:
+    translation: False
 
 as:
   name: Assam
@@ -81,6 +83,8 @@ ch:
     - http://chdcovid19.in/
   type: image
   url: _inputs/ch.jpg
+  config:
+    translation: False
 
 ct:
   name: Chhattisgarh
@@ -152,6 +156,8 @@ ga:
     - https://www.goa.gov.in/covid-19/
   type: image
   url: _inputs/ga.jpg
+  config:
+    translation: False
 
 gj:
   name: Gujarat
@@ -423,6 +429,8 @@ py:
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
   type: image
   url: _inputs/py.jpg
+  config:
+    translation: False
 
 rj:
   name: Rajasthan
@@ -438,11 +446,11 @@ rj:
   #   translation: True
   type: pdf
   url: _inputs/rj.pdf
-  page: 1,2
   config:
+    page: 1,2
     translation: False
     start_key: AJMER
-    #end_key: Total
+    end_key: Total
 
 sk:
   name: Sikkim
@@ -456,9 +464,12 @@ sk:
   # notes: Sikkim doesn't provide district wise info, gives for full state
   type: pdf
   url: _inputs/sk.pdf
-  notes: PDF has district info. Todo code
+  notes: Check @c19b_data_dump telegram channel
   config:
+    page: 1
     translation: False
+    start_key: Auto
+    end_key: Auto
 
 tn:
   name: Tamil Nadu
