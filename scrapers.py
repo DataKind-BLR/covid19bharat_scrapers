@@ -174,6 +174,7 @@ def run(args):
         print(dc['delta_totals'])
         print('\n\n', '-*-'*20)
 
+    print('\n\n')
     if dc['for_sheets'].empty:
         print('No deltas')
     else:
@@ -185,7 +186,6 @@ def run(args):
                 row['delta'],
                 row['delta_type']
             ))
-
     print('\n\n')
 
 
