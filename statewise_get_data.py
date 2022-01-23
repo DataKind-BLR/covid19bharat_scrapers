@@ -657,7 +657,9 @@ def jh_get_data(opt):
           availableColumns = line.split('|')[1].split(',')
 
           if len(linesArray) != 8:
-            print("--> Confirm for {}".format(linesArray))
+            needs_correction = True
+            linesArray.insert(0, '--> Issue with')
+            to_correct.append(linesArray)
             continue
 
           districtDictionary = {}
@@ -792,7 +794,6 @@ def kl_get_data(opt):
     #table = soup.find('table', {'id': 'wrapper2'}).find_all('tr')
     table = soup.find("table", {"class": "sortable"})#.find_all('tr')
     #table = soup.find_all('table')[3]
-    print(table)
     districts_data = []
 
     for row in table[1:]:
@@ -1010,9 +1011,9 @@ def mh_get_data(opt):
 
       })
     datems = datems[0]
-    datems=int(datems)
-    datestamp=datetime.datetime.fromtimestamp(datems/1000)
-    print("\nReported Date : ",datestamp,"\n")
+    datems = int(datems)
+    datestamp = datetime.datetime.fromtimestamp(datems/1000)
+    print("\nReported Date : ", datestamp, "\n")
     return district_data
 
 
@@ -1076,7 +1077,6 @@ def ml_get_data(opt):
 
     response = requests.request("POST", url, headers=headers, data = payload)
     stateDashboard = json.loads(response.text.encode('utf8'))
-    #pprint(stateDashboard)
 
     districts_data = []
     for data in stateDashboard[0]:
@@ -1094,7 +1094,6 @@ def ml_get_data(opt):
           continue
       districts_data.append(districtDictionary)
 
-    #pprint(districts_data)
     return districts_data
 
 
@@ -1435,7 +1434,6 @@ def rj_get_data(opt):
           districtDictionary = {}
 
           if 'Other' in linesArray[0].strip().title():
-            print('Ignoring Other States/Countries',linesArray[0].strip())
             continue
 
           if linesArray[0].strip().title() != 'Ganganagar':
