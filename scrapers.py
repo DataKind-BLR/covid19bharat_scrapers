@@ -177,9 +177,14 @@ def run(args):
     if dc['for_sheets'].empty:
         print('No deltas')
     else:
-        str_result = dc['for_sheets'].to_string(header=False, index=False, index_names=False).split('\n')
-        print_str = '\n'.join([','.join(ele.split()) for ele in str_result])
-        print(print_str)
+        for ind, row in dc['for_sheets'].iterrows():
+            print('{},{},{},{},{}'.format(
+                row['district_name'],
+                row['state_name'],
+                row['state_code'],
+                row['delta'],
+                row['delta_type']
+            ))
 
     print('\n\n')
 
