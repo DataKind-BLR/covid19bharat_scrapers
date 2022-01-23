@@ -46,7 +46,7 @@ def format_df(opt, df):
         dfs.append(frmt_df)
 
     result_df = pd.concat(dfs)
-    result_df = result_df.drop(result_df[result_df['delta'] == 0].index)
+    result_df = result_df[result_df['delta'] != 0]  # drop rows with no deltas
 
     return result_df
 
