@@ -221,7 +221,6 @@ def get_cowin_district(from_date, to_date, state_codes):
                 'd': curr_date.strftime("%Y-%m-%d")
             }
             state_url = base_url.format(**params)
-            print(state_url)
             resp = requests.request('GET', state_url)
             state_data = resp.json()
             age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
@@ -253,7 +252,7 @@ def get_cowin_district(from_date, to_date, state_codes):
                             'Sites': district_data['topBlock'].get('sites').get('total'), \
                             'First Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_1'), \
                             'Second Dose Administered': district_data['topBlock'].get('vaccination').get('tot_dose_2'), \
-                            # 'Precautionary Dose Administered': district_data['topBlock'].get('vaccination').get('tot_pd'), \
+                            'Precautionary Dose Administered': district_data['topBlock'].get('vaccination').get('tot_pd'), \
                             'Male(Doses Administered)': district_data['topBlock'].get('vaccination').get('male'), \
                             'Female(Doses Administered)': district_data['topBlock'].get('vaccination').get('female'), \
                             'Transgender(Doses Administered)': district_data['topBlock'].get('vaccination').get('others'), \
@@ -273,7 +272,6 @@ def get_cowin_district(from_date, to_date, state_codes):
                         datum = ','.join(datum)
                         print(datum, file=file)
 
-        print("Making districts data file")
         cowin_df = pd.DataFrame(district_rows).drop('updated_at', 1)
         multi_dwnld_dfs.append(cowin_df)
         state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
