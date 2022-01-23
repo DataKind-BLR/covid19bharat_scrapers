@@ -44,6 +44,8 @@ ar:
     - https://twitter.com/DirHealth_ArPr
   type: image
   url: _inputs/ar.jpeg
+  config:
+    translation: False
 
 as:
   name: Assam
@@ -80,6 +82,8 @@ ch:
     - http://chdcovid19.in/
   type: image
   url: _inputs/ch.jpg
+  config:
+    translation: False
 
 ct:
   name: Chhattisgarh
@@ -152,6 +156,8 @@ ga:
     - https://www.goa.gov.in/covid-19/
   type: image
   url: _inputs/ga.jpg
+  config:
+    translation: False
 
 gj:
   name: Gujarat
@@ -425,6 +431,8 @@ py:
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
   type: image
   url: _inputs/py.jpg
+  config:
+    translation: False
 
 rj:
   name: Rajasthan
