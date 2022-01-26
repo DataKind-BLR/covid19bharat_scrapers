@@ -162,8 +162,11 @@ def jh_format_line(row):
 def kl_format_line(row):
   return row[0] + "," + row[1] + "," + row[2] + "\n"
 
-def kld_format_line(row):
-  return row[1] + "," + row[4] + "," + row[5] + "\n"
+def kld_format_line(row): 
+  if ((len(row) == 7) and row[0].isnumeric() and int(row[4]) < 150): 
+    return row[1] + "," + row[4] + "," + row[5] + "\n" 
+  else: 
+    return ''
 
 def kldbl_format_line(row):
   return row[0] + "," + row[2] + "," + row[3] + "\n"
@@ -183,6 +186,12 @@ def wb_format_line(row):
   row[5] = re.sub(',', '', re.sub('\+.*', '', row[5]))
   line = row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "\n"
   return line
+
+def sk_format_line(row):
+  if row[1] != 'District':
+    return row[1] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6] + "," + row[7] + "," + row[8] + "," + row[9] + "\n"
+  else:
+    return ''
 
 def tn_format_line(row):
   row[1] = re.sub('"', '', re.sub('\+.*', '', row[1]))
