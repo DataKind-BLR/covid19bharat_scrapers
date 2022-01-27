@@ -537,15 +537,10 @@ ut:
   type: pdf
   url: _inputs/ut.pdf
   config:
-    page: 2
-    start_key: Cases
+    page: 3
+    start_key: Positive Cases
     end_key: Total
-  # type: image
-  # url: _inputs/ut.jpeg
-  # config:
-  #   translation: False
-  #   start_key: Almora
-  #   end_key: Total
+
 
 wb:
   name: West Bengal

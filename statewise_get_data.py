@@ -832,7 +832,7 @@ def kld_get_data(opt):
           continue
         if linesArray[0].strip() == "District":
           continue
-        if "Cumulative" in linesArray[0].strip():
+        if "Routine" in linesArray[0].strip():
           break
         gender = "M" if linesArray[2].strip() == "Male" else "F"
         print("{},{},,{},Kerala,KL,1,Deceased".format(linesArray[1], gender, linesArray[0].strip().title()))

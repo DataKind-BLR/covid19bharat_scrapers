@@ -163,9 +163,13 @@ def kl_format_line(row):
   return row[0] + "," + row[1] + "," + row[2] + "\n"
 
 def kld_format_line(row): 
-  if ((len(row) == 7) and row[0].isnumeric() and int(row[4]) < 150): 
+  #if ((len(row) == 7) and row[0].isnumeric() and int(row[4]) < 150): 
+  if ((len(row) == 7)) : 
     return row[1] + "," + row[4] + "," + row[5] + "\n" 
-  else: 
+  elif (len(row) == 6): 
+    print("\n=====> Issue with {}".format(row))
+    return ''
+  else:
     return ''
 
 def kldbl_format_line(row):
