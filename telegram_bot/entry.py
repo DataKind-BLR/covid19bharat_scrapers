@@ -123,7 +123,26 @@ def entry(bot, update):
 
             # re-run scraper with `--skip_output` flag
             opt['skip_output'] = True
-            scrapers.run(opt)
+            rslt = scrapers.run(opt)
+            if 'needs_correction' in rslt and rslt['needs_correction'] == True:
+                bot.send_document(                      # send output.txt file
+                    chat_id=update.message.chat.id,
+                    document=open(rslt['output'], 'rb')
+                )
+                bot.send_message(                       # send corrections to be made
+                    chat_id=update.message.chat.id,
+                    text=str(rslt['to_correct'])
+                )
+                bot.send_message(                       # send corrections to be made
+                    chat_id=update.message.chat.id,
+                    text='Please re-upload output.txt file after corrections with the `/correction` command'
+                )
+            else:
+                bot.send_message(
+                    chat_id=update.message.chat.id,
+                    text=str(rslt),
+                    reply_to_message_id=update.message.message_id
+                )
             return
 
         # If the direct message is `/test`
@@ -227,7 +246,7 @@ def entry(bot, update):
                     reply_to_message_id=update.message.message_id
                 )
                 rslt = scrapers.run(opt)
-                if 'is_error' in rslt and rslt['is_error'] == True:
+                if 'needs_correction' in rslt and rslt['needs_correction'] == True:
                     bot.send_document(                      # send output.txt file
                         chat_id=update.message.chat.id,
                         document=open(rslt['output'], 'rb')
@@ -243,7 +262,7 @@ def entry(bot, update):
                 else:
                     bot.send_message(
                         chat_id=update.message.chat.id,
-                        text=rslt,
+                        text=str(rslt),
                         reply_to_message_id=update.message.message_id
                     )
                 return
