@@ -116,7 +116,7 @@ def run(args):
     page        = args.get('page', None)
     skip_output = args.get('skip_output', False)
     verbose     = args.get('verbose', False)
-    delta_date  = args.get('delta_date')
+    delta_date  = args.get('delta_date', datetime.date.today())
 
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
@@ -146,9 +146,9 @@ def run(args):
         'delta_calc' in states_all[state_code]['config'] and\
         states_all[state_code]['config']['delta_calc'] == False:
         print('\n\n', '-*-'*20)
-        print('Data provided as deltas - no calculations required')
+        print('Data from input provided as deltas - no calculations required')
         print('\n\n', '-*-'*20)
-        return None
+        return 'Data from input provided as deltas - no calculations required'
 
     dc = calculate_deltas(
         states_all[state_code],
@@ -176,20 +176,30 @@ def run(args):
         print('Delta Totals')
         print(dc['delta_totals'])
         print('\n\n', '-*-'*20)
+        return {
+            'live_data': tabulate.tabulate(live_data, headers='keys', tablefmt='github', showindex=False),
+            'api_state_data': tabulate.tabulate(dc['api_state_data'], headers='keys', tablefmt='github', showindex=False),
+            'deltas': tabulate.tabulate(dc['deltas'], headers='keys', tablefmt='github', showindex=False),
+            'delta_totals': dc['delta_totals']
+        }
 
     print('\n\n')
     if dc['for_sheets'].empty:
         print('No deltas')
+        return 'No deltas'
     else:
-        print('--> DELTAS CALCULATED AGAINST:', delta_date.strftime('%d-%m-%Y'), '\n\n')
+        to_print = []
         for ind, row in dc['for_sheets'].iterrows():
-            print('{},{},{},{},{}'.format(
+            to_print.append('{},{},{},{},{}'.format(
                 row['district_name'],
                 row['state_name'],
                 row['state_code'],
                 row['delta'],
                 row['delta_type']
             ))
+        print('--> DELTAS CALCULATED AGAINST:', delta_date.strftime('%d-%m-%Y'), '\n\n')
+        print('\n'.join(to_print))
+        return '\n'.join(to_print)
     print('\n\n')
 
 
