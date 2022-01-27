@@ -1,11 +1,11 @@
 import os
 import yaml
 import logging
+import datetime
 import telegram
 import scrapers
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram_bot.util import build_menu, states_map
 
 
 DOWNLD_DIR = os.path.join('/', 'tmp')
@@ -22,27 +22,21 @@ with open(STATES_YAML, 'r') as stream:
     print(f"Error in Opening YAML States - {e}")
 
 
-def run_scraper(bot, chat_id, opt):
+def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
     '''
-    triggers the command line scraper and fetches the output
+    generates and returns a list of interactive buttons for telegram bot chatting
+
+    :param: <list> - list of text names to be shown as buttons
+    :param: <int>  - number of columns to be rendered as
+
+    :return: <list> - list of buttons
     '''
-    args = {
-        'state_code': opt['state_code'],
-        'page': opt['page'] if 'page' in opt else None,
-        'skip_output': opt['skip_output'] if 'skip_output' in opt else False,
-        'type': opt['type'],
-        'url': opt['url'] if opt['type'] == 'pdf' else None,
-        'verbose': opt['verbose'] if 'verbose' in opt else None
-    }
-    result = scrapers.run(args)
-    if 'is_error' in result and\
-        result['is_error'] == True:
-        # read the file & return the contents
-        # output_file = open(result['output'], 'r')
-        # return output_file.read()
-        bot.send_document(chat_id=chat_id, document=result['output'])
-    else:
-        return result
+    menu = [buttons[i : i + n_cols] for i in range(0, len(buttons), n_cols)]
+    if header_buttons:
+        menu.insert(0, [header_buttons])
+    if footer_buttons:
+        menu.append([footer_buttons])
+    return menu
 
 
 def entry(bot, update):
@@ -63,8 +57,7 @@ def entry(bot, update):
             # if the source type is `html` run directly & give output
             if opt['type'] == 'html':
                 logger.info(f"Running Scraper for HTML. State Code = {opt['state_code']}")
-                # rslt = run_scraper(opt)
-                rslt = run_scraper(bot, update.callback_query.message.chat.id, opt)
+                rslt = scrapers.run(opt)
                 # bot.send_document(chat_id=update.callback_query.message.reply_to_message.chat.id, document=log_file)
                 bot.send_message(chat_id=update.callback_query.message.reply_to_message.chat.id, text=rslt)
 
@@ -86,10 +79,11 @@ def entry(bot, update):
                 chat_id=update.message.chat.id, action=telegram.ChatAction.TYPING
             )
             button_list = []
-            for st_name in states_map.keys():
+
+            for st_code in states_all:
                 button_list.append(
                     InlineKeyboardButton(
-                        st_name, callback_data=states_map[st_name]
+                        states_all[st_code]['name'], callback_data=st_code.upper()
                     )
                 )
             reply_markup = InlineKeyboardMarkup(build_menu(button_list, n_cols=3))
@@ -129,8 +123,7 @@ def entry(bot, update):
 
             # re-run scraper with `--skip_output` flag
             opt['skip_output'] = True
-            # run_scraper(opt)
-            run_scraper(bot, update.message.chat.id, opt)
+            scrapers.run(opt)
             return
 
         # If the direct message is `/test`
@@ -190,8 +183,7 @@ def entry(bot, update):
                 text="Extracting data from PDF",
                 reply_to_message_id=update.message.message_id
             )
-            # run_scraper(opt)
-            rslt = run_scraper(bot, update.message.chat.id, opt)
+            rslt = scrapers.run(opt)
             bot.send_message(
                 chat_id=update.message.chat.id,
                 text=rslt,
@@ -234,13 +226,26 @@ def entry(bot, update):
                     text="Extracting data from Image",
                     reply_to_message_id=update.message.message_id
                 )
-                # run_scraper(opt)
-                rslt = run_scraper(bot, update.message.chat.id, opt)
-                bot.send_message(
-                    chat_id=update.message.chat.id,
-                    text=rslt,
-                    reply_to_message_id=update.message.message_id
-                )
+                rslt = scrapers.run(opt)
+                if 'is_error' in rslt and rslt['is_error'] == True:
+                    bot.send_document(                      # send output.txt file
+                        chat_id=update.message.chat.id,
+                        document=open(rslt['output'], 'rb')
+                    )
+                    bot.send_message(                       # send corrections to be made
+                        chat_id=update.message.chat.id,
+                        text=str(rslt['to_correct'])
+                    )
+                    bot.send_message(                       # send corrections to be made
+                        chat_id=update.message.chat.id,
+                        text='Please re-upload output.txt file after corrections with the `/correction` command'
+                    )
+                else:
+                    bot.send_message(
+                        chat_id=update.message.chat.id,
+                        text=rslt,
+                        reply_to_message_id=update.message.message_id
+                    )
                 return
 
             except Exception as e:
