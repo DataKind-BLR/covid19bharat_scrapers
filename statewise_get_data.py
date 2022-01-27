@@ -540,6 +540,7 @@ def hp_get_data(opt):
       'to_correct': to_correct,
       'output': OUTPUT_TXT
     }
+  return districts_data
 
 
 def hr_get_data(opt):
