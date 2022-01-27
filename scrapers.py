@@ -1,6 +1,7 @@
 import os
 import yaml
 import logging
+import datetime
 import argparse
 import tabulate
 
@@ -115,6 +116,7 @@ def run(args):
     page        = args.get('page', None)
     skip_output = args.get('skip_output', False)
     verbose     = args.get('verbose', False)
+    delta_date  = args.get('delta_date')
 
     # default update skip_output key value
     states_all[state_code].update({ 'skip_output': skip_output })
@@ -150,7 +152,8 @@ def run(args):
 
     dc = calculate_deltas(
         states_all[state_code],
-        live_data
+        live_data,
+        delta_date
     )
 
     if verbose:
@@ -162,11 +165,11 @@ def run(args):
         print(tabulate.tabulate(live_data, headers='keys', tablefmt='github', showindex=False))
         print('\n\n', '-*-'*20)
 
-        print('API state data')
+        print('API state data as on', delta_date.strftime('%d-%m-%Y'))
         print(tabulate.tabulate(dc['api_state_data'], headers='keys', tablefmt='github', showindex=False))
         print('\n\n', '-*-'*20)
 
-        print('Calculated deltas')
+        print('Calculated deltas against', delta_date.strftime('%d-%m-%Y'), 'data')
         print(tabulate.tabulate(dc['deltas'], headers='keys', tablefmt='github', showindex=False))
         print('\n\n', '-*-'*20)
 
@@ -178,6 +181,7 @@ def run(args):
     if dc['for_sheets'].empty:
         print('No deltas')
     else:
+        print('--> DELTAS CALCULATED AGAINST:', delta_date.strftime('%d-%m-%Y'), '\n\n')
         for ind, row in dc['for_sheets'].iterrows():
             print('{},{},{},{},{}'.format(
                 row['district_name'],
@@ -205,6 +209,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
     parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')
     parser.add_argument('-v', '--verbose', action='store_true', help='verbose will print out all the details in a tabular format')
+    parser.add_argument('-d', '--delta_date', required=False, type=lambda d: datetime.datetime.strptime(d, '%d-%m-%Y'), default=datetime.date.today(), help='date in dd-mm-yyyy format to calculate deltas against')
 
     args = parser.parse_args()
     run(vars(args))
