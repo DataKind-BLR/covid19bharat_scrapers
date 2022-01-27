@@ -163,7 +163,10 @@ def kl_format_line(row):
   return row[0] + "," + row[1] + "," + row[2] + "\n"
 
 def kld_format_line(row):
-  return row[1] + "," + row[4] + "," + row[5] + "\n"
+  # return row[1] + "," + row[4] + "," + row[5] + "\n"
+  if len(row) == 7 and row[0].isnumeric():
+    return row[1] + "," + row[4] + "," + row[5] + "\n"
+  return ''
 
 def kldbl_format_line(row):
   return row[0] + "," + row[2] + "," + row[3] + "\n"
