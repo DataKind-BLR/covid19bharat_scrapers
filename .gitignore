@@ -9,6 +9,9 @@ tmp/*
 _inputs/*
 _outputs/*
 
+!_inputs/.gitkeep
+!_outputs/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
