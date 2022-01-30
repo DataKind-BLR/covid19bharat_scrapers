@@ -33,7 +33,7 @@ async def write_file(file_obj):
   return save_file_name  
   
 async def homepage(request):
-  available_state_codes = list(scrapers.fn_map.keys())
+  available_state_codes = list(states_all.keys())
   if request.method=="POST":
     try:
       form = await request.form()
