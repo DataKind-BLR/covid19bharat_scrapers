@@ -27,14 +27,8 @@ ap:
   page: 1
   config:
     translation: False
-    #start_key: Anantapur
-    #start_key: District
-    #end_key: Total
-    #columns:
-    #  district_name: Name of the District
-    #  confirmed: Confirmed Cases
-    #  recovered: Cured/ Discharged
-    #  deceased: Deceased
+    start_key: Anantapur
+    end_key: West
 
 ar:
   name: Arunachal Pradesh
