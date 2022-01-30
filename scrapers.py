@@ -14,6 +14,48 @@ INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 
 
+fn_map = {
+    'ap': ap_get_data,
+    'an': an_get_data,
+    'ar': ar_get_data,
+    'as': as_get_data,
+    'br': br_get_data,
+    'ch': ch_get_data,
+    'ct': ct_get_data,
+    'dd': dd_get_data,
+    'dh': dh_get_data,
+    'dn': dn_get_data,
+    'ga': ga_get_data,
+    'gj': gj_get_data,
+    'hp': hp_get_data,
+    'hr': hr_get_data,
+    'jh': jh_get_data,
+    'jk': jk_get_data,
+    'ka': ka_get_data,
+    'kl': kl_get_data,
+    'kld': kld_get_data,
+    'kldbl': kldbl_get_data,
+    'ld': ld_get_data,
+    'la': la_get_data,
+    'mh': mh_get_data,
+    'ml': ml_get_data,
+    'mn': mn_get_data,
+    'mp': mp_get_data,
+    'mz': mz_get_data,
+    'nl': nl_get_data,
+    'or': or_get_data,
+    'pb': pb_get_data,
+    'py': py_get_data,
+    'rj': rj_get_data,
+    'sk': sk_get_data,
+    'tn': tn_get_data,
+    'tg': tg_get_data,
+    'tr': tr_get_data,
+    'up': up_get_data,
+    'ut': ut_get_data,
+    'wb': wb_get_data
+}
+
 # read the config file first
 with open(STATES_YAML, 'r') as stream:
     try:
@@ -35,47 +77,7 @@ def fetch_data(st_obj):
     }
     '''
     logging.info(f"Fetching data for {st_obj}")
-    fn_map = {
-        'ap': ap_get_data,
-        'an': an_get_data,
-        'ar': ar_get_data,
-        'as': as_get_data,
-        'br': br_get_data,
-        'ch': ch_get_data,
-        'ct': ct_get_data,
-        'dd': dd_get_data,
-        'dh': dh_get_data,
-        'dn': dn_get_data,
-        'ga': ga_get_data,
-        'gj': gj_get_data,
-        'hp': hp_get_data,
-        'hr': hr_get_data,
-        'jh': jh_get_data,
-        'jk': jk_get_data,
-        'ka': ka_get_data,
-        'kl': kl_get_data,
-        'kld': kld_get_data,
-        'kldbl': kldbl_get_data,
-        'ld': ld_get_data,
-        'la': la_get_data,
-        'mh': mh_get_data,
-        'ml': ml_get_data,
-        'mn': mn_get_data,
-        'mp': mp_get_data,
-        'mz': mz_get_data,
-        'nl': nl_get_data,
-        'or': or_get_data,
-        'pb': pb_get_data,
-        'py': py_get_data,
-        'rj': rj_get_data,
-        'sk': sk_get_data,
-        'tn': tn_get_data,
-        'tg': tg_get_data,
-        'tr': tr_get_data,
-        'up': up_get_data,
-        'ut': ut_get_data,
-        'wb': wb_get_data
-    }
+    
 
     try:
         return fn_map[st_obj['state_code'].lower()](st_obj)
