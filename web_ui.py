@@ -1,6 +1,6 @@
 import argparse
 from contextlib import redirect_stdout
-from datetime import datetime
+from datetime import datetime, date
 import io
 import os
 from pathlib import Path
@@ -42,26 +42,56 @@ async def homepage(request):
       if form.get("file"):
         url = await write_file(form["file"])
       
+      skip_output = False  
+      output_txt = form.get("output_txt")
+      if output_txt:
+        with open("_outputs/output.txt","w") as f:
+          f.write(output_txt.strip(" ").strip("\n"))
+          f.close()
+        skip_output = True
+          
       args = argparse.Namespace(
         state_code = form.get("state_code"),
         page = form.get("page"),
-        skip_output = False,
+        skip_output = skip_output,
         type = form.get("type"),
         url = url if form.get("type") in ["pdf","image"] else None,
-        verbose = False
+        verbose = False,
+        delta_date = date.today()
       )
       
       f = io.StringIO()
       with redirect_stdout(f):
-        scrapers.run(args)
+        result = scrapers.run(vars(args))
       delta = f.getvalue()
       
-      return templates.TemplateResponse('index.html', {"request": request, "output": delta, "available_state_codes": available_state_codes})
+      output_correction = None
+      if result and type(result) is dict and result.get("needs_correction"):
+        try:
+          with open("_outputs/output.txt") as f:
+            output_correction = f.read()
+            f.close()
+        except:
+          pass    
+        
+      return templates.TemplateResponse('index.html', {
+        "request": request, 
+        "output": delta, 
+        "available_state_codes": available_state_codes,
+        "output_correction": output_correction})
     except Exception as e:
       output = traceback.format_exc()
-      return templates.TemplateResponse('index.html', {"request": request, "output": output, "available_state_codes": available_state_codes})
+      return templates.TemplateResponse('index.html', {
+        "request": request, 
+        "output": output, 
+        "available_state_codes": available_state_codes,
+        "output_correction": None})
   else:
-    return templates.TemplateResponse('index.html', {"request": request, "output": "", "available_state_codes": available_state_codes})
+    return templates.TemplateResponse('index.html', {
+      "request": request, 
+      "output": "", 
+      "available_state_codes": available_state_codes,
+      "output_correction": None})
 
 
 async def state_details(request):
