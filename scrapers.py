@@ -13,7 +13,6 @@ OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs
 INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'states.yaml')
 
-
 # read the config file first
 with open(STATES_YAML, 'r') as stream:
     try:
