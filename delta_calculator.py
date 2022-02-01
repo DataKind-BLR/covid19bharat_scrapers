@@ -59,21 +59,21 @@ def ut_calculate_detlas(opt, live_data):
     '''
     api_df = pd.read_csv(API_DIST_TS)
     state_df = api_df[api_df['State'] == opt['name']].rename(columns={'Other': 'Migrated_Other'})
-    done_df = state_df[state_df['Date'] == datetime.date.today().strftime('%Y-%m-%d')]
+    # done_df = state_df[state_df['Date'] == datetime.date.today().strftime('%Y-%m-%d')]
 
     # is data already entered for today?
-    if done_df.empty == False:
-        return {
-        'delta_totals': {
-            'confirmed': 0,
-            'recovered': 0,
-            'deceased': 0,
-            'migrated': 0
-        },
-        'deltas': pd.DataFrame(),
-        'api_state_data': done_df[['District', 'Confirmed', 'Recovered', 'Deceased', 'Migrated_Other']],
-        'for_sheets': pd.DataFrame()
-    }
+    # if done_df.empty == False:
+    #     return {
+    #     'delta_totals': {
+    #         'confirmed': 0,
+    #         'recovered': 0,
+    #         'deceased': 0,
+    #         'migrated': 0
+    #     },
+    #     'deltas': pd.DataFrame(),
+    #     'api_state_data': done_df[['District', 'Confirmed', 'Recovered', 'Deceased', 'Migrated_Other']],
+    #     'for_sheets': pd.DataFrame()
+    # }
 
     # 0. get meta info
     meta_df = pd.read_csv(DELTA_MAPPING, sep=',', encoding='utf-8', header=None, names=['state_name', 'from_dist', 'to_dist'])
