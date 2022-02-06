@@ -22,19 +22,14 @@ ap:
     - https://twitter.com/ArogyaAndhra
     - http://hmfw.ap.gov.in/covid_dashboard.aspx
     - notes If full image fails, clip only table and submit
-  type: image
-  url: _inputs/ap.png
-  page: 1
+  type: html
+  url: https://hmfw.ap.gov.in/covid_dashboard.aspx
   config:
+    page: 1
     translation: False
-    #start_key: Anantapur
-    #start_key: District
+    start_key: Anantapur
     #end_key: Total
-    #columns:
-    #  district_name: Name of the District
-    #  confirmed: Confirmed Cases
-    #  recovered: Cured/ Discharged
-    #  deceased: Deceased
+
 
 ar:
   name: Arunachal Pradesh
@@ -326,8 +321,11 @@ mh:
     - https://twitter.com/ani
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
-  type: image
-  url: _inputs/mh.png
+    - https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+  type: html
+  url: https://www.covid19maharashtragov.in/mh-covid/dbd-cases-file?_by=District&_by=Date
+  config:
+    translation: False
 
 ml:
   name: Meghalaya

@@ -173,7 +173,8 @@ def kld_format_line(row):
     return ''
 
 def kldbl_format_line(row):
-  return row[0] + "," + row[2] + "," + row[3] + "\n"
+  #return row[0] + "," + row[2] + "," + row[3] + "\n"
+  return row[0] + "," + row[2] + "\n"
 
 def ap_format_line(row):
   line = row[1] + "," + row[3] + "," + row[5] + "," + row[6] + "\n"

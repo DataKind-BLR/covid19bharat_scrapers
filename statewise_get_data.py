@@ -862,15 +862,16 @@ def kldbl_get_data(opt):
       for line in upFile:
         linecnt=linecnt+1
         linesArray = line.split(',')
-        if len(linesArray) != 3:
+        #if len(linesArray) != 3:
+        if len(linesArray) != 2:
           print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
           print('--------------------------------------------------------------------------------')
           continue
         if linecnt !=1:
            if int(linesArray[1].strip()) != 0:
               print("{},Kerala,KL,{},Deceased,,cat_B (G.O.(Rt) No.2110/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[1].strip()))
-           if int(linesArray[2].strip()) != 0:
-              print("{},Kerala,KL,{},Deceased,,cat_C (G.O.(Rt) No.2219/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[2].strip()))
+           #if int(linesArray[2].strip()) != 0:
+           #   print("{},Kerala,KL,{},Deceased,,cat_C (G.O.(Rt) No.2219/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[2].strip()))
     print('\n---------------------------------------------------------------------\n')
     upFile.close()
     #quit()
@@ -970,7 +971,8 @@ def mh_get_data(opt):
         'districtName': details['District'],
         'confirmed': details['Positive Cases'],
         'recovered': details['Recovered'],
-        'deceased': details['Deceased']
+        'deceased': details['Deceased'],
+        'migrated': ((details['Positive Cases']-(details['Recovered']+details['Deceased']))-details['Active Cases'])
 
       })
     datems = datems[0]
