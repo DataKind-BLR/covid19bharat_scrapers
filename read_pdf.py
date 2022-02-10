@@ -206,7 +206,7 @@ def tn_format_line(row):
   return line
 
 def vaccination_mohfw_format_line(row):
-  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) + "\n"
+  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) + "\n"
   return line
 
 

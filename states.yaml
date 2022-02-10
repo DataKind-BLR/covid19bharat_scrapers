@@ -521,8 +521,8 @@ up:
   config:
     translation: True
     page: 1, 2
-    start_key: auto
-    end_key: Total
+    #start_key: auto
+    #end_key: Total
 
 ut:
   name: Uttarakhand

@@ -19,6 +19,7 @@ VACC_OUTPUT_MOHFW = os.path.join(ROOT_DIR, '_outputs', 'vaccination_mohfw.csv')
 COWIN_META = os.path.join(ROOT_DIR, '_meta', 'cowin_district_mapping.csv')
 COWIN_DIST_LIVE = os.path.join(ROOT_DIR, '_outputs', 'cowin_downloaded_district_data.csv')
 STATES_YAML = os.path.join(ROOT_DIR, 'states.yaml')
+IGNORE_STATE_CODES = ['KLD', 'KLDBL']
 
 with open(STATES_YAML, 'r') as stream:
     try:
@@ -54,6 +55,34 @@ def get_mohfw_state(from_date, to_date, state_codes):
     :param: `from_date` <datetime> - The date to start extracting data from
     :param: `to_date` <datetime> - The date to until when you want extract data (inclusive)
     '''
+    '''
+    #autofind the pdf link from  MOHFW
+    from bs4 import BeautifulSoup
+    import requests
+
+    HEADERS = ({'User-Agent':
+                'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
+                (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',\
+                'Accept-Language': 'en-US, en;q=0.5'})
+
+    url = 'https://www.mohfw.gov.in'
+    response = requests.request('GET', url, headers=HEADERS)
+    #soup = BeautifulSoup(response.content, 'html.parser')
+    #print(soup)
+    soup = BeautifulSoup(response.content, "lxml")
+    search_key = 'cummulative'
+    links = []
+
+    for link in soup.findAll('a'):
+        links.append(link.get('href'))
+    for url in links:
+      if search_key in url.lower():
+        mohfw_vac_link = url
+        #print(mohfw_vac_link)  
+
+    base_url = mohfw_vac_link
+    '''
+
     base_url = 'https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf'
     if from_date == datetime.date.today():
         from_date = from_date - datetime.timedelta(days=1)
@@ -63,13 +92,16 @@ def get_mohfw_state(from_date, to_date, state_codes):
     # if you change this variable value, you'll have to change the function name inside `read_pdf.py` file too
     vacc_mohfw_code = 'vaccination_mohfw'
     name_mapping = {
-        'A & N Islands': 'Andaman and Nicobar Islands'
+        'A & N Islands': 'Andaman and Nicobar Islands',
+        'Jammu & Kashmir': 'Jammu and Kashmir'
     }
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         date_mohfw_str = curr_date.strftime("%d%B%Y")
         date_sheet_str = curr_date.strftime("%d/%m/%Y")
-        url = base_url.format(date_mohfw_str.lower())
+        #url = base_url.format(date_mohfw_str.lower())
+        #MOHFW changed month capitalise
+        url = base_url.format(date_mohfw_str)
         print(f" ---------> Downloading PDF from: {url}")
         opt = {
             'state_code': vacc_mohfw_code,
@@ -81,38 +113,59 @@ def get_mohfw_state(from_date, to_date, state_codes):
                 'end_key': ''
             }
         }
-
+        #MOHFW added below 18 and above 18 as two categories along with precautionary dose
+        # we read 2 dose-1, 2 dose-2, precautionary dose, total dose
         # read pdf file and extract text
         read_pdf_from_url(opt)
 
         # read the csv output produced by previous function
         mohfw_data = []
-        total_fd, total_sd, total_td = 0, 0, 0
+        total_fd, total_sd, total_pd, total_td = 0, 0, 0, 0
+        dadra_firstDose, dadra_secondDose, dadra_PrecautDose, dadra_totalDose = 0, 0, 0, 0
+
         with open(VACC_OUTPUT_MOHFW, "r") as output_csv:
             for line in output_csv:
                 lines_arr = line.split(',')
-                if len(lines_arr) != 4:
+                if len(lines_arr) != 7:
                     print("--> Issue with {}".format(lines_arr))
                     continue
 
                 data = {}
                 data['vaccinated_as_of'] = date_sheet_str
                 data['state_name'] = lines_arr[0].strip()
+
+                #we need to combine Dadra and Daman
+                if "Dadra" in line or "Daman" in line:
+                  dadra_firstDose += int(lines_arr[1]) + int(lines_arr[3])
+                  dadra_secondDose += int(lines_arr[2]) + int(lines_arr[4])
+                  dadra_PrecautDose += int(lines_arr[5])
+                  dadra_totalDose += int(lines_arr[6].strip('\n'))
+                  continue
+
                 if lines_arr[0].strip() in name_mapping.keys():
                     data['state_name'] = name_mapping[lines_arr[0].strip()]
-                data['firstDose'] = int(lines_arr[1])
+                data['firstDose'] = int(lines_arr[1]) + int(lines_arr[3])
                 total_fd += data['firstDose']
-                data['secondDose'] = int(lines_arr[2])
+                data['secondDose'] = int(lines_arr[2]) + int(lines_arr[4])
                 total_sd += data['secondDose']
-                data['totalDose'] = int(lines_arr[3].strip('\n'))
+                data['PrecautDose'] = int(lines_arr[5])
+                total_pd += data['PrecautDose']
+                data['totalDose'] = int(lines_arr[6].strip('\n'))
                 total_td += data['totalDose']
 
                 # print on console for copy-paste purpose
-                console.print(f"{date_sheet_str},{data['state_name']},{data['firstDose']},{data['secondDose']},{data['totalDose']}")
+                console.print(f"{date_sheet_str},{data['state_name']},{data['firstDose']},{data['secondDose']},{data['totalDose']},{data['PrecautDose']}")
 
                 mohfw_data.append(data)
+        #add dadra to Total
+        total_fd += dadra_firstDose
+        total_sd += dadra_secondDose
+        total_pd += dadra_PrecautDose
+        total_td += dadra_totalDose
+        #print dadra
+        console.print(f"{date_sheet_str},Dadra and Nagar Haveli and Daman and Diu,{dadra_firstDose},{dadra_secondDose},{dadra_totalDose},{dadra_PrecautDose}")
         # print totals for India
-        console.print(f"{date_sheet_str},Total,{total_fd},{total_sd},{total_td}")
+        console.print(f"{date_sheet_str},Total,{total_fd},{total_sd},{total_td},{total_pd}")
     return mohfw_data
 
 
@@ -140,8 +193,8 @@ def get_cowin_state(from_date, to_date, state_codes):
 
         # run for every state
         for state_code in state_codes:
-          if ((states_all[state_code].get('state_code') == 'KLD') or (states_all[state_code].get('state_code') == 'KLDBL')):
-            print('Not repeating for: ', states_all[state_code].get('state_code'))
+          if states_all[state_code].get('state_code') in IGNORE_STATE_CODES:
+            print('Skipping: ', states_all[state_code].get('state_code'))
             continue
           else:
             params = {
@@ -220,7 +273,6 @@ def get_cowin_district(from_date, to_date, state_codes):
                 'd': curr_date.strftime("%Y-%m-%d")
             }
             state_url = base_url.format(**params)
-            print(state_url)
             resp = requests.request('GET', state_url)
             state_data = resp.json()
             age_groups = state_data['vaccinationByAge'] if 'vaccinationByAge' in state_data else state_data['topBlock'].get('vaccination')
@@ -272,7 +324,6 @@ def get_cowin_district(from_date, to_date, state_codes):
                         datum = ','.join(datum)
                         print(datum, file=file)
 
-        print("Making districts data file")
         cowin_df = pd.DataFrame(district_rows).drop('updated_at', 1)
         multi_dwnld_dfs.append(cowin_df)
         state_dist_mapping = published_df[['State_Code', 'State', 'Cowin Key', 'District']].drop(0, axis=0)
