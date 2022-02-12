@@ -270,7 +270,7 @@ kld:
   url: _inputs/kl.pdf
   config:
     delta_calc: False
-    page: 6-7
+    page: 6-12
     start_key: District
     end_key: Detailed
 
