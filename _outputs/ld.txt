@@ -1,3 +1,0 @@
-Lakshadweep,LD,0,Hospitalized
-Lakshadweep,LD,2,Recovered
-Lakshadweep,LD,0,Deceased
