@@ -516,16 +516,11 @@ def hp_get_data(opt):
           break
 
         districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1].strip())
-        districtDictionary['recovered'] = int(linesArray[8].strip())
-        districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[10].strip()).strip())
-        districtDictionary['migrated'] = int(linesArray[11].strip())
-
-        # if columns are 9
-        # districtDictionary['recovered'] = int(linesArray[6].strip())
-        # districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
-        # districtDictionary['migrated'] = int(linesArray[10].strip())
+        districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
+        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
         districts_data.append(districtDictionary)
+
   except Exception as e:
     return {
       'needs_correction': True,
