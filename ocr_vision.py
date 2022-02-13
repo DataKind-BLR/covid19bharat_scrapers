@@ -36,6 +36,9 @@ def detect_text(path):
       'https://cloud.google.com/apis/design/errors'.format(
       response.error.message))
 
+def run(path):
+  os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = "visionapi.json"
+  detect_text(path) 
 
 if __name__ == "__main__":
   # os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.path.join(os.path.dirname(__file__), "visionapi.json")
