@@ -516,16 +516,11 @@ def hp_get_data(opt):
           break
 
         districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1].strip())
-        districtDictionary['recovered'] = int(linesArray[8].strip())
-        districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[10].strip()).strip())
-        districtDictionary['migrated'] = int(linesArray[11].strip())
-
-        # if columns are 9
-        # districtDictionary['recovered'] = int(linesArray[6].strip())
-        # districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
-        # districtDictionary['migrated'] = int(linesArray[10].strip())
+        districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
+        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
         districts_data.append(districtDictionary)
+
   except Exception as e:
     return {
       'needs_correction': True,
@@ -866,11 +861,11 @@ def kl_get_data(opt):
           print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
           print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
           # TODO - append to districts_data
-
-    print("\n===>Scrapping Deaths reported\n")
-    os.system("python scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
-    print("\n===>Scrapping BACKLOG Deaths reported\n")
-    os.system("python scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
+    print('\n')
+    #print("\n===>Scrapping Deaths reported\n")
+    #os.system("python scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
+    #print("\n===>Scrapping BACKLOG Deaths reported\n")
+    #os.system("python scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
     upFile.close()
     #quit()
     return districts_data
@@ -908,7 +903,7 @@ def kld_get_data(opt):
 
     upFile.close()
     #quit()
-    #return districts_data
+    return districts_data
 
 
 def kldbl_get_data(opt):
@@ -930,19 +925,20 @@ def kldbl_get_data(opt):
       for line in upFile:
         linecnt=linecnt+1
         linesArray = line.split(',')
-        if len(linesArray) != 3:
+        #if len(linesArray) != 3:
+        if len(linesArray) != 2:
           print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
           print('--------------------------------------------------------------------------------')
           continue
         if linecnt !=1:
            if int(linesArray[1].strip()) != 0:
               print("{},Kerala,KL,{},Deceased,,cat_B (G.O.(Rt) No.2110/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[1].strip()))
-           if int(linesArray[2].strip()) != 0:
-              print("{},Kerala,KL,{},Deceased,,cat_C (G.O.(Rt) No.2219/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[2].strip()))
+           #if int(linesArray[2].strip()) != 0:
+           #   print("{},Kerala,KL,{},Deceased,,cat_C (G.O.(Rt) No.2219/2021/H and FWD)".format(linesArray[0].strip().title(), linesArray[2].strip()))
     print('\n---------------------------------------------------------------------\n')
     upFile.close()
     #quit()
-    #return districts_data
+    return districts_data
 
 
 def la_get_data(opt):

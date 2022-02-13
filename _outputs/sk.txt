@@ -1,9 +1,0 @@
-
-********** Computing Delta for Sikkim **********
-
-Mapping for district names
-
-Delta statistics
-
-Districts Total Current: C= 0  R= 0  D= 0  No of Districts= 0
-Districts Total API    : C= 0  R= 0  D= 0

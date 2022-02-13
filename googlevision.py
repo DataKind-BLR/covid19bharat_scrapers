@@ -517,7 +517,7 @@ def parseConfigFile(fileName):
     if key == "configMinLineLength":
       configMinLineLength = eval(value)
 
-def main():
+def main(config_file=None, file_name=None):
   global startingText
   global endingText
   global enableTranslation
@@ -526,9 +526,12 @@ def main():
 # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
   houghTransform = False
   if len(sys.argv) > 1:
-    parseConfigFile(sys.argv[1])
+    parseConfigFile(config_file or sys.argv[1])
     fileName = sys.argv[2]
-
+  else:
+    parseConfigFile(config_file)
+    fileName = file_name 
+    
   buildTranslationDictionary()
 
   buildCells()
@@ -543,5 +546,6 @@ def main():
   assignRowsAndColumns()
 
   printOutput()
+  
 if __name__ == '__main__':
   main()
