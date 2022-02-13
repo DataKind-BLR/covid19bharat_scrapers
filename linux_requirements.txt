@@ -68,7 +68,7 @@ typing-extensions==3.10.0.2
 typing-inspect==0.7.1
 tzdata==2021.5
 tzlocal==4.0.2
-urllib3==1.25.11
+urllib3==1.26.5
 uvicorn==0.17.0
 uvloop==0.16.0
 watchgod==0.7
