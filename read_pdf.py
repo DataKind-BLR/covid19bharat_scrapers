@@ -131,9 +131,9 @@ def ka_format_line(row):
     modifiedRow.insert(0, 'a')
   else:
     district = re.sub('\*', '', modifiedRow[1])
-  print(modifiedRow)
+  #print(modifiedRow)
 
-  return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "\n"
+  return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "," + modifiedRow[9] + "\n"
 
 def hr_format_line(row):
   row[1] = re.sub('\*', '', row[1])
