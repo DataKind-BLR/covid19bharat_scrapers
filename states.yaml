@@ -517,7 +517,7 @@ up:
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
   type: pdf
-  url: _inputs/up.pdf
+  url: 
   config:
     translation: True
     page: 1, 2

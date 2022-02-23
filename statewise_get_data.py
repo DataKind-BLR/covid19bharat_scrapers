@@ -487,11 +487,11 @@ def hp_get_data(opt):
         if linesArray[0].strip().title() == 'Total':
           break
         districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[1].strip())
+        districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
         
         #if columns are 11
-        districtDictionary['recovered'] = int(linesArray[8].strip())
-        districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[10].strip()).strip())
+        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
         #districtDictionary['migrated'] = int(linesArray[11].strip())        
         #if columns are 9
         #districtDictionary['recovered'] = int(linesArray[6].strip())
@@ -706,7 +706,7 @@ def ka_get_data(opt):
       with open(csv_file, "r") as upFile:
         for line in upFile:
           linesArray = line.split(',')
-          if len(linesArray) != 4:
+          if len(linesArray) != 5:
             print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
             print('--------------------------------------------------------------------------------')
             continue
@@ -714,7 +714,8 @@ def ka_get_data(opt):
           districtDictionary['districtName'] = linesArray[0].strip()
           districtDictionary['confirmed'] = int(linesArray[1])
           districtDictionary['recovered'] = int(linesArray[2])
-          districtDictionary['deceased'] = int(linesArray[3]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+          districtDictionary['deceased'] = int(linesArray[3])
+          districtDictionary['migrated'] = int(linesArray[4].strip()) if len(re.sub('\n', '', linesArray[4])) != 0 else 0
           districts_data.append(districtDictionary)
 
       upFile.close()
@@ -1569,14 +1570,13 @@ def up_get_data(opt):
   print('Fetching UP data')
   pprint(opt)
 
-  linesArray = []
-  districtDictionary = {}
-  districts_data = []
-
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
 
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
     ignoreLines = False
     try:
       csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
@@ -1610,6 +1610,11 @@ def up_get_data(opt):
   elif opt['type'] == 'image':
     if opt['skip_output'] == False:
       run_for_ocr(opt)
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    ignoreLines = False
+
     nColRef = 7
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
