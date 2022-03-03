@@ -76,6 +76,10 @@ def read_pdf_from_url(opt):
           formatted_line = up_format_line(opt, line.split('|'), translation_dict)
           print(formatted_line, file=stateOutputFile, end="")
           continue
+        if opt['state_code'] == 'TN':
+          formatted_line = tn_format_line(line.split('|'))
+          print(formatted_line, file=stateOutputFile, end="")
+          continue
 
         if opt['config']['start_key'] in line:
           startedReadingDistricts = True
@@ -199,11 +203,14 @@ def sk_format_line(row):
     return ''
 
 def tn_format_line(row):
-  row[1] = re.sub('"', '', re.sub('\+.*', '', row[1]))
-  row[2] = re.sub('"', '', re.sub('\+.*', '', row[2]))
-  # line = row.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
-  line = row[1] + "," + row[2] + "," + row[3] + "," + row[4] +  "," + row[5] + "\n"
-  return line
+  if ((len(row) == 6) and ((row[1] != 'District') or (row[0] != 'Total'))):  
+    row[1] = re.sub('"', '', re.sub('\+.*', '', row[1]))
+    row[2] = re.sub('"', '', re.sub('\+.*', '', row[2]))
+    # line = row.replace('"', '').replace('*', '').replace('#', '').replace(',', '').replace('$', '')
+    line = row[1] + "," + row[2] + "," + row[3] + "," + row[4] +  "," + row[5] + "\n"
+    return line
+  else:
+    return ''
 
 def vaccination_mohfw_format_line(row):
   line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) + "\n"

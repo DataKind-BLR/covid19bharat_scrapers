@@ -477,12 +477,14 @@ tn:
     - https://stopcorona.tn.gov.in/daily-bulletin/
     - '@TN_Together_AgainstCorona Telegram channel'
   type: pdf
-  url: _inputs/tn.pdf
+  url: 
   config:
-    page: 9
-    start_key: Ariyalur
-    end_key: Total
-    # end_key: Railway
+    translation: False
+    page: 7
+    #start_key: Ariyalur
+    #end_key: Total
+    #start_text: Ariyalur    
+    #end_text: Total
 
 tg:
   name: Telangana

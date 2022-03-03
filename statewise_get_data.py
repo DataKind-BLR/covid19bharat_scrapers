@@ -1466,6 +1466,10 @@ def tn_get_data(opt):
 
       for line in upFile:
         linesArray = line.split(',')
+
+        if 'Total' in line:
+          continue
+
         if len(linesArray) != 5:
           print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
           print('--------------------------------------------------------------------------------')
@@ -1512,6 +1516,80 @@ def tn_get_data(opt):
 
     upFile.close()
     return district_data
+
+  elif opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
+    linesArray = []
+    districtDictionary = {}
+    district_data = []
+    ignoreLines = False
+
+    airportConfirmedCount =0
+    airportRecoveredCount =0
+    airportDeceasedCount =0
+    airportRun =1
+
+    nColRef = 5
+    print('\n--------------------------------------------------------------------------------')
+    with open(OUTPUT_TXT, "r") as upFile:
+      for line in upFile:
+        splitArray = re.sub('\n', '', line.strip()).split('|')
+        linesArray = splitArray[0].split(',')
+
+        if 'International' in line:
+          continue
+        if 'Domestic' in line:
+          continue
+
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
+          print('--------------------------------------------------------------------------------')
+          continue
+
+        linesArray[4] = linesArray[4].replace('$', '')
+
+        #check for airport and railway
+        if 'Airport' in line:
+          airportConfirmedCount += int(linesArray[1])
+          airportRecoveredCount += int(linesArray[2])
+          airportDeceasedCount += int(linesArray[4])
+          if airportRun == 1:
+            airportRun += 1
+            continue
+          else:
+            #print("{}, {}, {}, {}\n".format('Airport Quarantine', airportConfirmedCount, airportRecoveredCount, airportDeceasedCount), file = tnOutputFile)
+            linesArray[1]=airportConfirmedCount
+            linesArray[2]=airportRecoveredCount
+            linesArray[4]=airportDeceasedCount
+            districtDictionary = {}
+            districtDictionary['districtName'] = 'Airport Quarantine'
+            districtDictionary['confirmed'] = int(linesArray[1])
+            districtDictionary['recovered'] = int(linesArray[2])
+            districtDictionary['deceased'] = int(linesArray[4]) #if len(re.sub('\n', '', linesArray[4])) != 0 else 0
+            district_data.append(districtDictionary)
+            continue
+        elif 'Railway' in line:
+          #print("{}, {}, {}, {}".format('Railway Quarantine', linesArray[1], linesArray[2], linesArray[4]), file = tnOutputFile)
+          districtDictionary = {}
+          districtDictionary['districtName'] = 'Railway Quarantine'
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[4]) #if len(re.sub('\n', '', linesArray[4])) != 0 else 0
+          district_data.append(districtDictionary)
+          continue
+        else:
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[4])) != 0 else 0
+          district_data.append(districtDictionary)
+
+  upFile.close()
+  print('\n')
+  return district_data
+
 
 def tg_get_data(opt):
   print('Fetching TG data')
@@ -1578,6 +1656,9 @@ def up_get_data(opt):
     districtDictionary = {}
     districts_data = []
     ignoreLines = False
+    nColRef = 7
+    print('\n--------------------------------------------------------------------------------')
+
     try:
       csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
       with open(csv_file, "r") as upFile:
@@ -1590,8 +1671,8 @@ def up_get_data(opt):
             continue
 
           linesArray = line.split(',')
-          if len(linesArray) != 7:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          if len(linesArray) != nColRef:
+            print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
             print('--------------------------------------------------------------------------------')
             continue
           districtDictionary = {}
@@ -1616,6 +1697,7 @@ def up_get_data(opt):
     ignoreLines = False
 
     nColRef = 7
+    print('\n--------------------------------------------------------------------------------')
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         splitArray = re.sub('\n', '', line.strip()).split('|')
@@ -1633,6 +1715,7 @@ def up_get_data(opt):
         # districtDictionary['migrated'] = int(re.sub('\n', '', linesArray[5].strip()))
         districts_data.append(districtDictionary)
       upFile.close()
+  print('\n')
   return districts_data
 
 def ut_get_data(opt):
