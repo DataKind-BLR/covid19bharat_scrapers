@@ -55,34 +55,6 @@ def get_mohfw_state(from_date, to_date, state_codes):
     :param: `from_date` <datetime> - The date to start extracting data from
     :param: `to_date` <datetime> - The date to until when you want extract data (inclusive)
     '''
-    '''
-    #autofind the pdf link from  MOHFW
-    from bs4 import BeautifulSoup
-    import requests
-
-    HEADERS = ({'User-Agent':
-                'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
-                (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',\
-                'Accept-Language': 'en-US, en;q=0.5'})
-
-    url = 'https://www.mohfw.gov.in'
-    response = requests.request('GET', url, headers=HEADERS)
-    #soup = BeautifulSoup(response.content, 'html.parser')
-    #print(soup)
-    soup = BeautifulSoup(response.content, "lxml")
-    search_key = 'cummulative'
-    links = []
-
-    for link in soup.findAll('a'):
-        links.append(link.get('href'))
-    for url in links:
-      if search_key in url.lower():
-        mohfw_vac_link = url
-        #print(mohfw_vac_link)  
-
-    base_url = mohfw_vac_link
-    '''
-
     base_url = 'https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf'
     if from_date == datetime.date.today():
         #from_date = from_date - datetime.timedelta(days=1)
