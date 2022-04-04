@@ -131,9 +131,9 @@ def ka_format_line(row):
     modifiedRow.insert(0, 'a')
   else:
     district = re.sub('\*', '', modifiedRow[1])
-  print(modifiedRow)
+  #print(modifiedRow)
 
-  return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "\n"
+  return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "," + modifiedRow[9] + "\n"
 
 def hr_format_line(row):
   row[1] = re.sub('\*', '', row[1])
@@ -200,7 +200,7 @@ def tn_format_line(row):
   return line
 
 def vaccination_mohfw_format_line(row):
-  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) + "\n"
+  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + ''.join(row[8].split(',')) + "\n"
   return line
 
 
