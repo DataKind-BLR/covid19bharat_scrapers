@@ -4,6 +4,7 @@ from datetime import datetime, date
 import io
 import os
 from pathlib import Path
+import re
 import scrapers
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
@@ -11,6 +12,7 @@ from starlette.routing import Route
 from starlette.templating import Jinja2Templates
 import traceback
 import uvicorn
+import vaccination 
 import yaml
 
 templates = Jinja2Templates(directory='templates')
@@ -93,12 +95,56 @@ async def homepage(request):
       "available_state_codes": available_state_codes,
       "output_correction": None})
 
+async def vaccination_route(request):
+  output = ""
+  f = io.StringIO()
+  with redirect_stdout(f):
+    try:          
+      if request.method=="POST":
+        form = await request.form()
+        fn_map = {
+          'cowin_state': vaccination.get_cowin_state,
+          'cowin_district': vaccination.get_cowin_district,
+          'mohfw_state': vaccination.get_mohfw_state
+        } 
+        
+        vacc_src = form.get("source").lower()
+         
+        state_codes = None
+        if form.get("state_codes"):
+          state_codes = list(map(lambda sc: sc.lower().strip(), form.get("state_codes").split(','))) 
+        
+        from_date = datetime(*list(map(int, form.get("from_date").split("-")))) if form.get("from_date") else datetime.today()
+        
+        to_date = datetime(*list(map(int, form.get("to_date").split("-")))) if form.get("to_date") else None
+        if to_date is None or to_date <= from_date:
+            to_date = from_date
+        
+        fn_map[vacc_src](from_date, to_date, state_codes)
+        
+        if vacc_src=="cowin_state":
+          with open("_outputs/vaccination_state_level.txt") as ff:
+            print(ff.read())
+            ff.close()
+        if vacc_src=="cowin_district":
+          with open("_outputs/vaccination_district_level.csv") as ff:
+            print(ff.read())
+            ff.close()    
+    except Exception as e:
+      print(traceback.format_exc())
+  
+  ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')    
+  return templates.TemplateResponse('vaccination.html', {
+    "request": request,
+    "output": ansi_escape.sub('', f.getvalue())}) 
+    
 
 async def state_details(request):
   return JSONResponse(states_all.get(request.path_params["state_code"],{}))
 
 app = Starlette(debug=True, routes=[
   Route('/', homepage, methods=["GET", "POST"]),
+  Route('/vaccination', vaccination_route, methods=["GET", "POST"]),
   Route('/state_details/{state_code}', state_details)
 ])
 

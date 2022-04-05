@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <title>Vaccination Data - Covid19Bharat.org</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {box-sizing: border-box; font-family: monospace;}
+    body {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+    }
+    section {
+      display: inline-block;
+      width: 100%;
+      max-width: 720px;
+      padding: 16px;
+      text-align: left;
+    }
+    label {
+      display: block;
+      margin: 3rem 0;
+    }
+    textarea {
+      width: 100%;
+      height: 65vh;
+      overflow-x: scroll;
+    }
+  </style>
+  
+</head>
+<body>
+  {% if output %}
+  <section>
+    <h2>Results</h2>
+    <textarea wrap="off">{{output}}</textarea>
+  </section>
+  <br>
+  {% endif %}
+  <section>
+    {% if output %}
+    <h2>Run Again</h2>
+    {% else %}
+    <h2>Get Vaccination Data</h2>
+    {% endif %}
+    <form method="post" action="/vaccination">
+      <label>
+        <span>Source</span>
+        <br>
+        <small>cowin or mohfw</small>
+        <br>
+        <select name="source" required>
+          <option value="cowin_state">cowin_state</option>
+          <option value="cowin_district">cowin_district</option>
+          <option value="mohfw_state">mohfw_state</option>         
+        </select>
+      </label>
+      <label>
+        <span>State Codes</span>
+        <br>
+        <small>comma separated state codes to extract for. Defaults to all</small>
+        <br>
+        <input type="text" name="state_codes">
+      </label>
+      <label>
+        <span>From Date</span>
+        <br>
+        <input type="date" name="from_date">
+      </label>
+      <label>
+        <span>To Date</span>
+        <br>
+        <input type="date" name="to_date">
+      </label>  
+      <button>Run</button>
+    </form>    
+  </section> 
+</body>  
+</html>
