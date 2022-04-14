@@ -25,7 +25,7 @@ customiseMetaConfig() {
 
 replacementLine="s/@@statename@@/\$stateCode/g;s/@@yInterval@@/\$yInterval/g;s/@@xInterval@@/\$xInterval/g;s/@@houghTransform@@/\$houghTransform/g;s/@@enableTranslation@@/\$enableTranslation/g;s/@@startingText@@/\$startingText/g;s/@@configMinLineLength@@/\$configMinLineLength/g;"
 
-replacementLine=$( customiseMetaConfig $stateCode $replacementLine "hp:houghTransform=False,yInterval=5" )
+replacementLine=$( customiseMetaConfig $stateCode $replacementLine "hp:houghTransform=False" ) #,yInterval=5" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "br:houghTransform=False" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mp:houghTransform=False" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ap:configMinLineLength=300" )
@@ -35,6 +35,8 @@ replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mz:houghTran
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ml:configMinLineLength=250" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ut:houghTransform=False" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "nl:configMinLineLength=250" )
+#replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mh:houghTransform=True,yInterval=15" )
+replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mh:houghTransform=False,yInterval=15" )
 
 configMinLineLength=400
 startingText=`echo $2`
