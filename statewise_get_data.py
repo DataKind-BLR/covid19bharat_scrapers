@@ -1017,7 +1017,51 @@ def mh_get_data(opt):
 
 def ml_get_data(opt):
 
-  if opt['type'] == 'image':
+  if opt['type'] == 'pdf':
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
+
+    needs_correction = False
+    to_correct = []
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+
+    try:
+      with open(csv_file, "r") as upFile:
+        for line in upFile:
+          linesArray = line.split(',')
+
+          if len(linesArray) != 4:
+            needs_correction = True
+            linesArray.insert(0, '--> Issue with')
+            to_correct.append(linesArray)
+            continue
+
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[1]) - (int(linesArray[2]) + int(linesArray[3]))
+          districtDictionary['deceased'] = int(linesArray[2])
+          districts_data.append(districtDictionary)
+    except Exception as e:
+      return {
+        'needs_correction': True,
+        'to_correct': e,
+        'output': csv_file
+      }
+
+    upFile.close()
+    if needs_correction:
+      return {
+        'needs_correction': True,
+        'to_correct': to_correct,
+        'output': csv_file
+      }
+    return districts_data
+
+  elif opt['type'] == 'image':
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
