@@ -98,6 +98,8 @@ async def homepage(request):
 async def vaccination_route(request):
   output = ""
   f = io.StringIO()
+  is_mohfw = False
+  
   with redirect_stdout(f):
     try:          
       if request.method=="POST":
@@ -107,9 +109,15 @@ async def vaccination_route(request):
           'cowin_district': vaccination.get_cowin_district,
           'mohfw_state': vaccination.get_mohfw_state
         } 
-        
         vacc_src = form.get("source").lower()
+        is_mohfw = vacc_src=="mohfw_state"
          
+        if os.path.exists("_outputs/vaccination_state_level.txt"):
+          os.remove("_outputs/vaccination_state_level.txt")
+        
+        if os.path.exists("_outputs/vaccination_district_level.csv"):
+          os.remove("_outputs/vaccination_district_level.csv")
+          
         state_codes = None
         if form.get("state_codes"):
           state_codes = list(map(lambda sc: sc.lower().strip(), form.get("state_codes").split(','))) 
@@ -124,19 +132,21 @@ async def vaccination_route(request):
         
         if vacc_src=="cowin_state":
           with open("_outputs/vaccination_state_level.txt") as ff:
-            print(ff.read())
+            output += ff.read() + "\n"
             ff.close()
         if vacc_src=="cowin_district":
           with open("_outputs/vaccination_district_level.csv") as ff:
-            print(ff.read())
+            output += ff.read() + "\n"
             ff.close()    
     except Exception as e:
-      print(traceback.format_exc())
+      output += traceback.format_exc() + "\n"
   
+  if is_mohfw:
+    output = f.getvalue() + "\n" + output
   ansi_escape = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')    
   return templates.TemplateResponse('vaccination.html', {
     "request": request,
-    "output": ansi_escape.sub('', f.getvalue())}) 
+    "output": ansi_escape.sub('', output)}) 
     
 
 async def state_details(request):
