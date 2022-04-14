@@ -188,6 +188,10 @@ def ct_format_line(row):
   line = row[1] + "," + row[3] + "," + row[8] + "," + row[11] + "\n"
   return line
 
+def ml_format_line(row):
+  line = row[0] + "," + row[4] + "," + row[5] + "," + row[6] + "\n"
+  return line
+
 def wb_format_line(row):
   row[2] = re.sub(',', '', re.sub('\+.*', '', row[2]))
   row[3] = re.sub(',', '', re.sub('\+.*', '', row[3]))
@@ -213,7 +217,7 @@ def tn_format_line(row):
     return ''
 
 def vaccination_mohfw_format_line(row):
-  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) + "\n"
+  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) +  "," + ''.join(row[10].split(',')) + "\n"
   return line
 
 

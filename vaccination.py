@@ -55,37 +55,10 @@ def get_mohfw_state(from_date, to_date, state_codes):
     :param: `from_date` <datetime> - The date to start extracting data from
     :param: `to_date` <datetime> - The date to until when you want extract data (inclusive)
     '''
-    '''
-    #autofind the pdf link from  MOHFW
-    from bs4 import BeautifulSoup
-    import requests
-
-    HEADERS = ({'User-Agent':
-                'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 \
-                (KHTML, like Gecko) Chrome/44.0.2403.157 Safari/537.36',\
-                'Accept-Language': 'en-US, en;q=0.5'})
-
-    url = 'https://www.mohfw.gov.in'
-    response = requests.request('GET', url, headers=HEADERS)
-    #soup = BeautifulSoup(response.content, 'html.parser')
-    #print(soup)
-    soup = BeautifulSoup(response.content, "lxml")
-    search_key = 'cummulative'
-    links = []
-
-    for link in soup.findAll('a'):
-        links.append(link.get('href'))
-    for url in links:
-      if search_key in url.lower():
-        mohfw_vac_link = url
-        #print(mohfw_vac_link)  
-
-    base_url = mohfw_vac_link
-    '''
 
     base_url = 'https://www.mohfw.gov.in/pdf/CummulativeCovidVaccinationReport{}.pdf'
     if from_date == datetime.date.today():
-        from_date = from_date - datetime.timedelta(days=1)
+        #from_date = from_date - datetime.timedelta(days=1)
         day_count = datetime.timedelta(days=1)
     else:
         day_count = (to_date - from_date) + datetime.timedelta(days=1)
@@ -98,7 +71,9 @@ def get_mohfw_state(from_date, to_date, state_codes):
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         date_mohfw_str = curr_date.strftime("%d%B%Y")
-        date_sheet_str = curr_date.strftime("%d/%m/%Y")
+        sheet_date = curr_date + datetime.timedelta(days=-1)
+        date_sheet_str = sheet_date.strftime("%d/%m/%Y")
+        #date_sheet_str = curr_date.strftime("%d/%m/%Y")
         #url = base_url.format(date_mohfw_str.lower())
         #MOHFW changed month capitalise
         url = base_url.format(date_mohfw_str)
@@ -126,7 +101,7 @@ def get_mohfw_state(from_date, to_date, state_codes):
         with open(VACC_OUTPUT_MOHFW, "r") as output_csv:
             for line in output_csv:
                 lines_arr = line.split(',')
-                if len(lines_arr) != 7:
+                if len(lines_arr) != 10:
                     print("--> Issue with {}".format(lines_arr))
                     continue
 
@@ -136,21 +111,21 @@ def get_mohfw_state(from_date, to_date, state_codes):
 
                 #we need to combine Dadra and Daman
                 if "Dadra" in line or "Daman" in line:
-                  dadra_firstDose += int(lines_arr[1]) + int(lines_arr[3])
-                  dadra_secondDose += int(lines_arr[2]) + int(lines_arr[4])
-                  dadra_PrecautDose += int(lines_arr[5])
-                  dadra_totalDose += int(lines_arr[6].strip('\n'))
+                  dadra_firstDose += int(lines_arr[1]) + int(lines_arr[3]) + int(lines_arr[5])
+                  dadra_secondDose += int(lines_arr[2]) + int(lines_arr[4]) + int(lines_arr[6])
+                  dadra_PrecautDose += int(lines_arr[7]) + int(lines_arr[8])
+                  dadra_totalDose += int(lines_arr[9].strip('\n'))
                   continue
 
                 if lines_arr[0].strip() in name_mapping.keys():
                     data['state_name'] = name_mapping[lines_arr[0].strip()]
-                data['firstDose'] = int(lines_arr[1]) + int(lines_arr[3])
+                data['firstDose'] = int(lines_arr[1]) + int(lines_arr[3]) + int(lines_arr[5])
                 total_fd += data['firstDose']
-                data['secondDose'] = int(lines_arr[2]) + int(lines_arr[4])
+                data['secondDose'] = int(lines_arr[2]) + int(lines_arr[4]) + int(lines_arr[6])
                 total_sd += data['secondDose']
-                data['PrecautDose'] = int(lines_arr[5])
+                data['PrecautDose'] = int(lines_arr[7]) + int(lines_arr[8])
                 total_pd += data['PrecautDose']
-                data['totalDose'] = int(lines_arr[6].strip('\n'))
+                data['totalDose'] = int(lines_arr[9].strip('\n'))
                 total_td += data['totalDose']
 
                 # print on console for copy-paste purpose
@@ -181,11 +156,16 @@ def get_cowin_state(from_date, to_date, state_codes):
     if state_codes == None:
         state_codes = states_all
     base_url = 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id={s_id}&district_id={d_id}&date={d}'
+
     day_count = (to_date - from_date) + datetime.timedelta(days=1)
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         curr_date_str = curr_date.strftime('%d/%m/%Y')
-        if curr_date > datetime.datetime.today():
+
+        today = datetime.datetime.today()
+        today = today.replace(hour=0, minute=0, second=0, microsecond=0)
+        if curr_date >= today:
+            print('Extract Cowin data only upto previous day')
             break
 
         print('Fetching for {}'.format(curr_date_str))
@@ -256,8 +236,13 @@ def get_cowin_district(from_date, to_date, state_codes):
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
         curr_date_str = curr_date.strftime('%d/%m/%Y')
-        if curr_date > datetime.datetime.today():
+
+        today = datetime.datetime.today()
+        today = today.replace(hour=0, minute=0, second=0, microsecond=0)
+        if curr_date >= today:
+            print('Extract Cowin data only upto previous day')
             break
+
         print('Fetching for {}'.format(curr_date_str))
 
         district_rows = []
@@ -286,13 +271,14 @@ def get_cowin_district(from_date, to_date, state_codes):
                         'd': curr_date.strftime("%Y-%m-%d")
                     }
                     district_url = base_url.format(**params)
+
                     try:
                         resp = requests.request('GET', district_url)
                         district_data = resp.json()
                     except:
                         print('SKIPPED --->', resp, district_url)
                         continue
-
+                    district['title'] = district['title'].replace(',','')
                     print('printing for ', states_all[state_code].get('name'), '--->', district['title'])
                     with open(VACC_STA, 'a') as file:
                         datum = {
@@ -361,7 +347,7 @@ if __name__ == '__main__':
     to_date = args.to_date
 
     if to_date is None or to_date <= from_date:
-        to_date = from_date + datetime.timedelta(1)
+        to_date = from_date #+ datetime.timedelta(1)
 
     if vacc_src not in fn_map.keys():
         parser.print_help()

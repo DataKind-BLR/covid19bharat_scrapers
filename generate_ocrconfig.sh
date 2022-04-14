@@ -35,7 +35,8 @@ replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mz:houghTran
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ml:configMinLineLength=250" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ut:houghTransform=False" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "nl:configMinLineLength=250" )
-replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mh:houghTransform=True,yInterval=15" )
+#replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mh:houghTransform=True,yInterval=15" )
+replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mh:houghTransform=False,yInterval=15" )
 
 configMinLineLength=400
 startingText=`echo $2`

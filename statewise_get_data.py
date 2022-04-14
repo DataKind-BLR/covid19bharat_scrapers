@@ -92,6 +92,7 @@ def ap_get_data(opt):
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
+    nColRef = 6
     linesArray = []
     districtDictionary = {}
     districts_data = []
@@ -104,8 +105,8 @@ def ap_get_data(opt):
         for line in upFile:
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
-          if len(linesArray) != 6:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          if len(linesArray) != nColRef:
+            print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
             print('--------------------------------------------------------------------------------')
             continue
           if linesArray[0].strip() == "Total":
@@ -463,9 +464,9 @@ def hp_get_data(opt):
   print('\n')
   #whats up HP?
   #keep changing columns....
-  #now it is 12 (02-01-2022)
-  nColRef = 12
-
+  # it is 12 (02-01-2022)
+  #nColRef = 12
+  nColRef = 10
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
@@ -490,14 +491,15 @@ def hp_get_data(opt):
         districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
         
         #if columns are 11
-        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
-        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
-        #districtDictionary['migrated'] = int(linesArray[11].strip())        
-        #if columns are 9
-        #districtDictionary['recovered'] = int(linesArray[6].strip())
-        #districtDictionary['deceased'] = int(re.sub('\*', '', linesArray[7].strip()).strip())
+        #districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        #districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
+        ####districtDictionary['migrated'] = int(linesArray[11].strip()) 
 
-        #districtDictionary['migrated'] = int(linesArray[10].strip())
+        #if columns are 10
+        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[6].strip()).strip())
+        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        ####districtDictionary['migrated'] = int(linesArray[10].strip())
+
         districts_data.append(districtDictionary)
 
     pprint('Migrated for HP is not calculated. Always check active and  do manual entry for Migrated')
@@ -948,14 +950,15 @@ def mh_get_data(opt):
   if opt['type'] == 'image':
     if opt['skip_output'] == False:
       run_for_ocr(opt)
-
+    nColRef = 5
     districts_data = []
     print('\n')
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
-        if len(linesArray) != 6:
-          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
           print('--------------------------------------------------------------------------------')
           continue
 
@@ -964,7 +967,7 @@ def mh_get_data(opt):
         districtDictionary['confirmed'] = int(linesArray[1].strip())
         districtDictionary['recovered'] = int(linesArray[2].strip())
         districtDictionary['deceased'] = int(linesArray[3].strip())
-        districtDictionary['migrated'] = int(linesArray[4].strip())
+        #districtDictionary['migrated'] = int(linesArray[4].strip())
         districts_data.append(districtDictionary)
     return districts_data
     
@@ -993,33 +996,61 @@ def ml_get_data(opt):
   print('Fetching ML data')
   pprint(opt)
 
-  if opt['type'] == 'image':
+  if opt['type'] == 'pdf':
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
+
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+    with open(csv_file, "r") as upFile:
+      for line in upFile:
+        linesArray = line.split(',')
+        if len(linesArray) != 4:
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
+          continue
+        districtDictionary = {}
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[1])
+        districtDictionary['recovered'] = int(linesArray[1]) - (int(linesArray[2]) + int(linesArray[3]))
+        districtDictionary['deceased'] = int(linesArray[2])
+        districts_data.append(districtDictionary)
+
+    upFile.close()
+    return districts_data
+
+  elif opt['type'] == 'image':
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
+    nColRef = 8
     districts_data = []
     with open(OUTPUT_TXT, "r") as mlFile:
       for line in mlFile:
         linesArray = line.split('|')[0].split(',')
-        if len(linesArray) != 8:
-          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
           print('--------------------------------------------------------------------------------')
           continue
 
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[5].strip())
-        districtDictionary['recovered'] = int(linesArray[6].strip())
-        districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
+        districtDictionary['confirmed'] = int(linesArray[4].strip())
+        districtDictionary['recovered'] = int(linesArray[4].strip())-(int(linesArray[5].strip())+int(linesArray[6]))
+        districtDictionary['deceased'] = int(linesArray[5].strip())
         districts_data.append(districtDictionary)
     return districts_data
 
   elif opt['type'] == 'html':
+    #print(opt['url'])
     response = requests.request("GET", opt['url'])
     authKey = json.loads(response.text)['key']
 
     url = "https://mbdasankalp.in/api/elasticsearch/aggregation/or/db/merge?access_token=" + authKey
-
     payload = "{\"aggregation\":{\"XAxisHeaders\":[{\"TagId\":\"5dd151b22fc63e490ca55ad6\",\"Header\":false,\"dbId\":\"5f395a260deffa1bd752be4e\"}],\"IsXaxisParallel\":false,\"YAxisHeaders\":[{\"Operator\":\"COUNT_DISTINCT\",\"isHousehold\":true,\"Header\":false,\"dbId\":\"5f395a260deffa1bd752be4e\"}],\"IsYaxisParallel\":true,\"YAxisFormulae\":[{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"9100b461-5d86-47f9-b11c-6d48f90f9cf9\",\"isFormulaAxis\":true,\"formulaId\":\"5f395d6f0deffa1bd752bee8\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]},{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"5b94c49f-7c8e-4bdf-9c8b-e7af4e53e14d\",\"isFormulaAxis\":true,\"formulaId\":\"5f395dba0deffa1bd752bef2\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]},{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"3a36866c-956d-48b2-a47c-1149a0334f29\",\"isFormulaAxis\":true,\"formulaId\":\"5f395dd80deffa1bd752bef5\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]},{\"isHousehold\":false,\"Instance\":\"\",\"axisId\":\"a714425e-e78f-4dd7-833a-636a3bb850ca\",\"isFormulaAxis\":true,\"formulaId\":\"5f395d9a0deffa1bd752beef\",\"dbIds\":[\"5f395a260deffa1bd752be4e\"]}]},\"dbId\":\"5f395a260deffa1bd752be4e\",\"tagFilters\":[],\"sorting\":{\"axis\":{\"id\":\"5f395d6f0deffa1bd752bee8\",\"axisId\":\"9100b461-5d86-47f9-b11c-6d48f90f9cf9\",\"operator\":\"rowcount\"},\"sort\":{\"orderBy\":\"count\",\"order\":\"desc\"},\"size\":9999,\"enabled\":true,\"histogram\":false,\"timeseries\":false},\"customBins\":[],\"tagStatus\":true,\"boxplot\":false,\"requestedDbs\":{\"5f395a260deffa1bd752be4e\":{}}}"
     headers = {
       'Origin': 'https://mbdasankalp.in',
@@ -1032,7 +1063,10 @@ def ml_get_data(opt):
 
     response = requests.request("POST", url, headers=headers, data = payload)
     stateDashboard = json.loads(response.text.encode('utf8'))
+    print(response)
+    #print('dump webscrap\n')
     #pprint(stateDashboard)
+    #print('\n end dump\n')
 
     districts_data = []
     for data in stateDashboard[0]:
@@ -1140,13 +1174,15 @@ def mz_get_data(opt):
   if opt['skip_output'] == False:
     run_for_ocr(opt)
 
+  nColRef = 5
   districts_data = []
   with open(OUTPUT_TXT) as mzFile:
     for line in mzFile:
       line = line.replace('Nil', '0')
       linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 5:
-        print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+
+      if len(linesArray) != nColRef:
+        print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
         print('--------------------------------------------------------------------------------')
         continue
 
@@ -1250,6 +1286,7 @@ def pb_get_data(opt):
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
+    nColRef = 5
     linesArray = []
     districtDictionary = {}
     districts_data = []
@@ -1262,10 +1299,12 @@ def pb_get_data(opt):
         for line in upFile:
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
-          if len(linesArray) != 5:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+
+          if len(linesArray) != nColRef:
+            print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
             print('--------------------------------------------------------------------------------')
             continue
+
           if linesArray[0].strip() == "Total":
             continue
           districtDictionary = {}
@@ -1317,6 +1356,7 @@ def rj_get_data(opt):
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
+    nColRef = 9
     skipValues = False
     edge_case = False
     try:
@@ -1330,8 +1370,8 @@ def rj_get_data(opt):
 
           linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 9:
-            print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          if len(linesArray) != nColRef:
+            print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
             print('--------------------------------------------------------------------------------')
             continue
 
@@ -1427,14 +1467,17 @@ def sk_get_data(opt):
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
+    nColRef = 8
     district_data = []
     with open(OUTPUT_TXT, "r") as mlFile:
       for line in mlFile:
         linesArray = line.split('|')[0].split(',')
-        if len(linesArray) != 8:
-          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+
+        if len(linesArray) != nColRef:
+          print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
           print('--------------------------------------------------------------------------------')
           continue
+
 
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
@@ -1595,6 +1638,7 @@ def tg_get_data(opt):
   print('Fetching TG data')
   pprint(opt)
 
+  nColRef = 2
   district_data = []
   if opt['skip_output'] == False:
     run_for_ocr(opt)
@@ -1605,10 +1649,12 @@ def tg_get_data(opt):
   with open(OUTPUT_TXT, "r") as upFile:
     for line in upFile:
       linesArray = line.split('|')[0].split(',')
-      if len(linesArray) != 2:
-        print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+
+      if len(linesArray) != nColRef:
+        print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
         print('--------------------------------------------------------------------------------')
         continue
+
       if linesArray[0].strip().capitalize() == "Ghmc":
         linesArray[0] = "Hyderabad"
 

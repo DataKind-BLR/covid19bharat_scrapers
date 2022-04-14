@@ -91,8 +91,9 @@ ct:
     # ...MediaBulletin<31><oct><2021>.pdf
     # - http://cghealth.nic.in/cghealth17/Information/content/CORONA/MediaBulletin31oct2021.pdf
   type: image
-  url: _inputs/ct.jpeg
+  url: 
   config:
+    page: 3
     translation: True
     #start_key: auto
     #end_key: auto
@@ -336,8 +337,13 @@ ml:
     - https://twitter.com/ddnewsshillong
     - https://twitter.com/pibshillong
     - https://twitter.com/ShillongTimesIn
-  type: html
+  type: 
   url: https://mbdasankalp.in/auth/local/embed
+  config:
+    page: 1
+    translation: False
+    start_key: East
+    end_key: Total
 
 mn:
   name: Manipur
