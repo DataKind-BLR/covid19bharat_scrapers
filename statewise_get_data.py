@@ -965,7 +965,7 @@ def mh_get_data(opt):
         for line in upFile:
           linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 6:
+          if len(linesArray) != 5:
             needs_correction = True
             linesArray.insert(0, '--> Issue with')
             to_correct.append(linesArray)
@@ -975,9 +975,8 @@ def mh_get_data(opt):
           districtDictionary['districtName'] = linesArray[0].strip()
           districtDictionary['confirmed'] = int(linesArray[1].strip())
           districtDictionary['recovered'] = int(linesArray[2].strip())
-          # districtDictionary['deceased'] = int(linesArray[3].strip()) if len(re.sub('\n', '', linesArray[5])) != 0 else 0
           districtDictionary['deceased'] = int(linesArray[3].strip())
-          districtDictionary['migrated'] = int(linesArray[4].strip())
+          #districtDictionary['migrated'] = int(linesArray[4].strip())
           districts_data.append(districtDictionary)
     except Exception as e:
       return {
