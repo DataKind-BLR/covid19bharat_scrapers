@@ -42,6 +42,8 @@ async def write_file(file_obj):
 async def homepage(request):
   available_state_codes = list(states_all.keys())
   if request.method=="POST":
+    clear_output_file() 
+      
     try:
       form = await request.form()
       
