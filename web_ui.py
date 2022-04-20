@@ -24,6 +24,11 @@ with open(STATES_YAML_FILE) as stream:
   except yaml.YAMLError as e:
     print(f"Error in Opening YAML States - {e}")
 
+def clear_output_file():
+  with open("_outputs/output.txt", "w") as f:
+    f.write("")
+    f.close()
+
 async def write_file(file_obj):
   Path("web_ui_uploads").mkdir(parents=True, exist_ok=True)
   contents = await file_obj.read()
@@ -75,7 +80,9 @@ async def homepage(request):
             f.close()
         except:
           pass    
-        
+      
+      clear_output_file() 
+       
       return templates.TemplateResponse('index.html', {
         "request": request, 
         "output": delta, 
@@ -83,6 +90,7 @@ async def homepage(request):
         "output_correction": output_correction})
     except Exception as e:
       output = traceback.format_exc()
+      clear_output_file()
       return templates.TemplateResponse('index.html', {
         "request": request, 
         "output": output, 
