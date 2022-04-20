@@ -100,7 +100,7 @@ def get_mohfw_state(from_date, to_date, state_codes):
         with open(VACC_OUTPUT_MOHFW, "r") as output_csv:
             for line in output_csv:
                 lines_arr = line.split(',')
-                if len(lines_arr) != 8:
+                if len(lines_arr) != 10:
                     print("--> Issue with {}".format(lines_arr))
                     continue
 
@@ -111,20 +111,20 @@ def get_mohfw_state(from_date, to_date, state_codes):
                 #we need to combine Dadra and Daman
                 if "Dadra" in line or "Daman" in line:
                   dadra_firstDose += int(lines_arr[1]) + int(lines_arr[3]) + int(lines_arr[5])
-                  dadra_secondDose += int(lines_arr[2]) + int(lines_arr[4])
-                  dadra_PrecautDose += int(lines_arr[6])
-                  dadra_totalDose += int(lines_arr[7].strip('\n'))
+                  dadra_secondDose += int(lines_arr[2]) + int(lines_arr[4]) + int(lines_arr[6])
+                  dadra_PrecautDose += int(lines_arr[7]) + int(lines_arr[8])
+                  dadra_totalDose += int(lines_arr[9].strip('\n'))
                   continue
 
                 if lines_arr[0].strip() in name_mapping.keys():
                     data['state_name'] = name_mapping[lines_arr[0].strip()]
                 data['firstDose'] = int(lines_arr[1]) + int(lines_arr[3]) + int(lines_arr[5])
                 total_fd += data['firstDose']
-                data['secondDose'] = int(lines_arr[2]) + int(lines_arr[4])
+                data['secondDose'] = int(lines_arr[2]) + int(lines_arr[4]) + int(lines_arr[6])
                 total_sd += data['secondDose']
-                data['PrecautDose'] = int(lines_arr[6])
+                data['PrecautDose'] = int(lines_arr[7]) + int(lines_arr[8])
                 total_pd += data['PrecautDose']
-                data['totalDose'] = int(lines_arr[7].strip('\n'))
+                data['totalDose'] = int(lines_arr[9].strip('\n'))
                 total_td += data['totalDose']
 
                 # print on console for copy-paste purpose

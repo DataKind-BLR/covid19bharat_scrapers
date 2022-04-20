@@ -331,8 +331,13 @@ ml:
     - https://twitter.com/ddnewsshillong
     - https://twitter.com/pibshillong
     - https://twitter.com/ShillongTimesIn
-  type: html
+  type: pdf
   url: https://mbdasankalp.in/auth/local/embed
+  config:
+    page: 1
+    translation: False
+    start_key: East
+    end_key: Total
 
 mn:
   name: Manipur
