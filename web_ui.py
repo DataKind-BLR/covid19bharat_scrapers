@@ -25,9 +25,10 @@ with open(STATES_YAML_FILE) as stream:
     print(f"Error in Opening YAML States - {e}")
 
 def clear_output_file():
-  with open("_outputs/output.txt", "w") as f:
-    f.write("")
-    f.close()
+  for path in os.listdir("_outputs"):
+    with open("_outputs/" + path, "w") as f:
+      f.write("")
+      f.close()
 
 async def write_file(file_obj):
   Path("web_ui_uploads").mkdir(parents=True, exist_ok=True)
