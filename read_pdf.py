@@ -204,7 +204,10 @@ def tn_format_line(row):
   return line
 
 def vaccination_mohfw_format_line(row):
-  line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) +  "," + ''.join(row[10].split(',')) + "\n"
+  if 'Miscellaneous' in row[1] and len(row) != 11:
+    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + "0"  "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) + "\n"
+  else:
+    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) +  "," + ''.join(row[10].split(',')) + "\n"
   return line
 
 
