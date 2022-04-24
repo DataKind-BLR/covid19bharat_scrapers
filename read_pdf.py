@@ -147,8 +147,8 @@ def hr_format_line(row):
   return line
 
 def pb_format_line(row):
-  if len(row) == 6:
-    return row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "\n"
+  if len(row) == 9:
+    return row[1] + "," + row[3] + "," + row[5] + "," + row[7] + "," + row[8] + "\n"
   else:
     return ''
 
