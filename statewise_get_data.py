@@ -1275,8 +1275,8 @@ def pb_get_data(opt):
         districtDictionary = {}
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(linesArray[1])
-        districtDictionary['recovered'] = int(linesArray[3])
-        districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+        districtDictionary['recovered'] = int(linesArray[2])
+        districtDictionary['deceased'] = int(linesArray[3])
         districts_data.append(districtDictionary)
 
     upFile.close()
