@@ -142,6 +142,7 @@ def buildCellsV2():
   global configyInterval
   global xWidthTotal
 
+
 def detectLines():
   global columnHandler
   global configMinLineLength
@@ -518,14 +519,53 @@ def parseConfigFile(fileName):
       configMinLineLength = eval(value)
 
 def main(config_file=None, file_name=None):
+  '''
   global startingText
   global endingText
   global enableTranslation
   global houghTransform
   global fileName
+  '''
+
+  global dataDictionary
+  global dataDictionaryArray
+  global translationDictionary
+  global xInterval
+  global xStartThreshold
+  global yStartThreshold
+  global xEndThreshold
+  global yEndThreshold
+  global configxInterval
+  global configyInterval
+  global yInterval
+  global startingText
+  global endingText
+  global enableTranslation
+  global translationFile
+  global fileName
+  global xWidthTotal
+  global configMinLineLength
+
+  dataDictionary = {}
+  dataDictionaryArray = []
+  translationDictionary = {}
+  xInterval = 0
+  xStartThreshold = 0
+  yStartThreshold = 0
+  xEndThreshold = 0
+  yEndThreshold = 0
+  configxInterval = 0
+  configyInterval = 0
+  yInterval = 0
+  startingText = ""
+  endingText = ""
+  enableTranslation = False
+  translationFile = ""
+  fileName = ""
+  xWidthTotal = 0
+  configMinLineLength = 600
 
   fileName = file_name
-
   # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
   houghTransform = False
   if len(sys.argv) > 1:

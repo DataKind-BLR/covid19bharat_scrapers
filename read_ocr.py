@@ -1,5 +1,5 @@
-import io
 import os
+import io
 import ocr_vision
 import googlevision
 
