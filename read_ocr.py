@@ -22,6 +22,7 @@ def run_for_ocr(opt):
         if 'end_key' in opt['config']:
             end_key = opt['config']['end_key']
 
+
     ## step 1 - run something to generate the poly.txt file
     print('Running ocr_vision.py file to generate _outputs/poly.txt')
     f = io.StringIO()
