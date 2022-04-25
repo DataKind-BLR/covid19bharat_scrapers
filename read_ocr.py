@@ -1,7 +1,8 @@
 import io
 import os
-import googlevision
 import ocr_vision
+import googlevision
+
 from contextlib import redirect_stdout
 
 
@@ -23,7 +24,6 @@ def run_for_ocr(opt):
 
     ## step 1 - run something to generate the poly.txt file
     print('Running ocr_vision.py file to generate _outputs/poly.txt')
-
     f = io.StringIO()
     with redirect_stdout(f):
       ocr_vision.run(opt['url'])
@@ -33,7 +33,6 @@ def run_for_ocr(opt):
       f.write(result)
       f.close()
 
-    # os.system('{} ocr_vision.py {} > _outputs/bounds.txt'.format(python_cmd, opt['url']))
 
     ## step 2 - generate ocrconfig.meta file for that state (this overwrites previous file)
     print('Generating ocrconfig.meta file for {}'.format(opt['state_code']))
@@ -43,7 +42,7 @@ def run_for_ocr(opt):
         translation
     ))
 
+
     ## step 3 - run googlevision.py file
     print('running googlevision.py using ocrconfig.meta file for {}'.format(opt['state_code']))
     googlevision.main(config_file='_outputs/ocrconfig.meta', file_name=opt['url'])
-    # os.system('{} googlevision.py _outputs/ocrconfig.meta {}'.format(python_cmd, opt['url']))
