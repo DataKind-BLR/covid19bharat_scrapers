@@ -1,8 +1,9 @@
 from contextlib import redirect_stdout
 import io
+import importlib
 import os
 
-import googlevision
+#import googlevision
 import ocr_vision
 
 python_cmd = 'python'
@@ -43,6 +44,7 @@ def run_for_ocr(opt):
     ))
     
     ## step 3 - run googlevision.py file
+    googlevision = importlib.import_module("googlevision")
     print('running googlevision.py using ocrconfig.meta file for {}'.format(opt['state_code']))
     googlevision.main(config_file="_outputs/ocrconfig.meta", file_name=opt["url"])
     #os.system('{} googlevision.py _outputs/ocrconfig.meta {}'.format(python_cmd, opt['url']))
