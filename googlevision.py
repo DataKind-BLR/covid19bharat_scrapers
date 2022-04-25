@@ -523,14 +523,16 @@ def main(config_file=None, file_name=None):
   global enableTranslation
   global houghTransform
   global fileName
-# If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
+  
+  fileName = file_name
+  # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
   houghTransform = False
   if len(sys.argv) > 1:
     parseConfigFile(config_file or sys.argv[1])
-    fileName = sys.argv[2]
+    # fileName = sys.argv[2]
   else:
     parseConfigFile(config_file)
-    fileName = file_name 
+    # fileName = file_name 
     
   buildTranslationDictionary()
 
