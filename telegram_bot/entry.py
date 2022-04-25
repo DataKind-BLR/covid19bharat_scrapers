@@ -8,18 +8,10 @@ import scrapers
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-DOWNLD_DIR = os.path.join('/', 'tmp')
-# DOWNLD_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '_inputs')
-STATES_YAML = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', 'states.yaml')
+DOWNLD_DIR = os.path.join('/', 'tmp')  # needs to be separate from `_inputs` to run on github server
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '_outputs', 'output.txt')
 logger = logging.getLogger("Bot_Entry")
-
-
-with open(STATES_YAML, 'r') as stream:
-  try:
-    states_all = yaml.safe_load(stream)
-  except yaml.YAMLError as e:
-    print(f"Error in Opening YAML States - {e}")
+states_all = scrapers.states_all
 
 
 def build_menu(buttons, n_cols, header_buttons=None, footer_buttons=None):
