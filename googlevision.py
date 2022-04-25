@@ -519,14 +519,11 @@ def parseConfigFile(fileName):
       configMinLineLength = eval(value)
 
 def main(config_file=None, file_name=None):
-  '''
   global startingText
   global endingText
   global enableTranslation
   global houghTransform
   global fileName
-  '''
-
   global dataDictionary
   global dataDictionaryArray
   global translationDictionary
