@@ -3,12 +3,12 @@ import os
 import re
 import yaml
 import uvicorn
-import argparse
+# import argparse
 import scrapers
 import traceback
 import vaccination
 
-from pathlib import Path
+# from pathlib import Path
 from starlette.routing import Route
 from datetime import datetime, date
 from contextlib import redirect_stdout
@@ -19,6 +19,7 @@ from starlette.templating import Jinja2Templates
 
 templates = Jinja2Templates(directory='templates')
 states_all = scrapers.states_all
+INPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_inputs')
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
@@ -35,12 +36,13 @@ def clear_output_file():
 
 async def write_file(file_obj):
     '''
-    Saves an uploaded file into a given directory
+    Saves an uploaded file into `_inputs` directory
     '''
-    Path('web_ui_uploads').mkdir(parents=True, exist_ok=True)
+    # Path('web_ui_uploads').mkdir(parents=True, exist_ok=True)
     contents = await file_obj.read()
-    save_file_name = datetime.utcnow().isoformat() + '-' + file_obj.filename
-    save_file_name = os.path.join('web_ui_uploads', save_file_name)
+    # save_file_name = datetime.utcnow().isoformat() + '-' + file_obj.filename
+    save_file_name = 'web_ui' + file_obj.filename
+    save_file_name = os.path.join(INPUTS_DIR, save_file_name)
 
     with open(save_file_name, 'wb') as f:
         f.write(contents)
@@ -54,70 +56,82 @@ async def homepage(request):
     Render the home page AND handle the POST request to provide ouput on the homepage
     '''
     available_state_codes = list(states_all.keys())
+
+    ## If a form has been submitted from the page
     if request.method == 'POST':
-        clear_output_file()
-      
+        # clear_output_file()
+
         try:
             form = await request.form()
             url = None
 
-        if form.get('file'):
-            url = await write_file(form['file'])
-      
-        skip_output = False
-        output_txt = form.get('output_txt')
+            if form.get('file'):
+                url = await write_file(form['file'])
 
-        if output_txt:
-            with open(OUTPUT_TXT, 'w') as f:
-                f.write(output_txt.strip(' ').strip('\n'))
-                f.close()
-            skip_output = True
-          
-        args = argparse.Namespace(
-            state_code = form.get('state_code'),
-            page = form.get('page'),
-            skip_output = skip_output,
-            type = form.get('type'),
-            url = url if form.get('type') in ['pdf','image'] else None,
-            verbose = False,
-            delta_date = date.today()
-        )
-      
-        f = io.StringIO()
-        with redirect_stdout(f):
-            result = scrapers.run(vars(args))
+            skip_output = False
+            output_txt = form.get('output_txt')
 
-        delta = f.getvalue()
-        output_correction = None
-
-        if result and type(result) is dict and result.get('needs_correction'):
-            try:
-                with open('_outputs/output.txt') as f:
-                    output_correction = f.read()
+            if output_txt:
+                with open(OUTPUT_TXT, 'w') as f:
+                    f.write(output_txt.strip(' ').strip('\n'))
                     f.close()
-            except:
-                pass
-      
-        clear_output_file()
-       
-        return templates.TemplateResponse('index.html', {
-            'request': request,
-            'output': delta,
-            'available_state_codes': available_state_codes,
-            'output_correction': output_correction
-        })
+                skip_output = True
 
-    except Exception as e:
-        output = traceback.format_exc()
-        clear_output_file()
+            args = {
+                'state_code': form.get('state_code'),
+                'page': form.get('page', None),
+                'skip_output': skip_output,
+                'type': form.get('type'),
+                'url': url if form.get('type') in ['pdf', 'image'] else None
+                # 'verbose': False,
+                # 'delta_date': date.today()
+            }
+            print('<<<<<<<<<<<<<<<<<', args)
+            result = scrapers.run(args)
 
-        return templates.TemplateResponse('index.html', {
-            'request': request,
-            'output': output,
-            'available_state_codes': available_state_codes,
-            'output_correction': None
-        })
+            print('--'*20)
+            print(result)
+            print('--'*20)
 
+            # f = io.StringIO()
+            # with redirect_stdout(f):
+            #     result = scrapers.run(args)
+
+            # delta = f.getvalue()
+            output_correction = None
+
+            # if result and type(result) is dict and result.get('needs_correction'):
+            if 'needs_correction' in result and result['needs_correction'] == True:
+                try:
+                    with open(OUTPUT_TXT) as f:
+                        output_correction = f.read()
+                        f.close()
+                except:
+                    pass
+
+            # clear_output_file()
+
+            return templates.TemplateResponse('index.html', {
+                'request': request,
+                # 'output': delta,
+                'output': result,
+                'available_state_codes': available_state_codes,
+                'output_correction': output_correction
+            })
+
+        ## If scraper doesn't run as expected, show error on home page
+        except Exception as e:
+            output = traceback.format_exc()
+            # clear_output_file()
+
+            return templates.TemplateResponse('index.html', {
+                'request': request,
+                'output': output,
+                'available_state_codes': available_state_codes,
+                'output_correction': None
+            })
+
+    ## Default render the home page with following data
     return templates.TemplateResponse('index.html', {
         'request': request,
         'output': '',
