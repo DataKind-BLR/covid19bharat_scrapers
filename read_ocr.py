@@ -1,4 +1,3 @@
-import os
 import io
 import ocr_vision
 import googlevision
@@ -6,45 +5,27 @@ import googlevision
 from contextlib import redirect_stdout
 
 
-python_cmd = 'python'
-if os.path.exists('use_venv_for_cmd'):
-    python_cmd = 'venv/bin/python3'
-
 def run_for_ocr(opt):
-    translation = False
-    start_key = 'auto'
-    end_key = 'auto'
-
-    if 'config' in opt:
-        translation = False if not opt['config']['translation'] else opt['config']['translation']
-        if 'start_key' in opt['config']:
-            start_key = opt['config']['start_key']
-        if 'end_key' in opt['config']:
-            end_key = opt['config']['end_key']
-
+    '''
+    Runs ocr_vision to generate `poly.txt` and provided the output file, generate
+    '''
 
     ## step 1 - run something to generate the poly.txt file
-    print('Running ocr_vision.py file to generate _outputs/poly.txt')
+    print('Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
     f = io.StringIO()
     with redirect_stdout(f):
       ocr_vision.run(opt['url'])
     result = f.getvalue()
 
-    with open('_outputs/bounds.txt', 'w') as f:
-      f.write(result)
-      f.close()
-
-
-    ## step 2 - generate ocrconfig.meta file for that state (this overwrites previous file)
-    print('Generating ocrconfig.meta file for {}'.format(opt['state_code']))
-    os.system('bash generate_ocrconfig.sh {} {} {}'.format(
-        opt['state_code'].lower(),
-        '{},{}'.format(start_key, end_key),
-        translation
-    ))
-
+    # step 2 - copy `poly.txt` into `bounds.txt` TODO: Can be eliminated
+    print(result)
+    import pdb
+    pdb.set_trace()
+    with open('_outputs/bounds.txt', 'w') as bounds:
+      bounds.write(result)
+      bounds.close()
 
     ## step 3 - run googlevision.py file
-    print('running googlevision.py using ocrconfig.meta file for {}'.format(opt['state_code']))
-    # googlevision.main(config_file='_outputs/ocrconfig.meta', file_name=opt['url'])
-    googlevision.main(opt, config_file='_outputs/ocrconfig.meta')
+    print('running googlevision.py using _outputs/bounds.txt file for {}'.format(opt['state_code']))
+    googlevision.main(opt)
+

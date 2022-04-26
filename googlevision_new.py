@@ -131,16 +131,16 @@ class LinePoints:
     self.x = x
     self.y = y
 
-def buildCellsV2():
-  global xInterval
-  global yInterval
-  global startingText
-  global endingText
-  global yStartThreshold
-  global xStartThreshold
-  global configxInterval
-  global configyInterval
-  global xWidthTotal
+# def buildCellsV2():
+#   global xInterval
+#   global yInterval
+#   global startingText
+#   global endingText
+#   global yStartThreshold
+#   global xStartThreshold
+#   global configxInterval
+#   global configyInterval
+#   global xWidthTotal
 
 def detectLines():
   global columnHandler
@@ -159,27 +159,45 @@ def detectLines():
   columnHandler.prepareRow()
   columnHandler.printColumnsAndCoordinates()
 
-def buildCells():
-  global xInterval
-  global yInterval
-  global startingText
-  global endingText
-  global xStartThreshold
-  global yStartThreshold
-  global xEndThreshold
-  global yEndThreshold
-  global configxInterval
-  global configyInterval
-  global xWidthTotal
+def buildCells(
+  xy_interval,
+  start_end_keys,
+  translation_dict,
+  xStartThreshold=0,
+  yStartThreshold=0,
+  xEndThreshold=0,
+  yEndThreshold=0,
+  configxInterval=0,
+  configyInterval=0,
+  xWidthTotal=0
+):
+  # global xInterval
+  # global yInterval
+  # global startingText
+  # global endingText
+  # global xStartThreshold
+  # global yStartThreshold
+  # global xEndThreshold
+  # global yEndThreshold
+  # global configxInterval
+  # global configyInterval
+  # global xWidthTotal
 
+  xInterval = xy_interval['x']
+  yInterval = xy_interval['y']
+  startingText = start_end_keys['start_key']
+  endingText = start_end_keys['end_key']
+  translationDictionary = translation_dict
   startingMatchFound = False
   endingMatchFound = False
-
   autoEndingText = endingText
   autoStartingText = startingText
+  testingNumbersFile = open(BOUNDS_TXT, 'r')
 
+  import pdb
+  pdb.set_trace()
 
-  testingNumbersFile = open(BOUNDS_TXT, "r")
+  # 1. Read through the `bounds.txt` file
   for index, line in enumerate(testingNumbersFile):
     lineArray = line.split('|')
     if len(lineArray) != 6:
@@ -203,7 +221,7 @@ def buildCells():
     if len(lowerLeft) != 2 or len(lowerRight) !=2 or len(upperRight) != 2 or len(upperLeft) != 2:
       continue
 
-#Get the mid point of the bound where the text matches
+    #Get the mid point of the bound where the text matches
     xMean = (int(lowerLeft[0]) + int(lowerRight[0]))/2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1]))/2
 
@@ -256,15 +274,17 @@ def buildCells():
         xEndThreshold = xMean
         yEndThreshold = yMean
 
-#Use these intervals as a possible error in mid point calculation
+    #Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
     dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
+
   xWidthTotal = xWidthTotal/len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
   testingNumbersFile.close()
+
 
 def buildReducedArray():
   global endingText
@@ -341,32 +361,45 @@ def assignRowsAndColumns():
           restOfTheCells.col = currentCell.col
 
 
-def buildTranslationDictionary():
-  global startingText
-  global endingText
+def get_translation_dict(se_keys, translation_meta):
+  '''
+  Given the starting & ending text and a translation meta file, return a dictionary
+  containing translation words
 
-  originalStartingText = startingText
-  originalEndingText = endingText
+  :param: `se_keys` <dict> - a dictionary containing the start & ending text to read from image
+    Exmaple
+    ```
+    {
+      'start_key': 'auto',
+      'end_key': 'auto'
+    }
+    ```
+  :param: `translation_meta` <os.path> - the path to the `.meta` file containing the translation terms
 
-  meta_file = os.path.join(STATES_META, translationFile)
+  :returns: <dict> - a translation_dict using the translation meta file
+  '''
+  startingText = se_keys['start_key']
+  endingText = se_keys['end_key']
 
   try:
-    with open(meta_file, "r") as metaFile:
+    with open(translation_meta, 'r') as metaFile:
       for line in metaFile:
         if line.startswith('#'):
           continue
         lineArray = line.strip().split(',')
         if len(startingText) != 0:
-          if originalStartingText.strip() == lineArray[1].strip():
-            startingText = startingText + "," + lineArray[0].strip()
+          if startingText.strip() == lineArray[1].strip():
+            startingText = startingText + ',' + lineArray[0].strip()
 
         if len(endingText) != 0:
-          if originalEndingText.strip() == lineArray[1].strip():
-            endingText = endingText + "," + lineArray[0].strip()
+          if endingText.strip() == lineArray[1].strip():
+            endingText = endingText + ',' + lineArray[0].strip()
 
         translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
   except:
     pass
+
+  return translationDictionary
 
 
 def printOutput():
@@ -479,65 +512,156 @@ def fuzzyLookup(translationDictionary,districtName):
   return district
 
 
-def parseConfigFile(fileName):
-  global startingText
-  global endingText
-  global enableTranslation
-  global translationFile
-  global configyInterval
-  global configxInterval
-  global houghTransform
-  global configMinLineLength
+# def parseConfigFile(config_file, image_file, startingText, endingText, enableTranslation, houghTransform):
+#   # global startingText
+#   # global endingText
+#   # global enableTranslation
+#   global translationFile
+#   global configyInterval
+#   global configxInterval
+#   # global houghTransform
+#   global configMinLineLength
 
-  configFile = open(fileName, "r")
-  for index, line in enumerate(configFile):
-    lineArray = line.split(':')
-    if len(lineArray) < 2:
-      continue
+#   configFile = open(config_file, "r")
+#   for index, line in enumerate(configFile):
+#     lineArray = line.split(':')
+#     if len(lineArray) < 2:
+#       continue
 
-    key = lineArray[0].strip()
-    value = lineArray[1].strip()
+#     key = lineArray[0].strip()
+#     value = lineArray[1].strip()
 
-    if key == "startingText":
-      if ',' in value:
-        startingText = value.split(',')[0]
-        endingText = value.split(',')[1]
-      else:
-        startingText = value
-    if key == "enableTranslation":
-      enableTranslation = eval(value)
-    if key == "translationFile":
-      translationFile = value
-    if key == "xInterval":
-      configxInterval = int(value)
-    if key == "yInterval":
-      configyInterval = int(value)
-    if key == "houghTransform":
-      houghTransform = eval(value)
-    if key == "configMinLineLength":
-      configMinLineLength = eval(value)
+#     if key == "startingText":
+#       if ',' in value:
+#         startingText = value.split(',')[0]
+#         endingText = value.split(',')[1]
+#       else:
+#         startingText = value
+#     if key == "enableTranslation":
+#       enableTranslation = eval(value)
+#       print('>>>>>>>>>',enableTranslation)
+#     if key == "translationFile":
+#       translationFile = value
+#     if key == "xInterval":
+#       configxInterval = int(value)
+#     if key == "yInterval":
+#       configyInterval = int(value)
+#     if key == "houghTransform":
+#       houghTransform = eval(value)
+#     if key == "configMinLineLength":
+#       configMinLineLength = eval(value)
 
-def main(config_file=None, file_name=None):
+
+def get_start_end_keys(opt):
+  '''
+  Given a state code, get start and end text to read from image
+
+  returns <dict> - the starting and ending text
+  '''
+  to_return = { 'start_key': 'auto', 'end_key': 'auto' }
+  if 'config' in opt:
+    to_return.update({ 'start_key': opt['config']['start_key'] if 'start_key' in opt['config'] else 'auto' })
+    to_return.update({ 'end_key': opt['config']['end_key'] if 'end_key' in opt['config'] else 'auto' })
+  return to_return
+
+
+def get_translation_file(opt):
+  '''
+  Given a state code, get the path to the translation file
+  '''
+  state_code = opt['state_code'].lower()
+  return os.path.join(STATES_META, f'{state_code}_districts.meta')
+
+
+def get_hough_transform(opt):
+  '''
+  Given a state code, get hough transform configurations
+
+  returns <bool> - Defaults to True
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'hp': False,
+    'br': False,
+    'mp': False,
+    'mz': False,
+    'ut': False,
+    'mh': False
+  }
+  return exceptions[state_code] if state_code in exceptions.keys() else True
+
+
+def get_min_line_length(opt):
+  '''
+  Given a state code, return the min line length for tabular lines in images
+
+  returns <int> - the min line length, defaults to `400`
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'ap': 300,
+    'tn': 500,
+    'ml': 250,
+    'nl': 250
+  }
+  return exceptions[state_code] if state_code in exceptions.keys() else 400
+
+
+def get_xy_interval(opt):
+  '''
+  Given a state code, return the x and y intervals
+
+  returns <dict> - containing x & y interval numbers
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'mh': { 'x': 0, 'y': 15 }
+  }
+  return exceptions[state_code.lower()] if state_code in exceptions.keys() else { 'x': 0, 'y': 0 }
+
+
+
+def main(opt):
+  '''
+  opt is the dict object from yaml
+  config_file refers to the `ocrconfig.meta` file
+  '''
+
   global startingText
   global endingText
   global enableTranslation
   global houghTransform
   global fileName
 
-  fileName = file_name
+  fileName = opt['url']    ## need to remove global var assignment from everywhere
+
   # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
   houghTransform = False
-  if len(sys.argv) > 1:
-    parseConfigFile(config_file or sys.argv[1])
-    # fileName = sys.argv[2]
-  else:
-    parseConfigFile(config_file)
-    # fileName = file_name
 
-  buildTranslationDictionary()
+  # if len(sys.argv) > 1:
+  #   parseConfigFile(config_file or sys.argv[1])
+  #   # fileName = sys.argv[2]
+  # else:
+  #   parseConfigFile(config_file)
+  #   # fileName = file_name
 
-  buildCells()
-  buildCellsV2()
+  # parsed_config = parseConfigFile(config_file, opt['url'], startingText, endingText, enableTranslation, houghTransform)
+
+  # generate config options
+  start_end_keys    = get_start_end_keys(opt)
+  translation_file  = get_translation_file(opt)
+  xy_interval       = get_xy_interval(opt)
+  hough_transform   = get_hough_transform(opt)
+
+  # 1. get translation dict if translation is True
+  translation_dict = get_translation_dict(start_end_keys, translation_file)
+
+  # 2. generate the poly.txt
+  # xInterval, yInterval, startingText, endingText, xStartThreshold, yStartThreshold, xEndThreshold, yEndThreshold, configxInterval, configyInterval, xWidthTotal
+  buildCells(xy_interval, start_end_keys, translation_dict)
+
+
+  # buildCellsV2()
   if houghTransform == True:
     print("Using houghTransform to figure out columns. Set houghTransform:False in ocrconfig.meta.orig to disable this")
     detectLines()
