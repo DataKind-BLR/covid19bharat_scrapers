@@ -46,4 +46,5 @@ def run_for_ocr(opt):
 
     ## step 3 - run googlevision.py file
     print('running googlevision.py using ocrconfig.meta file for {}'.format(opt['state_code']))
-    googlevision.main(config_file='_outputs/ocrconfig.meta', file_name=opt['url'])
+    # googlevision.main(config_file='_outputs/ocrconfig.meta', file_name=opt['url'])
+    googlevision.main(opt, config_file='_outputs/ocrconfig.meta')

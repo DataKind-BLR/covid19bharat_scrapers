@@ -142,7 +142,6 @@ def buildCellsV2():
   global configyInterval
   global xWidthTotal
 
-
 def detectLines():
   global columnHandler
   global configMinLineLength
@@ -342,12 +341,18 @@ def assignRowsAndColumns():
           restOfTheCells.col = currentCell.col
 
 
-def buildTranslationDictionary():
+def buildTranslationDictionary(se_keys):
+  '''
+  returns <dict> - a translation_dict
+  '''
   global startingText
   global endingText
 
   originalStartingText = startingText
   originalEndingText = endingText
+
+  startingText = se_keys['start_key']
+  endingText = se_keys['end_key']
 
   meta_file = os.path.join(STATES_META, translationFile)
 
@@ -368,6 +373,11 @@ def buildTranslationDictionary():
         translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
   except:
     pass
+
+  print('-------')
+  print(translationDictionary)
+  import pdb
+  pdb.set_trace()
 
 
 def printOutput():
@@ -480,17 +490,17 @@ def fuzzyLookup(translationDictionary,districtName):
   return district
 
 
-def parseConfigFile(fileName):
-  global startingText
-  global endingText
-  global enableTranslation
+def parseConfigFile(config_file, image_file, startingText, endingText, enableTranslation, houghTransform):
+  # global startingText
+  # global endingText
+  # global enableTranslation
   global translationFile
   global configyInterval
   global configxInterval
-  global houghTransform
+  # global houghTransform
   global configMinLineLength
 
-  configFile = open(fileName, "r")
+  configFile = open(config_file, "r")
   for index, line in enumerate(configFile):
     lineArray = line.split(':')
     if len(lineArray) < 2:
@@ -507,6 +517,7 @@ def parseConfigFile(fileName):
         startingText = value
     if key == "enableTranslation":
       enableTranslation = eval(value)
+      print('>>>>>>>>>',enableTranslation)
     if key == "translationFile":
       translationFile = value
     if key == "xInterval":
@@ -518,61 +529,105 @@ def parseConfigFile(fileName):
     if key == "configMinLineLength":
       configMinLineLength = eval(value)
 
-def main(config_file=None, file_name=None):
+
+def get_start_end_keys(opt):
+  '''
+  Given a state code, get start and end text to read from image
+
+  returns <dict> - the starting and ending text
+  '''
+  to_return = { 'start_key': 'auto', 'end_key': 'auto' }
+  if 'config' in opt:
+    to_return.update({ 'start_key': opt['config']['start_key'] if 'start_key' in opt['config'] else 'auto' })
+    to_return.update({ 'end_key': opt['config']['end_key'] if 'end_key' in opt['config'] else 'auto' })
+  return to_return
+
+
+def get_translation_file(opt):
+  '''
+  Given a state code, get the path to the translation file
+  '''
+  state_code = opt['state_code'].lower()
+  return os.path.join(STATES_META, f'{state_code}_districts.meta')
+
+
+def get_hough_transform(opt):
+  '''
+  Given a state code, get hough transform configurations
+
+  returns <bool> - Defaults to True
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'hp': False,
+    'br': False,
+    'mp': False,
+    'mz': False,
+    'ut': False,
+    'mh': False
+  }
+  return exceptions[state_code] if state_code in exceptions.keys() else True
+
+
+def get_min_line_length(opt):
+  '''
+  Given a state code, return the min line length for tabular lines in images
+
+  returns <int> - the min line length, defaults to `400`
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'ap': 300,
+    'tn': 500,
+    'ml': 250,
+    'nl': 250
+  }
+  return exceptions[state_code] if state_code in exceptions.keys() else 400
+
+
+def get_xy_interval(state_code):
+  '''
+  Given a state code, return the x and y intervals
+
+  returns <dict> - containing x & y interval numbers
+  '''
+  exceptions = {
+    'mh': { 'x': 0, 'y': 15 }
+  }
+  return exceptions[state_code.lower()] if state_code in exceptions.keys() else { 'x': 0, 'y': 0 }
+
+
+
+def main(opt, config_file=None):
+  '''
+  opt is the dict object from yaml
+  config_file refers to the `ocrconfig.meta` file
+  '''
+
   global startingText
   global endingText
   global enableTranslation
   global houghTransform
   global fileName
-  global dataDictionary
-  global dataDictionaryArray
-  global translationDictionary
-  global xInterval
-  global xStartThreshold
-  global yStartThreshold
-  global xEndThreshold
-  global yEndThreshold
-  global configxInterval
-  global configyInterval
-  global yInterval
-  global startingText
-  global endingText
-  global enableTranslation
-  global translationFile
-  global fileName
-  global xWidthTotal
-  global configMinLineLength
 
-  dataDictionary = {}
-  dataDictionaryArray = []
-  translationDictionary = {}
-  xInterval = 0
-  xStartThreshold = 0
-  yStartThreshold = 0
-  xEndThreshold = 0
-  yEndThreshold = 0
-  configxInterval = 0
-  configyInterval = 0
-  yInterval = 0
-  startingText = ""
-  endingText = ""
-  enableTranslation = False
-  translationFile = ""
-  fileName = ""
-  xWidthTotal = 0
-  configMinLineLength = 600
+  fileName = opt['url']    ## need to remove global var assignment from everywhere
 
-  fileName = file_name
   # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
   houghTransform = False
-  if len(sys.argv) > 1:
-    parseConfigFile(config_file or sys.argv[1])
-    # fileName = sys.argv[2]
-  else:
-    parseConfigFile(config_file)
-    # fileName = file_name
-    
-  buildTranslationDictionary()
+
+  # if len(sys.argv) > 1:
+  #   parseConfigFile(config_file or sys.argv[1])
+  #   # fileName = sys.argv[2]
+  # else:
+  #   parseConfigFile(config_file)
+  #   # fileName = file_name
+
+  # parsed_config = parseConfigFile(config_file, opt['url'], startingText, endingText, enableTranslation, houghTransform)
+
+  start_end_keys = get_start_end_keys(opt)
+
+  # startingText, endingText
+  translation_dict = buildTranslationDictionary(start_end_keys)
 
   buildCells()
   buildCellsV2()
@@ -586,6 +641,6 @@ def main(config_file=None, file_name=None):
   assignRowsAndColumns()
 
   printOutput()
-  
+
 if __name__ == '__main__':
   main()
