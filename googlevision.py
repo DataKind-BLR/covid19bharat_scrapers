@@ -370,10 +370,19 @@ def buildTranslationDictionary(startingText, endingText, translationFile):
   return translation_dict
 
 
-def printOutput(translationDictionary):
+def printOutput(translationDictionary, fileName, houghTransform):
   outputFile = open(OUTPUT_TXT, 'w')
   xArray = []
   yArray = []
+
+  '''
+  global variables from other functions
+
+  - columnHandler
+
+  - xStartThreshold: buildCells, buildReduedArray
+  - dataDictionaryArray: buildCells, buildReduedArray
+  '''
 
   image = np.array(Image.open(fileName), dtype=np.uint8)
   fig, ax = plt.subplots(1)
@@ -600,9 +609,10 @@ def run_for_ocr(opt):
     buildReducedArray()
 
   assignRowsAndColumns()
+
   # -------
 
-  printOutput(translation_dict)
+  printOutput(translation_dict, opt['url'], get_hough_transform(opt))
 
 
 if __name__ == '__main__':
