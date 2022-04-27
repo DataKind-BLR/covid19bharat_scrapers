@@ -145,14 +145,22 @@ def detectLines(fileName, configMinLineLength):
 
 
 def buildCells(translationDictionary, startingText, endingText, houghTransform, columnHandler):
-  global xStartThreshold
-  global yStartThreshold
-  global xEndThreshold
-  global yEndThreshold
-  global xWidthTotal
+  # global xStartThreshold
+  # global yStartThreshold
+  # global xEndThreshold
+  # global yEndThreshold
+  # global xWidthTotal
 
   xInterval = 0
   yInterval = 0
+  xStartThreshold = 0
+  yStartThreshold = 0
+  xEndThreshold = 0
+  yEndThreshold = 0
+  xWidthTotal = 0
+  maxWidth = 0
+  maxHeight = 0
+
   startingMatchFound = False
   endingMatchFound = False
   autoEndingText = endingText
@@ -238,69 +246,71 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
         xEndThreshold = xMean
         yEndThreshold = yMean
 
-
-    '''
-    if cell.y < yStartThreshold - 10 or (xLimit is not None and cell.x < xLimit):
-      continue
-
-    if len(endingText) != 0 and (cell.y > yEndThreshold + 10): # or cell.x < xEndThreshold - 30):
-      continue
-
-    tempDictionaryArray.append(cell)
-    maxWidth = cell.w if cell.w > maxWidth else maxWidth
-    maxHeight = cell.h if cell.h > maxHeight else maxHeight
-    '''
-
     #Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
-    dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
 
-  xWidthTotal = xWidthTotal/len(dataDictionaryArray)
+    # do not append if...
+    if yMean < yStartThreshold - 10 or (xLimit is not None and xMean < xLimit):
+      continue
+
+    # do not append if...
+    if len(endingText) != 0 and (yMean > yEndThreshold + 10):
+      continue
+
+    #                                  (value, x,     y,     lbx,          lby,           w,                                            h,                                          col, row, index):
+    dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
+    maxWidth = (float(lowerRight[0]) - float(lowerLeft[0])) if (float(lowerRight[0]) - float(lowerLeft[0])) > maxWidth else maxWidth
+    maxHeight = (float(upperLeft[1]) - float(lowerLeft[1])) if (float(upperLeft[1]) - float(lowerLeft[1])) > maxHeight else maxHeight
+
+  xWidthTotal = xWidthTotal / len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
+  xInterval = maxWidth / 2
+  yInterval = maxHeight / 2
   bounds_file.close()
 
   return {
     'xInterval': xInterval,
-    'yInterval': yInterval
+    'yInterval': yInterval,
+    'dataDictionaryArray': dataDictionaryArray
   }
 
 
 
-def buildReducedArray(houghTransform, startingText, endingText, xInterval, yInterval):
-  # global endingText
-  tempDictionaryArray = []
-  # global xInterval
-  # global yInterval
-  global dataDictionaryArray
-  global columnHandler
-  maxWidth = 0
-  maxHeight = 0
+# def buildReducedArray(houghTransform, startingText, endingText, xInterval, yInterval):
+#   # global endingText
+#   tempDictionaryArray = []
+#   # global xInterval
+#   # global yInterval
+#   global dataDictionaryArray
+#   global columnHandler
+#   maxWidth = 0
+#   maxHeight = 0
 
-  #Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
-  print('Starting text: {} ... Ending text: {}'.format(startingText, endingText))
-  xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
-  for cell in dataDictionaryArray:
-    if cell.y < yStartThreshold - 10 or (xLimit is not None and cell.x < xLimit):
-      continue
+#   #Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
+#   print('Starting text: {} ... Ending text: {}'.format(startingText, endingText))
+#   xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
+#   for cell in dataDictionaryArray:
+#     if cell.y < yStartThreshold - 10 or (xLimit is not None and cell.x < xLimit):
+#       continue
 
-    if len(endingText) != 0 and (cell.y > yEndThreshold + 10): # or cell.x < xEndThreshold - 30):
-      continue
+#     if len(endingText) != 0 and (cell.y > yEndThreshold + 10): # or cell.x < xEndThreshold - 30):
+#       continue
 
-    tempDictionaryArray.append(cell)
-    maxWidth = cell.w if cell.w > maxWidth else maxWidth
-    maxHeight = cell.h if cell.h > maxHeight else maxHeight
+#     tempDictionaryArray.append(cell)
+#     maxWidth = cell.w if cell.w > maxWidth else maxWidth
+#     maxHeight = cell.h if cell.h > maxHeight else maxHeight
 
-  xInterval = maxWidth/2
-  yInterval = maxHeight/2
-  dataDictionaryArray = tempDictionaryArray
+#   xInterval = maxWidth/2
+#   yInterval = maxHeight/2
+#   dataDictionaryArray = tempDictionaryArray
 
-  return {
-    'xInterval': xInterval,
-    'yInterval': yInterval
-  }
+#   return {
+#     'xInterval': xInterval,
+#     'yInterval': yInterval
+#   }
 
 
 def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInterval, yInterval):
@@ -573,7 +583,7 @@ def run_for_ocr(opt):
   min_line_length       = get_min_line_length(opt)
   file_name             = opt['url']
   config_file           = '_outputs/ocrconfig.meta'
-
+  columnHandler         = ColumnHandler()   # default value
 
   ## ✅ dependencies removed
   translation_dict = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
@@ -585,8 +595,8 @@ def run_for_ocr(opt):
 
   r_bc = buildCells(translation_dict, start_end_keys['start_key'], start_end_keys['end_key'], hough_transform, columnHandler)
 
-  if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
-    r_bc = buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'], r_bc['xInterval'], r_bc['yInterval'])
+  # if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
+  #   r_bc = buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'], r_bc['xInterval'], r_bc['yInterval'])
 
   assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'])
 
