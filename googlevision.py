@@ -125,9 +125,8 @@ class LinePoints:
     self.y = y
 
 
-def detectLines(fileName):
+def detectLines(fileName, configMinLineLength):
   global columnHandler
-  global configMinLineLength
   img = cv2.imread(fileName)
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
   edges = cv2.Canny(img, 50, 150)
@@ -558,14 +557,12 @@ def run_for_ocr(opt):
   print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
   ocr_vision.generate(opt['url'])
 
-  global configMinLineLength
-
   # set global variables
   start_end_keys        = get_start_end_keys(opt)
   hough_transform       = get_hough_transform(opt)
   translation_file      = get_translation_file(opt)
   xy_interval           = get_xy_interval(opt)
-  configMinLineLength   = get_min_line_length(opt)
+  min_line_length       = get_min_line_length(opt)
   file_name             = opt['url']
   config_file           = '_outputs/ocrconfig.meta'
 
@@ -579,7 +576,7 @@ def run_for_ocr(opt):
   buildCells(translation_dict, start_end_keys['start_key'], start_end_keys['end_key'])
 
   if hough_transform == True:
-    detectLines(file_name)
+    detectLines(file_name, min_line_length)
 
   if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
     buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'])
