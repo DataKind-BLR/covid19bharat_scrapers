@@ -26,7 +26,6 @@ yStartThreshold = 0
 xEndThreshold = 0
 yEndThreshold = 0
 yInterval = 0
-fileName = ""
 xWidthTotal = 0
 
 def is_number(s):
@@ -126,7 +125,7 @@ class LinePoints:
     self.y = y
 
 
-def detectLines():
+def detectLines(fileName):
   global columnHandler
   global configMinLineLength
   img = cv2.imread(fileName)
@@ -567,8 +566,6 @@ def run_for_ocr(opt):
 
   global startingText
   global endingText
-  global fileName
-  global translationFile
   global configyInterval
   global configxInterval
   global configMinLineLength
@@ -578,9 +575,9 @@ def run_for_ocr(opt):
   startingText          = start_end_keys['start_key']
   endingText            = start_end_keys['end_key']
 
-  # houghTransform        = get_hough_transform(opt)
+  hough_transform       = get_hough_transform(opt)
 
-  translationFile       = get_translation_file(opt)
+  translation_file      = get_translation_file(opt)
 
   xy_interval           = get_xy_interval(opt)
   configxInterval       = xy_interval['x']
@@ -588,30 +585,29 @@ def run_for_ocr(opt):
 
   configMinLineLength   = get_min_line_length(opt)
 
-  fileName              = opt['url']
+  file_name             = opt['url']
   config_file           = '_outputs/ocrconfig.meta'
 
 
   ## ✅ dependencies removed
-  translation_dict = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], get_translation_file(opt))
+  translation_dict = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
 
 
   # ------- All below functions somehow modify the `dataDictionaryArray` to some extent
 
   buildCells(translation_dict, start_end_keys['start_key'], start_end_keys['end_key'])
 
-  if get_hough_transform(opt) == True:
-    print("Using houghTransform to figure out columns. Set houghTransform:False in ocrconfig.meta.orig to disable this")
-    detectLines()
+  if hough_transform == True:
+    detectLines(file_name)
 
   if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
-    buildReducedArray(get_hough_transform(opt))
+    buildReducedArray(hough_transform)
 
-  assignRowsAndColumns(get_hough_transform(opt))
+  assignRowsAndColumns(hough_transform)
 
   # -------
 
-  printOutput(translation_dict, opt['url'], get_hough_transform(opt))
+  printOutput(translation_dict, opt['url'], hough_transform)
 
 
 if __name__ == '__main__':
