@@ -1,31 +1,12 @@
-import io
 import ocr_vision
 import googlevision
 
-from contextlib import redirect_stdout
-
-
 def run_for_ocr(opt):
-    '''
-    Runs ocr_vision to generate `poly.txt` and provided the output file, generate
-    '''
+    ## step 1 - run ocr_vision.py to generate the poly.txt & bounds.txt files
+    print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
+    ocr_vision.generate(opt['url'])
 
-    ## step 1 - run something to generate the poly.txt file
-    print('Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
-    f = io.StringIO()
-    with redirect_stdout(f):
-      ocr_vision.run(opt['url'])
-    result = f.getvalue()
-
-    # step 2 - copy `poly.txt` into `bounds.txt` TODO: Can be eliminated
-    print(result)
-    import pdb
-    pdb.set_trace()
-    with open('_outputs/bounds.txt', 'w') as bounds:
-      bounds.write(result)
-      bounds.close()
-
-    ## step 3 - run googlevision.py file
-    print('running googlevision.py using _outputs/bounds.txt file for {}'.format(opt['state_code']))
+    ## step 2 - run googlevision.py file
+    print('--- Step 2: Running googlevision.py using _outputs/bounds.txt file for {}'.format(opt['state_code']))
     googlevision.main(opt)
 
