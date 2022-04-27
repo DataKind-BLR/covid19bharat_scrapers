@@ -6,7 +6,7 @@ import datetime
 import pandas as pd
 
 from bs4 import BeautifulSoup
-from read_ocr import run_for_ocr
+from googlevision import run_for_ocr
 from read_pdf import read_pdf_from_url
 
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')

@@ -3,13 +3,15 @@ import cv2
 import os
 import sys
 import json
-from PIL import Image
+import ocr_vision
 import numpy as np
-from matplotlib import pyplot as plt
 import matplotlib.patches as patches
+
+from PIL import Image
+from matplotlib import pyplot as plt
 from matplotlib.patches import Circle
 
-# OUTPUT_TXT = "output.txt"
+
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 OUTPUT_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'image.png')
 BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
@@ -42,18 +44,22 @@ def is_number(s):
   except ValueError:
     return False
 
-class cellItem:
-  def __init__(self, value, x, y, lbx, lby, w, h, col, row, index):
-    self.value = value
-    self.x = x
-    self.y = y
-    self.col = col
-    self.row = row
-    self.index = index
-    self.lbx = lbx
-    self.lby = lby
-    self.h = h
-    self.w = w
+
+# -------------------------------
+# Util classes
+
+# class cellItem:
+#   def __init__(self, value, x, y, lbx, lby, w, h, col, row, index):
+#     self.value = value
+#     self.x = x
+#     self.y = y
+#     self.col = col
+#     self.row = row
+#     self.index = index
+#     self.lbx = lbx
+#     self.lby = lby
+#     self.h = h
+#     self.w = w
 
 class ColumnHandler:
   def __init__(self):
@@ -142,23 +148,6 @@ class LinePoints:
 #   global configyInterval
 #   global xWidthTotal
 
-def detectLines():
-  global columnHandler
-  global configMinLineLength
-  img = cv2.imread(fileName)
-  gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-  edges = cv2.Canny(img, 50, 150)
-  lines = cv2.HoughLinesP(edges, 1, np.pi/135, configMinLineLength, maxLineGap=250)
-  columnHandler = ColumnHandler()
-  for line in lines:
-    x1, y1, x2, y2 = line[0]
-    columnHandler.addPoint(x1, y1)
-    columnHandler.addPoint(x2, y2)
-
-  columnHandler.prepareColumn()
-  columnHandler.prepareRow()
-  columnHandler.printColumnsAndCoordinates()
-
 def buildCells(
   xy_interval,
   start_end_keys,
@@ -167,38 +156,28 @@ def buildCells(
   yStartThreshold=0,
   xEndThreshold=0,
   yEndThreshold=0,
-  configxInterval=0,
-  configyInterval=0,
   xWidthTotal=0
 ):
-  # global xInterval
-  # global yInterval
-  # global startingText
-  # global endingText
-  # global xStartThreshold
-  # global yStartThreshold
-  # global xEndThreshold
-  # global yEndThreshold
-  # global configxInterval
-  # global configyInterval
-  # global xWidthTotal
+  '''
+  Given set of config options, return the cell values of each detected text object
+  '''
 
   xInterval = xy_interval['x']
   yInterval = xy_interval['y']
   startingText = start_end_keys['start_key']
   endingText = start_end_keys['end_key']
   translationDictionary = translation_dict
+  # -0-----
   startingMatchFound = False
   endingMatchFound = False
   autoEndingText = endingText
   autoStartingText = startingText
   testingNumbersFile = open(BOUNDS_TXT, 'r')
 
-  import pdb
-  pdb.set_trace()
-
   # 1. Read through the `bounds.txt` file
   for index, line in enumerate(testingNumbersFile):
+
+    ## TODO - here, bounds.txt file should only contain the coordinates in | format, rest is probably not required!
     lineArray = line.split('|')
     if len(lineArray) != 6:
       continue
@@ -225,7 +204,9 @@ def buildCells(
     xMean = (int(lowerLeft[0]) + int(lowerRight[0]))/2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1]))/2
 
-    if startingText == "auto":
+
+    # if start_key not mentioned, look for any word mentioned in the translation dictionary
+    if startingText == 'auto':
       if len(value.title()) > 1 and any(value.title() in district for district in list(translationDictionary.keys())):
         if xStartThreshold == 0:
           xStartThreshold = xMean
@@ -238,8 +219,8 @@ def buildCells(
           yStartThreshold = yMean
           autoStartingText = value
 
-
-    if endingText == "auto":
+    # if end_key not mentioned, look for any word mentioned in the translation dictionary
+    if endingText == 'auto':
       if len(value.title()) > 1 and any(value.title() in district for district in list(translationDictionary.keys())):
         if xEndThreshold == 0:
           xEndThreshold = xMean
@@ -274,91 +255,181 @@ def buildCells(
         xEndThreshold = xMean
         yEndThreshold = yMean
 
-    #Use these intervals as a possible error in mid point calculation
+    # Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
-    dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
 
-  xWidthTotal = xWidthTotal/len(dataDictionaryArray)
+    '''
+    cellItem structure
+    (value, x, y, lbx, lby, w, h, col, row, index)
+      {
+        value: value,
+        x: xMean,
+        y: yMean,
+        lbx: lowerLeft[0],
+        lby: lowerLeft[1],
+        w: (float(lowerRight[0]) - float(lowerLeft[0])),
+        h: (float(upperLeft[1]) - float(lowerLeft[1])),
+        col: 0,
+        row: 0,
+        index: index + 1
+      }
+    '''
+    # dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
+    dataDictionaryArray.append({
+      'value': value,
+      'x': xMean,
+      'y': yMean,
+      'lbx': lowerLeft[0],
+      'lby': lowerLeft[1],
+      'w': (float(lowerRight[0]) - float(lowerLeft[0])),
+      'h': (float(upperLeft[1]) - float(lowerLeft[1])),
+      'col': 0,
+      'row': 0,
+      'index': index + 1
+    })
+
+  xWidthTotal = xWidthTotal / len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
   testingNumbersFile.close()
 
+  return dataDictionaryArray
 
-def buildReducedArray():
-  global endingText
+
+
+# fileName, configMinLineLength
+def detectLines(opt, min_line_length):
+  '''
+  returns columnHandler object
+  '''
+  fileName = opt['url']
+  configMinLineLength = min_line_length
+
+  # global columnHandler
+  # global configMinLineLength
+  img = cv2.imread(fileName)
+  gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+  edges = cv2.Canny(img, 50, 150)
+  lines = cv2.HoughLinesP(edges, 1, np.pi/135, configMinLineLength, maxLineGap=250)
+
+  columnHandler = ColumnHandler()
+  for line in lines:
+    x1, y1, x2, y2 = line[0]
+    columnHandler.addPoint(x1, y1)
+    columnHandler.addPoint(x2, y2)
+
+  columnHandler.prepareColumn()
+  columnHandler.prepareRow()
+  columnHandler.printColumnsAndCoordinates()
+
+  return columnHandler
+
+
+
+# def buildReducedArray(column_handler):
+def buildReducedArray(column_handler, start_end_keys, xy_interval, cells_data_dict):
+  '''
+  removes and ignores text that are outside of the start & end keys provided
+  '''
+
+  # global endingText
+  # global xInterval
+  # global yInterval
+  # global dataDictionaryArray
+  # global columnHandler
+
+  # global vars
+  columnHandler = column_handler
+  startingText = start_end_keys['start_key']
+  endingText = start_end_keys['end_key']
+  xInterval = xy_interval['x']
+  yInterval = xy_interval['y']
+  dataDictionaryArray = cells_data_dict
+
+  # local vars
   tempDictionaryArray = []
-  global xInterval
-  global yInterval
-  global dataDictionaryArray
-  global columnHandler
   maxWidth = 0
   maxHeight = 0
 
-#Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
+  #Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
   print("Starting text: {} ... Ending text: {}".format(startingText, endingText))
   xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
   for cell in dataDictionaryArray:
-    if cell.y < yStartThreshold - 10 or (xLimit is not None and cell.x < xLimit):
+    if cell['y'] < yStartThreshold - 10 or (xLimit is not None and cell['x'] < xLimit):
       continue
 
-    if len(endingText) != 0 and (cell.y > yEndThreshold + 10): # or cell.x < xEndThreshold - 30):
+    if len(endingText) != 0 and (cell['y'] > yEndThreshold + 10): # or cell['x'] < xEndThreshold - 30):
       continue
 
     tempDictionaryArray.append(cell)
-    maxWidth = cell.w if cell.w > maxWidth else maxWidth
-    maxHeight = cell.h if cell.h > maxHeight else maxHeight
+    maxWidth = cell['w'] if cell['w'] > maxWidth else maxWidth
+    maxHeight = cell['h'] if cell['h'] > maxHeight else maxHeight
 
   xInterval = maxWidth/2
   yInterval = maxHeight/2
 
   dataDictionaryArray = tempDictionaryArray
-
-def assignRowsAndColumns():
-  global yInterval
-  global xInterval
-  global configyInterval
-  global configxInterval
+  return dataDictionaryArray
 
 
-  if configxInterval != 0:
-    xInterval = configxInterval
-  if configyInterval != 0:
-    yInterval = configyInterval
+
+# def assignRowsAndColumns(xInterval, yInterval, configxInterval, configyInterval):
+def assignRowsAndColumns(xy_interval, cells_data_dict):
+  '''
+  assign a row and column value to the extracted data dict text
+  '''
+
+  # global yInterval
+  # global xInterval
+  # global configyInterval
+  # global configxInterval
+
+  # if configxInterval != 0:
+  #   xInterval = configxInterval
+  # if configyInterval != 0:
+  #   yInterval = configyInterval
+
+  xInterval = xy_interval['x']
+  yInterval = xy_interval['y']
+  dataDictionaryArray = cells_data_dict
 
   print("Using computed yInterval: {}, xInterval: {}".format(yInterval, xInterval))
   for rowIndex, currentCell in enumerate(dataDictionaryArray):
-
-    if currentCell.row == 0:
-      currentCell.row = rowIndex + 1
+    if currentCell['row'] == 0:
+      currentCell['row'] = rowIndex + 1
     for colIndex, restOfTheCells in enumerate(dataDictionaryArray):
 
-      if currentCell.col == 0:
+      if currentCell['col'] == 0:
         if houghTransform == True:
-          currentCell.col = columnHandler.getColumnNumber(currentCell)
+          currentCell['col'] = columnHandler.getColumnNumber(currentCell)
         else:
-          currentCell.col = rowIndex + 1
+          currentCell['col'] = rowIndex + 1
 
-      if restOfTheCells.index == currentCell.index:
+      if restOfTheCells['index'] == currentCell['index']:
         continue
 
-      yUpperBound = currentCell.y + yInterval
-      yLowerBound = currentCell.y - yInterval
-#If the y coordinate matches, the texts lie on the same row
-      if restOfTheCells.row == 0:
-        if yLowerBound <= restOfTheCells.y <= yUpperBound:
-          restOfTheCells.row = rowIndex + 1
+      yUpperBound = currentCell['y'] + yInterval
+      yLowerBound = currentCell['y'] - yInterval
 
-      xUpperBound = currentCell.x + xInterval
-      xLowerBound = currentCell.x - xInterval
+      # If the y coordinate matches, the texts lie on the same row
+      if restOfTheCells['row'] == 0:
+        if yLowerBound <= restOfTheCells['y'] <= yUpperBound:
+          restOfTheCells['row'] = rowIndex + 1
 
-#If the x coordinate matches, the texts lie on the same column
-      if restOfTheCells.col == 0:
+      xUpperBound = currentCell['x'] + xInterval
+      xLowerBound = currentCell['x'] - xInterval
+
+      # If the x coordinate matches, the texts lie on the same column
+      if restOfTheCells['col'] == 0:
         if houghTransform == True:
-          restOfTheCells.col = columnHandler.getColumnNumber(restOfTheCells)
-        elif xLowerBound <= restOfTheCells.x <= xUpperBound:
-          restOfTheCells.col = currentCell.col
+          restOfTheCells['col'] = columnHandler.getColumnNumber(restOfTheCells)
+        elif xLowerBound <= restOfTheCells['x'] <= xUpperBound:
+          restOfTheCells['col'] = currentCell['col']
+
+  return dataDictionaryArray
+
 
 
 def get_translation_dict(se_keys, translation_meta):
@@ -403,6 +474,15 @@ def get_translation_dict(se_keys, translation_meta):
 
 
 def printOutput():
+  '''
+  - output file
+  - `enableTranslation` or opt['config']['translation']
+  - dataDictionaryArray
+  - fileName or opt['url']
+  - hough_transform
+  - column_handler
+  -
+  '''
   outputFile = open(OUTPUT_TXT, 'w')
   global enableTranslation
   xArray = []
@@ -428,8 +508,8 @@ def printOutput():
     output = ""
     previousCol = -999
     mergedValue = ""
-#<TODO> column verification has to come in here
-#Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
+    #<TODO> column verification has to come in here
+    #Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
     columnList = ""
     for index, value in enumerate(outputString):
       value.value = re.sub("\.", "", re.sub(",", "", value.value))
@@ -461,7 +541,8 @@ def printOutput():
       else:
         outputArray = output.split(',')
         districtIndex = 0
-#If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
+
+        #If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
         if(is_number(outputArray[0])):
           districtName = outputArray[1].strip().capitalize()
           distrinctIndex = 1
@@ -469,7 +550,7 @@ def printOutput():
           districtName = outputArray[0].strip().capitalize()
           distrinctIndex = 0
 
-#Do a lookup for district name, if not found, discard the record and print a message.
+        #Do a lookup for district name, if not found, discard the record and print a message.
         try:
           translatedValue = translationDictionary[districtName]
           outputString = translatedValue
@@ -496,6 +577,8 @@ def printOutput():
   ax.imshow(image)
   plt.savefig(OUTPUT_PNG, dpi=300)
   #plt.show()
+
+
 
 def fuzzyLookup(translationDictionary,districtName):
   '''
@@ -604,7 +687,7 @@ def get_min_line_length(opt):
     'ml': 250,
     'nl': 250
   }
-  return exceptions[state_code] if state_code in exceptions.keys() else 400
+  return exceptions[state_code] if state_code in exceptions.keys() else 600
 
 
 def get_xy_interval(opt):
@@ -620,23 +703,26 @@ def get_xy_interval(opt):
   return exceptions[state_code.lower()] if state_code in exceptions.keys() else { 'x': 0, 'y': 0 }
 
 
-
-def main(opt):
+def run_for_ocr(opt):
   '''
   opt is the dict object from yaml
   config_file refers to the `ocrconfig.meta` file
   '''
+  print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
+  ocr_vision.generate(opt['url'])
 
-  global startingText
-  global endingText
-  global enableTranslation
-  global houghTransform
-  global fileName
+  # ---------
 
-  fileName = opt['url']    ## need to remove global var assignment from everywhere
+  # global startingText
+  # global endingText
+  # global enableTranslation
+  # global houghTransform
+  # global fileName
+
+  # fileName = opt['url']    ## need to remove global var assignment from everywhere
 
   # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
-  houghTransform = False
+  # houghTransform = False
 
   # if len(sys.argv) > 1:
   #   parseConfigFile(config_file or sys.argv[1])
@@ -652,26 +738,43 @@ def main(opt):
   translation_file  = get_translation_file(opt)
   xy_interval       = get_xy_interval(opt)
   hough_transform   = get_hough_transform(opt)
+  min_line_length   = get_min_line_length(opt)
 
-  # 1. get translation dict if translation is True
-  translation_dict = get_translation_dict(start_end_keys, translation_file)
+  # step 1 - get translation dict if translation is True (this is used for detecting)
+  translation_dict  = get_translation_dict(start_end_keys, translation_file)
 
-  # 2. generate the poly.txt
-  # xInterval, yInterval, startingText, endingText, xStartThreshold, yStartThreshold, xEndThreshold, yEndThreshold, configxInterval, configyInterval, xWidthTotal
-  buildCells(xy_interval, start_end_keys, translation_dict)
+  ## -------
 
+  # step 2 - generate the poly.txt
+  # builds x & y coordinates around every detected word
+  cells_data_dict = buildCells(xy_interval, start_end_keys, translation_dict)
 
   # buildCellsV2()
-  if houghTransform == True:
-    print("Using houghTransform to figure out columns. Set houghTransform:False in ocrconfig.meta.orig to disable this")
-    detectLines()
 
-  if len(startingText) != 0 or len(endingText) != 0:
-    buildReducedArray()
+  # step 3 - run detec lines
+  column_handler = ColumnHandler()
+  if hough_transform == True:
+    # puts all texts that are in column together
+    column_handler = detectLines(opt, min_line_length)
 
-  assignRowsAndColumns()
 
+  # step 4 - update cells_data_dict if start_key and end_key are specified
+  ## TODO - this can integrated inside the `buildCells` function
+  if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
+    ## for given start and end keys, ignore the text outside of this bound and return cropped texts that lie within the bounds only
+
+    ## TODO - remove unnecessary cell values from the existing cells_data_dict, instead of overwriting it
+    # cells_data_dict = buildReducedArray(column_handler, start_end_keys, xy_interval, cells_data_dict)
+
+
+  cells_data_dict = assignRowsAndColumns(xy_interval, cells_data_dict)
+
+  # finally write the output into output.txt file
   printOutput()
 
+
+
 if __name__ == '__main__':
-  main()
+  # take state_code as param and run this file independently
+  sample_opt = {'name': 'Chhattisgarh', 'state_code': 'CT', 'cowin_code': 7, 'url_sources': ['https://twitter.com/HealthCgGov', 'http://cghealth.nic.in/cghealth17/'], 'type': 'image', 'url': '_inputs/ct.jpeg', 'config': {'translation': True}, 'skip_output': False, 'verbose': False}
+  run_for_ocr(sample_opt)

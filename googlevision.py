@@ -3,13 +3,15 @@ import cv2
 import os
 import sys
 import json
-from PIL import Image
+import ocr_vision
 import numpy as np
-from matplotlib import pyplot as plt
 import matplotlib.patches as patches
+
+from PIL import Image
+from matplotlib import pyplot as plt
 from matplotlib.patches import Circle
 
-# OUTPUT_TXT = "output.txt"
+
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 OUTPUT_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'image.png')
 BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
@@ -180,6 +182,8 @@ def buildCells():
 
 
   testingNumbersFile = open(BOUNDS_TXT, "r")
+
+
   for index, line in enumerate(testingNumbersFile):
     lineArray = line.split('|')
     if len(lineArray) != 6:
@@ -203,7 +207,7 @@ def buildCells():
     if len(lowerLeft) != 2 or len(lowerRight) !=2 or len(upperRight) != 2 or len(upperLeft) != 2:
       continue
 
-#Get the mid point of the bound where the text matches
+    #Get the mid point of the bound where the text matches
     xMean = (int(lowerLeft[0]) + int(lowerRight[0]))/2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1]))/2
 
@@ -256,11 +260,12 @@ def buildCells():
         xEndThreshold = xMean
         yEndThreshold = yMean
 
-#Use these intervals as a possible error in mid point calculation
+    #Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
     dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
+
   xWidthTotal = xWidthTotal/len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
@@ -276,7 +281,7 @@ def buildReducedArray():
   maxWidth = 0
   maxHeight = 0
 
-#Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
+  #Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
   print("Starting text: {} ... Ending text: {}".format(startingText, endingText))
   xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
   for cell in dataDictionaryArray:
@@ -341,9 +346,9 @@ def assignRowsAndColumns():
           restOfTheCells.col = currentCell.col
 
 
-def buildTranslationDictionary():
-  global startingText
-  global endingText
+def buildTranslationDictionary(startingText, endingText, translationFile):
+  # global startingText
+  # global endingText
 
   originalStartingText = startingText
   originalEndingText = endingText
@@ -367,6 +372,8 @@ def buildTranslationDictionary():
         translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
   except:
     pass
+
+  return translationDictionary
 
 
 def printOutput():
@@ -478,66 +485,123 @@ def fuzzyLookup(translationDictionary,districtName):
   print(f"WARN : {districtName} mapped to {district} using Fuzzy Lookup")
   return district
 
+def get_start_end_keys(opt):
+  '''
+  Given a state code, get start and end text to read from image
 
-def parseConfigFile(fileName):
-  global startingText
-  global endingText
-  global enableTranslation
-  global translationFile
-  global configyInterval
-  global configxInterval
-  global houghTransform
-  global configMinLineLength
+  returns <dict> - the starting and ending text
+  '''
+  to_return = { 'start_key': 'auto', 'end_key': 'auto' }
+  if 'config' in opt:
+    to_return.update({ 'start_key': opt['config']['start_key'] if 'start_key' in opt['config'] else 'auto' })
+    to_return.update({ 'end_key': opt['config']['end_key'] if 'end_key' in opt['config'] else 'auto' })
+  return to_return
 
-  configFile = open(fileName, "r")
-  for index, line in enumerate(configFile):
-    lineArray = line.split(':')
-    if len(lineArray) < 2:
-      continue
 
-    key = lineArray[0].strip()
-    value = lineArray[1].strip()
+def get_translation_file(opt):
+  '''
+  Given a state code, get the path to the translation file
+  '''
+  state_code = opt['state_code'].lower()
+  return os.path.join(STATES_META, f'{state_code}_districts.meta')
 
-    if key == "startingText":
-      if ',' in value:
-        startingText = value.split(',')[0]
-        endingText = value.split(',')[1]
-      else:
-        startingText = value
-    if key == "enableTranslation":
-      enableTranslation = eval(value)
-    if key == "translationFile":
-      translationFile = value
-    if key == "xInterval":
-      configxInterval = int(value)
-    if key == "yInterval":
-      configyInterval = int(value)
-    if key == "houghTransform":
-      houghTransform = eval(value)
-    if key == "configMinLineLength":
-      configMinLineLength = eval(value)
 
-def main(config_file=None, file_name=None):
+def get_hough_transform(opt):
+  '''
+  Given a state code, get hough transform configurations
+
+  returns <bool> - Defaults to True
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'hp': False,
+    'br': False,
+    'mp': False,
+    'mz': False,
+    'ut': False,
+    'mh': False
+  }
+  return exceptions[state_code] if state_code in exceptions.keys() else True
+
+
+def get_min_line_length(opt):
+  '''
+  Given a state code, return the min line length for tabular lines in images
+
+  returns <int> - the min line length, defaults to `400`
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'ap': 300,
+    'tn': 500,
+    'ml': 250,
+    'nl': 250
+  }
+  return exceptions[state_code] if state_code in exceptions.keys() else 600
+
+
+def get_xy_interval(opt):
+  '''
+  Given a state code, return the x and y intervals
+
+  returns <dict> - containing x & y interval numbers
+  '''
+  state_code = opt['state_code'].lower()
+  exceptions = {
+    'mh': { 'x': 0, 'y': 15 }
+  }
+  return exceptions[state_code.lower()] if state_code in exceptions.keys() else { 'x': 0, 'y': 0 }
+
+
+
+def run_for_ocr(opt):
+  '''
+  opt is the dict object from yaml
+  config_file refers to the `ocrconfig.meta` file
+  '''
+  print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
+  ocr_vision.generate(opt['url'])
+
   global startingText
   global endingText
   global enableTranslation
   global houghTransform
   global fileName
+  global translationFile
+  global configyInterval
+  global configxInterval
+  global configMinLineLength
 
-  fileName = file_name
-  # If given, this text will be used to ignore those items above and to the left of this text. This can cause issues if the text is repeated!
-  houghTransform = False
-  if len(sys.argv) > 1:
-    parseConfigFile(config_file or sys.argv[1])
-    # fileName = sys.argv[2]
-  else:
-    parseConfigFile(config_file)
-    # fileName = file_name
+  # set global variables
+  start_end_keys        = get_start_end_keys(opt)
+  startingText          = start_end_keys['start_key']
+  endingText            = start_end_keys['end_key']
 
-  buildTranslationDictionary()
+  houghTransform        = get_hough_transform(opt)
+
+  enableTranslation     = True
+  translationFile       = get_translation_file(opt)
+
+  xy_interval           = get_xy_interval(opt)
+  configxInterval       = xy_interval['x']
+  configyInterval       = xy_interval['y']
+
+  configMinLineLength   = get_min_line_length(opt)
+
+  fileName            = opt['url']
+  config_file         = '_outputs/ocrconfig.meta'
+
+
+  translationDictionary = buildTranslationDictionary(startingText, endingText, translationFile)
+
 
   buildCells()
+
+  # -------
+
   buildCellsV2()
+
+
   if houghTransform == True:
     print("Using houghTransform to figure out columns. Set houghTransform:False in ocrconfig.meta.orig to disable this")
     detectLines()
@@ -550,4 +614,5 @@ def main(config_file=None, file_name=None):
   printOutput()
 
 if __name__ == '__main__':
-  main()
+  sample_opt = {'name': 'Chhattisgarh', 'state_code': 'CT', 'cowin_code': 7, 'url_sources': ['https://twitter.com/HealthCgGov', 'http://cghealth.nic.in/cghealth17/'], 'type': 'image', 'url': '_inputs/ct.jpeg', 'config': {'translation': True}, 'skip_output': False, 'verbose': False}
+  run_for_ocr(sample_opt)

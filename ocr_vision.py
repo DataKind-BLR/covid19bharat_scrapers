@@ -4,6 +4,7 @@ import sys
 
 from google.cloud import vision
 
+
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'visionapi.json'
 POLY_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'poly.txt')
 BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
