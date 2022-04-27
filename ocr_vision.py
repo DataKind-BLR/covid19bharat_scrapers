@@ -44,18 +44,13 @@ def generate(img_file):
     print(annotations, file=poly_file)
   poly_file.close()
 
-  ## step 3 - write annotations again to `bounds.txt` as well
-  with io.open(BOUNDS_TXT, 'w') as bounds_file:
-    print(annotations, file=bounds_file)
-  bounds_file.close()
-
-  ## step 4 - append extracted verticies and description of every line to `bounds.txt`
+  ## step 3 - write the extracted verticies and description of every line to `bounds.txt`
   '''
     for every annotation, get x & y vertices of annotations and print in following format
                         |  top l   |   top r  | bottom r |  bottom l
     -> `<desc> | bounds | <x>, <y> | <x>, <y> | <x>, <y> | <x>, <y>
   '''
-  with io.open(BOUNDS_TXT, 'a') as bounds_file:
+  with io.open(BOUNDS_TXT, 'w') as bounds_file:
     for text in annotations:
       vertices = (['{},{}'.format(vertex.x, vertex.y) for vertex in text.bounding_poly.vertices])
       print('{}'.format(text.description), end ='|', file=bounds_file)
