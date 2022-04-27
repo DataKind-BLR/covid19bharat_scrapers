@@ -372,7 +372,6 @@ def buildTranslationDictionary(startingText, endingText, translationFile):
 
 def printOutput(translationDictionary):
   outputFile = open(OUTPUT_TXT, 'w')
-  global enableTranslation
   xArray = []
   yArray = []
 
@@ -396,8 +395,9 @@ def printOutput(translationDictionary):
     output = ""
     previousCol = -999
     mergedValue = ""
-#<TODO> column verification has to come in here
-#Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
+
+    #<TODO> column verification has to come in here
+    #Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
     columnList = ""
     for index, value in enumerate(outputString):
       value.value = re.sub("\.", "", re.sub(",", "", value.value))
@@ -424,41 +424,38 @@ def printOutput(translationDictionary):
         ax.add_patch(rect)
 
     if len(output) > 0:
-      if enableTranslation == False:
-        print("{} | {}".format(output, columnList), file = outputFile)
+      outputArray = output.split(',')
+      districtIndex = 0
+      #If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
+      if(is_number(outputArray[0])):
+        districtName = outputArray[1].strip().capitalize()
+        distrinctIndex = 1
       else:
-        outputArray = output.split(',')
-        districtIndex = 0
-#If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
-        if(is_number(outputArray[0])):
-          districtName = outputArray[1].strip().capitalize()
-          distrinctIndex = 1
-        else:
-          districtName = outputArray[0].strip().capitalize()
-          distrinctIndex = 0
+        districtName = outputArray[0].strip().capitalize()
+        distrinctIndex = 0
 
-#Do a lookup for district name, if not found, discard the record and print a message.
-        try:
-          translatedValue = translationDictionary[districtName]
-          outputString = translatedValue
-          for index, value in enumerate(outputArray):
-            if index > districtIndex: #and is_number(value):
-              outputString += "," + value.strip()
-        except KeyError:
-          try:
-            fuzzyDistrict = fuzzyLookup(translationDictionary,districtName)
-            translatedValue = translationDictionary[fuzzyDistrict]
-          except:
-            print('-------------------------------------------------------------')
-            print(f"\n====>>Failed to find lookup for {districtName}\n")
-            print('-------------------------------------------------------------')
-            continue
-
+      #Do a lookup for district name, if not found, discard the record and print a message.
+      try:
+        translatedValue = translationDictionary[districtName]
         outputString = translatedValue
         for index, value in enumerate(outputArray):
-          if index > districtIndex:
+          if index > districtIndex: #and is_number(value):
             outputString += "," + value.strip()
-        print("{} | {}".format(outputString, columnList), file = outputFile)
+      except KeyError:
+        try:
+          fuzzyDistrict = fuzzyLookup(translationDictionary,districtName)
+          translatedValue = translationDictionary[fuzzyDistrict]
+        except:
+          print('-------------------------------------------------------------')
+          print(f"\n====>>Failed to find lookup for {districtName}\n")
+          print('-------------------------------------------------------------')
+          continue
+
+      outputString = translatedValue
+      for index, value in enumerate(outputArray):
+        if index > districtIndex:
+          outputString += "," + value.strip()
+      print("{} | {}".format(outputString, columnList), file = outputFile)
 
   outputFile.close()
   ax.imshow(image)
@@ -561,7 +558,6 @@ def run_for_ocr(opt):
 
   global startingText
   global endingText
-  global enableTranslation
   global houghTransform
   global fileName
   global translationFile
@@ -576,7 +572,6 @@ def run_for_ocr(opt):
 
   houghTransform        = get_hough_transform(opt)
 
-  enableTranslation     = True
   translationFile       = get_translation_file(opt)
 
   xy_interval           = get_xy_interval(opt)
@@ -590,24 +585,25 @@ def run_for_ocr(opt):
 
 
   ## ✅ dependencies removed
-  translationDictionary = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], get_translation_file(opt))
+  translation_dict = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], get_translation_file(opt))
 
 
-  buildCells(translationDictionary, start_end_keys['start_key'], start_end_keys['end_key'])
+  # ------- All below functions somehow modify the `dataDictionaryArray` to some extent
 
-  # -------
+  buildCells(translation_dict, start_end_keys['start_key'], start_end_keys['end_key'])
 
-
-  if houghTransform == True:
+  if get_hough_transform(opt) == True:
     print("Using houghTransform to figure out columns. Set houghTransform:False in ocrconfig.meta.orig to disable this")
     detectLines()
 
-  if len(startingText) != 0 or len(endingText) != 0:
+  if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
     buildReducedArray()
 
   assignRowsAndColumns()
+  # -------
 
-  printOutput(translationDictionary)
+  printOutput(translation_dict)
+
 
 if __name__ == '__main__':
   sample_opt = {'name': 'Chhattisgarh', 'state_code': 'CT', 'cowin_code': 7, 'url_sources': ['https://twitter.com/HealthCgGov', 'http://cghealth.nic.in/cghealth17/'], 'type': 'image', 'url': '_inputs/ct.jpeg', 'config': {'translation': True}, 'skip_output': False, 'verbose': False}
