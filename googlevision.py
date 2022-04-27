@@ -20,7 +20,6 @@ STATES_META = os.path.join(os.path.dirname(__file__), '_meta')
 
 dataDictionary = {}
 dataDictionaryArray = []
-translationDictionary = {}
 xInterval = 0
 xStartThreshold = 0
 yStartThreshold = 0
@@ -161,7 +160,7 @@ def detectLines():
   columnHandler.prepareRow()
   columnHandler.printColumnsAndCoordinates()
 
-def buildCells():
+def buildCells(translationDictionary):
   global xInterval
   global yInterval
   global startingText
@@ -347,36 +346,32 @@ def assignRowsAndColumns():
 
 
 def buildTranslationDictionary(startingText, endingText, translationFile):
-  # global startingText
-  # global endingText
-
-  originalStartingText = startingText
-  originalEndingText = endingText
 
   meta_file = os.path.join(STATES_META, translationFile)
+  translation_dict = {}
 
   try:
-    with open(meta_file, "r") as metaFile:
+    with open(meta_file, 'r') as metaFile:
       for line in metaFile:
         if line.startswith('#'):
           continue
         lineArray = line.strip().split(',')
         if len(startingText) != 0:
-          if originalStartingText.strip() == lineArray[1].strip():
-            startingText = startingText + "," + lineArray[0].strip()
+          if startingText.strip() == lineArray[1].strip():
+            startingText = startingText + ',' + lineArray[0].strip()
 
         if len(endingText) != 0:
-          if originalEndingText.strip() == lineArray[1].strip():
-            endingText = endingText + "," + lineArray[0].strip()
+          if endingText.strip() == lineArray[1].strip():
+            endingText = endingText + ',' + lineArray[0].strip()
 
-        translationDictionary[lineArray[0].strip()] = lineArray[1].strip()
+        translation_dict[lineArray[0].strip()] = lineArray[1].strip()
   except:
     pass
 
-  return translationDictionary
+  return translation_dict
 
 
-def printOutput():
+def printOutput(translationDictionary):
   outputFile = open(OUTPUT_TXT, 'w')
   global enableTranslation
   xArray = []
@@ -595,7 +590,7 @@ def run_for_ocr(opt):
   translationDictionary = buildTranslationDictionary(startingText, endingText, translationFile)
 
 
-  buildCells()
+  buildCells(translationDictionary)
 
   # -------
 
@@ -611,7 +606,7 @@ def run_for_ocr(opt):
 
   assignRowsAndColumns()
 
-  printOutput()
+  printOutput(translationDictionary)
 
 if __name__ == '__main__':
   sample_opt = {'name': 'Chhattisgarh', 'state_code': 'CT', 'cowin_code': 7, 'url_sources': ['https://twitter.com/HealthCgGov', 'http://cghealth.nic.in/cghealth17/'], 'type': 'image', 'url': '_inputs/ct.jpeg', 'config': {'translation': True}, 'skip_output': False, 'verbose': False}
