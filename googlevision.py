@@ -25,16 +25,9 @@ xStartThreshold = 0
 yStartThreshold = 0
 xEndThreshold = 0
 yEndThreshold = 0
-configxInterval = 0
-configyInterval = 0
 yInterval = 0
-startingText = ""
-endingText = ""
-enableTranslation = False
-translationFile = ""
 fileName = ""
 xWidthTotal = 0
-configMinLineLength = 600
 
 def is_number(s):
   try:
@@ -132,16 +125,6 @@ class LinePoints:
     self.x = x
     self.y = y
 
-def buildCellsV2():
-  global xInterval
-  global yInterval
-  global startingText
-  global endingText
-  global yStartThreshold
-  global xStartThreshold
-  global configxInterval
-  global configyInterval
-  global xWidthTotal
 
 def detectLines():
   global columnHandler
@@ -160,11 +143,12 @@ def detectLines():
   columnHandler.prepareRow()
   columnHandler.printColumnsAndCoordinates()
 
-def buildCells(translationDictionary):
+
+def buildCells(translationDictionary, startingText, endingText):
   global xInterval
   global yInterval
-  global startingText
-  global endingText
+  # global startingText
+  # global endingText
   global xStartThreshold
   global yStartThreshold
   global xEndThreshold
@@ -173,13 +157,22 @@ def buildCells(translationDictionary):
   global configyInterval
   global xWidthTotal
 
+  print('xInterval --->', xInterval)
+  print('yInterval --->', yInterval)
+  print('startingText --->', startingText)
+  print('endingText --->', endingText)
+  print('xStartThreshold --->', xStartThreshold)
+  print('yStartThreshold --->', yStartThreshold)
+  print('xEndThreshold --->', xEndThreshold)
+  print('yEndThreshold --->', yEndThreshold)
+  print('configxInterval --->', configxInterval)
+  print('configyInterval --->', configyInterval)
+  print('xWidthTotal --->', xWidthTotal)
+
   startingMatchFound = False
   endingMatchFound = False
-
   autoEndingText = endingText
   autoStartingText = startingText
-
-
   testingNumbersFile = open(BOUNDS_TXT, "r")
 
 
@@ -346,12 +339,18 @@ def assignRowsAndColumns():
 
 
 def buildTranslationDictionary(startingText, endingText, translationFile):
+  '''
+  :param: `startingText` <str> - start_key as mentioned in the states.yaml file
+  :param: `endingText`   <str> - end_key as mentioned in the states.yaml file
+  :param: `translationFile` <os.path> - path to the `<state_code>_districts.meta` file]
 
-  meta_file = os.path.join(STATES_META, translationFile)
+  :returns: <dict> - a dictionary containig the text and it's translated value
+  '''
+
   translation_dict = {}
 
   try:
-    with open(meta_file, 'r') as metaFile:
+    with open(translationFile, 'r') as metaFile:
       for line in metaFile:
         if line.startswith('#'):
           continue
@@ -466,6 +465,7 @@ def printOutput(translationDictionary):
   plt.savefig(OUTPUT_PNG, dpi=300)
   #plt.show()
 
+
 def fuzzyLookup(translationDictionary,districtName):
   '''
   Use fuzzy string match to map incorrect districtnames
@@ -479,6 +479,8 @@ def fuzzyLookup(translationDictionary,districtName):
     score_cutoff = 90)[0]
   print(f"WARN : {districtName} mapped to {district} using Fuzzy Lookup")
   return district
+
+
 
 def get_start_end_keys(opt):
   '''
@@ -583,18 +585,17 @@ def run_for_ocr(opt):
 
   configMinLineLength   = get_min_line_length(opt)
 
-  fileName            = opt['url']
-  config_file         = '_outputs/ocrconfig.meta'
+  fileName              = opt['url']
+  config_file           = '_outputs/ocrconfig.meta'
 
 
-  translationDictionary = buildTranslationDictionary(startingText, endingText, translationFile)
+  ## ✅ dependencies removed
+  translationDictionary = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], get_translation_file(opt))
 
 
-  buildCells(translationDictionary)
+  buildCells(translationDictionary, start_end_keys['start_key'], start_end_keys['end_key'])
 
   # -------
-
-  buildCellsV2()
 
 
   if houghTransform == True:
