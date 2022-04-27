@@ -146,8 +146,6 @@ def detectLines(fileName):
 def buildCells(translationDictionary, startingText, endingText):
   global xInterval
   global yInterval
-  # global startingText
-  # global endingText
   global xStartThreshold
   global yStartThreshold
   global xEndThreshold
@@ -262,8 +260,8 @@ def buildCells(translationDictionary, startingText, endingText):
   endingText = autoEndingText
   testingNumbersFile.close()
 
-def buildReducedArray(houghTransform):
-  global endingText
+def buildReducedArray(houghTransform, startingText, endingText):
+  # global endingText
   tempDictionaryArray = []
   global xInterval
   global yInterval
@@ -564,19 +562,13 @@ def run_for_ocr(opt):
   print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
   ocr_vision.generate(opt['url'])
 
-  global startingText
-  global endingText
   global configyInterval
   global configxInterval
   global configMinLineLength
 
   # set global variables
   start_end_keys        = get_start_end_keys(opt)
-  startingText          = start_end_keys['start_key']
-  endingText            = start_end_keys['end_key']
-
   hough_transform       = get_hough_transform(opt)
-
   translation_file      = get_translation_file(opt)
 
   xy_interval           = get_xy_interval(opt)
@@ -601,7 +593,7 @@ def run_for_ocr(opt):
     detectLines(file_name)
 
   if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
-    buildReducedArray(hough_transform)
+    buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'])
 
   assignRowsAndColumns(hough_transform)
 
