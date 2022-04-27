@@ -150,8 +150,6 @@ def buildCells(translationDictionary, startingText, endingText):
   global yStartThreshold
   global xEndThreshold
   global yEndThreshold
-  global configxInterval
-  global configyInterval
   global xWidthTotal
 
   print('xInterval --->', xInterval)
@@ -162,8 +160,6 @@ def buildCells(translationDictionary, startingText, endingText):
   print('yStartThreshold --->', yStartThreshold)
   print('xEndThreshold --->', xEndThreshold)
   print('yEndThreshold --->', yEndThreshold)
-  print('configxInterval --->', configxInterval)
-  print('configyInterval --->', configyInterval)
   print('xWidthTotal --->', xWidthTotal)
 
   startingMatchFound = False
@@ -260,6 +256,9 @@ def buildCells(translationDictionary, startingText, endingText):
   endingText = autoEndingText
   testingNumbersFile.close()
 
+
+
+
 def buildReducedArray(houghTransform, startingText, endingText):
   # global endingText
   tempDictionaryArray = []
@@ -289,12 +288,9 @@ def buildReducedArray(houghTransform, startingText, endingText):
 
   dataDictionaryArray = tempDictionaryArray
 
-def assignRowsAndColumns(houghTransform):
+def assignRowsAndColumns(houghTransform, configxInterval, configyInterval):
   global yInterval
   global xInterval
-  global configyInterval
-  global configxInterval
-
 
   if configxInterval != 0:
     xInterval = configxInterval
@@ -562,21 +558,14 @@ def run_for_ocr(opt):
   print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
   ocr_vision.generate(opt['url'])
 
-  global configyInterval
-  global configxInterval
   global configMinLineLength
 
   # set global variables
   start_end_keys        = get_start_end_keys(opt)
   hough_transform       = get_hough_transform(opt)
   translation_file      = get_translation_file(opt)
-
   xy_interval           = get_xy_interval(opt)
-  configxInterval       = xy_interval['x']
-  configyInterval       = xy_interval['y']
-
   configMinLineLength   = get_min_line_length(opt)
-
   file_name             = opt['url']
   config_file           = '_outputs/ocrconfig.meta'
 
@@ -595,7 +584,7 @@ def run_for_ocr(opt):
   if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
     buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'])
 
-  assignRowsAndColumns(hough_transform)
+  assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'])
 
   # -------
 
