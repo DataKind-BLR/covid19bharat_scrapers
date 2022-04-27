@@ -263,7 +263,7 @@ def buildCells(translationDictionary, startingText, endingText):
   endingText = autoEndingText
   testingNumbersFile.close()
 
-def buildReducedArray():
+def buildReducedArray(houghTransform):
   global endingText
   tempDictionaryArray = []
   global xInterval
@@ -292,7 +292,7 @@ def buildReducedArray():
 
   dataDictionaryArray = tempDictionaryArray
 
-def assignRowsAndColumns():
+def assignRowsAndColumns(houghTransform):
   global yInterval
   global xInterval
   global configyInterval
@@ -567,7 +567,6 @@ def run_for_ocr(opt):
 
   global startingText
   global endingText
-  global houghTransform
   global fileName
   global translationFile
   global configyInterval
@@ -579,7 +578,7 @@ def run_for_ocr(opt):
   startingText          = start_end_keys['start_key']
   endingText            = start_end_keys['end_key']
 
-  houghTransform        = get_hough_transform(opt)
+  # houghTransform        = get_hough_transform(opt)
 
   translationFile       = get_translation_file(opt)
 
@@ -606,9 +605,9 @@ def run_for_ocr(opt):
     detectLines()
 
   if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
-    buildReducedArray()
+    buildReducedArray(get_hough_transform(opt))
 
-  assignRowsAndColumns()
+  assignRowsAndColumns(get_hough_transform(opt))
 
   # -------
 
