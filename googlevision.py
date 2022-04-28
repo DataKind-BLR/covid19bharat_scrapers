@@ -49,9 +49,10 @@ def generate_annotations(img_file):
   return annotations
 
 
-def generate(img_file):
+def generate(opt, translation_dict):
   '''
-  :param: `img_file` <os.path> - path to the image file
+  :param: `opt`              <dict> - as mentioned in the `states.yaml` file
+  :param: `translation_dict` <dict> - the associated `<state_code>_districts.meta` file
 
   :return: <arr> - containing extracted annotations
       [
@@ -65,39 +66,57 @@ def generate(img_file):
           ...
       ]
   '''
+
   ## step 1 - generate annotations
-  annotations = generate_annotations(img_file)
-
-  ## step 2 - write annotations to `poly.txt`
-  with io.open(POLY_TXT, 'w') as poly_file:
-    print(annotations, file=poly_file)
-  poly_file.close()
-
-  ## step 3 - write the extracted verticies and description of every line to `bounds.txt`
   '''
       for every annotation, get x & y vertices of annotations and print in following format
                           |  top l   |   top r  | bottom r |  bottom l
       -> `<desc> | bounds | <x>, <y> | <x>, <y> | <x>, <y> | <x>, <y>
   '''
+  annotations = generate_annotations(opt['url'])
+
   extracted_arr = []
+  ind = 0
   for text in annotations:
-    # extracted = {}
+    ## DO NOT append to extracted text if text is not present in the `translation_dict` file
+    if text.description.title() not in translation_dict.keys():
+      continue
+
+    ind += 1
     verts = text.bounding_poly.vertices
     extracted_arr.append({
-      'value': text.description,
-      'top_l': [verts[0].x, verts[0].y],   # [x, y] coordinates
-      'top_r': [verts[1].x, verts[1].y],
-      'bot_r': [verts[2].x, verts[2].y],
-      'bot_l': [verts[3].x, verts[3].y]
+      'value':  text.description,
+      'top_l':  [verts[0].x, verts[0].y],   # [x, y] coordinates
+      'top_r':  [verts[1].x, verts[1].y],
+      'bot_r':  [verts[2].x, verts[2].y],
+      'bot_l':  [verts[3].x, verts[3].y],
+      'x_mean': (verts[3].x + verts[2].x) / 2,
+      'y_mean': (verts[3].y + verts[0].y) / 2,
+      'width':  verts[2].x - verts[3].x,
+      'height': verts[3].y - verts[0].y,
+      'index':  ind,
+      'col':    0,
+      'row':    0
     })
 
+
+  print(extracted_arr[len(extracted_arr) - 1])
+  import pdb
+  pdb.set_trace()
+  # TODO -----> if opt['verbose'] == True:
+  ## Write annotations to `poly.txt`
+  with io.open(POLY_TXT, 'w') as poly_file:
+    print(annotations, file=poly_file)
+  poly_file.close()
+
+  ## Write bound coordinates into `bounds.txt` in a readable format
   with io.open(BOUNDS_TXT, 'w') as bounds_file:
     for text in annotations:
       vertices = (['{},{}'.format(vertex.x, vertex.y) for vertex in text.bounding_poly.vertices])
       print('{}'.format(text.description), end ='|', file=bounds_file)
       print('bounds|{}'.format('|'.join(vertices)), file=bounds_file)
-
   bounds_file.close()
+
   return extracted_arr
 
 
@@ -150,12 +169,9 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
 
 
   for ext in extracted_arr:
-    # calculate x_mean and y_mean
-    ext['x_mean'] = (ext['bot_l'][0] + ext['bot_r'][0]) / 2
-    ext['y_mean'] = (ext['bot_l'][1] + ext['top_l'][1]) / 2
-
-    # keep track of the x-limit
+    # keep track of the x-limit for every extracted text
     x_limit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
+
 
 # ------------------------------------------------------------------------------------------------------------------------
 
@@ -184,24 +200,12 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
     upperRight = lineArray[4].split(',')
     upperLeft = lineArray[5].split(',')
 
-    # extracted = {}
-    # extracted = {
-    #   'value':        lineArray[0],
-    #   'upper_left':   list(map(lambda x: int(x), lineArray[4].split(','))),   # [x, y]
-    #   'upper_right':  list(map(lambda x: int(x), lineArray[5].split(','))),   # [x, y]
-    #   'lower_right':  list(map(lambda x: int(x), lineArray[3].split(','))),   # [x, y]
-    #   'lower_left':   list(map(lambda x: int(x), lineArray[2].split(',')))    # [x, y]
-    # }
-
     if len(lowerLeft) != 2 or len(lowerRight) != 2 or len(upperRight) != 2 or len(upperLeft) != 2:
       continue
 
     # Get the mid point of the bound where the text matches
     xMean = (int(lowerLeft[0]) + int(lowerRight[0])) / 2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1])) / 2
-
-    # extracted['x_mean'] = extracted['lower_left'][0] + extracted['lower_right'][0]
-    # extracted['y_mean'] = extracted['lower_left'][1] + extracted['upper_left'][1]
 
     xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
 
@@ -240,6 +244,8 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
         xStartThreshold = xMean
         yStartThreshold = yMean
     else:
+
+      # if current extracted text is the same as startingText, take note of it's x & y mean values
       if value.title() == startingText and startingMatchFound == False:
         startingMatchFound = True
         xStartThreshold = xMean
@@ -255,6 +261,7 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
         endingMatchFound = True
         xEndThreshold = xMean
         yEndThreshold = yMean
+
 
     #Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
@@ -288,6 +295,10 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
     maxWidth = (float(lowerRight[0]) - float(lowerLeft[0])) if (float(lowerRight[0]) - float(lowerLeft[0])) > maxWidth else maxWidth
     maxHeight = (float(upperLeft[1]) - float(lowerLeft[1])) if (float(upperLeft[1]) - float(lowerLeft[1])) > maxHeight else maxHeight
 
+
+  print('<>>>><<<<>>>><<<><<>', startingText, endingText)
+  import pdb
+  pdb.set_trace()
   xWidthTotal = xWidthTotal / len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
@@ -468,7 +479,7 @@ def save_output(translation_dict, img_file, hough_transform, dataDictionaryArray
             outputString += ',' + value.strip()
       except KeyError:
         try:
-          fuzzyDistrict = fuzzyLookup(translation_dict,districtName)
+          fuzzyDistrict = fuzzyLookup(translation_dict, districtName)
           translatedValue = translation_dict[fuzzyDistrict]
         except:
           print('-------------------------------------------------------------')
@@ -578,12 +589,6 @@ def run_for_ocr(opt):
   opt is the dict object from yaml
   config_file refers to the `ocrconfig.meta` file
   '''
-  print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
-  extracted_arr = generate(opt['url'])
-
-  print(extracted_arr)
-  import pdb
-  pdb.set_trace()
 
   # set global variables
   start_end_keys   = get_start_end_keys(opt)
@@ -595,6 +600,9 @@ def run_for_ocr(opt):
   config_file      = '_outputs/ocrconfig.meta'
   columnHandler    = ColumnHandler() # default value
   translation_dict = get_translation_dict(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
+
+  print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
+  extracted_arr = generate(opt, translation_dict)
 
   # step 1 - detect the table lines from the image & store them in `columnHandler` object
   if hough_transform == True:
