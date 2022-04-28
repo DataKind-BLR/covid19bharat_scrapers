@@ -50,49 +50,6 @@ def generate_annotations(img_file):
   return annotations
 
 
-# <<<<<<< HEAD
-# def create_obj(ann, ind):
-#   '''
-#       # [x, y] coordinates for top left of the annotation area
-#       # [x, y] coordinates for top right of the annotation area
-#       # [x, y] coordinates for bottom left of the annotation area
-#       # [x, y] coordinates for bottom right of the annotation area
-#       # x - mid point of the width of the annotation area
-#       # y - mid point of the height of the annotation area
-#       # width of the annotation area
-#       # height of the annotation area
-#       # index starting from 1 through N (total number of annotations)
-#       # column index of the annotation area
-#       # row index of the annotation area
-#   '''
-#   verts = ann.bounding_poly.vertices
-#   return {
-#     'value':    ann.description,
-#     'top_l_x':  verts[0].x,
-#     'top_l_y':  verts[0].y,
-#     'top_r_x':  verts[1].x,
-#     'top_r_y':  verts[1].y,
-#     'bot_r_x':  verts[2].x,
-#     'bot_r_y':  verts[2].y,
-#     'bot_l_x':  verts[3].x,
-#     'bot_l_y':  verts[3].y,
-#     'x_mean':   (verts[3].x + verts[2].x) / 2,  # x - mid point of the width of the annotation area
-#     'y_mean':   (verts[3].y + verts[0].y) / 2,  # y - mid point of the height of the annotation area
-#     'width':    verts[2].x - verts[3].x,        # width of the annotation area
-#     'height':   verts[3].y - verts[0].y,        # height of the annotation area
-#     'index':    ind                             # index starting from 1 through N (total number of annotations)
-#   }
-
-
-# def get_same_row_numbers(d_row, nums_df):
-#   '''
-#   Given a district row, get all numbers on the same row from the numbers dataframe
-#   '''
-#   threshold = 2     # +/- 2
-#   same_row = nums_df[nums_df['y_mean'].between(d_row['y_mean'] - threshold, d_row['y_mean'] + threshold)]
-#   return same_row.sort_values(by='x_mean', ascending=True)['value'].to_list()
-
-
 def generate(opt):
   '''
   :param: `img_file` <os.path> - path to the image file
@@ -115,45 +72,6 @@ def generate(opt):
 
 
   '''
-# <<<<<<< HEAD
-#   annotations = generate_annotations(opt['url'])
-
-#   # create 2 arrays, one for `district texts` and other for `numbers`
-#   districts_arr = []
-#   numbers_arr = []
-
-#   ind = 0
-#   for ann in annotations:
-#     ind += 1
-
-#     ## SKIP if the description text is larger than 50 chars
-#     if len(ann.description) > 50:
-#       continue
-
-#     ## If description text is NOT in translation dictionary, then it must be a number
-#     if ann.description not in translation_dict.keys():
-#       numbers_arr.append(create_obj(ann, ind))        # then append to numbers arr
-#     else:
-#       districts_arr.append(create_obj(ann, ind))      # else append to discticts arr
-
-#   # create 2 dataframes from the arrays
-#   dist_df = pd.DataFrame(districts_arr)
-#   nums_df = pd.DataFrame(numbers_arr)
-
-#   for index, dist_row in dist_df.iterrows():
-#     row_values = get_same_row_numbers(dist_row, nums_df)
-#     row_values.insert(0, dist_row['value'])
-#     print(row_values)
-
-
-#   # TODO -----> if opt['verbose'] == True:
-#   ## Write annotations to `poly.txt`
-#   with io.open(POLY_TXT, 'w') as poly_file:
-#     print(annotations, file=poly_file)
-#   poly_file.close()
-
-#   ## Write bound coordinates into `bounds.txt` in a readable format
-# =======
   extracted_arr = []
   for text in annotations:
     # extracted = {}
@@ -259,24 +177,12 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
     upperRight = lineArray[4].split(',')
     upperLeft = lineArray[5].split(',')
 
-    # extracted = {}
-    # extracted = {
-    #   'value':        lineArray[0],
-    #   'upper_left':   list(map(lambda x: int(x), lineArray[4].split(','))),   # [x, y]
-    #   'upper_right':  list(map(lambda x: int(x), lineArray[5].split(','))),   # [x, y]
-    #   'lower_right':  list(map(lambda x: int(x), lineArray[3].split(','))),   # [x, y]
-    #   'lower_left':   list(map(lambda x: int(x), lineArray[2].split(',')))    # [x, y]
-    # }
-
     if len(lowerLeft) != 2 or len(lowerRight) != 2 or len(upperRight) != 2 or len(upperLeft) != 2:
       continue
 
     # Get the mid point of the bound where the text matches
     xMean = (int(lowerLeft[0]) + int(lowerRight[0])) / 2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1])) / 2
-
-    # extracted['x_mean'] = extracted['lower_left'][0] + extracted['lower_right'][0]
-    # extracted['y_mean'] = extracted['lower_left'][1] + extracted['upper_left'][1]
 
     xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
 
