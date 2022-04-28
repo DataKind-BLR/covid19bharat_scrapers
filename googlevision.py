@@ -5,6 +5,7 @@ import cv2
 import sys
 import json
 import numpy as np
+import pandas as pd
 import matplotlib.patches as patches
 
 from PIL import Image
@@ -49,22 +50,54 @@ def generate_annotations(img_file):
   return annotations
 
 
+def create_obj(ann, ind):
+  '''
+      # [x, y] coordinates for top left of the annotation area
+      # [x, y] coordinates for top right of the annotation area
+      # [x, y] coordinates for bottom left of the annotation area
+      # [x, y] coordinates for bottom right of the annotation area
+      # x - mid point of the width of the annotation area
+      # y - mid point of the height of the annotation area
+      # width of the annotation area
+      # height of the annotation area
+      # index starting from 1 through N (total number of annotations)
+      # column index of the annotation area
+      # row index of the annotation area
+  '''
+  verts = ann.bounding_poly.vertices
+  return {
+    'value':    ann.description,
+    'top_l_x':  verts[0].x,
+    'top_l_y':  verts[0].y,
+    'top_r_x':  verts[1].x,
+    'top_r_y':  verts[1].y,
+    'bot_r_x':  verts[2].x,
+    'bot_r_y':  verts[2].y,
+    'bot_l_x':  verts[3].x,
+    'bot_l_y':  verts[3].y,
+    'x_mean':   (verts[3].x + verts[2].x) / 2,  # x - mid point of the width of the annotation area
+    'y_mean':   (verts[3].y + verts[0].y) / 2,  # y - mid point of the height of the annotation area
+    'width':    verts[2].x - verts[3].x,        # width of the annotation area
+    'height':   verts[3].y - verts[0].y,        # height of the annotation area
+    'index':    ind                             # index starting from 1 through N (total number of annotations)
+  }
+
+
+def get_same_row_numbers(d_row, nums_df):
+  '''
+  Given a district row, get all numbers on the same row from the numbers dataframe
+  '''
+  threshold = 2     # +/- 2
+  same_row = nums_df[nums_df['y_mean'].between(d_row['y_mean'] - threshold, d_row['y_mean'] + threshold)]
+  return same_row.sort_values(by='x_mean', ascending=True)['value'].to_list()
+
+
 def generate(opt, translation_dict):
   '''
   :param: `opt`              <dict> - as mentioned in the `states.yaml` file
   :param: `translation_dict` <dict> - the associated `<state_code>_districts.meta` file
 
   :return: <arr> - containing extracted annotations
-      [
-          {
-              'value': <str> - containing the extracted text,
-              'top_l': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
-              'top_r': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
-              'bot_r': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
-              'bot_l': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
-          },
-          ...
-      ]
   '''
 
   ## step 1 - generate annotations
@@ -72,37 +105,39 @@ def generate(opt, translation_dict):
       for every annotation, get x & y vertices of annotations and print in following format
                           |  top l   |   top r  | bottom r |  bottom l
       -> `<desc> | bounds | <x>, <y> | <x>, <y> | <x>, <y> | <x>, <y>
+
+
   '''
   annotations = generate_annotations(opt['url'])
 
-  extracted_arr = []
+  # create 2 arrays, one for `district texts` and other for `numbers`
+  districts_arr = []
+  numbers_arr = []
+
   ind = 0
-  for text in annotations:
-    ## DO NOT append to extracted text if text is not present in the `translation_dict` file
-    if text.description.title() not in translation_dict.keys():
+  for ann in annotations:
+    ind += 1
+
+    ## SKIP if the description text is larger than 50 chars
+    if len(ann.description) > 50:
       continue
 
-    ind += 1
-    verts = text.bounding_poly.vertices
-    extracted_arr.append({
-      'value':  text.description,
-      'top_l':  [verts[0].x, verts[0].y],   # [x, y] coordinates
-      'top_r':  [verts[1].x, verts[1].y],
-      'bot_r':  [verts[2].x, verts[2].y],
-      'bot_l':  [verts[3].x, verts[3].y],
-      'x_mean': (verts[3].x + verts[2].x) / 2,
-      'y_mean': (verts[3].y + verts[0].y) / 2,
-      'width':  verts[2].x - verts[3].x,
-      'height': verts[3].y - verts[0].y,
-      'index':  ind,
-      'col':    0,
-      'row':    0
-    })
+    ## If description text is NOT in translation dictionary, then it must be a number
+    if ann.description not in translation_dict.keys():
+      numbers_arr.append(create_obj(ann, ind))        # then append to numbers arr
+    else:
+      districts_arr.append(create_obj(ann, ind))      # else append to discticts arr
+
+  # create 2 dataframes from the arrays
+  dist_df = pd.DataFrame(districts_arr)
+  nums_df = pd.DataFrame(numbers_arr)
+
+  for index, dist_row in dist_df.iterrows():
+    row_values = get_same_row_numbers(dist_row, nums_df)
+    row_values.insert(0, dist_row['value'])
+    print(row_values)
 
 
-  print(extracted_arr[len(extracted_arr) - 1])
-  import pdb
-  pdb.set_trace()
   # TODO -----> if opt['verbose'] == True:
   ## Write annotations to `poly.txt`
   with io.open(POLY_TXT, 'w') as poly_file:
@@ -118,7 +153,6 @@ def generate(opt, translation_dict):
   bounds_file.close()
 
   return extracted_arr
-
 
 
 def is_number(s):
@@ -295,10 +329,6 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
     maxWidth = (float(lowerRight[0]) - float(lowerLeft[0])) if (float(lowerRight[0]) - float(lowerLeft[0])) > maxWidth else maxWidth
     maxHeight = (float(upperLeft[1]) - float(lowerLeft[1])) if (float(upperLeft[1]) - float(lowerLeft[1])) > maxHeight else maxHeight
 
-
-  print('<>>>><<<<>>>><<<><<>', startingText, endingText)
-  import pdb
-  pdb.set_trace()
   xWidthTotal = xWidthTotal / len(dataDictionaryArray)
   startingText = autoStartingText
   endingText = autoEndingText
@@ -323,12 +353,16 @@ def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInte
     yInterval = configyInterval
 
   print('Using computed yInterval: {}, xInterval: {}'.format(yInterval, xInterval))
+
+
+  ## again looping through the dataDictionaryArray
   for rowIndex, currentCell in enumerate(dataDictionaryArray):
 
+    # make the row number same as index + 1 (i.e. rows will start from 1 through N)
     if currentCell['row'] == 0:
       currentCell['row'] = rowIndex + 1
-    for colIndex, restOfTheCells in enumerate(dataDictionaryArray):
 
+    for colIndex, restOfTheCells in enumerate(dataDictionaryArray):
       if currentCell['col'] == 0:
         if houghTransform == True:
           currentCell['col'] = columnHandler.getColumnNumber(currentCell)
