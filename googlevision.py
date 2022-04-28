@@ -59,39 +59,39 @@ def generate(opt):
   ## step 1 - generate annotations
   annotations = generate_annotations(opt['url'])
 
-  ## step 2 - write annotations to `poly.txt`
-  with io.open(POLY_TXT, 'w') as poly_file:
-    print(annotations, file=poly_file)
-  poly_file.close()
-
-  ## step 3 - write the extracted verticies and description of every line to `bounds.txt`
+  ## step 2 - get annotations to separate object
   '''
       for every annotation, get x & y vertices of annotations and print in following format
                           |  top l   |   top r  | bottom r |  bottom l
       -> `<desc> | bounds | <x>, <y> | <x>, <y> | <x>, <y> | <x>, <y>
-
-
   '''
   extracted_arr = []
   for text in annotations:
-    # extracted = {}
     verts = text.bounding_poly.vertices
     extracted_arr.append({
       'value': text.description,
-      'top_l': [verts[0].x, verts[0].y],   # [x, y] coordinates
+      'top_l': [verts[0].x, verts[0].y],          # [x, y] coordinates
       'top_r': [verts[1].x, verts[1].y],
       'bot_r': [verts[2].x, verts[2].y],
-      'bot_l': [verts[3].x, verts[3].y]
+      'bot_l': [verts[3].x, verts[3].y],
+      'width': verts[2].y - verts[2].x,
+      'height': verts[2].x - verts[1].x,
+      'x_mean': (verts[2].y - verts[2].x) / 2,    # width / 2
+      'y_mean': (verts[2].x - verts[1].x) / 2     # height / 2
     })
 
-# >>>>>>> parent of 08b5006... WIP (with debugger) - only looping annotations once
+  ## write annotations to `poly.txt` and extracted text to `bounds.txt`
+  with io.open(POLY_TXT, 'w') as poly_file:
+    print(annotations, file=poly_file)
+  poly_file.close()
+
   with io.open(BOUNDS_TXT, 'w') as bounds_file:
     for text in annotations:
       vertices = (['{},{}'.format(vertex.x, vertex.y) for vertex in text.bounding_poly.vertices])
       print('{}'.format(text.description), end ='|', file=bounds_file)
       print('bounds|{}'.format('|'.join(vertices)), file=bounds_file)
-
   bounds_file.close()
+
   return extracted_arr
 
 
@@ -140,15 +140,6 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
   endingMatchFound = False
   autoEndingText = endingText
   autoStartingText = startingText
-
-
-  for ext in extracted_arr:
-    # calculate x_mean and y_mean
-    ext['x_mean'] = (ext['bot_l'][0] + ext['bot_r'][0]) / 2
-    ext['y_mean'] = (ext['bot_l'][1] + ext['top_l'][1]) / 2
-
-    # keep track of the x-limit
-    x_limit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
 
 # ------------------------------------------------------------------------------------------------------------------------
 
