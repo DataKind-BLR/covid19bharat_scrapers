@@ -50,60 +50,57 @@ def generate_annotations(img_file):
   return annotations
 
 
-<<<<<<< HEAD
-def create_obj(ann, ind):
-  '''
-      # [x, y] coordinates for top left of the annotation area
-      # [x, y] coordinates for top right of the annotation area
-      # [x, y] coordinates for bottom left of the annotation area
-      # [x, y] coordinates for bottom right of the annotation area
-      # x - mid point of the width of the annotation area
-      # y - mid point of the height of the annotation area
-      # width of the annotation area
-      # height of the annotation area
-      # index starting from 1 through N (total number of annotations)
-      # column index of the annotation area
-      # row index of the annotation area
-  '''
-  verts = ann.bounding_poly.vertices
-  return {
-    'value':    ann.description,
-    'top_l_x':  verts[0].x,
-    'top_l_y':  verts[0].y,
-    'top_r_x':  verts[1].x,
-    'top_r_y':  verts[1].y,
-    'bot_r_x':  verts[2].x,
-    'bot_r_y':  verts[2].y,
-    'bot_l_x':  verts[3].x,
-    'bot_l_y':  verts[3].y,
-    'x_mean':   (verts[3].x + verts[2].x) / 2,  # x - mid point of the width of the annotation area
-    'y_mean':   (verts[3].y + verts[0].y) / 2,  # y - mid point of the height of the annotation area
-    'width':    verts[2].x - verts[3].x,        # width of the annotation area
-    'height':   verts[3].y - verts[0].y,        # height of the annotation area
-    'index':    ind                             # index starting from 1 through N (total number of annotations)
-  }
+# <<<<<<< HEAD
+# def create_obj(ann, ind):
+#   '''
+#       # [x, y] coordinates for top left of the annotation area
+#       # [x, y] coordinates for top right of the annotation area
+#       # [x, y] coordinates for bottom left of the annotation area
+#       # [x, y] coordinates for bottom right of the annotation area
+#       # x - mid point of the width of the annotation area
+#       # y - mid point of the height of the annotation area
+#       # width of the annotation area
+#       # height of the annotation area
+#       # index starting from 1 through N (total number of annotations)
+#       # column index of the annotation area
+#       # row index of the annotation area
+#   '''
+#   verts = ann.bounding_poly.vertices
+#   return {
+#     'value':    ann.description,
+#     'top_l_x':  verts[0].x,
+#     'top_l_y':  verts[0].y,
+#     'top_r_x':  verts[1].x,
+#     'top_r_y':  verts[1].y,
+#     'bot_r_x':  verts[2].x,
+#     'bot_r_y':  verts[2].y,
+#     'bot_l_x':  verts[3].x,
+#     'bot_l_y':  verts[3].y,
+#     'x_mean':   (verts[3].x + verts[2].x) / 2,  # x - mid point of the width of the annotation area
+#     'y_mean':   (verts[3].y + verts[0].y) / 2,  # y - mid point of the height of the annotation area
+#     'width':    verts[2].x - verts[3].x,        # width of the annotation area
+#     'height':   verts[3].y - verts[0].y,        # height of the annotation area
+#     'index':    ind                             # index starting from 1 through N (total number of annotations)
+#   }
 
 
-def get_same_row_numbers(d_row, nums_df):
-  '''
-  Given a district row, get all numbers on the same row from the numbers dataframe
-  '''
-  threshold = 2     # +/- 2
-  same_row = nums_df[nums_df['y_mean'].between(d_row['y_mean'] - threshold, d_row['y_mean'] + threshold)]
-  return same_row.sort_values(by='x_mean', ascending=True)['value'].to_list()
+# def get_same_row_numbers(d_row, nums_df):
+#   '''
+#   Given a district row, get all numbers on the same row from the numbers dataframe
+#   '''
+#   threshold = 2     # +/- 2
+#   same_row = nums_df[nums_df['y_mean'].between(d_row['y_mean'] - threshold, d_row['y_mean'] + threshold)]
+#   return same_row.sort_values(by='x_mean', ascending=True)['value'].to_list()
 
 
-def generate(opt, translation_dict):
-# =======
-# def generate(img_file):
-# >>>>>>> parent of 08b5006... WIP (with debugger) - only looping annotations once
+def generate(opt):
   '''
   :param: `img_file` <os.path> - path to the image file
 
   :return: <arr> - containing extracted annotations
   '''
   ## step 1 - generate annotations
-  annotations = generate_annotations(img_file)
+  annotations = generate_annotations(opt['url'])
 
   ## step 2 - write annotations to `poly.txt`
   with io.open(POLY_TXT, 'w') as poly_file:
@@ -661,7 +658,7 @@ def run_for_ocr(opt):
   config_file refers to the `ocrconfig.meta` file
   '''
   print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
-  extracted_arr = generate(opt['url'])
+  extracted_arr = generate(opt)
 
   print(extracted_arr)
   import pdb
