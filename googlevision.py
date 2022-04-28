@@ -660,10 +660,6 @@ def run_for_ocr(opt):
   print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
   extracted_arr = generate(opt)
 
-  print(extracted_arr)
-  import pdb
-  pdb.set_trace()
-
   # set global variables
   start_end_keys   = get_start_end_keys(opt)
   hough_transform  = get_hough_transform(opt)
