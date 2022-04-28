@@ -35,18 +35,18 @@ def is_number(s):
   except ValueError:
     return False
 
-class cellItem:
-  def __init__(self, value, x, y, lbx, lby, w, h, col, row, index):
-    self.value = value
-    self.x = x
-    self.y = y
-    self.col = col
-    self.row = row
-    self.index = index
-    self.lbx = lbx
-    self.lby = lby
-    self.h = h
-    self.w = w
+# class cellItem:
+#   def __init__(self, value, x, y, lbx, lby, w, h, col, row, index):
+#     self.value = value
+#     self.x = x
+#     self.y = y
+#     self.col = col
+#     self.row = row
+#     self.index = index
+#     self.lbx = lbx
+#     self.lby = lby
+#     self.h = h
+#     self.w = w
 
 class ColumnHandler:
   def __init__(self):
@@ -94,11 +94,11 @@ class ColumnHandler:
       columnNumber += 1
 
   def printColumnsAndCoordinates(self):
-    print("Column No ... x1,y1 --> x2,y2")
+    print('Column No ... x1,y1 --> x2,y2')
     for column in self.columnList:
-      print("c{} ... {},{} --> {},{}".format(column.number, column.x1, column.y1, column.x2, column.y2))
+      print('c{} ... {},{} --> {},{}'.format(column.number, column.x1, column.y1, column.x2, column.y2))
     for row in self.rowList:
-      print("r{} ... {},{} --> {},{}".format(row.number, row.x1, row.y1, row.x2, row.y2))
+      print('r{} ... {},{} --> {},{}'.format(row.number, row.x1, row.y1, row.x2, row.y2))
 
   def getNearestLineToTheLeft(self, xCoordinate):
     for col in self.columnList:
@@ -108,7 +108,7 @@ class ColumnHandler:
 
   def getColumnNumber(self, cell):
     for col in self.columnList:
-      if cell.x > col.x1 and cell.x < col.x2:
+      if cell['x'] > col.x1 and cell['x'] < col.x2:
         return col.number
 
 class ColumnAndRow:
@@ -251,16 +251,30 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
 
+    # REDUCE the array size - same as `buildReducedArray`
     # do not append if...
     if yMean < yStartThreshold - 10 or (xLimit is not None and xMean < xLimit):
       continue
 
-    # do not append if...
+    # # do not append if...
     if len(endingText) != 0 and (yMean > yEndThreshold + 10):
       continue
 
-    #                                  (value, x,     y,     lbx,          lby,           w,                                            h,                                          col, row, index):
-    dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
+    #                                    (value, x,     y,     lbx,          lby,           w,                                            h,                                          col, row, index):
+    # dataDictionaryArray.append(cellItem(value, xMean, yMean, lowerLeft[0], lowerLeft[1], (float(lowerRight[0]) - float(lowerLeft[0])), (float(upperLeft[1]) - float(lowerLeft[1])), 0, 0, index + 1))
+    dataDictionaryArray.append({
+      'value': value,
+      'x': xMean,
+      'y': yMean,
+      'lbx': lowerLeft[0],
+      'lby': lowerLeft[1],
+      'w': (float(lowerRight[0]) - float(lowerLeft[0])),
+      'h': (float(upperLeft[1]) - float(lowerLeft[1])),
+      'col': 0,
+      'row': 0,
+      'index': index + 1
+    })
+
     maxWidth = (float(lowerRight[0]) - float(lowerLeft[0])) if (float(lowerRight[0]) - float(lowerLeft[0])) > maxWidth else maxWidth
     maxHeight = (float(upperLeft[1]) - float(lowerLeft[1])) if (float(upperLeft[1]) - float(lowerLeft[1])) > maxHeight else maxHeight
 
@@ -322,39 +336,39 @@ def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInte
   if configyInterval != 0:
     yInterval = configyInterval
 
-  print("Using computed yInterval: {}, xInterval: {}".format(yInterval, xInterval))
+  print('Using computed yInterval: {}, xInterval: {}'.format(yInterval, xInterval))
   for rowIndex, currentCell in enumerate(dataDictionaryArray):
 
-    if currentCell.row == 0:
-      currentCell.row = rowIndex + 1
+    if currentCell['row'] == 0:
+      currentCell['row'] = rowIndex + 1
     for colIndex, restOfTheCells in enumerate(dataDictionaryArray):
 
-      if currentCell.col == 0:
+      if currentCell['col'] == 0:
         if houghTransform == True:
-          currentCell.col = columnHandler.getColumnNumber(currentCell)
+          currentCell['col'] = columnHandler.getColumnNumber(currentCell)
         else:
-          currentCell.col = rowIndex + 1
+          currentCell['col'] = rowIndex + 1
 
-      if restOfTheCells.index == currentCell.index:
+      if restOfTheCells['index'] == currentCell['index']:
         continue
 
-      yUpperBound = currentCell.y + yInterval
-      yLowerBound = currentCell.y - yInterval
+      yUpperBound = currentCell['y'] + yInterval
+      yLowerBound = currentCell['y'] - yInterval
 
       #If the y coordinate matches, the texts lie on the same row
-      if restOfTheCells.row == 0:
-        if yLowerBound <= restOfTheCells.y <= yUpperBound:
-          restOfTheCells.row = rowIndex + 1
+      if restOfTheCells['row'] == 0:
+        if yLowerBound <= restOfTheCells['y'] <= yUpperBound:
+          restOfTheCells['row'] = rowIndex + 1
 
-      xUpperBound = currentCell.x + xInterval
-      xLowerBound = currentCell.x - xInterval
+      xUpperBound = currentCell['x'] + xInterval
+      xLowerBound = currentCell['x'] - xInterval
 
       #If the x coordinate matches, the texts lie on the same column
-      if restOfTheCells.col == 0:
+      if restOfTheCells['col'] == 0:
         if houghTransform == True:
-          restOfTheCells.col = columnHandler.getColumnNumber(restOfTheCells)
-        elif xLowerBound <= restOfTheCells.x <= xUpperBound:
-          restOfTheCells.col = currentCell.col
+          restOfTheCells['col'] = columnHandler.getColumnNumber(restOfTheCells)
+        elif xLowerBound <= restOfTheCells['x'] <= xUpperBound:
+          restOfTheCells['col'] = currentCell['col']
 
 
 def buildTranslationDictionary(startingText, endingText, translationFile):
@@ -407,39 +421,39 @@ def printOutput(translationDictionary, fileName, houghTransform):
   for i in range(0, len(dataDictionaryArray)):
     outputString = []
     for cell in dataDictionaryArray:
-      if cell.row == i:
+      if cell['row'] == i:
         outputString.append(cell)
-    outputString.sort(key=lambda x: x.x)
+    outputString.sort(key=lambda x: x['x'])
 
-    output = ""
+    output = ''
     previousCol = -999
-    mergedValue = ""
+    mergedValue = ''
 
-    #<TODO> column verification has to come in here
-    #Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
-    columnList = ""
+    # <TODO> column verification has to come in here
+    # Merge those texts separated by spaces - these have the same column value due to proximity but belong to different objects
+    columnList = ''
     for index, value in enumerate(outputString):
-      value.value = re.sub("\.", "", re.sub(",", "", value.value))
+      value['value'] = re.sub('\.', '', re.sub(',', '', value['value']))
       if index == 0:
-        mergedValue = value.value
-        previousCol = value.col
-        columnList = str(value.col)
-        rect = patches.Rectangle((int(value.lbx), int(value.lby)), value.w, value.h,linewidth=0.75,edgecolor='r', facecolor='none')
+        mergedValue = value['value']
+        previousCol = value['col']
+        columnList = str(value['col'])
+        rect = patches.Rectangle((int(value['lbx']), int(value['lby'])), value['w'], value['h'],linewidth=0.75,edgecolor='r', facecolor='none')
         ax.add_patch(rect)
         continue
 
-      if value.col == previousCol and is_number(value.value) == False:
-        mergedValue = mergedValue + " " + value.value if len(mergedValue) != 0 else value.value
+      if value['col'] == previousCol and is_number(value['value']) == False:
+        mergedValue = mergedValue + ' ' + value['value'] if len(mergedValue) != 0 else value['value']
         if index == len(outputString) - 1:
-          output += mergedValue if len(output) == 0 else " , " + mergedValue
+          output += mergedValue if len(output) == 0 else ' , ' + mergedValue
       else:
         if index == len(outputString) - 1:
-          mergedValue = mergedValue + ", " + value.value if len(mergedValue) != 0 else value.value
-        output += mergedValue if len(output) == 0 else " , " + mergedValue
-        previousCol = value.col
-        mergedValue = value.value #+ " ---- " + str(value.col)
-        columnList = columnList + ", " + str(value.col) if len(columnList) != 0 else str(value.col)
-        rect = patches.Rectangle((int(value.lbx), int(value.lby)), value.w, value.h,linewidth=0.75,edgecolor='r', facecolor='none')
+          mergedValue = mergedValue + ', ' + value['value'] if len(mergedValue) != 0 else value['value']
+        output += mergedValue if len(output) == 0 else ' , ' + mergedValue
+        previousCol = value['col']
+        mergedValue = value['value']
+        columnList = columnList + ', ' + str(value['col']) if len(columnList) != 0 else str(value['col'])
+        rect = patches.Rectangle((int(value['lbx']), int(value['lby'])), value['w'], value['h'],linewidth=0.75,edgecolor='r', facecolor='none')
         ax.add_patch(rect)
 
     if len(output) > 0:
@@ -459,22 +473,22 @@ def printOutput(translationDictionary, fileName, houghTransform):
         outputString = translatedValue
         for index, value in enumerate(outputArray):
           if index > districtIndex: #and is_number(value):
-            outputString += "," + value.strip()
+            outputString += ',' + value.strip()
       except KeyError:
         try:
           fuzzyDistrict = fuzzyLookup(translationDictionary,districtName)
           translatedValue = translationDictionary[fuzzyDistrict]
         except:
           print('-------------------------------------------------------------')
-          print(f"\n====>>Failed to find lookup for {districtName}\n")
+          print(f'\n====>>Failed to find lookup for {districtName}\n')
           print('-------------------------------------------------------------')
           continue
 
       outputString = translatedValue
       for index, value in enumerate(outputArray):
         if index > districtIndex:
-          outputString += "," + value.strip()
-      print("{} | {}".format(outputString, columnList), file = outputFile)
+          outputString += ',' + value.strip()
+      print('{} | {}'.format(outputString, columnList), file = outputFile)
 
   outputFile.close()
   ax.imshow(image)
@@ -493,7 +507,7 @@ def fuzzyLookup(translationDictionary,districtName):
     districtName,
     translationDictionary.keys(),
     score_cutoff = 90)[0]
-  print(f"WARN : {districtName} mapped to {district} using Fuzzy Lookup")
+  print(f'WARN : {districtName} mapped to {district} using Fuzzy Lookup')
   return district
 
 
