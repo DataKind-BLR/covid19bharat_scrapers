@@ -11,6 +11,7 @@ from PIL import Image
 from fuzzywuzzy import process
 from matplotlib import pyplot as plt
 from matplotlib.patches import Circle
+from googlevision_utils import ColumnHandler
 
 
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
@@ -18,16 +19,6 @@ OUTPUT_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs'
 BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
 STATES_META = os.path.join(os.path.dirname(__file__), '_meta')
 
-
-# dataDictionary = {}
-# dataDictionaryArray = []
-# xInterval = 0
-# xStartThreshold = 0
-# yStartThreshold = 0
-# xEndThreshold = 0
-# yEndThreshold = 0
-# yInterval = 0
-# xWidthTotal = 0
 
 def is_number(s):
   try:
@@ -37,100 +28,25 @@ def is_number(s):
     return False
 
 
-class ColumnHandler:
-  def __init__(self):
-    self.columnList = []
-    self.rowList = []
-    self.pointList = []
-
-  def addPoint(self, x, y):
-    self.pointList.append(LinePoints(x, y))
-
-  def prepareRow(self):
-    rowNumber = 1
-    self.pointList.sort(key=lambda y: y.y)
-    for index, col in enumerate(self.pointList):
-      if index % 2 == 1:
-        continue
-      if index == 0:
-        previousX = col.x
-        previousY = col.y
-        continue
-
-      if col.y - previousY < 10:
-        continue
-      self.rowList.append(ColumnAndRow(previousX, previousY, col.x, col.y, rowNumber))
-      previousX = col.x
-      previousY = col.y
-      rowNumber += 1
-
-  def prepareColumn(self):
-    columnNumber = 1
-    self.pointList.sort(key=lambda x: x.x)
-    for index, col in enumerate(self.pointList):
-      if index % 2 == 1:
-        continue
-      if index == 0:
-        previousX = col.x
-        previousY = col.y
-        continue
-
-      if col.x - previousX < 5:
-        continue
-      self.columnList.append(ColumnAndRow(previousX, previousY, col.x, col.y, columnNumber))
-      previousX = col.x
-      previousY = col.y
-      columnNumber += 1
-
-  def printColumnsAndCoordinates(self):
-    print('Column No ... x1,y1 --> x2,y2')
-    for column in self.columnList:
-      print('c{} ... {},{} --> {},{}'.format(column.number, column.x1, column.y1, column.x2, column.y2))
-    for row in self.rowList:
-      print('r{} ... {},{} --> {},{}'.format(row.number, row.x1, row.y1, row.x2, row.y2))
-
-  def getNearestLineToTheLeft(self, xCoordinate):
-    for col in self.columnList:
-      if xCoordinate > int(col.x1) and xCoordinate < int(col.x2):
-        return col.x1
-    return 0
-
-  def getColumnNumber(self, cell):
-    for col in self.columnList:
-      if cell['x'] > col.x1 and cell['x'] < col.x2:
-        return col.number
-
-class ColumnAndRow:
-  def __init__(self, x1, y1, x2, y2, number):
-    self.x1 = x1
-    self.y1 = y1
-    self.x2 = x2
-    self.y2 = y2
-    self.number = number
-
-class LinePoints:
-  def __init__(self, x, y):
-    self.x = x
-    self.y = y
-
-
-def detectLines(fileName, configMinLineLength):
-  global columnHandler
-  img = cv2.imread(fileName)
+def detectLines(img_file, min_line_length, col_handler):
+  '''
+  Given an image file and
+  '''
+  img = cv2.imread(img_file)
   gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
   edges = cv2.Canny(img, 50, 150)
-  lines = cv2.HoughLinesP(edges, 1, np.pi/135, configMinLineLength, maxLineGap=250)
-  columnHandler = ColumnHandler()
+  lines = cv2.HoughLinesP(edges, 1, np.pi/135, min_line_length, maxLineGap=250)
+
   for line in lines:
     x1, y1, x2, y2 = line[0]
-    columnHandler.addPoint(x1, y1)
-    columnHandler.addPoint(x2, y2)
+    col_handler.addPoint(x1, y1)
+    col_handler.addPoint(x2, y2)
 
-  columnHandler.prepareColumn()
-  columnHandler.prepareRow()
-  columnHandler.printColumnsAndCoordinates()
+  col_handler.prepareColumn()
+  col_handler.prepareRow()
+  col_handler.printColumnsAndCoordinates()
 
-  return columnHandler
+  return col_handler
 
 
 def buildCells(translationDictionary, startingText, endingText, houghTransform, columnHandler):
@@ -278,7 +194,7 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
   }
 
 
-def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInterval, yInterval, dataDictionaryArray):
+def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInterval, yInterval, dataDictionaryArray, columnHandler):
   # global yInterval
   # global xInterval
 
@@ -356,7 +272,7 @@ def get_translation_dict(start_key, end_key, translation_meta):
   return translation_dict
 
 
-def save_output(translation_dict, img_file, hough_transform, dataDictionaryArray, xStartThreshold, yStartThreshold):
+def save_output(translation_dict, img_file, hough_transform, dataDictionaryArray, xStartThreshold, yStartThreshold, columnHandler):
   outputFile = open(OUTPUT_TXT, 'w')
   xArray = []
   yArray = []
@@ -563,28 +479,24 @@ def run_for_ocr(opt):
   translation_file      = get_translation_file(opt)
   xy_interval           = get_xy_interval(opt)
   min_line_length       = get_min_line_length(opt)
-  file_name             = opt['url']
+  img_file              = opt['url']
   config_file           = '_outputs/ocrconfig.meta'
-  columnHandler         = ColumnHandler()   # default value
+  columnHandler         = ColumnHandler()             # default value
 
   ## ✅ dependencies removed
   translation_dict = get_translation_dict(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
 
 
-  # ------- All below functions somehow modify the `dataDictionaryArray` to some extent
   if hough_transform == True:
-    columnHandler = detectLines(file_name, min_line_length)
+    columnHandler = detectLines(img_file, min_line_length, columnHandler)
 
   r_bc = buildCells(translation_dict, start_end_keys['start_key'], start_end_keys['end_key'], hough_transform, columnHandler)
 
-  # if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
-  #   r_bc = buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'], r_bc['xInterval'], r_bc['yInterval'])
 
-  assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'], r_bc['dataDictionaryArray'])
+  assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'], r_bc['dataDictionaryArray'], columnHandler)
 
-  # -------
 
-  save_output(translation_dict, opt['url'], hough_transform, r_bc['dataDictionaryArray'], r_bc['xStartThreshold'], r_bc['yStartThreshold'])
+  save_output(translation_dict, opt['url'], hough_transform, r_bc['dataDictionaryArray'], r_bc['xStartThreshold'], r_bc['yStartThreshold'], columnHandler)
 
 
 if __name__ == '__main__':
