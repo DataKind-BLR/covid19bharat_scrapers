@@ -8,6 +8,7 @@ import numpy as np
 import matplotlib.patches as patches
 
 from PIL import Image
+from fuzzywuzzy import process
 from matplotlib import pyplot as plt
 from matplotlib.patches import Circle
 
@@ -18,15 +19,15 @@ BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs'
 STATES_META = os.path.join(os.path.dirname(__file__), '_meta')
 
 
-dataDictionary = {}
-dataDictionaryArray = []
-xInterval = 0
-xStartThreshold = 0
-yStartThreshold = 0
-xEndThreshold = 0
-yEndThreshold = 0
-yInterval = 0
-xWidthTotal = 0
+# dataDictionary = {}
+# dataDictionaryArray = []
+# xInterval = 0
+# xStartThreshold = 0
+# yStartThreshold = 0
+# xEndThreshold = 0
+# yEndThreshold = 0
+# yInterval = 0
+# xWidthTotal = 0
 
 def is_number(s):
   try:
@@ -35,18 +36,6 @@ def is_number(s):
   except ValueError:
     return False
 
-# class cellItem:
-#   def __init__(self, value, x, y, lbx, lby, w, h, col, row, index):
-#     self.value = value
-#     self.x = x
-#     self.y = y
-#     self.col = col
-#     self.row = row
-#     self.index = index
-#     self.lbx = lbx
-#     self.lby = lby
-#     self.h = h
-#     self.w = w
 
 class ColumnHandler:
   def __init__(self):
@@ -145,12 +134,6 @@ def detectLines(fileName, configMinLineLength):
 
 
 def buildCells(translationDictionary, startingText, endingText, houghTransform, columnHandler):
-  # global xStartThreshold
-  # global yStartThreshold
-  # global xEndThreshold
-  # global yEndThreshold
-  # global xWidthTotal
-
   xInterval = 0
   yInterval = 0
   xStartThreshold = 0
@@ -160,6 +143,7 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
   xWidthTotal = 0
   maxWidth = 0
   maxHeight = 0
+  dataDictionaryArray = []
 
   startingMatchFound = False
   endingMatchFound = False
@@ -288,46 +272,13 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
   return {
     'xInterval': xInterval,
     'yInterval': yInterval,
-    'dataDictionaryArray': dataDictionaryArray
+    'dataDictionaryArray': dataDictionaryArray,
+    'xStartThreshold': xStartThreshold,
+    'yStartThreshold': yStartThreshold
   }
 
 
-
-# def buildReducedArray(houghTransform, startingText, endingText, xInterval, yInterval):
-#   # global endingText
-#   tempDictionaryArray = []
-#   # global xInterval
-#   # global yInterval
-#   global dataDictionaryArray
-#   global columnHandler
-#   maxWidth = 0
-#   maxHeight = 0
-
-#   #Ignore the texts that lie to the left and top of the threshold text. This improves accuracy of output
-#   print('Starting text: {} ... Ending text: {}'.format(startingText, endingText))
-#   xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
-#   for cell in dataDictionaryArray:
-#     if cell.y < yStartThreshold - 10 or (xLimit is not None and cell.x < xLimit):
-#       continue
-
-#     if len(endingText) != 0 and (cell.y > yEndThreshold + 10): # or cell.x < xEndThreshold - 30):
-#       continue
-
-#     tempDictionaryArray.append(cell)
-#     maxWidth = cell.w if cell.w > maxWidth else maxWidth
-#     maxHeight = cell.h if cell.h > maxHeight else maxHeight
-
-#   xInterval = maxWidth/2
-#   yInterval = maxHeight/2
-#   dataDictionaryArray = tempDictionaryArray
-
-#   return {
-#     'xInterval': xInterval,
-#     'yInterval': yInterval
-#   }
-
-
-def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInterval, yInterval):
+def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInterval, yInterval, dataDictionaryArray):
   # global yInterval
   # global xInterval
 
@@ -371,11 +322,11 @@ def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInte
           restOfTheCells['col'] = currentCell['col']
 
 
-def buildTranslationDictionary(startingText, endingText, translationFile):
+def get_translation_dict(start_key, end_key, translation_meta):
   '''
-  :param: `startingText` <str> - start_key as mentioned in the states.yaml file
-  :param: `endingText`   <str> - end_key as mentioned in the states.yaml file
-  :param: `translationFile` <os.path> - path to the `<state_code>_districts.meta` file]
+  :param: `start_key` <str> - start_key as mentioned in the states.yaml file
+  :param: `end_key`   <str> - end_key as mentioned in the states.yaml file
+  :param: `translation_meta` <os.path> - path to the `<state_code>_districts.meta` file]
 
   :returns: <dict> - a dictionary containig the text and it's translated value
   '''
@@ -383,34 +334,36 @@ def buildTranslationDictionary(startingText, endingText, translationFile):
   translation_dict = {}
 
   try:
-    with open(translationFile, 'r') as metaFile:
-      for line in metaFile:
+    with open(translation_meta, 'r') as meta_file:
+      for line in meta_file:
         if line.startswith('#'):
           continue
-        lineArray = line.strip().split(',')
-        if len(startingText) != 0:
-          if startingText.strip() == lineArray[1].strip():
-            startingText = startingText + ',' + lineArray[0].strip()
 
-        if len(endingText) != 0:
-          if endingText.strip() == lineArray[1].strip():
-            endingText = endingText + ',' + lineArray[0].strip()
+        line_arr = line.strip().split(',')
 
-        translation_dict[lineArray[0].strip()] = lineArray[1].strip()
+        if len(start_key) != 0:
+          if start_key.strip() == line_arr[1].strip():
+            start_key = start_key + ',' + line_arr[0].strip()
+
+        if len(end_key) != 0:
+          if end_key.strip() == line_arr[1].strip():
+            end_key = end_key + ',' + line_arr[0].strip()
+
+        translation_dict[line_arr[0].strip()] = line_arr[1].strip()
   except:
     pass
 
   return translation_dict
 
 
-def printOutput(translationDictionary, fileName, houghTransform):
+def save_output(translation_dict, img_file, hough_transform, dataDictionaryArray, xStartThreshold, yStartThreshold):
   outputFile = open(OUTPUT_TXT, 'w')
   xArray = []
   yArray = []
 
-  image = np.array(Image.open(fileName), dtype=np.uint8)
+  image = np.array(Image.open(img_file), dtype=np.uint8)
   fig, ax = plt.subplots(1)
-  if houghTransform == True:
+  if hough_transform == True:
     for point in columnHandler.pointList:
       if columnHandler.getNearestLineToTheLeft(xStartThreshold) - 5 <= point.x <= columnHandler.getNearestLineToTheLeft(xStartThreshold) + 5:
         circ = Circle((point.x,point.y),5, color='r')
@@ -438,7 +391,14 @@ def printOutput(translationDictionary, fileName, houghTransform):
         mergedValue = value['value']
         previousCol = value['col']
         columnList = str(value['col'])
-        rect = patches.Rectangle((int(value['lbx']), int(value['lby'])), value['w'], value['h'],linewidth=0.75,edgecolor='r', facecolor='none')
+        rect = patches.Rectangle(
+          (int(value['lbx']), int(value['lby'])),
+          value['w'],
+          value['h'],
+          linewidth=0.75,
+          edgecolor='r',
+          facecolor='none'
+        )
         ax.add_patch(rect)
         continue
 
@@ -449,17 +409,25 @@ def printOutput(translationDictionary, fileName, houghTransform):
       else:
         if index == len(outputString) - 1:
           mergedValue = mergedValue + ', ' + value['value'] if len(mergedValue) != 0 else value['value']
+
         output += mergedValue if len(output) == 0 else ' , ' + mergedValue
         previousCol = value['col']
         mergedValue = value['value']
         columnList = columnList + ', ' + str(value['col']) if len(columnList) != 0 else str(value['col'])
-        rect = patches.Rectangle((int(value['lbx']), int(value['lby'])), value['w'], value['h'],linewidth=0.75,edgecolor='r', facecolor='none')
+        rect = patches.Rectangle(
+          (int(value['lbx']), int(value['lby'])),
+          value['w'],
+          value['h'],
+          linewidth = 0.75,
+          edgecolor = 'r',
+          facecolor = 'none'
+        )
         ax.add_patch(rect)
 
     if len(output) > 0:
       outputArray = output.split(',')
       districtIndex = 0
-      #If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
+      # If the rows are not numberd, this condition can be skipped. For UP bulletin, this makes sense.
       if(is_number(outputArray[0])):
         districtName = outputArray[1].strip().capitalize()
         distrinctIndex = 1
@@ -467,17 +435,17 @@ def printOutput(translationDictionary, fileName, houghTransform):
         districtName = outputArray[0].strip().capitalize()
         distrinctIndex = 0
 
-      #Do a lookup for district name, if not found, discard the record and print a message.
+      # Do a lookup for district name, if not found, discard the record and print a message.
       try:
-        translatedValue = translationDictionary[districtName]
+        translatedValue = translation_dict[districtName]
         outputString = translatedValue
         for index, value in enumerate(outputArray):
           if index > districtIndex: #and is_number(value):
             outputString += ',' + value.strip()
       except KeyError:
         try:
-          fuzzyDistrict = fuzzyLookup(translationDictionary,districtName)
-          translatedValue = translationDictionary[fuzzyDistrict]
+          fuzzyDistrict = fuzzyLookup(translation_dict,districtName)
+          translatedValue = translation_dict[fuzzyDistrict]
         except:
           print('-------------------------------------------------------------')
           print(f'\n====>>Failed to find lookup for {districtName}\n')
@@ -493,23 +461,24 @@ def printOutput(translationDictionary, fileName, houghTransform):
   outputFile.close()
   ax.imshow(image)
   plt.savefig(OUTPUT_PNG, dpi=300)
-  #plt.show()
 
 
-def fuzzyLookup(translationDictionary,districtName):
+def fuzzyLookup(translation_dict, dist_name):
   '''
-  Use fuzzy string match to map incorrect districtnames
-  to the ones in the dictionary
+  Use fuzzy string match to map incorrect districtnames to the ones in the dictionary
+
+  :param: `translation_dict` <dict> - dictionary containing district mapping from the `<state_code>_districts.meta` file
+  :param: `dist_name`        <str> - name of the district to search for
+
+  :return: <str> - closest mapped district name
   '''
-  from fuzzywuzzy import process
   # Score cut-off of 90 seem to be working well for UP
   district = process.extractOne(
-    districtName,
-    translationDictionary.keys(),
+    dist_name,
+    translation_dict.keys(),
     score_cutoff = 90)[0]
-  print(f'WARN : {districtName} mapped to {district} using Fuzzy Lookup')
+  print(f'WARN : {dist_name} mapped to {district} using Fuzzy Lookup')
   return district
-
 
 
 def get_start_end_keys(opt):
@@ -580,7 +549,6 @@ def get_xy_interval(opt):
   return exceptions[state_code.lower()] if state_code in exceptions.keys() else { 'x': 0, 'y': 0 }
 
 
-
 def run_for_ocr(opt):
   '''
   opt is the dict object from yaml
@@ -600,7 +568,7 @@ def run_for_ocr(opt):
   columnHandler         = ColumnHandler()   # default value
 
   ## ✅ dependencies removed
-  translation_dict = buildTranslationDictionary(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
+  translation_dict = get_translation_dict(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
 
 
   # ------- All below functions somehow modify the `dataDictionaryArray` to some extent
@@ -612,11 +580,11 @@ def run_for_ocr(opt):
   # if len(start_end_keys['start_key']) != 0 or len(start_end_keys['end_key']) != 0:
   #   r_bc = buildReducedArray(hough_transform, start_end_keys['start_key'], start_end_keys['end_key'], r_bc['xInterval'], r_bc['yInterval'])
 
-  assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'])
+  assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'], r_bc['dataDictionaryArray'])
 
   # -------
 
-  printOutput(translation_dict, opt['url'], hough_transform)
+  save_output(translation_dict, opt['url'], hough_transform, r_bc['dataDictionaryArray'], r_bc['xStartThreshold'], r_bc['yStartThreshold'])
 
 
 if __name__ == '__main__':
