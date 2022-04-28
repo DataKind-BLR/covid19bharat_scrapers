@@ -1,23 +1,105 @@
 import re
-import cv2
+import io
 import os
+import cv2
 import sys
 import json
-import ocr_vision
 import numpy as np
 import matplotlib.patches as patches
 
 from PIL import Image
 from fuzzywuzzy import process
+from google.cloud import vision
 from matplotlib import pyplot as plt
 from matplotlib.patches import Circle
 from googlevision_utils import ColumnHandler
 
 
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'visionapi.json'
+POLY_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'poly.txt')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 OUTPUT_PNG = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'image.png')
 BOUNDS_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'bounds.txt')
 STATES_META = os.path.join(os.path.dirname(__file__), '_meta')
+
+
+def generate_annotations(img_file):
+  '''
+  Given an image file, return the annotations using Google vision API
+
+  :param: `img_file` <os.path> - path to the image file
+
+  :return: <annotations Object> - containing co-ordinates for every detected text
+  '''
+  client = vision.ImageAnnotatorClient()
+
+  with io.open(img_file, 'rb') as img:
+    content = img.read()
+
+  image = vision.Image(content=content)
+  response = client.document_text_detection(image=image)
+
+  if response.error.message:
+    raise Exception(
+        '{}\nFor more info on error messages, check: '
+        'https://cloud.google.com/apis/design/errors'.format(response.error.message)
+    )
+
+  annotations = response.text_annotations
+  return annotations
+
+
+def generate(img_file):
+  '''
+  :param: `img_file` <os.path> - path to the image file
+
+  :return: <arr> - containing extracted annotations
+      [
+          {
+              'value': <str> - containing the extracted text,
+              'top_l': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
+              'top_r': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
+              'bot_r': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
+              'bot_l': <google.cloud.vision_v1.types.geometry.Vertex> containing `x` and `y` coordinates
+          },
+          ...
+      ]
+  '''
+  ## step 1 - generate annotations
+  annotations = generate_annotations(img_file)
+
+  ## step 2 - write annotations to `poly.txt`
+  with io.open(POLY_TXT, 'w') as poly_file:
+    print(annotations, file=poly_file)
+  poly_file.close()
+
+  ## step 3 - write the extracted verticies and description of every line to `bounds.txt`
+  '''
+      for every annotation, get x & y vertices of annotations and print in following format
+                          |  top l   |   top r  | bottom r |  bottom l
+      -> `<desc> | bounds | <x>, <y> | <x>, <y> | <x>, <y> | <x>, <y>
+  '''
+  extracted_arr = []
+  for text in annotations:
+    # extracted = {}
+    verts = text.bounding_poly.vertices
+    extracted_arr.append({
+      'value': text.description,
+      'top_l': [verts[0].x, verts[0].y],   # [x, y] coordinates
+      'top_r': [verts[1].x, verts[1].y],
+      'bot_r': [verts[2].x, verts[2].y],
+      'bot_l': [verts[3].x, verts[3].y]
+    })
+
+  with io.open(BOUNDS_TXT, 'w') as bounds_file:
+    for text in annotations:
+      vertices = (['{},{}'.format(vertex.x, vertex.y) for vertex in text.bounding_poly.vertices])
+      print('{}'.format(text.description), end ='|', file=bounds_file)
+      print('bounds|{}'.format('|'.join(vertices)), file=bounds_file)
+
+  bounds_file.close()
+  return extracted_arr
+
 
 
 def is_number(s):
@@ -49,7 +131,7 @@ def detectLines(img_file, min_line_length, col_handler):
   return col_handler
 
 
-def buildCells(translationDictionary, startingText, endingText, houghTransform, columnHandler):
+def buildCells(extracted_arr, translationDictionary, startingText, endingText, houghTransform, columnHandler):
   xInterval = 0
   yInterval = 0
   xStartThreshold = 0
@@ -66,12 +148,28 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
   autoEndingText = endingText
   autoStartingText = startingText
 
-  bounds_file = open(BOUNDS_TXT, 'r')
-  for index, line in enumerate(bounds_file):
-    ## read every line from bounds.txt
 
+  for ext in extracted_arr:
+    # calculate x_mean and y_mean
+    ext['x_mean'] = (ext['bot_l'][0] + ext['bot_r'][0]) / 2
+    ext['y_mean'] = (ext['bot_l'][1] + ext['top_l'][1]) / 2
+
+    # keep track of the x-limit
+    x_limit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
+
+# ------------------------------------------------------------------------------------------------------------------------
+
+  bounds_file = open(BOUNDS_TXT, 'r')
+
+  ## read every line from bounds.txt
+  for index, line in enumerate(bounds_file):
     lineArray = line.split('|')
+
+    # skip line if it doesn't exactly contain 6 elements
     if len(lineArray) != 6:
+      continue
+
+    if not lineArray[0] or not lineArray[2] or not lineArray[4] or not lineArray[5]:
       continue
 
     lowerLeft = []
@@ -79,24 +177,36 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
     upperRight = []
     upperLeft = []
 
-    if not lineArray[0] or not lineArray[2] or not lineArray[4] or not lineArray[5]:
-      continue
-
+    # save extracted values after splitting the line
     value = lineArray[0]
     lowerLeft = lineArray[2].split(',')
     lowerRight = lineArray[3].split(',')
     upperRight = lineArray[4].split(',')
     upperLeft = lineArray[5].split(',')
 
+    # extracted = {}
+    # extracted = {
+    #   'value':        lineArray[0],
+    #   'upper_left':   list(map(lambda x: int(x), lineArray[4].split(','))),   # [x, y]
+    #   'upper_right':  list(map(lambda x: int(x), lineArray[5].split(','))),   # [x, y]
+    #   'lower_right':  list(map(lambda x: int(x), lineArray[3].split(','))),   # [x, y]
+    #   'lower_left':   list(map(lambda x: int(x), lineArray[2].split(',')))    # [x, y]
+    # }
+
     if len(lowerLeft) != 2 or len(lowerRight) != 2 or len(upperRight) != 2 or len(upperLeft) != 2:
       continue
 
-    #Get the mid point of the bound where the text matches
-    xMean = (int(lowerLeft[0]) + int(lowerRight[0]))/2
-    yMean = (int(lowerLeft[1]) + int(upperLeft[1]))/2
+    # Get the mid point of the bound where the text matches
+    xMean = (int(lowerLeft[0]) + int(lowerRight[0])) / 2
+    yMean = (int(lowerLeft[1]) + int(upperLeft[1])) / 2
+
+    # extracted['x_mean'] = extracted['lower_left'][0] + extracted['lower_right'][0]
+    # extracted['y_mean'] = extracted['lower_left'][1] + extracted['upper_left'][1]
 
     xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
 
+
+    # if starting text is not mentioned, pick and assign an extracted object
     if startingText == 'auto':
       if len(value.title()) > 1 and any(value.title() in district for district in list(translationDictionary.keys())):
         if xStartThreshold == 0:
@@ -195,8 +305,6 @@ def buildCells(translationDictionary, startingText, endingText, houghTransform, 
 
 
 def assignRowsAndColumns(houghTransform, configxInterval, configyInterval, xInterval, yInterval, dataDictionaryArray, columnHandler):
-  # global yInterval
-  # global xInterval
 
   if configxInterval != 0:
     xInterval = configxInterval
@@ -471,31 +579,33 @@ def run_for_ocr(opt):
   config_file refers to the `ocrconfig.meta` file
   '''
   print('--- Step 1: Running ocr_vision.py file to generate _outputs/poly.txt and _outputs/bounds.txt')
-  ocr_vision.generate(opt['url'])
+  extracted_arr = generate(opt['url'])
+
+  print(extracted_arr)
+  import pdb
+  pdb.set_trace()
 
   # set global variables
-  start_end_keys        = get_start_end_keys(opt)
-  hough_transform       = get_hough_transform(opt)
-  translation_file      = get_translation_file(opt)
-  xy_interval           = get_xy_interval(opt)
-  min_line_length       = get_min_line_length(opt)
-  img_file              = opt['url']
-  config_file           = '_outputs/ocrconfig.meta'
-  columnHandler         = ColumnHandler()             # default value
-
-  ## ✅ dependencies removed
+  start_end_keys   = get_start_end_keys(opt)
+  hough_transform  = get_hough_transform(opt)
+  translation_file = get_translation_file(opt)
+  xy_interval      = get_xy_interval(opt)
+  min_line_length  = get_min_line_length(opt)
+  img_file         = opt['url']
+  config_file      = '_outputs/ocrconfig.meta'
+  columnHandler    = ColumnHandler() # default value
   translation_dict = get_translation_dict(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
 
-
+  # step 1 - detect the table lines from the image & store them in `columnHandler` object
   if hough_transform == True:
     columnHandler = detectLines(img_file, min_line_length, columnHandler)
 
-  r_bc = buildCells(translation_dict, start_end_keys['start_key'], start_end_keys['end_key'], hough_transform, columnHandler)
-
+  # step 2 - build cells around detected texts
+  r_bc = buildCells(extracted_arr, translation_dict, start_end_keys['start_key'], start_end_keys['end_key'], hough_transform, columnHandler)
 
   assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'], r_bc['dataDictionaryArray'], columnHandler)
 
-
+  # step 4 - extract and write detected texts and numbers into an `output.txt` file
   save_output(translation_dict, opt['url'], hough_transform, r_bc['dataDictionaryArray'], r_bc['xStartThreshold'], r_bc['yStartThreshold'], columnHandler)
 
 
