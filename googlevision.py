@@ -1,3 +1,4 @@
+from distutils.log import debug
 import re
 import io
 import os
@@ -108,7 +109,7 @@ def detectLines(img_file, min_line_length, col_handler):
   Given an image file and
   '''
   img = cv2.imread(img_file)
-  gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+  # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
   edges = cv2.Canny(img, 50, 150)
   lines = cv2.HoughLinesP(edges, 1, np.pi/135, min_line_length, maxLineGap=250)
 
@@ -119,12 +120,12 @@ def detectLines(img_file, min_line_length, col_handler):
 
   col_handler.prepareColumn()
   col_handler.prepareRow()
-  col_handler.printColumnsAndCoordinates()
+  col_handler.printColumnsAndRows()
 
   return col_handler
 
 
-def buildCells(extracted_arr, translationDictionary, startingText, endingText, houghTransform, columnHandler):
+def buildCells(extracted_arr, translationDictionary, startingText, endingText, houghTransform, columnHandler, min_line_length, opt):
   xInterval = 0
   yInterval = 0
   xStartThreshold = 0
@@ -140,6 +141,13 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
   endingMatchFound = False
   autoEndingText = endingText
   autoStartingText = startingText
+
+  if houghTransform == True:
+    ## update the global columnHandler & get the limit
+    columnHandler = detectLines(opt['url'], min_line_length, columnHandler)
+    xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold)
+  else:
+    xLimit = xStartThreshold - 20
 
 # ------------------------------------------------------------------------------------------------------------------------
 
@@ -175,9 +183,6 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
     xMean = (int(lowerLeft[0]) + int(lowerRight[0])) / 2
     yMean = (int(lowerLeft[1]) + int(upperLeft[1])) / 2
 
-    xLimit = columnHandler.getNearestLineToTheLeft(xStartThreshold) if houghTransform == True else xStartThreshold - 20
-
-
     # if starting text is not mentioned, pick and assign an extracted object
     if startingText == 'auto':
       if len(value.title()) > 1 and any(value.title() in district for district in list(translationDictionary.keys())):
@@ -206,34 +211,33 @@ def buildCells(extracted_arr, translationDictionary, startingText, endingText, h
           yEndThreshold = yMean
           autoEndingText = value
 
-    if ',' in startingText:
-      if value.title() in startingText.split(','):# and startingMatchFound == False:
-        startingMatchFound = True
-        xStartThreshold = xMean
-        yStartThreshold = yMean
-    else:
-      if value.title() == startingText and startingMatchFound == False:
-        startingMatchFound = True
-        xStartThreshold = xMean
-        yStartThreshold = yMean
+    # if ',' in startingText:
+    #   if value.title() in startingText.split(','):# and startingMatchFound == False:
+    #     startingMatchFound = True
+    #     xStartThreshold = xMean
+    #     yStartThreshold = yMean
+    # else:
+    #   if value.title() == startingText and startingMatchFound == False:
+    #     startingMatchFound = True
+    #     xStartThreshold = xMean
+    #     yStartThreshold = yMean
 
-    if ',' in endingText:
-      if value.title() in endingText.split(','):# and endingMatchFound == False:
-        endingMatchFound = True
-        xEndThreshold = xMean
-        yEndThreshold = yMean
-    else:
-      if value.title() == endingText and endingMatchFound == False:
-        endingMatchFound = True
-        xEndThreshold = xMean
-        yEndThreshold = yMean
+    # if ',' in endingText:
+    #   if value.title() in endingText.split(','):# and endingMatchFound == False:
+    #     endingMatchFound = True
+    #     xEndThreshold = xMean
+    #     yEndThreshold = yMean
+    # else:
+    #   if value.title() == endingText and endingMatchFound == False:
+    #     endingMatchFound = True
+    #     xEndThreshold = xMean
+    #     yEndThreshold = yMean
 
     #Use these intervals as a possible error in mid point calculation
     xInterval = (int(lowerRight[0]) - int(lowerLeft[0]))/2 if (int(lowerRight[0]) - int(lowerLeft[0]))/2 > xInterval else xInterval
     yInterval = (int(upperLeft[1]) - int(lowerLeft[1]))/2 if (int(upperLeft[1]) - int(lowerLeft[1]))/2 > yInterval else yInterval
     xWidthTotal = xWidthTotal + int(lowerRight[0]) - int(lowerLeft[0])
 
-    # REDUCE the array size - same as `buildReducedArray`
     # do not append if...
     if yMean < yStartThreshold - 10 or (xLimit is not None and xMean < xLimit):
       continue
@@ -365,10 +369,10 @@ def save_output(translation_dict, img_file, hough_transform, dataDictionaryArray
   fig, ax = plt.subplots(1)
   if hough_transform == True:
     for point in columnHandler.pointList:
-      if columnHandler.getNearestLineToTheLeft(xStartThreshold) - 5 <= point.x <= columnHandler.getNearestLineToTheLeft(xStartThreshold) + 5:
-        circ = Circle((point.x,point.y),5, color='r')
+      if columnHandler.getNearestLineToTheLeft(xStartThreshold) - 5 <= point['x'] <= columnHandler.getNearestLineToTheLeft(xStartThreshold) + 5:
+        circ = Circle((point['x'],point['y']),5, color='r')
       else:
-        circ = Circle((point.x,point.y),4)
+        circ = Circle((point['x'],point['y']),4)
       ax.add_patch(circ)
 
   for i in range(0, len(dataDictionaryArray)):
@@ -566,14 +570,10 @@ def run_for_ocr(opt):
   img_file         = opt['url']
   config_file      = '_outputs/ocrconfig.meta'
   columnHandler    = ColumnHandler() # default value
-  translation_dict = get_translation_dict(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)
-
-  # step 1 - detect the table lines from the image & store them in `columnHandler` object
-  if hough_transform == True:
-    columnHandler = detectLines(img_file, min_line_length, columnHandler)
+  translation_dict = get_translation_dict(start_end_keys['start_key'], start_end_keys['end_key'], translation_file)  
 
   # step 2 - build cells around detected texts
-  r_bc = buildCells(extracted_arr, translation_dict, start_end_keys['start_key'], start_end_keys['end_key'], hough_transform, columnHandler)
+  r_bc = buildCells(extracted_arr, translation_dict, start_end_keys['start_key'], start_end_keys['end_key'], hough_transform, columnHandler, min_line_length, opt)
 
   assignRowsAndColumns(hough_transform, xy_interval['x'], xy_interval['y'], r_bc['xInterval'], r_bc['yInterval'], r_bc['dataDictionaryArray'], columnHandler)
 
