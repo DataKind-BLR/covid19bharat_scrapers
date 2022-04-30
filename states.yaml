@@ -27,8 +27,8 @@ ap:
   page: 1
   config:
     translation: False
-    start_key: Anantapur
-    end_key: West
+    #start_key: Anantapur
+    #end_key: West
 
 ar:
   name: Arunachal Pradesh
@@ -320,7 +320,7 @@ mh:
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
   type: image
-  url: _inputs/mh.png
+  url: 
 
 ml:
   name: Meghalaya
@@ -348,7 +348,7 @@ mn:
     - https://twitter.com/imphalrob
     - https://nrhmmanipur.org/?p=7999
   type: image
-  url: _inputs/mn.jpeg
+  url: 
   config:
     translation: False
     #start_key: Bishnupur
@@ -366,7 +366,7 @@ mp:
   url: _inputs/mp.jpeg
   config:
     translation: False
-    start_key: Agar
+    #start_key: Agar
     #end_key: Khandwa
 
 mz:
