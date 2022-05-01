@@ -369,10 +369,10 @@ mp:
     - https://twitter.com/healthminmp
   notes: Read the paragraph text in hindi in the image, it contains district-wise hospitalised cases :(
   type: image
-  url: _inputs/mp.jpeg
+  url: 
   config:
     translation: False
-    start_key: Agar
+    #start_key: Agar
     #end_key: Khandwa
 
 mz:
