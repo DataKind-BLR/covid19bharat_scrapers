@@ -252,13 +252,13 @@ kl:
     - https://twitter.com/CMOKerala
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
-    - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: pdf
-  url: _inputs/kl.pdf
-  config:
-    page: 4
-    start_key: District
-    end_key: Total
+    - https://dashboard.kerala.gov.in/covid/daily.php
+  type: html
+  url: https://dashboard.kerala.gov.in/covid/daily.php
+  #config:
+  #  page: 4
+  #  start_key: District
+  #  end_key: Total
 
 kld:
   name: KeralaDeaths

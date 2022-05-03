@@ -32,7 +32,7 @@ replacementLine=$( customiseMetaConfig $stateCode $replacementLine "br:houghTran
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ct:houghTransform=True,yInterval=15" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "hp:houghTransform=False,yInterval=12" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "jk:houghTransform=False,yInterval=10" )
-replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mp:houghTransform=False,yInterval=12" )
+replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mp:houghTransform=False,yInterval=5" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "tn:configMinLineLength=500,yInterval=5" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "tg:enableTranslation=True,yInterval=5" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mz:houghTransform=False,yInterval=12" )

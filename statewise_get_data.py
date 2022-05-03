@@ -570,19 +570,18 @@ def jh_get_data(opt):
           print("--> Issue with Columns: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
           print('--------------------------------------------------------------------------------')
           continue
-          districtDictionary = {}
-        if (linesArray[2].isdigit() and linesArray[3].isdigit() and linesArray[4].isdigit() \
-            and linesArray[5].isdigit() and linesArray[6].isdigit() and (linesArray[7].replace('\n','')).isdigit()):
-          districtDictionary['districtName'] = linesArray[0].strip()
-          districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
-          districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
-          districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
-          districts_data.append(districtDictionary)
-        else:
-          print("--> Non-numeric issue: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
-          print('--------------------------------------------------------------------------------')
-          continue
-
+        districtDictionary = {}
+        #if (linesArray[2].isdigit() and linesArray[3].isdigit() and linesArray[4].isdigit() \
+        #    and linesArray[5].isdigit() and linesArray[6].isdigit() and (linesArray[7].replace('\n','')).isdigit()):
+        districtDictionary['districtName'] = linesArray[0].strip()
+        districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
+        districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
+        districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
+        districts_data.append(districtDictionary)
+        #else:
+        #  print("--> Non-numeric issue: nCol={} nColref=({}) : {}".format(len(linesArray), nColRef, linesArray))
+        #  print('--------------------------------------------------------------------------------')
+        #  continue
     upFile.close()
     return districts_data
 
@@ -732,61 +731,126 @@ def ka_get_data(opt):
 
 def kl_get_data(opt):
   if opt['type'] == 'html':
-    response = requests.request('GET', opt['url'])
-    soup = BeautifulSoup(response.content, 'html.parser')
-    #table = soup.find('table', {'id': 'wrapper2'}).find_all('tr')
-    table = soup.find("table", {"class": "sortable"})#.find_all('tr')
-    #table = soup.find_all('table')[3]
-    print(table)
-    districts_data = []
 
-    for row in table[1:]:
+    districts_data = []
+    response = requests.request('GET', opt['url'])
+    soup = BeautifulSoup(response.content, "lxml")
+    table = soup.find('table', attrs={'class':'table'})
+    #print(table)
+    rows = soup.find_all('table')[0].find_all('tr')
+
+    dom = soup.find('li', attrs={'class':'breadcrumb-item active'})
+    webdate = dom.get_text()
+    print('\n',webdate,'\n') 
+
+    for row in rows[1:]:
       # Ignoring 1st row containing table headers
       d = row.find_all('td')
-      districts_data.append({
-        'districtName': d[0].get_text(),
-        'confirmed': int(d[1].get_text().strip()),
-        'recovered': int(d[3].get_text().strip()),
-        'deceased': int(d[5].get_text().strip())
-      })
+      districtName = d[0].get_text()
+      confirmed = int(d[1].get_text().strip())
+      recovered = int(d[2].get_text().strip())
+      if "Total" not in districtName:
+        if confirmed != 0:
+          print("{},Kerala,KL,{},Hospitalized".format(districtName, confirmed))
+        if recovered != 0:
+          print("{},Kerala,KL,{},Recovered".format(districtName, recovered))
+        # TODO - append to districts_data
+  print('\n')
 
-    return districts_data
+  res = soup.find_all('script')[6]
+  res_string = str(res.contents)
+  #print(res_string)
+  data = res_string.replace('\\r\\n', '')
+  data = data.replace('\\t', '')
+  data = data.replace('\\', '')
+  data = data.replace(' ', '')
+  #string to clip
+  left_str = 'events:'
+  right_str = ']'
+  # slicing off after length computation
+  data = data[data.index(left_str):]
+  data = data[:data.index(right_str) + len(right_str)]
+  data = data.replace('events:', 'events|')
+  data = data.split('|')[1]
+  data = data.replace(',]', ']')
+  data = data.replace('title', '"title"')
+  data = data.replace("description", '"description"')
+  data = data.replace('_"description"_', '')
+  data = data.replace("start", '"start"')
+  data = data.replace("color", '"color"')
+  data = data.replace('<?php//echo(getdaily($con,$rep));?>', '')
+  data = data.replace('\'', '\"')
+  #print(json.dumps(data,  skipkeys = True, indent=4))
+  json_object = json.loads(data)
+ 
+  newcasespat = re.compile(r'(\d+)cnfrm')
+  recpat = re.compile(r'(\d+)recvd')
+  deathpat = re.compile(r'(\d+)death')
+  webdatepat = re.compile(r'(\d+-\d+-\d+)')
+  #print(webdate)
+  webdates = re.search(webdatepat, webdate.lower())
+  #print(webdate)
+  webdates = webdates[1]
+  webdates = datetime.datetime.strptime(webdates,'%d-%m-%Y')
+  upstring = ''
 
-  #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
-  #   print('Fetching KL data', opt)
-  #   response = requests.request("GET", opt['url'])
+  for datas in json_object:
+    rep_date=datetime.datetime.strptime(datas['start'],'%Y-%m-%d')
+    if rep_date == webdates:
+      #print('{}: {}'.format(datas['start'],datas['title']))
+      if 'Death' in datas['title']:
+        death = re.search(deathpat, datas['title'].lower())
+        death = death[1]
+      elif 'Cnfrm' in datas['title']:
+        newcases = re.search(newcasespat, datas['title'].lower())
+        newcases = newcases[1]
+      elif 'Recvd' in datas['title']:
+        rec = re.search(recpat, datas['title'].lower())
+        rec = rec[1]
+  #print(death,newcases,rec)
+  #if newcases != '0':
+  #  upstring += 'Kerala,KL,'+newcases+',Hospitalized,,,'+opt['url']+'\n'
+  #if rec != '0':
+  #  upstring += 'Kerala,KL,'+rec+',Recovered,,,'+opt['url']+'\n'
+  if death != '0':
+    upstring += 'Kerala,KL,'+death+',Deceased,,,'+opt['url']+'\n'
 
-  #   # sessionId = (response.headers['Set-Cookie']).split(';')[0].split('=')[1]
+  print('\n'+str(webdate)+' State level Deaths data for copy & paste \n')
+  print(upstring,'\n')
 
-  #   cookies = {
-  #     '_ga': 'GA1.3.594771251.1592531338',
-  #     '_gid': 'GA1.3.674470591.1592531338',
-  #     # 'PHPSESSID': sessionId,
-  #     '_gat_gtag_UA_162482846_1': '1'
-  #   }
 
-  #   headers = {
-  #     'Connection': 'keep-alive',
-  #     'Accept': 'application/json, text/javascript, */*; q=0.01',
-  #     'X-Requested-With': 'XMLHttpRequest',
-  #     'Sec-Fetch-Site': 'same-origin',
-  #     'Sec-Fetch-Mode': 'cors',
-  #     'Sec-Fetch-Dest': 'empty',
-  #     'Referer': 'https://dashboard.kerala.gov.in/index.php',
-  #     'Accept-Language': 'en-US,en;q=0.9'
-  #   }
-  #   stateDashboard = requests.get(opt['url'], headers=headers).json()
+  kltesturl = 'https://dashboard.kerala.gov.in/covid/testing-view-public.php'      
 
-  #   districtArray = []
-  #   for districtDetails in stateDashboard['features']:
-  #     districtDictionary = {}
-  #     districtDictionary['districtName'] = districtDetails['properties']['District']
-  #     districtDictionary['confirmed'] = districtDetails['properties']['covid_stat']
-  #     districtDictionary['recovered'] = districtDetails['properties']['covid_statcured']
-  #     districtDictionary['deceased'] = districtDetails['properties']['covid_statdeath']
-  #     districtArray.append(districtDictionary)
-  #   # deltaCalculator.getStateDataFromSite("Kerala", districtArray, option)
-  #   return districtArray
+  response = requests.request('GET', kltesturl)
+  soup = BeautifulSoup(response.content, "lxml")
+
+  data = []
+  table = soup.find('table', attrs={'class':'table'})
+
+  rows = soup.find_all('table')[2].find_all('tr')
+  for row in rows:
+      cols = row.find_all('td')
+      cols = [ele.text.strip() for ele in cols]
+      data.append([ele for ele in cols if ele]) # Get rid of empty values
+
+
+  rep_date = data[1][0]
+  rep_date=datetime.datetime.strptime(rep_date,'%d-%m-%Y')
+  testdate = datetime.datetime.strftime(rep_date,'%d/%m/%Y')
+  total = data[1][11]
+  others = data[1][8]
+  rat = data[1][7]
+  rtpcr = int(total) -(int(rat)+int(others))
+  rtpcr=str(rtpcr)
+  #print(rep_date,rtpcr,rat,others,total)
+  upstring = testdate+',Kerala,'+str(rtpcr)+','+str(rat)+','+str(others)+','+\
+              str(total)+',Samples Sent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,'+kltesturl+'\n'
+  print('Copy Paste the TESTS for Kerala\n')
+  print(upstring)    
+
+  return districts_data
+
+  
 
   if opt['type'] == 'pdf':
 
