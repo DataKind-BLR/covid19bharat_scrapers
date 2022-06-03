@@ -238,7 +238,7 @@ def as_get_data(opt):
 
         ## Why is this not fixed in `as_districts.meta` ??
         if int(linesArray[len(linesArray) - 1]) > 0:
-          if linesArray[0].strip() == 'Kamrup Metro':
+          if ((linesArray[0].strip() == 'Kamrup Metro') or (linesArray[0].strip() == 'Metro')):
             print("Kamrup Metropolitan,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
           elif linesArray[0].strip() == 'Kamrup Rural':
             print("Kamrup,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))

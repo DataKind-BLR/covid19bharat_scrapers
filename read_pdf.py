@@ -140,15 +140,19 @@ def ka_format_line(row):
   return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "," + modifiedRow[9] + "\n"
 
 def hr_format_line(row):
-  row[1] = re.sub('\*', '', row[1])
-  if '[' in row[4]:
-    row[4] = row[4].split('[')[0]
-  if '[' in row[5]:
-    row[5] = row[5].split('[')[0]
-  if '[' in row[7]:
-    row[7] = row[7].split('[')[0]
-  line = row[1] + "," + row[4] + "," + row[5] + "," + row[7] + "\n"
-  return line
+  if len(row) == 12:
+    row[1] = re.sub('\*', '', row[1])
+    if '[' in row[4]:
+      row[4] = row[4].split('[')[0]
+    if '[' in row[5]:
+      row[5] = row[5].split('[')[0]
+    if '[' in row[7]:
+      row[7] = row[7].split('[')[0]
+    line = row[1] + "," + row[4] + "," + row[5] + "," + row[7] + "\n"
+    return line
+  else:
+    #print("Error in : ",row)
+    return ''
 
 def pb_format_line(row):
   if len(row) == 9:
