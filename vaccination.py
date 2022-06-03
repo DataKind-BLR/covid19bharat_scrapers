@@ -69,7 +69,7 @@ def get_mohfw_state(from_date, to_date, state_codes):
     }
 
     for curr_date in (from_date + datetime.timedelta(n) for n in range(day_count.days)):
-        date_mohfw_str = curr_date.strftime("%d%B%Y")
+        date_mohfw_str = curr_date.strftime("%d%b%Y")
         sheet_date = curr_date + datetime.timedelta(days=-1)
         date_sheet_str = sheet_date.strftime("%d/%m/%Y")
         #date_sheet_str = curr_date.strftime("%d/%m/%Y")
