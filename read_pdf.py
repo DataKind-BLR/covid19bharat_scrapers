@@ -134,7 +134,8 @@ def ka_format_line(row):
     district = " ".join(re.sub(' +', ' ', modifiedRow[0]).split(' ')[1:])
     modifiedRow.insert(0, 'a')
   else:
-    district = re.sub('\*', '', modifiedRow[1])
+    district = re.sub('\*+', '', modifiedRow[1])
+    district = re.sub('\#+', '', modifiedRow[1])
   #print(modifiedRow)
 
   return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "," + modifiedRow[9] + "\n"
