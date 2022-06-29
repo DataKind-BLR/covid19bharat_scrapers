@@ -22,11 +22,13 @@ ap:
     - https://twitter.com/ArogyaAndhra
     - http://hmfw.ap.gov.in/covid_dashboard.aspx
     - notes If full image fails, clip only table and submit
-  type: image
-  url: _inputs/ap.jpeg
-  page: 1
+    - https://www.mohfw.gov.in/data/datanew.json
+  type: html
+  url: https://www.mohfw.gov.in/data/datanew.json
+  #page: 
   config:
-    translation: False
+    delta_calc: False
+    #translation: False
     #start_key: Anantapur
     #end_key: West
 
