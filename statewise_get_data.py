@@ -12,6 +12,7 @@ from read_pdf import read_pdf_from_url
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
+MOHFW_URL = 'https://www.mohfw.gov.in/data/datanew.json'
 
 def _get_mohfw_data(name):
   '''Fetch state-wise data from MOHFW website.
@@ -26,7 +27,6 @@ def _get_mohfw_data(name):
       ...
     }]
   '''
-  MOHFW_URL = 'https://www.mohfw.gov.in/data/datanew.json'
   
   datum = (pd.read_json(MOHFW_URL)
              .set_index('state_name')
@@ -36,29 +36,50 @@ def _get_mohfw_data(name):
     'districtName': name,
     'confirmed': datum['new_positive'],
     'recovered': datum['new_cured'],
-    'deceased':  datum['new_death']
+    'deceased':  datum['new_death'],
+    'dC': datum['new_positive'] - datum['positive'],
+    'dR': datum['new_cured'] - datum['cured'],
+    'dD':  datum['new_death'] - datum['death'] + datum['death_reconsille']
   }] 
 
 
 def ap_get_data(opt):
 
   if opt['type'] == 'html':
-    if opt['skip_output'] == False:
-      response = requests.request('GET', opt['url'], verify=False)
-      soup = BeautifulSoup(response.content, 'html.parser')
-      table = soup.find('table', {'class': 'table'}).find_all('tr')
-      districts_data = []
+    data=_get_mohfw_data("Andhra Pradesh")
+    dC = data[0]['dC']
+    dR = data[0]['dR']
+    dD = data[0]['dD']
 
-      for row in table[1:]:
+    print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+
+    if dC != 0:
+      print(opt['name']+','+opt['state_code']+','+str(dC)+',Hospitalized,,,'+MOHFW_URL)
+    if dR != 0:
+      print(opt['name']+','+opt['state_code']+','+str(dR)+',Recovered,,,'+MOHFW_URL)
+    if dD != 0:
+      print(opt['name']+','+opt['state_code']+','+str(dD)+',Deceased,,,'+MOHFW_URL)
+
+    return {
+      'needs_correction': False
+    }
+
+    #if opt['skip_output'] == False:
+    #  response = requests.request('GET', opt['url'], verify=False)
+    #  soup = BeautifulSoup(response.content, 'html.parser')
+    #  table = soup.find('table', {'class': 'table'}).find_all('tr')
+    #  districts_data = []
+
+    #  for row in table[1:]:
         # Ignoring 1st row containing table headers
-        d = row.find_all('td')
-        districts_data.append({
-          'districtName': d[0].get_text(),
-          'confirmed': int(d[1].get_text().strip()),
-          'recovered': int(d[2].get_text().strip()),
-          'deceased': int(d[3].get_text().strip())
-        })
-
+    #    d = row.find_all('td')
+    #    districts_data.append({
+    #      'districtName': d[0].get_text(),
+    #      'confirmed': int(d[1].get_text().strip()),
+    #      'recovered': int(d[2].get_text().strip()),
+    #      'deceased': int(d[3].get_text().strip())
+    #    })
+  '''
   elif opt['type'] == 'pdf':
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
@@ -147,8 +168,8 @@ def ap_get_data(opt):
         'output': OUTPUT_TXT,
         'to_correct': to_correct
       }
-
-  return districts_data
+  '''
+  #return districts_data
 
 
 def an_get_data(opt):
