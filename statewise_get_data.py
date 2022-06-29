@@ -32,6 +32,11 @@ def _get_mohfw_data(name):
              .set_index('state_name')
              .loc[name])
 
+  if datum['death_reconsille'] != '':
+    dDno = datum['new_death'] - datum['death'] + datum['death_reconsille']
+  else:
+    dDno = datum['new_death'] - datum['death']
+
   return [{
     'districtName': name,
     'confirmed': datum['new_positive'],
@@ -39,26 +44,22 @@ def _get_mohfw_data(name):
     'deceased':  datum['new_death'],
     'dC': datum['new_positive'] - datum['positive'],
     'dR': datum['new_cured'] - datum['cured'],
-    'dD':  datum['new_death'] - datum['death'] + datum['death_reconsille']
+    'dD': dDno
   }] 
 
 
 def ap_get_data(opt):
 
   if opt['type'] == 'html':
-    data=_get_mohfw_data("Andhra Pradesh")
-    dC = data[0]['dC']
-    dR = data[0]['dR']
-    dD = data[0]['dD']
+    data=_get_mohfw_data(opt['name'])
 
     print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-
-    if dC != 0:
-      print(opt['name']+','+opt['state_code']+','+str(dC)+',Hospitalized,,,'+MOHFW_URL)
-    if dR != 0:
-      print(opt['name']+','+opt['state_code']+','+str(dR)+',Recovered,,,'+MOHFW_URL)
-    if dD != 0:
-      print(opt['name']+','+opt['state_code']+','+str(dD)+',Deceased,,,'+MOHFW_URL)
+    if data[0]['dC'] != 0:
+      print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+    if data[0]['dR'] != 0:
+      print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+    if data[0]['dD'] != 0:
+      print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
 
     return {
       'needs_correction': False
