@@ -60,10 +60,9 @@ def ap_get_data(opt):
       print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
     if data[0]['dD'] != 0:
       print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
-
-    return {
-      'needs_correction': False
-    }
+  print("\n-*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-")
+  print("Data from input provided as deltas - no calculations required")
+  quit()
 
     #if opt['skip_output'] == False:
     #  response = requests.request('GET', opt['url'], verify=False)
@@ -969,7 +968,20 @@ def la_get_data(opt):
 
 
 def ld_get_data(opt):
-  return _get_mohfw_data(opt['name'])
+  #return _get_mohfw_data(opt['name'])
+  if opt['type'] == 'html':
+    data=_get_mohfw_data(opt['name'])
+
+    print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+    if data[0]['dC'] != 0:
+      print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+    if data[0]['dR'] != 0:
+      print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+    if data[0]['dD'] != 0:
+      print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+  print("\n-*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-")
+  print("Data from input provided as deltas - no calculations required")
+  quit()
 
 
 def mh_get_data(opt):
