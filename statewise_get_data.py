@@ -812,7 +812,7 @@ def kl_get_data(opt):
   if opt['type'] == 'html':
     districts_data = []
     response = requests.request('GET', opt['url'])
-    soup = BeautifulSoup(response.content, "lxml")
+    soup = BeautifulSoup(response.content, "html.parser")
     table = soup.find('table', attrs={'class':'table'})
     #print(table)
     rows = soup.find_all('table')[0].find_all('tr')
