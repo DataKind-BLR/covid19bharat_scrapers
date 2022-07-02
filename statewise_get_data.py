@@ -829,10 +829,9 @@ def kl_get_data(opt):
       recovered = int(d[2].get_text().strip())
       if "Total" not in districtName:
         if confirmed != 0:
-          print("{},Kerala,KL,{},Hospitalized".format(districtName, confirmed))
+          print("{},Kerala,KL,{},Hospitalized,,,{}".format(districtName, confirmed,opt['url']))
         if recovered != 0:
-          print("{},Kerala,KL,{},Recovered".format(districtName, recovered))
-        # TODO - append to districts_data
+          print("{},Kerala,KL,{},Recovered,,,{}".format(districtName, recovered, opt['url']))
   print('\n')
 
   res = soup.find_all('script')[6]
@@ -900,7 +899,7 @@ def kl_get_data(opt):
   kltesturl = 'https://dashboard.kerala.gov.in/covid/testing-view-public.php'      
 
   response = requests.request('GET', kltesturl)
-  soup = BeautifulSoup(response.content, "lxml")
+  soup = BeautifulSoup(response.content, "html.parser")
 
   data = []
   table = soup.find('table', attrs={'class':'table'})
