@@ -221,14 +221,14 @@ jh:
   url_sources:
     - https://twitter.com/RanchiPIB
     - http://jrhms.jharkhand.gov.in/covid-19
-    - Look in our telegram Data dump or ask Rukmini
-  type: pdf
-  url: _inputs/jh.pdf
+    - Look in our telegram Data dump or ask Rukmini/Sumit
+  type: image
+  url:
   config:
     page: 1
     translation: False
     start_key: Bokaro
-    end_key: Total
+    #end_key: Total
 
 ka:
   name: Karnataka
@@ -248,16 +248,15 @@ kl:
   state_code: KL
   cowin_code: 17
   url_sources:
-    - https://twitter.com/CMOKerala
-    - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
-  type: pdf
-  url: _inputs/kl.pdf
+    - https://dashboard.kerala.gov.in/covid/index.php
+  type: html
+  url: https://dashboard.kerala.gov.in/covid/daily.php
   config:
     delta_calc: False
-    page: 4
-    start_key: District
-    end_key: Total
+    #page: 4
+    #start_key: District
+    #end_key: Total
 
 kld:
   name: KeralaDeaths
@@ -312,7 +311,9 @@ ld:
     - MoHFW
   type: html
   url:
-
+  config:
+    delta_calc: False
+    
 mh:
   name: Maharashtra
   state_code: MH
