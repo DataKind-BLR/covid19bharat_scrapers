@@ -341,6 +341,114 @@ def br_get_data(opt):
 
 
 def ch_get_data(opt):
+
+  import urllib
+  #file download
+  htm_string_1 = 'http://chdpr.gov.in/cadmin/uploads/downloads/Media_Bulletin_on_'
+  htm_string_3 = '.docx'
+  upstring = ''
+
+  #bull_date_string = '06-07-2022'
+  bull_date_string = datetime.datetime.today().strftime('%d-%m-%Y')
+  bull_date_print = datetime.datetime.today().strftime('%d/%m/%Y')
+
+  htm_string= htm_string_1+bull_date_string+htm_string_3
+  churl=htm_string
+  #print(htm_string)
+
+  filename = '_inputs/'+opt['state_code']+'.docx'
+  try:
+    urllib.request.urlretrieve(htm_string, filename)
+
+    #extract text from DOCX
+    #http://etienned.github.io/posts/extract-text-from-word-docx-simply/
+    try:
+        from xml.etree.cElementTree import XML
+    except ImportError:
+        from xml.etree.ElementTree import XML
+    import zipfile
+
+
+    """
+    Module that extract text from MS XML Word document (.docx).
+    (Inspired by python-docx <https://github.com/mikemaccana/python-docx>)
+    """
+
+    WORD_NAMESPACE = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+    PARA = WORD_NAMESPACE + 'p'
+    TEXT = WORD_NAMESPACE + 't'
+
+
+    def get_docx_text(path):
+        """
+        Take the path of a docx file as argument, return the text in unicode.
+        """
+        document = zipfile.ZipFile(path)
+        xml_content = document.read('word/document.xml')
+        document.close()
+        tree = XML(xml_content)
+
+        paragraphs = []
+        for paragraph in tree.getiterator(PARA):
+            texts = [node.text
+                    for node in paragraph.getiterator(TEXT)
+                    if node.text]
+            if texts:
+                paragraphs.append(''.join(texts))
+
+        return '|'.join(paragraphs)
+
+    #use above sub to Get the txt from docx
+    text = get_docx_text(filename)
+
+    text = text.replace(' ','')
+    #print(text)
+    #extract dC dR dD Tests
+
+    newcasespat = re.compile(r'newpositivecases\|(\d+)\|')
+    newcases = re.search(newcasespat, text)
+    newcases = newcases[1]
+    newcases = str(int(newcases))
+
+    recpat = re.compile(r'Today(\d+)patients')
+    rec = re.search(recpat, text)
+    rec = rec[1]
+    rec = str(int(rec))
+
+    #deathpat = re.compile(r'death(\d+)')
+    #death = re.search(deathpat, text)
+    #death = death[1]
+    #death = str(int(death))
+
+    testpat = re.compile(r'SamplesTested\|(\d+)')
+    testno = re.search(testpat, text)
+    testno = testno[1]
+
+    #print(testdate,newcases,rec,testno)
+
+    if newcases != '0':
+      upstring += opt['name']+','+opt['state_code']+','+newcases+',Hospitalized,,,'+churl+'\n'
+    if rec != '0':
+      upstring += opt['name']+','+opt['state_code']+','+rec+',Recovered,,,'+churl+'\n'
+    #if death != '0':
+    #  upstring += opt['name']+','+opt['state_code']+','+death+',Deceased,,,'+churl+'\n'
+    
+    teststring = bull_date_print+','+opt['name']+',,,,'+testno+',Tested,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,'+churl+'\n'
+
+    print('\n On '+bull_date_print+' Cases data for copy & paste \n')
+    print(upstring,'\n')
+
+    print('\n TESTs data for copy & paste \n')
+    print(teststring,'\n')
+
+  except:
+    print("Todays Bulletin yet to come. check website")
+
+  return {
+    'needs_correction': False
+  }
+
+  '''
   response = requests.request("GET", opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   divs = soup.find("div", {"class": "col-lg-8 col-md-9 form-group pt-10"}).find_all("div", {"class": "col-md-3"})
@@ -365,7 +473,7 @@ def ch_get_data(opt):
 
   districts_data.append(districtDictionary)
   return districts_data
-
+  '''
 
 def ct_get_data(opt):
 
@@ -1766,7 +1874,7 @@ def tg_get_data(opt):
   districtDictionary = {}
   needs_correction = False
   to_correct = []
-
+  print('\n-*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-')
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
@@ -1778,8 +1886,20 @@ def tg_get_data(opt):
           to_correct.append(linesArray)
           continue
 
-        if linesArray[0].strip().capitalize() == "Ghmc":
+        if linesArray[0].strip().title() == "Ghmc":
           linesArray[0] = "Hyderabad"
+        elif linesArray[0].strip().title() == "Jagityal":
+          linesArray[0] = "Jagtial"
+        elif linesArray[0].strip().title() == "Medchal Malkajigiri":
+          linesArray[0] = "Medchal Malkajgiri"
+        elif linesArray[0].strip().title() == "Rajanna Siricilla":
+          linesArray[0] = "Rajanna Sircilla"
+        elif linesArray[0].strip().title() == "Rangareddy":
+          linesArray[0] = "Ranga Reddy"
+        elif linesArray[0].strip().title() == "Hanumakonda":
+          linesArray[0] = "Warangal Urban"
+        elif linesArray[0].strip().title() == "Yadadri Bhonigir":
+          linesArray[0] = "Yadadri Bhuvanagiri"
 
         districtDictionary['districtName'] = linesArray[0].strip().title()
         districtDictionary['confirmed'] = int(linesArray[1].strip())
