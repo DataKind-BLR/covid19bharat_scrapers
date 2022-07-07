@@ -75,11 +75,13 @@ ch:
   cowin_code: 6
   url_sources:
     - https://twitter.com/ani
-    - https://twitter.com/
     - http://chdcovid19.in/
-  type: image
-  url: _inputs/ch.jpg
+    - http://chdcovid19.in/chdcovidbed19/index.php/media_bulletin/index
+    - http://chdpr.gov.in/downloads/media_bulletin
+  type: html
+  url: 
   config:
+    delta_calc: False
     translation: False
 
 ct:
