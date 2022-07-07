@@ -14,6 +14,7 @@ OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
 MOHFW_URL = 'https://www.mohfw.gov.in/data/datanew.json'
+api_state_wise = 'https://data.covid19bharat.org/csv/latest/state_wise.csv'
 
 def _get_mohfw_data(name):
   '''Fetch state-wise data from MOHFW website.
@@ -43,26 +44,56 @@ def _get_mohfw_data(name):
     'confirmed': datum['new_positive'],
     'recovered': datum['new_cured'],
     'deceased':  datum['new_death'],
+    'active':  datum['new_active'],
     'dC': datum['new_positive'] - datum['positive'],
     'dR': datum['new_cured'] - datum['cured'],
     'dD': dDno
   }] 
 
+def _get_api_statewise_data(name):
+  '''Fetch state-wise data from MOHFW website.
+  
+  Inputs:
+    name: state name, eg: Ladakh
+
+  Returns:
+    dict: [{
+      'StateName': '',
+      'confirmed': 12345,
+      ...
+    }]
+  '''
+  
+  datum = (pd.read_csv(api_state_wise)
+             .set_index('State')
+             .loc[name])
+
+  return [{
+    'stateName': name,
+    'api_C': datum['Confirmed'],
+    'api_R': datum['Recovered'],
+    'api_D':  datum['Deaths'],
+    'api_A':  datum['Active']
+  }]
 
 def ap_get_data(opt):
 
   if opt['type'] == 'html':
     data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
 
-    print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-    if data[0]['dC'] != 0:
-      print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-    if data[0]['dR'] != 0:
-      print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-    if data[0]['dD'] != 0:
-      print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    if data[0]['active'] != api_data[0]['api_A']:
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('MOHFW yet to update data. Please try after sometime')
 
-  #quit()
   return {
     'needs_correction': False
   }
@@ -1145,16 +1176,20 @@ def ld_get_data(opt):
   #return _get_mohfw_data(opt['name'])
   if opt['type'] == 'html':
     data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
 
-    print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-    if data[0]['dC'] != 0:
-      print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-    if data[0]['dR'] != 0:
-      print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-    if data[0]['dD'] != 0:
-      print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
-
-  #quit()
+    if data[0]['active'] != api_data[0]['api_A']:
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('MOHFW yet to update data. Please try after sometime')
+      
   return {
     'needs_correction': False
   }
