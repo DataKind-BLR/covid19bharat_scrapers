@@ -83,7 +83,7 @@ def ap_get_data(opt):
     api_data=_get_api_statewise_data(opt['name'])
     #print(api_data[0]['api_A'],data[0]['active'])
 
-    if data[0]['active'] != api_data[0]['api_A']:
+    if ((data[0]['active'] != api_data[0]['api_A']) and ((data[0]['dC'] != 0) or (data[0]['dR']) or (data[0]['dD']))):
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
       if data[0]['dC'] != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
@@ -92,7 +92,8 @@ def ap_get_data(opt):
       if data[0]['dD'] != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
-      print('MOHFW yet to update data. Please try after sometime')
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
 
   return {
     'needs_correction': False
@@ -1179,7 +1180,7 @@ def ld_get_data(opt):
     api_data=_get_api_statewise_data(opt['name'])
     #print(api_data[0]['api_A'],data[0]['active'])
 
-    if data[0]['active'] != api_data[0]['api_A']:
+    if ((data[0]['active'] != api_data[0]['api_A']) and ((data[0]['dC'] != 0) or (data[0]['dR']) or (data[0]['dD']))):
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
       if data[0]['dC'] != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
@@ -1188,7 +1189,8 @@ def ld_get_data(opt):
       if data[0]['dD'] != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
-      print('MOHFW yet to update data. Please try after sometime')
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
       
   return {
     'needs_correction': False
