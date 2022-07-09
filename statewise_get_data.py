@@ -1953,9 +1953,11 @@ def tg_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 8:
+        NcolReq = 8
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
