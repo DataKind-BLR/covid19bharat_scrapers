@@ -232,9 +232,11 @@ def ar_get_data(opt):
 
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 14:
+        NcolReq = 14
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(', '.join(linesArray))
           continue
 
@@ -341,9 +343,11 @@ def br_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 5:
+        NcolReq = 5
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -525,9 +529,11 @@ def ct_get_data(opt):
         for line in upFile:
           linesArray = line.split(',')
 
-          if len(linesArray) != 4:
+          NcolReq = 4
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -572,9 +578,11 @@ def ct_get_data(opt):
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
 
-          if len(linesArray) != 9:
+          NcolReq = 9
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -670,9 +678,12 @@ def hp_get_data(opt):
         availableColumns = line.split('|')[1].split(',')
         districtDictionary = {}
 
-        if len(linesArray) != 12:
+        #NcolReq = 12 #sometimes they add extra columns
+        NcolReq = 10 #July2022
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -681,8 +692,15 @@ def hp_get_data(opt):
 
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
-        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
-        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
+
+        #with NcolReq = 12
+        #districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        #districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
+
+        #with NcolReq = 10
+        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[6].strip()).strip())
+        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+
         districts_data.append(districtDictionary)
 
   except Exception as e:
@@ -726,9 +744,11 @@ def hr_get_data(opt):
       for line in upFile:
         linesArray = line.split(',')
 
-        if len(linesArray) != 4:
+        NcolReq = 4
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -772,9 +792,11 @@ def jh_get_data(opt):
         for line in upFile:
           linesArray = line.split(',')
 
-          if len(linesArray) != 8:
+          NcolReq = 8
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '---> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -816,9 +838,11 @@ def jh_get_data(opt):
           linesArray = line.split('|')[0].split(',')
           availableColumns = line.split('|')[1].split(',')
 
-          if len(linesArray) != 8:
+          NcolReq = 8
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -863,9 +887,11 @@ def jk_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 11:
+        NcolReq = 11
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -1211,9 +1237,11 @@ def mh_get_data(opt):
         for line in upFile:
           linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 5:
+          NcolReq = 5
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -1278,9 +1306,11 @@ def ml_get_data(opt):
         for line in upFile:
           linesArray = line.split(',')
 
-          if len(linesArray) != 4:
+          NcolReq = 4
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -1319,9 +1349,11 @@ def ml_get_data(opt):
         for line in upFile:
           linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 8:
+          NcolReq = 8
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -1445,9 +1477,11 @@ def mp_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 8:
+        NcolReq = 8
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -1489,9 +1523,11 @@ def mz_get_data(opt):
         line = line.replace('Nil', '0')
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 5:
+        NcolReq = 5
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
