@@ -543,7 +543,7 @@ ut:
   type: pdf
   url: _inputs/ut.pdf
   config:
-    page: 2
+    page: 3
     start_key: Cases
     end_key: Total
   # type: image
