@@ -59,6 +59,7 @@ def ut_calculate_detlas(opt, live_data):
     '''
     api_df = pd.read_csv(API_DIST_TS)
     state_df = api_df[api_df['State'] == opt['name']].rename(columns={'Other': 'Migrated_Other'})
+
     # done_df = state_df[state_df['Date'] == datetime.date.today().strftime('%Y-%m-%d')]
 
     # is data already entered for today?
@@ -124,8 +125,47 @@ def ut_calculate_detlas(opt, live_data):
         'Migrated_Other'
     ]].set_index('District').sort_index(ascending=True)
 
+    # --> substract individually for each district
+    custom_diffs = {
+        'District': [
+            'Almora',
+            'Bageshwar',
+            'Chamoli',
+            'Champawat',
+            'Dehradun',
+            'Haridwar',
+            'Nainital',
+            'Pauri Garhwal',
+            'Pithoragarh',
+            'Rudraprayag',
+            'Tehri Garhwal',
+            'Udham Singh Nagar',
+            'Uttarkashi'
+        ],
+        'Confirmed': [
+            6,
+            4,
+            2,
+            3,
+            135,
+            30,
+            70,
+            7,
+            12,
+            0,
+            7,
+            24,
+            2
+        ]
+    }
+    custom_df = pd.DataFrame(data=custom_diffs)
+    custom_df.set_index('District', inplace=True)
+
     # 5. calculate (#3) - (#4)
     delta_df = today_cum_df - yest_cum_df
+
+    # --> take custom diff for each district
+    delta_df['Confirmed'] = delta_df['Confirmed'] - custom_df['Confirmed']
 
     # 6. format data frame
     delta_df.fillna(0, inplace=True)
