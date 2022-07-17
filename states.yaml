@@ -22,13 +22,15 @@ ap:
     - https://twitter.com/ArogyaAndhra
     - http://hmfw.ap.gov.in/covid_dashboard.aspx
     - notes If full image fails, clip only table and submit
-  type: image
-  url: _inputs/ap.jpeg
-  page: 1
+    - https://www.mohfw.gov.in/data/datanew.json
+  type: html
+  url: https://www.mohfw.gov.in/data/datanew.json
+  #page: 
   config:
-    translation: False
-    start_key: Anantapur
-    end_key: West
+    delta_calc: False
+    #translation: False
+    #start_key: Anantapur
+    #end_key: West
 
 ar:
   name: Arunachal Pradesh
@@ -73,11 +75,13 @@ ch:
   cowin_code: 6
   url_sources:
     - https://twitter.com/ani
-    - https://twitter.com/
     - http://chdcovid19.in/
-  type: image
-  url: _inputs/ch.jpg
+    - http://chdcovid19.in/chdcovidbed19/index.php/media_bulletin/index
+    - http://chdpr.gov.in/downloads/media_bulletin
+  type: html
+  url: 
   config:
+    delta_calc: False
     translation: False
 
 ct:
@@ -219,14 +223,14 @@ jh:
   url_sources:
     - https://twitter.com/RanchiPIB
     - http://jrhms.jharkhand.gov.in/covid-19
-    - Look in our telegram Data dump or ask Rukmini
-  type: pdf
-  url: _inputs/jh.pdf
+    - Look in our telegram Data dump or ask Rukmini/Sumit
+  type: image
+  url:
   config:
     page: 1
     translation: False
     start_key: Bokaro
-    end_key: Total
+    #end_key: Total
 
 ka:
   name: Karnataka
@@ -246,16 +250,15 @@ kl:
   state_code: KL
   cowin_code: 17
   url_sources:
-    - https://twitter.com/CMOKerala
-    - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
-  type: pdf
-  url: _inputs/kl.pdf
+    - https://dashboard.kerala.gov.in/covid/index.php
+  type: html
+  url: https://dashboard.kerala.gov.in/covid/daily.php
   config:
     delta_calc: False
-    page: 4
-    start_key: District
-    end_key: Total
+    #page: 4
+    #start_key: District
+    #end_key: Total
 
 kld:
   name: KeralaDeaths
@@ -310,7 +313,9 @@ ld:
     - MoHFW
   type: html
   url:
-
+  config:
+    delta_calc: False
+    
 mh:
   name: Maharashtra
   state_code: MH
@@ -320,7 +325,7 @@ mh:
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
   type: image
-  url: _inputs/mh.png
+  url: 
 
 ml:
   name: Meghalaya
@@ -348,7 +353,7 @@ mn:
     - https://twitter.com/imphalrob
     - https://nrhmmanipur.org/?p=7999
   type: image
-  url: _inputs/mn.jpeg
+  url: 
   config:
     translation: False
     #start_key: Bishnupur
@@ -366,7 +371,7 @@ mp:
   url: _inputs/mp.jpeg
   config:
     translation: False
-    start_key: Agar
+    #start_key: Agar
     #end_key: Khandwa
 
 mz:
@@ -520,12 +525,12 @@ up:
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
   type: pdf
-  url: _inputs/up.pdf
+  url: 
   config:
     translation: True
     page: 1, 2
-    start_key: auto
-    end_key: Total
+    #start_key: auto
+    #end_key: Total
 
 ut:
   name: Uttarakhand

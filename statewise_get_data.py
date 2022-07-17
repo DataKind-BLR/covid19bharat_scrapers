@@ -1,6 +1,7 @@
 import os
 import re
 import json
+from numpy import False_
 import requests
 import datetime
 import pandas as pd
@@ -12,6 +13,8 @@ from read_pdf import read_pdf_from_url
 OUTPUTS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs')
 OUTPUT_TXT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_outputs', 'output.txt')
 
+MOHFW_URL = 'https://www.mohfw.gov.in/data/datanew.json'
+api_state_wise = 'https://data.covid19bharat.org/csv/latest/state_wise.csv'
 
 def _get_mohfw_data(name):
   '''Fetch state-wise data from MOHFW website.
@@ -26,39 +29,92 @@ def _get_mohfw_data(name):
       ...
     }]
   '''
-  MOHFW_URL = 'https://www.mohfw.gov.in/data/datanew.json'
   
   datum = (pd.read_json(MOHFW_URL)
              .set_index('state_name')
              .loc[name])
 
+  if datum['death_reconsille'] != '':
+    dDno = datum['new_death'] - datum['death'] + datum['death_reconsille']
+  else:
+    dDno = datum['new_death'] - datum['death']
+
   return [{
     'districtName': name,
     'confirmed': datum['new_positive'],
     'recovered': datum['new_cured'],
-    'deceased':  datum['new_death']
+    'deceased':  datum['new_death'],
+    'active':  datum['new_active'],
+    'dC': datum['new_positive'] - datum['positive'],
+    'dR': datum['new_cured'] - datum['cured'],
+    'dD': dDno
   }] 
 
+def _get_api_statewise_data(name):
+  '''Fetch state-wise data from MOHFW website.
+  
+  Inputs:
+    name: state name, eg: Ladakh
+
+  Returns:
+    dict: [{
+      'StateName': '',
+      'confirmed': 12345,
+      ...
+    }]
+  '''
+  
+  datum = (pd.read_csv(api_state_wise)
+             .set_index('State')
+             .loc[name])
+
+  return [{
+    'stateName': name,
+    'api_C': datum['Confirmed'],
+    'api_R': datum['Recovered'],
+    'api_D':  datum['Deaths'],
+    'api_A':  datum['Active']
+  }]
 
 def ap_get_data(opt):
 
   if opt['type'] == 'html':
-    if opt['skip_output'] == False:
-      response = requests.request('GET', opt['url'], verify=False)
-      soup = BeautifulSoup(response.content, 'html.parser')
-      table = soup.find('table', {'class': 'table'}).find_all('tr')
-      districts_data = []
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
 
-      for row in table[1:]:
+    if ((data[0]['active'] != api_data[0]['api_A']) and ((data[0]['dC'] != 0) or (data[0]['dR']) or (data[0]['dD']))):
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
+
+  return {
+    'needs_correction': False
+  }
+
+    #if opt['skip_output'] == False:
+    #  response = requests.request('GET', opt['url'], verify=False)
+    #  soup = BeautifulSoup(response.content, 'html.parser')
+    #  table = soup.find('table', {'class': 'table'}).find_all('tr')
+    #  districts_data = []
+
+    #  for row in table[1:]:
         # Ignoring 1st row containing table headers
-        d = row.find_all('td')
-        districts_data.append({
-          'districtName': d[0].get_text(),
-          'confirmed': int(d[1].get_text().strip()),
-          'recovered': int(d[2].get_text().strip()),
-          'deceased': int(d[3].get_text().strip())
-        })
-
+    #    d = row.find_all('td')
+    #    districts_data.append({
+    #      'districtName': d[0].get_text(),
+    #      'confirmed': int(d[1].get_text().strip()),
+    #      'recovered': int(d[2].get_text().strip()),
+    #      'deceased': int(d[3].get_text().strip())
+    #    })
+  '''
   elif opt['type'] == 'pdf':
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
@@ -147,8 +203,8 @@ def ap_get_data(opt):
         'output': OUTPUT_TXT,
         'to_correct': to_correct
       }
-
-  return districts_data
+  '''
+  #return districts_data
 
 
 def an_get_data(opt):
@@ -176,9 +232,11 @@ def ar_get_data(opt):
 
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 14:
+        NcolReq = 14
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(', '.join(linesArray))
           continue
 
@@ -238,7 +296,7 @@ def as_get_data(opt):
 
         ## Why is this not fixed in `as_districts.meta` ??
         if int(linesArray[len(linesArray) - 1]) > 0:
-          if linesArray[0].strip() == 'Kamrup Metro':
+          if ((linesArray[0].strip() == 'Kamrup Metro') or (linesArray[0].strip() == 'Metro')):
             print("Kamrup Metropolitan,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
           elif linesArray[0].strip() == 'Kamrup Rural':
             print("Kamrup,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
@@ -285,9 +343,11 @@ def br_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 5:
+        NcolReq = 5
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -317,6 +377,114 @@ def br_get_data(opt):
 
 
 def ch_get_data(opt):
+
+  import urllib
+  #file download
+  htm_string_1 = 'http://chdpr.gov.in/cadmin/uploads/downloads/Media_Bulletin_on_'
+  htm_string_3 = '.docx'
+  upstring = ''
+
+  #bull_date_string = '06-07-2022'
+  bull_date_string = datetime.datetime.today().strftime('%d-%m-%Y')
+  bull_date_print = datetime.datetime.today().strftime('%d/%m/%Y')
+
+  htm_string= htm_string_1+bull_date_string+htm_string_3
+  churl=htm_string
+  #print(htm_string)
+
+  filename = '_inputs/'+opt['state_code']+'.docx'
+  try:
+    urllib.request.urlretrieve(htm_string, filename)
+
+    #extract text from DOCX
+    #http://etienned.github.io/posts/extract-text-from-word-docx-simply/
+    try:
+        from xml.etree.cElementTree import XML
+    except ImportError:
+        from xml.etree.ElementTree import XML
+    import zipfile
+
+
+    """
+    Module that extract text from MS XML Word document (.docx).
+    (Inspired by python-docx <https://github.com/mikemaccana/python-docx>)
+    """
+
+    WORD_NAMESPACE = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
+    PARA = WORD_NAMESPACE + 'p'
+    TEXT = WORD_NAMESPACE + 't'
+
+
+    def get_docx_text(path):
+        """
+        Take the path of a docx file as argument, return the text in unicode.
+        """
+        document = zipfile.ZipFile(path)
+        xml_content = document.read('word/document.xml')
+        document.close()
+        tree = XML(xml_content)
+
+        paragraphs = []
+        for paragraph in tree.getiterator(PARA):
+            texts = [node.text
+                    for node in paragraph.getiterator(TEXT)
+                    if node.text]
+            if texts:
+                paragraphs.append(''.join(texts))
+
+        return '|'.join(paragraphs)
+
+    #use above sub to Get the txt from docx
+    text = get_docx_text(filename)
+
+    text = text.replace(' ','')
+    #print(text)
+    #extract dC dR dD Tests
+
+    newcasespat = re.compile(r'newpositivecases\|(\d+)\|')
+    newcases = re.search(newcasespat, text)
+    newcases = newcases[1]
+    newcases = str(int(newcases))
+
+    recpat = re.compile(r'Today(\d+)patients')
+    rec = re.search(recpat, text)
+    rec = rec[1]
+    rec = str(int(rec))
+
+    #deathpat = re.compile(r'death(\d+)')
+    #death = re.search(deathpat, text)
+    #death = death[1]
+    #death = str(int(death))
+
+    testpat = re.compile(r'SamplesTested\|(\d+)')
+    testno = re.search(testpat, text)
+    testno = testno[1]
+
+    #print(testdate,newcases,rec,testno)
+
+    if newcases != '0':
+      upstring += opt['name']+','+opt['state_code']+','+newcases+',Hospitalized,,,'+churl+'\n'
+    if rec != '0':
+      upstring += opt['name']+','+opt['state_code']+','+rec+',Recovered,,,'+churl+'\n'
+    #if death != '0':
+    #  upstring += opt['name']+','+opt['state_code']+','+death+',Deceased,,,'+churl+'\n'
+    
+    teststring = bull_date_print+','+opt['name']+',,,,'+testno+',Tested,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,'+churl+'\n'
+
+    print('\n On '+bull_date_print+' Cases data for copy & paste \n')
+    print(upstring,'\n')
+
+    print('\n TESTs data for copy & paste \n')
+    print(teststring,'\n')
+
+  except:
+    print("Todays Bulletin yet to come. check website")
+
+  return {
+    'needs_correction': False
+  }
+
+  '''
   response = requests.request("GET", opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   divs = soup.find("div", {"class": "col-lg-8 col-md-9 form-group pt-10"}).find_all("div", {"class": "col-md-3"})
@@ -341,7 +509,7 @@ def ch_get_data(opt):
 
   districts_data.append(districtDictionary)
   return districts_data
-
+  '''
 
 def ct_get_data(opt):
 
@@ -361,9 +529,11 @@ def ct_get_data(opt):
         for line in upFile:
           linesArray = line.split(',')
 
-          if len(linesArray) != 4:
+          NcolReq = 4
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -408,9 +578,11 @@ def ct_get_data(opt):
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
 
-          if len(linesArray) != 9:
+          NcolReq = 9
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -506,9 +678,12 @@ def hp_get_data(opt):
         availableColumns = line.split('|')[1].split(',')
         districtDictionary = {}
 
-        if len(linesArray) != 12:
+        #NcolReq = 12 #sometimes they add extra columns
+        NcolReq = 10 #July2022
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -517,8 +692,15 @@ def hp_get_data(opt):
 
         districtDictionary['districtName'] = linesArray[0].strip()
         districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
-        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
-        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
+
+        #with NcolReq = 12
+        #districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+        #districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
+
+        #with NcolReq = 10
+        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[6].strip()).strip())
+        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
+
         districts_data.append(districtDictionary)
 
   except Exception as e:
@@ -562,9 +744,11 @@ def hr_get_data(opt):
       for line in upFile:
         linesArray = line.split(',')
 
-        if len(linesArray) != 4:
+        NcolReq = 4
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -608,9 +792,11 @@ def jh_get_data(opt):
         for line in upFile:
           linesArray = line.split(',')
 
-          if len(linesArray) != 8:
+          NcolReq = 8
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '---> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -652,9 +838,11 @@ def jh_get_data(opt):
           linesArray = line.split('|')[0].split(',')
           availableColumns = line.split('|')[1].split(',')
 
-          if len(linesArray) != 8:
+          NcolReq = 8
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -699,9 +887,11 @@ def jk_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 11:
+        NcolReq = 11
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -786,59 +976,122 @@ def ka_get_data(opt):
 
 def kl_get_data(opt):
   if opt['type'] == 'html':
-    response = requests.request('GET', opt['url'])
-    soup = BeautifulSoup(response.content, 'html.parser')
-    #table = soup.find('table', {'id': 'wrapper2'}).find_all('tr')
-    table = soup.find("table", {"class": "sortable"})#.find_all('tr')
-    #table = soup.find_all('table')[3]
     districts_data = []
+    response = requests.request('GET', opt['url'])
+    soup = BeautifulSoup(response.content, "html.parser")
+    table = soup.find('table', attrs={'class':'table'})
+    #print(table)
+    rows = soup.find_all('table')[0].find_all('tr')
 
-    for row in table[1:]:
+    dom = soup.find('li', attrs={'class':'breadcrumb-item active'})
+    webdate = dom.get_text()
+    print('\n',webdate,'\n') 
+
+    for row in rows[1:]:
       # Ignoring 1st row containing table headers
       d = row.find_all('td')
-      districts_data.append({
-        'districtName': d[0].get_text(),
-        'confirmed': int(d[1].get_text().strip()),
-        'recovered': int(d[3].get_text().strip()),
-        'deceased': int(d[5].get_text().strip())
-      })
+      districtName = d[0].get_text()
+      confirmed = int(d[1].get_text().strip())
+      recovered = int(d[2].get_text().strip())
+      if "Total" not in districtName:
+        if confirmed != 0:
+          print("{},Kerala,KL,{},Hospitalized,,,{}".format(districtName, confirmed,opt['url']))
+        if recovered != 0:
+          print("{},Kerala,KL,{},Recovered,,,{}".format(districtName, recovered, opt['url']))
+  print('\n')
 
-    return districts_data
+  res = soup.find_all('script')[6]
+  res_string = str(res.contents)
+  #print(res_string)
+  data = res_string.replace('\\r\\n', '')
+  data = data.replace('\\t', '')
+  data = data.replace('\\', '')
+  data = data.replace(' ', '')
+  #string to clip
+  left_str = 'events:'
+  right_str = ']'
+  # slicing off after length computation
+  data = data[data.index(left_str):]
+  data = data[:data.index(right_str) + len(right_str)]
+  data = data.replace('events:', 'events|')
+  data = data.split('|')[1]
+  data = data.replace(',]', ']')
+  data = data.replace('title', '"title"')
+  data = data.replace("description", '"description"')
+  data = data.replace('_"description"_', '')
+  data = data.replace("start", '"start"')
+  data = data.replace("color", '"color"')
+  data = data.replace('<?php//echo(getdaily($con,$rep));?>', '')
+  data = data.replace('\'', '\"')
+  #print(json.dumps(data,  skipkeys = True, indent=4))
+  json_object = json.loads(data)
+ 
+  newcasespat = re.compile(r'(\d+)cnfrm')
+  recpat = re.compile(r'(\d+)recvd')
+  deathpat = re.compile(r'(\d+)death')
+  webdatepat = re.compile(r'(\d+-\d+-\d+)')
+  #print(webdate)
+  webdates = re.search(webdatepat, webdate.lower())
+  #print(webdate)
+  webdates = webdates[1]
+  webdates = datetime.datetime.strptime(webdates,'%d-%m-%Y')
+  upstring = ''
 
-  #   opt['url'] = 'https://dashboard.kerala.gov.in/index.php'
-  #   response = requests.request("GET", opt['url'])
+  for datas in json_object:
+    rep_date=datetime.datetime.strptime(datas['start'],'%Y-%m-%d')
+    if rep_date == webdates:
+      #print('{}: {}'.format(datas['start'],datas['title']))
+      if 'Death' in datas['title']:
+        death = re.search(deathpat, datas['title'].lower())
+        death = death[1]
+      elif 'Cnfrm' in datas['title']:
+        newcases = re.search(newcasespat, datas['title'].lower())
+        newcases = newcases[1]
+      elif 'Recvd' in datas['title']:
+        rec = re.search(recpat, datas['title'].lower())
+        rec = rec[1]
+  #print(death,newcases,rec)
+  #if newcases != '0':
+  #  upstring += 'Kerala,KL,'+newcases+',Hospitalized,,,'+opt['url']+'\n'
+  #if rec != '0':
+  #  upstring += 'Kerala,KL,'+rec+',Recovered,,,'+opt['url']+'\n'
+  if death != '0':
+    upstring += 'Kerala,KL,'+death+',Deceased,,,'+opt['url']+'\n'
 
-  #   # sessionId = (response.headers['Set-Cookie']).split(';')[0].split('=')[1]
+  print('\n'+str(webdate)+' State level Deaths data for copy & paste \n')
+  print(upstring,'\n')
 
-  #   cookies = {
-  #     '_ga': 'GA1.3.594771251.1592531338',
-  #     '_gid': 'GA1.3.674470591.1592531338',
-  #     # 'PHPSESSID': sessionId,
-  #     '_gat_gtag_UA_162482846_1': '1'
-  #   }
 
-  #   headers = {
-  #     'Connection': 'keep-alive',
-  #     'Accept': 'application/json, text/javascript, */*; q=0.01',
-  #     'X-Requested-With': 'XMLHttpRequest',
-  #     'Sec-Fetch-Site': 'same-origin',
-  #     'Sec-Fetch-Mode': 'cors',
-  #     'Sec-Fetch-Dest': 'empty',
-  #     'Referer': 'https://dashboard.kerala.gov.in/index.php',
-  #     'Accept-Language': 'en-US,en;q=0.9'
-  #   }
-  #   stateDashboard = requests.get(opt['url'], headers=headers).json()
+  kltesturl = 'https://dashboard.kerala.gov.in/covid/testing-view-public.php'      
 
-  #   districtArray = []
-  #   for districtDetails in stateDashboard['features']:
-  #     districtDictionary = {}
-  #     districtDictionary['districtName'] = districtDetails['properties']['District']
-  #     districtDictionary['confirmed'] = districtDetails['properties']['covid_stat']
-  #     districtDictionary['recovered'] = districtDetails['properties']['covid_statcured']
-  #     districtDictionary['deceased'] = districtDetails['properties']['covid_statdeath']
-  #     districtArray.append(districtDictionary)
-  #   # deltaCalculator.getStateDataFromSite("Kerala", districtArray, option)
-  #   return districtArray
+  response = requests.request('GET', kltesturl)
+  soup = BeautifulSoup(response.content, "html.parser")
+
+  data = []
+  table = soup.find('table', attrs={'class':'table'})
+
+  rows = soup.find_all('table')[2].find_all('tr')
+  for row in rows:
+      cols = row.find_all('td')
+      cols = [ele.text.strip() for ele in cols]
+      data.append([ele for ele in cols if ele]) # Get rid of empty values
+
+
+  rep_date = data[1][0]
+  rep_date=datetime.datetime.strptime(rep_date,'%d-%m-%Y')
+  testdate = datetime.datetime.strftime(rep_date,'%d/%m/%Y')
+  total = data[1][11]
+  others = data[1][8]
+  rat = data[1][7]
+  rtpcr = int(total) -(int(rat)+int(others))
+  rtpcr=str(rtpcr)
+  #print(rep_date,rtpcr,rat,others,total)
+  upstring = testdate+',Kerala,'+str(rtpcr)+','+str(rat)+','+str(others)+','+\
+              str(total)+',Samples Sent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,'+kltesturl+'\n'
+  print('Copy Paste the TESTS for Kerala\n')
+  print(upstring)    
+
+  return districts_data
 
   if opt['type'] == 'pdf':
 
@@ -947,8 +1200,27 @@ def la_get_data(opt):
 
 
 def ld_get_data(opt):
-  return _get_mohfw_data(opt['name'])
+  #return _get_mohfw_data(opt['name'])
+  if opt['type'] == 'html':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
 
+    if ((data[0]['active'] != api_data[0]['api_A']) and ((data[0]['dC'] != 0) or (data[0]['dR']) or (data[0]['dD']))):
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
+      
+  return {
+    'needs_correction': False
+  }
 
 def mh_get_data(opt):
 
@@ -965,9 +1237,11 @@ def mh_get_data(opt):
         for line in upFile:
           linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 5:
+          NcolReq = 5
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -1032,9 +1306,11 @@ def ml_get_data(opt):
         for line in upFile:
           linesArray = line.split(',')
 
-          if len(linesArray) != 4:
+          NcolReq = 4
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -1073,9 +1349,11 @@ def ml_get_data(opt):
         for line in upFile:
           linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 8:
+          NcolReq = 8
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
             needs_correction = True
-            linesArray.insert(0, '--> Issue with')
+            linesArray.insert(0, NcolErr)
             to_correct.append(linesArray)
             continue
 
@@ -1199,9 +1477,11 @@ def mp_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 8:
+        NcolReq = 8
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -1243,9 +1523,11 @@ def mz_get_data(opt):
         line = line.replace('Nil', '0')
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 5:
+        NcolReq = 5
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
@@ -1665,20 +1947,34 @@ def tg_get_data(opt):
   districtDictionary = {}
   needs_correction = False
   to_correct = []
-
+  print('\n-*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*--*-')
   try:
     with open(OUTPUT_TXT, "r") as upFile:
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 8:
+        NcolReq = 8
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
           needs_correction = True
-          linesArray.insert(0, '--> Issue with')
+          linesArray.insert(0, NcolErr)
           to_correct.append(linesArray)
           continue
 
-        if linesArray[0].strip().capitalize() == "Ghmc":
+        if linesArray[0].strip().title() == "Ghmc":
           linesArray[0] = "Hyderabad"
+        elif linesArray[0].strip().title() == "Jagityal":
+          linesArray[0] = "Jagtial"
+        elif linesArray[0].strip().title() == "Medchal Malkajigiri":
+          linesArray[0] = "Medchal Malkajgiri"
+        elif linesArray[0].strip().title() == "Rajanna Siricilla":
+          linesArray[0] = "Rajanna Sircilla"
+        elif linesArray[0].strip().title() == "Rangareddy":
+          linesArray[0] = "Ranga Reddy"
+        elif linesArray[0].strip().title() == "Hanumakonda":
+          linesArray[0] = "Warangal Urban"
+        elif linesArray[0].strip().title() == "Yadadri Bhonigir":
+          linesArray[0] = "Yadadri Bhuvanagiri"
 
         districtDictionary['districtName'] = linesArray[0].strip().title()
         districtDictionary['confirmed'] = int(linesArray[1].strip())

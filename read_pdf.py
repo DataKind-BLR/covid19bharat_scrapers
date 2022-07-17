@@ -53,7 +53,11 @@ def read_pdf_from_url(opt):
     pid = input("Enter district page:")
   print("Running for {} pages".format(pid))
 
-  tables = camelot.read_pdf(opt['url'], strip_text = '\n', pages = pid, split_text = True)
+  if  ((opt['state_code'] == 'PB') or (opt['state_code'] == 'JH')):
+    tables = camelot.read_pdf(opt['url'], strip_text = '\n', pages = pid, split_text = True, flavor='stream')
+  else:
+    tables = camelot.read_pdf(opt['url'], strip_text = '\n', pages = pid, split_text = True)
+
   # for index, table in enumerate(tables):
   OUTPUT_CSV = os.path.join(OUTPUTS_DIR, opt['state_code'].lower() + '.csv')
   stateOutputFile = open(OUTPUT_CSV, 'w')
@@ -130,21 +134,33 @@ def ka_format_line(row):
     district = " ".join(re.sub(' +', ' ', modifiedRow[0]).split(' ')[1:])
     modifiedRow.insert(0, 'a')
   else:
-    district = re.sub('\*', '', modifiedRow[1])
-  #print(modifiedRow)
+    district = re.sub('\*+', '', modifiedRow[1])
+    district = re.sub('\#+', '', modifiedRow[1])
+    modifiedRow[3] = re.sub('\*+', '', modifiedRow[3])
+    modifiedRow[3] = re.sub('\#+', '', modifiedRow[3])
+    modifiedRow[5] = re.sub('\*+', '', modifiedRow[5])
+    modifiedRow[5] = re.sub('\#+', '', modifiedRow[5])
+    modifiedRow[8] = re.sub('\*+', '', modifiedRow[8])
+    modifiedRow[8] = re.sub('\#+', '', modifiedRow[8])
+    modifiedRow[9] = re.sub('\*+', '', modifiedRow[9])
+    modifiedRow[9] = re.sub('\#+', '', modifiedRow[9])
 
   return district + "," + modifiedRow[3] + "," + modifiedRow[5] + "," + modifiedRow[8] + "," + modifiedRow[9] + "\n"
 
 def hr_format_line(row):
-  row[1] = re.sub('\*', '', row[1])
-  if '[' in row[4]:
-    row[4] = row[4].split('[')[0]
-  if '[' in row[5]:
-    row[5] = row[5].split('[')[0]
-  if '[' in row[7]:
-    row[7] = row[7].split('[')[0]
-  line = row[1] + "," + row[4] + "," + row[5] + "," + row[7] + "\n"
-  return line
+  if len(row) == 12:
+    row[1] = re.sub('\*', '', row[1])
+    if '[' in row[4]:
+      row[4] = row[4].split('[')[0]
+    if '[' in row[5]:
+      row[5] = row[5].split('[')[0]
+    if '[' in row[7]:
+      row[7] = row[7].split('[')[0]
+    line = row[1] + "," + row[4] + "," + row[5] + "," + row[7] + "\n"
+    return line
+  else:
+    #print("Error in : ",row)
+    return ''
 
 def pb_format_line(row):
   if len(row) == 9:
