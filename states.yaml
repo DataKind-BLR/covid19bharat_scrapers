@@ -393,7 +393,7 @@ nl:
     - https://twitter.com/pangnyu
     - https://twitter.com/mygovnagaland
   type: image
-  url: _inputs/nl.jpeg
+  url: 
   config:
     translation: False
 

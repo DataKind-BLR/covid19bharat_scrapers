@@ -1568,7 +1568,14 @@ def nl_get_data(opt):
       for line in upFile:
         linesArray = line.split('|')[0].split(',')
 
-        if len(linesArray) != 13:
+        NcolReq = 13
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+          needs_correction = True
+          linesArray.insert(0, NcolErr)
+          to_correct.append(linesArray)
+          continue
+
           needs_correction = True
           linesArray.insert(0, '--> Issue with')
           to_correct.append(linesArray)
