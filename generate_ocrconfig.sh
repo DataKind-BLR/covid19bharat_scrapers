@@ -39,7 +39,8 @@ replacementLine=$( customiseMetaConfig $stateCode $replacementLine "tg:enableTra
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mz:houghTransform=False,yInterval=12" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ml:configMinLineLength=250,yInterval=5" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "ut:houghTransform=False,yInterval=5" )
-replacementLine=$( customiseMetaConfig $stateCode $replacementLine "nl:configMinLineLength=250,yInterval=5" )
+#replacementLine=$( customiseMetaConfig $stateCode $replacementLine "nl:configMinLineLength=250,yInterval=5" )
+replacementLine=$( customiseMetaConfig $stateCode $replacementLine "nl:houghTransform=False,yInterval=5" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "mh:houghTransform=False,yInterval=15" )
 replacementLine=$( customiseMetaConfig $stateCode $replacementLine "up:houghTransform=False,configMinLineLength=200,yInterval=12" )
 
