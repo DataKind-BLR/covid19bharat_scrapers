@@ -337,6 +337,7 @@ def br_get_data(opt):
   linesArray = []
   districtDictionary = {}
   districts_data = []
+  Dno=0
 
   try:
     with open(OUTPUT_TXT, "r") as upFile:
@@ -358,6 +359,8 @@ def br_get_data(opt):
         districtDictionary['deceased'] = int(linesArray[3])
         #districtDictionary['deceased'] = int(linesArray[5])
         districts_data.append(districtDictionary)
+        Dno = Dno + 1
+
   except Exception as e:
     return {
       'needs_correction': True,
@@ -373,6 +376,9 @@ def br_get_data(opt):
       'to_correct': to_correct
     }
 
+  print('\n+++++++++++++++++++++++++++++++++++++++++++++++')    
+  print('Districts scraped = ',Dno)
+  print('+++++++++++++++++++++++++++++++++++++++++++++++') 
   return districts_data
 
 
