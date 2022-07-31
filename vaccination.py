@@ -320,6 +320,9 @@ def get_cowin_district(from_date, to_date, state_codes):
     final_df = pd.concat(multi_dfs, axis=1)
     final_dwnld_df = pd.concat(multi_dwnld_dfs, axis=1)
 
+    #Removing first 3 columns (state_code, state_name, district_name)
+    final_df.drop(final_df.iloc[:,0:3], inplace=True, axis=1)
+
     final_df.to_csv(VACC_DST, index=False)
     final_dwnld_df.to_csv(COWIN_DIST_LIVE, index=False)
     print("District data is saved to: ", VACC_DST)
