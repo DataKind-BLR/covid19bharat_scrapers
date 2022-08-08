@@ -220,12 +220,30 @@ def tn_format_line(row):
   return line
 
 def vaccination_mohfw_format_line(row):
-  if 'Miscellaneous' in row[1] and len(row) != 11:
-    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + "0"  "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) + "\n"
-  else:
+  if 'Miscellaneous' in row[1]:
+    row[4] = re.sub('\-', '', re.sub(',', '', re.sub('\+.*', '', row[4])))
+    row[5] = re.sub('\-', '', re.sub(',', '', re.sub('\+.*', '', row[4])))
+    row[6] = re.sub('\-', '', re.sub(',', '', re.sub('\+.*', '', row[4])))
+    row[7] = re.sub('\-', '', re.sub(',', '', re.sub('\+.*', '', row[4])))
+    row[8] = re.sub('\-', '', re.sub(',', '', re.sub('\+.*', '', row[4])))
+    #print(row)
+  if 'Miscellaneous' in row[1] and len(row) == 10:
+    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + "0" + "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) + "\n"
+    return line
+  elif 'Miscellaneous' in row[1] and len(row) == 9:
+    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + "0" +  "," + "0" + "," + ''.join(row[7].split(',')) +  "," + ''.join(row[8].split(',')) + "\n"
+    return line
+  elif 'Miscellaneous' in row[1] and len(row) == 8:
+    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + "0" +  "," + "0" +  "," + "0" + "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) + "\n"
+    return line
+  elif 'Miscellaneous' in row[1] and len(row) == 7:
+    line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + "0" +  "," + "0" +  "," + "0" +  "," + "0" + "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) + "\n"
+    return line
+  elif len(row) == 11 :
     line = row[1] + "," + ''.join(row[2].split(',')) + "," + ''.join(row[3].split(',')) + "," + ''.join(row[4].split(',')) +  "," + ''.join(row[5].split(',')) +  "," + ''.join(row[6].split(',')) +  "," + ''.join(row[7].split(',')) +  "," + ''.join(row[8].split(',')) +  "," + ''.join(row[9].split(',')) +  "," + ''.join(row[10].split(',')) + "\n"
-  return line
-
+    return line
+  elif len(row) < 6:
+    return
 
 ## ------------------------ Custom format line functions for specific states END
 
