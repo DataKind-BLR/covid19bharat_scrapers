@@ -455,7 +455,8 @@ rj:
     translation: False
     start_key: AJMER
     end_key: Total
-
+    delta_calc: False
+    
 sk:
   name: Sikkim
   state_code: SK

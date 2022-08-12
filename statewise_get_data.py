@@ -1811,17 +1811,22 @@ def rj_get_data(opt):
     if opt['skip_output'] == False:
       read_pdf_from_url(opt)
 
+    print('\n+++++++++++++++++++++++++++++++++++++++++++++++')   
+    print('Direct Deltas from bulletin. Pl check state totals')
+    print('+++++++++++++++++++++++++++++++++++++++++++++++\n') 
+
     csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
     with open(csv_file, "r") as upFile:
       for line in upFile:
         linesArray = line.split(',')
+        '''
         if len(linesArray) != 8:
           print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
           print('--------------------------------------------------------------------------------')
           continue
 
         if 'Other' in linesArray[0].strip().title():
-          print('Ignoring Other States/Countries',linesArray[0].strip())
+          print('\n Ignoring Other States/Countries',linesArray[0].strip())
           continue
 
         districtDictionary = {}
@@ -1830,16 +1835,30 @@ def rj_get_data(opt):
         districtDictionary['recovered'] = int(linesArray[6])
         districtDictionary['deceased'] = int(linesArray[4]) if len(re.sub('\n', '', linesArray[4])) != 0 else 0
         district_data.append(districtDictionary)
+        '''
+        if len(linesArray) != 5:
+          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
+          print('--------------------------------------------------------------------------------')
+          continue
+
+        if 'Other' in linesArray[0].strip().title():
+          print('\n+++++++++++++++++++++++++++++++++++++++++++++++')   
+          print('Ignoring Other States/Countries',linesArray[0].strip())
+          continue
+
+        if linesArray[1].strip() != '0':
+          print("{},Rajasthan,RJ,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
+        if linesArray[2].strip() != '0':
+          print("{},Rajasthan,RJ,{},Deceased".format(linesArray[0].strip().title(), linesArray[2].strip()))
+        if linesArray[3].strip() != '0':
+          print("{},Rajasthan,RJ,{},Recovered".format(linesArray[0].strip().title(), linesArray[3].strip()))
 
     upFile.close()
-    if needs_correction:
-      return {
-        'needs_correction': True,
-        'to_correct': to_correct,
-        'output': csv_file
-      }
+    return {
+      'needs_correction': False,
+    }
 
-  return district_data
+  #return district_data
 
 
 def sk_get_data(opt):
