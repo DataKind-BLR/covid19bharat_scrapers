@@ -112,7 +112,8 @@ def up_format_line(opt, row, translation_dict):
 
 def rj_format_line(row):
   if row[1] != 'District':
-    return row[1] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6] + "," + row[7] + "," + row[8] + "," + row[9] + "\n"
+    #return row[1] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6] + "," + row[7] + "," + row[8] + "," + row[9] + "\n"
+    return row[1] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6] + "\n"
   else:
     return ''
 
