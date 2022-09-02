@@ -838,6 +838,10 @@ def jh_get_data(opt):
     districtDictionary = {}
     districts_data = []
 
+    print('\n+++++++++++++++++++++++++++++++++++++++++++++++')    
+    print('Current Deltas directly from bulletin\nEnsure current data is not entered already')
+    print('+++++++++++++++++++++++++++++++++++++++++++++++') 
+
     try:
       with open(OUTPUT_TXT, "r") as upFile:
         for line in upFile:
@@ -854,9 +858,27 @@ def jh_get_data(opt):
 
           districtDictionary = {}
           districtDictionary['districtName'] = linesArray[0].strip()
-          districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
-          districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
-          districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
+          #districtDictionary['confirmed'] = int(linesArray[4]) + int(linesArray[5])
+          #districtDictionary['recovered'] = int(linesArray[2]) + int(linesArray[6])
+          #districtDictionary['deceased'] = int(linesArray[3]) + int(linesArray[7])
+
+          #we pass totals of previous day for deltas of Previous day
+          districtDictionary['confirmed'] = int(linesArray[4])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[3])
+
+          #Directly printout current deltas given in bulletin
+          if 'Saraikela' in linesArray[0].strip(): 
+            dt_name = 'Saraikela-Kharsawan'
+          else:
+            dt_name =  linesArray[0].strip()
+
+          if int(linesArray[5]) != 0:
+            print("{},Jharkhand,JH,{},Hospitalized".format(dt_name, int(linesArray[5])))
+          if int(linesArray[6]) != 0:
+            print("{},Jharkhand,JH,{},Recovered".format(dt_name, int(linesArray[6])))
+          if int(linesArray[7]) != 0:
+            print("{},Jharkhand,JH,{},Deceased".format(dt_name, int(linesArray[7])))
 
           districts_data.append(districtDictionary)
     except Exception as e:
@@ -873,6 +895,10 @@ def jh_get_data(opt):
         'to_correct': to_correct,
         'output': OUTPUT_TXT
       }
+
+    print('\n+++++++++++++++++++++++++++++++++++++++++++++++')    
+    print('Previous Day Deltas give below. \nNo deltas: we got bulletin previous day too. \nNegative Deltas: Current data already entered')
+    print('+++++++++++++++++++++++++++++++++++++++++++++++') 
     return districts_data
 
 
