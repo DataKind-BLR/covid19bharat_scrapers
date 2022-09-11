@@ -1774,64 +1774,48 @@ def rj_get_data(opt):
     if opt['skip_output'] == False:
       run_for_ocr(opt)
 
+    print('\n+++++++++++++++++++++++++++++++++++++++++++++++')   
+    print('Direct Deltas from bulletin. Pl check state totals')
+    print('+++++++++++++++++++++++++++++++++++++++++++++++\n') 
+
     skipValues = False
     edge_case = False
-    try:
-      with open(OUTPUT_TXT, "r") as upFile:
-        for line in upFile:
-          if 'Other' in line:
-            skipValues = True
-            continue
-          if skipValues == True:
-            continue
+    needs_correction = False
+    to_correct = []      
+    with open(OUTPUT_TXT, "r") as upFile:
+      for line in upFile:
+        if 'Other' in line:
+          skipValues = True
+          continue
+        if skipValues == True:
+          continue
 
-          linesArray = line.split('|')[0].split(',')
+        linesArray = line.split('|')[0].split(',')
 
-          if len(linesArray) != 9:
-            needs_correction = True
-            linesArray.insert(0, '--> Issue with')
-            to_correct.append(linesArray)
-            continue
+        NcolReq = 6
+        if len(linesArray) != NcolReq:
+          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+          needs_correction = True
+          linesArray.insert(0, NcolErr)
+          to_correct.append(linesArray)
+          continue
 
-          districtDictionary = {}
+        if 'Other' in linesArray[0].strip().title():
+          print('\n+++++++++++++++++++++++++++++++++++++++++++++++')   
+          print('Ignoring Other States/Countries',linesArray[0].strip())
+          continue
 
-          if 'Other' in linesArray[0].strip().title():
-            continue
-
-          if linesArray[0].strip().title() != 'Ganganagar':
-            districtDictionary['districtName'] = linesArray[0].strip().title()
-            edge_case = False
-          else:
-            edge_case = True
-
-          if edge_case:
-            # only for Ganaganagar
-            cf = re.sub(r'[a-z]+', '', linesArray[4])
-            dt = re.sub(r'\)', '', linesArray[6])
-            rc = re.sub(r'[a-z]+', '', linesArray[7])
-            districtDictionary['confirmed'] = int(cf.strip())
-            districtDictionary['recovered'] = int(rc.strip())
-            districtDictionary['deceased'] = int(dt.strip())
-          else:
-            rc = re.sub(r'[a-z]+', '', linesArray[7])
-            districtDictionary['confirmed'] = int(linesArray[3].strip())
-            districtDictionary['recovered'] = int(linesArray[7].strip())
-            districtDictionary['deceased'] = int(linesArray[5].strip())
-          district_data.append(districtDictionary)
-    except Exception as e:
-      return {
-        'needs_correction': True,
-        'to_correct': e,
-        'output': OUTPUT_TXT
-      }
+        if linesArray[2].strip() != '0':
+          print("{},Rajasthan,RJ,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[2].strip()))
+        if linesArray[4].strip() != '0':
+          print("{},Rajasthan,RJ,{},Recovered".format(linesArray[0].strip().title(), linesArray[4].strip()))
+        if linesArray[3].strip() != '0':
+          print("{},Rajasthan,RJ,{},Deceased".format(linesArray[0].strip().title(), linesArray[3].strip()))
 
     upFile.close()
-    if needs_correction:
-      return {
-        'needs_correction': True,
-        'to_correct': to_correct,
-        'output': OUTPUT_TXT
-      }
+    return {
+      'needs_correction': False,
+    }
 
   if opt['type'] == 'pdf':
     if opt['skip_output'] == False:
@@ -1874,10 +1858,10 @@ def rj_get_data(opt):
 
         if linesArray[1].strip() != '0':
           print("{},Rajasthan,RJ,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-        if linesArray[2].strip() != '0':
-          print("{},Rajasthan,RJ,{},Deceased".format(linesArray[0].strip().title(), linesArray[2].strip()))
         if linesArray[3].strip() != '0':
           print("{},Rajasthan,RJ,{},Recovered".format(linesArray[0].strip().title(), linesArray[3].strip()))
+        if linesArray[2].strip() != '0':
+          print("{},Rajasthan,RJ,{},Deceased".format(linesArray[0].strip().title(), linesArray[2].strip()))
 
     upFile.close()
     return {

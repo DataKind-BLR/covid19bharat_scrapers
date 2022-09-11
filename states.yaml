@@ -441,15 +441,10 @@ rj:
   state_code: RJ
   cowin_code: 29
   url_sources:
-    - Check @c19b_data_dump telegram channel
-  # type: image
-  # url: _inputs/rj.jpeg
-  # config:
-  #   start_key: auto
-  #   end_key: auto
-  #   translation: True
+    - Check @c19b_data_dump telegram channel for PDF file
+    - image file from https://twitter.com/dineshkumawat
   type: pdf
-  url: _inputs/rj.pdf
+  url: 
   config:
     page: 1,2
     translation: False

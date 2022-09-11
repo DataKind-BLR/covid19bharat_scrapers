@@ -111,6 +111,11 @@ def run(args):
             'url': url,
             'type': url_type
         })
+    #Remove start_key and end_key for processing image of RJ
+    if url_type == 'image' and state_code == 'rj':
+      keys_to_remove = ['key_not_exist', 'start_key','end_key']
+      k = list(map( states_all[state_code]['config'].pop, keys_to_remove, keys_to_remove))
+
     live_data = fetch_data(states_all[state_code])
 
     if 'needs_correction' in live_data and live_data['needs_correction'] == True:
