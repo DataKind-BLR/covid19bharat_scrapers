@@ -324,8 +324,13 @@ mh:
     - https://twitter.com/ani
     - https://twitter.com/pibmumbai
     - https://twitter.com/sanjayjog7
-  type: image
+  type:
   url: 
+  config:
+    page: 1-3
+    translation: False
+    start_key: District/Municipal
+    end_key: Total
 
 ml:
   name: Meghalaya
