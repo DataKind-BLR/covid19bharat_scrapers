@@ -1256,6 +1256,54 @@ def ld_get_data(opt):
 
 def mh_get_data(opt):
 
+  if opt['type'] == 'pdf':
+    if opt['skip_output'] == False:
+      read_pdf_from_url(opt)
+
+    needs_correction = False
+    to_correct = []
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
+
+    try:
+      with open(csv_file, "r") as upFile:
+        for line in upFile:
+          linesArray = line.split(',')
+
+          NcolReq = 4
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+            needs_correction = True
+            linesArray.insert(0, NcolErr)
+            to_correct.append(linesArray)
+            continue
+          if 'District' in linesArray[0].strip() or 'Other' in linesArray[0].strip():
+            continue
+
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[1])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[3])
+          districts_data.append(districtDictionary)
+    except Exception as e:
+      return {
+        'needs_correction': True,
+        'to_correct': e,
+        'output': csv_file
+      }
+
+    upFile.close()
+    if needs_correction:
+      return {
+        'needs_correction': True,
+        'to_correct': to_correct,
+        'output': csv_file
+      }
+    return districts_data
+
   if opt['type'] == 'image':
     if opt['skip_output'] == False:
       run_for_ocr(opt)
@@ -1805,12 +1853,18 @@ def rj_get_data(opt):
           print('Ignoring Other States/Countries',linesArray[0].strip())
           continue
 
-        if linesArray[2].strip() != '0':
-          print("{},Rajasthan,RJ,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[2].strip()))
-        if linesArray[4].strip() != '0':
-          print("{},Rajasthan,RJ,{},Recovered".format(linesArray[0].strip().title(), linesArray[4].strip()))
-        if linesArray[3].strip() != '0':
-          print("{},Rajasthan,RJ,{},Deceased".format(linesArray[0].strip().title(), linesArray[3].strip()))
+        if 'Madhopur' in linesArray[0].strip().title():
+          linesArray[0] = 'Sawai Madhopur'
+
+        dC = int(re.sub('[^0-9]+', '', linesArray[2].strip()))
+        dR = int(re.sub('[^0-9]+', '', linesArray[4].strip()))
+        dD = int(re.sub('[^0-9]+', '', linesArray[3].strip()))
+        if dC != 0:
+          print("{},Rajasthan,RJ,{},Hospitalized".format(linesArray[0].strip().title(), dC))
+        if dR != 0:
+          print("{},Rajasthan,RJ,{},Recovered".format(linesArray[0].strip().title(), dR))          
+        if dD != 0:
+          print("{},Rajasthan,RJ,{},Deceased".format(linesArray[0].strip().title(), dD))
 
     upFile.close()
     return {

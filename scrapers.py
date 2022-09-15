@@ -112,7 +112,7 @@ def run(args):
             'type': url_type
         })
     #Remove start_key and end_key for processing image of RJ
-    if url_type == 'image' and state_code == 'rj':
+    if url_type == 'image' and (state_code == 'rj' or state_code == 'mh'):
       keys_to_remove = ['key_not_exist', 'start_key','end_key']
       k = list(map( states_all[state_code]['config'].pop, keys_to_remove, keys_to_remove))
 
