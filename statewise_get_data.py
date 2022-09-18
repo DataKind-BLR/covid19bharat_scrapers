@@ -30,24 +30,35 @@ def _get_mohfw_data(name):
     }]
   '''
   
-  datum = (pd.read_json(MOHFW_URL)
-             .set_index('state_name')
-             .loc[name])
+  datum = (pd.read_json(MOHFW_URL))
+  #           .set_index('state_name'))
+  #           .loc[name])
+  #print(datum)
+  datum['state_name'] = datum['state_name'].str.replace('[^a-zA-Z\s]', '', regex=True)
+  datum = datum.replace('', 0, regex=True)
+  datum['death_reconsille'] = datum['death_reconsille'].astype(int)
+  datum['total'] = datum['total'].astype(int)
+  datum = datum.loc[datum['state_name'] == name]
+  #print(datum.head(2).to_string(index=False))
+  #print(datum.dtypes)
+  #print(datum['death_reconsille'],datum['new_death'],datum['death'])
 
-  if datum['death_reconsille'] != '':
+  if str(datum['death_reconsille']) != 0:
+    #print(datum['death_reconsille'],datum['new_death'],datum['death'])
     dDno = datum['new_death'] - datum['death'] + datum['death_reconsille']
   else:
     dDno = datum['new_death'] - datum['death']
+  #print('dD = ',dDno.to_string(index=False))
 
   return [{
     'districtName': name,
-    'confirmed': datum['new_positive'],
-    'recovered': datum['new_cured'],
-    'deceased':  datum['new_death'],
-    'active':  datum['new_active'],
-    'dC': datum['new_positive'] - datum['positive'],
-    'dR': datum['new_cured'] - datum['cured'],
-    'dD': dDno
+    'confirmed': datum['new_positive'].to_string(index=False),
+    'recovered': datum['new_cured'].to_string(index=False),
+    'deceased':  datum['new_death'].to_string(index=False),
+    'active':  datum['new_active'].to_string(index=False),
+    'dC': (datum['new_positive'] - datum['positive']).to_string(index=False),
+    'dR': (datum['new_cured'] - datum['cured']).to_string(index=False),
+    'dD': dDno.to_string(index=False)
   }] 
 
 def _get_api_statewise_data(name):
@@ -82,8 +93,12 @@ def ap_get_data(opt):
     data=_get_mohfw_data(opt['name'])
     api_data=_get_api_statewise_data(opt['name'])
     #print(api_data[0]['api_A'],data[0]['active'])
+    #print(api_data[0]['api_C'],data[0]['confirmed'])
+    #print(api_data[0]['api_R'],data[0]['recovered'])
+    #print(api_data[0]['api_D'],data[0]['deceased'])
+    #print(data[0]['dC'],data[0]['dR'],data[0]['dD'])
 
-    if ((data[0]['active'] != api_data[0]['api_A']) and ((data[0]['dC'] != 0) or (data[0]['dR']) or (data[0]['dD']))):
+    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
       if data[0]['dC'] != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
@@ -212,67 +227,91 @@ def an_get_data(opt):
 
 
 def ar_get_data(opt):
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
+  if opt['type'] == 'html':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
 
-  to_correct = []
-  needs_correction = False
-  districts_data = []
-  additionalDistrictInfo = {}
-  additionalDistrictInfo['districtName'] = 'Papum Pare'
-  additionalDistrictInfo['confirmed'] = 0
-  additionalDistrictInfo['recovered'] = 0
-  additionalDistrictInfo['deceased'] = 0
+    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
 
-  try:
-    with open(OUTPUT_TXT, "r") as upFile:
-      for line in upFile:
-        if 'Total' in line:
-          continue
+  return {
+    'needs_correction': False
+  }
 
-        linesArray = line.split('|')[0].split(',')
+  '''
+  elif opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
 
-        NcolReq = 14
-        if len(linesArray) != NcolReq:
-          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
-          needs_correction = True
-          linesArray.insert(0, NcolErr)
-          to_correct.append(', '.join(linesArray))
-          continue
+    to_correct = []
+    needs_correction = False
+    districts_data = []
+    additionalDistrictInfo = {}
+    additionalDistrictInfo['districtName'] = 'Papum Pare'
+    additionalDistrictInfo['confirmed'] = 0
+    additionalDistrictInfo['recovered'] = 0
+    additionalDistrictInfo['deceased'] = 0
 
-        # take total of `Papum Pare` & `Capital Complex` under a single district called `Papum Pare`
-        # Anjaw , 4 , 21079 , 20891 , 19823 , 1068 , 0 , 0 , 0 , 0 , 0 , 0 , 1065, 3
-        if linesArray[0].strip() == "Capital Complex" or linesArray[0].strip() == "Papum Pare":
-          additionalDistrictInfo['confirmed'] += int(linesArray[5])
-          additionalDistrictInfo['recovered'] += int(linesArray[12])
-          additionalDistrictInfo['deceased'] += int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
-          continue
+    try:
+      with open(OUTPUT_TXT, "r") as upFile:
+        for line in upFile:
+          if 'Total' in line:
+            continue
 
-        districtDictionary = {}
-        districtName = linesArray[0].strip()
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[5])
-        districtDictionary['recovered'] = int(linesArray[12])
-        districtDictionary['deceased'] = int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
-        districts_data.append(districtDictionary)
-  except Exception as e:
-    return {
-      'needs_correction': True,
-      'output': OUTPUT_TXT,
-      'to_correct': e
-    }
+          linesArray = line.split('|')[0].split(',')
 
-  # lastly, add the additional district calculated for `Papum Pare`
-  districts_data.append(additionalDistrictInfo)
+          NcolReq = 14
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+            needs_correction = True
+            linesArray.insert(0, NcolErr)
+            to_correct.append(', '.join(linesArray))
+            continue
 
-  upFile.close()
-  if needs_correction:
-    return {
-      'needs_correction': True,
-      'output': OUTPUT_TXT,
-      'to_correct': to_correct
-    }
+          # take total of `Papum Pare` & `Capital Complex` under a single district called `Papum Pare`
+          # Anjaw , 4 , 21079 , 20891 , 19823 , 1068 , 0 , 0 , 0 , 0 , 0 , 0 , 1065, 3
+          if linesArray[0].strip() == "Capital Complex" or linesArray[0].strip() == "Papum Pare":
+            additionalDistrictInfo['confirmed'] += int(linesArray[5])
+            additionalDistrictInfo['recovered'] += int(linesArray[12])
+            additionalDistrictInfo['deceased'] += int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
+            continue
+
+          districtDictionary = {}
+          districtName = linesArray[0].strip()
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[5])
+          districtDictionary['recovered'] = int(linesArray[12])
+          districtDictionary['deceased'] = int(linesArray[13]) if len(re.sub('\n', '', linesArray[13])) != 0 else 0
+          districts_data.append(districtDictionary)
+    except Exception as e:
+      return {
+        'needs_correction': True,
+        'output': OUTPUT_TXT,
+        'to_correct': e
+      }
+
+    # lastly, add the additional district calculated for `Papum Pare`
+    districts_data.append(additionalDistrictInfo)
+
+    upFile.close()
+    if needs_correction:
+      return {
+        'needs_correction': True,
+        'output': OUTPUT_TXT,
+        'to_correct': to_correct
+      }
   return districts_data
+  '''
 
 
 def as_get_data(opt):
@@ -383,7 +422,28 @@ def br_get_data(opt):
 
 
 def ch_get_data(opt):
+  if opt['type'] == 'html':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
 
+    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
+
+  return {
+    'needs_correction': False
+  }
+
+  '''
   import urllib
   #file download
   htm_string_1 = 'http://chdpr.gov.in/cadmin/uploads/downloads/Media_Bulletin_on_'
@@ -490,7 +550,7 @@ def ch_get_data(opt):
     'needs_correction': False
   }
 
-  '''
+  
   response = requests.request("GET", opt['url'])
   soup = BeautifulSoup(response.content, 'html.parser')
   divs = soup.find("div", {"class": "col-lg-8 col-md-9 form-group pt-10"}).find_all("div", {"class": "col-md-3"})
@@ -1007,157 +1067,38 @@ def ka_get_data(opt):
 
 
 def kl_get_data(opt):
+
   if opt['type'] == 'html':
-    districts_data = []
-    response = requests.request('GET', opt['url'])
-    soup = BeautifulSoup(response.content, "html.parser")
-    table = soup.find('table', attrs={'class':'table'})
-    #print(table)
-    rows = soup.find_all('table')[0].find_all('tr')
 
-    dom = soup.find('li', attrs={'class':'breadcrumb-item active'})
-    webdate = dom.get_text()
-    print('\n',webdate,'\n') 
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
 
-    for row in rows[1:]:
-      # Ignoring 1st row containing table headers
-      d = row.find_all('td')
-      districtName = d[0].get_text()
-      confirmed = int(d[1].get_text().strip())
-      recovered = int(d[2].get_text().strip())
-      if "Total" not in districtName:
-        if confirmed != 0:
-          print("{},Kerala,KL,{},Hospitalized,,,{}".format(districtName, confirmed,opt['url']))
-        if recovered != 0:
-          print("{},Kerala,KL,{},Recovered,,,{}".format(districtName, recovered, opt['url']))
-  print('\n')
+    #print(api_data[0]['api_A'],data[0]['active'])
+    #print(api_data[0]['api_C'],data[0]['confirmed'])
+    #print(api_data[0]['api_R'],data[0]['recovered'])
+    #print(api_data[0]['api_D'],data[0]['deceased'])
+    #print(data[0]['dC'],data[0]['dR'],data[0]['dD'])
 
-  res = soup.find_all('script')[6]
-  res_string = str(res.contents)
-  #print(res_string)
-  data = res_string.replace('\\r\\n', '')
-  data = data.replace('\\t', '')
-  data = data.replace('\\', '')
-  data = data.replace(' ', '')
-  #string to clip
-  left_str = 'events:'
-  right_str = ']'
-  # slicing off after length computation
-  data = data[data.index(left_str):]
-  data = data[:data.index(right_str) + len(right_str)]
-  data = data.replace('events:', 'events|')
-  data = data.split('|')[1]
-  data = data.replace(',]', ']')
-  data = data.replace('title', '"title"')
-  data = data.replace("description", '"description"')
-  data = data.replace('_"description"_', '')
-  data = data.replace("start", '"start"')
-  data = data.replace("color", '"color"')
-  data = data.replace('<?php//echo(getdaily($con,$rep));?>', '')
-  data = data.replace('\'', '\"')
-  #print(json.dumps(data,  skipkeys = True, indent=4))
-  json_object = json.loads(data)
- 
-  newcasespat = re.compile(r'(\d+)cnfrm')
-  recpat = re.compile(r'(\d+)recvd')
-  deathpat = re.compile(r'(\d+)death')
-  webdatepat = re.compile(r'(\d+-\d+-\d+)')
-  #print(webdate)
-  webdates = re.search(webdatepat, webdate.lower())
-  #print(webdate)
-  webdates = webdates[1]
-  webdates = datetime.datetime.strptime(webdates,'%d-%m-%Y')
-  upstring = ''
+    print('DATE for KL needs to be shifted back by another day')
+    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
 
-  for datas in json_object:
-    rep_date=datetime.datetime.strptime(datas['start'],'%Y-%m-%d')
-    if rep_date == webdates:
-      #print('{}: {}'.format(datas['start'],datas['title']))
-      if 'Death' in datas['title']:
-        death = re.search(deathpat, datas['title'].lower())
-        death = death[1]
-      elif 'Cnfrm' in datas['title']:
-        newcases = re.search(newcasespat, datas['title'].lower())
-        newcases = newcases[1]
-      elif 'Recvd' in datas['title']:
-        rec = re.search(recpat, datas['title'].lower())
-        rec = rec[1]
-  #print(death,newcases,rec)
-  #if newcases != '0':
-  #  upstring += 'Kerala,KL,'+newcases+',Hospitalized,,,'+opt['url']+'\n'
-  #if rec != '0':
-  #  upstring += 'Kerala,KL,'+rec+',Recovered,,,'+opt['url']+'\n'
-  if death != '0':
-    upstring += 'Kerala,KL,'+death+',Deceased,,,'+opt['url']+'\n'
-
-  print('\n'+str(webdate)+' State level Deaths data for copy & paste \n')
-  print(upstring,'\n')
-
-
-  kltesturl = 'https://dashboard.kerala.gov.in/covid/testing-view-public.php'      
-
-  response = requests.request('GET', kltesturl)
-  soup = BeautifulSoup(response.content, "html.parser")
-
-  data = []
-  table = soup.find('table', attrs={'class':'table'})
-
-  rows = soup.find_all('table')[2].find_all('tr')
-  for row in rows:
-      cols = row.find_all('td')
-      cols = [ele.text.strip() for ele in cols]
-      data.append([ele for ele in cols if ele]) # Get rid of empty values
-
-
-  rep_date = data[1][0]
-  rep_date=datetime.datetime.strptime(rep_date,'%d-%m-%Y')
-  testdate = datetime.datetime.strftime(rep_date,'%d/%m/%Y')
-  total = data[1][11]
-  others = data[1][8]
-  rat = data[1][7]
-  rtpcr = int(total) -(int(rat)+int(others))
-  rtpcr=str(rtpcr)
-  #print(rep_date,rtpcr,rat,others,total)
-  upstring = testdate+',Kerala,'+str(rtpcr)+','+str(rat)+','+str(others)+','+\
-              str(total)+',Samples Sent,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,'+kltesturl+'\n'
-  print('Copy Paste the TESTS for Kerala\n')
-  print(upstring)    
-
-  return districts_data
-
-  if opt['type'] == 'pdf':
-
-    if opt['skip_output'] == False:
-      read_pdf_from_url(opt)
-
-    linesArray = []
-    districtDictionary = {}
-    districts_data = []
-    print("\n***Caution Kerala scrap will always show deltas for that day.\n It is not compared to previous day data in our API. \nEnsure that you are scrapping correct file ;))\n")
-
-    csv_file = os.path.join(OUTPUTS_DIR, '{}.csv'.format(opt['state_code'].lower()))
-    with open(csv_file, "r") as upFile:
-      for line in upFile:
-        linesArray = line.split(',')
-        if len(linesArray) != 3:
-          print("--> Issue with Columns: Cno={} : {}".format(len(linesArray), linesArray))
-          print('--------------------------------------------------------------------------------')
-          continue
-        if "District" not in linesArray:
-          print("{},Kerala,KL,{},Hospitalized".format(linesArray[0].strip().title(), linesArray[1].strip()))
-          print("{},Kerala,KL,{},Recovered".format(linesArray[0].strip().title(), linesArray[2].strip()))
-          # TODO - append to districts_data
-    print('\n')
-    #print("\n===>Scrapping Deaths reported\n")
-    #os.system("python scrapers.py --state_code KLD --type pdf -u %s"%opt['url'])
-    #print("\n===>Scrapping BACKLOG Deaths reported\n")
-    #os.system("python scrapers.py --state_code KLDBL --type pdf -u %s"%opt['url'])
-    upFile.close()
-    #quit()
-    return districts_data
+  return {
+    'needs_correction': False
+  }
 
 
 def kld_get_data(opt):
+  '''
   if opt['type'] == 'pdf':
     # TODO - run script to generate the csv
 
@@ -1190,9 +1131,10 @@ def kld_get_data(opt):
     upFile.close()
     #quit()
     return districts_data
-
+'''
 
 def kldbl_get_data(opt):
+  '''
   if opt['type'] == 'pdf':
     # TODO - run script to generate the csv
     linecnt=0
@@ -1225,7 +1167,7 @@ def kldbl_get_data(opt):
     upFile.close()
     #quit()
     return districts_data
-
+  '''
 
 def la_get_data(opt):
   return _get_mohfw_data(opt['name'])
@@ -2118,6 +2060,28 @@ def tr_get_data(opt):
 
 def up_get_data(opt):
 
+  if opt['type'] == 'html':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+    #print(api_data[0]['api_A'],data[0]['active'])
+
+    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+      print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
+      if data[0]['dC'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if data[0]['dR'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if data[0]['dD'] != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
+
+
+  return {
+    'needs_correction': False
+  }
+'''
   if opt['skip_output'] == False:
     read_pdf_from_url(opt)
 
@@ -2169,7 +2133,7 @@ def up_get_data(opt):
       'output': csv_file
     }
   return districts_data
-
+'''
 
 def ut_get_data(opt):
 
