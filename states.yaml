@@ -38,10 +38,11 @@ ar:
   cowin_code: 3
   url_sources:
     - https://twitter.com/DirHealth_ArPr
-  type: image
-  url: _inputs/ar.jpeg
+  type: html
+  url: 
   config:
     translation: False
+    delta_calc: False
 
 as:
   name: Assam
@@ -250,16 +251,13 @@ kl:
   state_code: KL
   cowin_code: 17
   url_sources:
-    - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - https://dashboard.kerala.gov.in/covid/index.php
   type: html
-  url: https://dashboard.kerala.gov.in/covid/daily.php
+  url: 
   config:
+    translation: False
     delta_calc: False
-    #page: 4
-    #start_key: District
-    #end_key: Total
-
+    
 kld:
   name: KeralaDeaths
   state_code: KLD
@@ -269,8 +267,8 @@ kld:
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: pdf
-  url: _inputs/kl.pdf
+  type: 
+  url: 
   config:
     delta_calc: False
     page: 6-12
@@ -286,8 +284,8 @@ kldbl:
     - https://dashboard.kerala.gov.in/index.php
     - https://dhs.kerala.gov.in/%e0%b4%a1%e0%b5%86%e0%b4%af%e0%b4%bf%e0%b4%b2%e0%b4%bf-%e0%b4%ac%e0%b5%81%e0%b4%b3%e0%b5%8d%e0%b4%b3%e0%b4%b1%e0%b5%8d%e0%b4%b1%e0%b4%bf%e0%b4%a8%e0%b5%8d%e2%80%8d/
     - # KeralaDeaths, KLD, https://dashboard.kerala.gov.in/maps/outside.geojson
-  type: pdf
-  url: _inputs/kl.pdf
+  type: 
+  url: 
   config:
     delta_calc: False
     page: 5
@@ -525,11 +523,12 @@ up:
     - https://twitter.com/shalabhTOI
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
-  type: pdf
+  type: html
   url: 
   config:
-    translation: True
-    page: 1, 2
+    delta_calc: False
+    #translation: True
+    #page: 1, 2
     #start_key: auto
     #end_key: Total
 
