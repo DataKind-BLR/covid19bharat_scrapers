@@ -98,13 +98,15 @@ def ap_get_data(opt):
     #print(api_data[0]['api_D'],data[0]['deceased'])
     #print(data[0]['dC'],data[0]['dR'],data[0]['dD'])
 
-    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-      if data[0]['dC'] != 0:
+      if int(data[0]['dC']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-      if data[0]['dR'] != 0:
+      if int(data[0]['dR']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-      if data[0]['dD'] != 0:
+      if int(data[0]['dD']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
       print('\n NO DELTAS')
@@ -232,13 +234,15 @@ def ar_get_data(opt):
     api_data=_get_api_statewise_data(opt['name'])
     #print(api_data[0]['api_A'],data[0]['active'])
 
-    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-      if data[0]['dC'] != 0:
+      if int(data[0]['dC']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-      if data[0]['dR'] != 0:
+      if int(data[0]['dR']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-      if data[0]['dD'] != 0:
+      if int(data[0]['dD']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
       print('\n NO DELTAS')
@@ -427,13 +431,15 @@ def ch_get_data(opt):
     api_data=_get_api_statewise_data(opt['name'])
     #print(api_data[0]['api_A'],data[0]['active'])
 
-    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-      if data[0]['dC'] != 0:
+      if int(data[0]['dC']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-      if data[0]['dR'] != 0:
+      if int(data[0]['dR']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-      if data[0]['dD'] != 0:
+      if int(data[0]['dD']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
       print('\n NO DELTAS')
@@ -1073,20 +1079,15 @@ def kl_get_data(opt):
     data=_get_mohfw_data(opt['name'])
     api_data=_get_api_statewise_data(opt['name'])
 
-    #print(api_data[0]['api_A'],data[0]['active'])
-    #print(api_data[0]['api_C'],data[0]['confirmed'])
-    #print(api_data[0]['api_R'],data[0]['recovered'])
-    #print(api_data[0]['api_D'],data[0]['deceased'])
-    #print(data[0]['dC'],data[0]['dR'],data[0]['dD'])
-
-    print('DATE for KL needs to be shifted back by another day')
-    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting. Back-SHIFT date by another day')
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-      if data[0]['dC'] != 0:
+      if int(data[0]['dC']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-      if data[0]['dR'] != 0:
+      if int(data[0]['dR']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-      if data[0]['dD'] != 0:
+      if int(data[0]['dD']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
       print('\n NO DELTAS')
@@ -2065,13 +2066,15 @@ def up_get_data(opt):
     api_data=_get_api_statewise_data(opt['name'])
     #print(api_data[0]['api_A'],data[0]['active'])
 
-    if ((int(data[0]['active']) != api_data[0]['api_A']) and ((int(data[0]['dC']) != 0) or (data[0]['dR']) or (data[0]['dD']))):
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
       print('\nState level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD\n')
-      if data[0]['dC'] != 0:
+      if int(data[0]['dC']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
-      if data[0]['dR'] != 0:
+      if int(data[0]['dR']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
-      if data[0]['dD'] != 0:
+      if int(data[0]['dD']) != 0:
         print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
     else:
       print('\n NO DELTAS')
