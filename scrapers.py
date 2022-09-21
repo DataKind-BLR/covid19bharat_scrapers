@@ -43,7 +43,7 @@ def fetch_data(st_obj):
         'ch': ch_get_data,
         'ct': ct_get_data,
         'dd': dd_get_data,
-        'dh': dh_get_data,
+        'dl': dl_get_data,
         'dn': dn_get_data,
         'ga': ga_get_data,
         'gj': gj_get_data,
@@ -105,12 +105,24 @@ def run(args):
         states_all[state_code]['config'].update({
             'page': page
         })
-    # overwrite `type` & `url` provided by cmd
-    if url_type is not None and url is not None:
+
+    # overwrite `type` provided by cmd
+    if url_type is not None:
         states_all[state_code].update({
-            'url': url,
             'type': url_type
         })
+    # overwrite `url` provided by cmd
+    if url is not None:
+        states_all[state_code].update({
+            'url': url
+        })
+    # set delta_calc=false for MOHFW scrap
+    if states_all[state_code]['type'] == 'mohfw':
+        states_all[state_code]['config'].update({
+            'delta_calc': False
+        })
+    #print(states_all[state_code]['config']['delta_calc'],'\n')
+
     #Remove start_key and end_key for processing image of RJ & MH
     if url_type == 'image' and (state_code == 'rj' or state_code == 'mh'):
       keys_to_remove = ['key_not_exist', 'start_key','end_key']
@@ -197,7 +209,7 @@ if __name__ == '__main__':
     # console = Console(record=True)
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--state_code', type=str, nargs='?', required=True, help=f'provide 2 letter state code. Possible options = {states_all.keys()}')
-    parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html'], help='type of url to be specified [pdf, image, html]')
+    parser.add_argument('-t', '--type', type=str, choices=['pdf', 'image', 'html', 'mohfw'], help='type of url to be specified [pdf, image, html, mohfw]')
     parser.add_argument('-u', '--url', type=str, help='url/path to the image or pdf to be parsed')
     parser.add_argument('-p', '--page', type=str, help='page numbers to read in case of PDFs')
     parser.add_argument('-o', '--skip_output', action='store_true', help='when you add this flag, it will not generate or update existing output files. Ideally use this when you manually want to update outputs and re-run statewise function')

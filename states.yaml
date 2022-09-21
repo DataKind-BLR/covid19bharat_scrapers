@@ -7,12 +7,12 @@ an:
     - https://twitter.com/Andaman_admin
     - https://dhs.andaman.gov.in/
   notes: Need to read PDF / Image manually and enter into google sheets
-  type: pdf
+  type: mohfw
   url:
   config:
-    page: 1
-    start_key: 'A & N Islands'
-    end_key: 'Total Deaths'
+    delta_calc: True
+    #start_key: 'A & N Islands'
+    #end_key: 'Total Deaths'
 
 ap:
   name: Andhra Pradesh
@@ -23,12 +23,12 @@ ap:
     - http://hmfw.ap.gov.in/covid_dashboard.aspx
     - notes If full image fails, clip only table and submit
     - https://www.mohfw.gov.in/data/datanew.json
-  type: html
-  url: https://www.mohfw.gov.in/data/datanew.json
-  #page: 
+  type: mohfw
+  url: 
+  page: 
   config:
     delta_calc: False
-    #translation: False
+    translation: False
     #start_key: Anantapur
     #end_key: West
 
@@ -38,7 +38,7 @@ ar:
   cowin_code: 3
   url_sources:
     - https://twitter.com/DirHealth_ArPr
-  type: html
+  type: mohfw
   url: 
   config:
     translation: False
@@ -53,7 +53,7 @@ as:
     - https://twitter.com/nhm_assam
     - https://covid19.assam.gov.in/all-districts/
   type: image
-  url: _inputs/as.jpeg
+  url: 
   config:
     delta_calc: False
     translation: False
@@ -79,7 +79,7 @@ ch:
     - http://chdcovid19.in/
     - http://chdcovid19.in/chdcovidbed19/index.php/media_bulletin/index
     - http://chdpr.gov.in/downloads/media_bulletin
-  type: html
+  type: mohfw
   url: 
   config:
     delta_calc: False
@@ -113,10 +113,11 @@ dd:
     - https://twitter.com/collectordaman
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
-  type: image
-  url: _inputs/dd.jpeg
+  type: mohfw
+  url: 
   config:
     translation: False
+    delta_calc: False
 
 dn:
   name: Dadra and Nagar Haveli and Daman and Diu
@@ -127,24 +128,26 @@ dn:
     - https://twitter.com/collectordaman
     - https://twitter.com/rai_saloni
     - https://twitter.com/diudistrict
-  type: image
+  type: mohfw
   url: https://www.mohfw.gov.in/
   config:
     translation: False
+    delta_calc: False
 
-dh:
+dl:
   name: Delhi
-  state_code: DH
+  state_code: DL
   cowin_code: 9
   notes: Need to read PDF / Image manually and enter into google sheets
   url_sources:
     - https://twitter.com/CMODelhi
     - https://twitter.com/ani
     - https://twitter.com/ICMRDELHI
-  type: image
-  url: _inputs/dh.jpg
+  type: mohfw
+  url: 
   config:
     translation: False
+    delta_calc: False
 
 ga:
   name: Goa
@@ -153,10 +156,11 @@ ga:
   url_sources:
     - https://twitter.com/DHS_Goa
     - https://www.goa.gov.in/covid-19/
-  type: image
-  url: _inputs/ga.jpg
+  type: mohfw
+  url: 
   config:
     translation: False
+    delta_calc: False
 
 gj:
   name: Gujarat
@@ -232,6 +236,7 @@ jh:
     translation: False
     start_key: Bokaro
     #end_key: Total
+    delta_calc: True
 
 ka:
   name: Karnataka
@@ -300,8 +305,10 @@ la:
     - https://twitter.com/prasarbharti
     - http://covid.ladakh.gov.in/#dataInsights
     - https://twitter.com/DIPR_Leh
-  type: image
-  url: _inputs/la.jpeg
+  type: mohfw
+  url: 
+  config:
+    delta_calc: False
 
 ld:
   name: Lakshadweep
@@ -309,7 +316,7 @@ ld:
   cowin_code: 19
   url_sources:
     - MoHFW
-  type: html
+  type: mohfw
   url:
   config:
     delta_calc: False
@@ -514,6 +521,8 @@ tr:
     - https://twitter.com/BjpBiplab
   type: html
   url: https://covid19.tripura.gov.in/Visitor/ViewStatus.aspx
+  config:
+    delta_calc: True
 
 up:
   name: Uttar Pradesh
@@ -523,7 +532,7 @@ up:
     - https://twitter.com/shalabhTOI
     - https://twitter.com/sengarlive
     - https://twitter.com/74_alok
-  type: html
+  type: mohfw
   url: 
   config:
     delta_calc: False
