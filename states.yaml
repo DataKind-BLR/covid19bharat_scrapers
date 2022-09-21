@@ -257,7 +257,7 @@ kl:
   cowin_code: 17
   url_sources:
     - https://dashboard.kerala.gov.in/covid/index.php
-  type: html
+  type: mohfw
   url: 
   config:
     translation: False
