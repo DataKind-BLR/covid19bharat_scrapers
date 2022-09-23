@@ -389,6 +389,14 @@ def as_get_data(opt):
           splitArray = re.sub('\n', '', line.strip()).split('|')
           linesArray = splitArray[0].split(',')
 
+          NcolReq = 4
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+            needs_correction = True
+            linesArray.insert(0, NcolErr)
+            to_correct.append(linesArray)
+            continue
+
           ## Why is this not fixed in `as_districts.meta` ??
           if int(linesArray[len(linesArray) - 1]) > 0:
             if ((linesArray[0].strip() == 'Kamrup Metro') or (linesArray[0].strip() == 'Metro')):
@@ -397,15 +405,14 @@ def as_get_data(opt):
               print("Kamrup,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
             elif linesArray[0].strip() == 'South Salmara':
               print("South Salmara Mankachar,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
+            elif linesArray[0].strip() == 'Hasao':
+              print("Dima Hasao,Assam,AS,{},Hospitalized".format(linesArray[len(linesArray) - 1].strip()))
             else:
               print("{},Assam,AS,{},Hospitalized".format(linesArray[0].strip(), linesArray[len(linesArray) - 1].strip()))
             # districtDictionary['districtName'] = linesArray[0].strip()
             # districtDictionary['confirmed'] = linesArray[len(linesArray) - 1].strip()
             # districts_data.append(districtDictionary)
-          else:
-            needs_correction = True
-            linesArray.insert(0, '--> Issue with')
-            to_correct.append(linesArray)
+
     except Exception as e:
       return {
         'needs_correction': True,
