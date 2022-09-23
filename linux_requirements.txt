@@ -39,7 +39,7 @@ pdfminer.six==20211012
 pdftotext==2.1.5
 Pillow==8.2.0
 proto-plus==1.19.6
-protobuf==3.17.3
+protobuf==3.18.3
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
