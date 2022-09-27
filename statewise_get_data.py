@@ -1597,9 +1597,9 @@ def ml_get_data(opt):
 
           districtDictionary = {}
           districtDictionary['districtName'] = linesArray[0].strip()
-          districtDictionary['confirmed'] = int(linesArray[5].strip())
-          districtDictionary['recovered'] = int(linesArray[6].strip())
-          districtDictionary['deceased'] = int(linesArray[7]) if len(re.sub('\n', '', linesArray[7])) != 0 else 0
+          districtDictionary['confirmed'] = int(linesArray[4].strip())
+          districtDictionary['recovered'] = int(linesArray[4].strip()) - (int(linesArray[5].strip()) + int(linesArray[6].strip()))
+          districtDictionary['deceased'] = int(linesArray[5].strip())
           districts_data.append(districtDictionary)
     except Exception as e:
       return {
