@@ -342,10 +342,9 @@ ml:
   state_code: ML
   cowin_code: 23
   url_sources:
-    - https://twitter.com/SangmaConrad
-    - https://twitter.com/ddnewsshillong
-    - https://twitter.com/pibshillong
-    - https://twitter.com/ShillongTimesIn
+    - http://meghalayaonline.gov.in/covid/login.htm
+    - https://twitter.com/MeghalayaGov
+    - https://meghalaya.gov.in/whats-new/announcements
   type: pdf
   url: https://mbdasankalp.in/auth/local/embed
   config:
