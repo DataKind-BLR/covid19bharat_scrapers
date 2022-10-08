@@ -389,8 +389,8 @@ mz:
   cowin_code: 24
   url_sources:
     - https://twitter.com/dipr_mizoram
-  type: image
-  url: _inputs/mz.jpeg
+  type: mohfw
+  url: 
   config:
     translation: False
 
