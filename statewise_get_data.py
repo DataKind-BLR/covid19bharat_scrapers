@@ -1748,48 +1748,74 @@ def mp_get_data(opt):
 
 def mz_get_data(opt):
 
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
-
-  needs_correction = False
-  to_correct = []
   districts_data = []
+  if opt['type'] == 'mohfw':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
 
-  try:
-    with open(OUTPUT_TXT) as upFile:
-      for line in upFile:
-        line = line.replace('Nil', '0')
-        linesArray = line.split('|')[0].split(',')
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
+      print('State level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD')
+      print('-*-'*20,'\n')
+      if int(data[0]['dC']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if int(data[0]['dR']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if int(data[0]['dD']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
 
-        NcolReq = 5
-        if len(linesArray) != NcolReq:
-          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
-          needs_correction = True
-          linesArray.insert(0, NcolErr)
-          to_correct.append(linesArray)
-          continue
-
-        districtDictionary = {}
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(linesArray[4]) #+ int(linesArray[2]) + int(linesArray[3])
-        districtDictionary['recovered'] = int(linesArray[2])
-        districtDictionary['deceased'] = int(linesArray[3]) #if len(re.sub('\n', '', linesArray[3])) != 0 else 0
-        districts_data.append(districtDictionary)
-  except Exception as e:
     return {
-      'needs_correction': True,
-      'to_correct': e,
-      'output': OUTPUT_TXT
+      'needs_correction': False
     }
+    return districts_data
 
-  upFile.close()
-  if needs_correction:
-    return {
-      'needs_correction': True,
-      'to_correct': to_correct,
-      'output': OUTPUT_TXT
-    }
-  return districts_data
+  if opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
+
+    needs_correction = False
+    to_correct = []
+    districts_data = []
+
+    try:
+      with open(OUTPUT_TXT) as upFile:
+        for line in upFile:
+          line = line.replace('Nil', '0')
+          linesArray = line.split('|')[0].split(',')
+
+          NcolReq = 5
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+            needs_correction = True
+            linesArray.insert(0, NcolErr)
+            to_correct.append(linesArray)
+            continue
+
+          districtDictionary = {}
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(linesArray[4]) #+ int(linesArray[2]) + int(linesArray[3])
+          districtDictionary['recovered'] = int(linesArray[2])
+          districtDictionary['deceased'] = int(linesArray[3]) #if len(re.sub('\n', '', linesArray[3])) != 0 else 0
+          districts_data.append(districtDictionary)
+    except Exception as e:
+      return {
+        'needs_correction': True,
+        'to_correct': e,
+        'output': OUTPUT_TXT
+      }
+
+    upFile.close()
+    if needs_correction:
+      return {
+        'needs_correction': True,
+        'to_correct': to_correct,
+        'output': OUTPUT_TXT
+      }
+    return districts_data
 
 
 def nl_get_data(opt):
