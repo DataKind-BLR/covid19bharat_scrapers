@@ -1098,7 +1098,7 @@ def jh_get_data(opt):
           districtDictionary['deceased'] = int(linesArray[3])
 
           #Directly printout current deltas given in bulletin
-          if 'Saraikela' in linesArray[0].strip(): 
+          if 'Saralkela' in linesArray[0].strip() or 'Saraikela' in linesArray[0].strip(): 
             dt_name = 'Saraikela-Kharsawan'
           else:
             dt_name =  linesArray[0].strip()
