@@ -202,7 +202,8 @@ def ct_format_line(row):
   return line
 
 def ml_format_line(row):
-  line = row[0] + "," + row[4] + "," + row[5] + "," + row[6] + "\n"
+  row[5] = re.sub('%', '', re.sub('\+.*', '', row[5]))
+  line = row[0] + "," + row[1] + "," + row[2] + "," + row[3] + "," + row[4] + "," + row[5] + "," + row[6] + "\n"
   return line
 
 def mh_format_line(row):
