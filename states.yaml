@@ -349,8 +349,9 @@ ml:
   url: https://mbdasankalp.in/auth/local/embed
   config:
     page: 1
+    delta_calc: False
     translation: False
-    start_key: East
+    start_key: Meghalaya
     end_key: Total
 
 mn:
