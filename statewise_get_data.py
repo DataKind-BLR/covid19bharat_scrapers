@@ -871,65 +871,106 @@ def gj_get_data(opt):
 
 
 def hp_get_data(opt):
-  if opt['skip_output'] == False:
-    run_for_ocr(opt)
 
-  to_correct = []
-  needs_correction = False
-  linesArray = []
-  districtDictionary = {}
   districts_data = []
-  districtTableBeingRead = False
+  if opt['type'] == 'mohfw':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
 
-  try:
-    with open(OUTPUT_TXT, "r") as upFile:
-      for line in upFile:
-        line = re.sub('\*', '', line)
-        linesArray = line.split('|')[0].split(',')
-        availableColumns = line.split('|')[1].split(',')
-        districtDictionary = {}
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
+      print('State level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD')
+      print('-*-'*20,'\n')
+      if int(data[0]['dC']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if int(data[0]['dR']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if int(data[0]['dD']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
 
-        #NcolReq = 12 #sometimes they add extra columns
-        NcolReq = 10 #July2022
-        if len(linesArray) != NcolReq:
-          NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
-          needs_correction = True
-          linesArray.insert(0, NcolErr)
-          to_correct.append(linesArray)
-          continue
-
-        if linesArray[0].strip().title() == 'Total':
-          break
-
-        districtDictionary['districtName'] = linesArray[0].strip()
-        districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip())
-
-        #with NcolReq = 12
-        #districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
-        #districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[10].strip()).strip())
-
-        #with NcolReq = 10
-        districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[6].strip()).strip())
-        districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip())
-
-        districts_data.append(districtDictionary)
-
-  except Exception as e:
     return {
-      'needs_correction': True,
-      'to_correct': e,
-      'output': OUTPUT_TXT
+      'needs_correction': False
     }
+    return districts_data
 
-  upFile.close()
-  if needs_correction:
-    return {
-      'needs_correction': True,
-      'to_correct': to_correct,
-      'output': OUTPUT_TXT
-    }
-  return districts_data
+  if opt['type'] == 'image':
+    if opt['skip_output'] == False:
+      run_for_ocr(opt)
 
+    to_correct = []
+    needs_correction = False
+    linesArray = []
+    districtDictionary = {}
+    districts_data = []
+    districtTableBeingRead = False
+
+    print('\n+++++++++++++++++++++++++++++++++++++++++++++++')    
+    print('Current Deltas directly from bulletin\nEnsure current data is not entered already')
+    print('+++++++++++++++++++++++++++++++++++++++++++++++\n') 
+
+    try:
+      with open(OUTPUT_TXT, "r") as upFile:
+        for line in upFile:
+          line = re.sub('\*', '', line)
+          linesArray = line.split('|')[0].split(',')
+          availableColumns = line.split('|')[1].split(',')
+          districtDictionary = {}
+
+          NcolReq = 10
+          if len(linesArray) != NcolReq:
+            NcolErr = '--> Ncol='+str(len(linesArray))+' (NcolReq='+str(NcolReq)+')'
+            needs_correction = True
+            linesArray.insert(0, NcolErr)
+            to_correct.append(linesArray)
+            continue
+          if linesArray[0].strip().title() == 'Total':
+            break
+
+          districtDictionary = {}
+          #subtract today's delta's and pass to calc to estimate yesterday's deltas
+          districtDictionary['districtName'] = linesArray[0].strip()
+          districtDictionary['confirmed'] = int(re.sub('[^0-9]+', '', linesArray[1].strip()).strip()) - int(re.sub('[^0-9]+', '', linesArray[3].strip()).strip())
+          districtDictionary['recovered'] = int(re.sub('[^0-9]+', '', linesArray[6].strip()).strip()) - int(re.sub('[^0-9]+', '', linesArray[4].strip()).strip())
+          districtDictionary['deceased'] = int(re.sub('[^0-9]+', '', linesArray[8].strip()).strip()) - int(re.sub('[^0-9]+', '', linesArray[7].strip()).strip())
+          districts_data.append(districtDictionary)
+
+          #Directly printout current deltas given in bulletin
+          if '& Spiti' in linesArray[0].strip() or 'Spiti' in linesArray[0].strip(): 
+            dt_name = 'Lahaul and Spiti'
+          else:
+            dt_name =  linesArray[0].strip()
+
+          if int(linesArray[3]) != 0:
+            print("{},{},{},{},Hospitalized".format(dt_name, opt['name'], opt['state_code'], int(linesArray[3])))
+          if int(linesArray[4]) != 0:
+            print("{},{},{},{},Recovered".format(dt_name, opt['name'], opt['state_code'], int(linesArray[4])))
+          if int(linesArray[7]) != 0:
+            print("{},{},{},{},Deceased".format(dt_name, opt['name'], opt['state_code'], int(linesArray[7])))
+
+    except Exception as e:
+      return {
+        'needs_correction': True,
+        'to_correct': e,
+        'output': OUTPUT_TXT
+      }
+
+    upFile.close()
+    if needs_correction:
+      return {
+        'needs_correction': True,
+        'to_correct': to_correct,
+        'output': OUTPUT_TXT
+      }
+
+    print('\n+++++++++++++++++++++++++++++++++++++++++++++++')    
+    print('Previous Day Deltas give below. \nNo deltas: we got bulletin previous day too. \nNegative Deltas: Current data already entered')
+    print('+++++++++++++++++++++++++++++++++++++++++++++++') 
+
+    return districts_data
 
 def hr_get_data(opt):
 
