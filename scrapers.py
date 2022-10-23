@@ -121,8 +121,11 @@ def run(args):
         states_all[state_code]['config'].update({
             'delta_calc': False
         })
-    #print(states_all[state_code]['config']['delta_calc'],'\n')
-
+    #GJ html/pdf mixed requirement
+    if states_all[state_code]['type'] == 'pdf' and (state_code == 'gj'):
+        states_all[state_code]['config'].update({
+            'delta_calc': False
+        })
     #Remove start_key and end_key for processing image of RJ & MH
     if url_type == 'image' and (state_code == 'rj' or state_code == 'mh' or state_code == 'ml'):
       keys_to_remove = ['key_not_exist', 'start_key','end_key']
