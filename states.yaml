@@ -444,10 +444,11 @@ py:
   url_sources:
     - https://twitter.com/ani
     - https://covid19dashboard.py.gov.in/Reporting/DateWise
-  type: image
-  url: _inputs/py.jpg
+  type: mohfw
+  url: 
   config:
     translation: False
+    delta_calc: False
 
 rj:
   name: Rajasthan
