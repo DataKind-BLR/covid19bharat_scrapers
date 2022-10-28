@@ -2239,7 +2239,31 @@ def pb_get_data(opt):
 
 
 def py_get_data(opt):
-  return _get_mohfw_data(opt['name'])
+  
+  districts_data = []
+  if opt['type'] == 'mohfw':
+    data=_get_mohfw_data(opt['name'])
+    api_data=_get_api_statewise_data(opt['name'])
+
+    #if (not (int(data[0]['dC']) == (int(data[0]['dR']) + int(data[0]['dD']))) and (((int(data[0]['active']) != api_data[0]['api_A'])) and (int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0)))):
+    if ((int((data[0]['dC']) != 0) or (int(data[0]['dR']) != 0) or (int(data[0]['dD']) != 0))):
+      print('\n***WARNING*** CHECK sheet for prior entry before pasting.')
+      print('State level ('+opt['name']+' : '+opt['state_code']+') dC, dR, dD')
+      print('-*-'*20,'\n')
+      if int(data[0]['dC']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dC'])+',Hospitalized,,,'+MOHFW_URL)
+      if int(data[0]['dR']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dR'])+',Recovered,,,'+MOHFW_URL)
+      if int(data[0]['dD']) != 0:
+        print(opt['name']+','+opt['state_code']+','+str(data[0]['dD'])+',Deceased,,,'+MOHFW_URL)
+    else:
+      print('\n NO DELTAS')
+      print('1) No changes or 2) MOHFW yet to update data. Please try after sometime to verify')
+
+    return {
+      'needs_correction': False
+    }
+    return districts_data
 
 
 def rj_get_data(opt):
