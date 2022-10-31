@@ -422,6 +422,8 @@ or:
     - https://health.odisha.gov.in/js/distDtls.js
   type: html
   url: https://statedashboard.odisha.gov.in/
+  config:
+    translation: False
 
 pb:
   name: Punjab
